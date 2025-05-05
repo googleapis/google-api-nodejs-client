@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1238,11 +1239,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Bookshelves$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bookshelves$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bookshelf>;
+    ): GaxiosResponseWithHTTP2<Schema$Bookshelf>;
     get(
       params: Params$Resource$Bookshelves$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1327,11 +1328,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Bookshelves$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bookshelves$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bookshelves>;
+    ): GaxiosResponseWithHTTP2<Schema$Bookshelves>;
     list(
       params: Params$Resource$Bookshelves$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1449,11 +1450,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Bookshelves$Volumes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bookshelves$Volumes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Bookshelves$Volumes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1574,11 +1575,11 @@ export namespace books_v1 {
     addBook(
       params: Params$Resource$Cloudloading$Addbook,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addBook(
       params?: Params$Resource$Cloudloading$Addbook,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BooksCloudloadingResource>;
+    ): GaxiosResponseWithHTTP2<Schema$BooksCloudloadingResource>;
     addBook(
       params: Params$Resource$Cloudloading$Addbook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1669,11 +1670,11 @@ export namespace books_v1 {
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteBook(
       params?: Params$Resource$Cloudloading$Deletebook,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1760,11 +1761,11 @@ export namespace books_v1 {
     updateBook(
       params: Params$Resource$Cloudloading$Updatebook,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateBook(
       params?: Params$Resource$Cloudloading$Updatebook,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BooksCloudloadingResource>;
+    ): GaxiosResponseWithHTTP2<Schema$BooksCloudloadingResource>;
     updateBook(
       params: Params$Resource$Cloudloading$Updatebook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1896,11 +1897,11 @@ export namespace books_v1 {
     listOfflineMetadata(
       params: Params$Resource$Dictionary$Listofflinemetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listOfflineMetadata(
       params?: Params$Resource$Dictionary$Listofflinemetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Metadata>;
+    ): GaxiosResponseWithHTTP2<Schema$Metadata>;
     listOfflineMetadata(
       params: Params$Resource$Dictionary$Listofflinemetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2002,11 +2003,11 @@ export namespace books_v1 {
     getFamilyInfo(
       params: Params$Resource$Familysharing$Getfamilyinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getFamilyInfo(
       params?: Params$Resource$Familysharing$Getfamilyinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FamilyInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$FamilyInfo>;
     getFamilyInfo(
       params: Params$Resource$Familysharing$Getfamilyinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2093,11 +2094,11 @@ export namespace books_v1 {
     share(
       params: Params$Resource$Familysharing$Share,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     share(
       params?: Params$Resource$Familysharing$Share,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     share(
       params: Params$Resource$Familysharing$Share,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2184,11 +2185,11 @@ export namespace books_v1 {
     unshare(
       params: Params$Resource$Familysharing$Unshare,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unshare(
       params?: Params$Resource$Familysharing$Unshare,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     unshare(
       params: Params$Resource$Familysharing$Unshare,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2326,11 +2327,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Layers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Layers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Layersummary>;
+    ): GaxiosResponseWithHTTP2<Schema$Layersummary>;
     get(
       params: Params$Resource$Layers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2415,11 +2416,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Layers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Layers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Layersummaries>;
+    ): GaxiosResponseWithHTTP2<Schema$Layersummaries>;
     list(
       params: Params$Resource$Layers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2552,11 +2553,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Layers$Annotationdata$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DictionaryAnnotationdata>;
+    ): GaxiosResponseWithHTTP2<Schema$DictionaryAnnotationdata>;
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2650,11 +2651,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Layers$Annotationdata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Layers$Annotationdata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Annotationsdata>;
+    ): GaxiosResponseWithHTTP2<Schema$Annotationsdata>;
     list(
       params: Params$Resource$Layers$Annotationdata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2846,11 +2847,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Layers$Volumeannotations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Layers$Volumeannotations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumeannotation>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumeannotation>;
     get(
       params: Params$Resource$Layers$Volumeannotations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2937,11 +2938,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Layers$Volumeannotations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Layers$Volumeannotations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumeannotations>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumeannotations>;
     list(
       params: Params$Resource$Layers$Volumeannotations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3121,11 +3122,11 @@ export namespace books_v1 {
     getUserSettings(
       params: Params$Resource$Myconfig$Getusersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getUserSettings(
       params?: Params$Resource$Myconfig$Getusersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Usersettings>;
+    ): GaxiosResponseWithHTTP2<Schema$Usersettings>;
     getUserSettings(
       params: Params$Resource$Myconfig$Getusersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3212,11 +3213,11 @@ export namespace books_v1 {
     releaseDownloadAccess(
       params: Params$Resource$Myconfig$Releasedownloadaccess,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     releaseDownloadAccess(
       params?: Params$Resource$Myconfig$Releasedownloadaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadAccesses>;
+    ): GaxiosResponseWithHTTP2<Schema$DownloadAccesses>;
     releaseDownloadAccess(
       params: Params$Resource$Myconfig$Releasedownloadaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3305,11 +3306,11 @@ export namespace books_v1 {
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     requestAccess(
       params?: Params$Resource$Myconfig$Requestaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RequestAccessData>;
+    ): GaxiosResponseWithHTTP2<Schema$RequestAccessData>;
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3398,11 +3399,11 @@ export namespace books_v1 {
     syncVolumeLicenses(
       params: Params$Resource$Myconfig$Syncvolumelicenses,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     syncVolumeLicenses(
       params?: Params$Resource$Myconfig$Syncvolumelicenses,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     syncVolumeLicenses(
       params: Params$Resource$Myconfig$Syncvolumelicenses,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3489,11 +3490,11 @@ export namespace books_v1 {
     updateUserSettings(
       params: Params$Resource$Myconfig$Updateusersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateUserSettings(
       params?: Params$Resource$Myconfig$Updateusersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Usersettings>;
+    ): GaxiosResponseWithHTTP2<Schema$Usersettings>;
     updateUserSettings(
       params: Params$Resource$Myconfig$Updateusersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3700,11 +3701,11 @@ export namespace books_v1 {
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Mylibrary$Annotations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3790,11 +3791,11 @@ export namespace books_v1 {
     insert(
       params: Params$Resource$Mylibrary$Annotations$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Mylibrary$Annotations$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Annotation>;
+    ): GaxiosResponseWithHTTP2<Schema$Annotation>;
     insert(
       params: Params$Resource$Mylibrary$Annotations$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3881,11 +3882,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Mylibrary$Annotations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Mylibrary$Annotations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Annotations>;
+    ): GaxiosResponseWithHTTP2<Schema$Annotations>;
     list(
       params: Params$Resource$Mylibrary$Annotations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3972,11 +3973,11 @@ export namespace books_v1 {
     summary(
       params: Params$Resource$Mylibrary$Annotations$Summary,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summary(
       params?: Params$Resource$Mylibrary$Annotations$Summary,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnnotationsSummary>;
+    ): GaxiosResponseWithHTTP2<Schema$AnnotationsSummary>;
     summary(
       params: Params$Resource$Mylibrary$Annotations$Summary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4063,11 +4064,11 @@ export namespace books_v1 {
     update(
       params: Params$Resource$Mylibrary$Annotations$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Mylibrary$Annotations$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Annotation>;
+    ): GaxiosResponseWithHTTP2<Schema$Annotation>;
     update(
       params: Params$Resource$Mylibrary$Annotations$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4272,11 +4273,11 @@ export namespace books_v1 {
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4362,11 +4363,11 @@ export namespace books_v1 {
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clearVolumes(
       params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4452,11 +4453,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Mylibrary$Bookshelves$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Mylibrary$Bookshelves$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bookshelf>;
+    ): GaxiosResponseWithHTTP2<Schema$Bookshelf>;
     get(
       params: Params$Resource$Mylibrary$Bookshelves$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4543,11 +4544,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Mylibrary$Bookshelves$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Mylibrary$Bookshelves$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bookshelves>;
+    ): GaxiosResponseWithHTTP2<Schema$Bookshelves>;
     list(
       params: Params$Resource$Mylibrary$Bookshelves$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4634,11 +4635,11 @@ export namespace books_v1 {
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     moveVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4724,11 +4725,11 @@ export namespace books_v1 {
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4908,11 +4909,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5041,11 +5042,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Mylibrary$Readingpositions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Mylibrary$Readingpositions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReadingPosition>;
+    ): GaxiosResponseWithHTTP2<Schema$ReadingPosition>;
     get(
       params: Params$Resource$Mylibrary$Readingpositions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5131,11 +5132,11 @@ export namespace books_v1 {
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setPosition(
       params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5276,11 +5277,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Notification$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Notification$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
+    ): GaxiosResponseWithHTTP2<Schema$Notification>;
     get(
       params: Params$Resource$Notification$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5388,11 +5389,11 @@ export namespace books_v1 {
     listCategories(
       params: Params$Resource$Onboarding$Listcategories,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listCategories(
       params?: Params$Resource$Onboarding$Listcategories,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Category>;
+    ): GaxiosResponseWithHTTP2<Schema$Category>;
     listCategories(
       params: Params$Resource$Onboarding$Listcategories,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5479,11 +5480,11 @@ export namespace books_v1 {
     listCategoryVolumes(
       params: Params$Resource$Onboarding$Listcategoryvolumes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listCategoryVolumes(
       params?: Params$Resource$Onboarding$Listcategoryvolumes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volume2>;
+    ): GaxiosResponseWithHTTP2<Schema$Volume2>;
     listCategoryVolumes(
       params: Params$Resource$Onboarding$Listcategoryvolumes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5608,11 +5609,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Personalizedstream$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Personalizedstream$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Discoveryclusters>;
+    ): GaxiosResponseWithHTTP2<Schema$Discoveryclusters>;
     get(
       params: Params$Resource$Personalizedstream$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5722,11 +5723,11 @@ export namespace books_v1 {
     accept(
       params: Params$Resource$Promooffer$Accept,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accept(
       params?: Params$Resource$Promooffer$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     accept(
       params: Params$Resource$Promooffer$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5813,11 +5814,11 @@ export namespace books_v1 {
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     dismiss(
       params?: Params$Resource$Promooffer$Dismiss,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5904,11 +5905,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Promooffer$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Promooffer$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Offers>;
+    ): GaxiosResponseWithHTTP2<Schema$Offers>;
     get(
       params: Params$Resource$Promooffer$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6096,11 +6097,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Series$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Series$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Series>;
+    ): GaxiosResponseWithHTTP2<Schema$Series>;
     get(
       params: Params$Resource$Series$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6200,11 +6201,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Series$Membership$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Series$Membership$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Seriesmembership>;
+    ): GaxiosResponseWithHTTP2<Schema$Seriesmembership>;
     get(
       params: Params$Resource$Series$Membership$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6322,11 +6323,11 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Volumes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Volumes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volume>;
+    ): GaxiosResponseWithHTTP2<Schema$Volume>;
     get(
       params: Params$Resource$Volumes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6412,11 +6413,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Volumes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Volumes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Volumes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6595,11 +6596,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Volumes$Associated$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Volumes$Associated$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Volumes$Associated$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6717,11 +6718,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Volumes$Mybooks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Volumes$Mybooks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Volumes$Mybooks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6847,11 +6848,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Volumes$Recommended$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Volumes$Recommended$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Volumes$Recommended$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6938,11 +6939,11 @@ export namespace books_v1 {
     rate(
       params: Params$Resource$Volumes$Recommended$Rate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rate(
       params?: Params$Resource$Volumes$Recommended$Rate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BooksVolumesRecommendedRateResponse>;
     rate(
       params: Params$Resource$Volumes$Recommended$Rate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7077,11 +7078,11 @@ export namespace books_v1 {
     list(
       params: Params$Resource$Volumes$Useruploaded$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Volumes$Useruploaded$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volumes>;
+    ): GaxiosResponseWithHTTP2<Schema$Volumes>;
     list(
       params: Params$Resource$Volumes$Useruploaded$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

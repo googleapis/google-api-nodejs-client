@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -256,11 +257,11 @@ export namespace merchantapi_notifications_v1beta {
     create(
       params: Params$Resource$Accounts$Notificationsubscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Notificationsubscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationSubscription>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationSubscription>;
     create(
       params: Params$Resource$Accounts$Notificationsubscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -352,11 +353,11 @@ export namespace merchantapi_notifications_v1beta {
     delete(
       params: Params$Resource$Accounts$Notificationsubscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Notificationsubscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Notificationsubscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -444,11 +445,11 @@ export namespace merchantapi_notifications_v1beta {
     get(
       params: Params$Resource$Accounts$Notificationsubscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Notificationsubscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationSubscription>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationSubscription>;
     get(
       params: Params$Resource$Accounts$Notificationsubscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -537,11 +538,11 @@ export namespace merchantapi_notifications_v1beta {
     list(
       params: Params$Resource$Accounts$Notificationsubscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Notificationsubscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNotificationSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNotificationSubscriptionsResponse>;
     list(
       params: Params$Resource$Accounts$Notificationsubscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -634,11 +635,11 @@ export namespace merchantapi_notifications_v1beta {
     patch(
       params: Params$Resource$Accounts$Notificationsubscriptions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Notificationsubscriptions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationSubscription>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationSubscription>;
     patch(
       params: Params$Resource$Accounts$Notificationsubscriptions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

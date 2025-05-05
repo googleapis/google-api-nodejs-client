@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -11806,11 +11807,11 @@ export namespace discoveryengine_v1 {
     provision(
       params: Params$Resource$Projects$Provision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     provision(
       params?: Params$Resource$Projects$Provision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     provision(
       params: Params$Resource$Projects$Provision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11955,11 +11956,11 @@ export namespace discoveryengine_v1 {
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getCmekConfig(
       params?: Params$Resource$Projects$Locations$Getcmekconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1CmekConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1CmekConfig>;
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12050,11 +12051,11 @@ export namespace discoveryengine_v1 {
     updateCmekConfig(
       params: Params$Resource$Projects$Locations$Updatecmekconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateCmekConfig(
       params?: Params$Resource$Projects$Locations$Updatecmekconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     updateCmekConfig(
       params: Params$Resource$Projects$Locations$Updatecmekconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12174,11 +12175,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12267,11 +12268,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Cmekconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1CmekConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1CmekConfig>;
     get(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12362,11 +12363,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cmekconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cmekconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListCmekConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListCmekConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cmekconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12460,11 +12461,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12632,11 +12633,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12726,11 +12727,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Dataconnector$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12924,11 +12925,11 @@ export namespace discoveryengine_v1 {
     completeQuery(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completequery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeQuery(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Completequery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1CompleteQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1CompleteQueryResponse>;
     completeQuery(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completequery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13023,11 +13024,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13120,11 +13121,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13214,11 +13215,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1DataStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1DataStore>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13310,11 +13311,11 @@ export namespace discoveryengine_v1 {
     getSiteSearchEngine(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSiteSearchEngine(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SiteSearchEngine>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SiteSearchEngine>;
     getSiteSearchEngine(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13406,11 +13407,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListDataStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListDataStoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13505,11 +13506,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1DataStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1DataStore>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13601,11 +13602,11 @@ export namespace discoveryengine_v1 {
     trainCustomModel(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     trainCustomModel(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     trainCustomModel(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13839,11 +13840,11 @@ export namespace discoveryengine_v1 {
     batchGetDocumentsMetadata(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGetDocumentsMetadata(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponse>;
     batchGetDocumentsMetadata(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13961,11 +13962,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14060,11 +14061,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14150,11 +14151,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14246,11 +14247,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14343,11 +14344,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListDocumentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListDocumentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14442,11 +14443,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14538,11 +14539,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14732,11 +14733,11 @@ export namespace discoveryengine_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14822,11 +14823,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14916,11 +14917,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15061,11 +15062,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15157,11 +15158,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15285,11 +15286,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15384,11 +15385,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15474,11 +15475,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15570,11 +15571,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Controls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15669,11 +15670,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Controls$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15838,11 +15839,11 @@ export namespace discoveryengine_v1 {
     converse(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     converse(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
     converse(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15937,11 +15938,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16036,11 +16037,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16126,11 +16127,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16222,11 +16223,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16321,11 +16322,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16502,11 +16503,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListCustomModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListCustomModelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16628,11 +16629,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16722,11 +16723,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Models$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16855,11 +16856,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16949,11 +16950,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17087,11 +17088,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17184,11 +17185,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17278,11 +17279,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Schema>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Schema>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17374,11 +17375,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListSchemasResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListSchemasResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17473,11 +17474,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17636,11 +17637,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17730,11 +17731,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17863,11 +17864,11 @@ export namespace discoveryengine_v1 {
     answer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Answer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     answer(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Answer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     answer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Answer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17962,11 +17963,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18058,11 +18059,11 @@ export namespace discoveryengine_v1 {
     recommend(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recommend(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
     recommend(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18157,11 +18158,11 @@ export namespace discoveryengine_v1 {
     search(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     search(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18256,11 +18257,11 @@ export namespace discoveryengine_v1 {
     searchLite(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Searchlite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchLite(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Searchlite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     searchLite(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Searchlite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18355,11 +18356,11 @@ export namespace discoveryengine_v1 {
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamAnswer(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Streamanswer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18543,11 +18544,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18642,11 +18643,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18732,11 +18733,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18828,11 +18829,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18927,11 +18928,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19100,11 +19101,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Answer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Answer>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19226,11 +19227,11 @@ export namespace discoveryengine_v1 {
     batchVerifyTargetSites(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchVerifyTargetSites(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchVerifyTargetSites(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Batchverifytargetsites,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19323,11 +19324,11 @@ export namespace discoveryengine_v1 {
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disableAdvancedSiteSearch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19419,11 +19420,11 @@ export namespace discoveryengine_v1 {
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enableAdvancedSiteSearch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19515,11 +19516,11 @@ export namespace discoveryengine_v1 {
     fetchDomainVerificationStatus(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Fetchdomainverificationstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchDomainVerificationStatus(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Fetchdomainverificationstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1FetchDomainVerificationStatusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1FetchDomainVerificationStatusResponse>;
     fetchDomainVerificationStatus(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Fetchdomainverificationstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19613,11 +19614,11 @@ export namespace discoveryengine_v1 {
     recrawlUris(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recrawlUris(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     recrawlUris(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Recrawluris,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19781,11 +19782,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19875,11 +19876,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20008,11 +20009,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20105,11 +20106,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20199,11 +20200,11 @@ export namespace discoveryengine_v1 {
     fetch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1FetchSitemapsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1FetchSitemapsResponse>;
     fetch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20341,11 +20342,11 @@ export namespace discoveryengine_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20438,11 +20439,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20535,11 +20536,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20629,11 +20630,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1TargetSite>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1TargetSite>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20725,11 +20726,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListTargetSitesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListTargetSitesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20824,11 +20825,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20991,11 +20992,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21085,11 +21086,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Sitesearchengine$Targetsites$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21218,11 +21219,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21314,11 +21315,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21442,11 +21443,11 @@ export namespace discoveryengine_v1 {
     collect(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Collect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     collect(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Collect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     collect(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Collect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21535,11 +21536,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21632,11 +21633,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21729,11 +21730,11 @@ export namespace discoveryengine_v1 {
     write(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
     write(
       params: Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21920,11 +21921,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22017,11 +22018,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22111,11 +22112,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Engine>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Engine>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22207,11 +22208,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Engines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListEnginesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListEnginesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22306,11 +22307,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Engine>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Engine>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22475,11 +22476,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Controls$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22574,11 +22575,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22664,11 +22665,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Controls$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22760,11 +22761,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Controls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22859,11 +22860,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Controls$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Controls$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23028,11 +23029,11 @@ export namespace discoveryengine_v1 {
     converse(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     converse(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
     converse(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23127,11 +23128,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23226,11 +23227,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23316,11 +23317,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23412,11 +23413,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23511,11 +23512,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Conversations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23692,11 +23693,11 @@ export namespace discoveryengine_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23782,11 +23783,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23876,11 +23877,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24021,11 +24022,11 @@ export namespace discoveryengine_v1 {
     answer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Answer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     answer(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Answer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     answer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Answer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24120,11 +24121,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24216,11 +24217,11 @@ export namespace discoveryengine_v1 {
     recommend(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recommend(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
     recommend(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24315,11 +24316,11 @@ export namespace discoveryengine_v1 {
     search(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     search(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24414,11 +24415,11 @@ export namespace discoveryengine_v1 {
     searchLite(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Searchlite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchLite(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Searchlite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     searchLite(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Searchlite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24513,11 +24514,11 @@ export namespace discoveryengine_v1 {
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamAnswer(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Streamanswer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24701,11 +24702,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     create(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24800,11 +24801,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24890,11 +24891,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24986,11 +24987,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25085,11 +25086,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     patch(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25258,11 +25259,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Answer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Answer>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25369,11 +25370,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Collections$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Collections$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Collections$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25463,11 +25464,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collections$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Collections$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Collections$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25645,11 +25646,11 @@ export namespace discoveryengine_v1 {
     completeQuery(
       params: Params$Resource$Projects$Locations$Datastores$Completequery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeQuery(
       params?: Params$Resource$Projects$Locations$Datastores$Completequery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1CompleteQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1CompleteQueryResponse>;
     completeQuery(
       params: Params$Resource$Projects$Locations$Datastores$Completequery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25744,11 +25745,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25840,11 +25841,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25933,11 +25934,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1DataStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1DataStore>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26028,11 +26029,11 @@ export namespace discoveryengine_v1 {
     getSiteSearchEngine(
       params: Params$Resource$Projects$Locations$Datastores$Getsitesearchengine,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSiteSearchEngine(
       params?: Params$Resource$Projects$Locations$Datastores$Getsitesearchengine,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SiteSearchEngine>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SiteSearchEngine>;
     getSiteSearchEngine(
       params: Params$Resource$Projects$Locations$Datastores$Getsitesearchengine,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26124,11 +26125,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListDataStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListDataStoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26222,11 +26223,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1DataStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1DataStore>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26446,11 +26447,11 @@ export namespace discoveryengine_v1 {
     batchGetDocumentsMetadata(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGetDocumentsMetadata(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponse>;
     batchGetDocumentsMetadata(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26568,11 +26569,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26667,11 +26668,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26757,11 +26758,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26853,11 +26854,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26950,11 +26951,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListDocumentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListDocumentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27049,11 +27050,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Document>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Document>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27145,11 +27146,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27339,11 +27340,11 @@ export namespace discoveryengine_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27429,11 +27430,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27523,11 +27524,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Branches$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Branches$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27668,11 +27669,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27764,11 +27765,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27892,11 +27893,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Controls$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27991,11 +27992,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Controls$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28081,11 +28082,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Controls$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28177,11 +28178,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Controls$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Controls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListControlsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Controls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28276,11 +28277,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Controls$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Control>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Control>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Controls$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28445,11 +28446,11 @@ export namespace discoveryengine_v1 {
     converse(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Converse,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     converse(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$Converse,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ConverseConversationResponse>;
     converse(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Converse,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28544,11 +28545,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28643,11 +28644,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28733,11 +28734,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28829,11 +28830,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28928,11 +28929,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Conversations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Conversation>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Conversations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29121,11 +29122,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Models$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Models$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Models$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29215,11 +29216,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Models$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Models$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Models$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29348,11 +29349,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29442,11 +29443,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29575,11 +29576,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Schemas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29672,11 +29673,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Schemas$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29766,11 +29767,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Schemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Schema>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Schema>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29862,11 +29863,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Schemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListSchemasResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListSchemasResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29961,11 +29962,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Schemas$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Schemas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30124,11 +30125,11 @@ export namespace discoveryengine_v1 {
     answer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Answer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     answer(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Answer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     answer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Answer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30223,11 +30224,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ServingConfig>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30319,11 +30320,11 @@ export namespace discoveryengine_v1 {
     recommend(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recommend(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1RecommendResponse>;
     recommend(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30418,11 +30419,11 @@ export namespace discoveryengine_v1 {
     search(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     search(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30517,11 +30518,11 @@ export namespace discoveryengine_v1 {
     searchLite(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Searchlite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchLite(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Searchlite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1SearchResponse>;
     searchLite(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Searchlite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30616,11 +30617,11 @@ export namespace discoveryengine_v1 {
     streamAnswer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamAnswer(
       params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse>;
     streamAnswer(
       params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Streamanswer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30804,11 +30805,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30903,11 +30904,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30993,11 +30994,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31089,11 +31090,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListSessionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31188,11 +31189,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Session>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Session>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31361,11 +31362,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1Answer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1Answer>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31482,11 +31483,11 @@ export namespace discoveryengine_v1 {
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disableAdvancedSiteSearch(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     disableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Disableadvancedsitesearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31578,11 +31579,11 @@ export namespace discoveryengine_v1 {
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enableAdvancedSiteSearch(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     enableAdvancedSiteSearch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Enableadvancedsitesearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31674,11 +31675,11 @@ export namespace discoveryengine_v1 {
     recrawlUris(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recrawlUris(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     recrawlUris(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Recrawluris,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31815,11 +31816,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31912,11 +31913,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32006,11 +32007,11 @@ export namespace discoveryengine_v1 {
     fetch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetch(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1FetchSitemapsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1FetchSitemapsResponse>;
     fetch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Sitemaps$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32143,11 +32144,11 @@ export namespace discoveryengine_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32240,11 +32241,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32337,11 +32338,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32431,11 +32432,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1TargetSite>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1TargetSite>;
     get(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32527,11 +32528,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListTargetSitesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListTargetSitesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32626,11 +32627,11 @@ export namespace discoveryengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Datastores$Sitesearchengine$Targetsites$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32793,11 +32794,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32889,11 +32890,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33017,11 +33018,11 @@ export namespace discoveryengine_v1 {
     collect(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Collect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     collect(
       params?: Params$Resource$Projects$Locations$Datastores$Userevents$Collect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     collect(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Collect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33110,11 +33111,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Datastores$Userevents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33207,11 +33208,11 @@ export namespace discoveryengine_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Datastores$Userevents$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33304,11 +33305,11 @@ export namespace discoveryengine_v1 {
     write(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Datastores$Userevents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
     write(
       params: Params$Resource$Projects$Locations$Datastores$Userevents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33470,11 +33471,11 @@ export namespace discoveryengine_v1 {
     check(
       params: Params$Resource$Projects$Locations$Groundingconfigs$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     check(
       params?: Params$Resource$Projects$Locations$Groundingconfigs$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1CheckGroundingResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1CheckGroundingResponse>;
     check(
       params: Params$Resource$Projects$Locations$Groundingconfigs$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33594,11 +33595,11 @@ export namespace discoveryengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1IdentityMappingStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1IdentityMappingStore>;
     create(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33693,11 +33694,11 @@ export namespace discoveryengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33787,11 +33788,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1IdentityMappingStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1IdentityMappingStore>;
     get(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33883,11 +33884,11 @@ export namespace discoveryengine_v1 {
     importIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importIdentityMappings(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     importIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Importidentitymappings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33979,11 +33980,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Identitymappingstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Identitymappingstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34078,11 +34079,11 @@ export namespace discoveryengine_v1 {
     listIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Listidentitymappings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listIdentityMappings(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Listidentitymappings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse>;
     listIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Listidentitymappings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34176,11 +34177,11 @@ export namespace discoveryengine_v1 {
     purgeIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purgeIdentityMappings(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purgeIdentityMappings(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Purgeidentitymappings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34372,11 +34373,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34466,11 +34467,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34599,11 +34600,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34692,11 +34693,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34835,11 +34836,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34944,11 +34945,11 @@ export namespace discoveryengine_v1 {
     rank(
       params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rank(
       params?: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1RankResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1RankResponse>;
     rank(
       params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35062,11 +35063,11 @@ export namespace discoveryengine_v1 {
     collect(
       params: Params$Resource$Projects$Locations$Userevents$Collect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     collect(
       params?: Params$Resource$Projects$Locations$Userevents$Collect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     collect(
       params: Params$Resource$Projects$Locations$Userevents$Collect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35154,11 +35155,11 @@ export namespace discoveryengine_v1 {
     import(
       params: Params$Resource$Projects$Locations$Userevents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Userevents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Userevents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35250,11 +35251,11 @@ export namespace discoveryengine_v1 {
     write(
       params: Params$Resource$Projects$Locations$Userevents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Userevents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1UserEvent>;
     write(
       params: Params$Resource$Projects$Locations$Userevents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35403,11 +35404,11 @@ export namespace discoveryengine_v1 {
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35492,11 +35493,11 @@ export namespace discoveryengine_v1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35585,11 +35586,11 @@ export namespace discoveryengine_v1 {
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

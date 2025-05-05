@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1071,11 +1072,11 @@ export namespace checks_v1alpha {
     get(
       params: Params$Resource$Accounts$Apps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Apps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksAccountV1alphaApp>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksAccountV1alphaApp>;
     get(
       params: Params$Resource$Accounts$Apps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1165,11 +1166,11 @@ export namespace checks_v1alpha {
     list(
       params: Params$Resource$Accounts$Apps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Apps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksAccountV1alphaListAppsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksAccountV1alphaListAppsResponse>;
     list(
       params: Params$Resource$Accounts$Apps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1292,11 +1293,11 @@ export namespace checks_v1alpha {
     cancel(
       params: Params$Resource$Accounts$Apps$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Accounts$Apps$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Accounts$Apps$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1383,11 +1384,11 @@ export namespace checks_v1alpha {
     delete(
       params: Params$Resource$Accounts$Apps$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Apps$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Apps$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1471,11 +1472,11 @@ export namespace checks_v1alpha {
     get(
       params: Params$Resource$Accounts$Apps$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Apps$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Accounts$Apps$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1559,11 +1560,11 @@ export namespace checks_v1alpha {
     list(
       params: Params$Resource$Accounts$Apps$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Apps$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Accounts$Apps$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1652,11 +1653,11 @@ export namespace checks_v1alpha {
     wait(
       params: Params$Resource$Accounts$Apps$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Accounts$Apps$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     wait(
       params: Params$Resource$Accounts$Apps$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1808,11 +1809,11 @@ export namespace checks_v1alpha {
     get(
       params: Params$Resource$Accounts$Apps$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Apps$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksReportV1alphaReport>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksReportV1alphaReport>;
     get(
       params: Params$Resource$Accounts$Apps$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1902,11 +1903,11 @@ export namespace checks_v1alpha {
     list(
       params: Params$Resource$Accounts$Apps$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Apps$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksReportV1alphaListReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksReportV1alphaListReportsResponse>;
     list(
       params: Params$Resource$Accounts$Apps$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2052,11 +2053,11 @@ export namespace checks_v1alpha {
     get(
       params: Params$Resource$Accounts$Repos$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Repos$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Accounts$Repos$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2155,11 +2156,11 @@ export namespace checks_v1alpha {
     generate(
       params: Params$Resource$Accounts$Repos$Scans$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generate(
       params?: Params$Resource$Accounts$Repos$Scans$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     generate(
       params: Params$Resource$Accounts$Repos$Scans$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2246,11 +2247,11 @@ export namespace checks_v1alpha {
     get(
       params: Params$Resource$Accounts$Repos$Scans$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Repos$Scans$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaRepoScan>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksRepoScanV1alphaRepoScan>;
     get(
       params: Params$Resource$Accounts$Repos$Scans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2340,11 +2341,11 @@ export namespace checks_v1alpha {
     list(
       params: Params$Resource$Accounts$Repos$Scans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Repos$Scans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>;
     list(
       params: Params$Resource$Accounts$Repos$Scans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2483,11 +2484,11 @@ export namespace checks_v1alpha {
     classifyContent(
       params: Params$Resource$Aisafety$Classifycontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     classifyContent(
       params?: Params$Resource$Aisafety$Classifycontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>;
     classifyContent(
       params: Params$Resource$Aisafety$Classifycontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2595,11 +2596,11 @@ export namespace checks_v1alpha {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

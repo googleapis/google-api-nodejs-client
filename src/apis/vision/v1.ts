@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5193,11 +5194,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5284,11 +5285,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5396,11 +5397,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5490,11 +5491,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5611,11 +5612,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5714,11 +5715,11 @@ export namespace vision_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5802,11 +5803,11 @@ export namespace vision_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5890,11 +5891,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5977,11 +5978,11 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6132,11 +6133,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Projects$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6227,11 +6228,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6350,11 +6351,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Projects$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6445,11 +6446,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6589,11 +6590,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Projects$Locations$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6684,11 +6685,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6808,11 +6809,11 @@ export namespace vision_v1 {
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Projects$Locations$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6903,11 +6904,11 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7027,11 +7028,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7133,11 +7134,11 @@ export namespace vision_v1 {
     create(
       params: Params$Resource$Projects$Locations$Products$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     create(
       params: Params$Resource$Projects$Locations$Products$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7224,11 +7225,11 @@ export namespace vision_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Products$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7312,11 +7313,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Projects$Locations$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     get(
       params: Params$Resource$Projects$Locations$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7400,11 +7401,11 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7493,11 +7494,11 @@ export namespace vision_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Products$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7581,11 +7582,11 @@ export namespace vision_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Products$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Products$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     purge(
       params: Params$Resource$Projects$Locations$Products$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7753,11 +7754,11 @@ export namespace vision_v1 {
     create(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReferenceImage>;
+    ): GaxiosResponseWithHTTP2<Schema$ReferenceImage>;
     create(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7845,11 +7846,11 @@ export namespace vision_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7934,11 +7935,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReferenceImage>;
+    ): GaxiosResponseWithHTTP2<Schema$ReferenceImage>;
     get(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8023,11 +8024,11 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReferenceImagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReferenceImagesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8176,11 +8177,11 @@ export namespace vision_v1 {
     addProduct(
       params: Params$Resource$Projects$Locations$Productsets$Addproduct,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addProduct(
       params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     addProduct(
       params: Params$Resource$Projects$Locations$Productsets$Addproduct,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8268,11 +8269,11 @@ export namespace vision_v1 {
     create(
       params: Params$Resource$Projects$Locations$Productsets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Productsets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductSet>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductSet>;
     create(
       params: Params$Resource$Projects$Locations$Productsets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8359,11 +8360,11 @@ export namespace vision_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Productsets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Productsets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Productsets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8447,11 +8448,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Projects$Locations$Productsets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Productsets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductSet>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductSet>;
     get(
       params: Params$Resource$Projects$Locations$Productsets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8535,11 +8536,11 @@ export namespace vision_v1 {
     import(
       params: Params$Resource$Projects$Locations$Productsets$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Productsets$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Productsets$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8626,11 +8627,11 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Productsets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Productsets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductSetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Productsets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8719,11 +8720,11 @@ export namespace vision_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Productsets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Productsets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductSet>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductSet>;
     patch(
       params: Params$Resource$Projects$Locations$Productsets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8807,11 +8808,11 @@ export namespace vision_v1 {
     removeProduct(
       params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeProduct(
       params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     removeProduct(
       params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9004,11 +9005,11 @@ export namespace vision_v1 {
     list(
       params: Params$Resource$Projects$Locations$Productsets$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Productsets$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductsInProductSetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductsInProductSetResponse>;
     list(
       params: Params$Resource$Projects$Locations$Productsets$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9125,11 +9126,11 @@ export namespace vision_v1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

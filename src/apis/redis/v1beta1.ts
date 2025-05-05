@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1965,11 +1966,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2053,11 +2054,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2188,11 +2189,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Backupcollections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupcollections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupCollection>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupCollection>;
     get(
       params: Params$Resource$Projects$Locations$Backupcollections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2276,11 +2277,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Backupcollections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupcollections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupCollectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupCollectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupcollections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2404,11 +2405,11 @@ export namespace redis_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2493,11 +2494,11 @@ export namespace redis_v1beta1 {
     export(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     export(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2585,11 +2586,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2674,11 +2675,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2819,11 +2820,11 @@ export namespace redis_v1beta1 {
     backup(
       params: Params$Resource$Projects$Locations$Clusters$Backup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     backup(
       params?: Params$Resource$Projects$Locations$Clusters$Backup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     backup(
       params: Params$Resource$Projects$Locations$Clusters$Backup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2910,11 +2911,11 @@ export namespace redis_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3001,11 +3002,11 @@ export namespace redis_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3089,11 +3090,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3177,11 +3178,11 @@ export namespace redis_v1beta1 {
     getCertificateAuthority(
       params: Params$Resource$Projects$Locations$Clusters$Getcertificateauthority,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getCertificateAuthority(
       params?: Params$Resource$Projects$Locations$Clusters$Getcertificateauthority,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CertificateAuthority>;
+    ): GaxiosResponseWithHTTP2<Schema$CertificateAuthority>;
     getCertificateAuthority(
       params: Params$Resource$Projects$Locations$Clusters$Getcertificateauthority,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3270,11 +3271,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3363,11 +3364,11 @@ export namespace redis_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Clusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3451,11 +3452,11 @@ export namespace redis_v1beta1 {
     rescheduleClusterMaintenance(
       params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rescheduleClusterMaintenance(
       params?: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     rescheduleClusterMaintenance(
       params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3656,11 +3657,11 @@ export namespace redis_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3747,11 +3748,11 @@ export namespace redis_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3835,11 +3836,11 @@ export namespace redis_v1beta1 {
     export(
       params: Params$Resource$Projects$Locations$Instances$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Instances$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     export(
       params: Params$Resource$Projects$Locations$Instances$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3926,11 +3927,11 @@ export namespace redis_v1beta1 {
     failover(
       params: Params$Resource$Projects$Locations$Instances$Failover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     failover(
       params?: Params$Resource$Projects$Locations$Instances$Failover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     failover(
       params: Params$Resource$Projects$Locations$Instances$Failover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4017,11 +4018,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): GaxiosResponseWithHTTP2<Schema$Instance>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4105,11 +4106,11 @@ export namespace redis_v1beta1 {
     getAuthString(
       params: Params$Resource$Projects$Locations$Instances$Getauthstring,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAuthString(
       params?: Params$Resource$Projects$Locations$Instances$Getauthstring,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstanceAuthString>;
+    ): GaxiosResponseWithHTTP2<Schema$InstanceAuthString>;
     getAuthString(
       params: Params$Resource$Projects$Locations$Instances$Getauthstring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4199,11 +4200,11 @@ export namespace redis_v1beta1 {
     import(
       params: Params$Resource$Projects$Locations$Instances$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Instances$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Instances$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4290,11 +4291,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4383,11 +4384,11 @@ export namespace redis_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4471,11 +4472,11 @@ export namespace redis_v1beta1 {
     rescheduleMaintenance(
       params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rescheduleMaintenance(
       params?: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     rescheduleMaintenance(
       params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4565,11 +4566,11 @@ export namespace redis_v1beta1 {
     upgrade(
       params: Params$Resource$Projects$Locations$Instances$Upgrade,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upgrade(
       params?: Params$Resource$Projects$Locations$Instances$Upgrade,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     upgrade(
       params: Params$Resource$Projects$Locations$Instances$Upgrade,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4792,11 +4793,11 @@ export namespace redis_v1beta1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4883,11 +4884,11 @@ export namespace redis_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4971,11 +4972,11 @@ export namespace redis_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5059,11 +5060,11 @@ export namespace redis_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

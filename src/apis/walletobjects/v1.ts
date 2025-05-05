@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4347,11 +4348,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Eventticketclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4445,11 +4446,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Eventticketclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4536,11 +4537,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Eventticketclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4628,11 +4629,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Eventticketclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>;
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4726,11 +4727,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Eventticketclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4817,11 +4818,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Eventticketclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4981,11 +4982,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Eventticketobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5079,11 +5080,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Eventticketobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5170,11 +5171,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Eventticketobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5262,11 +5263,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Eventticketobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>;
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5360,11 +5361,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifylinkedofferobjects(
       params?: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5455,11 +5456,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Eventticketobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5546,11 +5547,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Eventticketobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5722,11 +5723,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Flightclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5819,11 +5820,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Flightclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5909,11 +5910,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Flightclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6001,11 +6002,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Flightclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>;
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6094,11 +6095,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Flightclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6185,11 +6186,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Flightclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6347,11 +6348,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Flightobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6444,11 +6445,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Flightobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6534,11 +6535,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Flightobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6626,11 +6627,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Flightobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>;
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6720,11 +6721,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Flightobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6811,11 +6812,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Flightobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6974,11 +6975,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Genericclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7071,11 +7072,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Genericclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7161,11 +7162,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Genericclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7253,11 +7254,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Genericclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>;
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7347,11 +7348,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Genericclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7438,11 +7439,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Genericclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7601,11 +7602,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Genericobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7699,11 +7700,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Genericobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7790,11 +7791,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Genericobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7882,11 +7883,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Genericobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>;
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7978,11 +7979,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Genericobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8069,11 +8070,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Genericobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8233,11 +8234,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Giftcardclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8331,11 +8332,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Giftcardclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8422,11 +8423,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Giftcardclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8514,11 +8515,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Giftcardclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>;
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8610,11 +8611,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Giftcardclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8701,11 +8702,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Giftcardclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8865,11 +8866,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Giftcardobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8963,11 +8964,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Giftcardobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9054,11 +9055,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Giftcardobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9146,11 +9147,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Giftcardobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>;
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9242,11 +9243,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Giftcardobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9333,11 +9334,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Giftcardobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9497,11 +9498,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Issuer$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9588,11 +9589,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Issuer$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9679,11 +9680,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Issuer$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IssuerListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IssuerListResponse>;
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9770,11 +9771,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Issuer$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9861,11 +9862,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Issuer$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9995,11 +9996,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Jwt$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JwtInsertResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>;
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10100,11 +10101,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Loyaltyclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10197,11 +10198,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Loyaltyclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10287,11 +10288,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Loyaltyclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10379,11 +10380,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Loyaltyclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>;
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10473,11 +10474,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Loyaltyclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10564,11 +10565,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Loyaltyclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10727,11 +10728,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Loyaltyobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10825,11 +10826,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Loyaltyobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10916,11 +10917,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Loyaltyobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11008,11 +11009,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Loyaltyobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>;
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11104,11 +11105,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifylinkedofferobjects(
       params?: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11198,11 +11199,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Loyaltyobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11289,11 +11290,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Loyaltyobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11465,11 +11466,11 @@ export namespace walletobjects_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Media>;
+    ): GaxiosResponseWithHTTP2<Schema$Media>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11556,11 +11557,11 @@ export namespace walletobjects_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11697,11 +11698,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Offerclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11794,11 +11795,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Offerclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11884,11 +11885,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Offerclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11976,11 +11977,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Offerclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>;
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12069,11 +12070,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Offerclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12159,11 +12160,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Offerclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12320,11 +12321,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Offerobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12417,11 +12418,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Offerobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12507,11 +12508,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Offerobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12599,11 +12600,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Offerobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>;
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12692,11 +12693,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Offerobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12783,11 +12784,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Offerobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12945,11 +12946,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permissions>;
+    ): GaxiosResponseWithHTTP2<Schema$Permissions>;
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13035,11 +13036,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permissions>;
+    ): GaxiosResponseWithHTTP2<Schema$Permissions>;
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13152,11 +13153,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Smarttap$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SmartTap>;
+    ): GaxiosResponseWithHTTP2<Schema$SmartTap>;
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13257,11 +13258,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Transitclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClassAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>;
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13354,11 +13355,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Transitclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13444,11 +13445,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Transitclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13536,11 +13537,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Transitclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClassListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>;
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13630,11 +13631,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Transitclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13721,11 +13722,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Transitclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13884,11 +13885,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addmessage(
       params?: Params$Resource$Transitobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectAddMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>;
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13982,11 +13983,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Transitobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14073,11 +14074,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Transitobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14165,11 +14166,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Transitobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>;
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14261,11 +14262,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Transitobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14352,11 +14353,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Transitobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14536,11 +14537,11 @@ export namespace walletobjects_v1 {
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setPassUpdateNotice(
       params?: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SetPassUpdateNoticeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>;
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1746,11 +1747,11 @@ export namespace places_v1 {
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     autocomplete(
       params?: Params$Resource$Places$Autocomplete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>;
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1843,11 +1844,11 @@ export namespace places_v1 {
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Places$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1Place>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>;
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1932,11 +1933,11 @@ export namespace places_v1 {
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchNearby(
       params?: Params$Resource$Places$Searchnearby,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>;
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2029,11 +2030,11 @@ export namespace places_v1 {
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchText(
       params?: Params$Resource$Places$Searchtext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>;
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2173,11 +2174,11 @@ export namespace places_v1 {
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getMedia(
       params?: Params$Resource$Places$Photos$Getmedia,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>;
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -159,11 +160,11 @@ export namespace mybusinessnotifications_v1 {
     getNotificationSetting(
       params: Params$Resource$Accounts$Getnotificationsetting,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getNotificationSetting(
       params?: Params$Resource$Accounts$Getnotificationsetting,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationSetting>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationSetting>;
     getNotificationSetting(
       params: Params$Resource$Accounts$Getnotificationsetting,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -250,11 +251,11 @@ export namespace mybusinessnotifications_v1 {
     updateNotificationSetting(
       params: Params$Resource$Accounts$Updatenotificationsetting,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateNotificationSetting(
       params?: Params$Resource$Accounts$Updatenotificationsetting,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationSetting>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationSetting>;
     updateNotificationSetting(
       params: Params$Resource$Accounts$Updatenotificationsetting,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

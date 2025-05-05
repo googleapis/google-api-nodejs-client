@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -186,11 +187,11 @@ export namespace abusiveexperiencereport_v1 {
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SiteSummaryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>;
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -288,11 +289,11 @@ export namespace abusiveexperiencereport_v1 {
     list(
       params: Params$Resource$Violatingsites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Violatingsites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ViolatingSitesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>;
     list(
       params: Params$Resource$Violatingsites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

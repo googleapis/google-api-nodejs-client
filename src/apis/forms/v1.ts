@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1106,11 +1107,11 @@ export namespace forms_v1 {
     batchUpdate(
       params: Params$Resource$Forms$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Forms$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateFormResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateFormResponse>;
     batchUpdate(
       params: Params$Resource$Forms$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1201,11 +1202,11 @@ export namespace forms_v1 {
     create(
       params: Params$Resource$Forms$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Forms$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Form>;
+    ): GaxiosResponseWithHTTP2<Schema$Form>;
     create(
       params: Params$Resource$Forms$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1288,11 +1289,11 @@ export namespace forms_v1 {
     get(
       params: Params$Resource$Forms$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Forms$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Form>;
+    ): GaxiosResponseWithHTTP2<Schema$Form>;
     get(
       params: Params$Resource$Forms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1375,11 +1376,11 @@ export namespace forms_v1 {
     setPublishSettings(
       params: Params$Resource$Forms$Setpublishsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setPublishSettings(
       params?: Params$Resource$Forms$Setpublishsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SetPublishSettingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SetPublishSettingsResponse>;
     setPublishSettings(
       params: Params$Resource$Forms$Setpublishsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1519,11 +1520,11 @@ export namespace forms_v1 {
     get(
       params: Params$Resource$Forms$Responses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Forms$Responses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FormResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FormResponse>;
     get(
       params: Params$Resource$Forms$Responses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1609,11 +1610,11 @@ export namespace forms_v1 {
     list(
       params: Params$Resource$Forms$Responses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Forms$Responses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFormResponsesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFormResponsesResponse>;
     list(
       params: Params$Resource$Forms$Responses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1742,11 +1743,11 @@ export namespace forms_v1 {
     create(
       params: Params$Resource$Forms$Watches$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Forms$Watches$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Watch>;
+    ): GaxiosResponseWithHTTP2<Schema$Watch>;
     create(
       params: Params$Resource$Forms$Watches$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1833,11 +1834,11 @@ export namespace forms_v1 {
     delete(
       params: Params$Resource$Forms$Watches$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Forms$Watches$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Forms$Watches$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1924,11 +1925,11 @@ export namespace forms_v1 {
     list(
       params: Params$Resource$Forms$Watches$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Forms$Watches$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWatchesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWatchesResponse>;
     list(
       params: Params$Resource$Forms$Watches$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2015,11 +2016,11 @@ export namespace forms_v1 {
     renew(
       params: Params$Resource$Forms$Watches$Renew,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     renew(
       params?: Params$Resource$Forms$Watches$Renew,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Watch>;
+    ): GaxiosResponseWithHTTP2<Schema$Watch>;
     renew(
       params: Params$Resource$Forms$Watches$Renew,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -589,11 +590,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -706,11 +707,11 @@ export namespace policysimulator_v1 {
     create(
       params: Params$Resource$Folders$Locations$Replays$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Folders$Locations$Replays$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Folders$Locations$Replays$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -802,11 +803,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Folders$Locations$Replays$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Locations$Replays$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1Replay>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1Replay>;
     get(
       params: Params$Resource$Folders$Locations$Replays$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -924,11 +925,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1017,11 +1018,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Folders$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Folders$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1147,11 +1148,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Folders$Locations$Replays$Results$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Locations$Replays$Results$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
     list(
       params: Params$Resource$Folders$Locations$Replays$Results$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1268,11 +1269,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1360,11 +1361,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1521,11 +1522,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1638,11 +1639,11 @@ export namespace policysimulator_v1 {
     create(
       params: Params$Resource$Organizations$Locations$Replays$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Replays$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Organizations$Locations$Replays$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1734,11 +1735,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Replays$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Replays$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1Replay>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1Replay>;
     get(
       params: Params$Resource$Organizations$Locations$Replays$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1856,11 +1857,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1950,11 +1951,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2080,11 +2081,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Replays$Results$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Replays$Results$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Replays$Results$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2237,11 +2238,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2354,11 +2355,11 @@ export namespace policysimulator_v1 {
     create(
       params: Params$Resource$Projects$Locations$Replays$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Replays$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Replays$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2450,11 +2451,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Projects$Locations$Replays$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Replays$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1Replay>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1Replay>;
     get(
       params: Params$Resource$Projects$Locations$Replays$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2572,11 +2573,11 @@ export namespace policysimulator_v1 {
     get(
       params: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2666,11 +2667,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Projects$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2796,11 +2797,11 @@ export namespace policysimulator_v1 {
     list(
       params: Params$Resource$Projects$Locations$Replays$Results$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Replays$Results$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Replays$Results$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

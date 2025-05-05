@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -318,11 +319,11 @@ export namespace firebaseml_v1beta2 {
     create(
       params: Params$Resource$Projects$Models$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Models$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Models$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -409,11 +410,11 @@ export namespace firebaseml_v1beta2 {
     delete(
       params: Params$Resource$Projects$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Models$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -497,11 +498,11 @@ export namespace firebaseml_v1beta2 {
     download(
       params: Params$Resource$Projects$Models$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Projects$Models$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadModelResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DownloadModelResponse>;
     download(
       params: Params$Resource$Projects$Models$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -592,11 +593,11 @@ export namespace firebaseml_v1beta2 {
     get(
       params: Params$Resource$Projects$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Model>;
+    ): GaxiosResponseWithHTTP2<Schema$Model>;
     get(
       params: Params$Resource$Projects$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -680,11 +681,11 @@ export namespace firebaseml_v1beta2 {
     list(
       params: Params$Resource$Projects$Models$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Models$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListModelsResponse>;
     list(
       params: Params$Resource$Projects$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -771,11 +772,11 @@ export namespace firebaseml_v1beta2 {
     patch(
       params: Params$Resource$Projects$Models$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Models$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Models$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -935,11 +936,11 @@ export namespace firebaseml_v1beta2 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

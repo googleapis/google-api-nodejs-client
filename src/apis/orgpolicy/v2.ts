@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -489,11 +490,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Folders$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
     list(
       params: Params$Resource$Folders$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -609,11 +610,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Folders$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Folders$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     create(
       params: Params$Resource$Folders$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -706,11 +707,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Folders$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Folders$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Folders$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -794,11 +795,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Folders$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     get(
       params: Params$Resource$Folders$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -888,11 +889,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectivePolicy(
       params?: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     getEffectivePolicy(
       params: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -985,11 +986,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Folders$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
     list(
       params: Params$Resource$Folders$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1082,11 +1083,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Folders$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Folders$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     patch(
       params: Params$Resource$Folders$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1267,11 +1268,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
     list(
       params: Params$Resource$Organizations$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1387,11 +1388,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Organizations$Customconstraints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Customconstraints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
     create(
       params: Params$Resource$Organizations$Customconstraints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1484,11 +1485,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Organizations$Customconstraints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Customconstraints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Customconstraints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1572,11 +1573,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Organizations$Customconstraints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Customconstraints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
     get(
       params: Params$Resource$Organizations$Customconstraints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1666,11 +1667,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Customconstraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Customconstraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>;
     list(
       params: Params$Resource$Organizations$Customconstraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1763,11 +1764,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Organizations$Customconstraints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Customconstraints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
     patch(
       params: Params$Resource$Organizations$Customconstraints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1918,11 +1919,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Organizations$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     create(
       params: Params$Resource$Organizations$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2015,11 +2016,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Organizations$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2103,11 +2104,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Organizations$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     get(
       params: Params$Resource$Organizations$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2197,11 +2198,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectivePolicy(
       params?: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     getEffectivePolicy(
       params: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2295,11 +2296,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
     list(
       params: Params$Resource$Organizations$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2392,11 +2393,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Organizations$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     patch(
       params: Params$Resource$Organizations$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2573,11 +2574,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Projects$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
     list(
       params: Params$Resource$Projects$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2693,11 +2694,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Projects$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     create(
       params: Params$Resource$Projects$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2790,11 +2791,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Projects$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2878,11 +2879,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Projects$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     get(
       params: Params$Resource$Projects$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2972,11 +2973,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectivePolicy(
       params?: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     getEffectivePolicy(
       params: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3069,11 +3070,11 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Projects$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3166,11 +3167,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Projects$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>;
     patch(
       params: Params$Resource$Projects$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

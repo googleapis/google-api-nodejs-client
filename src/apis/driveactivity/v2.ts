@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1056,11 +1057,11 @@ export namespace driveactivity_v2 {
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     query(
       params?: Params$Resource$Activity$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>;
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

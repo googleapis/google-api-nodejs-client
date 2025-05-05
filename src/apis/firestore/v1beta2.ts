@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -579,11 +580,11 @@ export namespace firestore_v1beta2 {
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportDocuments(
       params?: Params$Resource$Projects$Databases$Exportdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -674,11 +675,11 @@ export namespace firestore_v1beta2 {
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importDocuments(
       params?: Params$Resource$Projects$Databases$Importdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -816,11 +817,11 @@ export namespace firestore_v1beta2 {
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2Field>;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -911,11 +912,11 @@ export namespace firestore_v1beta2 {
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1009,11 +1010,11 @@ export namespace firestore_v1beta2 {
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1152,11 +1153,11 @@ export namespace firestore_v1beta2 {
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1248,11 +1249,11 @@ export namespace firestore_v1beta2 {
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1337,11 +1338,11 @@ export namespace firestore_v1beta2 {
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2Index>;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1432,11 +1433,11 @@ export namespace firestore_v1beta2 {
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

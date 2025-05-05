@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1794,11 +1795,11 @@ export namespace games_v1 {
     generatePlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generatePlayGroupingApiToken(
       params?: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GeneratePlayGroupingApiTokenResponse>;
     generatePlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1891,11 +1892,11 @@ export namespace games_v1 {
     generateRecallPlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateRecallPlayGroupingApiToken(
       params?: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenerateRecallPlayGroupingApiTokenResponse>;
     generateRecallPlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2023,11 +2024,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Achievementdefinitions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementDefinitionsListResponse>;
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2143,11 +2144,11 @@ export namespace games_v1 {
     increment(
       params: Params$Resource$Achievements$Increment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     increment(
       params?: Params$Resource$Achievements$Increment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementIncrementResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementIncrementResponse>;
     increment(
       params: Params$Resource$Achievements$Increment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2239,11 +2240,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Achievements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Achievements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerAchievementListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerAchievementListResponse>;
     list(
       params: Params$Resource$Achievements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2335,11 +2336,11 @@ export namespace games_v1 {
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reveal(
       params?: Params$Resource$Achievements$Reveal,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementRevealResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementRevealResponse>;
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2429,11 +2430,11 @@ export namespace games_v1 {
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setStepsAtLeast(
       params?: Params$Resource$Achievements$Setstepsatleast,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementSetStepsAtLeastResponse>;
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2525,11 +2526,11 @@ export namespace games_v1 {
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unlock(
       params?: Params$Resource$Achievements$Unlock,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementUnlockResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementUnlockResponse>;
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2619,11 +2620,11 @@ export namespace games_v1 {
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateMultiple(
       params?: Params$Resource$Achievements$Updatemultiple,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AchievementUpdateMultipleResponse>;
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2794,11 +2795,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): GaxiosResponseWithHTTP2<Schema$Application>;
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2884,11 +2885,11 @@ export namespace games_v1 {
     getEndPoint(
       params: Params$Resource$Applications$Getendpoint,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEndPoint(
       params?: Params$Resource$Applications$Getendpoint,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EndPoint>;
+    ): GaxiosResponseWithHTTP2<Schema$EndPoint>;
     getEndPoint(
       params: Params$Resource$Applications$Getendpoint,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2975,11 +2976,11 @@ export namespace games_v1 {
     played(
       params: Params$Resource$Applications$Played,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     played(
       params?: Params$Resource$Applications$Played,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     played(
       params: Params$Resource$Applications$Played,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3064,11 +3065,11 @@ export namespace games_v1 {
     verify(
       params: Params$Resource$Applications$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Applications$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApplicationVerifyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApplicationVerifyResponse>;
     verify(
       params: Params$Resource$Applications$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3200,11 +3201,11 @@ export namespace games_v1 {
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listByPlayer(
       params?: Params$Resource$Events$Listbyplayer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerEventListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerEventListResponse>;
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3292,11 +3293,11 @@ export namespace games_v1 {
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listDefinitions(
       params?: Params$Resource$Events$Listdefinitions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventDefinitionListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventDefinitionListResponse>;
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3387,11 +3388,11 @@ export namespace games_v1 {
     record(
       params: Params$Resource$Events$Record,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     record(
       params?: Params$Resource$Events$Record,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventUpdateResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EventUpdateResponse>;
     record(
       params: Params$Resource$Events$Record,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3523,11 +3524,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Leaderboards$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Leaderboards$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Leaderboard>;
+    ): GaxiosResponseWithHTTP2<Schema$Leaderboard>;
     get(
       params: Params$Resource$Leaderboards$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3613,11 +3614,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Leaderboards$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Leaderboards$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LeaderboardListResponse>;
     list(
       params: Params$Resource$Leaderboards$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3739,11 +3740,11 @@ export namespace games_v1 {
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getMetagameConfig(
       params?: Params$Resource$Metagame$Getmetagameconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetagameConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$MetagameConfig>;
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3832,11 +3833,11 @@ export namespace games_v1 {
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listCategoriesByPlayer(
       params?: Params$Resource$Metagame$Listcategoriesbyplayer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CategoryListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CategoryListResponse>;
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3959,11 +3960,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Players$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Players$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Player>;
+    ): GaxiosResponseWithHTTP2<Schema$Player>;
     get(
       params: Params$Resource$Players$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4049,11 +4050,11 @@ export namespace games_v1 {
     getMultipleApplicationPlayerIds(
       params: Params$Resource$Players$Getmultipleapplicationplayerids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getMultipleApplicationPlayerIds(
       params?: Params$Resource$Players$Getmultipleapplicationplayerids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetMultipleApplicationPlayerIdsResponse>;
     getMultipleApplicationPlayerIds(
       params: Params$Resource$Players$Getmultipleapplicationplayerids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4145,11 +4146,11 @@ export namespace games_v1 {
     getScopedPlayerIds(
       params: Params$Resource$Players$Getscopedplayerids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getScopedPlayerIds(
       params?: Params$Resource$Players$Getscopedplayerids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScopedPlayerIds>;
+    ): GaxiosResponseWithHTTP2<Schema$ScopedPlayerIds>;
     getScopedPlayerIds(
       params: Params$Resource$Players$Getscopedplayerids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4238,11 +4239,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Players$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Players$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerListResponse>;
     list(
       params: Params$Resource$Players$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4376,11 +4377,11 @@ export namespace games_v1 {
     gamesPlayerTokens(
       params: Params$Resource$Recall$Gamesplayertokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     gamesPlayerTokens(
       params?: Params$Resource$Recall$Gamesplayertokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveGamesPlayerTokensResponse>;
     gamesPlayerTokens(
       params: Params$Resource$Recall$Gamesplayertokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4472,11 +4473,11 @@ export namespace games_v1 {
     lastTokenFromAllDeveloperGames(
       params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lastTokenFromAllDeveloperGames(
       params?: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>;
     lastTokenFromAllDeveloperGames(
       params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4569,11 +4570,11 @@ export namespace games_v1 {
     linkPersona(
       params: Params$Resource$Recall$Linkpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     linkPersona(
       params?: Params$Resource$Recall$Linkpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LinkPersonaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LinkPersonaResponse>;
     linkPersona(
       params: Params$Resource$Recall$Linkpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4662,11 +4663,11 @@ export namespace games_v1 {
     resetPersona(
       params: Params$Resource$Recall$Resetpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resetPersona(
       params?: Params$Resource$Recall$Resetpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResetPersonaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ResetPersonaResponse>;
     resetPersona(
       params: Params$Resource$Recall$Resetpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4757,11 +4758,11 @@ export namespace games_v1 {
     retrieveTokens(
       params: Params$Resource$Recall$Retrievetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveTokens(
       params?: Params$Resource$Recall$Retrievetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrievePlayerTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrievePlayerTokensResponse>;
     retrieveTokens(
       params: Params$Resource$Recall$Retrievetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4854,11 +4855,11 @@ export namespace games_v1 {
     unlinkPersona(
       params: Params$Resource$Recall$Unlinkpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unlinkPersona(
       params?: Params$Resource$Recall$Unlinkpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UnlinkPersonaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UnlinkPersonaResponse>;
     unlinkPersona(
       params: Params$Resource$Recall$Unlinkpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5003,11 +5004,11 @@ export namespace games_v1 {
     check(
       params: Params$Resource$Revisions$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     check(
       params?: Params$Resource$Revisions$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RevisionCheckResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RevisionCheckResponse>;
     check(
       params: Params$Resource$Revisions$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5109,11 +5110,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Scores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Scores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerLeaderboardScoreListResponse>;
     get(
       params: Params$Resource$Scores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5205,11 +5206,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Scores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Scores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardScores>;
+    ): GaxiosResponseWithHTTP2<Schema$LeaderboardScores>;
     list(
       params: Params$Resource$Scores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5295,11 +5296,11 @@ export namespace games_v1 {
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listWindow(
       params?: Params$Resource$Scores$Listwindow,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardScores>;
+    ): GaxiosResponseWithHTTP2<Schema$LeaderboardScores>;
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5386,11 +5387,11 @@ export namespace games_v1 {
     submit(
       params: Params$Resource$Scores$Submit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     submit(
       params?: Params$Resource$Scores$Submit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerScoreResponse>;
     submit(
       params: Params$Resource$Scores$Submit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5475,11 +5476,11 @@ export namespace games_v1 {
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     submitMultiple(
       params?: Params$Resource$Scores$Submitmultiple,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlayerScoreListResponse>;
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5699,11 +5700,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Snapshots$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Snapshots$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
+    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
     get(
       params: Params$Resource$Snapshots$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5789,11 +5790,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SnapshotListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SnapshotListResponse>;
     list(
       params: Params$Resource$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5917,11 +5918,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Stats$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Stats$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$StatsResponse>;
     get(
       params: Params$Resource$Stats$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -698,11 +699,11 @@ export namespace trafficdirector_v2 {
     client_status(
       params: Params$Resource$Discovery$Client_status,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     client_status(
       params?: Params$Resource$Discovery$Client_status,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientStatusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>;
     client_status(
       params: Params$Resource$Discovery$Client_status,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

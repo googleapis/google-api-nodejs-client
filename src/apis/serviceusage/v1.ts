@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2303,11 +2304,11 @@ export namespace serviceusage_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2391,11 +2392,11 @@ export namespace serviceusage_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2479,11 +2480,11 @@ export namespace serviceusage_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2566,11 +2567,11 @@ export namespace serviceusage_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2706,11 +2707,11 @@ export namespace serviceusage_v1 {
     batchEnable(
       params: Params$Resource$Services$Batchenable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchEnable(
       params?: Params$Resource$Services$Batchenable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchEnable(
       params: Params$Resource$Services$Batchenable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2797,11 +2798,11 @@ export namespace serviceusage_v1 {
     batchGet(
       params: Params$Resource$Services$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Services$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetServicesResponse>;
     batchGet(
       params: Params$Resource$Services$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2892,11 +2893,11 @@ export namespace serviceusage_v1 {
     disable(
       params: Params$Resource$Services$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disable(
       params?: Params$Resource$Services$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     disable(
       params: Params$Resource$Services$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2982,11 +2983,11 @@ export namespace serviceusage_v1 {
     enable(
       params: Params$Resource$Services$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enable(
       params?: Params$Resource$Services$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     enable(
       params: Params$Resource$Services$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3069,11 +3070,11 @@ export namespace serviceusage_v1 {
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiServiceusageV1Service>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiServiceusageV1Service>;
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3162,11 +3163,11 @@ export namespace serviceusage_v1 {
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

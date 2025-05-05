@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -661,11 +662,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -749,11 +750,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -842,11 +843,11 @@ export namespace apim_v1alpha {
     listApiObservationTags(
       params: Params$Resource$Projects$Locations$Listapiobservationtags,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listApiObservationTags(
       params?: Params$Resource$Projects$Locations$Listapiobservationtags,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiObservationTagsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiObservationTagsResponse>;
     listApiObservationTags(
       params: Params$Resource$Projects$Locations$Listapiobservationtags,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -993,11 +994,11 @@ export namespace apim_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Observationjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Observationjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Observationjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1085,11 +1086,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1174,11 +1175,11 @@ export namespace apim_v1alpha {
     disable(
       params: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disable(
       params?: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     disable(
       params: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1266,11 +1267,11 @@ export namespace apim_v1alpha {
     enable(
       params: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enable(
       params?: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     enable(
       params: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1358,11 +1359,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObservationJob>;
+    ): GaxiosResponseWithHTTP2<Schema$ObservationJob>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1446,11 +1447,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListObservationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListObservationJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1627,11 +1628,11 @@ export namespace apim_v1alpha {
     batchEditTags(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchEditTags(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchEditTagsApiObservationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchEditTagsApiObservationsResponse>;
     batchEditTags(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1724,11 +1725,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiObservation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiObservation>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1813,11 +1814,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiObservationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiObservationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1951,11 +1952,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiOperation>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2040,11 +2041,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2166,11 +2167,11 @@ export namespace apim_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Observationsources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Observationsources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Observationsources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2258,11 +2259,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Observationsources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Observationsources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Observationsources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2347,11 +2348,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationsources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Observationsources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObservationSource>;
+    ): GaxiosResponseWithHTTP2<Schema$ObservationSource>;
     get(
       params: Params$Resource$Projects$Locations$Observationsources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2436,11 +2437,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationsources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Observationsources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListObservationSourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListObservationSourcesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Observationsources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2591,11 +2592,11 @@ export namespace apim_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2682,11 +2683,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2770,11 +2771,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2858,11 +2859,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

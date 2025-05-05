@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -665,11 +666,11 @@ export namespace bigqueryconnection_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$Connection>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -757,11 +758,11 @@ export namespace bigqueryconnection_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -846,11 +847,11 @@ export namespace bigqueryconnection_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$Connection>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -935,11 +936,11 @@ export namespace bigqueryconnection_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1028,11 +1029,11 @@ export namespace bigqueryconnection_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1122,11 +1123,11 @@ export namespace bigqueryconnection_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$Connection>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1211,11 +1212,11 @@ export namespace bigqueryconnection_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1304,11 +1305,11 @@ export namespace bigqueryconnection_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -510,11 +511,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Lfpinventories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpInventory>;
+    ): GaxiosResponseWithHTTP2<Schema$LfpInventory>;
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -620,11 +621,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpMerchantState>;
+    ): GaxiosResponseWithHTTP2<Schema$LfpMerchantState>;
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -726,11 +727,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Lfpsales$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpSale>;
+    ): GaxiosResponseWithHTTP2<Schema$LfpSale>;
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -837,11 +838,11 @@ export namespace merchantapi_lfp_v1beta {
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Lfpstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -928,11 +929,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Lfpstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): GaxiosResponseWithHTTP2<Schema$LfpStore>;
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1019,11 +1020,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Lfpstores$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): GaxiosResponseWithHTTP2<Schema$LfpStore>;
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1110,11 +1111,11 @@ export namespace merchantapi_lfp_v1beta {
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Lfpstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLfpStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLfpStoresResponse>;
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

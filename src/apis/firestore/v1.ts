@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2219,11 +2220,11 @@ export namespace firestore_v1 {
     bulkDeleteDocuments(
       params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkDeleteDocuments(
       params?: Params$Resource$Projects$Databases$Bulkdeletedocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkDeleteDocuments(
       params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2314,11 +2315,11 @@ export namespace firestore_v1 {
     create(
       params: Params$Resource$Projects$Databases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Databases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Databases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2409,11 +2410,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Databases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2501,11 +2502,11 @@ export namespace firestore_v1 {
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportDocuments(
       params?: Params$Resource$Projects$Databases$Exportdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2596,11 +2597,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1Database>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Database>;
     get(
       params: Params$Resource$Projects$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2690,11 +2691,11 @@ export namespace firestore_v1 {
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importDocuments(
       params?: Params$Resource$Projects$Databases$Importdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2785,11 +2786,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListDatabasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListDatabasesResponse>;
     list(
       params: Params$Resource$Projects$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2882,11 +2883,11 @@ export namespace firestore_v1 {
     patch(
       params: Params$Resource$Projects$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2974,11 +2975,11 @@ export namespace firestore_v1 {
     restore(
       params: Params$Resource$Projects$Databases$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Databases$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     restore(
       params: Params$Resource$Projects$Databases$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3186,11 +3187,11 @@ export namespace firestore_v1 {
     create(
       params: Params$Resource$Projects$Databases$Backupschedules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Databases$Backupschedules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>;
     create(
       params: Params$Resource$Projects$Databases$Backupschedules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3284,11 +3285,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Backupschedules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Backupschedules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Backupschedules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3373,11 +3374,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Backupschedules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Backupschedules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>;
     get(
       params: Params$Resource$Projects$Databases$Backupschedules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3467,11 +3468,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Backupschedules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Backupschedules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>;
     list(
       params: Params$Resource$Projects$Databases$Backupschedules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3564,11 +3565,11 @@ export namespace firestore_v1 {
     patch(
       params: Params$Resource$Projects$Databases$Backupschedules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Databases$Backupschedules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>;
     patch(
       params: Params$Resource$Projects$Databases$Backupschedules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3730,11 +3731,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1Field>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Field>;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3823,11 +3824,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListFieldsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListFieldsResponse>;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3921,11 +3922,11 @@ export namespace firestore_v1 {
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4064,11 +4065,11 @@ export namespace firestore_v1 {
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4160,11 +4161,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4249,11 +4250,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1Index>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Index>;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4342,11 +4343,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListIndexesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListIndexesResponse>;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4493,11 +4494,11 @@ export namespace firestore_v1 {
     batchGet(
       params: Params$Resource$Projects$Databases$Documents$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Databases$Documents$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetDocumentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetDocumentsResponse>;
     batchGet(
       params: Params$Resource$Projects$Databases$Documents$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4588,11 +4589,11 @@ export namespace firestore_v1 {
     batchWrite(
       params: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchWrite(
       params?: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchWriteResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchWriteResponse>;
     batchWrite(
       params: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4679,11 +4680,11 @@ export namespace firestore_v1 {
     beginTransaction(
       params: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     beginTransaction(
       params?: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BeginTransactionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>;
     beginTransaction(
       params: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4774,11 +4775,11 @@ export namespace firestore_v1 {
     commit(
       params: Params$Resource$Projects$Databases$Documents$Commit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     commit(
       params?: Params$Resource$Projects$Databases$Documents$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommitResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CommitResponse>;
     commit(
       params: Params$Resource$Projects$Databases$Documents$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4865,11 +4866,11 @@ export namespace firestore_v1 {
     createDocument(
       params: Params$Resource$Projects$Databases$Documents$Createdocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createDocument(
       params?: Params$Resource$Projects$Databases$Documents$Createdocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): GaxiosResponseWithHTTP2<Schema$Document>;
     createDocument(
       params: Params$Resource$Projects$Databases$Documents$Createdocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4957,11 +4958,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Documents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Documents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Documents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5045,11 +5046,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): GaxiosResponseWithHTTP2<Schema$Document>;
     get(
       params: Params$Resource$Projects$Databases$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5133,11 +5134,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Documents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Documents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>;
     list(
       params: Params$Resource$Projects$Databases$Documents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5226,11 +5227,11 @@ export namespace firestore_v1 {
     listCollectionIds(
       params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listCollectionIds(
       params?: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCollectionIdsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCollectionIdsResponse>;
     listCollectionIds(
       params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5322,11 +5323,11 @@ export namespace firestore_v1 {
     listDocuments(
       params: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listDocuments(
       params?: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>;
     listDocuments(
       params: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5418,11 +5419,11 @@ export namespace firestore_v1 {
     listen(
       params: Params$Resource$Projects$Databases$Documents$Listen,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listen(
       params?: Params$Resource$Projects$Databases$Documents$Listen,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListenResponse>;
     listen(
       params: Params$Resource$Projects$Databases$Documents$Listen,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5509,11 +5510,11 @@ export namespace firestore_v1 {
     partitionQuery(
       params: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     partitionQuery(
       params?: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartitionQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PartitionQueryResponse>;
     partitionQuery(
       params: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5605,11 +5606,11 @@ export namespace firestore_v1 {
     patch(
       params: Params$Resource$Projects$Databases$Documents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Databases$Documents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): GaxiosResponseWithHTTP2<Schema$Document>;
     patch(
       params: Params$Resource$Projects$Databases$Documents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5693,11 +5694,11 @@ export namespace firestore_v1 {
     rollback(
       params: Params$Resource$Projects$Databases$Documents$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Databases$Documents$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     rollback(
       params: Params$Resource$Projects$Databases$Documents$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5784,11 +5785,11 @@ export namespace firestore_v1 {
     runAggregationQuery(
       params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     runAggregationQuery(
       params?: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunAggregationQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>;
     runAggregationQuery(
       params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5880,11 +5881,11 @@ export namespace firestore_v1 {
     runQuery(
       params: Params$Resource$Projects$Databases$Documents$Runquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     runQuery(
       params?: Params$Resource$Projects$Databases$Documents$Runquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RunQueryResponse>;
     runQuery(
       params: Params$Resource$Projects$Databases$Documents$Runquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5971,11 +5972,11 @@ export namespace firestore_v1 {
     write(
       params: Params$Resource$Projects$Databases$Documents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Databases$Documents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$WriteResponse>;
     write(
       params: Params$Resource$Projects$Databases$Documents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6366,11 +6367,11 @@ export namespace firestore_v1 {
     cancel(
       params: Params$Resource$Projects$Databases$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Databases$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Databases$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6454,11 +6455,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6542,11 +6543,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Databases$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6634,11 +6635,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Databases$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6784,11 +6785,11 @@ export namespace firestore_v1 {
     create(
       params: Params$Resource$Projects$Databases$Usercreds$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Databases$Usercreds$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>;
     create(
       params: Params$Resource$Projects$Databases$Usercreds$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6881,11 +6882,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Databases$Usercreds$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Databases$Usercreds$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Databases$Usercreds$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6969,11 +6970,11 @@ export namespace firestore_v1 {
     disable(
       params: Params$Resource$Projects$Databases$Usercreds$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disable(
       params?: Params$Resource$Projects$Databases$Usercreds$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>;
     disable(
       params: Params$Resource$Projects$Databases$Usercreds$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7066,11 +7067,11 @@ export namespace firestore_v1 {
     enable(
       params: Params$Resource$Projects$Databases$Usercreds$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enable(
       params?: Params$Resource$Projects$Databases$Usercreds$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>;
     enable(
       params: Params$Resource$Projects$Databases$Usercreds$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7160,11 +7161,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Databases$Usercreds$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Databases$Usercreds$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>;
     get(
       params: Params$Resource$Projects$Databases$Usercreds$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7254,11 +7255,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Databases$Usercreds$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Databases$Usercreds$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>;
     list(
       params: Params$Resource$Projects$Databases$Usercreds$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7351,11 +7352,11 @@ export namespace firestore_v1 {
     resetPassword(
       params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resetPassword(
       params?: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>;
     resetPassword(
       params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7532,11 +7533,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7620,11 +7621,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7751,11 +7752,11 @@ export namespace firestore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7839,11 +7840,11 @@ export namespace firestore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Backup>;
     get(
       params: Params$Resource$Projects$Locations$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7933,11 +7934,11 @@ export namespace firestore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

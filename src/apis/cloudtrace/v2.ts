@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -461,11 +462,11 @@ export namespace cloudtrace_v2 {
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchWrite(
       params?: Params$Resource$Projects$Traces$Batchwrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -572,11 +573,11 @@ export namespace cloudtrace_v2 {
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSpan(
       params?: Params$Resource$Projects$Traces$Spans$Createspan,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Span>;
+    ): GaxiosResponseWithHTTP2<Schema$Span>;
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

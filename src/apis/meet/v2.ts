@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -579,11 +580,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConferenceRecord>;
+    ): GaxiosResponseWithHTTP2<Schema$ConferenceRecord>;
     get(
       params: Params$Resource$Conferencerecords$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -667,11 +668,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConferenceRecordsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConferenceRecordsResponse>;
     list(
       params: Params$Resource$Conferencerecords$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -799,11 +800,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Participants$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Participants$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Participant>;
+    ): GaxiosResponseWithHTTP2<Schema$Participant>;
     get(
       params: Params$Resource$Conferencerecords$Participants$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -887,11 +888,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Participants$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$Participants$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListParticipantsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListParticipantsResponse>;
     list(
       params: Params$Resource$Conferencerecords$Participants$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1014,11 +1015,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Participants$Participantsessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Participants$Participantsessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ParticipantSession>;
+    ): GaxiosResponseWithHTTP2<Schema$ParticipantSession>;
     get(
       params: Params$Resource$Conferencerecords$Participants$Participantsessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1103,11 +1104,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Participants$Participantsessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$Participants$Participantsessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListParticipantSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListParticipantSessionsResponse>;
     list(
       params: Params$Resource$Conferencerecords$Participants$Participantsessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1235,11 +1236,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Recordings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Recordings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Recording>;
+    ): GaxiosResponseWithHTTP2<Schema$Recording>;
     get(
       params: Params$Resource$Conferencerecords$Recordings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1323,11 +1324,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Recordings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$Recordings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRecordingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRecordingsResponse>;
     list(
       params: Params$Resource$Conferencerecords$Recordings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1450,11 +1451,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Transcripts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Transcripts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Transcript>;
+    ): GaxiosResponseWithHTTP2<Schema$Transcript>;
     get(
       params: Params$Resource$Conferencerecords$Transcripts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1538,11 +1539,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Transcripts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$Transcripts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTranscriptsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTranscriptsResponse>;
     list(
       params: Params$Resource$Conferencerecords$Transcripts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1661,11 +1662,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Conferencerecords$Transcripts$Entries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conferencerecords$Transcripts$Entries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranscriptEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$TranscriptEntry>;
     get(
       params: Params$Resource$Conferencerecords$Transcripts$Entries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1750,11 +1751,11 @@ export namespace meet_v2 {
     list(
       params: Params$Resource$Conferencerecords$Transcripts$Entries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Conferencerecords$Transcripts$Entries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTranscriptEntriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTranscriptEntriesResponse>;
     list(
       params: Params$Resource$Conferencerecords$Transcripts$Entries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1878,11 +1879,11 @@ export namespace meet_v2 {
     create(
       params: Params$Resource$Spaces$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spaces$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     create(
       params: Params$Resource$Spaces$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1965,11 +1966,11 @@ export namespace meet_v2 {
     endActiveConference(
       params: Params$Resource$Spaces$Endactiveconference,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     endActiveConference(
       params?: Params$Resource$Spaces$Endactiveconference,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     endActiveConference(
       params: Params$Resource$Spaces$Endactiveconference,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2056,11 +2057,11 @@ export namespace meet_v2 {
     get(
       params: Params$Resource$Spaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     get(
       params: Params$Resource$Spaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2143,11 +2144,11 @@ export namespace meet_v2 {
     patch(
       params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Spaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     patch(
       params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

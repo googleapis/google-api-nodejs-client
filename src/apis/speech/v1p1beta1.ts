@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -825,11 +826,11 @@ export namespace speech_v1p1beta1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -915,11 +916,11 @@ export namespace speech_v1p1beta1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1063,11 +1064,11 @@ export namespace speech_v1p1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Customclasses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Customclasses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomClass>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
     create(
       params: Params$Resource$Projects$Locations$Customclasses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1154,11 +1155,11 @@ export namespace speech_v1p1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Customclasses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Customclasses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Customclasses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1242,11 +1243,11 @@ export namespace speech_v1p1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Customclasses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomClass>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
     get(
       params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1330,11 +1331,11 @@ export namespace speech_v1p1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Customclasses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomClassesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCustomClassesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1425,11 +1426,11 @@ export namespace speech_v1p1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Customclasses$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Customclasses$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomClass>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
     patch(
       params: Params$Resource$Projects$Locations$Customclasses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1578,11 +1579,11 @@ export namespace speech_v1p1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Phrasesets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Phrasesets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PhraseSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
     create(
       params: Params$Resource$Projects$Locations$Phrasesets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1669,11 +1670,11 @@ export namespace speech_v1p1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1757,11 +1758,11 @@ export namespace speech_v1p1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Phrasesets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Phrasesets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PhraseSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
     get(
       params: Params$Resource$Projects$Locations$Phrasesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1845,11 +1846,11 @@ export namespace speech_v1p1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Phrasesets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Phrasesets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPhraseSetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPhraseSetResponse>;
     list(
       params: Params$Resource$Projects$Locations$Phrasesets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1938,11 +1939,11 @@ export namespace speech_v1p1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PhraseSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
     patch(
       params: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2091,11 +2092,11 @@ export namespace speech_v1p1beta1 {
     longrunningrecognize(
       params: Params$Resource$Speech$Longrunningrecognize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     longrunningrecognize(
       params?: Params$Resource$Speech$Longrunningrecognize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     longrunningrecognize(
       params: Params$Resource$Speech$Longrunningrecognize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2184,11 +2185,11 @@ export namespace speech_v1p1beta1 {
     recognize(
       params: Params$Resource$Speech$Recognize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     recognize(
       params?: Params$Resource$Speech$Recognize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RecognizeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RecognizeResponse>;
     recognize(
       params: Params$Resource$Speech$Recognize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

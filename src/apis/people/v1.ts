@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1635,11 +1636,11 @@ export namespace people_v1 {
     batchGet(
       params: Params$Resource$Contactgroups$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Contactgroups$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>;
     batchGet(
       params: Params$Resource$Contactgroups$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1732,11 +1733,11 @@ export namespace people_v1 {
     create(
       params: Params$Resource$Contactgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Contactgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContactGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
     create(
       params: Params$Resource$Contactgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1820,11 +1821,11 @@ export namespace people_v1 {
     delete(
       params: Params$Resource$Contactgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Contactgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Contactgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1911,11 +1912,11 @@ export namespace people_v1 {
     get(
       params: Params$Resource$Contactgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Contactgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContactGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
     get(
       params: Params$Resource$Contactgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2002,11 +2003,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Contactgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Contactgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListContactGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>;
     list(
       params: Params$Resource$Contactgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2094,11 +2095,11 @@ export namespace people_v1 {
     update(
       params: Params$Resource$Contactgroups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Contactgroups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContactGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
     update(
       params: Params$Resource$Contactgroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2272,11 +2273,11 @@ export namespace people_v1 {
     modify(
       params: Params$Resource$Contactgroups$Members$Modify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modify(
       params?: Params$Resource$Contactgroups$Members$Modify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>;
     modify(
       params: Params$Resource$Contactgroups$Members$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2389,11 +2390,11 @@ export namespace people_v1 {
     copyOtherContactToMyContactsGroup(
       params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     copyOtherContactToMyContactsGroup(
       params?: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Person>;
+    ): GaxiosResponseWithHTTP2<Schema$Person>;
     copyOtherContactToMyContactsGroup(
       params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2482,11 +2483,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Othercontacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Othercontacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOtherContactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>;
     list(
       params: Params$Resource$Othercontacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2574,11 +2575,11 @@ export namespace people_v1 {
     search(
       params: Params$Resource$Othercontacts$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Othercontacts$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
     search(
       params: Params$Resource$Othercontacts$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2729,11 +2730,11 @@ export namespace people_v1 {
     batchCreateContacts(
       params: Params$Resource$People$Batchcreatecontacts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreateContacts(
       params?: Params$Resource$People$Batchcreatecontacts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreateContactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>;
     batchCreateContacts(
       params: Params$Resource$People$Batchcreatecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2824,11 +2825,11 @@ export namespace people_v1 {
     batchDeleteContacts(
       params: Params$Resource$People$Batchdeletecontacts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDeleteContacts(
       params?: Params$Resource$People$Batchdeletecontacts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     batchDeleteContacts(
       params: Params$Resource$People$Batchdeletecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2915,11 +2916,11 @@ export namespace people_v1 {
     batchUpdateContacts(
       params: Params$Resource$People$Batchupdatecontacts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdateContacts(
       params?: Params$Resource$People$Batchupdatecontacts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateContactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>;
     batchUpdateContacts(
       params: Params$Resource$People$Batchupdatecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3010,11 +3011,11 @@ export namespace people_v1 {
     createContact(
       params: Params$Resource$People$Createcontact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createContact(
       params?: Params$Resource$People$Createcontact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Person>;
+    ): GaxiosResponseWithHTTP2<Schema$Person>;
     createContact(
       params: Params$Resource$People$Createcontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3101,11 +3102,11 @@ export namespace people_v1 {
     deleteContact(
       params: Params$Resource$People$Deletecontact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteContact(
       params?: Params$Resource$People$Deletecontact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     deleteContact(
       params: Params$Resource$People$Deletecontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3192,11 +3193,11 @@ export namespace people_v1 {
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteContactPhoto(
       params?: Params$Resource$People$Deletecontactphoto,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteContactPhotoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>;
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3287,11 +3288,11 @@ export namespace people_v1 {
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$People$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Person>;
+    ): GaxiosResponseWithHTTP2<Schema$Person>;
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3377,11 +3378,11 @@ export namespace people_v1 {
     getBatchGet(
       params: Params$Resource$People$Getbatchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getBatchGet(
       params?: Params$Resource$People$Getbatchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetPeopleResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>;
     getBatchGet(
       params: Params$Resource$People$Getbatchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3468,11 +3469,11 @@ export namespace people_v1 {
     listDirectoryPeople(
       params: Params$Resource$People$Listdirectorypeople,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listDirectoryPeople(
       params?: Params$Resource$People$Listdirectorypeople,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDirectoryPeopleResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>;
     listDirectoryPeople(
       params: Params$Resource$People$Listdirectorypeople,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3563,11 +3564,11 @@ export namespace people_v1 {
     searchContacts(
       params: Params$Resource$People$Searchcontacts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchContacts(
       params?: Params$Resource$People$Searchcontacts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
     searchContacts(
       params: Params$Resource$People$Searchcontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3654,11 +3655,11 @@ export namespace people_v1 {
     searchDirectoryPeople(
       params: Params$Resource$People$Searchdirectorypeople,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchDirectoryPeople(
       params?: Params$Resource$People$Searchdirectorypeople,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchDirectoryPeopleResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>;
     searchDirectoryPeople(
       params: Params$Resource$People$Searchdirectorypeople,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3751,11 +3752,11 @@ export namespace people_v1 {
     updateContact(
       params: Params$Resource$People$Updatecontact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContact(
       params?: Params$Resource$People$Updatecontact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Person>;
+    ): GaxiosResponseWithHTTP2<Schema$Person>;
     updateContact(
       params: Params$Resource$People$Updatecontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3842,11 +3843,11 @@ export namespace people_v1 {
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContactPhoto(
       params?: Params$Resource$People$Updatecontactphoto,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateContactPhotoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>;
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4154,11 +4155,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$People$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$People$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
     list(
       params: Params$Resource$People$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

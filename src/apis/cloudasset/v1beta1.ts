@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1054,11 +1055,11 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       params: Params$Resource$Folders$Exportassets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportAssets(
       params?: Params$Resource$Folders$Exportassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     exportAssets(
       params: Params$Resource$Folders$Exportassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1165,11 +1166,11 @@ export namespace cloudasset_v1beta1 {
     get(
       params: Params$Resource$Folders$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Folders$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1270,11 +1271,11 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
       params: Params$Resource$Organizations$Batchgetassetshistory,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGetAssetsHistory(
       params?: Params$Resource$Organizations$Batchgetassetshistory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
       params: Params$Resource$Organizations$Batchgetassetshistory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1367,11 +1368,11 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       params: Params$Resource$Organizations$Exportassets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportAssets(
       params?: Params$Resource$Organizations$Exportassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     exportAssets(
       params: Params$Resource$Organizations$Exportassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1501,11 +1502,11 @@ export namespace cloudasset_v1beta1 {
     get(
       params: Params$Resource$Organizations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Organizations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1606,11 +1607,11 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
       params: Params$Resource$Projects$Batchgetassetshistory,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGetAssetsHistory(
       params?: Params$Resource$Projects$Batchgetassetshistory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
       params: Params$Resource$Projects$Batchgetassetshistory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1703,11 +1704,11 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       params: Params$Resource$Projects$Exportassets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportAssets(
       params?: Params$Resource$Projects$Exportassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     exportAssets(
       params: Params$Resource$Projects$Exportassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1837,11 +1838,11 @@ export namespace cloudasset_v1beta1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

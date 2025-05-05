@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -204,11 +205,11 @@ export namespace libraryagent_v1 {
     get(
       params: Params$Resource$Shelves$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Shelves$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1Shelf>;
     get(
       params: Params$Resource$Shelves$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -297,11 +298,11 @@ export namespace libraryagent_v1 {
     list(
       params: Params$Resource$Shelves$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Shelves$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
     list(
       params: Params$Resource$Shelves$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -414,11 +415,11 @@ export namespace libraryagent_v1 {
     borrow(
       params: Params$Resource$Shelves$Books$Borrow,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     borrow(
       params?: Params$Resource$Shelves$Books$Borrow,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1Book>;
     borrow(
       params: Params$Resource$Shelves$Books$Borrow,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -508,11 +509,11 @@ export namespace libraryagent_v1 {
     get(
       params: Params$Resource$Shelves$Books$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Shelves$Books$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1Book>;
     get(
       params: Params$Resource$Shelves$Books$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -602,11 +603,11 @@ export namespace libraryagent_v1 {
     list(
       params: Params$Resource$Shelves$Books$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Shelves$Books$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
     list(
       params: Params$Resource$Shelves$Books$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -699,11 +700,11 @@ export namespace libraryagent_v1 {
     return(
       params: Params$Resource$Shelves$Books$Return,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     return(
       params?: Params$Resource$Shelves$Books$Return,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleExampleLibraryagentV1Book>;
     return(
       params: Params$Resource$Shelves$Books$Return,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

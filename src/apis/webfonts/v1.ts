@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -221,11 +222,11 @@ export namespace webfonts_v1 {
     list(
       params: Params$Resource$Webfonts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Webfonts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebfontList>;
+    ): GaxiosResponseWithHTTP2<Schema$WebfontList>;
     list(
       params: Params$Resource$Webfonts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

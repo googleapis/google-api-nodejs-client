@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -855,11 +856,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Availableprojects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Availableprojects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableProjectsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableProjectsResponse>;
     list(
       params: Params$Resource$Availableprojects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -971,11 +972,11 @@ export namespace firebase_v1beta1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1086,11 +1087,11 @@ export namespace firebase_v1beta1 {
     addFirebase(
       params: Params$Resource$Projects$Addfirebase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addFirebase(
       params?: Params$Resource$Projects$Addfirebase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addFirebase(
       params: Params$Resource$Projects$Addfirebase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1177,11 +1178,11 @@ export namespace firebase_v1beta1 {
     addGoogleAnalytics(
       params: Params$Resource$Projects$Addgoogleanalytics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addGoogleAnalytics(
       params?: Params$Resource$Projects$Addgoogleanalytics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addGoogleAnalytics(
       params: Params$Resource$Projects$Addgoogleanalytics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1268,11 +1269,11 @@ export namespace firebase_v1beta1 {
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirebaseProject>;
+    ): GaxiosResponseWithHTTP2<Schema$FirebaseProject>;
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1355,11 +1356,11 @@ export namespace firebase_v1beta1 {
     getAdminSdkConfig(
       params: Params$Resource$Projects$Getadminsdkconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAdminSdkConfig(
       params?: Params$Resource$Projects$Getadminsdkconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdminSdkConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$AdminSdkConfig>;
     getAdminSdkConfig(
       params: Params$Resource$Projects$Getadminsdkconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1445,11 +1446,11 @@ export namespace firebase_v1beta1 {
     getAnalyticsDetails(
       params: Params$Resource$Projects$Getanalyticsdetails,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAnalyticsDetails(
       params?: Params$Resource$Projects$Getanalyticsdetails,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyticsDetails>;
+    ): GaxiosResponseWithHTTP2<Schema$AnalyticsDetails>;
     getAnalyticsDetails(
       params: Params$Resource$Projects$Getanalyticsdetails,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1535,11 +1536,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFirebaseProjectsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFirebaseProjectsResponse>;
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1628,11 +1629,11 @@ export namespace firebase_v1beta1 {
     patch(
       params: Params$Resource$Projects$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirebaseProject>;
+    ): GaxiosResponseWithHTTP2<Schema$FirebaseProject>;
     patch(
       params: Params$Resource$Projects$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1715,11 +1716,11 @@ export namespace firebase_v1beta1 {
     removeAnalytics(
       params: Params$Resource$Projects$Removeanalytics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeAnalytics(
       params?: Params$Resource$Projects$Removeanalytics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     removeAnalytics(
       params: Params$Resource$Projects$Removeanalytics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1806,11 +1807,11 @@ export namespace firebase_v1beta1 {
     searchApps(
       params: Params$Resource$Projects$Searchapps,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchApps(
       params?: Params$Resource$Projects$Searchapps,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchFirebaseAppsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchFirebaseAppsResponse>;
     searchApps(
       params: Params$Resource$Projects$Searchapps,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2019,11 +2020,11 @@ export namespace firebase_v1beta1 {
     create(
       params: Params$Resource$Projects$Androidapps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Androidapps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Androidapps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2110,11 +2111,11 @@ export namespace firebase_v1beta1 {
     get(
       params: Params$Resource$Projects$Androidapps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Androidapps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AndroidApp>;
+    ): GaxiosResponseWithHTTP2<Schema$AndroidApp>;
     get(
       params: Params$Resource$Projects$Androidapps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2198,11 +2199,11 @@ export namespace firebase_v1beta1 {
     getConfig(
       params: Params$Resource$Projects$Androidapps$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Androidapps$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AndroidAppConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$AndroidAppConfig>;
     getConfig(
       params: Params$Resource$Projects$Androidapps$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2286,11 +2287,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Androidapps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAndroidAppsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAndroidAppsResponse>;
     list(
       params: Params$Resource$Projects$Androidapps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2379,11 +2380,11 @@ export namespace firebase_v1beta1 {
     patch(
       params: Params$Resource$Projects$Androidapps$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Androidapps$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AndroidApp>;
+    ): GaxiosResponseWithHTTP2<Schema$AndroidApp>;
     patch(
       params: Params$Resource$Projects$Androidapps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2467,11 +2468,11 @@ export namespace firebase_v1beta1 {
     remove(
       params: Params$Resource$Projects$Androidapps$Remove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     remove(
       params?: Params$Resource$Projects$Androidapps$Remove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     remove(
       params: Params$Resource$Projects$Androidapps$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2558,11 +2559,11 @@ export namespace firebase_v1beta1 {
     undelete(
       params: Params$Resource$Projects$Androidapps$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undelete(
       params?: Params$Resource$Projects$Androidapps$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     undelete(
       params: Params$Resource$Projects$Androidapps$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2742,11 +2743,11 @@ export namespace firebase_v1beta1 {
     create(
       params: Params$Resource$Projects$Androidapps$Sha$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Androidapps$Sha$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShaCertificate>;
+    ): GaxiosResponseWithHTTP2<Schema$ShaCertificate>;
     create(
       params: Params$Resource$Projects$Androidapps$Sha$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2833,11 +2834,11 @@ export namespace firebase_v1beta1 {
     delete(
       params: Params$Resource$Projects$Androidapps$Sha$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Androidapps$Sha$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Androidapps$Sha$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2921,11 +2922,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$Sha$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Androidapps$Sha$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListShaCertificatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListShaCertificatesResponse>;
     list(
       params: Params$Resource$Projects$Androidapps$Sha$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3050,11 +3051,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Availablelocations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Availablelocations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableLocationsResponse>;
     list(
       params: Params$Resource$Projects$Availablelocations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3170,11 +3171,11 @@ export namespace firebase_v1beta1 {
     finalize(
       params: Params$Resource$Projects$Defaultlocation$Finalize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     finalize(
       params?: Params$Resource$Projects$Defaultlocation$Finalize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     finalize(
       params: Params$Resource$Projects$Defaultlocation$Finalize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3280,11 +3281,11 @@ export namespace firebase_v1beta1 {
     create(
       params: Params$Resource$Projects$Iosapps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Iosapps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Iosapps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3371,11 +3372,11 @@ export namespace firebase_v1beta1 {
     get(
       params: Params$Resource$Projects$Iosapps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Iosapps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IosApp>;
+    ): GaxiosResponseWithHTTP2<Schema$IosApp>;
     get(
       params: Params$Resource$Projects$Iosapps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3459,11 +3460,11 @@ export namespace firebase_v1beta1 {
     getConfig(
       params: Params$Resource$Projects$Iosapps$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Iosapps$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IosAppConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$IosAppConfig>;
     getConfig(
       params: Params$Resource$Projects$Iosapps$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3547,11 +3548,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Iosapps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Iosapps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListIosAppsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListIosAppsResponse>;
     list(
       params: Params$Resource$Projects$Iosapps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3638,11 +3639,11 @@ export namespace firebase_v1beta1 {
     patch(
       params: Params$Resource$Projects$Iosapps$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Iosapps$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IosApp>;
+    ): GaxiosResponseWithHTTP2<Schema$IosApp>;
     patch(
       params: Params$Resource$Projects$Iosapps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3726,11 +3727,11 @@ export namespace firebase_v1beta1 {
     remove(
       params: Params$Resource$Projects$Iosapps$Remove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     remove(
       params?: Params$Resource$Projects$Iosapps$Remove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     remove(
       params: Params$Resource$Projects$Iosapps$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3817,11 +3818,11 @@ export namespace firebase_v1beta1 {
     undelete(
       params: Params$Resource$Projects$Iosapps$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undelete(
       params?: Params$Resource$Projects$Iosapps$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     undelete(
       params: Params$Resource$Projects$Iosapps$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4001,11 +4002,11 @@ export namespace firebase_v1beta1 {
     create(
       params: Params$Resource$Projects$Webapps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Webapps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Webapps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4092,11 +4093,11 @@ export namespace firebase_v1beta1 {
     get(
       params: Params$Resource$Projects$Webapps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Webapps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebApp>;
+    ): GaxiosResponseWithHTTP2<Schema$WebApp>;
     get(
       params: Params$Resource$Projects$Webapps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4180,11 +4181,11 @@ export namespace firebase_v1beta1 {
     getConfig(
       params: Params$Resource$Projects$Webapps$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Webapps$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebAppConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$WebAppConfig>;
     getConfig(
       params: Params$Resource$Projects$Webapps$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4268,11 +4269,11 @@ export namespace firebase_v1beta1 {
     list(
       params: Params$Resource$Projects$Webapps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Webapps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWebAppsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWebAppsResponse>;
     list(
       params: Params$Resource$Projects$Webapps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4359,11 +4360,11 @@ export namespace firebase_v1beta1 {
     patch(
       params: Params$Resource$Projects$Webapps$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Webapps$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebApp>;
+    ): GaxiosResponseWithHTTP2<Schema$WebApp>;
     patch(
       params: Params$Resource$Projects$Webapps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4447,11 +4448,11 @@ export namespace firebase_v1beta1 {
     remove(
       params: Params$Resource$Projects$Webapps$Remove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     remove(
       params?: Params$Resource$Projects$Webapps$Remove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     remove(
       params: Params$Resource$Projects$Webapps$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4538,11 +4539,11 @@ export namespace firebase_v1beta1 {
     undelete(
       params: Params$Resource$Projects$Webapps$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undelete(
       params?: Params$Resource$Projects$Webapps$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     undelete(
       params: Params$Resource$Projects$Webapps$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

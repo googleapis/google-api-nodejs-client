@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2821,11 +2822,11 @@ export namespace chat_v1 {
     create(
       params: Params$Resource$Customemojis$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customemojis$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomEmoji>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomEmoji>;
     create(
       params: Params$Resource$Customemojis$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2909,11 +2910,11 @@ export namespace chat_v1 {
     delete(
       params: Params$Resource$Customemojis$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Customemojis$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Customemojis$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2997,11 +2998,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Customemojis$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Customemojis$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomEmoji>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomEmoji>;
     get(
       params: Params$Resource$Customemojis$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3084,11 +3085,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Customemojis$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customemojis$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomEmojisResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCustomEmojisResponse>;
     list(
       params: Params$Resource$Customemojis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3217,11 +3218,11 @@ export namespace chat_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Media>;
+    ): GaxiosResponseWithHTTP2<Schema$Media>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3307,11 +3308,11 @@ export namespace chat_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadAttachmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadAttachmentResponse>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3451,11 +3452,11 @@ export namespace chat_v1 {
     completeImport(
       params: Params$Resource$Spaces$Completeimport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeImport(
       params?: Params$Resource$Spaces$Completeimport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompleteImportSpaceResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CompleteImportSpaceResponse>;
     completeImport(
       params: Params$Resource$Spaces$Completeimport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3546,11 +3547,11 @@ export namespace chat_v1 {
     create(
       params: Params$Resource$Spaces$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spaces$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     create(
       params: Params$Resource$Spaces$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3633,11 +3634,11 @@ export namespace chat_v1 {
     delete(
       params: Params$Resource$Spaces$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Spaces$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Spaces$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3720,11 +3721,11 @@ export namespace chat_v1 {
     findDirectMessage(
       params: Params$Resource$Spaces$Finddirectmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     findDirectMessage(
       params?: Params$Resource$Spaces$Finddirectmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     findDirectMessage(
       params: Params$Resource$Spaces$Finddirectmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3811,11 +3812,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Spaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     get(
       params: Params$Resource$Spaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3898,11 +3899,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Spaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSpacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSpacesResponse>;
     list(
       params: Params$Resource$Spaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3985,11 +3986,11 @@ export namespace chat_v1 {
     patch(
       params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Spaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     patch(
       params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4072,11 +4073,11 @@ export namespace chat_v1 {
     search(
       params: Params$Resource$Spaces$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Spaces$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSpacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSpacesResponse>;
     search(
       params: Params$Resource$Spaces$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4161,11 +4162,11 @@ export namespace chat_v1 {
     setup(
       params: Params$Resource$Spaces$Setup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setup(
       params?: Params$Resource$Spaces$Setup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Space>;
+    ): GaxiosResponseWithHTTP2<Schema$Space>;
     setup(
       params: Params$Resource$Spaces$Setup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4367,11 +4368,11 @@ export namespace chat_v1 {
     create(
       params: Params$Resource$Spaces$Members$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spaces$Members$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Membership>;
+    ): GaxiosResponseWithHTTP2<Schema$Membership>;
     create(
       params: Params$Resource$Spaces$Members$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4458,11 +4459,11 @@ export namespace chat_v1 {
     delete(
       params: Params$Resource$Spaces$Members$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Spaces$Members$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Membership>;
+    ): GaxiosResponseWithHTTP2<Schema$Membership>;
     delete(
       params: Params$Resource$Spaces$Members$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4546,11 +4547,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Spaces$Members$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Members$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Membership>;
+    ): GaxiosResponseWithHTTP2<Schema$Membership>;
     get(
       params: Params$Resource$Spaces$Members$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4634,11 +4635,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Members$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Spaces$Members$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMembershipsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMembershipsResponse>;
     list(
       params: Params$Resource$Spaces$Members$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4727,11 +4728,11 @@ export namespace chat_v1 {
     patch(
       params: Params$Resource$Spaces$Members$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Spaces$Members$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Membership>;
+    ): GaxiosResponseWithHTTP2<Schema$Membership>;
     patch(
       params: Params$Resource$Spaces$Members$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4916,11 +4917,11 @@ export namespace chat_v1 {
     create(
       params: Params$Resource$Spaces$Messages$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spaces$Messages$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): GaxiosResponseWithHTTP2<Schema$Message>;
     create(
       params: Params$Resource$Spaces$Messages$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5007,11 +5008,11 @@ export namespace chat_v1 {
     delete(
       params: Params$Resource$Spaces$Messages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Spaces$Messages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Spaces$Messages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5095,11 +5096,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Spaces$Messages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Messages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): GaxiosResponseWithHTTP2<Schema$Message>;
     get(
       params: Params$Resource$Spaces$Messages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5183,11 +5184,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Spaces$Messages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMessagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>;
     list(
       params: Params$Resource$Spaces$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5276,11 +5277,11 @@ export namespace chat_v1 {
     patch(
       params: Params$Resource$Spaces$Messages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Spaces$Messages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): GaxiosResponseWithHTTP2<Schema$Message>;
     patch(
       params: Params$Resource$Spaces$Messages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5364,11 +5365,11 @@ export namespace chat_v1 {
     update(
       params: Params$Resource$Spaces$Messages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Spaces$Messages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): GaxiosResponseWithHTTP2<Schema$Message>;
     update(
       params: Params$Resource$Spaces$Messages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5573,11 +5574,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Spaces$Messages$Attachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Messages$Attachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): GaxiosResponseWithHTTP2<Schema$Attachment>;
     get(
       params: Params$Resource$Spaces$Messages$Attachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5676,11 +5677,11 @@ export namespace chat_v1 {
     create(
       params: Params$Resource$Spaces$Messages$Reactions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spaces$Messages$Reactions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reaction>;
+    ): GaxiosResponseWithHTTP2<Schema$Reaction>;
     create(
       params: Params$Resource$Spaces$Messages$Reactions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5767,11 +5768,11 @@ export namespace chat_v1 {
     delete(
       params: Params$Resource$Spaces$Messages$Reactions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Spaces$Messages$Reactions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Spaces$Messages$Reactions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5855,11 +5856,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Messages$Reactions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Spaces$Messages$Reactions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReactionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReactionsResponse>;
     list(
       params: Params$Resource$Spaces$Messages$Reactions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5994,11 +5995,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Spaces$Spaceevents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spaces$Spaceevents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SpaceEvent>;
+    ): GaxiosResponseWithHTTP2<Schema$SpaceEvent>;
     get(
       params: Params$Resource$Spaces$Spaceevents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6082,11 +6083,11 @@ export namespace chat_v1 {
     list(
       params: Params$Resource$Spaces$Spaceevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Spaces$Spaceevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSpaceEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSpaceEventsResponse>;
     list(
       params: Params$Resource$Spaces$Spaceevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6223,11 +6224,11 @@ export namespace chat_v1 {
     getSpaceReadState(
       params: Params$Resource$Users$Spaces$Getspacereadstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSpaceReadState(
       params?: Params$Resource$Users$Spaces$Getspacereadstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SpaceReadState>;
+    ): GaxiosResponseWithHTTP2<Schema$SpaceReadState>;
     getSpaceReadState(
       params: Params$Resource$Users$Spaces$Getspacereadstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6313,11 +6314,11 @@ export namespace chat_v1 {
     updateSpaceReadState(
       params: Params$Resource$Users$Spaces$Updatespacereadstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSpaceReadState(
       params?: Params$Resource$Users$Spaces$Updatespacereadstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SpaceReadState>;
+    ): GaxiosResponseWithHTTP2<Schema$SpaceReadState>;
     updateSpaceReadState(
       params: Params$Resource$Users$Spaces$Updatespacereadstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6434,11 +6435,11 @@ export namespace chat_v1 {
     get(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Users$Spaces$Spacenotificationsetting$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SpaceNotificationSetting>;
+    ): GaxiosResponseWithHTTP2<Schema$SpaceNotificationSetting>;
     get(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6525,11 +6526,11 @@ export namespace chat_v1 {
     patch(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Users$Spaces$Spacenotificationsetting$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SpaceNotificationSetting>;
+    ): GaxiosResponseWithHTTP2<Schema$SpaceNotificationSetting>;
     patch(
       params: Params$Resource$Users$Spaces$Spacenotificationsetting$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6649,11 +6650,11 @@ export namespace chat_v1 {
     getThreadReadState(
       params: Params$Resource$Users$Spaces$Threads$Getthreadreadstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getThreadReadState(
       params?: Params$Resource$Users$Spaces$Threads$Getthreadreadstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThreadReadState>;
+    ): GaxiosResponseWithHTTP2<Schema$ThreadReadState>;
     getThreadReadState(
       params: Params$Resource$Users$Spaces$Threads$Getthreadreadstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

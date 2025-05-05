@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1827,11 +1828,11 @@ export namespace identitytoolkit_v2 {
     revokeToken(
       params: Params$Resource$Accounts$Revoketoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revokeToken(
       params?: Params$Resource$Accounts$Revoketoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>;
     revokeToken(
       params: Params$Resource$Accounts$Revoketoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1940,11 +1941,11 @@ export namespace identitytoolkit_v2 {
     finalize(
       params: Params$Resource$Accounts$Mfaenrollment$Finalize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     finalize(
       params?: Params$Resource$Accounts$Mfaenrollment$Finalize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse>;
     finalize(
       params: Params$Resource$Accounts$Mfaenrollment$Finalize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2038,11 +2039,11 @@ export namespace identitytoolkit_v2 {
     start(
       params: Params$Resource$Accounts$Mfaenrollment$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Accounts$Mfaenrollment$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse>;
     start(
       params: Params$Resource$Accounts$Mfaenrollment$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2136,11 +2137,11 @@ export namespace identitytoolkit_v2 {
     withdraw(
       params: Params$Resource$Accounts$Mfaenrollment$Withdraw,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     withdraw(
       params?: Params$Resource$Accounts$Mfaenrollment$Withdraw,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2WithdrawMfaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2WithdrawMfaResponse>;
     withdraw(
       params: Params$Resource$Accounts$Mfaenrollment$Withdraw,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2263,11 +2264,11 @@ export namespace identitytoolkit_v2 {
     finalize(
       params: Params$Resource$Accounts$Mfasignin$Finalize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     finalize(
       params?: Params$Resource$Accounts$Mfasignin$Finalize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse>;
     finalize(
       params: Params$Resource$Accounts$Mfasignin$Finalize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2361,11 +2362,11 @@ export namespace identitytoolkit_v2 {
     start(
       params: Params$Resource$Accounts$Mfasignin$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Accounts$Mfasignin$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartMfaSignInResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2StartMfaSignInResponse>;
     start(
       params: Params$Resource$Accounts$Mfasignin$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,11 +2482,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Defaultsupportedidps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Defaultsupportedidps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse>;
     list(
       params: Params$Resource$Defaultsupportedidps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2615,11 +2616,11 @@ export namespace identitytoolkit_v2 {
     getConfig(
       params: Params$Resource$Projects$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Config>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Config>;
     getConfig(
       params: Params$Resource$Projects$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2710,11 +2711,11 @@ export namespace identitytoolkit_v2 {
     updateConfig(
       params: Params$Resource$Projects$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Projects$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Config>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Config>;
     updateConfig(
       params: Params$Resource$Projects$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2836,11 +2837,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Defaultsupportedidpconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     create(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2935,11 +2936,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Defaultsupportedidpconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3025,11 +3026,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Defaultsupportedidpconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     get(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3120,11 +3121,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Defaultsupportedidpconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>;
     list(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3218,11 +3219,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Defaultsupportedidpconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     patch(
       params: Params$Resource$Projects$Defaultsupportedidpconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3383,11 +3384,11 @@ export namespace identitytoolkit_v2 {
     initializeAuth(
       params: Params$Resource$Projects$Identityplatform$Initializeauth,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     initializeAuth(
       params?: Params$Resource$Projects$Identityplatform$Initializeauth,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>;
     initializeAuth(
       params: Params$Resource$Projects$Identityplatform$Initializeauth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3500,11 +3501,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Inboundsamlconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Inboundsamlconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     create(
       params: Params$Resource$Projects$Inboundsamlconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3598,11 +3599,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Inboundsamlconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Inboundsamlconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Inboundsamlconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3687,11 +3688,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Inboundsamlconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Inboundsamlconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     get(
       params: Params$Resource$Projects$Inboundsamlconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3782,11 +3783,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Inboundsamlconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Inboundsamlconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>;
     list(
       params: Params$Resource$Projects$Inboundsamlconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3880,11 +3881,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Inboundsamlconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Inboundsamlconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     patch(
       params: Params$Resource$Projects$Inboundsamlconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4044,11 +4045,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Oauthidpconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Oauthidpconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     create(
       params: Params$Resource$Projects$Oauthidpconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4142,11 +4143,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Oauthidpconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Oauthidpconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Oauthidpconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4231,11 +4232,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Oauthidpconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Oauthidpconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     get(
       params: Params$Resource$Projects$Oauthidpconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4326,11 +4327,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Oauthidpconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Oauthidpconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>;
     list(
       params: Params$Resource$Projects$Oauthidpconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4424,11 +4425,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Oauthidpconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Oauthidpconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     patch(
       params: Params$Resource$Projects$Oauthidpconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4598,11 +4599,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Tenants$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Tenants$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
     create(
       params: Params$Resource$Projects$Tenants$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4696,11 +4697,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Tenants$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Tenants$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Tenants$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4785,11 +4786,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Tenants$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Tenants$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
     get(
       params: Params$Resource$Projects$Tenants$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4880,11 +4881,11 @@ export namespace identitytoolkit_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Tenants$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Tenants$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Tenants$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4974,11 +4975,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Tenants$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Tenants$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse>;
     list(
       params: Params$Resource$Projects$Tenants$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5072,11 +5073,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Tenants$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Tenants$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>;
     patch(
       params: Params$Resource$Projects$Tenants$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5167,11 +5168,11 @@ export namespace identitytoolkit_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Tenants$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Tenants$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Tenants$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5261,11 +5262,11 @@ export namespace identitytoolkit_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Tenants$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Tenants$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Tenants$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5460,11 +5461,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     create(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5559,11 +5560,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5649,11 +5650,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     get(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5745,11 +5746,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>;
     list(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5844,11 +5845,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>;
     patch(
       params: Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6009,11 +6010,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     create(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6108,11 +6109,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6198,11 +6199,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     get(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6293,11 +6294,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Tenants$Inboundsamlconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>;
     list(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6391,11 +6392,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>;
     patch(
       params: Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6556,11 +6557,11 @@ export namespace identitytoolkit_v2 {
     create(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Tenants$Oauthidpconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     create(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6654,11 +6655,11 @@ export namespace identitytoolkit_v2 {
     delete(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6743,11 +6744,11 @@ export namespace identitytoolkit_v2 {
     get(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Tenants$Oauthidpconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     get(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6838,11 +6839,11 @@ export namespace identitytoolkit_v2 {
     list(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Tenants$Oauthidpconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>;
     list(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6936,11 +6937,11 @@ export namespace identitytoolkit_v2 {
     patch(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>;
     patch(
       params: Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7100,11 +7101,11 @@ export namespace identitytoolkit_v2 {
     getPasswordPolicy(
       params: Params$Resource$V2$Getpasswordpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getPasswordPolicy(
       params?: Params$Resource$V2$Getpasswordpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>;
     getPasswordPolicy(
       params: Params$Resource$V2$Getpasswordpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7195,11 +7196,11 @@ export namespace identitytoolkit_v2 {
     getRecaptchaConfig(
       params: Params$Resource$V2$Getrecaptchaconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRecaptchaConfig(
       params?: Params$Resource$V2$Getrecaptchaconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>;
     getRecaptchaConfig(
       params: Params$Resource$V2$Getrecaptchaconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

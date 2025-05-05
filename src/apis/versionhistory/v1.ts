@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -277,11 +278,11 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Platforms$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlatformsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPlatformsResponse>;
     list(
       params: Params$Resource$Platforms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -394,11 +395,11 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Platforms$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>;
     list(
       params: Params$Resource$Platforms$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -515,11 +516,11 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Platforms$Channels$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>;
     list(
       params: Params$Resource$Platforms$Channels$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -640,11 +641,11 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$Versions$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Platforms$Channels$Versions$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>;
     list(
       params: Params$Resource$Platforms$Channels$Versions$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2675,11 +2676,11 @@ export namespace cloudchannel_v1 {
     checkCloudIdentityAccountsExist(
       params: Params$Resource$Accounts$Checkcloudidentityaccountsexist,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     checkCloudIdentityAccountsExist(
       params?: Params$Resource$Accounts$Checkcloudidentityaccountsexist,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse>;
     checkCloudIdentityAccountsExist(
       params: Params$Resource$Accounts$Checkcloudidentityaccountsexist,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2771,11 +2772,11 @@ export namespace cloudchannel_v1 {
     listSubscribers(
       params: Params$Resource$Accounts$Listsubscribers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listSubscribers(
       params?: Params$Resource$Accounts$Listsubscribers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSubscribersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListSubscribersResponse>;
     listSubscribers(
       params: Params$Resource$Accounts$Listsubscribers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2868,11 +2869,11 @@ export namespace cloudchannel_v1 {
     listTransferableOffers(
       params: Params$Resource$Accounts$Listtransferableoffers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listTransferableOffers(
       params?: Params$Resource$Accounts$Listtransferableoffers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListTransferableOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListTransferableOffersResponse>;
     listTransferableOffers(
       params: Params$Resource$Accounts$Listtransferableoffers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2965,11 +2966,11 @@ export namespace cloudchannel_v1 {
     listTransferableSkus(
       params: Params$Resource$Accounts$Listtransferableskus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listTransferableSkus(
       params?: Params$Resource$Accounts$Listtransferableskus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListTransferableSkusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListTransferableSkusResponse>;
     listTransferableSkus(
       params: Params$Resource$Accounts$Listtransferableskus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3062,11 +3063,11 @@ export namespace cloudchannel_v1 {
     register(
       params: Params$Resource$Accounts$Register,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     register(
       params?: Params$Resource$Accounts$Register,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>;
     register(
       params: Params$Resource$Accounts$Register,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3159,11 +3160,11 @@ export namespace cloudchannel_v1 {
     unregister(
       params: Params$Resource$Accounts$Unregister,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unregister(
       params?: Params$Resource$Accounts$Unregister,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>;
     unregister(
       params: Params$Resource$Accounts$Unregister,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3352,11 +3353,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3449,11 +3450,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3543,11 +3544,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Channelpartnerlinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListChannelPartnerLinksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListChannelPartnerLinksResponse>;
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3640,11 +3641,11 @@ export namespace cloudchannel_v1 {
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerLink>;
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3796,11 +3797,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3893,11 +3894,11 @@ export namespace cloudchannel_v1 {
     delete(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3982,11 +3983,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4077,11 +4078,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse>;
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4174,11 +4175,11 @@ export namespace cloudchannel_v1 {
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ChannelPartnerRepricingConfig>;
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Channelpartnerrepricingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4334,11 +4335,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     create(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4432,11 +4433,11 @@ export namespace cloudchannel_v1 {
     delete(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4521,11 +4522,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     get(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4616,11 +4617,11 @@ export namespace cloudchannel_v1 {
     import(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     import(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4714,11 +4715,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListCustomersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListCustomersResponse>;
     list(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4812,11 +4813,11 @@ export namespace cloudchannel_v1 {
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     patch(
       params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4995,11 +4996,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Customers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Customers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     create(
       params: Params$Resource$Accounts$Customers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5092,11 +5093,11 @@ export namespace cloudchannel_v1 {
     delete(
       params: Params$Resource$Accounts$Customers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Customers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Accounts$Customers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5180,11 +5181,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Customers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Customers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     get(
       params: Params$Resource$Accounts$Customers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5274,11 +5275,11 @@ export namespace cloudchannel_v1 {
     import(
       params: Params$Resource$Accounts$Customers$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Accounts$Customers$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     import(
       params: Params$Resource$Accounts$Customers$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5371,11 +5372,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Customers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Customers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListCustomersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListCustomersResponse>;
     list(
       params: Params$Resource$Accounts$Customers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5468,11 +5469,11 @@ export namespace cloudchannel_v1 {
     listPurchasableOffers(
       params: Params$Resource$Accounts$Customers$Listpurchasableoffers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listPurchasableOffers(
       params?: Params$Resource$Accounts$Customers$Listpurchasableoffers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListPurchasableOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListPurchasableOffersResponse>;
     listPurchasableOffers(
       params: Params$Resource$Accounts$Customers$Listpurchasableoffers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5565,11 +5566,11 @@ export namespace cloudchannel_v1 {
     listPurchasableSkus(
       params: Params$Resource$Accounts$Customers$Listpurchasableskus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listPurchasableSkus(
       params?: Params$Resource$Accounts$Customers$Listpurchasableskus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListPurchasableSkusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListPurchasableSkusResponse>;
     listPurchasableSkus(
       params: Params$Resource$Accounts$Customers$Listpurchasableskus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5662,11 +5663,11 @@ export namespace cloudchannel_v1 {
     patch(
       params: Params$Resource$Accounts$Customers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Customers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Customer>;
     patch(
       params: Params$Resource$Accounts$Customers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5756,11 +5757,11 @@ export namespace cloudchannel_v1 {
     provisionCloudIdentity(
       params: Params$Resource$Accounts$Customers$Provisioncloudidentity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     provisionCloudIdentity(
       params?: Params$Resource$Accounts$Customers$Provisioncloudidentity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     provisionCloudIdentity(
       params: Params$Resource$Accounts$Customers$Provisioncloudidentity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5852,11 +5853,11 @@ export namespace cloudchannel_v1 {
     queryEligibleBillingAccounts(
       params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryEligibleBillingAccounts(
       params?: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>;
     queryEligibleBillingAccounts(
       params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5949,11 +5950,11 @@ export namespace cloudchannel_v1 {
     transferEntitlements(
       params: Params$Resource$Accounts$Customers$Transferentitlements,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     transferEntitlements(
       params?: Params$Resource$Accounts$Customers$Transferentitlements,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     transferEntitlements(
       params: Params$Resource$Accounts$Customers$Transferentitlements,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6044,11 +6045,11 @@ export namespace cloudchannel_v1 {
     transferEntitlementsToGoogle(
       params: Params$Resource$Accounts$Customers$Transferentitlementstogoogle,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     transferEntitlementsToGoogle(
       params?: Params$Resource$Accounts$Customers$Transferentitlementstogoogle,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     transferEntitlementsToGoogle(
       params: Params$Resource$Accounts$Customers$Transferentitlementstogoogle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6337,11 +6338,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
     create(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6435,11 +6436,11 @@ export namespace cloudchannel_v1 {
     delete(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6524,11 +6525,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
     get(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6619,11 +6620,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Customers$Customerrepricingconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListCustomerRepricingConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListCustomerRepricingConfigsResponse>;
     list(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6717,11 +6718,11 @@ export namespace cloudchannel_v1 {
     patch(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1CustomerRepricingConfig>;
     patch(
       params: Params$Resource$Accounts$Customers$Customerrepricingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6877,11 +6878,11 @@ export namespace cloudchannel_v1 {
     activate(
       params: Params$Resource$Accounts$Customers$Entitlements$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Accounts$Customers$Entitlements$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     activate(
       params: Params$Resource$Accounts$Customers$Entitlements$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6972,11 +6973,11 @@ export namespace cloudchannel_v1 {
     cancel(
       params: Params$Resource$Accounts$Customers$Entitlements$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Accounts$Customers$Entitlements$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     cancel(
       params: Params$Resource$Accounts$Customers$Entitlements$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7064,11 +7065,11 @@ export namespace cloudchannel_v1 {
     changeOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeoffer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     changeOffer(
       params?: Params$Resource$Accounts$Customers$Entitlements$Changeoffer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     changeOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeoffer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7160,11 +7161,11 @@ export namespace cloudchannel_v1 {
     changeParameters(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeparameters,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     changeParameters(
       params?: Params$Resource$Accounts$Customers$Entitlements$Changeparameters,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     changeParameters(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeparameters,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7256,11 +7257,11 @@ export namespace cloudchannel_v1 {
     changeRenewalSettings(
       params: Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     changeRenewalSettings(
       params?: Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     changeRenewalSettings(
       params: Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7352,11 +7353,11 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Customers$Entitlements$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Customers$Entitlements$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Accounts$Customers$Entitlements$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7447,11 +7448,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Accounts$Customers$Entitlements$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Customers$Entitlements$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Entitlement>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Entitlement>;
     get(
       params: Params$Resource$Accounts$Customers$Entitlements$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7541,11 +7542,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Customers$Entitlements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Customers$Entitlements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListEntitlementsResponse>;
     list(
       params: Params$Resource$Accounts$Customers$Entitlements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7638,11 +7639,11 @@ export namespace cloudchannel_v1 {
     listEntitlementChanges(
       params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listEntitlementChanges(
       params?: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>;
     listEntitlementChanges(
       params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7736,11 +7737,11 @@ export namespace cloudchannel_v1 {
     lookupOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookupOffer(
       params?: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1Offer>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1Offer>;
     lookupOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7832,11 +7833,11 @@ export namespace cloudchannel_v1 {
     startPaidService(
       params: Params$Resource$Accounts$Customers$Entitlements$Startpaidservice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     startPaidService(
       params?: Params$Resource$Accounts$Customers$Entitlements$Startpaidservice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     startPaidService(
       params: Params$Resource$Accounts$Customers$Entitlements$Startpaidservice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7928,11 +7929,11 @@ export namespace cloudchannel_v1 {
     suspend(
       params: Params$Resource$Accounts$Customers$Entitlements$Suspend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     suspend(
       params?: Params$Resource$Accounts$Customers$Entitlements$Suspend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     suspend(
       params: Params$Resource$Accounts$Customers$Entitlements$Suspend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8175,11 +8176,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Offers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Offers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListOffersResponse>;
     list(
       params: Params$Resource$Accounts$Offers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8307,11 +8308,11 @@ export namespace cloudchannel_v1 {
     fetchReportResults(
       params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchReportResults(
       params?: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1FetchReportResultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1FetchReportResultsResponse>;
     fetchReportResults(
       params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8424,11 +8425,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListReportsResponse>;
     list(
       params: Params$Resource$Accounts$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8521,11 +8522,11 @@ export namespace cloudchannel_v1 {
     run(
       params: Params$Resource$Accounts$Reports$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     run(
       params?: Params$Resource$Accounts$Reports$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     run(
       params: Params$Resource$Accounts$Reports$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8656,11 +8657,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Skugroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Skugroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>;
     list(
       params: Params$Resource$Accounts$Skugroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8776,11 +8777,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Accounts$Skugroups$Billableskus$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Skugroups$Billableskus$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>;
     list(
       params: Params$Resource$Accounts$Skugroups$Billableskus$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8896,11 +8897,11 @@ export namespace cloudchannel_v1 {
     listSubscribers(
       params: Params$Resource$Integrators$Listsubscribers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listSubscribers(
       params?: Params$Resource$Integrators$Listsubscribers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSubscribersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListSubscribersResponse>;
     listSubscribers(
       params: Params$Resource$Integrators$Listsubscribers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8993,11 +8994,11 @@ export namespace cloudchannel_v1 {
     registerSubscriber(
       params: Params$Resource$Integrators$Registersubscriber,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     registerSubscriber(
       params?: Params$Resource$Integrators$Registersubscriber,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>;
     registerSubscriber(
       params: Params$Resource$Integrators$Registersubscriber,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9090,11 +9091,11 @@ export namespace cloudchannel_v1 {
     unregisterSubscriber(
       params: Params$Resource$Integrators$Unregistersubscriber,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unregisterSubscriber(
       params?: Params$Resource$Integrators$Unregistersubscriber,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>;
     unregisterSubscriber(
       params: Params$Resource$Integrators$Unregistersubscriber,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9238,11 +9239,11 @@ export namespace cloudchannel_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9326,11 +9327,11 @@ export namespace cloudchannel_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9414,11 +9415,11 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9505,11 +9506,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9651,11 +9652,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListProductsResponse>;
     list(
       params: Params$Resource$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9770,11 +9771,11 @@ export namespace cloudchannel_v1 {
     list(
       params: Params$Resource$Products$Skus$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Products$Skus$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudChannelV1ListSkusResponse>;
     list(
       params: Params$Resource$Products$Skus$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

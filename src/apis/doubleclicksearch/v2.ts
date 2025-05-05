@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -586,11 +587,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Conversion$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -685,11 +686,11 @@ export namespace doubleclicksearch_v2 {
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getByCustomerId(
       params?: Params$Resource$Conversion$Getbycustomerid,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -784,11 +785,11 @@ export namespace doubleclicksearch_v2 {
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Conversion$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -876,11 +877,11 @@ export namespace doubleclicksearch_v2 {
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Conversion$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -968,11 +969,11 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateAvailability(
       params?: Params$Resource$Conversion$Updateavailability,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateAvailabilityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>;
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1193,11 +1194,11 @@ export namespace doubleclicksearch_v2 {
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1284,11 +1285,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1375,11 +1376,11 @@ export namespace doubleclicksearch_v2 {
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): GaxiosResponseWithHTTP2<unknown>;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1464,11 +1465,11 @@ export namespace doubleclicksearch_v2 {
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIdMappingFile(
       params?: Params$Resource$Reports$Getidmappingfile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdMappingFile>;
+    ): GaxiosResponseWithHTTP2<Schema$IdMappingFile>;
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1558,11 +1559,11 @@ export namespace doubleclicksearch_v2 {
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     request(
       params?: Params$Resource$Reports$Request,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1696,11 +1697,11 @@ export namespace doubleclicksearch_v2 {
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Savedcolumns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SavedColumnList>;
+    ): GaxiosResponseWithHTTP2<Schema$SavedColumnList>;
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

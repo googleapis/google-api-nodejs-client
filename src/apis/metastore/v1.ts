@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1374,11 +1375,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1462,11 +1463,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1593,11 +1594,11 @@ export namespace metastore_v1 {
     create(
       params: Params$Resource$Projects$Locations$Federations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Federations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Federations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1684,11 +1685,11 @@ export namespace metastore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Federations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Federations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Federations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1772,11 +1773,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Federations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Federations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Federation>;
+    ): GaxiosResponseWithHTTP2<Schema$Federation>;
     get(
       params: Params$Resource$Projects$Locations$Federations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1860,11 +1861,11 @@ export namespace metastore_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Federations$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Federations$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Federations$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1952,11 +1953,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Federations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Federations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFederationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFederationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Federations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2045,11 +2046,11 @@ export namespace metastore_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Federations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Federations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Federations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2133,11 +2134,11 @@ export namespace metastore_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Federations$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Federations$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Federations$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2225,11 +2226,11 @@ export namespace metastore_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Federations$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Federations$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Federations$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2445,11 +2446,11 @@ export namespace metastore_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2533,11 +2534,11 @@ export namespace metastore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2621,11 +2622,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2709,11 +2710,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2871,11 +2872,11 @@ export namespace metastore_v1 {
     alterLocation(
       params: Params$Resource$Projects$Locations$Services$Alterlocation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     alterLocation(
       params?: Params$Resource$Projects$Locations$Services$Alterlocation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     alterLocation(
       params: Params$Resource$Projects$Locations$Services$Alterlocation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2963,11 +2964,11 @@ export namespace metastore_v1 {
     alterTableProperties(
       params: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     alterTableProperties(
       params?: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     alterTableProperties(
       params: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3057,11 +3058,11 @@ export namespace metastore_v1 {
     cancelMigration(
       params: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancelMigration(
       params?: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     cancelMigration(
       params: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3149,11 +3150,11 @@ export namespace metastore_v1 {
     completeMigration(
       params: Params$Resource$Projects$Locations$Services$Completemigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeMigration(
       params?: Params$Resource$Projects$Locations$Services$Completemigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     completeMigration(
       params: Params$Resource$Projects$Locations$Services$Completemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3241,11 +3242,11 @@ export namespace metastore_v1 {
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3332,11 +3333,11 @@ export namespace metastore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3420,11 +3421,11 @@ export namespace metastore_v1 {
     exportMetadata(
       params: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportMetadata(
       params?: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     exportMetadata(
       params: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3512,11 +3513,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3600,11 +3601,11 @@ export namespace metastore_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3691,11 +3692,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3784,11 +3785,11 @@ export namespace metastore_v1 {
     moveTableToDatabase(
       params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     moveTableToDatabase(
       params?: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     moveTableToDatabase(
       params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3876,11 +3877,11 @@ export namespace metastore_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3964,11 +3965,11 @@ export namespace metastore_v1 {
     queryMetadata(
       params: Params$Resource$Projects$Locations$Services$Querymetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryMetadata(
       params?: Params$Resource$Projects$Locations$Services$Querymetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     queryMetadata(
       params: Params$Resource$Projects$Locations$Services$Querymetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4056,11 +4057,11 @@ export namespace metastore_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Services$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Services$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restore(
       params: Params$Resource$Projects$Locations$Services$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4147,11 +4148,11 @@ export namespace metastore_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4238,11 +4239,11 @@ export namespace metastore_v1 {
     startMigration(
       params: Params$Resource$Projects$Locations$Services$Startmigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     startMigration(
       params?: Params$Resource$Projects$Locations$Services$Startmigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     startMigration(
       params: Params$Resource$Projects$Locations$Services$Startmigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4330,11 +4331,11 @@ export namespace metastore_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4658,11 +4659,11 @@ export namespace metastore_v1 {
     create(
       params: Params$Resource$Projects$Locations$Services$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4750,11 +4751,11 @@ export namespace metastore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4839,11 +4840,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Services$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Locations$Services$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4927,11 +4928,11 @@ export namespace metastore_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5019,11 +5020,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5110,11 +5111,11 @@ export namespace metastore_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5298,11 +5299,11 @@ export namespace metastore_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5390,11 +5391,11 @@ export namespace metastore_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5513,11 +5514,11 @@ export namespace metastore_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5605,11 +5606,11 @@ export namespace metastore_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5728,11 +5729,11 @@ export namespace metastore_v1 {
     create(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Metadataimports$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5820,11 +5821,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Metadataimports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetadataImport>;
+    ): GaxiosResponseWithHTTP2<Schema$MetadataImport>;
     get(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5909,11 +5910,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Metadataimports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMetadataImportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMetadataImportsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6005,11 +6006,11 @@ export namespace metastore_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Metadataimports$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Metadataimports$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6172,11 +6173,11 @@ export namespace metastore_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6261,11 +6262,11 @@ export namespace metastore_v1 {
     get(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MigrationExecution>;
+    ): GaxiosResponseWithHTTP2<Schema$MigrationExecution>;
     get(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6350,11 +6351,11 @@ export namespace metastore_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMigrationExecutionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMigrationExecutionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -996,11 +997,11 @@ export namespace securityposture_v1 {
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Organizations$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1086,11 +1087,11 @@ export namespace securityposture_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1176,11 +1177,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1265,11 +1266,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1412,11 +1413,11 @@ export namespace securityposture_v1 {
     create(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Posturedeployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1505,11 +1506,11 @@ export namespace securityposture_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Posturedeployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1595,11 +1596,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Posturedeployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostureDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PostureDeployment>;
     get(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1685,11 +1686,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Posturedeployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Posturedeployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPostureDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPostureDeploymentsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Posturedeployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1784,11 +1785,11 @@ export namespace securityposture_v1 {
     patch(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Posturedeployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Organizations$Locations$Posturedeployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1951,11 +1952,11 @@ export namespace securityposture_v1 {
     create(
       params: Params$Resource$Organizations$Locations$Postures$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Postures$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Organizations$Locations$Postures$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2043,11 +2044,11 @@ export namespace securityposture_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Postures$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Postures$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Organizations$Locations$Postures$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2132,11 +2133,11 @@ export namespace securityposture_v1 {
     extract(
       params: Params$Resource$Organizations$Locations$Postures$Extract,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     extract(
       params?: Params$Resource$Organizations$Locations$Postures$Extract,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     extract(
       params: Params$Resource$Organizations$Locations$Postures$Extract,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2224,11 +2225,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Postures$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Postures$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Posture>;
+    ): GaxiosResponseWithHTTP2<Schema$Posture>;
     get(
       params: Params$Resource$Organizations$Locations$Postures$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2313,11 +2314,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Postures$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Postures$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPosturesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPosturesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Postures$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2407,11 +2408,11 @@ export namespace securityposture_v1 {
     listRevisions(
       params: Params$Resource$Organizations$Locations$Postures$Listrevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listRevisions(
       params?: Params$Resource$Organizations$Locations$Postures$Listrevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPostureRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPostureRevisionsResponse>;
     listRevisions(
       params: Params$Resource$Organizations$Locations$Postures$Listrevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2506,11 +2507,11 @@ export namespace securityposture_v1 {
     patch(
       params: Params$Resource$Organizations$Locations$Postures$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Postures$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Organizations$Locations$Postures$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2707,11 +2708,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Posturetemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Posturetemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostureTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$PostureTemplate>;
     get(
       params: Params$Resource$Organizations$Locations$Posturetemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2797,11 +2798,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Posturetemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Posturetemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPostureTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPostureTemplatesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Posturetemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2934,11 +2935,11 @@ export namespace securityposture_v1 {
     createIaCValidationReport(
       params: Params$Resource$Organizations$Locations$Reports$Createiacvalidationreport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createIaCValidationReport(
       params?: Params$Resource$Organizations$Locations$Reports$Createiacvalidationreport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     createIaCValidationReport(
       params: Params$Resource$Organizations$Locations$Reports$Createiacvalidationreport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3028,11 +3029,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     get(
       params: Params$Resource$Organizations$Locations$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3117,11 +3118,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReportsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3264,11 +3265,11 @@ export namespace securityposture_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3353,11 +3354,11 @@ export namespace securityposture_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

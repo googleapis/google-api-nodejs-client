@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -738,11 +739,11 @@ export namespace translate_v3beta1 {
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detectLanguage(
       params?: Params$Resource$Projects$Detectlanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>;
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -833,11 +834,11 @@ export namespace translate_v3beta1 {
     getSupportedLanguages(
       params: Params$Resource$Projects$Getsupportedlanguages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSupportedLanguages(
       params?: Params$Resource$Projects$Getsupportedlanguages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SupportedLanguages>;
+    ): GaxiosResponseWithHTTP2<Schema$SupportedLanguages>;
     getSupportedLanguages(
       params: Params$Resource$Projects$Getsupportedlanguages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -926,11 +927,11 @@ export namespace translate_v3beta1 {
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateText(
       params?: Params$Resource$Projects$Translatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>;
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1076,11 +1077,11 @@ export namespace translate_v3beta1 {
     batchTranslateDocument(
       params: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchTranslateDocument(
       params?: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchTranslateDocument(
       params: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1169,11 +1170,11 @@ export namespace translate_v3beta1 {
     batchTranslateText(
       params: Params$Resource$Projects$Locations$Batchtranslatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchTranslateText(
       params?: Params$Resource$Projects$Locations$Batchtranslatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchTranslateText(
       params: Params$Resource$Projects$Locations$Batchtranslatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1260,11 +1261,11 @@ export namespace translate_v3beta1 {
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detectLanguage(
       params?: Params$Resource$Projects$Locations$Detectlanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>;
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1355,11 +1356,11 @@ export namespace translate_v3beta1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1443,11 +1444,11 @@ export namespace translate_v3beta1 {
     getSupportedLanguages(
       params: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSupportedLanguages(
       params?: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SupportedLanguages>;
+    ): GaxiosResponseWithHTTP2<Schema$SupportedLanguages>;
     getSupportedLanguages(
       params: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1536,11 +1537,11 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1629,11 +1630,11 @@ export namespace translate_v3beta1 {
     translateDocument(
       params: Params$Resource$Projects$Locations$Translatedocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateDocument(
       params?: Params$Resource$Projects$Locations$Translatedocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateDocumentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateDocumentResponse>;
     translateDocument(
       params: Params$Resource$Projects$Locations$Translatedocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1724,11 +1725,11 @@ export namespace translate_v3beta1 {
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateText(
       params?: Params$Resource$Projects$Locations$Translatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>;
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1932,11 +1933,11 @@ export namespace translate_v3beta1 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2023,11 +2024,11 @@ export namespace translate_v3beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2111,11 +2112,11 @@ export namespace translate_v3beta1 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Glossary>;
+    ): GaxiosResponseWithHTTP2<Schema$Glossary>;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2199,11 +2200,11 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGlossariesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGlossariesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2345,11 +2346,11 @@ export namespace translate_v3beta1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2436,11 +2437,11 @@ export namespace translate_v3beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2524,11 +2525,11 @@ export namespace translate_v3beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2612,11 +2613,11 @@ export namespace translate_v3beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2705,11 +2706,11 @@ export namespace translate_v3beta1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

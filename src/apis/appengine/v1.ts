@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1918,11 +1919,11 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Apps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2005,11 +2006,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): GaxiosResponseWithHTTP2<Schema$Application>;
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2092,11 +2093,11 @@ export namespace appengine_v1 {
     listRuntimes(
       params: Params$Resource$Apps$Listruntimes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listRuntimes(
       params?: Params$Resource$Apps$Listruntimes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRuntimesResponse>;
     listRuntimes(
       params: Params$Resource$Apps$Listruntimes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2187,11 +2188,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Apps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2274,11 +2275,11 @@ export namespace appengine_v1 {
     repair(
       params: Params$Resource$Apps$Repair,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     repair(
       params?: Params$Resource$Apps$Repair,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     repair(
       params: Params$Resource$Apps$Repair,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2425,11 +2426,11 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apps$Authorizedcertificates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    ): GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>;
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2518,11 +2519,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Authorizedcertificates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2609,11 +2610,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Authorizedcertificates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    ): GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>;
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2702,11 +2703,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Authorizedcertificates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAuthorizedCertificatesResponse>;
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2799,11 +2800,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Authorizedcertificates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    ): GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>;
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2977,11 +2978,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Authorizeddomains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>;
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3097,11 +3098,11 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apps$Domainmappings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3188,11 +3189,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Domainmappings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3278,11 +3279,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Domainmappings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainMapping>;
+    ): GaxiosResponseWithHTTP2<Schema$DomainMapping>;
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3368,11 +3369,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Domainmappings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Domainmappings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>;
     list(
       params: Params$Resource$Apps$Domainmappings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3463,11 +3464,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Domainmappings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3643,11 +3644,11 @@ export namespace appengine_v1 {
     batchUpdate(
       params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateIngressRulesResponse>;
     batchUpdate(
       params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3739,11 +3740,11 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Firewall$Ingressrules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apps$Firewall$Ingressrules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirewallRule>;
+    ): GaxiosResponseWithHTTP2<Schema$FirewallRule>;
     create(
       params: Params$Resource$Apps$Firewall$Ingressrules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3830,11 +3831,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Firewall$Ingressrules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3921,11 +3922,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Firewall$Ingressrules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Firewall$Ingressrules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirewallRule>;
+    ): GaxiosResponseWithHTTP2<Schema$FirewallRule>;
     get(
       params: Params$Resource$Apps$Firewall$Ingressrules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4012,11 +4013,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Firewall$Ingressrules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Firewall$Ingressrules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListIngressRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListIngressRulesResponse>;
     list(
       params: Params$Resource$Apps$Firewall$Ingressrules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4105,11 +4106,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Firewall$Ingressrules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirewallRule>;
+    ): GaxiosResponseWithHTTP2<Schema$FirewallRule>;
     patch(
       params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4289,11 +4290,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Apps$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4379,11 +4380,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Apps$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4514,11 +4515,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Apps$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4604,11 +4605,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Apps$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4737,11 +4738,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Apps$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4828,11 +4829,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Apps$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4919,11 +4920,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Apps$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5012,11 +5013,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Apps$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5176,11 +5177,11 @@ export namespace appengine_v1 {
     create(
       params: Params$Resource$Apps$Services$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apps$Services$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Apps$Services$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5266,11 +5267,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Services$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Services$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Apps$Services$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5357,11 +5358,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Services$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Services$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): GaxiosResponseWithHTTP2<Schema$Version>;
     get(
       params: Params$Resource$Apps$Services$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5448,11 +5449,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Services$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>;
     list(
       params: Params$Resource$Apps$Services$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5540,11 +5541,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Apps$Services$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Apps$Services$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Apps$Services$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5736,11 +5737,11 @@ export namespace appengine_v1 {
     debug(
       params: Params$Resource$Apps$Services$Versions$Instances$Debug,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     debug(
       params?: Params$Resource$Apps$Services$Versions$Instances$Debug,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     debug(
       params: Params$Resource$Apps$Services$Versions$Instances$Debug,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5827,11 +5828,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Apps$Services$Versions$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Apps$Services$Versions$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Apps$Services$Versions$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5918,11 +5919,11 @@ export namespace appengine_v1 {
     get(
       params: Params$Resource$Apps$Services$Versions$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Apps$Services$Versions$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): GaxiosResponseWithHTTP2<Schema$Instance>;
     get(
       params: Params$Resource$Apps$Services$Versions$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6009,11 +6010,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Apps$Services$Versions$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apps$Services$Versions$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>;
     list(
       params: Params$Resource$Apps$Services$Versions$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6224,11 +6225,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6347,11 +6348,11 @@ export namespace appengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6481,11 +6482,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6610,11 +6611,11 @@ export namespace appengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6714,11 +6715,11 @@ export namespace appengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

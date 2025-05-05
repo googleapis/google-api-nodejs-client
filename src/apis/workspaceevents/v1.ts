@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -290,11 +291,11 @@ export namespace workspaceevents_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -392,11 +393,11 @@ export namespace workspaceevents_v1 {
     create(
       params: Params$Resource$Subscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Subscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -481,11 +482,11 @@ export namespace workspaceevents_v1 {
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -570,11 +571,11 @@ export namespace workspaceevents_v1 {
     get(
       params: Params$Resource$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     get(
       params: Params$Resource$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -659,11 +660,11 @@ export namespace workspaceevents_v1 {
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>;
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -752,11 +753,11 @@ export namespace workspaceevents_v1 {
     patch(
       params: Params$Resource$Subscriptions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Subscriptions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Subscriptions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -841,11 +842,11 @@ export namespace workspaceevents_v1 {
     reactivate(
       params: Params$Resource$Subscriptions$Reactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reactivate(
       params?: Params$Resource$Subscriptions$Reactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     reactivate(
       params: Params$Resource$Subscriptions$Reactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

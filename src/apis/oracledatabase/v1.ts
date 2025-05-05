@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1839,11 +1840,11 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1928,11 +1929,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2060,11 +2061,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabasebackups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Autonomousdatabasebackups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutonomousDatabaseBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutonomousDatabaseBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabasebackups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2186,11 +2187,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabasecharactersets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Autonomousdatabasecharactersets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutonomousDatabaseCharacterSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutonomousDatabaseCharacterSetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabasecharactersets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2311,11 +2312,11 @@ export namespace oracledatabase_v1 {
     create(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2404,11 +2405,11 @@ export namespace oracledatabase_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2494,11 +2495,11 @@ export namespace oracledatabase_v1 {
     generateWallet(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateWallet(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateAutonomousDatabaseWalletResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenerateAutonomousDatabaseWalletResponse>;
     generateWallet(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Generatewallet,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2593,11 +2594,11 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutonomousDatabase>;
+    ): GaxiosResponseWithHTTP2<Schema$AutonomousDatabase>;
     get(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2683,11 +2684,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutonomousDatabasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutonomousDatabasesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2782,11 +2783,11 @@ export namespace oracledatabase_v1 {
     restart(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restart(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restart(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2875,11 +2876,11 @@ export namespace oracledatabase_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restore(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2968,11 +2969,11 @@ export namespace oracledatabase_v1 {
     start(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     start(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3058,11 +3059,11 @@ export namespace oracledatabase_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3148,11 +3149,11 @@ export namespace oracledatabase_v1 {
     switchover(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     switchover(
       params?: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     switchover(
       params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3382,11 +3383,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Autonomousdbversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Autonomousdbversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutonomousDbVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutonomousDbVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Autonomousdbversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3509,11 +3510,11 @@ export namespace oracledatabase_v1 {
     create(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3601,11 +3602,11 @@ export namespace oracledatabase_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3691,11 +3692,11 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CloudExadataInfrastructure>;
+    ): GaxiosResponseWithHTTP2<Schema$CloudExadataInfrastructure>;
     get(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3785,11 +3786,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCloudExadataInfrastructuresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCloudExadataInfrastructuresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3948,11 +3949,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDbServersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDbServersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4070,11 +4071,11 @@ export namespace oracledatabase_v1 {
     create(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Cloudvmclusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4163,11 +4164,11 @@ export namespace oracledatabase_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Cloudvmclusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4253,11 +4254,11 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Cloudvmclusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CloudVmCluster>;
+    ): GaxiosResponseWithHTTP2<Schema$CloudVmCluster>;
     get(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4342,11 +4343,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cloudvmclusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCloudVmClustersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCloudVmClustersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4507,11 +4508,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Dbnodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cloudvmclusters$Dbnodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDbNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDbNodesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cloudvmclusters$Dbnodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4623,11 +4624,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dbsystemshapes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Dbsystemshapes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDbSystemShapesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDbSystemShapesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Dbsystemshapes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4742,11 +4743,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entitlements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Entitlements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEntitlementsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEntitlementsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Entitlements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4859,11 +4860,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Giversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Giversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGiVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGiVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Giversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4976,11 +4977,11 @@ export namespace oracledatabase_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5065,11 +5066,11 @@ export namespace oracledatabase_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5154,11 +5155,11 @@ export namespace oracledatabase_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5243,11 +5244,11 @@ export namespace oracledatabase_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

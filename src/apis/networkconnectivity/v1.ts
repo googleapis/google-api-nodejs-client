@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2023,11 +2024,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2112,11 +2113,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2263,11 +2264,11 @@ export namespace networkconnectivity_v1 {
     acceptSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acceptSpoke(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     acceptSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2360,11 +2361,11 @@ export namespace networkconnectivity_v1 {
     acceptSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acceptSpokeUpdate(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     acceptSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2457,11 +2458,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Hubs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Hubs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2550,11 +2551,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Hubs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Hubs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2643,11 +2644,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Hub>;
+    ): GaxiosResponseWithHTTP2<Schema$Hub>;
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2732,11 +2733,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2825,11 +2826,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Hubs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHubsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListHubsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2914,11 +2915,11 @@ export namespace networkconnectivity_v1 {
     listSpokes(
       params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listSpokes(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHubSpokesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListHubSpokesResponse>;
     listSpokes(
       params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3011,11 +3012,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3104,11 +3105,11 @@ export namespace networkconnectivity_v1 {
     queryStatus(
       params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryStatus(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryHubStatusResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryHubStatusResponse>;
     queryStatus(
       params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3201,11 +3202,11 @@ export namespace networkconnectivity_v1 {
     rejectSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rejectSpoke(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     rejectSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3298,11 +3299,11 @@ export namespace networkconnectivity_v1 {
     rejectSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rejectSpokeUpdate(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     rejectSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3395,11 +3396,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3488,11 +3489,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3815,11 +3816,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3905,11 +3906,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3998,11 +3999,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4091,11 +4092,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4185,11 +4186,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4278,11 +4279,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4473,11 +4474,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RouteTable>;
+    ): GaxiosResponseWithHTTP2<Schema$RouteTable>;
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4563,11 +4564,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRouteTablesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRouteTablesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4696,11 +4697,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Route>;
+    ): GaxiosResponseWithHTTP2<Schema$Route>;
     get(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4786,11 +4787,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRoutesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4917,11 +4918,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5014,11 +5015,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5108,11 +5109,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PolicyBasedRoute>;
+    ): GaxiosResponseWithHTTP2<Schema$PolicyBasedRoute>;
     get(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5198,11 +5199,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5291,11 +5292,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPolicyBasedRoutesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPolicyBasedRoutesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5390,11 +5391,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5483,11 +5484,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5684,11 +5685,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Internalranges$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Internalranges$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Internalranges$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5780,11 +5781,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Internalranges$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Internalranges$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Internalranges$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5873,11 +5874,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Internalranges$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Internalranges$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InternalRange>;
+    ): GaxiosResponseWithHTTP2<Schema$InternalRange>;
     get(
       params: Params$Resource$Projects$Locations$Internalranges$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5962,11 +5963,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Internalranges$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Internalranges$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInternalRangesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInternalRangesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Internalranges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6058,11 +6059,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Internalranges$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Internalranges$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Internalranges$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6240,11 +6241,11 @@ export namespace networkconnectivity_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6329,11 +6330,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6418,11 +6419,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6511,11 +6512,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6662,11 +6663,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Regionalendpoints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6759,11 +6760,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6853,11 +6854,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Regionalendpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionalEndpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$RegionalEndpoint>;
     get(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6942,11 +6943,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Regionalendpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Regionalendpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRegionalEndpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRegionalEndpointsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Regionalendpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7110,11 +7111,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceclasses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceclasses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7203,11 +7204,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceclasses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceClass>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceClass>;
     get(
       params: Params$Resource$Projects$Locations$Serviceclasses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7292,11 +7293,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7385,11 +7386,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceclasses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceclasses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceClassesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceClassesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Serviceclasses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7481,11 +7482,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceclasses$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Serviceclasses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7574,11 +7575,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7667,11 +7668,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7872,11 +7873,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7969,11 +7970,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8063,11 +8064,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceConnectionMap>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceConnectionMap>;
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8155,11 +8156,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8248,11 +8249,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceConnectionMapsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceConnectionMapsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8347,11 +8348,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8441,11 +8442,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8534,11 +8535,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8759,11 +8760,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8856,11 +8857,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8950,11 +8951,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceConnectionPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceConnectionPolicy>;
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9042,11 +9043,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9135,11 +9136,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceConnectionPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceConnectionPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9234,11 +9235,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9328,11 +9329,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9421,11 +9422,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9646,11 +9647,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Serviceconnectiontokens$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9743,11 +9744,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9837,11 +9838,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceconnectiontokens$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceConnectionToken>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceConnectionToken>;
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9929,11 +9930,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceconnectiontokens$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceConnectionTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceConnectionTokensResponse>;
     list(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10101,11 +10102,11 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Spokes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Spokes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Spokes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10197,11 +10198,11 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Spokes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Spokes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Spokes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10290,11 +10291,11 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Spokes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Spokes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Spoke>;
+    ): GaxiosResponseWithHTTP2<Schema$Spoke>;
     get(
       params: Params$Resource$Projects$Locations$Spokes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10379,11 +10380,11 @@ export namespace networkconnectivity_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Spokes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Spokes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Spokes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10471,11 +10472,11 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Spokes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Spokes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSpokesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSpokesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Spokes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10563,11 +10564,11 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Spokes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Spokes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Spokes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10656,11 +10657,11 @@ export namespace networkconnectivity_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Spokes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Spokes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Spokes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10748,11 +10749,11 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Spokes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Spokes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Spokes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

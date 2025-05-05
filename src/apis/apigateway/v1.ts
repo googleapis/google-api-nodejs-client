@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -631,11 +632,11 @@ export namespace apigateway_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayLocation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayLocation>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -719,11 +720,11 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -856,11 +857,11 @@ export namespace apigateway_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -944,11 +945,11 @@ export namespace apigateway_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1032,11 +1033,11 @@ export namespace apigateway_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayApi>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayApi>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1120,11 +1121,11 @@ export namespace apigateway_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1211,11 +1212,11 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayListApisResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayListApisResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1303,11 +1304,11 @@ export namespace apigateway_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1391,11 +1392,11 @@ export namespace apigateway_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1482,11 +1483,11 @@ export namespace apigateway_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayTestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayTestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1692,11 +1693,11 @@ export namespace apigateway_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Configs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Configs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1783,11 +1784,11 @@ export namespace apigateway_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Configs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Configs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1871,11 +1872,11 @@ export namespace apigateway_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Configs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayApiConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayApiConfig>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Configs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1959,11 +1960,11 @@ export namespace apigateway_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2051,11 +2052,11 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Configs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Configs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayListApiConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayListApiConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Configs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2148,11 +2149,11 @@ export namespace apigateway_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Configs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Configs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2236,11 +2237,11 @@ export namespace apigateway_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2328,11 +2329,11 @@ export namespace apigateway_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayTestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayTestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2542,11 +2543,11 @@ export namespace apigateway_v1 {
     create(
       params: Params$Resource$Projects$Locations$Gateways$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Gateways$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     create(
       params: Params$Resource$Projects$Locations$Gateways$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2633,11 +2634,11 @@ export namespace apigateway_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Gateways$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Gateways$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Gateways$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2721,11 +2722,11 @@ export namespace apigateway_v1 {
     get(
       params: Params$Resource$Projects$Locations$Gateways$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Gateways$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayGateway>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayGateway>;
     get(
       params: Params$Resource$Projects$Locations$Gateways$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2809,11 +2810,11 @@ export namespace apigateway_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Gateways$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2900,11 +2901,11 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$Gateways$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Gateways$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayListGatewaysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayListGatewaysResponse>;
     list(
       params: Params$Resource$Projects$Locations$Gateways$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2997,11 +2998,11 @@ export namespace apigateway_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Gateways$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Gateways$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Gateways$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3085,11 +3086,11 @@ export namespace apigateway_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Gateways$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayPolicy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3176,11 +3177,11 @@ export namespace apigateway_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gateways$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Gateways$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayTestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayTestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gateways$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3386,11 +3387,11 @@ export namespace apigateway_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3474,11 +3475,11 @@ export namespace apigateway_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3562,11 +3563,11 @@ export namespace apigateway_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3650,11 +3651,11 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApigatewayListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApigatewayListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

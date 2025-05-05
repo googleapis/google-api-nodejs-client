@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4739,11 +4740,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Abusereports$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Abusereports$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AbuseReport>;
+    ): GaxiosResponseWithHTTP2<Schema$AbuseReport>;
     insert(
       params: Params$Resource$Abusereports$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4850,11 +4851,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ActivityListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ActivityListResponse>;
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4988,11 +4989,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Captions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Captions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Captions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5076,11 +5077,11 @@ export namespace youtube_v3 {
     download(
       params: Params$Resource$Captions$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Captions$Download,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): GaxiosResponseWithHTTP2<unknown>;
     download(
       params: Params$Resource$Captions$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5165,11 +5166,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Captions$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Captions$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Caption>;
+    ): GaxiosResponseWithHTTP2<Schema$Caption>;
     insert(
       params: Params$Resource$Captions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5259,11 +5260,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Captions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Captions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CaptionListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CaptionListResponse>;
     list(
       params: Params$Resource$Captions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5349,11 +5350,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Captions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Captions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Caption>;
+    ): GaxiosResponseWithHTTP2<Schema$Caption>;
     update(
       params: Params$Resource$Captions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5586,11 +5587,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Channelbanners$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Channelbanners$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelBannerResource>;
+    ): GaxiosResponseWithHTTP2<Schema$ChannelBannerResource>;
     insert(
       params: Params$Resource$Channelbanners$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5725,11 +5726,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ChannelListResponse>;
     list(
       params: Params$Resource$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5815,11 +5816,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Channels$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Channels$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): GaxiosResponseWithHTTP2<Schema$Channel>;
     update(
       params: Params$Resource$Channels$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5978,11 +5979,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Channelsections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Channelsections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Channelsections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6067,11 +6068,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Channelsections$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Channelsections$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSection>;
+    ): GaxiosResponseWithHTTP2<Schema$ChannelSection>;
     insert(
       params: Params$Resource$Channelsections$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6158,11 +6159,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Channelsections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Channelsections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSectionListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ChannelSectionListResponse>;
     list(
       params: Params$Resource$Channelsections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6253,11 +6254,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Channelsections$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Channelsections$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSection>;
+    ): GaxiosResponseWithHTTP2<Schema$ChannelSection>;
     update(
       params: Params$Resource$Channelsections$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6426,11 +6427,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6514,11 +6515,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Comments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Comments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     insert(
       params: Params$Resource$Comments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6604,11 +6605,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentListResponse>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6694,11 +6695,11 @@ export namespace youtube_v3 {
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAsSpam(
       params?: Params$Resource$Comments$Markasspam,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6783,11 +6784,11 @@ export namespace youtube_v3 {
     setModerationStatus(
       params: Params$Resource$Comments$Setmoderationstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setModerationStatus(
       params?: Params$Resource$Comments$Setmoderationstatus,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     setModerationStatus(
       params: Params$Resource$Comments$Setmoderationstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6872,11 +6873,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7046,11 +7047,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Commentthreads$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Commentthreads$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThread>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentThread>;
     insert(
       params: Params$Resource$Commentthreads$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7137,11 +7138,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Commentthreads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Commentthreads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThreadListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentThreadListResponse>;
     list(
       params: Params$Resource$Commentthreads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7303,11 +7304,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nlanguages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$I18nlanguages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$I18nLanguageListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$I18nLanguageListResponse>;
     list(
       params: Params$Resource$I18nlanguages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7415,11 +7416,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nregions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$I18nregions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$I18nRegionListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$I18nRegionListResponse>;
     list(
       params: Params$Resource$I18nregions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7525,11 +7526,11 @@ export namespace youtube_v3 {
     bind(
       params: Params$Resource$Livebroadcasts$Bind,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bind(
       params?: Params$Resource$Livebroadcasts$Bind,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveBroadcast>;
     bind(
       params: Params$Resource$Livebroadcasts$Bind,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7616,11 +7617,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livebroadcasts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Livebroadcasts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Livebroadcasts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7705,11 +7706,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livebroadcasts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Livebroadcasts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveBroadcast>;
     insert(
       params: Params$Resource$Livebroadcasts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7796,11 +7797,11 @@ export namespace youtube_v3 {
     insertCuepoint(
       params: Params$Resource$Livebroadcasts$Insertcuepoint,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insertCuepoint(
       params?: Params$Resource$Livebroadcasts$Insertcuepoint,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cuepoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Cuepoint>;
     insertCuepoint(
       params: Params$Resource$Livebroadcasts$Insertcuepoint,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7887,11 +7888,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livebroadcasts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Livebroadcasts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcastListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveBroadcastListResponse>;
     list(
       params: Params$Resource$Livebroadcasts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7982,11 +7983,11 @@ export namespace youtube_v3 {
     transition(
       params: Params$Resource$Livebroadcasts$Transition,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     transition(
       params?: Params$Resource$Livebroadcasts$Transition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveBroadcast>;
     transition(
       params: Params$Resource$Livebroadcasts$Transition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8073,11 +8074,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Livebroadcasts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Livebroadcasts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveBroadcast>;
     update(
       params: Params$Resource$Livebroadcasts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8336,11 +8337,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatbans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Livechatbans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Livechatbans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8425,11 +8426,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatbans$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Livechatbans$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatBan>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatBan>;
     insert(
       params: Params$Resource$Livechatbans$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8543,11 +8544,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatmessages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Livechatmessages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Livechatmessages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8632,11 +8633,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatmessages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Livechatmessages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessage>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatMessage>;
     insert(
       params: Params$Resource$Livechatmessages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8723,11 +8724,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livechatmessages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Livechatmessages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessageListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatMessageListResponse>;
     list(
       params: Params$Resource$Livechatmessages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8818,11 +8819,11 @@ export namespace youtube_v3 {
     transition(
       params: Params$Resource$Livechatmessages$Transition,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     transition(
       params?: Params$Resource$Livechatmessages$Transition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessage>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatMessage>;
     transition(
       params: Params$Resource$Livechatmessages$Transition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8974,11 +8975,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatmoderators$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Livechatmoderators$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Livechatmoderators$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9063,11 +9064,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatmoderators$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Livechatmoderators$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatModerator>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatModerator>;
     insert(
       params: Params$Resource$Livechatmoderators$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9154,11 +9155,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livechatmoderators$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Livechatmoderators$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatModeratorListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveChatModeratorListResponse>;
     list(
       params: Params$Resource$Livechatmoderators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9297,11 +9298,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livestreams$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Livestreams$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Livestreams$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9386,11 +9387,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livestreams$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Livestreams$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStream>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveStream>;
     insert(
       params: Params$Resource$Livestreams$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9477,11 +9478,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livestreams$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Livestreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStreamListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveStreamListResponse>;
     list(
       params: Params$Resource$Livestreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9569,11 +9570,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Livestreams$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Livestreams$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStream>;
+    ): GaxiosResponseWithHTTP2<Schema$LiveStream>;
     update(
       params: Params$Resource$Livestreams$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9753,11 +9754,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Members$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Members$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MemberListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$MemberListResponse>;
     list(
       params: Params$Resource$Members$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9877,11 +9878,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Membershipslevels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Membershipslevels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MembershipsLevelListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$MembershipsLevelListResponse>;
     list(
       params: Params$Resource$Membershipslevels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9989,11 +9990,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlistimages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Playlistimages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Playlistimages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10078,11 +10079,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlistimages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Playlistimages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImage>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistImage>;
     insert(
       params: Params$Resource$Playlistimages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10173,11 +10174,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistimages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Playlistimages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImageListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistImageListResponse>;
     list(
       params: Params$Resource$Playlistimages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10268,11 +10269,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlistimages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Playlistimages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImage>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistImage>;
     update(
       params: Params$Resource$Playlistimages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10475,11 +10476,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlistitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Playlistitems$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Playlistitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10564,11 +10565,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlistitems$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Playlistitems$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItem>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistItem>;
     insert(
       params: Params$Resource$Playlistitems$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10655,11 +10656,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Playlistitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItemListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistItemListResponse>;
     list(
       params: Params$Resource$Playlistitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10748,11 +10749,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlistitems$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Playlistitems$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItem>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistItem>;
     update(
       params: Params$Resource$Playlistitems$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10921,11 +10922,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlists$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Playlists$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Playlists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11009,11 +11010,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlists$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Playlists$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Playlist>;
+    ): GaxiosResponseWithHTTP2<Schema$Playlist>;
     insert(
       params: Params$Resource$Playlists$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11099,11 +11100,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Playlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaylistListResponse>;
     list(
       params: Params$Resource$Playlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11191,11 +11192,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlists$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Playlists$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Playlist>;
+    ): GaxiosResponseWithHTTP2<Schema$Playlist>;
     update(
       params: Params$Resource$Playlists$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11371,11 +11372,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Search$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Search$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchListResponse>;
     list(
       params: Params$Resource$Search$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11592,11 +11593,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11681,11 +11682,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Subscriptions$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Subscriptions$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     insert(
       params: Params$Resource$Subscriptions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11772,11 +11773,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionListResponse>;
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11943,11 +11944,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Superchatevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Superchatevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SuperChatEventListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SuperChatEventListResponse>;
     list(
       params: Params$Resource$Superchatevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12065,11 +12066,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Tests$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Tests$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestItem>;
+    ): GaxiosResponseWithHTTP2<Schema$TestItem>;
     insert(
       params: Params$Resource$Tests$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12175,11 +12176,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Thirdpartylinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Thirdpartylinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Thirdpartylinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12264,11 +12265,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Thirdpartylinks$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Thirdpartylinks$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    ): GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>;
     insert(
       params: Params$Resource$Thirdpartylinks$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12355,11 +12356,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Thirdpartylinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLinkListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ThirdPartyLinkListResponse>;
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12450,11 +12451,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Thirdpartylinks$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Thirdpartylinks$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    ): GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>;
     update(
       params: Params$Resource$Thirdpartylinks$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12619,11 +12620,11 @@ export namespace youtube_v3 {
     set(
       params: Params$Resource$Thumbnails$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     set(
       params?: Params$Resource$Thumbnails$Set,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThumbnailSetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ThumbnailSetResponse>;
     set(
       params: Params$Resource$Thumbnails$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12753,11 +12754,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videoabusereportreasons$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Videoabusereportreasons$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VideoAbuseReportReasonListResponse>;
     list(
       params: Params$Resource$Videoabusereportreasons$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12869,11 +12870,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videocategories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Videocategories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoCategoryListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VideoCategoryListResponse>;
     list(
       params: Params$Resource$Videocategories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12991,11 +12992,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Videos$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Videos$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Videos$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13076,11 +13077,11 @@ export namespace youtube_v3 {
     getRating(
       params: Params$Resource$Videos$Getrating,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRating(
       params?: Params$Resource$Videos$Getrating,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VideoGetRatingResponse>;
     getRating(
       params: Params$Resource$Videos$Getrating,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13170,11 +13171,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Videos$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Videos$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Video>;
+    ): GaxiosResponseWithHTTP2<Schema$Video>;
     insert(
       params: Params$Resource$Videos$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13261,11 +13262,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Videos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VideoListResponse>;
     list(
       params: Params$Resource$Videos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13348,11 +13349,11 @@ export namespace youtube_v3 {
     rate(
       params: Params$Resource$Videos$Rate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rate(
       params?: Params$Resource$Videos$Rate,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     rate(
       params: Params$Resource$Videos$Rate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13436,11 +13437,11 @@ export namespace youtube_v3 {
     reportAbuse(
       params: Params$Resource$Videos$Reportabuse,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reportAbuse(
       params?: Params$Resource$Videos$Reportabuse,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     reportAbuse(
       params: Params$Resource$Videos$Reportabuse,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13525,11 +13526,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Videos$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Videos$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Video>;
+    ): GaxiosResponseWithHTTP2<Schema$Video>;
     update(
       params: Params$Resource$Videos$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13777,11 +13778,11 @@ export namespace youtube_v3 {
     get(
       params: Params$Resource$Videotrainability$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Videotrainability$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoTrainability>;
+    ): GaxiosResponseWithHTTP2<Schema$VideoTrainability>;
     get(
       params: Params$Resource$Videotrainability$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13883,11 +13884,11 @@ export namespace youtube_v3 {
     set(
       params: Params$Resource$Watermarks$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     set(
       params?: Params$Resource$Watermarks$Set,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     set(
       params: Params$Resource$Watermarks$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13975,11 +13976,11 @@ export namespace youtube_v3 {
     unset(
       params: Params$Resource$Watermarks$Unset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     unset(
       params?: Params$Resource$Watermarks$Unset,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     unset(
       params: Params$Resource$Watermarks$Unset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14120,11 +14121,11 @@ export namespace youtube_v3 {
     updateCommentThreads(
       params: Params$Resource$Youtube$V3$Updatecommentthreads,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateCommentThreads(
       params?: Params$Resource$Youtube$V3$Updatecommentthreads,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThread>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentThread>;
     updateCommentThreads(
       params: Params$Resource$Youtube$V3$Updatecommentthreads,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

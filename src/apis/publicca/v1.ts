@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -178,11 +179,11 @@ export namespace publicca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalAccountKey>;
+    ): GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>;
     create(
       params: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

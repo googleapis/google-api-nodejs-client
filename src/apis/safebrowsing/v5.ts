@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -181,11 +182,11 @@ export namespace safebrowsing_v5 {
     search(
       params: Params$Resource$Hashes$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Hashes$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV5SearchHashesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV5SearchHashesResponse>;
     search(
       params: Params$Resource$Hashes$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

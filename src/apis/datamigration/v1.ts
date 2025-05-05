@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3255,11 +3256,11 @@ export namespace datamigration_v1 {
     fetchStaticIps(
       params: Params$Resource$Projects$Locations$Fetchstaticips,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchStaticIps(
       params?: Params$Resource$Projects$Locations$Fetchstaticips,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchStaticIpsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchStaticIpsResponse>;
     fetchStaticIps(
       params: Params$Resource$Projects$Locations$Fetchstaticips,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3351,11 +3352,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3440,11 +3441,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3587,11 +3588,11 @@ export namespace datamigration_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3680,11 +3681,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3770,11 +3771,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectionProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$ConnectionProfile>;
     get(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3860,11 +3861,11 @@ export namespace datamigration_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3953,11 +3954,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connectionprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectionProfilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Connectionprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4052,11 +4053,11 @@ export namespace datamigration_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4142,11 +4143,11 @@ export namespace datamigration_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4235,11 +4236,11 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4481,11 +4482,11 @@ export namespace datamigration_v1 {
     apply(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     apply(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     apply(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4571,11 +4572,11 @@ export namespace datamigration_v1 {
     commit(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     commit(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     commit(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4661,11 +4662,11 @@ export namespace datamigration_v1 {
     convert(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     convert(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     convert(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4754,11 +4755,11 @@ export namespace datamigration_v1 {
     create(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4847,11 +4848,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4937,11 +4938,11 @@ export namespace datamigration_v1 {
     describeConversionWorkspaceRevisions(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     describeConversionWorkspaceRevisions(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DescribeConversionWorkspaceRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DescribeConversionWorkspaceRevisionsResponse>;
     describeConversionWorkspaceRevisions(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5036,11 +5037,11 @@ export namespace datamigration_v1 {
     describeDatabaseEntities(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     describeDatabaseEntities(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DescribeDatabaseEntitiesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DescribeDatabaseEntitiesResponse>;
     describeDatabaseEntities(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5134,11 +5135,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionWorkspace>;
+    ): GaxiosResponseWithHTTP2<Schema$ConversionWorkspace>;
     get(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5224,11 +5225,11 @@ export namespace datamigration_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5317,11 +5318,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConversionWorkspacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConversionWorkspacesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5416,11 +5417,11 @@ export namespace datamigration_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5506,11 +5507,11 @@ export namespace datamigration_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     rollback(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5599,11 +5600,11 @@ export namespace datamigration_v1 {
     searchBackgroundJobs(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchBackgroundJobs(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchBackgroundJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchBackgroundJobsResponse>;
     searchBackgroundJobs(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5697,11 +5698,11 @@ export namespace datamigration_v1 {
     seed(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     seed(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     seed(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5787,11 +5788,11 @@ export namespace datamigration_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5880,11 +5881,11 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6226,11 +6227,11 @@ export namespace datamigration_v1 {
     create(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MappingRule>;
+    ): GaxiosResponseWithHTTP2<Schema$MappingRule>;
     create(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6319,11 +6320,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6409,11 +6410,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MappingRule>;
+    ): GaxiosResponseWithHTTP2<Schema$MappingRule>;
     get(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6499,11 +6500,11 @@ export namespace datamigration_v1 {
     import(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6592,11 +6593,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMappingRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMappingRulesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6764,11 +6765,11 @@ export namespace datamigration_v1 {
     create(
       params: Params$Resource$Projects$Locations$Migrationjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Migrationjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6856,11 +6857,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Migrationjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Migrationjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6945,11 +6946,11 @@ export namespace datamigration_v1 {
     demoteDestination(
       params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     demoteDestination(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     demoteDestination(
       params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7038,11 +7039,11 @@ export namespace datamigration_v1 {
     fetchSourceObjects(
       params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchSourceObjects(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     fetchSourceObjects(
       params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7131,11 +7132,11 @@ export namespace datamigration_v1 {
     generateSshScript(
       params: Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateSshScript(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshScript>;
+    ): GaxiosResponseWithHTTP2<Schema$SshScript>;
     generateSshScript(
       params: Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7224,11 +7225,11 @@ export namespace datamigration_v1 {
     generateTcpProxyScript(
       params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateTcpProxyScript(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TcpProxyScript>;
+    ): GaxiosResponseWithHTTP2<Schema$TcpProxyScript>;
     generateTcpProxyScript(
       params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7318,11 +7319,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Migrationjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MigrationJob>;
+    ): GaxiosResponseWithHTTP2<Schema$MigrationJob>;
     get(
       params: Params$Resource$Projects$Locations$Migrationjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7407,11 +7408,11 @@ export namespace datamigration_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7500,11 +7501,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Migrationjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Migrationjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMigrationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMigrationJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Migrationjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7596,11 +7597,11 @@ export namespace datamigration_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Migrationjobs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Migrationjobs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7685,11 +7686,11 @@ export namespace datamigration_v1 {
     promote(
       params: Params$Resource$Projects$Locations$Migrationjobs$Promote,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     promote(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Promote,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     promote(
       params: Params$Resource$Projects$Locations$Migrationjobs$Promote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7777,11 +7778,11 @@ export namespace datamigration_v1 {
     restart(
       params: Params$Resource$Projects$Locations$Migrationjobs$Restart,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restart(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Restart,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restart(
       params: Params$Resource$Projects$Locations$Migrationjobs$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7869,11 +7870,11 @@ export namespace datamigration_v1 {
     resume(
       params: Params$Resource$Projects$Locations$Migrationjobs$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     resume(
       params: Params$Resource$Projects$Locations$Migrationjobs$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7958,11 +7959,11 @@ export namespace datamigration_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8051,11 +8052,11 @@ export namespace datamigration_v1 {
     start(
       params: Params$Resource$Projects$Locations$Migrationjobs$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     start(
       params: Params$Resource$Projects$Locations$Migrationjobs$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8140,11 +8141,11 @@ export namespace datamigration_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Migrationjobs$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Projects$Locations$Migrationjobs$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8229,11 +8230,11 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8326,11 +8327,11 @@ export namespace datamigration_v1 {
     verify(
       params: Params$Resource$Projects$Locations$Migrationjobs$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     verify(
       params: Params$Resource$Projects$Locations$Migrationjobs$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8658,11 +8659,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MigrationJobObject>;
+    ): GaxiosResponseWithHTTP2<Schema$MigrationJobObject>;
     get(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8748,11 +8749,11 @@ export namespace datamigration_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8841,11 +8842,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMigrationJobObjectsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMigrationJobObjectsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8940,11 +8941,11 @@ export namespace datamigration_v1 {
     lookup(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MigrationJobObject>;
+    ): GaxiosResponseWithHTTP2<Schema$MigrationJobObject>;
     lookup(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9033,11 +9034,11 @@ export namespace datamigration_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9126,11 +9127,11 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9300,11 +9301,11 @@ export namespace datamigration_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9389,11 +9390,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9478,11 +9479,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9567,11 +9568,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9714,11 +9715,11 @@ export namespace datamigration_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Privateconnections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Privateconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9807,11 +9808,11 @@ export namespace datamigration_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9897,11 +9898,11 @@ export namespace datamigration_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Privateconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PrivateConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$PrivateConnection>;
     get(
       params: Params$Resource$Projects$Locations$Privateconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9987,11 +9988,11 @@ export namespace datamigration_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateconnections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateconnections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateconnections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10080,11 +10081,11 @@ export namespace datamigration_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Privateconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPrivateConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPrivateConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10179,11 +10180,11 @@ export namespace datamigration_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateconnections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateconnections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateconnections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10272,11 +10273,11 @@ export namespace datamigration_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateconnections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Privateconnections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateconnections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

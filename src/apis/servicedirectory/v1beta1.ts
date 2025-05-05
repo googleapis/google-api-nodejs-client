@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -446,11 +447,11 @@ export namespace servicedirectory_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -535,11 +536,11 @@ export namespace servicedirectory_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -675,11 +676,11 @@ export namespace servicedirectory_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Namespaces$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Namespace>;
+    ): GaxiosResponseWithHTTP2<Schema$Namespace>;
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -767,11 +768,11 @@ export namespace servicedirectory_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Namespaces$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -856,11 +857,11 @@ export namespace servicedirectory_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Namespaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Namespace>;
+    ): GaxiosResponseWithHTTP2<Schema$Namespace>;
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -945,11 +946,11 @@ export namespace servicedirectory_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1038,11 +1039,11 @@ export namespace servicedirectory_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Namespaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNamespacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNamespacesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Namespaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1132,11 +1133,11 @@ export namespace servicedirectory_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Namespaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Namespace>;
+    ): GaxiosResponseWithHTTP2<Schema$Namespace>;
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1221,11 +1222,11 @@ export namespace servicedirectory_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1314,11 +1315,11 @@ export namespace servicedirectory_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Namespaces$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1529,11 +1530,11 @@ export namespace servicedirectory_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1622,11 +1623,11 @@ export namespace servicedirectory_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1712,11 +1713,11 @@ export namespace servicedirectory_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1802,11 +1803,11 @@ export namespace servicedirectory_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1895,11 +1896,11 @@ export namespace servicedirectory_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1990,11 +1991,11 @@ export namespace servicedirectory_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2080,11 +2081,11 @@ export namespace servicedirectory_v1beta1 {
     resolve(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resolve(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResolveServiceResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ResolveServiceResponse>;
     resolve(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2177,11 +2178,11 @@ export namespace servicedirectory_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2270,11 +2271,11 @@ export namespace servicedirectory_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2492,11 +2493,11 @@ export namespace servicedirectory_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Endpoint>;
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2585,11 +2586,11 @@ export namespace servicedirectory_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2675,11 +2676,11 @@ export namespace servicedirectory_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Endpoint>;
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2765,11 +2766,11 @@ export namespace servicedirectory_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEndpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEndpointsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2860,11 +2861,11 @@ export namespace servicedirectory_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Endpoint>;
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3027,11 +3028,11 @@ export namespace servicedirectory_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Workloads$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3120,11 +3121,11 @@ export namespace servicedirectory_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Namespaces$Workloads$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3213,11 +3214,11 @@ export namespace servicedirectory_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Namespaces$Workloads$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Workloads$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

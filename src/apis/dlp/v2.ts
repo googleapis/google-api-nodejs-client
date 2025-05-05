@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5486,11 +5487,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Infotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Infotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
     list(
       params: Params$Resource$Infotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5614,11 +5615,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Locations$Infotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Infotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
     list(
       params: Params$Resource$Locations$Infotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5759,11 +5760,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Deidentifytemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Deidentifytemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
       params: Params$Resource$Organizations$Deidentifytemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5856,11 +5857,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Deidentifytemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Deidentifytemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Deidentifytemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5944,11 +5945,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Deidentifytemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Deidentifytemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(
       params: Params$Resource$Organizations$Deidentifytemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6038,11 +6039,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Deidentifytemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Deidentifytemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
       params: Params$Resource$Organizations$Deidentifytemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6135,11 +6136,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Deidentifytemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Deidentifytemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
       params: Params$Resource$Organizations$Deidentifytemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6298,11 +6299,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Inspecttemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Inspecttemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
       params: Params$Resource$Organizations$Inspecttemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6395,11 +6396,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Inspecttemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Inspecttemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Inspecttemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6483,11 +6484,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Inspecttemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Inspecttemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(
       params: Params$Resource$Organizations$Inspecttemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6577,11 +6578,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Inspecttemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Inspecttemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
       params: Params$Resource$Organizations$Inspecttemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6674,11 +6675,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Inspecttemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Inspecttemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
       params: Params$Resource$Organizations$Inspecttemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6884,11 +6885,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Columndataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Columndataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ColumnDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ColumnDataProfile>;
     get(
       params: Params$Resource$Organizations$Locations$Columndataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6979,11 +6980,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Columndataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Columndataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListColumnDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListColumnDataProfilesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Columndataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7115,11 +7116,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     create(
       params: Params$Resource$Organizations$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7213,11 +7214,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7302,11 +7303,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     get(
       params: Params$Resource$Organizations$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7396,11 +7397,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListConnectionsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7493,11 +7494,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     patch(
       params: Params$Resource$Organizations$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7588,11 +7589,11 @@ export namespace dlp_v2 {
     search(
       params: Params$Resource$Organizations$Locations$Connections$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Organizations$Locations$Connections$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
     search(
       params: Params$Resource$Organizations$Locations$Connections$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7770,11 +7771,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7868,11 +7869,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7957,11 +7958,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8052,11 +8053,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8150,11 +8151,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8314,11 +8315,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     create(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8412,11 +8413,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8501,11 +8502,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     get(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8596,11 +8597,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8694,11 +8695,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     patch(
       params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8854,11 +8855,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Dlpjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Dlpjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Dlpjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8990,11 +8991,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9079,11 +9080,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
     get(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9174,11 +9175,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9317,11 +9318,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Infotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Infotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Infotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9441,11 +9442,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9539,11 +9540,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9628,11 +9629,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9723,11 +9724,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9821,11 +9822,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9985,11 +9986,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Jobtriggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     create(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10083,11 +10084,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10172,11 +10173,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Jobtriggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     get(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10266,11 +10267,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Jobtriggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Jobtriggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Jobtriggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10363,11 +10364,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     patch(
       params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10535,11 +10536,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Projectdataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Projectdataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ProjectDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ProjectDataProfile>;
     get(
       params: Params$Resource$Organizations$Locations$Projectdataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10630,11 +10631,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Projectdataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Projectdataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListProjectDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListProjectDataProfilesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Projectdataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10766,11 +10767,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10864,11 +10865,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10953,11 +10954,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11048,11 +11049,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11146,11 +11147,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11310,11 +11311,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11399,11 +11400,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Tabledataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2TableDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2TableDataProfile>;
     get(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11494,11 +11495,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Tabledataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListTableDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListTableDataProfilesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Tabledataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11637,11 +11638,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Organizations$Storedinfotypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Storedinfotypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
       params: Params$Resource$Organizations$Storedinfotypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11734,11 +11735,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Organizations$Storedinfotypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Storedinfotypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Storedinfotypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11822,11 +11823,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Organizations$Storedinfotypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Storedinfotypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(
       params: Params$Resource$Organizations$Storedinfotypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11916,11 +11917,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Organizations$Storedinfotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Storedinfotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
       params: Params$Resource$Organizations$Storedinfotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12013,11 +12014,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Organizations$Storedinfotypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Storedinfotypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
       params: Params$Resource$Organizations$Storedinfotypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12205,11 +12206,11 @@ export namespace dlp_v2 {
     deidentify(
       params: Params$Resource$Projects$Content$Deidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deidentify(
       params?: Params$Resource$Projects$Content$Deidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
     deidentify(
       params: Params$Resource$Projects$Content$Deidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12302,11 +12303,11 @@ export namespace dlp_v2 {
     inspect(
       params: Params$Resource$Projects$Content$Inspect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     inspect(
       params?: Params$Resource$Projects$Content$Inspect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectContentResponse>;
     inspect(
       params: Params$Resource$Projects$Content$Inspect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12399,11 +12400,11 @@ export namespace dlp_v2 {
     reidentify(
       params: Params$Resource$Projects$Content$Reidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reidentify(
       params?: Params$Resource$Projects$Content$Reidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
     reidentify(
       params: Params$Resource$Projects$Content$Reidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12540,11 +12541,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Deidentifytemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Deidentifytemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
       params: Params$Resource$Projects$Deidentifytemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12637,11 +12638,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Deidentifytemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Deidentifytemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Deidentifytemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12725,11 +12726,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Deidentifytemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Deidentifytemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(
       params: Params$Resource$Projects$Deidentifytemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12819,11 +12820,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Deidentifytemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Deidentifytemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Deidentifytemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12916,11 +12917,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Deidentifytemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Deidentifytemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
       params: Params$Resource$Projects$Deidentifytemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13079,11 +13080,11 @@ export namespace dlp_v2 {
     cancel(
       params: Params$Resource$Projects$Dlpjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Dlpjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Dlpjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13167,11 +13168,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Dlpjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Dlpjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     create(
       params: Params$Resource$Projects$Dlpjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13262,11 +13263,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Dlpjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Dlpjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Dlpjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13350,11 +13351,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Dlpjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Dlpjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     get(
       params: Params$Resource$Projects$Dlpjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13440,11 +13441,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Dlpjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Dlpjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
     list(
       params: Params$Resource$Projects$Dlpjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13614,11 +13615,11 @@ export namespace dlp_v2 {
     redact(
       params: Params$Resource$Projects$Image$Redact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     redact(
       params?: Params$Resource$Projects$Image$Redact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2RedactImageResponse>;
     redact(
       params: Params$Resource$Projects$Image$Redact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13731,11 +13732,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Inspecttemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Inspecttemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
       params: Params$Resource$Projects$Inspecttemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13828,11 +13829,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Inspecttemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Inspecttemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Inspecttemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13916,11 +13917,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Inspecttemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Inspecttemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(
       params: Params$Resource$Projects$Inspecttemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14010,11 +14011,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Inspecttemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Inspecttemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Inspecttemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14107,11 +14108,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Inspecttemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Inspecttemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
       params: Params$Resource$Projects$Inspecttemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14270,11 +14271,11 @@ export namespace dlp_v2 {
     activate(
       params: Params$Resource$Projects$Jobtriggers$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Projects$Jobtriggers$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     activate(
       params: Params$Resource$Projects$Jobtriggers$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14365,11 +14366,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Jobtriggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Jobtriggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     create(
       params: Params$Resource$Projects$Jobtriggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14462,11 +14463,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Jobtriggers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Jobtriggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Jobtriggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14550,11 +14551,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Jobtriggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Jobtriggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     get(
       params: Params$Resource$Projects$Jobtriggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14644,11 +14645,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Jobtriggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Jobtriggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
     list(
       params: Params$Resource$Projects$Jobtriggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14741,11 +14742,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Jobtriggers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Jobtriggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     patch(
       params: Params$Resource$Projects$Jobtriggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14974,11 +14975,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Columndataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Columndataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ColumnDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ColumnDataProfile>;
     get(
       params: Params$Resource$Projects$Locations$Columndataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15069,11 +15070,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Columndataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Columndataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListColumnDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListColumnDataProfilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Columndataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15205,11 +15206,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15302,11 +15303,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15390,11 +15391,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15484,11 +15485,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15581,11 +15582,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2Connection>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15675,11 +15676,11 @@ export namespace dlp_v2 {
     search(
       params: Params$Resource$Projects$Locations$Connections$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Connections$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
     search(
       params: Params$Resource$Projects$Locations$Connections$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15856,11 +15857,11 @@ export namespace dlp_v2 {
     deidentify(
       params: Params$Resource$Projects$Locations$Content$Deidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deidentify(
       params?: Params$Resource$Projects$Locations$Content$Deidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
     deidentify(
       params: Params$Resource$Projects$Locations$Content$Deidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15953,11 +15954,11 @@ export namespace dlp_v2 {
     inspect(
       params: Params$Resource$Projects$Locations$Content$Inspect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     inspect(
       params?: Params$Resource$Projects$Locations$Content$Inspect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectContentResponse>;
     inspect(
       params: Params$Resource$Projects$Locations$Content$Inspect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16050,11 +16051,11 @@ export namespace dlp_v2 {
     reidentify(
       params: Params$Resource$Projects$Locations$Content$Reidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reidentify(
       params?: Params$Resource$Projects$Locations$Content$Reidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
     reidentify(
       params: Params$Resource$Projects$Locations$Content$Reidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16191,11 +16192,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16289,11 +16290,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16378,11 +16379,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16473,11 +16474,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16571,11 +16572,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16735,11 +16736,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     create(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16833,11 +16834,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16922,11 +16923,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     get(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17016,11 +17017,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveryconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17113,11 +17114,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
     patch(
       params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17273,11 +17274,11 @@ export namespace dlp_v2 {
     cancel(
       params: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17361,11 +17362,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     create(
       params: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17456,11 +17457,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Dlpjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Dlpjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17544,11 +17545,11 @@ export namespace dlp_v2 {
     finish(
       params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     finish(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Finish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     finish(
       params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17632,11 +17633,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     get(
       params: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17722,11 +17723,11 @@ export namespace dlp_v2 {
     hybridInspect(
       params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     hybridInspect(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17819,11 +17820,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Dlpjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Dlpjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Dlpjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18017,11 +18018,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18106,11 +18107,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
     get(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18201,11 +18202,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18344,11 +18345,11 @@ export namespace dlp_v2 {
     redact(
       params: Params$Resource$Projects$Locations$Image$Redact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     redact(
       params?: Params$Resource$Projects$Locations$Image$Redact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2RedactImageResponse>;
     redact(
       params: Params$Resource$Projects$Locations$Image$Redact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18461,11 +18462,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Infotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Infotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Infotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18585,11 +18586,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18683,11 +18684,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18772,11 +18773,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18866,11 +18867,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18963,11 +18964,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19127,11 +19128,11 @@ export namespace dlp_v2 {
     activate(
       params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2DlpJob>;
     activate(
       params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19222,11 +19223,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Jobtriggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     create(
       params: Params$Resource$Projects$Locations$Jobtriggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19319,11 +19320,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Jobtriggers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Jobtriggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19407,11 +19408,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Jobtriggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     get(
       params: Params$Resource$Projects$Locations$Jobtriggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19501,11 +19502,11 @@ export namespace dlp_v2 {
     hybridInspect(
       params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     hybridInspect(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19599,11 +19600,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Jobtriggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19696,11 +19697,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Jobtriggers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2JobTrigger>;
     patch(
       params: Params$Resource$Projects$Locations$Jobtriggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19891,11 +19892,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Projectdataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Projectdataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ProjectDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ProjectDataProfile>;
     get(
       params: Params$Resource$Projects$Locations$Projectdataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19986,11 +19987,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Projectdataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Projectdataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListProjectDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListProjectDataProfilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Projectdataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20122,11 +20123,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20220,11 +20221,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20309,11 +20310,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20403,11 +20404,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20500,11 +20501,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20663,11 +20664,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20752,11 +20753,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tabledataprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2TableDataProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2TableDataProfile>;
     get(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20846,11 +20847,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tabledataprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListTableDataProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListTableDataProfilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tabledataprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20989,11 +20990,11 @@ export namespace dlp_v2 {
     create(
       params: Params$Resource$Projects$Storedinfotypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Storedinfotypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
       params: Params$Resource$Projects$Storedinfotypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21086,11 +21087,11 @@ export namespace dlp_v2 {
     delete(
       params: Params$Resource$Projects$Storedinfotypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Storedinfotypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Storedinfotypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21174,11 +21175,11 @@ export namespace dlp_v2 {
     get(
       params: Params$Resource$Projects$Storedinfotypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Storedinfotypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(
       params: Params$Resource$Projects$Storedinfotypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21268,11 +21269,11 @@ export namespace dlp_v2 {
     list(
       params: Params$Resource$Projects$Storedinfotypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Storedinfotypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
       params: Params$Resource$Projects$Storedinfotypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21365,11 +21366,11 @@ export namespace dlp_v2 {
     patch(
       params: Params$Resource$Projects$Storedinfotypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Storedinfotypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    ): GaxiosResponseWithHTTP2<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
       params: Params$Resource$Projects$Storedinfotypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

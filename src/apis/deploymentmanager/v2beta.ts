@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1346,11 +1347,11 @@ export namespace deploymentmanager_v2beta {
     delete(
       params: Params$Resource$Compositetypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Compositetypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Compositetypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1438,11 +1439,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Compositetypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Compositetypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompositeType>;
+    ): GaxiosResponseWithHTTP2<Schema$CompositeType>;
     get(
       params: Params$Resource$Compositetypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1530,11 +1531,11 @@ export namespace deploymentmanager_v2beta {
     insert(
       params: Params$Resource$Compositetypes$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Compositetypes$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     insert(
       params: Params$Resource$Compositetypes$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1622,11 +1623,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Compositetypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Compositetypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompositeTypesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CompositeTypesListResponse>;
     list(
       params: Params$Resource$Compositetypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1718,11 +1719,11 @@ export namespace deploymentmanager_v2beta {
     patch(
       params: Params$Resource$Compositetypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Compositetypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Compositetypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1810,11 +1811,11 @@ export namespace deploymentmanager_v2beta {
     update(
       params: Params$Resource$Compositetypes$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Compositetypes$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Compositetypes$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2019,11 +2020,11 @@ export namespace deploymentmanager_v2beta {
     cancelPreview(
       params: Params$Resource$Deployments$Cancelpreview,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancelPreview(
       params?: Params$Resource$Deployments$Cancelpreview,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     cancelPreview(
       params: Params$Resource$Deployments$Cancelpreview,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2111,11 +2112,11 @@ export namespace deploymentmanager_v2beta {
     delete(
       params: Params$Resource$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2203,11 +2204,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deployment>;
+    ): GaxiosResponseWithHTTP2<Schema$Deployment>;
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2294,11 +2295,11 @@ export namespace deploymentmanager_v2beta {
     getIamPolicy(
       params: Params$Resource$Deployments$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Deployments$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Deployments$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2386,11 +2387,11 @@ export namespace deploymentmanager_v2beta {
     insert(
       params: Params$Resource$Deployments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Deployments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     insert(
       params: Params$Resource$Deployments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2478,11 +2479,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeploymentsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeploymentsListResponse>;
     list(
       params: Params$Resource$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2571,11 +2572,11 @@ export namespace deploymentmanager_v2beta {
     patch(
       params: Params$Resource$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2663,11 +2664,11 @@ export namespace deploymentmanager_v2beta {
     setIamPolicy(
       params: Params$Resource$Deployments$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Deployments$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Deployments$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2755,11 +2756,11 @@ export namespace deploymentmanager_v2beta {
     stop(
       params: Params$Resource$Deployments$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Deployments$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Deployments$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2846,11 +2847,11 @@ export namespace deploymentmanager_v2beta {
     testIamPermissions(
       params: Params$Resource$Deployments$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Deployments$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Deployments$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2942,11 +2943,11 @@ export namespace deploymentmanager_v2beta {
     update(
       params: Params$Resource$Deployments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Deployments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Deployments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3271,11 +3272,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Manifests$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Manifests$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Manifest>;
+    ): GaxiosResponseWithHTTP2<Schema$Manifest>;
     get(
       params: Params$Resource$Manifests$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3362,11 +3363,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Manifests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Manifests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManifestsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ManifestsListResponse>;
     list(
       params: Params$Resource$Manifests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3507,11 +3508,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3598,11 +3599,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperationsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$OperationsListResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3735,11 +3736,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Resources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Resources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Resource>;
+    ): GaxiosResponseWithHTTP2<Schema$Resource>;
     get(
       params: Params$Resource$Resources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3826,11 +3827,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Resources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Resources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResourcesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ResourcesListResponse>;
     list(
       params: Params$Resource$Resources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3971,11 +3972,11 @@ export namespace deploymentmanager_v2beta {
     delete(
       params: Params$Resource$Typeproviders$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Typeproviders$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Typeproviders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4063,11 +4064,11 @@ export namespace deploymentmanager_v2beta {
     get(
       params: Params$Resource$Typeproviders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Typeproviders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TypeProvider>;
+    ): GaxiosResponseWithHTTP2<Schema$TypeProvider>;
     get(
       params: Params$Resource$Typeproviders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4155,11 +4156,11 @@ export namespace deploymentmanager_v2beta {
     getType(
       params: Params$Resource$Typeproviders$Gettype,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getType(
       params?: Params$Resource$Typeproviders$Gettype,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TypeInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$TypeInfo>;
     getType(
       params: Params$Resource$Typeproviders$Gettype,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4247,11 +4248,11 @@ export namespace deploymentmanager_v2beta {
     insert(
       params: Params$Resource$Typeproviders$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Typeproviders$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     insert(
       params: Params$Resource$Typeproviders$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4339,11 +4340,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Typeproviders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Typeproviders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TypeProvidersListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TypeProvidersListResponse>;
     list(
       params: Params$Resource$Typeproviders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4435,11 +4436,11 @@ export namespace deploymentmanager_v2beta {
     listTypes(
       params: Params$Resource$Typeproviders$Listtypes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listTypes(
       params?: Params$Resource$Typeproviders$Listtypes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TypeProvidersListTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TypeProvidersListTypesResponse>;
     listTypes(
       params: Params$Resource$Typeproviders$Listtypes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4533,11 +4534,11 @@ export namespace deploymentmanager_v2beta {
     patch(
       params: Params$Resource$Typeproviders$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Typeproviders$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Typeproviders$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4625,11 +4626,11 @@ export namespace deploymentmanager_v2beta {
     update(
       params: Params$Resource$Typeproviders$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Typeproviders$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Typeproviders$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4880,11 +4881,11 @@ export namespace deploymentmanager_v2beta {
     list(
       params: Params$Resource$Types$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Types$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TypesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TypesListResponse>;
     list(
       params: Params$Resource$Types$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

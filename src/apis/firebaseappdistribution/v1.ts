@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -864,11 +865,11 @@ export namespace firebaseappdistribution_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1012,11 +1013,11 @@ export namespace firebaseappdistribution_v1 {
     getAabInfo(
       params: Params$Resource$Projects$Apps$Getaabinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAabInfo(
       params?: Params$Resource$Projects$Apps$Getaabinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1AabInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1AabInfo>;
     getAabInfo(
       params: Params$Resource$Projects$Apps$Getaabinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1129,11 +1130,11 @@ export namespace firebaseappdistribution_v1 {
     batchDelete(
       params: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     batchDelete(
       params: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1223,11 +1224,11 @@ export namespace firebaseappdistribution_v1 {
     distribute(
       params: Params$Resource$Projects$Apps$Releases$Distribute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     distribute(
       params?: Params$Resource$Projects$Apps$Releases$Distribute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>;
     distribute(
       params: Params$Resource$Projects$Apps$Releases$Distribute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1321,11 +1322,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>;
     get(
       params: Params$Resource$Projects$Apps$Releases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1416,11 +1417,11 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>;
     list(
       params: Params$Resource$Projects$Apps$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1514,11 +1515,11 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Releases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Releases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>;
     patch(
       params: Params$Resource$Projects$Apps$Releases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1687,11 +1688,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1777,11 +1778,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1FeedbackReport>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1FeedbackReport>;
     get(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1873,11 +1874,11 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>;
     list(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2009,11 +2010,11 @@ export namespace firebaseappdistribution_v1 {
     cancel(
       params: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2098,11 +2099,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2187,11 +2188,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2280,11 +2281,11 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Apps$Releases$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2378,11 +2379,11 @@ export namespace firebaseappdistribution_v1 {
     wait(
       params: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2536,11 +2537,11 @@ export namespace firebaseappdistribution_v1 {
     batchJoin(
       params: Params$Resource$Projects$Groups$Batchjoin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchJoin(
       params?: Params$Resource$Projects$Groups$Batchjoin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     batchJoin(
       params: Params$Resource$Projects$Groups$Batchjoin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2628,11 +2629,11 @@ export namespace firebaseappdistribution_v1 {
     batchLeave(
       params: Params$Resource$Projects$Groups$Batchleave,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchLeave(
       params?: Params$Resource$Projects$Groups$Batchleave,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     batchLeave(
       params: Params$Resource$Projects$Groups$Batchleave,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2722,11 +2723,11 @@ export namespace firebaseappdistribution_v1 {
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Groups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>;
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2820,11 +2821,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Groups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2909,11 +2910,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3004,11 +3005,11 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>;
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3102,11 +3103,11 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>;
     patch(
       params: Params$Resource$Projects$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3290,11 +3291,11 @@ export namespace firebaseappdistribution_v1 {
     batchAdd(
       params: Params$Resource$Projects$Testers$Batchadd,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchAdd(
       params?: Params$Resource$Projects$Testers$Batchadd,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>;
     batchAdd(
       params: Params$Resource$Projects$Testers$Batchadd,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3388,11 +3389,11 @@ export namespace firebaseappdistribution_v1 {
     batchRemove(
       params: Params$Resource$Projects$Testers$Batchremove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchRemove(
       params?: Params$Resource$Projects$Testers$Batchremove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>;
     batchRemove(
       params: Params$Resource$Projects$Testers$Batchremove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3486,11 +3487,11 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Testers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Testers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>;
     list(
       params: Params$Resource$Projects$Testers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3584,11 +3585,11 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Testers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Testers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Tester>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Tester>;
     patch(
       params: Params$Resource$Projects$Testers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

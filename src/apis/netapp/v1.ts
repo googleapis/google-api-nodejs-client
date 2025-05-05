@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1623,11 +1624,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1711,11 +1712,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1842,11 +1843,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Activedirectories$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Activedirectories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Activedirectories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1934,11 +1935,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Activedirectories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Activedirectories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Activedirectories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2023,11 +2024,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Activedirectories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Activedirectories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ActiveDirectory>;
+    ): GaxiosResponseWithHTTP2<Schema$ActiveDirectory>;
     get(
       params: Params$Resource$Projects$Locations$Activedirectories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2111,11 +2112,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Activedirectories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Activedirectories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListActiveDirectoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListActiveDirectoriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Activedirectories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2209,11 +2210,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Activedirectories$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Activedirectories$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Activedirectories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2375,11 +2376,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backuppolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backuppolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backuppolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2466,11 +2467,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backuppolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backuppolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backuppolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2554,11 +2555,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backuppolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backuppolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupPolicy>;
     get(
       params: Params$Resource$Projects$Locations$Backuppolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2642,11 +2643,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backuppolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backuppolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backuppolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2737,11 +2738,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backuppolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backuppolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backuppolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2906,11 +2907,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backupvaults$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2997,11 +2998,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3085,11 +3086,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupVault>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupVault>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3173,11 +3174,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupVaultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3266,11 +3267,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3431,11 +3432,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backupvaults$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3523,11 +3524,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3612,11 +3613,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3701,11 +3702,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3793,11 +3794,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3959,11 +3960,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4050,11 +4051,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4138,11 +4139,11 @@ export namespace netapp_v1 {
     encrypt(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Encrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     encrypt(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Encrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     encrypt(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Encrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4229,11 +4230,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$KmsConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$KmsConfig>;
     get(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4317,11 +4318,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Kmsconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListKmsConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListKmsConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Kmsconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4410,11 +4411,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4498,11 +4499,11 @@ export namespace netapp_v1 {
     verify(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Projects$Locations$Kmsconfigs$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyKmsConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyKmsConfigResponse>;
     verify(
       params: Params$Resource$Projects$Locations$Kmsconfigs$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4691,11 +4692,11 @@ export namespace netapp_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4779,11 +4780,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4867,11 +4868,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4955,11 +4956,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5101,11 +5102,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Storagepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Storagepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Storagepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5192,11 +5193,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Storagepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Storagepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Storagepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5280,11 +5281,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Storagepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Storagepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StoragePool>;
+    ): GaxiosResponseWithHTTP2<Schema$StoragePool>;
     get(
       params: Params$Resource$Projects$Locations$Storagepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5368,11 +5369,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Storagepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Storagepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListStoragePoolsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListStoragePoolsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Storagepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5461,11 +5462,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Storagepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Storagepools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Storagepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5549,11 +5550,11 @@ export namespace netapp_v1 {
     switch(
       params: Params$Resource$Projects$Locations$Storagepools$Switch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     switch(
       params?: Params$Resource$Projects$Locations$Storagepools$Switch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     switch(
       params: Params$Resource$Projects$Locations$Storagepools$Switch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5637,11 +5638,11 @@ export namespace netapp_v1 {
     validateDirectoryService(
       params: Params$Resource$Projects$Locations$Storagepools$Validatedirectoryservice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validateDirectoryService(
       params?: Params$Resource$Projects$Locations$Storagepools$Validatedirectoryservice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     validateDirectoryService(
       params: Params$Resource$Projects$Locations$Storagepools$Validatedirectoryservice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5844,11 +5845,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Volumes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Volumes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Volumes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5935,11 +5936,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Volumes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6023,11 +6024,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Volumes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Volumes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Volume>;
+    ): GaxiosResponseWithHTTP2<Schema$Volume>;
     get(
       params: Params$Resource$Projects$Locations$Volumes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6111,11 +6112,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Volumes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVolumesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVolumesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Volumes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6202,11 +6203,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Volumes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6290,11 +6291,11 @@ export namespace netapp_v1 {
     revert(
       params: Params$Resource$Projects$Locations$Volumes$Revert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revert(
       params?: Params$Resource$Projects$Locations$Volumes$Revert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     revert(
       params: Params$Resource$Projects$Locations$Volumes$Revert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6471,11 +6472,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Volumes$Quotarules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6563,11 +6564,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Volumes$Quotarules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6652,11 +6653,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Volumes$Quotarules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QuotaRule>;
+    ): GaxiosResponseWithHTTP2<Schema$QuotaRule>;
     get(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6741,11 +6742,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Volumes$Quotarules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQuotaRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQuotaRulesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6835,11 +6836,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Volumes$Quotarules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Quotarules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7001,11 +7002,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7093,11 +7094,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7182,11 +7183,11 @@ export namespace netapp_v1 {
     establishPeering(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Establishpeering,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     establishPeering(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Establishpeering,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     establishPeering(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Establishpeering,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7274,11 +7275,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Replication>;
+    ): GaxiosResponseWithHTTP2<Schema$Replication>;
     get(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7363,11 +7364,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Replications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReplicationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReplicationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Volumes$Replications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7457,11 +7458,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7546,11 +7547,11 @@ export namespace netapp_v1 {
     resume(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     resume(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7635,11 +7636,11 @@ export namespace netapp_v1 {
     reverseDirection(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Reversedirection,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reverseDirection(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Reversedirection,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     reverseDirection(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Reversedirection,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7727,11 +7728,11 @@ export namespace netapp_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7816,11 +7817,11 @@ export namespace netapp_v1 {
     sync(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Sync,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     sync(
       params?: Params$Resource$Projects$Locations$Volumes$Replications$Sync,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     sync(
       params: Params$Resource$Projects$Locations$Volumes$Replications$Sync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8042,11 +8043,11 @@ export namespace netapp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8134,11 +8135,11 @@ export namespace netapp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8223,11 +8224,11 @@ export namespace netapp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
+    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
     get(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8311,11 +8312,11 @@ export namespace netapp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8405,11 +8406,11 @@ export namespace netapp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Volumes$Snapshots$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

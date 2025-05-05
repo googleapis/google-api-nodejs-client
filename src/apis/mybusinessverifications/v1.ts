@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -445,11 +446,11 @@ export namespace mybusinessverifications_v1 {
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchVerificationOptions(
       params?: Params$Resource$Locations$Fetchverificationoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchVerificationOptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>;
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -543,11 +544,11 @@ export namespace mybusinessverifications_v1 {
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVoiceOfMerchantState(
       params?: Params$Resource$Locations$Getvoiceofmerchantstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VoiceOfMerchantState>;
+    ): GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>;
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -639,11 +640,11 @@ export namespace mybusinessverifications_v1 {
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Locations$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyLocationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>;
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -767,11 +768,11 @@ export namespace mybusinessverifications_v1 {
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     complete(
       params?: Params$Resource$Locations$Verifications$Complete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompleteVerificationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>;
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -865,11 +866,11 @@ export namespace mybusinessverifications_v1 {
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Verifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVerificationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>;
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

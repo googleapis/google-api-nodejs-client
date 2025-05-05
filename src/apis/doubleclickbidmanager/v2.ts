@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -389,11 +390,11 @@ export namespace doubleclickbidmanager_v2 {
     create(
       params: Params$Resource$Queries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Queries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Query>;
+    ): GaxiosResponseWithHTTP2<Schema$Query>;
     create(
       params: Params$Resource$Queries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -477,11 +478,11 @@ export namespace doubleclickbidmanager_v2 {
     delete(
       params: Params$Resource$Queries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Queries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Queries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -566,11 +567,11 @@ export namespace doubleclickbidmanager_v2 {
     get(
       params: Params$Resource$Queries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Queries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Query>;
+    ): GaxiosResponseWithHTTP2<Schema$Query>;
     get(
       params: Params$Resource$Queries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -657,11 +658,11 @@ export namespace doubleclickbidmanager_v2 {
     list(
       params: Params$Resource$Queries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Queries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQueriesResponse>;
     list(
       params: Params$Resource$Queries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -745,11 +746,11 @@ export namespace doubleclickbidmanager_v2 {
     run(
       params: Params$Resource$Queries$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     run(
       params?: Params$Resource$Queries$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     run(
       params: Params$Resource$Queries$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -891,11 +892,11 @@ export namespace doubleclickbidmanager_v2 {
     get(
       params: Params$Resource$Queries$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Queries$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     get(
       params: Params$Resource$Queries$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -983,11 +984,11 @@ export namespace doubleclickbidmanager_v2 {
     list(
       params: Params$Resource$Queries$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Queries$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReportsResponse>;
     list(
       params: Params$Resource$Queries$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -19217,11 +19218,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Batchpredictionjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Batchpredictionjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
     create(
       params: Params$Resource$Batchpredictionjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19314,11 +19315,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Batchpredictionjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Batchpredictionjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
     get(
       params: Params$Resource$Batchpredictionjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19408,11 +19409,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Batchpredictionjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Batchpredictionjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>;
     list(
       params: Params$Resource$Batchpredictionjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19559,11 +19560,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Datasets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Datasets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Datasets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19650,11 +19651,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19741,11 +19742,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Dataset>;
     get(
       params: Params$Resource$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19834,11 +19835,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Datasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Datasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>;
     list(
       params: Params$Resource$Datasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19927,11 +19928,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Datasets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Datasets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Dataset>;
     patch(
       params: Params$Resource$Datasets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20096,11 +20097,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Datasets$Datasetversions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Datasets$Datasetversions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Datasets$Datasetversions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20191,11 +20192,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Datasets$Datasetversions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Datasets$Datasetversions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Datasets$Datasetversions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20283,11 +20284,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Datasetversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Datasets$Datasetversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DatasetVersion>;
     get(
       params: Params$Resource$Datasets$Datasetversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20377,11 +20378,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Datasets$Datasetversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Datasets$Datasetversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
     list(
       params: Params$Resource$Datasets$Datasetversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20474,11 +20475,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Datasets$Datasetversions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Datasets$Datasetversions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DatasetVersion>;
     patch(
       params: Params$Resource$Datasets$Datasetversions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20568,11 +20569,11 @@ export namespace aiplatform_v1 {
     restore(
       params: Params$Resource$Datasets$Datasetversions$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Datasets$Datasetversions$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     restore(
       params: Params$Resource$Datasets$Datasetversions$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20753,11 +20754,11 @@ export namespace aiplatform_v1 {
     computeTokens(
       params: Params$Resource$Endpoints$Computetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     computeTokens(
       params?: Params$Resource$Endpoints$Computetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
     computeTokens(
       params: Params$Resource$Endpoints$Computetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20850,11 +20851,11 @@ export namespace aiplatform_v1 {
     countTokens(
       params: Params$Resource$Endpoints$Counttokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     countTokens(
       params?: Params$Resource$Endpoints$Counttokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
     countTokens(
       params: Params$Resource$Endpoints$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20947,11 +20948,11 @@ export namespace aiplatform_v1 {
     generateContent(
       params: Params$Resource$Endpoints$Generatecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateContent(
       params?: Params$Resource$Endpoints$Generatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     generateContent(
       params: Params$Resource$Endpoints$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21044,11 +21045,11 @@ export namespace aiplatform_v1 {
     predict(
       params: Params$Resource$Endpoints$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predict(
       params?: Params$Resource$Endpoints$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PredictResponse>;
     predict(
       params: Params$Resource$Endpoints$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21141,11 +21142,11 @@ export namespace aiplatform_v1 {
     streamGenerateContent(
       params: Params$Resource$Endpoints$Streamgeneratecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamGenerateContent(
       params?: Params$Resource$Endpoints$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     streamGenerateContent(
       params: Params$Resource$Endpoints$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21306,11 +21307,11 @@ export namespace aiplatform_v1 {
     completions(
       params: Params$Resource$Endpoints$Chat$Completions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completions(
       params?: Params$Resource$Endpoints$Chat$Completions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     completions(
       params: Params$Resource$Endpoints$Chat$Completions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21417,11 +21418,11 @@ export namespace aiplatform_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1UploadRagFileResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1UploadRagFileResponse>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21553,11 +21554,11 @@ export namespace aiplatform_v1 {
     getCacheConfig(
       params: Params$Resource$Projects$Getcacheconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getCacheConfig(
       params?: Params$Resource$Projects$Getcacheconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CacheConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CacheConfig>;
     getCacheConfig(
       params: Params$Resource$Projects$Getcacheconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21647,11 +21648,11 @@ export namespace aiplatform_v1 {
     updateCacheConfig(
       params: Params$Resource$Projects$Updatecacheconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateCacheConfig(
       params?: Params$Resource$Projects$Updatecacheconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     updateCacheConfig(
       params: Params$Resource$Projects$Updatecacheconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21880,11 +21881,11 @@ export namespace aiplatform_v1 {
     augmentPrompt(
       params: Params$Resource$Projects$Locations$Augmentprompt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     augmentPrompt(
       params?: Params$Resource$Projects$Locations$Augmentprompt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1AugmentPromptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1AugmentPromptResponse>;
     augmentPrompt(
       params: Params$Resource$Projects$Locations$Augmentprompt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21977,11 +21978,11 @@ export namespace aiplatform_v1 {
     corroborateContent(
       params: Params$Resource$Projects$Locations$Corroboratecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     corroborateContent(
       params?: Params$Resource$Projects$Locations$Corroboratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CorroborateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CorroborateContentResponse>;
     corroborateContent(
       params: Params$Resource$Projects$Locations$Corroboratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22074,11 +22075,11 @@ export namespace aiplatform_v1 {
     evaluateDataset(
       params: Params$Resource$Projects$Locations$Evaluatedataset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     evaluateDataset(
       params?: Params$Resource$Projects$Locations$Evaluatedataset,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     evaluateDataset(
       params: Params$Resource$Projects$Locations$Evaluatedataset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22169,11 +22170,11 @@ export namespace aiplatform_v1 {
     evaluateInstances(
       params: Params$Resource$Projects$Locations$Evaluateinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     evaluateInstances(
       params?: Params$Resource$Projects$Locations$Evaluateinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1EvaluateInstancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EvaluateInstancesResponse>;
     evaluateInstances(
       params: Params$Resource$Projects$Locations$Evaluateinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22266,11 +22267,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationLocation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22358,11 +22359,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22455,11 +22456,11 @@ export namespace aiplatform_v1 {
     retrieveContexts(
       params: Params$Resource$Projects$Locations$Retrievecontexts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveContexts(
       params?: Params$Resource$Projects$Locations$Retrievecontexts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1RetrieveContextsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RetrieveContextsResponse>;
     retrieveContexts(
       params: Params$Resource$Projects$Locations$Retrievecontexts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22650,11 +22651,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Batchpredictionjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22739,11 +22740,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Batchpredictionjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
     create(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22837,11 +22838,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Batchpredictionjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22930,11 +22931,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Batchpredictionjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
     get(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23025,11 +23026,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Batchpredictionjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23192,11 +23193,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Cachedcontents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Cachedcontents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CachedContent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CachedContent>;
     create(
       params: Params$Resource$Projects$Locations$Cachedcontents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23289,11 +23290,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Cachedcontents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Cachedcontents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Cachedcontents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23377,11 +23378,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Cachedcontents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Cachedcontents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CachedContent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CachedContent>;
     get(
       params: Params$Resource$Projects$Locations$Cachedcontents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23471,11 +23472,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cachedcontents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Cachedcontents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListCachedContentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListCachedContentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Cachedcontents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23568,11 +23569,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Cachedcontents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Cachedcontents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CachedContent>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CachedContent>;
     patch(
       params: Params$Resource$Projects$Locations$Cachedcontents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23731,11 +23732,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Customjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Customjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Customjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23819,11 +23820,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Customjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Customjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CustomJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CustomJob>;
     create(
       params: Params$Resource$Projects$Locations$Customjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23916,11 +23917,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Customjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Customjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24008,11 +24009,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Customjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CustomJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CustomJob>;
     get(
       params: Params$Resource$Projects$Locations$Customjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24102,11 +24103,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Customjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListCustomJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListCustomJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Customjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24268,11 +24269,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Customjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24357,11 +24358,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Customjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24446,11 +24447,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Customjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24539,11 +24540,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Customjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24637,11 +24638,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Customjobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24794,11 +24795,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24883,11 +24884,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DataLabelingJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DataLabelingJob>;
     create(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24981,11 +24982,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25074,11 +25075,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DataLabelingJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DataLabelingJob>;
     get(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25168,11 +25169,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDataLabelingJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDataLabelingJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25338,11 +25339,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25427,11 +25428,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25516,11 +25517,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25609,11 +25610,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25707,11 +25708,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25877,11 +25878,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25972,11 +25973,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26064,11 +26065,11 @@ export namespace aiplatform_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Datasets$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     export(
       params: Params$Resource$Projects$Locations$Datasets$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26156,11 +26157,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Dataset>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26250,11 +26251,11 @@ export namespace aiplatform_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datasets$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Datasets$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Datasets$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26342,11 +26343,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26439,11 +26440,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Dataset>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26533,11 +26534,11 @@ export namespace aiplatform_v1 {
     searchDataItems(
       params: Params$Resource$Projects$Locations$Datasets$Searchdataitems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchDataItems(
       params?: Params$Resource$Projects$Locations$Datasets$Searchdataitems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchDataItemsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SearchDataItemsResponse>;
     searchDataItems(
       params: Params$Resource$Projects$Locations$Datasets$Searchdataitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26800,11 +26801,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1AnnotationSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1AnnotationSpec>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26914,11 +26915,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27003,11 +27004,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27092,11 +27093,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27185,11 +27186,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27283,11 +27284,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27445,11 +27446,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDataItemsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDataItemsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27583,11 +27584,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListAnnotationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListAnnotationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27716,11 +27717,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27805,11 +27806,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27894,11 +27895,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27987,11 +27988,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28085,11 +28086,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28237,11 +28238,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28326,11 +28327,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28415,11 +28416,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28508,11 +28509,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28606,11 +28607,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28758,11 +28759,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28854,11 +28855,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28947,11 +28948,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DatasetVersion>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29042,11 +29043,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29140,11 +29141,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DatasetVersion>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29235,11 +29236,11 @@ export namespace aiplatform_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     restore(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29419,11 +29420,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29508,11 +29509,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29597,11 +29598,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29690,11 +29691,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29788,11 +29789,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29945,11 +29946,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30038,11 +30039,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListSavedQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListSavedQueriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30178,11 +30179,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30267,11 +30268,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30356,11 +30357,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30449,11 +30450,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30547,11 +30548,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30704,11 +30705,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30800,11 +30801,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30893,11 +30894,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DeploymentResourcePool>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DeploymentResourcePool>;
     get(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30988,11 +30989,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDeploymentResourcePoolsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListDeploymentResourcePoolsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31086,11 +31087,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31179,11 +31180,11 @@ export namespace aiplatform_v1 {
     queryDeployedModels(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Querydeployedmodels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryDeployedModels(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Querydeployedmodels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1QueryDeployedModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1QueryDeployedModelsResponse>;
     queryDeployedModels(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Querydeployedmodels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31356,11 +31357,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31445,11 +31446,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31534,11 +31535,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31627,11 +31628,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31725,11 +31726,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31883,11 +31884,11 @@ export namespace aiplatform_v1 {
     computeTokens(
       params: Params$Resource$Projects$Locations$Endpoints$Computetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     computeTokens(
       params?: Params$Resource$Projects$Locations$Endpoints$Computetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
     computeTokens(
       params: Params$Resource$Projects$Locations$Endpoints$Computetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -31981,11 +31982,11 @@ export namespace aiplatform_v1 {
     countTokens(
       params: Params$Resource$Projects$Locations$Endpoints$Counttokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     countTokens(
       params?: Params$Resource$Projects$Locations$Endpoints$Counttokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
     countTokens(
       params: Params$Resource$Projects$Locations$Endpoints$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32078,11 +32079,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Endpoints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Endpoints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Endpoints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32173,11 +32174,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Endpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Endpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Endpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32265,11 +32266,11 @@ export namespace aiplatform_v1 {
     deployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Deploymodel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deployModel(
       params?: Params$Resource$Projects$Locations$Endpoints$Deploymodel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     deployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Deploymodel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32360,11 +32361,11 @@ export namespace aiplatform_v1 {
     directPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Directpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     directPredict(
       params?: Params$Resource$Projects$Locations$Endpoints$Directpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DirectPredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DirectPredictResponse>;
     directPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Directpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32458,11 +32459,11 @@ export namespace aiplatform_v1 {
     directRawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Directrawpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     directRawPredict(
       params?: Params$Resource$Projects$Locations$Endpoints$Directrawpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DirectRawPredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1DirectRawPredictResponse>;
     directRawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Directrawpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32556,11 +32557,11 @@ export namespace aiplatform_v1 {
     explain(
       params: Params$Resource$Projects$Locations$Endpoints$Explain,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     explain(
       params?: Params$Resource$Projects$Locations$Endpoints$Explain,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ExplainResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ExplainResponse>;
     explain(
       params: Params$Resource$Projects$Locations$Endpoints$Explain,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32653,11 +32654,11 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchPredictOperation(
       params?: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32749,11 +32750,11 @@ export namespace aiplatform_v1 {
     generateContent(
       params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateContent(
       params?: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     generateContent(
       params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32847,11 +32848,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Endpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Endpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Endpoint>;
     get(
       params: Params$Resource$Projects$Locations$Endpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -32941,11 +32942,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Endpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Endpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListEndpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListEndpointsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Endpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33038,11 +33039,11 @@ export namespace aiplatform_v1 {
     mutateDeployedModel(
       params: Params$Resource$Projects$Locations$Endpoints$Mutatedeployedmodel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     mutateDeployedModel(
       params?: Params$Resource$Projects$Locations$Endpoints$Mutatedeployedmodel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     mutateDeployedModel(
       params: Params$Resource$Projects$Locations$Endpoints$Mutatedeployedmodel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33134,11 +33135,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Endpoints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Endpoints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Endpoint>;
     patch(
       params: Params$Resource$Projects$Locations$Endpoints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33228,11 +33229,11 @@ export namespace aiplatform_v1 {
     predict(
       params: Params$Resource$Projects$Locations$Endpoints$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predict(
       params?: Params$Resource$Projects$Locations$Endpoints$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PredictResponse>;
     predict(
       params: Params$Resource$Projects$Locations$Endpoints$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33324,11 +33325,11 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predictLongRunning(
       params?: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33420,11 +33421,11 @@ export namespace aiplatform_v1 {
     rawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Rawpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rawPredict(
       params?: Params$Resource$Projects$Locations$Endpoints$Rawpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     rawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Rawpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33511,11 +33512,11 @@ export namespace aiplatform_v1 {
     serverStreamingPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Serverstreamingpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     serverStreamingPredict(
       params?: Params$Resource$Projects$Locations$Endpoints$Serverstreamingpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1StreamingPredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1StreamingPredictResponse>;
     serverStreamingPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Serverstreamingpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33609,11 +33610,11 @@ export namespace aiplatform_v1 {
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Endpoints$Streamgeneratecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamGenerateContent(
       params?: Params$Resource$Projects$Locations$Endpoints$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Endpoints$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33707,11 +33708,11 @@ export namespace aiplatform_v1 {
     streamRawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamRawPredict(
       params?: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     streamRawPredict(
       params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33801,11 +33802,11 @@ export namespace aiplatform_v1 {
     undeployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Undeploymodel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undeployModel(
       params?: Params$Resource$Projects$Locations$Endpoints$Undeploymodel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     undeployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Undeploymodel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -33897,11 +33898,11 @@ export namespace aiplatform_v1 {
     update(
       params: Params$Resource$Projects$Locations$Endpoints$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Endpoints$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     update(
       params: Params$Resource$Projects$Locations$Endpoints$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34274,11 +34275,11 @@ export namespace aiplatform_v1 {
     completions(
       params: Params$Resource$Projects$Locations$Endpoints$Chat$Completions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completions(
       params?: Params$Resource$Projects$Locations$Endpoints$Chat$Completions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     completions(
       params: Params$Resource$Projects$Locations$Endpoints$Chat$Completions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34386,11 +34387,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Endpoints$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34475,11 +34476,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Endpoints$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34564,11 +34565,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Endpoints$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34657,11 +34658,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Endpoints$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34755,11 +34756,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Endpoints$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -34914,11 +34915,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featuregroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35009,11 +35010,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featuregroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35101,11 +35102,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featuregroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FeatureGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FeatureGroup>;
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35195,11 +35196,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35289,11 +35290,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featuregroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featuregroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeatureGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeatureGroupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featuregroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35386,11 +35387,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featuregroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35478,11 +35479,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35572,11 +35573,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35790,11 +35791,11 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35886,11 +35887,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -35982,11 +35983,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36075,11 +36076,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Feature>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Feature>;
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36170,11 +36171,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeaturesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeaturesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36268,11 +36269,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36458,11 +36459,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36547,11 +36548,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36640,11 +36641,11 @@ export namespace aiplatform_v1 {
     listWait(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Listwait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listWait(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Listwait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     listWait(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Listwait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36735,11 +36736,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36880,11 +36881,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featuregroups$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -36969,11 +36970,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featuregroups$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37062,11 +37063,11 @@ export namespace aiplatform_v1 {
     listWait(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Listwait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listWait(
       params?: Params$Resource$Projects$Locations$Featuregroups$Operations$Listwait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     listWait(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Listwait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37157,11 +37158,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featuregroups$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37312,11 +37313,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37408,11 +37409,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37501,11 +37502,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FeatureOnlineStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FeatureOnlineStore>;
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37596,11 +37597,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37690,11 +37691,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeatureOnlineStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeatureOnlineStoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37788,11 +37789,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37881,11 +37882,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -37975,11 +37976,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38198,11 +38199,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38294,11 +38295,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38387,11 +38388,11 @@ export namespace aiplatform_v1 {
     fetchFeatureValues(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Fetchfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchFeatureValues(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Fetchfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FetchFeatureValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FetchFeatureValuesResponse>;
     fetchFeatureValues(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Fetchfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38485,11 +38486,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FeatureView>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FeatureView>;
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38580,11 +38581,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38674,11 +38675,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeatureViewsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeatureViewsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38772,11 +38773,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38865,11 +38866,11 @@ export namespace aiplatform_v1 {
     searchNearestEntities(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchNearestEntities(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>;
     searchNearestEntities(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -38963,11 +38964,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39057,11 +39058,11 @@ export namespace aiplatform_v1 {
     sync(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Sync,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     sync(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Sync,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SyncFeatureViewResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SyncFeatureViewResponse>;
     sync(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Sync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39155,11 +39156,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39404,11 +39405,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FeatureViewSync>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FeatureViewSync>;
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39499,11 +39500,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeatureViewSyncsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeatureViewSyncsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Featureviewsyncs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39635,11 +39636,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39724,11 +39725,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39817,11 +39818,11 @@ export namespace aiplatform_v1 {
     listWait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Listwait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listWait(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Listwait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     listWait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Listwait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -39912,11 +39913,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40057,11 +40058,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40146,11 +40147,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40239,11 +40240,11 @@ export namespace aiplatform_v1 {
     listWait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Listwait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listWait(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Listwait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     listWait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Listwait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40334,11 +40335,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40485,11 +40486,11 @@ export namespace aiplatform_v1 {
     batchReadFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Batchreadfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchReadFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Batchreadfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchReadFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Batchreadfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40580,11 +40581,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featurestores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40675,11 +40676,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40767,11 +40768,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Featurestore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Featurestore>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40861,11 +40862,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Featurestores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -40955,11 +40956,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeaturestoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeaturestoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41052,11 +41053,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featurestores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41144,11 +41145,11 @@ export namespace aiplatform_v1 {
     searchFeatures(
       params: Params$Resource$Projects$Locations$Featurestores$Searchfeatures,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchFeatures(
       params?: Params$Resource$Projects$Locations$Featurestores$Searchfeatures,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchFeaturesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SearchFeaturesResponse>;
     searchFeatures(
       params: Params$Resource$Projects$Locations$Featurestores$Searchfeatures,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41241,11 +41242,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Featurestores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41335,11 +41336,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featurestores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Featurestores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featurestores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41593,11 +41594,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41689,11 +41690,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41782,11 +41783,11 @@ export namespace aiplatform_v1 {
     deleteFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Deletefeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Deletefeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     deleteFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Deletefeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41878,11 +41879,11 @@ export namespace aiplatform_v1 {
     exportFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Exportfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Exportfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     exportFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Exportfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -41974,11 +41975,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1EntityType>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EntityType>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42069,11 +42070,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42163,11 +42164,11 @@ export namespace aiplatform_v1 {
     importFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Importfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Importfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     importFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Importfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42259,11 +42260,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListEntityTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListEntityTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42357,11 +42358,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1EntityType>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EntityType>;
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42452,11 +42453,11 @@ export namespace aiplatform_v1 {
     readFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Readfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     readFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Readfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadFeatureValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadFeatureValuesResponse>;
     readFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Readfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42550,11 +42551,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42644,11 +42645,11 @@ export namespace aiplatform_v1 {
     streamingReadFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Streamingreadfeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamingReadFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Streamingreadfeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadFeatureValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadFeatureValuesResponse>;
     streamingReadFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Streamingreadfeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42741,11 +42742,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -42839,11 +42840,11 @@ export namespace aiplatform_v1 {
     writeFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Writefeaturevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     writeFeatureValues(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Writefeaturevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1WriteFeatureValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1WriteFeatureValuesResponse>;
     writeFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Writefeaturevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43133,11 +43134,11 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43229,11 +43230,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43325,11 +43326,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43418,11 +43419,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Feature>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Feature>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43513,11 +43514,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListFeaturesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListFeaturesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43611,11 +43612,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Feature>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Feature>;
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43803,11 +43804,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43892,11 +43893,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -43981,11 +43982,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44074,11 +44075,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44172,11 +44173,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44324,11 +44325,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44413,11 +44414,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44502,11 +44503,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44595,11 +44596,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44693,11 +44694,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44845,11 +44846,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Featurestores$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -44934,11 +44935,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Featurestores$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45023,11 +45024,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Featurestores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45116,11 +45117,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Featurestores$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45214,11 +45215,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Featurestores$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45371,11 +45372,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45460,11 +45461,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1HyperparameterTuningJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1HyperparameterTuningJob>;
     create(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45558,11 +45559,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45651,11 +45652,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1HyperparameterTuningJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1HyperparameterTuningJob>;
     get(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45746,11 +45747,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListHyperparameterTuningJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListHyperparameterTuningJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -45913,11 +45914,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46002,11 +46003,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46091,11 +46092,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46184,11 +46185,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46282,11 +46283,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46437,11 +46438,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Indexendpoints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Indexendpoints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46532,11 +46533,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexendpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Indexendpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46624,11 +46625,11 @@ export namespace aiplatform_v1 {
     deployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Deployindex,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deployIndex(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Deployindex,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     deployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Deployindex,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46720,11 +46721,11 @@ export namespace aiplatform_v1 {
     findNeighbors(
       params: Params$Resource$Projects$Locations$Indexendpoints$Findneighbors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     findNeighbors(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Findneighbors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1FindNeighborsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1FindNeighborsResponse>;
     findNeighbors(
       params: Params$Resource$Projects$Locations$Indexendpoints$Findneighbors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46818,11 +46819,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexendpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1IndexEndpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1IndexEndpoint>;
     get(
       params: Params$Resource$Projects$Locations$Indexendpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -46912,11 +46913,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Indexendpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Indexendpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListIndexEndpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListIndexEndpointsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Indexendpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47009,11 +47010,11 @@ export namespace aiplatform_v1 {
     mutateDeployedIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Mutatedeployedindex,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     mutateDeployedIndex(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Mutatedeployedindex,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     mutateDeployedIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Mutatedeployedindex,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47105,11 +47106,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Indexendpoints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1IndexEndpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1IndexEndpoint>;
     patch(
       params: Params$Resource$Projects$Locations$Indexendpoints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47199,11 +47200,11 @@ export namespace aiplatform_v1 {
     readIndexDatapoints(
       params: Params$Resource$Projects$Locations$Indexendpoints$Readindexdatapoints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     readIndexDatapoints(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Readindexdatapoints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadIndexDatapointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadIndexDatapointsResponse>;
     readIndexDatapoints(
       params: Params$Resource$Projects$Locations$Indexendpoints$Readindexdatapoints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47297,11 +47298,11 @@ export namespace aiplatform_v1 {
     undeployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Undeployindex,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undeployIndex(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Undeployindex,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     undeployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Undeployindex,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47526,11 +47527,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47615,11 +47616,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47704,11 +47705,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47797,11 +47798,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -47895,11 +47896,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Indexendpoints$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48051,11 +48052,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Indexes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Indexes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Indexes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48146,11 +48147,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Indexes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Indexes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48238,11 +48239,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Indexes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Index>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Index>;
     get(
       params: Params$Resource$Projects$Locations$Indexes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48332,11 +48333,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Indexes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Indexes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListIndexesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListIndexesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Indexes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48429,11 +48430,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Indexes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Indexes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Indexes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48521,11 +48522,11 @@ export namespace aiplatform_v1 {
     removeDatapoints(
       params: Params$Resource$Projects$Locations$Indexes$Removedatapoints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeDatapoints(
       params?: Params$Resource$Projects$Locations$Indexes$Removedatapoints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1RemoveDatapointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RemoveDatapointsResponse>;
     removeDatapoints(
       params: Params$Resource$Projects$Locations$Indexes$Removedatapoints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48619,11 +48620,11 @@ export namespace aiplatform_v1 {
     upsertDatapoints(
       params: Params$Resource$Projects$Locations$Indexes$Upsertdatapoints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upsertDatapoints(
       params?: Params$Resource$Projects$Locations$Indexes$Upsertdatapoints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1UpsertDatapointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1UpsertDatapointsResponse>;
     upsertDatapoints(
       params: Params$Resource$Projects$Locations$Indexes$Upsertdatapoints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48814,11 +48815,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Indexes$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48903,11 +48904,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Indexes$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -48992,11 +48993,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Indexes$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49085,11 +49086,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Indexes$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Indexes$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Indexes$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49183,11 +49184,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Indexes$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49354,11 +49355,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatastores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49449,11 +49450,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49541,11 +49542,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1MetadataStore>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1MetadataStore>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49635,11 +49636,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListMetadataStoresResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMetadataStoresResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49794,11 +49795,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49892,11 +49893,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -49985,11 +49986,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50080,11 +50081,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50178,11 +50179,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Artifact>;
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50273,11 +50274,11 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50369,11 +50370,11 @@ export namespace aiplatform_v1 {
     queryArtifactLineageSubgraph(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Queryartifactlineagesubgraph,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryArtifactLineageSubgraph(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Queryartifactlineagesubgraph,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
     queryArtifactLineageSubgraph(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Queryartifactlineagesubgraph,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50578,11 +50579,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50667,11 +50668,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50756,11 +50757,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50849,11 +50850,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -50947,11 +50948,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51104,11 +51105,11 @@ export namespace aiplatform_v1 {
     addContextArtifactsAndExecutions(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextartifactsandexecutions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addContextArtifactsAndExecutions(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextartifactsandexecutions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1AddContextArtifactsAndExecutionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1AddContextArtifactsAndExecutionsResponse>;
     addContextArtifactsAndExecutions(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextartifactsandexecutions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51201,11 +51202,11 @@ export namespace aiplatform_v1 {
     addContextChildren(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextchildren,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addContextChildren(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextchildren,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1AddContextChildrenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1AddContextChildrenResponse>;
     addContextChildren(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Addcontextchildren,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51299,11 +51300,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Context>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Context>;
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51397,11 +51398,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51490,11 +51491,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Context>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Context>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51585,11 +51586,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListContextsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListContextsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51683,11 +51684,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Context>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Context>;
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51778,11 +51779,11 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51874,11 +51875,11 @@ export namespace aiplatform_v1 {
     queryContextLineageSubgraph(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Querycontextlineagesubgraph,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryContextLineageSubgraph(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Querycontextlineagesubgraph,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
     queryContextLineageSubgraph(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Querycontextlineagesubgraph,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -51971,11 +51972,11 @@ export namespace aiplatform_v1 {
     removeContextChildren(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Removecontextchildren,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeContextChildren(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Removecontextchildren,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1RemoveContextChildrenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RemoveContextChildrenResponse>;
     removeContextChildren(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Removecontextchildren,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52213,11 +52214,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52302,11 +52303,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52391,11 +52392,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52484,11 +52485,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52582,11 +52583,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52739,11 +52740,11 @@ export namespace aiplatform_v1 {
     addExecutionEvents(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Addexecutionevents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addExecutionEvents(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Addexecutionevents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1AddExecutionEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1AddExecutionEventsResponse>;
     addExecutionEvents(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Addexecutionevents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52837,11 +52838,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Execution>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Execution>;
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -52935,11 +52936,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53028,11 +53029,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Execution>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Execution>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53123,11 +53124,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListExecutionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListExecutionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53221,11 +53222,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Execution>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Execution>;
     patch(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53316,11 +53317,11 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53412,11 +53413,11 @@ export namespace aiplatform_v1 {
     queryExecutionInputsAndOutputs(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Queryexecutioninputsandoutputs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryExecutionInputsAndOutputs(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Queryexecutioninputsandoutputs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1LineageSubgraph>;
     queryExecutionInputsAndOutputs(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Queryexecutioninputsandoutputs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53625,11 +53626,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53714,11 +53715,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53803,11 +53804,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53896,11 +53897,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -53994,11 +53995,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54146,11 +54147,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1MetadataSchema>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1MetadataSchema>;
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54244,11 +54245,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1MetadataSchema>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1MetadataSchema>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54339,11 +54340,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListMetadataSchemasResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMetadataSchemasResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Metadataschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54487,11 +54488,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Metadatastores$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54576,11 +54577,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Metadatastores$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54665,11 +54666,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatastores$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54758,11 +54759,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatastores$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -54856,11 +54857,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Metadatastores$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55013,11 +55014,11 @@ export namespace aiplatform_v1 {
     batchMigrate(
       params: Params$Resource$Projects$Locations$Migratableresources$Batchmigrate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchMigrate(
       params?: Params$Resource$Projects$Locations$Migratableresources$Batchmigrate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchMigrate(
       params: Params$Resource$Projects$Locations$Migratableresources$Batchmigrate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55108,11 +55109,11 @@ export namespace aiplatform_v1 {
     search(
       params: Params$Resource$Projects$Locations$Migratableresources$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Migratableresources$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchMigratableResourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SearchMigratableResourcesResponse>;
     search(
       params: Params$Resource$Projects$Locations$Migratableresources$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55238,11 +55239,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Migratableresources$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55327,11 +55328,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Migratableresources$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55416,11 +55417,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Migratableresources$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55509,11 +55510,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Migratableresources$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55607,11 +55608,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Migratableresources$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55764,11 +55765,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ModelDeploymentMonitoringJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ModelDeploymentMonitoringJob>;
     create(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55861,11 +55862,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -55954,11 +55955,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ModelDeploymentMonitoringJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ModelDeploymentMonitoringJob>;
     get(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56049,11 +56050,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelDeploymentMonitoringJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelDeploymentMonitoringJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56146,11 +56147,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56239,11 +56240,11 @@ export namespace aiplatform_v1 {
     pause(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     pause(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56328,11 +56329,11 @@ export namespace aiplatform_v1 {
     resume(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     resume(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56417,11 +56418,11 @@ export namespace aiplatform_v1 {
     searchModelDeploymentMonitoringStatsAnomalies(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Searchmodeldeploymentmonitoringstatsanomalies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchModelDeploymentMonitoringStatsAnomalies(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Searchmodeldeploymentmonitoringstatsanomalies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchModelDeploymentMonitoringStatsAnomaliesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SearchModelDeploymentMonitoringStatsAnomaliesResponse>;
     searchModelDeploymentMonitoringStatsAnomalies(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Searchmodeldeploymentmonitoringstatsanomalies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56624,11 +56625,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56713,11 +56714,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56802,11 +56803,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56895,11 +56896,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -56993,11 +56994,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57153,11 +57154,11 @@ export namespace aiplatform_v1 {
     copy(
       params: Params$Resource$Projects$Locations$Models$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     copy(
       params?: Params$Resource$Projects$Locations$Models$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     copy(
       params: Params$Resource$Projects$Locations$Models$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57248,11 +57249,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Models$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57340,11 +57341,11 @@ export namespace aiplatform_v1 {
     deleteVersion(
       params: Params$Resource$Projects$Locations$Models$Deleteversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteVersion(
       params?: Params$Resource$Projects$Locations$Models$Deleteversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     deleteVersion(
       params: Params$Resource$Projects$Locations$Models$Deleteversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57435,11 +57436,11 @@ export namespace aiplatform_v1 {
     export(
       params: Params$Resource$Projects$Locations$Models$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Models$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     export(
       params: Params$Resource$Projects$Locations$Models$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57527,11 +57528,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Model>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Model>;
     get(
       params: Params$Resource$Projects$Locations$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57621,11 +57622,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Models$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Models$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Models$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57714,11 +57715,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Models$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57811,11 +57812,11 @@ export namespace aiplatform_v1 {
     listCheckpoints(
       params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listCheckpoints(
       params?: Params$Resource$Projects$Locations$Models$Listcheckpoints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelVersionCheckpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelVersionCheckpointsResponse>;
     listCheckpoints(
       params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -57909,11 +57910,11 @@ export namespace aiplatform_v1 {
     listVersions(
       params: Params$Resource$Projects$Locations$Models$Listversions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listVersions(
       params?: Params$Resource$Projects$Locations$Models$Listversions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelVersionsResponse>;
     listVersions(
       params: Params$Resource$Projects$Locations$Models$Listversions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58006,11 +58007,11 @@ export namespace aiplatform_v1 {
     mergeVersionAliases(
       params: Params$Resource$Projects$Locations$Models$Mergeversionaliases,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     mergeVersionAliases(
       params?: Params$Resource$Projects$Locations$Models$Mergeversionaliases,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Model>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Model>;
     mergeVersionAliases(
       params: Params$Resource$Projects$Locations$Models$Mergeversionaliases,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58104,11 +58105,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Models$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Models$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Model>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Model>;
     patch(
       params: Params$Resource$Projects$Locations$Models$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58198,11 +58199,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Models$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Models$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Models$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58291,11 +58292,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Models$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Models$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Models$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58389,11 +58390,11 @@ export namespace aiplatform_v1 {
     updateExplanationDataset(
       params: Params$Resource$Projects$Locations$Models$Updateexplanationdataset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateExplanationDataset(
       params?: Params$Resource$Projects$Locations$Models$Updateexplanationdataset,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     updateExplanationDataset(
       params: Params$Resource$Projects$Locations$Models$Updateexplanationdataset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58485,11 +58486,11 @@ export namespace aiplatform_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Models$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Models$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     upload(
       params: Params$Resource$Projects$Locations$Models$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58797,11 +58798,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ModelEvaluation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ModelEvaluation>;
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58892,11 +58893,11 @@ export namespace aiplatform_v1 {
     import(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ModelEvaluation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ModelEvaluation>;
     import(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -58990,11 +58991,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelEvaluationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelEvaluationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59138,11 +59139,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59227,11 +59228,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59316,11 +59317,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59409,11 +59410,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59507,11 +59508,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59659,11 +59660,11 @@ export namespace aiplatform_v1 {
     batchImport(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Batchimport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchImport(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Batchimport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchImportEvaluatedAnnotationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchImportEvaluatedAnnotationsResponse>;
     batchImport(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Batchimport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59757,11 +59758,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ModelEvaluationSlice>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ModelEvaluationSlice>;
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -59852,11 +59853,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$Evaluations$Slices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListModelEvaluationSlicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListModelEvaluationSlicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Slices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60000,11 +60001,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Models$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Models$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Models$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60089,11 +60090,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Models$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Models$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Models$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60178,11 +60179,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Models$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60270,11 +60271,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Models$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60368,11 +60369,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Models$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Models$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Models$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60523,11 +60524,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Nasjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Nasjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Nasjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60611,11 +60612,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Nasjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Nasjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NasJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NasJob>;
     create(
       params: Params$Resource$Projects$Locations$Nasjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60708,11 +60709,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Nasjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Nasjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Nasjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60800,11 +60801,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Nasjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Nasjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NasJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NasJob>;
     get(
       params: Params$Resource$Projects$Locations$Nasjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -60894,11 +60895,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Nasjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Nasjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNasJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListNasJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Nasjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61060,11 +61061,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NasTrialDetail>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NasTrialDetail>;
     get(
       params: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61155,11 +61156,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNasTrialDetailsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListNasTrialDetailsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Nasjobs$Nastrialdetails$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61288,11 +61289,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61384,11 +61385,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61477,11 +61478,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookExecutionJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NotebookExecutionJob>;
     get(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61572,11 +61573,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookExecutionJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListNotebookExecutionJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61739,11 +61740,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61828,11 +61829,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -61917,11 +61918,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62010,11 +62011,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62108,11 +62109,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62265,11 +62266,11 @@ export namespace aiplatform_v1 {
     assign(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     assign(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     assign(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62361,11 +62362,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62454,11 +62455,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntime>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NotebookRuntime>;
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62548,11 +62549,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62645,11 +62646,11 @@ export namespace aiplatform_v1 {
     start(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     start(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62738,11 +62739,11 @@ export namespace aiplatform_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     stop(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -62830,11 +62831,11 @@ export namespace aiplatform_v1 {
     upgrade(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Upgrade,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upgrade(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Upgrade,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     upgrade(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Upgrade,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63023,11 +63024,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63112,11 +63113,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63201,11 +63202,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63294,11 +63295,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63392,11 +63393,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63549,11 +63550,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63645,11 +63646,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63738,11 +63739,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63833,11 +63834,11 @@ export namespace aiplatform_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -63927,11 +63928,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64025,11 +64026,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
     patch(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64120,11 +64121,11 @@ export namespace aiplatform_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64214,11 +64215,11 @@ export namespace aiplatform_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64427,11 +64428,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64516,11 +64517,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64605,11 +64606,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64698,11 +64699,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64796,11 +64797,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -64948,11 +64949,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65036,11 +65037,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65124,11 +65125,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65216,11 +65217,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65313,11 +65314,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65469,11 +65470,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Persistentresources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Persistentresources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Persistentresources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65565,11 +65566,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Persistentresources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Persistentresources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Persistentresources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65658,11 +65659,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Persistentresources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Persistentresources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PersistentResource>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PersistentResource>;
     get(
       params: Params$Resource$Projects$Locations$Persistentresources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65753,11 +65754,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Persistentresources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Persistentresources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Persistentresources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65851,11 +65852,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Persistentresources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Persistentresources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Persistentresources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -65944,11 +65945,11 @@ export namespace aiplatform_v1 {
     reboot(
       params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reboot(
       params?: Params$Resource$Projects$Locations$Persistentresources$Reboot,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     reboot(
       params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66118,11 +66119,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66207,11 +66208,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66296,11 +66297,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66389,11 +66390,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66487,11 +66488,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66643,11 +66644,11 @@ export namespace aiplatform_v1 {
     batchCancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCancel(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchCancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66739,11 +66740,11 @@ export namespace aiplatform_v1 {
     batchDelete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     batchDelete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66835,11 +66836,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -66923,11 +66924,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PipelineJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PipelineJob>;
     create(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67020,11 +67021,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67112,11 +67113,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PipelineJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PipelineJob>;
     get(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67206,11 +67207,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelinejobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListPipelineJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListPipelineJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Pipelinejobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67404,11 +67405,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67493,11 +67494,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67582,11 +67583,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67675,11 +67676,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67773,11 +67774,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -67936,11 +67937,11 @@ export namespace aiplatform_v1 {
     computeTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Computetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     computeTokens(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Computetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
     computeTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Computetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68034,11 +68035,11 @@ export namespace aiplatform_v1 {
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     countTokens(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68132,11 +68133,11 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchPredictOperation(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68228,11 +68229,11 @@ export namespace aiplatform_v1 {
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68326,11 +68327,11 @@ export namespace aiplatform_v1 {
     predict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predict(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PredictResponse>;
     predict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68423,11 +68424,11 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predictLongRunning(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68519,11 +68520,11 @@ export namespace aiplatform_v1 {
     rawPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Rawpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rawPredict(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Rawpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     rawPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Rawpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68611,11 +68612,11 @@ export namespace aiplatform_v1 {
     serverStreamingPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Serverstreamingpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     serverStreamingPredict(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Serverstreamingpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1StreamingPredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1StreamingPredictResponse>;
     serverStreamingPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Serverstreamingpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68709,11 +68710,11 @@ export namespace aiplatform_v1 {
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamGenerateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -68807,11 +68808,11 @@ export namespace aiplatform_v1 {
     streamRawPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamRawPredict(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     streamRawPredict(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69037,11 +69038,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Ragcorpora$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Ragcorpora$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69132,11 +69133,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69224,11 +69225,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1RagCorpus>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RagCorpus>;
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69318,11 +69319,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ragcorpora$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListRagCorporaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListRagCorporaResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69415,11 +69416,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Ragcorpora$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Ragcorpora$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69572,11 +69573,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69661,11 +69662,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69750,11 +69751,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69843,11 +69844,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -69941,11 +69942,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70098,11 +70099,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70191,11 +70192,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1RagFile>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RagFile>;
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70286,11 +70287,11 @@ export namespace aiplatform_v1 {
     import(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70382,11 +70383,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListRagFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListRagFilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70529,11 +70530,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70618,11 +70619,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70707,11 +70708,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70800,11 +70801,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -70898,11 +70899,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71062,11 +71063,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71151,11 +71152,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71240,11 +71241,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71333,11 +71334,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71431,11 +71432,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71588,11 +71589,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71684,11 +71685,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71777,11 +71778,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReasoningEngine>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReasoningEngine>;
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71871,11 +71872,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reasoningengines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reasoningengines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListReasoningEnginesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListReasoningEnginesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reasoningengines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -71968,11 +71969,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Reasoningengines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Reasoningengines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72061,11 +72062,11 @@ export namespace aiplatform_v1 {
     query(
       params: Params$Resource$Projects$Locations$Reasoningengines$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     query(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1QueryReasoningEngineResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1QueryReasoningEngineResponse>;
     query(
       params: Params$Resource$Projects$Locations$Reasoningengines$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72156,11 +72157,11 @@ export namespace aiplatform_v1 {
     streamQuery(
       params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamQuery(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>;
     streamQuery(
       params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72345,11 +72346,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72434,11 +72435,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72523,11 +72524,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72616,11 +72617,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72714,11 +72715,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Reasoningengines$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72870,11 +72871,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Schedules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Schedules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Schedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Schedule>;
     create(
       params: Params$Resource$Projects$Locations$Schedules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -72967,11 +72968,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Schedules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Schedules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Schedules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73059,11 +73060,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Schedules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Schedules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Schedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Schedule>;
     get(
       params: Params$Resource$Projects$Locations$Schedules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73153,11 +73154,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Schedules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Schedules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListSchedulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListSchedulesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Schedules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73250,11 +73251,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Schedules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Schedules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Schedule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Schedule>;
     patch(
       params: Params$Resource$Projects$Locations$Schedules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73344,11 +73345,11 @@ export namespace aiplatform_v1 {
     pause(
       params: Params$Resource$Projects$Locations$Schedules$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Projects$Locations$Schedules$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     pause(
       params: Params$Resource$Projects$Locations$Schedules$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73432,11 +73433,11 @@ export namespace aiplatform_v1 {
     resume(
       params: Params$Resource$Projects$Locations$Schedules$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Locations$Schedules$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     resume(
       params: Params$Resource$Projects$Locations$Schedules$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73617,11 +73618,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Schedules$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73706,11 +73707,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Schedules$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73795,11 +73796,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Schedules$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73888,11 +73889,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Schedules$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Schedules$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Schedules$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -73986,11 +73987,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Schedules$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74143,11 +74144,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Specialistpools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Specialistpools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Specialistpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74239,11 +74240,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Specialistpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Specialistpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Specialistpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74332,11 +74333,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Specialistpools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Specialistpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SpecialistPool>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SpecialistPool>;
     get(
       params: Params$Resource$Projects$Locations$Specialistpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74426,11 +74427,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Specialistpools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Specialistpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListSpecialistPoolsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListSpecialistPoolsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Specialistpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74523,11 +74524,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Specialistpools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Specialistpools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Specialistpools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74688,11 +74689,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Specialistpools$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74777,11 +74778,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Specialistpools$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74866,11 +74867,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Specialistpools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -74959,11 +74960,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Specialistpools$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75057,11 +75058,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Specialistpools$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75217,11 +75218,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Studies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Studies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Study>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Study>;
     create(
       params: Params$Resource$Projects$Locations$Studies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75314,11 +75315,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Studies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75402,11 +75403,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Studies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Study>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Study>;
     get(
       params: Params$Resource$Projects$Locations$Studies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75496,11 +75497,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Studies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Studies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListStudiesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListStudiesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Studies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75593,11 +75594,11 @@ export namespace aiplatform_v1 {
     lookup(
       params: Params$Resource$Projects$Locations$Studies$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Projects$Locations$Studies$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Study>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Study>;
     lookup(
       params: Params$Resource$Projects$Locations$Studies$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75751,11 +75752,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Studies$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Studies$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Studies$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75840,11 +75841,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Studies$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -75929,11 +75930,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Studies$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Studies$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76022,11 +76023,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Studies$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Studies$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Studies$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76120,11 +76121,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Studies$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Studies$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Studies$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76275,11 +76276,11 @@ export namespace aiplatform_v1 {
     addTrialMeasurement(
       params: Params$Resource$Projects$Locations$Studies$Trials$Addtrialmeasurement,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addTrialMeasurement(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Addtrialmeasurement,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Trial>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Trial>;
     addTrialMeasurement(
       params: Params$Resource$Projects$Locations$Studies$Trials$Addtrialmeasurement,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76373,11 +76374,11 @@ export namespace aiplatform_v1 {
     checkTrialEarlyStoppingState(
       params: Params$Resource$Projects$Locations$Studies$Trials$Checktrialearlystoppingstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     checkTrialEarlyStoppingState(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Checktrialearlystoppingstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     checkTrialEarlyStoppingState(
       params: Params$Resource$Projects$Locations$Studies$Trials$Checktrialearlystoppingstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76468,11 +76469,11 @@ export namespace aiplatform_v1 {
     complete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     complete(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Trial>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Trial>;
     complete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76566,11 +76567,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Trial>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Trial>;
     create(
       params: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76663,11 +76664,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76751,11 +76752,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Trial>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Trial>;
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76845,11 +76846,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Studies$Trials$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Studies$Trials$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTrialsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTrialsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Studies$Trials$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -76942,11 +76943,11 @@ export namespace aiplatform_v1 {
     listOptimalTrials(
       params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listOptimalTrials(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListOptimalTrialsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListOptimalTrialsResponse>;
     listOptimalTrials(
       params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77040,11 +77041,11 @@ export namespace aiplatform_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Trial>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Trial>;
     stop(
       params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77134,11 +77135,11 @@ export namespace aiplatform_v1 {
     suggest(
       params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     suggest(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     suggest(
       params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77351,11 +77352,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77440,11 +77441,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77529,11 +77530,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77622,11 +77623,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77720,11 +77721,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77879,11 +77880,11 @@ export namespace aiplatform_v1 {
     batchRead(
       params: Params$Resource$Projects$Locations$Tensorboards$Batchread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchRead(
       params?: Params$Resource$Projects$Locations$Tensorboards$Batchread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchReadTensorboardTimeSeriesDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchReadTensorboardTimeSeriesDataResponse>;
     batchRead(
       params: Params$Resource$Projects$Locations$Tensorboards$Batchread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -77977,11 +77978,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Tensorboards$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78072,11 +78073,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78164,11 +78165,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Tensorboard>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Tensorboard>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78258,11 +78259,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTensorboardsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTensorboardsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78355,11 +78356,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Tensorboards$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78447,11 +78448,11 @@ export namespace aiplatform_v1 {
     readSize(
       params: Params$Resource$Projects$Locations$Tensorboards$Readsize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     readSize(
       params?: Params$Resource$Projects$Locations$Tensorboards$Readsize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadTensorboardSizeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadTensorboardSizeResponse>;
     readSize(
       params: Params$Resource$Projects$Locations$Tensorboards$Readsize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78544,11 +78545,11 @@ export namespace aiplatform_v1 {
     readUsage(
       params: Params$Resource$Projects$Locations$Tensorboards$Readusage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     readUsage(
       params?: Params$Resource$Projects$Locations$Tensorboards$Readusage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadTensorboardUsageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadTensorboardUsageResponse>;
     readUsage(
       params: Params$Resource$Projects$Locations$Tensorboards$Readusage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78753,11 +78754,11 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchCreateTensorboardTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchCreateTensorboardTimeSeriesResponse>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78851,11 +78852,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -78949,11 +78950,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79042,11 +79043,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79137,11 +79138,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTensorboardExperimentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTensorboardExperimentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79235,11 +79236,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardExperiment>;
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79330,11 +79331,11 @@ export namespace aiplatform_v1 {
     write(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1WriteTensorboardExperimentDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1WriteTensorboardExperimentDataResponse>;
     write(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79533,11 +79534,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79622,11 +79623,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79711,11 +79712,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79804,11 +79805,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -79902,11 +79903,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80064,11 +80065,11 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchCreateTensorboardRunsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1BatchCreateTensorboardRunsResponse>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80162,11 +80163,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardRun>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardRun>;
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80257,11 +80258,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80350,11 +80351,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardRun>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardRun>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80445,11 +80446,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTensorboardRunsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTensorboardRunsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80540,11 +80541,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardRun>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardRun>;
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80635,11 +80636,11 @@ export namespace aiplatform_v1 {
     write(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1WriteTensorboardRunDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1WriteTensorboardRunDataResponse>;
     write(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80838,11 +80839,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -80927,11 +80928,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81016,11 +81017,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81109,11 +81110,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81207,11 +81208,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81364,11 +81365,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81462,11 +81463,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81555,11 +81556,11 @@ export namespace aiplatform_v1 {
     exportTensorboardTimeSeries(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Exporttensorboardtimeseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportTensorboardTimeSeries(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Exporttensorboardtimeseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ExportTensorboardTimeSeriesDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ExportTensorboardTimeSeriesDataResponse>;
     exportTensorboardTimeSeries(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Exporttensorboardtimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81653,11 +81654,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81748,11 +81749,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTensorboardTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTensorboardTimeSeriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81846,11 +81847,11 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TensorboardTimeSeries>;
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -81941,11 +81942,11 @@ export namespace aiplatform_v1 {
     read(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Read,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     read(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Read,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadTensorboardTimeSeriesDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadTensorboardTimeSeriesDataResponse>;
     read(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Read,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82039,11 +82040,11 @@ export namespace aiplatform_v1 {
     readBlobData(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Readblobdata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     readBlobData(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Readblobdata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ReadTensorboardBlobDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ReadTensorboardBlobDataResponse>;
     readBlobData(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Readblobdata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82256,11 +82257,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82345,11 +82346,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82434,11 +82435,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82527,11 +82528,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82625,11 +82626,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82777,11 +82778,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tensorboards$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82866,11 +82867,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tensorboards$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -82955,11 +82956,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tensorboards$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83048,11 +83049,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tensorboards$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83146,11 +83147,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Tensorboards$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83303,11 +83304,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83392,11 +83393,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TrainingPipeline>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TrainingPipeline>;
     create(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83490,11 +83491,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83583,11 +83584,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TrainingPipeline>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TrainingPipeline>;
     get(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83677,11 +83678,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Trainingpipelines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTrainingPipelinesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTrainingPipelinesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Trainingpipelines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83844,11 +83845,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -83933,11 +83934,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84022,11 +84023,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84115,11 +84116,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84213,11 +84214,11 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     wait(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84369,11 +84370,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84457,11 +84458,11 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tuningjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TuningJob>;
     create(
       params: Params$Resource$Projects$Locations$Tuningjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84554,11 +84555,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tuningjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1TuningJob>;
     get(
       params: Params$Resource$Projects$Locations$Tuningjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84648,11 +84649,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tuningjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tuningjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tuningjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84745,11 +84746,11 @@ export namespace aiplatform_v1 {
     rebaseTunedModel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Rebasetunedmodel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rebaseTunedModel(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Rebasetunedmodel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     rebaseTunedModel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Rebasetunedmodel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84910,11 +84911,11 @@ export namespace aiplatform_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -84999,11 +85000,11 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85088,11 +85089,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85181,11 +85182,11 @@ export namespace aiplatform_v1 {
     list(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85336,11 +85337,11 @@ export namespace aiplatform_v1 {
     computeTokens(
       params: Params$Resource$Publishers$Models$Computetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     computeTokens(
       params?: Params$Resource$Publishers$Models$Computetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
     computeTokens(
       params: Params$Resource$Publishers$Models$Computetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85433,11 +85434,11 @@ export namespace aiplatform_v1 {
     countTokens(
       params: Params$Resource$Publishers$Models$Counttokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     countTokens(
       params?: Params$Resource$Publishers$Models$Counttokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
     countTokens(
       params: Params$Resource$Publishers$Models$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85530,11 +85531,11 @@ export namespace aiplatform_v1 {
     generateContent(
       params: Params$Resource$Publishers$Models$Generatecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateContent(
       params?: Params$Resource$Publishers$Models$Generatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     generateContent(
       params: Params$Resource$Publishers$Models$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85627,11 +85628,11 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Publishers$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Publishers$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PublisherModel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PublisherModel>;
     get(
       params: Params$Resource$Publishers$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85721,11 +85722,11 @@ export namespace aiplatform_v1 {
     predict(
       params: Params$Resource$Publishers$Models$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     predict(
       params?: Params$Resource$Publishers$Models$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PredictResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1PredictResponse>;
     predict(
       params: Params$Resource$Publishers$Models$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -85818,11 +85819,11 @@ export namespace aiplatform_v1 {
     streamGenerateContent(
       params: Params$Resource$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamGenerateContent(
       params?: Params$Resource$Publishers$Models$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
     streamGenerateContent(
       params: Params$Resource$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

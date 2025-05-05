@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -671,11 +672,11 @@ export namespace addressvalidation_v1 {
     provideValidationFeedback(
       params: Params$Resource$V1$Providevalidationfeedback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     provideValidationFeedback(
       params?: Params$Resource$V1$Providevalidationfeedback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponse>;
     provideValidationFeedback(
       params: Params$Resource$V1$Providevalidationfeedback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -769,11 +770,11 @@ export namespace addressvalidation_v1 {
     validateAddress(
       params: Params$Resource$V1$Validateaddress,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validateAddress(
       params?: Params$Resource$V1$Validateaddress,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsAddressvalidationV1ValidateAddressResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsAddressvalidationV1ValidateAddressResponse>;
     validateAddress(
       params: Params$Resource$V1$Validateaddress,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

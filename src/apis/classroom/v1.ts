@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1679,11 +1680,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Course>;
+    ): GaxiosResponseWithHTTP2<Schema$Course>;
     create(
       params: Params$Resource$Courses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1766,11 +1767,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1853,11 +1854,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Course>;
+    ): GaxiosResponseWithHTTP2<Schema$Course>;
     get(
       params: Params$Resource$Courses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1940,11 +1941,11 @@ export namespace classroom_v1 {
     getGradingPeriodSettings(
       params: Params$Resource$Courses$Getgradingperiodsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getGradingPeriodSettings(
       params?: Params$Resource$Courses$Getgradingperiodsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GradingPeriodSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>;
     getGradingPeriodSettings(
       params: Params$Resource$Courses$Getgradingperiodsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2034,11 +2035,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCoursesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCoursesResponse>;
     list(
       params: Params$Resource$Courses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2121,11 +2122,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Course>;
+    ): GaxiosResponseWithHTTP2<Schema$Course>;
     patch(
       params: Params$Resource$Courses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2208,11 +2209,11 @@ export namespace classroom_v1 {
     update(
       params: Params$Resource$Courses$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Courses$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Course>;
+    ): GaxiosResponseWithHTTP2<Schema$Course>;
     update(
       params: Params$Resource$Courses$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2295,11 +2296,11 @@ export namespace classroom_v1 {
     updateGradingPeriodSettings(
       params: Params$Resource$Courses$Updategradingperiodsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateGradingPeriodSettings(
       params?: Params$Resource$Courses$Updategradingperiodsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GradingPeriodSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>;
     updateGradingPeriodSettings(
       params: Params$Resource$Courses$Updategradingperiodsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2486,11 +2487,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Aliases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Aliases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseAlias>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseAlias>;
     create(
       params: Params$Resource$Courses$Aliases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2577,11 +2578,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Aliases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Aliases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Aliases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2668,11 +2669,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Aliases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Aliases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCourseAliasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCourseAliasesResponse>;
     list(
       params: Params$Resource$Courses$Aliases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2812,11 +2813,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Announcements$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Announcements$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Announcement>;
+    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
     create(
       params: Params$Resource$Courses$Announcements$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2903,11 +2904,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Announcements$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Announcements$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Announcements$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2993,11 +2994,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Announcements$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Announcements$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Announcement>;
+    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
     get(
       params: Params$Resource$Courses$Announcements$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3083,11 +3084,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Announcements$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAddOnContext(
       params?: Params$Resource$Courses$Announcements$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnContext>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
     getAddOnContext(
       params: Params$Resource$Courses$Announcements$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3174,11 +3175,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Announcements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Announcements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAnnouncementsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>;
     list(
       params: Params$Resource$Courses$Announcements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3269,11 +3270,11 @@ export namespace classroom_v1 {
     modifyAssignees(
       params: Params$Resource$Courses$Announcements$Modifyassignees,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifyAssignees(
       params?: Params$Resource$Courses$Announcements$Modifyassignees,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Announcement>;
+    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
     modifyAssignees(
       params: Params$Resource$Courses$Announcements$Modifyassignees,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3360,11 +3361,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Announcements$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Announcements$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Announcement>;
+    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
     patch(
       params: Params$Resource$Courses$Announcements$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3574,11 +3575,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     create(
       params: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3666,11 +3667,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3758,11 +3759,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     get(
       params: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3850,11 +3851,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Announcements$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Announcements$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
     list(
       params: Params$Resource$Courses$Announcements$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3948,11 +3949,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     patch(
       params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4170,11 +4171,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Coursework$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWork>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
     create(
       params: Params$Resource$Courses$Coursework$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4261,11 +4262,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Coursework$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Coursework$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4352,11 +4353,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Coursework$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWork>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
     get(
       params: Params$Resource$Courses$Coursework$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4443,11 +4444,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Coursework$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAddOnContext(
       params?: Params$Resource$Courses$Coursework$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnContext>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
     getAddOnContext(
       params: Params$Resource$Courses$Coursework$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4534,11 +4535,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Coursework$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCourseWorkResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCourseWorkResponse>;
     list(
       params: Params$Resource$Courses$Coursework$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4627,11 +4628,11 @@ export namespace classroom_v1 {
     modifyAssignees(
       params: Params$Resource$Courses$Coursework$Modifyassignees,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifyAssignees(
       params?: Params$Resource$Courses$Coursework$Modifyassignees,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWork>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
     modifyAssignees(
       params: Params$Resource$Courses$Coursework$Modifyassignees,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4717,11 +4718,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Coursework$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWork>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
     patch(
       params: Params$Resource$Courses$Coursework$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4808,11 +4809,11 @@ export namespace classroom_v1 {
     updateRubric(
       params: Params$Resource$Courses$Coursework$Updaterubric,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateRubric(
       params?: Params$Resource$Courses$Coursework$Updaterubric,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rubric>;
+    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
     updateRubric(
       params: Params$Resource$Courses$Coursework$Updaterubric,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5052,11 +5053,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     create(
       params: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5144,11 +5145,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5236,11 +5237,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5327,11 +5328,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Coursework$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
     list(
       params: Params$Resource$Courses$Coursework$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5424,11 +5425,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5637,11 +5638,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5735,11 +5736,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5896,11 +5897,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Rubrics$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Coursework$Rubrics$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rubric>;
+    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
     create(
       params: Params$Resource$Courses$Coursework$Rubrics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5987,11 +5988,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6078,11 +6079,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Rubrics$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Coursework$Rubrics$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rubric>;
+    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
     get(
       params: Params$Resource$Courses$Coursework$Rubrics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6169,11 +6170,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Rubrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Coursework$Rubrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRubricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRubricsResponse>;
     list(
       params: Params$Resource$Courses$Coursework$Rubrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6260,11 +6261,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rubric>;
+    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
     patch(
       params: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6448,11 +6449,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
     get(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6540,11 +6541,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListStudentSubmissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListStudentSubmissionsResponse>;
     list(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6638,11 +6639,11 @@ export namespace classroom_v1 {
     modifyAttachments(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifyAttachments(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
     modifyAttachments(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6732,11 +6733,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
     patch(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6824,11 +6825,11 @@ export namespace classroom_v1 {
     reclaim(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reclaim(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     reclaim(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6916,11 +6917,11 @@ export namespace classroom_v1 {
     return(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     return(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     return(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7008,11 +7009,11 @@ export namespace classroom_v1 {
     turnIn(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     turnIn(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     turnIn(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7261,11 +7262,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Courseworkmaterials$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7351,11 +7352,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Courseworkmaterials$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7441,11 +7442,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Courseworkmaterials$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7531,11 +7532,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAddOnContext(
       params?: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnContext>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
     getAddOnContext(
       params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7623,11 +7624,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Courseworkmaterials$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Courseworkmaterials$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCourseWorkMaterialResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCourseWorkMaterialResponse>;
     list(
       params: Params$Resource$Courses$Courseworkmaterials$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7719,11 +7720,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Courseworkmaterials$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7925,11 +7926,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8017,11 +8018,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8109,11 +8110,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8201,11 +8202,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
     list(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8299,11 +8300,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8516,11 +8517,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Posts$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAddOnContext(
       params?: Params$Resource$Courses$Posts$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnContext>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
     getAddOnContext(
       params: Params$Resource$Courses$Posts$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8642,11 +8643,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Posts$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Posts$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     create(
       params: Params$Resource$Courses$Posts$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8732,11 +8733,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8823,11 +8824,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Posts$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8914,11 +8915,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Posts$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Posts$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
     list(
       params: Params$Resource$Courses$Posts$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9010,11 +9011,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9222,11 +9223,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9320,11 +9321,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9481,11 +9482,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Students$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Students$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Student>;
+    ): GaxiosResponseWithHTTP2<Schema$Student>;
     create(
       params: Params$Resource$Courses$Students$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9572,11 +9573,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Students$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Students$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Students$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9663,11 +9664,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Students$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Students$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Student>;
+    ): GaxiosResponseWithHTTP2<Schema$Student>;
     get(
       params: Params$Resource$Courses$Students$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9754,11 +9755,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Students$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Students$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListStudentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListStudentsResponse>;
     list(
       params: Params$Resource$Courses$Students$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9908,11 +9909,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Teachers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Teachers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Teacher>;
+    ): GaxiosResponseWithHTTP2<Schema$Teacher>;
     create(
       params: Params$Resource$Courses$Teachers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9999,11 +10000,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Teachers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Teachers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Teachers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10090,11 +10091,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Teachers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Teachers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Teacher>;
+    ): GaxiosResponseWithHTTP2<Schema$Teacher>;
     get(
       params: Params$Resource$Courses$Teachers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10181,11 +10182,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Teachers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Teachers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTeachersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTeachersResponse>;
     list(
       params: Params$Resource$Courses$Teachers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10331,11 +10332,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Topics$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Courses$Topics$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Topic>;
+    ): GaxiosResponseWithHTTP2<Schema$Topic>;
     create(
       params: Params$Resource$Courses$Topics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10422,11 +10423,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Topics$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Courses$Topics$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Courses$Topics$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10513,11 +10514,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Topics$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Courses$Topics$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Topic>;
+    ): GaxiosResponseWithHTTP2<Schema$Topic>;
     get(
       params: Params$Resource$Courses$Topics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10604,11 +10605,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Topics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Courses$Topics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTopicResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTopicResponse>;
     list(
       params: Params$Resource$Courses$Topics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10695,11 +10696,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Topics$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Courses$Topics$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Topic>;
+    ): GaxiosResponseWithHTTP2<Schema$Topic>;
     patch(
       params: Params$Resource$Courses$Topics$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10863,11 +10864,11 @@ export namespace classroom_v1 {
     accept(
       params: Params$Resource$Invitations$Accept,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accept(
       params?: Params$Resource$Invitations$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     accept(
       params: Params$Resource$Invitations$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10954,11 +10955,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Invitations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Invitations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Invitation>;
+    ): GaxiosResponseWithHTTP2<Schema$Invitation>;
     create(
       params: Params$Resource$Invitations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11042,11 +11043,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Invitations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Invitations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Invitations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11133,11 +11134,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Invitations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Invitations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Invitation>;
+    ): GaxiosResponseWithHTTP2<Schema$Invitation>;
     get(
       params: Params$Resource$Invitations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11223,11 +11224,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Invitations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Invitations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInvitationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>;
     list(
       params: Params$Resource$Invitations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11365,11 +11366,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Registrations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Registrations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Registration>;
+    ): GaxiosResponseWithHTTP2<Schema$Registration>;
     create(
       params: Params$Resource$Registrations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11453,11 +11454,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Registrations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Registrations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Registrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11572,11 +11573,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Userprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$UserProfile>;
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11676,11 +11677,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuardianInvitation>;
+    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
     create(
       params: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11766,11 +11767,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuardianInvitation>;
+    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
     get(
       params: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11857,11 +11858,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Userprofiles$Guardianinvitations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Userprofiles$Guardianinvitations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGuardianInvitationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGuardianInvitationsResponse>;
     list(
       params: Params$Resource$Userprofiles$Guardianinvitations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11953,11 +11954,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuardianInvitation>;
+    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
     patch(
       params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12118,11 +12119,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Userprofiles$Guardians$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Userprofiles$Guardians$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Userprofiles$Guardians$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12208,11 +12209,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Guardians$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Userprofiles$Guardians$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Guardian>;
+    ): GaxiosResponseWithHTTP2<Schema$Guardian>;
     get(
       params: Params$Resource$Userprofiles$Guardians$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12298,11 +12299,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Userprofiles$Guardians$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Userprofiles$Guardians$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGuardiansResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGuardiansResponse>;
     list(
       params: Params$Resource$Userprofiles$Guardians$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

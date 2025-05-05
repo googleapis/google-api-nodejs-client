@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1723,11 +1724,11 @@ export namespace artifactregistry_v1 {
     getProjectSettings(
       params: Params$Resource$Projects$Getprojectsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getProjectSettings(
       params?: Params$Resource$Projects$Getprojectsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ProjectSettings>;
     getProjectSettings(
       params: Params$Resource$Projects$Getprojectsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1814,11 +1815,11 @@ export namespace artifactregistry_v1 {
     updateProjectSettings(
       params: Params$Resource$Projects$Updateprojectsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateProjectSettings(
       params?: Params$Resource$Projects$Updateprojectsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ProjectSettings>;
     updateProjectSettings(
       params: Params$Resource$Projects$Updateprojectsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1944,11 +1945,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2033,11 +2034,11 @@ export namespace artifactregistry_v1 {
     getVpcscConfig(
       params: Params$Resource$Projects$Locations$Getvpcscconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVpcscConfig(
       params?: Params$Resource$Projects$Locations$Getvpcscconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VPCSCConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$VPCSCConfig>;
     getVpcscConfig(
       params: Params$Resource$Projects$Locations$Getvpcscconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2122,11 +2123,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2216,11 +2217,11 @@ export namespace artifactregistry_v1 {
     updateVpcscConfig(
       params: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateVpcscConfig(
       params?: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VPCSCConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$VPCSCConfig>;
     updateVpcscConfig(
       params: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2366,11 +2367,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2524,11 +2525,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2616,11 +2617,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2705,11 +2706,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repository>;
+    ): GaxiosResponseWithHTTP2<Schema$Repository>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2794,11 +2795,11 @@ export namespace artifactregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2887,11 +2888,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRepositoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2981,11 +2982,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repository>;
+    ): GaxiosResponseWithHTTP2<Schema$Repository>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3070,11 +3071,11 @@ export namespace artifactregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3163,11 +3164,11 @@ export namespace artifactregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3372,11 +3373,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3465,11 +3466,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadAptArtifactMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadAptArtifactMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3614,11 +3615,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3707,11 +3708,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3797,11 +3798,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): GaxiosResponseWithHTTP2<Schema$Attachment>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3887,11 +3888,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAttachmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4039,11 +4040,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DockerImage>;
+    ): GaxiosResponseWithHTTP2<Schema$DockerImage>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4129,11 +4130,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDockerImagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDockerImagesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4258,11 +4259,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4348,11 +4349,11 @@ export namespace artifactregistry_v1 {
     download(
       params: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadFileResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DownloadFileResponse>;
     download(
       params: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4443,11 +4444,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4539,11 +4540,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Files$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4632,11 +4633,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4728,11 +4729,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadFileMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadFileMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4924,11 +4925,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGenericArtifactMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadGenericArtifactMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5061,11 +5062,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGoModuleMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadGoModuleMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5197,11 +5198,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5290,11 +5291,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadGoogetArtifactMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5439,11 +5440,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadKfpArtifactMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadKfpArtifactMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5576,11 +5577,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MavenArtifact>;
+    ): GaxiosResponseWithHTTP2<Schema$MavenArtifact>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5666,11 +5667,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMavenArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMavenArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5793,11 +5794,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NpmPackage>;
+    ): GaxiosResponseWithHTTP2<Schema$NpmPackage>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5883,11 +5884,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNpmPackagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNpmPackagesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6017,11 +6018,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6107,11 +6108,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Package>;
+    ): GaxiosResponseWithHTTP2<Schema$Package>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6197,11 +6198,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPackagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6292,11 +6293,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Package>;
+    ): GaxiosResponseWithHTTP2<Schema$Package>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6443,11 +6444,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6533,11 +6534,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6623,11 +6624,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6713,11 +6714,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTagsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTagsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6803,11 +6804,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6966,11 +6967,11 @@ export namespace artifactregistry_v1 {
     batchDelete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchDelete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7059,11 +7060,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7149,11 +7150,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): GaxiosResponseWithHTTP2<Schema$Version>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7239,11 +7240,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7334,11 +7335,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): GaxiosResponseWithHTTP2<Schema$Version>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7509,11 +7510,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PythonPackage>;
+    ): GaxiosResponseWithHTTP2<Schema$PythonPackage>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7599,11 +7600,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPythonPackagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPythonPackagesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7726,11 +7727,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7825,11 +7826,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7915,11 +7916,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8011,11 +8012,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRulesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8104,11 +8105,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8269,11 +8270,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8362,11 +8363,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadYumArtifactMediaResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadYumArtifactMediaResponse>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

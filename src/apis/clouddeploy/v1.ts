@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3357,11 +3358,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3445,11 +3446,11 @@ export namespace clouddeploy_v1 {
     getConfig(
       params: Params$Resource$Projects$Locations$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Locations$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Config>;
+    ): GaxiosResponseWithHTTP2<Schema$Config>;
     getConfig(
       params: Params$Resource$Projects$Locations$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3533,11 +3534,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3671,11 +3672,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3763,11 +3764,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3852,11 +3853,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomTargetType>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomTargetType>;
     get(
       params: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3940,11 +3941,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4032,11 +4033,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customtargettypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Customtargettypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomTargetTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCustomTargetTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Customtargettypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4130,11 +4131,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4219,11 +4220,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4462,11 +4463,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4554,11 +4555,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4643,11 +4644,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeliveryPipeline>;
+    ): GaxiosResponseWithHTTP2<Schema$DeliveryPipeline>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4731,11 +4732,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4823,11 +4824,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeliveryPipelinesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDeliveryPipelinesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4921,11 +4922,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5010,11 +5011,11 @@ export namespace clouddeploy_v1 {
     rollbackTarget(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollbackTarget(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RollbackTargetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RollbackTargetResponse>;
     rollbackTarget(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5106,11 +5107,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5198,11 +5199,11 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5458,11 +5459,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CancelAutomationRunResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CancelAutomationRunResponse>;
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5551,11 +5552,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutomationRun>;
+    ): GaxiosResponseWithHTTP2<Schema$AutomationRun>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5640,11 +5641,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutomationRunsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutomationRunsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5786,11 +5787,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5878,11 +5879,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5967,11 +5968,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Automation>;
+    ): GaxiosResponseWithHTTP2<Schema$Automation>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6056,11 +6057,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutomationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutomationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6150,11 +6151,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6357,11 +6358,11 @@ export namespace clouddeploy_v1 {
     abandon(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     abandon(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AbandonReleaseResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AbandonReleaseResponse>;
     abandon(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6453,11 +6454,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6545,11 +6546,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Release>;
+    ): GaxiosResponseWithHTTP2<Schema$Release>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6634,11 +6635,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6811,11 +6812,11 @@ export namespace clouddeploy_v1 {
     advance(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     advance(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvanceRolloutResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AdvanceRolloutResponse>;
     advance(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6907,11 +6908,11 @@ export namespace clouddeploy_v1 {
     approve(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     approve(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApproveRolloutResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApproveRolloutResponse>;
     approve(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7003,11 +7004,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CancelRolloutResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CancelRolloutResponse>;
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7094,11 +7095,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7186,11 +7187,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rollout>;
+    ): GaxiosResponseWithHTTP2<Schema$Rollout>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7275,11 +7276,11 @@ export namespace clouddeploy_v1 {
     ignoreJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     ignoreJob(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IgnoreJobResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IgnoreJobResponse>;
     ignoreJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7367,11 +7368,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRolloutsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7461,11 +7462,11 @@ export namespace clouddeploy_v1 {
     retryJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retryJob(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetryJobResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetryJobResponse>;
     retryJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7683,11 +7684,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JobRun>;
+    ): GaxiosResponseWithHTTP2<Schema$JobRun>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7772,11 +7773,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListJobRunsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListJobRunsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7864,11 +7865,11 @@ export namespace clouddeploy_v1 {
     terminate(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     terminate(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TerminateJobRunResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TerminateJobRunResponse>;
     terminate(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8010,11 +8011,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8101,11 +8102,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8189,11 +8190,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeployPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$DeployPolicy>;
     get(
       params: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8277,11 +8278,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8369,11 +8370,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deploypolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Deploypolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeployPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDeployPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Deploypolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8464,11 +8465,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8552,11 +8553,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8780,11 +8781,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8868,11 +8869,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8956,11 +8957,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9044,11 +9045,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9190,11 +9191,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Targets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Targets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Targets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9281,11 +9282,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Targets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Targets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Targets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9369,11 +9370,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Targets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Targets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Target>;
+    ): GaxiosResponseWithHTTP2<Schema$Target>;
     get(
       params: Params$Resource$Projects$Locations$Targets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9457,11 +9458,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9548,11 +9549,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Targets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Targets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTargetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTargetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Targets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9639,11 +9640,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Targets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Targets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Targets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9727,11 +9728,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9818,11 +9819,11 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

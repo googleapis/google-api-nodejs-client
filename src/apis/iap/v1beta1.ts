@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -242,11 +243,11 @@ export namespace iap_v1beta1 {
     getIamPolicy(
       params: Params$Resource$V1beta1$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$V1beta1$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$V1beta1$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -333,11 +334,11 @@ export namespace iap_v1beta1 {
     setIamPolicy(
       params: Params$Resource$V1beta1$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$V1beta1$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$V1beta1$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -424,11 +425,11 @@ export namespace iap_v1beta1 {
     testIamPermissions(
       params: Params$Resource$V1beta1$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$V1beta1$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$V1beta1$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

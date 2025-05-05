@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -942,11 +943,11 @@ export namespace cloudresourcemanager_v1 {
     clearOrgPolicy(
       params: Params$Resource$Folders$Clearorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clearOrgPolicy(
       params?: Params$Resource$Folders$Clearorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     clearOrgPolicy(
       params: Params$Resource$Folders$Clearorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1034,11 +1035,11 @@ export namespace cloudresourcemanager_v1 {
     getEffectiveOrgPolicy(
       params: Params$Resource$Folders$Geteffectiveorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectiveOrgPolicy(
       params?: Params$Resource$Folders$Geteffectiveorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
       params: Params$Resource$Folders$Geteffectiveorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1128,11 +1129,11 @@ export namespace cloudresourcemanager_v1 {
     getOrgPolicy(
       params: Params$Resource$Folders$Getorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getOrgPolicy(
       params?: Params$Resource$Folders$Getorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getOrgPolicy(
       params: Params$Resource$Folders$Getorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1220,11 +1221,11 @@ export namespace cloudresourcemanager_v1 {
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listAvailableOrgPolicyConstraints(
       params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1318,11 +1319,11 @@ export namespace cloudresourcemanager_v1 {
     listOrgPolicies(
       params: Params$Resource$Folders$Listorgpolicies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listOrgPolicies(
       params?: Params$Resource$Folders$Listorgpolicies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
       params: Params$Resource$Folders$Listorgpolicies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1414,11 +1415,11 @@ export namespace cloudresourcemanager_v1 {
     setOrgPolicy(
       params: Params$Resource$Folders$Setorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setOrgPolicy(
       params?: Params$Resource$Folders$Setorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     setOrgPolicy(
       params: Params$Resource$Folders$Setorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1586,11 +1587,11 @@ export namespace cloudresourcemanager_v1 {
     create(
       params: Params$Resource$Liens$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Liens$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Lien>;
+    ): GaxiosResponseWithHTTP2<Schema$Lien>;
     create(
       params: Params$Resource$Liens$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1674,11 +1675,11 @@ export namespace cloudresourcemanager_v1 {
     delete(
       params: Params$Resource$Liens$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Liens$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Liens$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1762,11 +1763,11 @@ export namespace cloudresourcemanager_v1 {
     get(
       params: Params$Resource$Liens$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Liens$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Lien>;
+    ): GaxiosResponseWithHTTP2<Schema$Lien>;
     get(
       params: Params$Resource$Liens$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1850,11 +1851,11 @@ export namespace cloudresourcemanager_v1 {
     list(
       params: Params$Resource$Liens$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Liens$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLiensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLiensResponse>;
     list(
       params: Params$Resource$Liens$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1978,11 +1979,11 @@ export namespace cloudresourcemanager_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2080,11 +2081,11 @@ export namespace cloudresourcemanager_v1 {
     clearOrgPolicy(
       params: Params$Resource$Organizations$Clearorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clearOrgPolicy(
       params?: Params$Resource$Organizations$Clearorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     clearOrgPolicy(
       params: Params$Resource$Organizations$Clearorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2172,11 +2173,11 @@ export namespace cloudresourcemanager_v1 {
     get(
       params: Params$Resource$Organizations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Organization>;
+    ): GaxiosResponseWithHTTP2<Schema$Organization>;
     get(
       params: Params$Resource$Organizations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2261,11 +2262,11 @@ export namespace cloudresourcemanager_v1 {
     getEffectiveOrgPolicy(
       params: Params$Resource$Organizations$Geteffectiveorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectiveOrgPolicy(
       params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
       params: Params$Resource$Organizations$Geteffectiveorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2355,11 +2356,11 @@ export namespace cloudresourcemanager_v1 {
     getIamPolicy(
       params: Params$Resource$Organizations$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Organizations$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Organizations$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2447,11 +2448,11 @@ export namespace cloudresourcemanager_v1 {
     getOrgPolicy(
       params: Params$Resource$Organizations$Getorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getOrgPolicy(
       params?: Params$Resource$Organizations$Getorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getOrgPolicy(
       params: Params$Resource$Organizations$Getorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2539,11 +2540,11 @@ export namespace cloudresourcemanager_v1 {
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listAvailableOrgPolicyConstraints(
       params?: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2637,11 +2638,11 @@ export namespace cloudresourcemanager_v1 {
     listOrgPolicies(
       params: Params$Resource$Organizations$Listorgpolicies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listOrgPolicies(
       params?: Params$Resource$Organizations$Listorgpolicies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
       params: Params$Resource$Organizations$Listorgpolicies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2733,11 +2734,11 @@ export namespace cloudresourcemanager_v1 {
     search(
       params: Params$Resource$Organizations$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Organizations$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchOrganizationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchOrganizationsResponse>;
     search(
       params: Params$Resource$Organizations$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2829,11 +2830,11 @@ export namespace cloudresourcemanager_v1 {
     setIamPolicy(
       params: Params$Resource$Organizations$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Organizations$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Organizations$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2921,11 +2922,11 @@ export namespace cloudresourcemanager_v1 {
     setOrgPolicy(
       params: Params$Resource$Organizations$Setorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setOrgPolicy(
       params?: Params$Resource$Organizations$Setorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     setOrgPolicy(
       params: Params$Resource$Organizations$Setorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3013,11 +3014,11 @@ export namespace cloudresourcemanager_v1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Organizations$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3239,11 +3240,11 @@ export namespace cloudresourcemanager_v1 {
     clearOrgPolicy(
       params: Params$Resource$Projects$Clearorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clearOrgPolicy(
       params?: Params$Resource$Projects$Clearorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     clearOrgPolicy(
       params: Params$Resource$Projects$Clearorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3331,11 +3332,11 @@ export namespace cloudresourcemanager_v1 {
     create(
       params: Params$Resource$Projects$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3419,11 +3420,11 @@ export namespace cloudresourcemanager_v1 {
     delete(
       params: Params$Resource$Projects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3510,11 +3511,11 @@ export namespace cloudresourcemanager_v1 {
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Project>;
+    ): GaxiosResponseWithHTTP2<Schema$Project>;
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3601,11 +3602,11 @@ export namespace cloudresourcemanager_v1 {
     getAncestry(
       params: Params$Resource$Projects$Getancestry,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAncestry(
       params?: Params$Resource$Projects$Getancestry,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetAncestryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetAncestryResponse>;
     getAncestry(
       params: Params$Resource$Projects$Getancestry,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3695,11 +3696,11 @@ export namespace cloudresourcemanager_v1 {
     getEffectiveOrgPolicy(
       params: Params$Resource$Projects$Geteffectiveorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEffectiveOrgPolicy(
       params?: Params$Resource$Projects$Geteffectiveorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
       params: Params$Resource$Projects$Geteffectiveorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3789,11 +3790,11 @@ export namespace cloudresourcemanager_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3881,11 +3882,11 @@ export namespace cloudresourcemanager_v1 {
     getOrgPolicy(
       params: Params$Resource$Projects$Getorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getOrgPolicy(
       params?: Params$Resource$Projects$Getorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     getOrgPolicy(
       params: Params$Resource$Projects$Getorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3973,11 +3974,11 @@ export namespace cloudresourcemanager_v1 {
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProjectsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProjectsResponse>;
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4063,11 +4064,11 @@ export namespace cloudresourcemanager_v1 {
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listAvailableOrgPolicyConstraints(
       params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4161,11 +4162,11 @@ export namespace cloudresourcemanager_v1 {
     listOrgPolicies(
       params: Params$Resource$Projects$Listorgpolicies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listOrgPolicies(
       params?: Params$Resource$Projects$Listorgpolicies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
       params: Params$Resource$Projects$Listorgpolicies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4257,11 +4258,11 @@ export namespace cloudresourcemanager_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4349,11 +4350,11 @@ export namespace cloudresourcemanager_v1 {
     setOrgPolicy(
       params: Params$Resource$Projects$Setorgpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setOrgPolicy(
       params?: Params$Resource$Projects$Setorgpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrgPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$OrgPolicy>;
     setOrgPolicy(
       params: Params$Resource$Projects$Setorgpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4441,11 +4442,11 @@ export namespace cloudresourcemanager_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4536,11 +4537,11 @@ export namespace cloudresourcemanager_v1 {
     undelete(
       params: Params$Resource$Projects$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undelete(
       params?: Params$Resource$Projects$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     undelete(
       params: Params$Resource$Projects$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4628,11 +4629,11 @@ export namespace cloudresourcemanager_v1 {
     update(
       params: Params$Resource$Projects$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Project>;
+    ): GaxiosResponseWithHTTP2<Schema$Project>;
     update(
       params: Params$Resource$Projects$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

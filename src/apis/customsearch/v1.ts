@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -412,11 +413,11 @@ export namespace customsearch_v1 {
     list(
       params: Params$Resource$Cse$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Cse$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Search>;
+    ): GaxiosResponseWithHTTP2<Schema$Search>;
     list(
       params: Params$Resource$Cse$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -641,11 +642,11 @@ export namespace customsearch_v1 {
     list(
       params: Params$Resource$Cse$Siterestrict$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Cse$Siterestrict$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Search>;
+    ): GaxiosResponseWithHTTP2<Schema$Search>;
     list(
       params: Params$Resource$Cse$Siterestrict$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

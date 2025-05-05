@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5589,11 +5590,11 @@ export namespace contactcenterinsights_v1 {
     bulkDeleteFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkDeleteFeedbackLabels(
       params?: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkDeleteFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5686,11 +5687,11 @@ export namespace contactcenterinsights_v1 {
     bulkDownloadFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkDownloadFeedbackLabels(
       params?: Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkDownloadFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5783,11 +5784,11 @@ export namespace contactcenterinsights_v1 {
     bulkUploadFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkUploadFeedbackLabels(
       params?: Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkUploadFeedbackLabels(
       params: Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5880,11 +5881,11 @@ export namespace contactcenterinsights_v1 {
     getEncryptionSpec(
       params: Params$Resource$Projects$Locations$Getencryptionspec,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEncryptionSpec(
       params?: Params$Resource$Projects$Locations$Getencryptionspec,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>;
     getEncryptionSpec(
       params: Params$Resource$Projects$Locations$Getencryptionspec,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5975,11 +5976,11 @@ export namespace contactcenterinsights_v1 {
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSettings(
       params?: Params$Resource$Projects$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>;
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6070,11 +6071,11 @@ export namespace contactcenterinsights_v1 {
     listAllFeedbackLabels(
       params: Params$Resource$Projects$Locations$Listallfeedbacklabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listAllFeedbackLabels(
       params?: Params$Resource$Projects$Locations$Listallfeedbacklabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>;
     listAllFeedbackLabels(
       params: Params$Resource$Projects$Locations$Listallfeedbacklabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6168,11 +6169,11 @@ export namespace contactcenterinsights_v1 {
     queryMetrics(
       params: Params$Resource$Projects$Locations$Querymetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryMetrics(
       params?: Params$Resource$Projects$Locations$Querymetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     queryMetrics(
       params: Params$Resource$Projects$Locations$Querymetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6264,11 +6265,11 @@ export namespace contactcenterinsights_v1 {
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSettings(
       params?: Params$Resource$Projects$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>;
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6464,11 +6465,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Analysisrules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Analysisrules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
     create(
       params: Params$Resource$Projects$Locations$Analysisrules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6562,11 +6563,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Analysisrules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Analysisrules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Analysisrules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6651,11 +6652,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Analysisrules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Analysisrules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
     get(
       params: Params$Resource$Projects$Locations$Analysisrules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6746,11 +6747,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Analysisrules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Analysisrules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Analysisrules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6844,11 +6845,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Analysisrules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Analysisrules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>;
     patch(
       params: Params$Resource$Projects$Locations$Analysisrules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7026,11 +7027,11 @@ export namespace contactcenterinsights_v1 {
     queryMetrics(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryMetrics(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     queryMetrics(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7153,11 +7154,11 @@ export namespace contactcenterinsights_v1 {
     bulkAnalyze(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Bulkanalyze,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkAnalyze(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Bulkanalyze,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkAnalyze(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Bulkanalyze,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7250,11 +7251,11 @@ export namespace contactcenterinsights_v1 {
     calculateStats(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculateStats(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>;
     calculateStats(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7348,11 +7349,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7438,11 +7439,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7534,11 +7535,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7713,11 +7714,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7810,11 +7811,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7900,11 +7901,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Analysis>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>;
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7996,11 +7997,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8148,11 +8149,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     create(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8247,11 +8248,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8337,11 +8338,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8433,11 +8434,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8532,11 +8533,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     patch(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8701,11 +8702,11 @@ export namespace contactcenterinsights_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8791,11 +8792,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8885,11 +8886,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9034,11 +9035,11 @@ export namespace contactcenterinsights_v1 {
     bulkAnalyze(
       params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkAnalyze(
       params?: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkAnalyze(
       params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9131,11 +9132,11 @@ export namespace contactcenterinsights_v1 {
     bulkDelete(
       params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkDelete(
       params?: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     bulkDelete(
       params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9228,11 +9229,11 @@ export namespace contactcenterinsights_v1 {
     calculateStats(
       params: Params$Resource$Projects$Locations$Conversations$Calculatestats,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculateStats(
       params?: Params$Resource$Projects$Locations$Conversations$Calculatestats,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>;
     calculateStats(
       params: Params$Resource$Projects$Locations$Conversations$Calculatestats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9326,11 +9327,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Conversations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Conversations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
     create(
       params: Params$Resource$Projects$Locations$Conversations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9424,11 +9425,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9513,11 +9514,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9608,11 +9609,11 @@ export namespace contactcenterinsights_v1 {
     ingest(
       params: Params$Resource$Projects$Locations$Conversations$Ingest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     ingest(
       params?: Params$Resource$Projects$Locations$Conversations$Ingest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     ingest(
       params: Params$Resource$Projects$Locations$Conversations$Ingest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9704,11 +9705,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9802,11 +9803,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Conversations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Conversations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
     patch(
       params: Params$Resource$Projects$Locations$Conversations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9897,11 +9898,11 @@ export namespace contactcenterinsights_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Conversations$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Projects$Locations$Conversations$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     upload(
       params: Params$Resource$Projects$Locations$Conversations$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10141,11 +10142,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Conversations$Analyses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10238,11 +10239,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Conversations$Analyses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10328,11 +10329,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Conversations$Analyses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Analysis>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>;
     get(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10424,11 +10425,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Conversations$Analyses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Conversations$Analyses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10576,11 +10577,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     create(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10675,11 +10676,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10765,11 +10766,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     get(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10861,11 +10862,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10960,11 +10961,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>;
     patch(
       params: Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11143,11 +11144,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Conversations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11233,11 +11234,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Conversations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11329,11 +11330,11 @@ export namespace contactcenterinsights_v1 {
     ingest(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Ingest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     ingest(
       params?: Params$Resource$Projects$Locations$Datasets$Conversations$Ingest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     ingest(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$Ingest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11426,11 +11427,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Conversations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Conversations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11594,11 +11595,11 @@ export namespace contactcenterinsights_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Insightsdata$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Datasets$Insightsdata$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     export(
       params: Params$Resource$Projects$Locations$Datasets$Insightsdata$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11711,11 +11712,11 @@ export namespace contactcenterinsights_v1 {
     initialize(
       params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     initialize(
       params?: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     initialize(
       params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11828,11 +11829,11 @@ export namespace contactcenterinsights_v1 {
     export(
       params: Params$Resource$Projects$Locations$Insightsdata$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Insightsdata$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     export(
       params: Params$Resource$Projects$Locations$Insightsdata$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11948,11 +11949,11 @@ export namespace contactcenterinsights_v1 {
     calculateIssueModelStats(
       params: Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculateIssueModelStats(
       params?: Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse>;
     calculateIssueModelStats(
       params: Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12046,11 +12047,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Issuemodels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Issuemodels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Issuemodels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12142,11 +12143,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Issuemodels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Issuemodels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Issuemodels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12235,11 +12236,11 @@ export namespace contactcenterinsights_v1 {
     deploy(
       params: Params$Resource$Projects$Locations$Issuemodels$Deploy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deploy(
       params?: Params$Resource$Projects$Locations$Issuemodels$Deploy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     deploy(
       params: Params$Resource$Projects$Locations$Issuemodels$Deploy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12328,11 +12329,11 @@ export namespace contactcenterinsights_v1 {
     export(
       params: Params$Resource$Projects$Locations$Issuemodels$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Issuemodels$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     export(
       params: Params$Resource$Projects$Locations$Issuemodels$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12421,11 +12422,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Issuemodels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Issuemodels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1IssueModel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>;
     get(
       params: Params$Resource$Projects$Locations$Issuemodels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12516,11 +12517,11 @@ export namespace contactcenterinsights_v1 {
     import(
       params: Params$Resource$Projects$Locations$Issuemodels$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Issuemodels$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     import(
       params: Params$Resource$Projects$Locations$Issuemodels$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12612,11 +12613,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Issuemodels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Issuemodels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListIssueModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssueModelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Issuemodels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12710,11 +12711,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Issuemodels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Issuemodels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1IssueModel>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>;
     patch(
       params: Params$Resource$Projects$Locations$Issuemodels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12805,11 +12806,11 @@ export namespace contactcenterinsights_v1 {
     undeploy(
       params: Params$Resource$Projects$Locations$Issuemodels$Undeploy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undeploy(
       params?: Params$Resource$Projects$Locations$Issuemodels$Undeploy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     undeploy(
       params: Params$Resource$Projects$Locations$Issuemodels$Undeploy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13013,11 +13014,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Issuemodels$Issues$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13110,11 +13111,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13200,11 +13201,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Issuemodels$Issues$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Issue>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>;
     get(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13296,11 +13297,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Issuemodels$Issues$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListIssuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssuesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13395,11 +13396,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Issuemodels$Issues$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1Issue>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>;
     patch(
       params: Params$Resource$Projects$Locations$Issuemodels$Issues$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13548,11 +13549,11 @@ export namespace contactcenterinsights_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13637,11 +13638,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13730,11 +13731,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13869,11 +13870,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Phrasematchers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Phrasematchers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
     create(
       params: Params$Resource$Projects$Locations$Phrasematchers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13967,11 +13968,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Phrasematchers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Phrasematchers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Phrasematchers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14056,11 +14057,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Phrasematchers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Phrasematchers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
     get(
       params: Params$Resource$Projects$Locations$Phrasematchers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14151,11 +14152,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Phrasematchers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Phrasematchers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Phrasematchers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14249,11 +14250,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Phrasematchers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
     patch(
       params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14417,11 +14418,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Qascorecards$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14515,11 +14516,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Qascorecards$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14604,11 +14605,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Qascorecards$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14699,11 +14700,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Qascorecards$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14797,11 +14798,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Qascorecards$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Qascorecards$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>;
     patch(
       params: Params$Resource$Projects$Locations$Qascorecards$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14970,11 +14971,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15069,11 +15070,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15159,11 +15160,11 @@ export namespace contactcenterinsights_v1 {
     deploy(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deploy(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
     deploy(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15255,11 +15256,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15351,11 +15352,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15450,11 +15451,11 @@ export namespace contactcenterinsights_v1 {
     tuneQaScorecardRevision(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     tuneQaScorecardRevision(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     tuneQaScorecardRevision(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15547,11 +15548,11 @@ export namespace contactcenterinsights_v1 {
     undeploy(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undeploy(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>;
     undeploy(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15743,11 +15744,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
     create(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15842,11 +15843,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15932,11 +15933,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
     get(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16028,11 +16029,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16127,11 +16128,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>;
     patch(
       params: Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16292,11 +16293,11 @@ export namespace contactcenterinsights_v1 {
     create(
       params: Params$Resource$Projects$Locations$Views$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Views$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1View>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>;
     create(
       params: Params$Resource$Projects$Locations$Views$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16390,11 +16391,11 @@ export namespace contactcenterinsights_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Views$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Views$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Views$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16479,11 +16480,11 @@ export namespace contactcenterinsights_v1 {
     get(
       params: Params$Resource$Projects$Locations$Views$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Views$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1View>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>;
     get(
       params: Params$Resource$Projects$Locations$Views$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16574,11 +16575,11 @@ export namespace contactcenterinsights_v1 {
     list(
       params: Params$Resource$Projects$Locations$Views$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Views$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1ListViewsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListViewsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Views$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16672,11 +16673,11 @@ export namespace contactcenterinsights_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Views$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Views$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1View>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>;
     patch(
       params: Params$Resource$Projects$Locations$Views$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

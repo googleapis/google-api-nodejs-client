@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -581,11 +582,11 @@ export namespace groupssettings_v1 {
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): GaxiosResponseWithHTTP2<Schema$Groups>;
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -671,11 +672,11 @@ export namespace groupssettings_v1 {
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): GaxiosResponseWithHTTP2<Schema$Groups>;
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -761,11 +762,11 @@ export namespace groupssettings_v1 {
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): GaxiosResponseWithHTTP2<Schema$Groups>;
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

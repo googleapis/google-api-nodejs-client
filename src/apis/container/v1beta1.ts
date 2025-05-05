@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4869,11 +4870,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUsableSubnetworksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListUsableSubnetworksResponse>;
     list(
       params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4999,11 +5000,11 @@ export namespace container_v1beta1 {
     getServerConfig(
       params: Params$Resource$Projects$Locations$Getserverconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getServerConfig(
       params?: Params$Resource$Projects$Locations$Getserverconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServerConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$ServerConfig>;
     getServerConfig(
       params: Params$Resource$Projects$Locations$Getserverconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5090,11 +5091,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5221,11 +5222,11 @@ export namespace container_v1beta1 {
     checkAutopilotCompatibility(
       params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     checkAutopilotCompatibility(
       params?: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckAutopilotCompatibilityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CheckAutopilotCompatibilityResponse>;
     checkAutopilotCompatibility(
       params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5318,11 +5319,11 @@ export namespace container_v1beta1 {
     completeIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeIpRotation(
       params?: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     completeIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5410,11 +5411,11 @@ export namespace container_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5501,11 +5502,11 @@ export namespace container_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5589,11 +5590,11 @@ export namespace container_v1beta1 {
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchClusterUpgradeInfo(
       params?: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClusterUpgradeInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>;
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5683,11 +5684,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5771,11 +5772,11 @@ export namespace container_v1beta1 {
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getJwks(
       params?: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetJSONWebKeysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetJSONWebKeysResponse>;
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5866,11 +5867,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5959,11 +5960,11 @@ export namespace container_v1beta1 {
     setAddons(
       params: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setAddons(
       params?: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setAddons(
       params: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6050,11 +6051,11 @@ export namespace container_v1beta1 {
     setLegacyAbac(
       params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setLegacyAbac(
       params?: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setLegacyAbac(
       params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6142,11 +6143,11 @@ export namespace container_v1beta1 {
     setLocations(
       params: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setLocations(
       params?: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setLocations(
       params: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6233,11 +6234,11 @@ export namespace container_v1beta1 {
     setLogging(
       params: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setLogging(
       params?: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setLogging(
       params: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6324,11 +6325,11 @@ export namespace container_v1beta1 {
     setMaintenancePolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setMaintenancePolicy(
       params?: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setMaintenancePolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6418,11 +6419,11 @@ export namespace container_v1beta1 {
     setMasterAuth(
       params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setMasterAuth(
       params?: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setMasterAuth(
       params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6510,11 +6511,11 @@ export namespace container_v1beta1 {
     setMonitoring(
       params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setMonitoring(
       params?: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setMonitoring(
       params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6602,11 +6603,11 @@ export namespace container_v1beta1 {
     setNetworkPolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setNetworkPolicy(
       params?: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setNetworkPolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6694,11 +6695,11 @@ export namespace container_v1beta1 {
     setResourceLabels(
       params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setResourceLabels(
       params?: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setResourceLabels(
       params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6786,11 +6787,11 @@ export namespace container_v1beta1 {
     startIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     startIpRotation(
       params?: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     startIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6878,11 +6879,11 @@ export namespace container_v1beta1 {
     update(
       params: Params$Resource$Projects$Locations$Clusters$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Clusters$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Projects$Locations$Clusters$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6966,11 +6967,11 @@ export namespace container_v1beta1 {
     updateMaster(
       params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateMaster(
       params?: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     updateMaster(
       params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7311,11 +7312,11 @@ export namespace container_v1beta1 {
     completeUpgrade(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeUpgrade(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     completeUpgrade(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7403,11 +7404,11 @@ export namespace container_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7495,11 +7496,11 @@ export namespace container_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7584,11 +7585,11 @@ export namespace container_v1beta1 {
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchNodePoolUpgradeInfo(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodePoolUpgradeInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>;
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7677,11 +7678,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodePool>;
+    ): GaxiosResponseWithHTTP2<Schema$NodePool>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7766,11 +7767,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNodePoolsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7860,11 +7861,11 @@ export namespace container_v1beta1 {
     rollback(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     rollback(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7952,11 +7953,11 @@ export namespace container_v1beta1 {
     setAutoscaling(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setAutoscaling(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setAutoscaling(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8044,11 +8045,11 @@ export namespace container_v1beta1 {
     setManagement(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setManagement(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setManagement(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8136,11 +8137,11 @@ export namespace container_v1beta1 {
     setSize(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setSize(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setSize(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8228,11 +8229,11 @@ export namespace container_v1beta1 {
     update(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8485,11 +8486,11 @@ export namespace container_v1beta1 {
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getOpenidConfiguration(
       params?: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetOpenIDConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetOpenIDConfigResponse>;
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8595,11 +8596,11 @@ export namespace container_v1beta1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8686,11 +8687,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8774,11 +8775,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8925,11 +8926,11 @@ export namespace container_v1beta1 {
     getServerconfig(
       params: Params$Resource$Projects$Zones$Getserverconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getServerconfig(
       params?: Params$Resource$Projects$Zones$Getserverconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServerConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$ServerConfig>;
     getServerconfig(
       params: Params$Resource$Projects$Zones$Getserverconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9043,11 +9044,11 @@ export namespace container_v1beta1 {
     addons(
       params: Params$Resource$Projects$Zones$Clusters$Addons,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addons(
       params?: Params$Resource$Projects$Zones$Clusters$Addons,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addons(
       params: Params$Resource$Projects$Zones$Clusters$Addons,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9134,11 +9135,11 @@ export namespace container_v1beta1 {
     completeIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeIpRotation(
       params?: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     completeIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9226,11 +9227,11 @@ export namespace container_v1beta1 {
     create(
       params: Params$Resource$Projects$Zones$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Zones$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Zones$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9316,11 +9317,11 @@ export namespace container_v1beta1 {
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Zones$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9407,11 +9408,11 @@ export namespace container_v1beta1 {
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchClusterUpgradeInfo(
       params?: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClusterUpgradeInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>;
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9501,11 +9502,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Zones$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Zones$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
     get(
       params: Params$Resource$Projects$Zones$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9592,11 +9593,11 @@ export namespace container_v1beta1 {
     legacyAbac(
       params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     legacyAbac(
       params?: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     legacyAbac(
       params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9683,11 +9684,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Zones$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9775,11 +9776,11 @@ export namespace container_v1beta1 {
     locations(
       params: Params$Resource$Projects$Zones$Clusters$Locations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     locations(
       params?: Params$Resource$Projects$Zones$Clusters$Locations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     locations(
       params: Params$Resource$Projects$Zones$Clusters$Locations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9866,11 +9867,11 @@ export namespace container_v1beta1 {
     logging(
       params: Params$Resource$Projects$Zones$Clusters$Logging,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     logging(
       params?: Params$Resource$Projects$Zones$Clusters$Logging,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     logging(
       params: Params$Resource$Projects$Zones$Clusters$Logging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9957,11 +9958,11 @@ export namespace container_v1beta1 {
     master(
       params: Params$Resource$Projects$Zones$Clusters$Master,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     master(
       params?: Params$Resource$Projects$Zones$Clusters$Master,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     master(
       params: Params$Resource$Projects$Zones$Clusters$Master,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10048,11 +10049,11 @@ export namespace container_v1beta1 {
     monitoring(
       params: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     monitoring(
       params?: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     monitoring(
       params: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10139,11 +10140,11 @@ export namespace container_v1beta1 {
     resourceLabels(
       params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resourceLabels(
       params?: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     resourceLabels(
       params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10230,11 +10231,11 @@ export namespace container_v1beta1 {
     setMaintenancePolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setMaintenancePolicy(
       params?: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setMaintenancePolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10324,11 +10325,11 @@ export namespace container_v1beta1 {
     setMasterAuth(
       params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setMasterAuth(
       params?: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setMasterAuth(
       params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10415,11 +10416,11 @@ export namespace container_v1beta1 {
     setNetworkPolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setNetworkPolicy(
       params?: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setNetworkPolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10506,11 +10507,11 @@ export namespace container_v1beta1 {
     startIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     startIpRotation(
       params?: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     startIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10597,11 +10598,11 @@ export namespace container_v1beta1 {
     update(
       params: Params$Resource$Projects$Zones$Clusters$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Zones$Clusters$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Projects$Zones$Clusters$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11036,11 +11037,11 @@ export namespace container_v1beta1 {
     autoscaling(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     autoscaling(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     autoscaling(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11128,11 +11129,11 @@ export namespace container_v1beta1 {
     create(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11219,11 +11220,11 @@ export namespace container_v1beta1 {
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11310,11 +11311,11 @@ export namespace container_v1beta1 {
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchNodePoolUpgradeInfo(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodePoolUpgradeInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>;
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11403,11 +11404,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodePool>;
+    ): GaxiosResponseWithHTTP2<Schema$NodePool>;
     get(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11494,11 +11495,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNodePoolsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>;
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11587,11 +11588,11 @@ export namespace container_v1beta1 {
     rollback(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     rollback(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11679,11 +11680,11 @@ export namespace container_v1beta1 {
     setManagement(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setManagement(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setManagement(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11771,11 +11772,11 @@ export namespace container_v1beta1 {
     setSize(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setSize(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setSize(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11863,11 +11864,11 @@ export namespace container_v1beta1 {
     update(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     update(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12178,11 +12179,11 @@ export namespace container_v1beta1 {
     cancel(
       params: Params$Resource$Projects$Zones$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Zones$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Zones$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12269,11 +12270,11 @@ export namespace container_v1beta1 {
     get(
       params: Params$Resource$Projects$Zones$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Zones$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Zones$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12360,11 +12361,11 @@ export namespace container_v1beta1 {
     list(
       params: Params$Resource$Projects$Zones$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Zones$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Zones$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

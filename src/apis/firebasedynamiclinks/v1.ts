@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -709,11 +710,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Managedshortlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>;
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -822,11 +823,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Shortlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>;
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -932,11 +933,11 @@ export namespace firebasedynamiclinks_v1 {
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getLinkStats(
       params?: Params$Resource$V1$Getlinkstats,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DynamicLinkStats>;
+    ): GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>;
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1023,11 +1024,11 @@ export namespace firebasedynamiclinks_v1 {
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     installAttribution(
       params?: Params$Resource$V1$Installattribution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>;
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1121,11 +1122,11 @@ export namespace firebasedynamiclinks_v1 {
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reopenAttribution(
       params?: Params$Resource$V1$Reopenattribution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>;
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

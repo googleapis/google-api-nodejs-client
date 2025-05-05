@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -693,11 +694,11 @@ export namespace firebasedataconnect_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -782,11 +783,11 @@ export namespace firebasedataconnect_v1beta {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -914,11 +915,11 @@ export namespace firebasedataconnect_v1beta {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1006,11 +1007,11 @@ export namespace firebasedataconnect_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1095,11 +1096,11 @@ export namespace firebasedataconnect_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1184,11 +1185,11 @@ export namespace firebasedataconnect_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1339,11 +1340,11 @@ export namespace firebasedataconnect_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1431,11 +1432,11 @@ export namespace firebasedataconnect_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1520,11 +1521,11 @@ export namespace firebasedataconnect_v1beta {
     executeGraphql(
       params: Params$Resource$Projects$Locations$Services$Executegraphql,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeGraphql(
       params?: Params$Resource$Projects$Locations$Services$Executegraphql,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GraphqlResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GraphqlResponse>;
     executeGraphql(
       params: Params$Resource$Projects$Locations$Services$Executegraphql,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1615,11 +1616,11 @@ export namespace firebasedataconnect_v1beta {
     executeGraphqlRead(
       params: Params$Resource$Projects$Locations$Services$Executegraphqlread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeGraphqlRead(
       params?: Params$Resource$Projects$Locations$Services$Executegraphqlread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GraphqlResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GraphqlResponse>;
     executeGraphqlRead(
       params: Params$Resource$Projects$Locations$Services$Executegraphqlread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1710,11 +1711,11 @@ export namespace firebasedataconnect_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1799,11 +1800,11 @@ export namespace firebasedataconnect_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1893,11 +1894,11 @@ export namespace firebasedataconnect_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2123,11 +2124,11 @@ export namespace firebasedataconnect_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Services$Connectors$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Connectors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2216,11 +2217,11 @@ export namespace firebasedataconnect_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Connectors$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Connectors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2306,11 +2307,11 @@ export namespace firebasedataconnect_v1beta {
     executeMutation(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executemutation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeMutation(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Executemutation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExecuteMutationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ExecuteMutationResponse>;
     executeMutation(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executemutation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2403,11 +2404,11 @@ export namespace firebasedataconnect_v1beta {
     executeQuery(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executequery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeQuery(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Executequery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExecuteQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ExecuteQueryResponse>;
     executeQuery(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executequery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2500,11 +2501,11 @@ export namespace firebasedataconnect_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Connectors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connector>;
+    ): GaxiosResponseWithHTTP2<Schema$Connector>;
     get(
       params: Params$Resource$Projects$Locations$Services$Connectors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2590,11 +2591,11 @@ export namespace firebasedataconnect_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Services$Connectors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Connectors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectorsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Connectors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2685,11 +2686,11 @@ export namespace firebasedataconnect_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Services$Connectors$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Connectors$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Connectors$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2916,11 +2917,11 @@ export namespace firebasedataconnect_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Services$Schemas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Schemas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Schemas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3009,11 +3010,11 @@ export namespace firebasedataconnect_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Schemas$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Schemas$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Schemas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3099,11 +3100,11 @@ export namespace firebasedataconnect_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Schemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Schemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Schema>;
+    ): GaxiosResponseWithHTTP2<Schema$Schema>;
     get(
       params: Params$Resource$Projects$Locations$Services$Schemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3188,11 +3189,11 @@ export namespace firebasedataconnect_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Services$Schemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Schemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSchemasResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSchemasResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Schemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3280,11 +3281,11 @@ export namespace firebasedataconnect_v1beta {
     patch(
       params: Params$Resource$Projects$Locations$Services$Schemas$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Schemas$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Schemas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

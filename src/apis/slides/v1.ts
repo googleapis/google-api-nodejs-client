@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2684,11 +2685,11 @@ export namespace slides_v1 {
     batchUpdate(
       params: Params$Resource$Presentations$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Presentations$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdatePresentationResponse>;
     batchUpdate(
       params: Params$Resource$Presentations$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2780,11 +2781,11 @@ export namespace slides_v1 {
     create(
       params: Params$Resource$Presentations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Presentations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Presentation>;
+    ): GaxiosResponseWithHTTP2<Schema$Presentation>;
     create(
       params: Params$Resource$Presentations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2868,11 +2869,11 @@ export namespace slides_v1 {
     get(
       params: Params$Resource$Presentations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Presentations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Presentation>;
+    ): GaxiosResponseWithHTTP2<Schema$Presentation>;
     get(
       params: Params$Resource$Presentations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2993,11 +2994,11 @@ export namespace slides_v1 {
     get(
       params: Params$Resource$Presentations$Pages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Presentations$Pages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     get(
       params: Params$Resource$Presentations$Pages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3084,11 +3085,11 @@ export namespace slides_v1 {
     getThumbnail(
       params: Params$Resource$Presentations$Pages$Getthumbnail,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getThumbnail(
       params?: Params$Resource$Presentations$Pages$Getthumbnail,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Thumbnail>;
+    ): GaxiosResponseWithHTTP2<Schema$Thumbnail>;
     getThumbnail(
       params: Params$Resource$Presentations$Pages$Getthumbnail,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

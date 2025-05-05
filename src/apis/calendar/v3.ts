@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1187,11 +1188,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Acl$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Acl$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Acl$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1274,11 +1275,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Acl$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Acl$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): GaxiosResponseWithHTTP2<Schema$AclRule>;
     get(
       params: Params$Resource$Acl$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1363,11 +1364,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Acl$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Acl$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): GaxiosResponseWithHTTP2<Schema$AclRule>;
     insert(
       params: Params$Resource$Acl$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1453,11 +1454,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Acl$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Acl$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Acl>;
+    ): GaxiosResponseWithHTTP2<Schema$Acl>;
     list(
       params: Params$Resource$Acl$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1543,11 +1544,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Acl$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Acl$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): GaxiosResponseWithHTTP2<Schema$AclRule>;
     patch(
       params: Params$Resource$Acl$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1632,11 +1633,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Acl$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Acl$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): GaxiosResponseWithHTTP2<Schema$AclRule>;
     update(
       params: Params$Resource$Acl$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1721,11 +1722,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Acl$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Acl$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): GaxiosResponseWithHTTP2<Schema$Channel>;
     watch(
       params: Params$Resource$Acl$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1946,11 +1947,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Calendarlist$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Calendarlist$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Calendarlist$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2034,11 +2035,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Calendarlist$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Calendarlist$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$CalendarListEntry>;
     get(
       params: Params$Resource$Calendarlist$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2123,11 +2124,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Calendarlist$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Calendarlist$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$CalendarListEntry>;
     insert(
       params: Params$Resource$Calendarlist$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2214,11 +2215,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Calendarlist$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Calendarlist$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarList>;
+    ): GaxiosResponseWithHTTP2<Schema$CalendarList>;
     list(
       params: Params$Resource$Calendarlist$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2305,11 +2306,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Calendarlist$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Calendarlist$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$CalendarListEntry>;
     patch(
       params: Params$Resource$Calendarlist$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2395,11 +2396,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Calendarlist$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Calendarlist$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$CalendarListEntry>;
     update(
       params: Params$Resource$Calendarlist$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2485,11 +2486,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Calendarlist$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Calendarlist$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): GaxiosResponseWithHTTP2<Schema$Channel>;
     watch(
       params: Params$Resource$Calendarlist$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2708,11 +2709,11 @@ export namespace calendar_v3 {
     clear(
       params: Params$Resource$Calendars$Clear,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clear(
       params?: Params$Resource$Calendars$Clear,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     clear(
       params: Params$Resource$Calendars$Clear,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2795,11 +2796,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Calendars$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Calendars$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Calendars$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2883,11 +2884,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Calendars$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Calendars$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): GaxiosResponseWithHTTP2<Schema$Calendar>;
     get(
       params: Params$Resource$Calendars$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2973,11 +2974,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Calendars$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Calendars$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): GaxiosResponseWithHTTP2<Schema$Calendar>;
     insert(
       params: Params$Resource$Calendars$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3063,11 +3064,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Calendars$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Calendars$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): GaxiosResponseWithHTTP2<Schema$Calendar>;
     patch(
       params: Params$Resource$Calendars$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3153,11 +3154,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Calendars$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Calendars$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): GaxiosResponseWithHTTP2<Schema$Calendar>;
     update(
       params: Params$Resource$Calendars$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3297,11 +3298,11 @@ export namespace calendar_v3 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3399,11 +3400,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Colors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Colors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Colors>;
+    ): GaxiosResponseWithHTTP2<Schema$Colors>;
     get(
       params: Params$Resource$Colors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3498,11 +3499,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Events$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Events$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Events$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3585,11 +3586,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Events$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Events$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     get(
       params: Params$Resource$Events$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3675,11 +3676,11 @@ export namespace calendar_v3 {
     import(
       params: Params$Resource$Events$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Events$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     import(
       params: Params$Resource$Events$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3764,11 +3765,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Events$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Events$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     insert(
       params: Params$Resource$Events$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3853,11 +3854,11 @@ export namespace calendar_v3 {
     instances(
       params: Params$Resource$Events$Instances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     instances(
       params?: Params$Resource$Events$Instances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Events>;
+    ): GaxiosResponseWithHTTP2<Schema$Events>;
     instances(
       params: Params$Resource$Events$Instances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3943,11 +3944,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Events$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Events$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Events>;
+    ): GaxiosResponseWithHTTP2<Schema$Events>;
     list(
       params: Params$Resource$Events$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4032,11 +4033,11 @@ export namespace calendar_v3 {
     move(
       params: Params$Resource$Events$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Events$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     move(
       params: Params$Resource$Events$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4122,11 +4123,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Events$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Events$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     patch(
       params: Params$Resource$Events$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4211,11 +4212,11 @@ export namespace calendar_v3 {
     quickAdd(
       params: Params$Resource$Events$Quickadd,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     quickAdd(
       params?: Params$Resource$Events$Quickadd,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     quickAdd(
       params: Params$Resource$Events$Quickadd,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4300,11 +4301,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Events$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Events$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): GaxiosResponseWithHTTP2<Schema$Event>;
     update(
       params: Params$Resource$Events$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4389,11 +4390,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Events$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Events$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): GaxiosResponseWithHTTP2<Schema$Channel>;
     watch(
       params: Params$Resource$Events$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4965,11 +4966,11 @@ export namespace calendar_v3 {
     query(
       params: Params$Resource$Freebusy$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     query(
       params?: Params$Resource$Freebusy$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FreeBusyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FreeBusyResponse>;
     query(
       params: Params$Resource$Freebusy$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5069,11 +5070,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Settings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Settings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Setting>;
+    ): GaxiosResponseWithHTTP2<Schema$Setting>;
     get(
       params: Params$Resource$Settings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5159,11 +5160,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Settings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Settings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$Settings>;
     list(
       params: Params$Resource$Settings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5249,11 +5250,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Settings$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Settings$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): GaxiosResponseWithHTTP2<Schema$Channel>;
     watch(
       params: Params$Resource$Settings$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -886,11 +887,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): GaxiosResponseWithHTTP2<Schema$Account>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -976,11 +977,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1068,11 +1069,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): GaxiosResponseWithHTTP2<Schema$Account>;
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1209,11 +1210,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Container>;
+    ): GaxiosResponseWithHTTP2<Schema$Container>;
     create(
       params: Params$Resource$Accounts$Containers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1299,11 +1300,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1388,11 +1389,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Container>;
+    ): GaxiosResponseWithHTTP2<Schema$Container>;
     get(
       params: Params$Resource$Accounts$Containers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1479,11 +1480,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListContainersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListContainersResponse>;
     list(
       params: Params$Resource$Accounts$Containers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1571,11 +1572,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Container>;
+    ): GaxiosResponseWithHTTP2<Schema$Container>;
     update(
       params: Params$Resource$Accounts$Containers$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1731,11 +1732,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Environments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Environments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Environment>;
+    ): GaxiosResponseWithHTTP2<Schema$Environment>;
     create(
       params: Params$Resource$Accounts$Containers$Environments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1822,11 +1823,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Environments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Environments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Environments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1911,11 +1912,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Environments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Environments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Environment>;
+    ): GaxiosResponseWithHTTP2<Schema$Environment>;
     get(
       params: Params$Resource$Accounts$Containers$Environments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2002,11 +2003,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Environments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEnvironmentsResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2095,11 +2096,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Environments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Environments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Environment>;
+    ): GaxiosResponseWithHTTP2<Schema$Environment>;
     update(
       params: Params$Resource$Accounts$Containers$Environments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2279,11 +2280,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Folders$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Folders$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folder>;
+    ): GaxiosResponseWithHTTP2<Schema$Folder>;
     create(
       params: Params$Resource$Accounts$Containers$Folders$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2370,11 +2371,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Folders$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Folders$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Folders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2459,11 +2460,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Folders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Folders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folder>;
+    ): GaxiosResponseWithHTTP2<Schema$Folder>;
     get(
       params: Params$Resource$Accounts$Containers$Folders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2550,11 +2551,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Folders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Folders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFoldersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFoldersResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Folders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2641,11 +2642,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Folders$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Folders$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folder>;
+    ): GaxiosResponseWithHTTP2<Schema$Folder>;
     update(
       params: Params$Resource$Accounts$Containers$Folders$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2821,11 +2822,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Folders$Entities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Folders$Entities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FolderEntities>;
+    ): GaxiosResponseWithHTTP2<Schema$FolderEntities>;
     list(
       params: Params$Resource$Accounts$Containers$Folders$Entities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2936,11 +2937,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Move_folders$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Move_folders$Update,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     update(
       params: Params$Resource$Accounts$Containers$Move_folders$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3065,11 +3066,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Environment>;
+    ): GaxiosResponseWithHTTP2<Schema$Environment>;
     update(
       params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3185,11 +3186,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Tags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     create(
       params: Params$Resource$Accounts$Containers$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3276,11 +3277,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3365,11 +3366,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Tags$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Tags$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     get(
       params: Params$Resource$Accounts$Containers$Tags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3456,11 +3457,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Tags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTagsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTagsResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3547,11 +3548,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Tags$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Tags$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): GaxiosResponseWithHTTP2<Schema$Tag>;
     update(
       params: Params$Resource$Accounts$Containers$Tags$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3727,11 +3728,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Triggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Triggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Trigger>;
+    ): GaxiosResponseWithHTTP2<Schema$Trigger>;
     create(
       params: Params$Resource$Accounts$Containers$Triggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3818,11 +3819,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Triggers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Triggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Triggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3907,11 +3908,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Triggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Triggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Trigger>;
+    ): GaxiosResponseWithHTTP2<Schema$Trigger>;
     get(
       params: Params$Resource$Accounts$Containers$Triggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3998,11 +3999,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Triggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Triggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTriggersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTriggersResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Triggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4091,11 +4092,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Triggers$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Triggers$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Trigger>;
+    ): GaxiosResponseWithHTTP2<Schema$Trigger>;
     update(
       params: Params$Resource$Accounts$Containers$Triggers$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4271,11 +4272,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Variables$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Variables$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Variable>;
+    ): GaxiosResponseWithHTTP2<Schema$Variable>;
     create(
       params: Params$Resource$Accounts$Containers$Variables$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4362,11 +4363,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Variables$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Variables$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Variables$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4451,11 +4452,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Variables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Variables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Variable>;
+    ): GaxiosResponseWithHTTP2<Schema$Variable>;
     get(
       params: Params$Resource$Accounts$Containers$Variables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4542,11 +4543,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Variables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Variables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVariablesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVariablesResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Variables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4635,11 +4636,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Variables$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Variables$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Variable>;
+    ): GaxiosResponseWithHTTP2<Schema$Variable>;
     update(
       params: Params$Resource$Accounts$Containers$Variables$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4815,11 +4816,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Containers$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Containers$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateContainerVersionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CreateContainerVersionResponse>;
     create(
       params: Params$Resource$Accounts$Containers$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4912,11 +4913,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Containers$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Containers$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Containers$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5001,11 +5002,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Containers$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Containers$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerVersion>;
     get(
       params: Params$Resource$Accounts$Containers$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5092,11 +5093,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Containers$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Containers$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListContainerVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListContainerVersionsResponse>;
     list(
       params: Params$Resource$Accounts$Containers$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5189,11 +5190,11 @@ export namespace tagmanager_v1 {
     publish(
       params: Params$Resource$Accounts$Containers$Versions$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publish(
       params?: Params$Resource$Accounts$Containers$Versions$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublishContainerVersionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PublishContainerVersionResponse>;
     publish(
       params: Params$Resource$Accounts$Containers$Versions$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5286,11 +5287,11 @@ export namespace tagmanager_v1 {
     restore(
       params: Params$Resource$Accounts$Containers$Versions$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Accounts$Containers$Versions$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerVersion>;
     restore(
       params: Params$Resource$Accounts$Containers$Versions$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5377,11 +5378,11 @@ export namespace tagmanager_v1 {
     undelete(
       params: Params$Resource$Accounts$Containers$Versions$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undelete(
       params?: Params$Resource$Accounts$Containers$Versions$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerVersion>;
     undelete(
       params: Params$Resource$Accounts$Containers$Versions$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5468,11 +5469,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Containers$Versions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Containers$Versions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerVersion>;
     update(
       params: Params$Resource$Accounts$Containers$Versions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5705,11 +5706,11 @@ export namespace tagmanager_v1 {
     create(
       params: Params$Resource$Accounts$Permissions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Permissions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserAccess>;
+    ): GaxiosResponseWithHTTP2<Schema$UserAccess>;
     create(
       params: Params$Resource$Accounts$Permissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5795,11 +5796,11 @@ export namespace tagmanager_v1 {
     delete(
       params: Params$Resource$Accounts$Permissions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Permissions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Accounts$Permissions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5884,11 +5885,11 @@ export namespace tagmanager_v1 {
     get(
       params: Params$Resource$Accounts$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserAccess>;
+    ): GaxiosResponseWithHTTP2<Schema$UserAccess>;
     get(
       params: Params$Resource$Accounts$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5975,11 +5976,11 @@ export namespace tagmanager_v1 {
     list(
       params: Params$Resource$Accounts$Permissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Permissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountUsersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAccountUsersResponse>;
     list(
       params: Params$Resource$Accounts$Permissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6067,11 +6068,11 @@ export namespace tagmanager_v1 {
     update(
       params: Params$Resource$Accounts$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserAccess>;
+    ): GaxiosResponseWithHTTP2<Schema$UserAccess>;
     update(
       params: Params$Resource$Accounts$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

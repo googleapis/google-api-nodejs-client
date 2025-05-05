@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -316,11 +317,11 @@ export namespace sts_v1 {
     token(
       params: Params$Resource$V1$Token,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     token(
       params?: Params$Resource$V1$Token,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIdentityStsV1ExchangeTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1ExchangeTokenResponse>;
     token(
       params: Params$Resource$V1$Token,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

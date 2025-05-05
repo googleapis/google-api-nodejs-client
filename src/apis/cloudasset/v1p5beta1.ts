@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -945,11 +946,11 @@ export namespace cloudasset_v1p5beta1 {
     list(
       params: Params$Resource$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Assets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>;
     list(
       params: Params$Resource$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

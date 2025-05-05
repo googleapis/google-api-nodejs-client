@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -970,11 +971,11 @@ export namespace servicecontrol_v2 {
     check(
       params: Params$Resource$Services$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     check(
       params?: Params$Resource$Services$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CheckResponse>;
     check(
       params: Params$Resource$Services$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1061,11 +1062,11 @@ export namespace servicecontrol_v2 {
     report(
       params: Params$Resource$Services$Report,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     report(
       params?: Params$Resource$Services$Report,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ReportResponse>;
     report(
       params: Params$Resource$Services$Report,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

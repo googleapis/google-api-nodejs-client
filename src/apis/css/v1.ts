@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -819,11 +820,11 @@ export namespace css_v1 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): GaxiosResponseWithHTTP2<Schema$Account>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -906,11 +907,11 @@ export namespace css_v1 {
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listChildAccounts(
       params?: Params$Resource$Accounts$Listchildaccounts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChildAccountsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListChildAccountsResponse>;
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1001,11 +1002,11 @@ export namespace css_v1 {
     updateLabels(
       params: Params$Resource$Accounts$Updatelabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateLabels(
       params?: Params$Resource$Accounts$Updatelabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): GaxiosResponseWithHTTP2<Schema$Account>;
     updateLabels(
       params: Params$Resource$Accounts$Updatelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1145,11 +1146,11 @@ export namespace css_v1 {
     delete(
       params: Params$Resource$Accounts$Cssproductinputs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Cssproductinputs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Cssproductinputs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1233,11 +1234,11 @@ export namespace css_v1 {
     insert(
       params: Params$Resource$Accounts$Cssproductinputs$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Cssproductinputs$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CssProductInput>;
+    ): GaxiosResponseWithHTTP2<Schema$CssProductInput>;
     insert(
       params: Params$Resource$Accounts$Cssproductinputs$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1324,11 +1325,11 @@ export namespace css_v1 {
     patch(
       params: Params$Resource$Accounts$Cssproductinputs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Cssproductinputs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CssProductInput>;
+    ): GaxiosResponseWithHTTP2<Schema$CssProductInput>;
     patch(
       params: Params$Resource$Accounts$Cssproductinputs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1463,11 +1464,11 @@ export namespace css_v1 {
     get(
       params: Params$Resource$Accounts$Cssproducts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Cssproducts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CssProduct>;
+    ): GaxiosResponseWithHTTP2<Schema$CssProduct>;
     get(
       params: Params$Resource$Accounts$Cssproducts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1551,11 +1552,11 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Cssproducts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Cssproducts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCssProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCssProductsResponse>;
     list(
       params: Params$Resource$Accounts$Cssproducts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1674,11 +1675,11 @@ export namespace css_v1 {
     create(
       params: Params$Resource$Accounts$Labels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Labels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$AccountLabel>;
     create(
       params: Params$Resource$Accounts$Labels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1765,11 +1766,11 @@ export namespace css_v1 {
     delete(
       params: Params$Resource$Accounts$Labels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Labels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Labels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1853,11 +1854,11 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Labels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Labels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountLabelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAccountLabelsResponse>;
     list(
       params: Params$Resource$Accounts$Labels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1948,11 +1949,11 @@ export namespace css_v1 {
     patch(
       params: Params$Resource$Accounts$Labels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Labels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountLabel>;
+    ): GaxiosResponseWithHTTP2<Schema$AccountLabel>;
     patch(
       params: Params$Resource$Accounts$Labels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2090,11 +2091,11 @@ export namespace css_v1 {
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Quotas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQuotaGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQuotaGroupsResponse>;
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1119,11 +1120,11 @@ export namespace analyticsreporting_v4 {
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Reports$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetReportsResponse>;
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1224,11 +1225,11 @@ export namespace analyticsreporting_v4 {
     search(
       params: Params$Resource$Useractivity$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Useractivity$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchUserActivityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>;
     search(
       params: Params$Resource$Useractivity$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

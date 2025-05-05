@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -419,11 +420,11 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       params: Params$Resource$Projects$Deleteevents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteEvents(
       params?: Params$Resource$Projects$Deleteevents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeleteEventsResponse>;
     deleteEvents(
       params: Params$Resource$Projects$Deleteevents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -530,11 +531,11 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Events$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Events$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEventsResponse>;
     list(
       params: Params$Resource$Projects$Events$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -622,11 +623,11 @@ export namespace clouderrorreporting_v1beta1 {
     report(
       params: Params$Resource$Projects$Events$Report,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     report(
       params?: Params$Resource$Projects$Events$Report,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportErrorEventResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ReportErrorEventResponse>;
     report(
       params: Params$Resource$Projects$Events$Report,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -773,11 +774,11 @@ export namespace clouderrorreporting_v1beta1 {
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ErrorGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ErrorGroup>;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -865,11 +866,11 @@ export namespace clouderrorreporting_v1beta1 {
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ErrorGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ErrorGroup>;
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -981,11 +982,11 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Groupstats$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Groupstats$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupStatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupStatsResponse>;
     list(
       params: Params$Resource$Projects$Groupstats$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1142,11 +1143,11 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       params: Params$Resource$Projects$Locations$Deleteevents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteEvents(
       params?: Params$Resource$Projects$Locations$Deleteevents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeleteEventsResponse>;
     deleteEvents(
       params: Params$Resource$Projects$Locations$Deleteevents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1253,11 +1254,11 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Events$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Events$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEventsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEventsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Events$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1388,11 +1389,11 @@ export namespace clouderrorreporting_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ErrorGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ErrorGroup>;
     get(
       params: Params$Resource$Projects$Locations$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1480,11 +1481,11 @@ export namespace clouderrorreporting_v1beta1 {
     update(
       params: Params$Resource$Projects$Locations$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ErrorGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$ErrorGroup>;
     update(
       params: Params$Resource$Projects$Locations$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1596,11 +1597,11 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Groupstats$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Groupstats$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupStatsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupStatsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Groupstats$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

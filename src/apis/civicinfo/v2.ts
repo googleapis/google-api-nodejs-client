@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -710,11 +711,11 @@ export namespace civicinfo_v2 {
     queryDivisionByAddress(
       params: Params$Resource$Divisions$Querydivisionbyaddress,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryDivisionByAddress(
       params?: Params$Resource$Divisions$Querydivisionbyaddress,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CivicinfoApiprotosV2DivisionByAddressResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2DivisionByAddressResponse>;
     queryDivisionByAddress(
       params: Params$Resource$Divisions$Querydivisionbyaddress,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -807,11 +808,11 @@ export namespace civicinfo_v2 {
     search(
       params: Params$Resource$Divisions$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Divisions$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CivicinfoApiprotosV2DivisionSearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2DivisionSearchResponse>;
     search(
       params: Params$Resource$Divisions$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -924,11 +925,11 @@ export namespace civicinfo_v2 {
     electionQuery(
       params: Params$Resource$Elections$Electionquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     electionQuery(
       params?: Params$Resource$Elections$Electionquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CivicinfoApiprotosV2ElectionsQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2ElectionsQueryResponse>;
     electionQuery(
       params: Params$Resource$Elections$Electionquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1021,11 +1022,11 @@ export namespace civicinfo_v2 {
     voterInfoQuery(
       params: Params$Resource$Elections$Voterinfoquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     voterInfoQuery(
       params?: Params$Resource$Elections$Voterinfoquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CivicinfoApiprotosV2VoterInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2VoterInfoResponse>;
     voterInfoQuery(
       params: Params$Resource$Elections$Voterinfoquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

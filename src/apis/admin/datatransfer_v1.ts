@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -278,11 +279,11 @@ export namespace admin_datatransfer_v1 {
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): GaxiosResponseWithHTTP2<Schema$Application>;
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -367,11 +368,11 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Applications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Applications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApplicationsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApplicationsListResponse>;
     list(
       params: Params$Resource$Applications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -489,11 +490,11 @@ export namespace admin_datatransfer_v1 {
     get(
       params: Params$Resource$Transfers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Transfers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfer>;
+    ): GaxiosResponseWithHTTP2<Schema$DataTransfer>;
     get(
       params: Params$Resource$Transfers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -578,11 +579,11 @@ export namespace admin_datatransfer_v1 {
     insert(
       params: Params$Resource$Transfers$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Transfers$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfer>;
+    ): GaxiosResponseWithHTTP2<Schema$DataTransfer>;
     insert(
       params: Params$Resource$Transfers$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -668,11 +669,11 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Transfers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Transfers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfersListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DataTransfersListResponse>;
     list(
       params: Params$Resource$Transfers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

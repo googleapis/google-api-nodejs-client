@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1798,11 +1799,11 @@ export namespace cloudbuild_v2 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1886,11 +1887,11 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2020,11 +2021,11 @@ export namespace cloudbuild_v2 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2111,11 +2112,11 @@ export namespace cloudbuild_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2199,11 +2200,11 @@ export namespace cloudbuild_v2 {
     fetchLinkableRepositories(
       params: Params$Resource$Projects$Locations$Connections$Fetchlinkablerepositories,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchLinkableRepositories(
       params?: Params$Resource$Projects$Locations$Connections$Fetchlinkablerepositories,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchLinkableRepositoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchLinkableRepositoriesResponse>;
     fetchLinkableRepositories(
       params: Params$Resource$Projects$Locations$Connections$Fetchlinkablerepositories,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2296,11 +2297,11 @@ export namespace cloudbuild_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connection>;
+    ): GaxiosResponseWithHTTP2<Schema$Connection>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2384,11 +2385,11 @@ export namespace cloudbuild_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2476,11 +2477,11 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2569,11 +2570,11 @@ export namespace cloudbuild_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2657,11 +2658,11 @@ export namespace cloudbuild_v2 {
     processWebhook(
       params: Params$Resource$Projects$Locations$Connections$Processwebhook,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     processWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Processwebhook,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     processWebhook(
       params: Params$Resource$Projects$Locations$Connections$Processwebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2749,11 +2750,11 @@ export namespace cloudbuild_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2841,11 +2842,11 @@ export namespace cloudbuild_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3092,11 +3093,11 @@ export namespace cloudbuild_v2 {
     accessReadToken(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessReadToken(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchReadTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchReadTokenResponse>;
     accessReadToken(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3188,11 +3189,11 @@ export namespace cloudbuild_v2 {
     accessReadWriteToken(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadwritetoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessReadWriteToken(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadwritetoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchReadWriteTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchReadWriteTokenResponse>;
     accessReadWriteToken(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Accessreadwritetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3284,11 +3285,11 @@ export namespace cloudbuild_v2 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchCreate(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3376,11 +3377,11 @@ export namespace cloudbuild_v2 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3468,11 +3469,11 @@ export namespace cloudbuild_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3557,11 +3558,11 @@ export namespace cloudbuild_v2 {
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchGitRefs(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchGitRefsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchGitRefsResponse>;
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3653,11 +3654,11 @@ export namespace cloudbuild_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repository>;
+    ): GaxiosResponseWithHTTP2<Schema$Repository>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Repositories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3742,11 +3743,11 @@ export namespace cloudbuild_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Repositories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Repositories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRepositoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Repositories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3960,11 +3961,11 @@ export namespace cloudbuild_v2 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4048,11 +4049,11 @@ export namespace cloudbuild_v2 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

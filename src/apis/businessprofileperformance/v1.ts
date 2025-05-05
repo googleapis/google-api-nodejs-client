@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -300,11 +301,11 @@ export namespace businessprofileperformance_v1 {
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchMultiDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>;
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -398,11 +399,11 @@ export namespace businessprofileperformance_v1 {
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Getdailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetDailyMetricsTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>;
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -616,11 +617,11 @@ export namespace businessprofileperformance_v1 {
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSearchKeywordImpressionsMonthlyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>;
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

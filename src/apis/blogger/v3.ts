@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -638,11 +639,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Blogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Blog>;
+    ): GaxiosResponseWithHTTP2<Schema$Blog>;
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -725,11 +726,11 @@ export namespace blogger_v3 {
     getByUrl(
       params: Params$Resource$Blogs$Getbyurl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getByUrl(
       params?: Params$Resource$Blogs$Getbyurl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Blog>;
+    ): GaxiosResponseWithHTTP2<Schema$Blog>;
     getByUrl(
       params: Params$Resource$Blogs$Getbyurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -812,11 +813,11 @@ export namespace blogger_v3 {
     listByUser(
       params: Params$Resource$Blogs$Listbyuser,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listByUser(
       params?: Params$Resource$Blogs$Listbyuser,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogList>;
+    ): GaxiosResponseWithHTTP2<Schema$BlogList>;
     listByUser(
       params: Params$Resource$Blogs$Listbyuser,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -956,11 +957,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Bloguserinfos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bloguserinfos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogUserInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$BlogUserInfo>;
     get(
       params: Params$Resource$Bloguserinfos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1070,11 +1071,11 @@ export namespace blogger_v3 {
     approve(
       params: Params$Resource$Comments$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     approve(
       params?: Params$Resource$Comments$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     approve(
       params: Params$Resource$Comments$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1160,11 +1161,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1247,11 +1248,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1336,11 +1337,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentList>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1425,11 +1426,11 @@ export namespace blogger_v3 {
     listByBlog(
       params: Params$Resource$Comments$Listbyblog,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listByBlog(
       params?: Params$Resource$Comments$Listbyblog,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentList>;
     listByBlog(
       params: Params$Resource$Comments$Listbyblog,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1516,11 +1517,11 @@ export namespace blogger_v3 {
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAsSpam(
       params?: Params$Resource$Comments$Markasspam,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1607,11 +1608,11 @@ export namespace blogger_v3 {
     removeContent(
       params: Params$Resource$Comments$Removecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeContent(
       params?: Params$Resource$Comments$Removecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     removeContent(
       params: Params$Resource$Comments$Removecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1851,11 +1852,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Pages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1939,11 +1940,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2029,11 +2030,11 @@ export namespace blogger_v3 {
     insert(
       params: Params$Resource$Pages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Pages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     insert(
       params: Params$Resource$Pages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2119,11 +2120,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PageList>;
+    ): GaxiosResponseWithHTTP2<Schema$PageList>;
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2209,11 +2210,11 @@ export namespace blogger_v3 {
     patch(
       params: Params$Resource$Pages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Pages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     patch(
       params: Params$Resource$Pages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2299,11 +2300,11 @@ export namespace blogger_v3 {
     publish(
       params: Params$Resource$Pages$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publish(
       params?: Params$Resource$Pages$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     publish(
       params: Params$Resource$Pages$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2388,11 +2389,11 @@ export namespace blogger_v3 {
     revert(
       params: Params$Resource$Pages$Revert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revert(
       params?: Params$Resource$Pages$Revert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     revert(
       params: Params$Resource$Pages$Revert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2478,11 +2479,11 @@ export namespace blogger_v3 {
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Pages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2711,11 +2712,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Pageviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Pageviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Pageviews>;
+    ): GaxiosResponseWithHTTP2<Schema$Pageviews>;
     get(
       params: Params$Resource$Pageviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2819,11 +2820,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Posts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Posts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Posts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2907,11 +2908,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Posts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2997,11 +2998,11 @@ export namespace blogger_v3 {
     getByPath(
       params: Params$Resource$Posts$Getbypath,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getByPath(
       params?: Params$Resource$Posts$Getbypath,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     getByPath(
       params: Params$Resource$Posts$Getbypath,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3087,11 +3088,11 @@ export namespace blogger_v3 {
     insert(
       params: Params$Resource$Posts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Posts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     insert(
       params: Params$Resource$Posts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3177,11 +3178,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Posts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostList>;
+    ): GaxiosResponseWithHTTP2<Schema$PostList>;
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3267,11 +3268,11 @@ export namespace blogger_v3 {
     patch(
       params: Params$Resource$Posts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Posts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     patch(
       params: Params$Resource$Posts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3357,11 +3358,11 @@ export namespace blogger_v3 {
     publish(
       params: Params$Resource$Posts$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publish(
       params?: Params$Resource$Posts$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     publish(
       params: Params$Resource$Posts$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3446,11 +3447,11 @@ export namespace blogger_v3 {
     revert(
       params: Params$Resource$Posts$Revert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revert(
       params?: Params$Resource$Posts$Revert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     revert(
       params: Params$Resource$Posts$Revert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3536,11 +3537,11 @@ export namespace blogger_v3 {
     search(
       params: Params$Resource$Posts$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Posts$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostList>;
+    ): GaxiosResponseWithHTTP2<Schema$PostList>;
     search(
       params: Params$Resource$Posts$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3626,11 +3627,11 @@ export namespace blogger_v3 {
     update(
       params: Params$Resource$Posts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Posts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     update(
       params: Params$Resource$Posts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3967,11 +3968,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Postuserinfos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Postuserinfos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostUserInfo>;
+    ): GaxiosResponseWithHTTP2<Schema$PostUserInfo>;
     get(
       params: Params$Resource$Postuserinfos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4057,11 +4058,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Postuserinfos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Postuserinfos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostUserInfosList>;
+    ): GaxiosResponseWithHTTP2<Schema$PostUserInfosList>;
     list(
       params: Params$Resource$Postuserinfos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4222,11 +4223,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): GaxiosResponseWithHTTP2<Schema$User>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

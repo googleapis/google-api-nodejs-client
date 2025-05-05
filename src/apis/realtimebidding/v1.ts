@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1269,11 +1270,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Bidders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bidder>;
+    ): GaxiosResponseWithHTTP2<Schema$Bidder>;
     get(
       params: Params$Resource$Bidders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1357,11 +1358,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBiddersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBiddersResponse>;
     list(
       params: Params$Resource$Bidders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1469,11 +1470,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>;
     list(
       params: Params$Resource$Bidders$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1563,11 +1564,11 @@ export namespace realtimebidding_v1 {
     watch(
       params: Params$Resource$Bidders$Creatives$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Bidders$Creatives$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WatchCreativesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$WatchCreativesResponse>;
     watch(
       params: Params$Resource$Bidders$Creatives$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1700,11 +1701,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Bidders$Endpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Endpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Endpoint>;
     get(
       params: Params$Resource$Bidders$Endpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1789,11 +1790,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Endpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Endpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEndpointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEndpointsResponse>;
     list(
       params: Params$Resource$Bidders$Endpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1883,11 +1884,11 @@ export namespace realtimebidding_v1 {
     patch(
       params: Params$Resource$Bidders$Endpoints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Bidders$Endpoints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Endpoint>;
+    ): GaxiosResponseWithHTTP2<Schema$Endpoint>;
     patch(
       params: Params$Resource$Bidders$Endpoints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2018,11 +2019,11 @@ export namespace realtimebidding_v1 {
     activate(
       params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     activate(
       params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2110,11 +2111,11 @@ export namespace realtimebidding_v1 {
     addTargetedApps(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addTargetedApps(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     addTargetedApps(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2204,11 +2205,11 @@ export namespace realtimebidding_v1 {
     addTargetedPublishers(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addTargetedPublishers(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     addTargetedPublishers(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2298,11 +2299,11 @@ export namespace realtimebidding_v1 {
     addTargetedSites(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addTargetedSites(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     addTargetedSites(
       params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2392,11 +2393,11 @@ export namespace realtimebidding_v1 {
     create(
       params: Params$Resource$Bidders$Pretargetingconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     create(
       params: Params$Resource$Bidders$Pretargetingconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2484,11 +2485,11 @@ export namespace realtimebidding_v1 {
     delete(
       params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2573,11 +2574,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Bidders$Pretargetingconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     get(
       params: Params$Resource$Bidders$Pretargetingconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2662,11 +2663,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Pretargetingconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Pretargetingconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPretargetingConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPretargetingConfigsResponse>;
     list(
       params: Params$Resource$Bidders$Pretargetingconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2760,11 +2761,11 @@ export namespace realtimebidding_v1 {
     patch(
       params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     patch(
       params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2849,11 +2850,11 @@ export namespace realtimebidding_v1 {
     removeTargetedApps(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeTargetedApps(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     removeTargetedApps(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2943,11 +2944,11 @@ export namespace realtimebidding_v1 {
     removeTargetedPublishers(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeTargetedPublishers(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     removeTargetedPublishers(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3037,11 +3038,11 @@ export namespace realtimebidding_v1 {
     removeTargetedSites(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeTargetedSites(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     removeTargetedSites(
       params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3131,11 +3132,11 @@ export namespace realtimebidding_v1 {
     suspend(
       params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     suspend(
       params?: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$PretargetingConfig>;
     suspend(
       params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3384,11 +3385,11 @@ export namespace realtimebidding_v1 {
     batchApprove(
       params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchApprove(
       params?: Params$Resource$Bidders$Publisherconnections$Batchapprove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchApprovePublisherConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchApprovePublisherConnectionsResponse>;
     batchApprove(
       params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3482,11 +3483,11 @@ export namespace realtimebidding_v1 {
     batchReject(
       params: Params$Resource$Bidders$Publisherconnections$Batchreject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchReject(
       params?: Params$Resource$Bidders$Publisherconnections$Batchreject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchRejectPublisherConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchRejectPublisherConnectionsResponse>;
     batchReject(
       params: Params$Resource$Bidders$Publisherconnections$Batchreject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3579,11 +3580,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Bidders$Publisherconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Publisherconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublisherConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$PublisherConnection>;
     get(
       params: Params$Resource$Bidders$Publisherconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3668,11 +3669,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Publisherconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Publisherconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPublisherConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPublisherConnectionsResponse>;
     list(
       params: Params$Resource$Bidders$Publisherconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3832,11 +3833,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Buyers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Buyers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Buyer>;
+    ): GaxiosResponseWithHTTP2<Schema$Buyer>;
     get(
       params: Params$Resource$Buyers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3920,11 +3921,11 @@ export namespace realtimebidding_v1 {
     getRemarketingTag(
       params: Params$Resource$Buyers$Getremarketingtag,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRemarketingTag(
       params?: Params$Resource$Buyers$Getremarketingtag,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetRemarketingTagResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>;
     getRemarketingTag(
       params: Params$Resource$Buyers$Getremarketingtag,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4016,11 +4017,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Buyers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBuyersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBuyersResponse>;
     list(
       params: Params$Resource$Buyers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4135,11 +4136,11 @@ export namespace realtimebidding_v1 {
     create(
       params: Params$Resource$Buyers$Creatives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Buyers$Creatives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     create(
       params: Params$Resource$Buyers$Creatives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4227,11 +4228,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Buyers$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Buyers$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     get(
       params: Params$Resource$Buyers$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4316,11 +4317,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Buyers$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>;
     list(
       params: Params$Resource$Buyers$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4410,11 +4411,11 @@ export namespace realtimebidding_v1 {
     patch(
       params: Params$Resource$Buyers$Creatives$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Buyers$Creatives$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     patch(
       params: Params$Resource$Buyers$Creatives$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4569,11 +4570,11 @@ export namespace realtimebidding_v1 {
     close(
       params: Params$Resource$Buyers$Userlists$Close,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     close(
       params?: Params$Resource$Buyers$Userlists$Close,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserList>;
+    ): GaxiosResponseWithHTTP2<Schema$UserList>;
     close(
       params: Params$Resource$Buyers$Userlists$Close,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4658,11 +4659,11 @@ export namespace realtimebidding_v1 {
     create(
       params: Params$Resource$Buyers$Userlists$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Buyers$Userlists$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserList>;
+    ): GaxiosResponseWithHTTP2<Schema$UserList>;
     create(
       params: Params$Resource$Buyers$Userlists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4750,11 +4751,11 @@ export namespace realtimebidding_v1 {
     get(
       params: Params$Resource$Buyers$Userlists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Buyers$Userlists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserList>;
+    ): GaxiosResponseWithHTTP2<Schema$UserList>;
     get(
       params: Params$Resource$Buyers$Userlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4839,11 +4840,11 @@ export namespace realtimebidding_v1 {
     getRemarketingTag(
       params: Params$Resource$Buyers$Userlists$Getremarketingtag,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRemarketingTag(
       params?: Params$Resource$Buyers$Userlists$Getremarketingtag,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetRemarketingTagResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>;
     getRemarketingTag(
       params: Params$Resource$Buyers$Userlists$Getremarketingtag,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4935,11 +4936,11 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Buyers$Userlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Userlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUserListsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListUserListsResponse>;
     list(
       params: Params$Resource$Buyers$Userlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5029,11 +5030,11 @@ export namespace realtimebidding_v1 {
     open(
       params: Params$Resource$Buyers$Userlists$Open,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     open(
       params?: Params$Resource$Buyers$Userlists$Open,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserList>;
+    ): GaxiosResponseWithHTTP2<Schema$UserList>;
     open(
       params: Params$Resource$Buyers$Userlists$Open,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5118,11 +5119,11 @@ export namespace realtimebidding_v1 {
     update(
       params: Params$Resource$Buyers$Userlists$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Buyers$Userlists$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserList>;
+    ): GaxiosResponseWithHTTP2<Schema$UserList>;
     update(
       params: Params$Resource$Buyers$Userlists$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

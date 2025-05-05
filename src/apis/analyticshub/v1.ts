@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1221,11 +1222,11 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOrgDataExchangesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOrgDataExchangesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1370,11 +1371,11 @@ export namespace analyticshub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): GaxiosResponseWithHTTP2<Schema$DataExchange>;
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1461,11 +1462,11 @@ export namespace analyticshub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1549,11 +1550,11 @@ export namespace analyticshub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): GaxiosResponseWithHTTP2<Schema$DataExchange>;
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1637,11 +1638,11 @@ export namespace analyticshub_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1729,11 +1730,11 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Dataexchanges$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataExchangesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDataExchangesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1824,11 +1825,11 @@ export namespace analyticshub_v1 {
     listSubscriptions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listsubscriptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listSubscriptions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listsubscriptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSharedResourceSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSharedResourceSubscriptionsResponse>;
     listSubscriptions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listsubscriptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1922,11 +1923,11 @@ export namespace analyticshub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): GaxiosResponseWithHTTP2<Schema$DataExchange>;
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2010,11 +2011,11 @@ export namespace analyticshub_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2102,11 +2103,11 @@ export namespace analyticshub_v1 {
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Subscribe,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     subscribe(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Subscribe,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Subscribe,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2194,11 +2195,11 @@ export namespace analyticshub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2426,11 +2427,11 @@ export namespace analyticshub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2518,11 +2519,11 @@ export namespace analyticshub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2607,11 +2608,11 @@ export namespace analyticshub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2696,11 +2697,11 @@ export namespace analyticshub_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2788,11 +2789,11 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListListingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListListingsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2882,11 +2883,11 @@ export namespace analyticshub_v1 {
     listSubscriptions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Listsubscriptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listSubscriptions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Listsubscriptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSharedResourceSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSharedResourceSubscriptionsResponse>;
     listSubscriptions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Listsubscriptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2980,11 +2981,11 @@ export namespace analyticshub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3069,11 +3070,11 @@ export namespace analyticshub_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3161,11 +3162,11 @@ export namespace analyticshub_v1 {
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     subscribe(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscribeListingResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscribeListingResponse>;
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3257,11 +3258,11 @@ export namespace analyticshub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3493,11 +3494,11 @@ export namespace analyticshub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3581,11 +3582,11 @@ export namespace analyticshub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     get(
       params: Params$Resource$Projects$Locations$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3669,11 +3670,11 @@ export namespace analyticshub_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Subscriptions$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Subscriptions$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Subscriptions$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3761,11 +3762,11 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,11 +3857,11 @@ export namespace analyticshub_v1 {
     refresh(
       params: Params$Resource$Projects$Locations$Subscriptions$Refresh,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     refresh(
       params?: Params$Resource$Projects$Locations$Subscriptions$Refresh,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     refresh(
       params: Params$Resource$Projects$Locations$Subscriptions$Refresh,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3947,11 +3948,11 @@ export namespace analyticshub_v1 {
     revoke(
       params: Params$Resource$Projects$Locations$Subscriptions$Revoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revoke(
       params?: Params$Resource$Projects$Locations$Subscriptions$Revoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RevokeSubscriptionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RevokeSubscriptionResponse>;
     revoke(
       params: Params$Resource$Projects$Locations$Subscriptions$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4039,11 +4040,11 @@ export namespace analyticshub_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Subscriptions$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Subscriptions$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Subscriptions$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

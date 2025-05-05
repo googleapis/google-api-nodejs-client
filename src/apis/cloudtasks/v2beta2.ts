@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -909,11 +910,11 @@ export namespace cloudtasks_v2beta2 {
     update(
       params: Params$Resource$Api$Queue$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Api$Queue$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     update(
       params: Params$Resource$Api$Queue$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1026,11 +1027,11 @@ export namespace cloudtasks_v2beta2 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1114,11 +1115,11 @@ export namespace cloudtasks_v2beta2 {
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getCmekConfig(
       params?: Params$Resource$Projects$Locations$Getcmekconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CmekConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$CmekConfig>;
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1202,11 +1203,11 @@ export namespace cloudtasks_v2beta2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1295,11 +1296,11 @@ export namespace cloudtasks_v2beta2 {
     updateCmekConfig(
       params: Params$Resource$Projects$Locations$Updatecmekconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateCmekConfig(
       params?: Params$Resource$Projects$Locations$Updatecmekconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CmekConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$CmekConfig>;
     updateCmekConfig(
       params: Params$Resource$Projects$Locations$Updatecmekconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1446,11 +1447,11 @@ export namespace cloudtasks_v2beta2 {
     create(
       params: Params$Resource$Projects$Locations$Queues$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Queues$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     create(
       params: Params$Resource$Projects$Locations$Queues$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1537,11 +1538,11 @@ export namespace cloudtasks_v2beta2 {
     delete(
       params: Params$Resource$Projects$Locations$Queues$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Queues$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Queues$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1625,11 +1626,11 @@ export namespace cloudtasks_v2beta2 {
     get(
       params: Params$Resource$Projects$Locations$Queues$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Queues$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     get(
       params: Params$Resource$Projects$Locations$Queues$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1713,11 +1714,11 @@ export namespace cloudtasks_v2beta2 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Queues$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1804,11 +1805,11 @@ export namespace cloudtasks_v2beta2 {
     list(
       params: Params$Resource$Projects$Locations$Queues$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Queues$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQueuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQueuesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Queues$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1895,11 +1896,11 @@ export namespace cloudtasks_v2beta2 {
     patch(
       params: Params$Resource$Projects$Locations$Queues$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Queues$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     patch(
       params: Params$Resource$Projects$Locations$Queues$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1983,11 +1984,11 @@ export namespace cloudtasks_v2beta2 {
     pause(
       params: Params$Resource$Projects$Locations$Queues$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Projects$Locations$Queues$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     pause(
       params: Params$Resource$Projects$Locations$Queues$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2074,11 +2075,11 @@ export namespace cloudtasks_v2beta2 {
     purge(
       params: Params$Resource$Projects$Locations$Queues$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     purge(
       params?: Params$Resource$Projects$Locations$Queues$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     purge(
       params: Params$Resource$Projects$Locations$Queues$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2165,11 +2166,11 @@ export namespace cloudtasks_v2beta2 {
     resume(
       params: Params$Resource$Projects$Locations$Queues$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Locations$Queues$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Queue>;
+    ): GaxiosResponseWithHTTP2<Schema$Queue>;
     resume(
       params: Params$Resource$Projects$Locations$Queues$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2256,11 +2257,11 @@ export namespace cloudtasks_v2beta2 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Queues$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2347,11 +2348,11 @@ export namespace cloudtasks_v2beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Queues$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2592,11 +2593,11 @@ export namespace cloudtasks_v2beta2 {
     acknowledge(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acknowledge(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     acknowledge(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2684,11 +2685,11 @@ export namespace cloudtasks_v2beta2 {
     buffer(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     buffer(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BufferTaskResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BufferTaskResponse>;
     buffer(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2775,11 +2776,11 @@ export namespace cloudtasks_v2beta2 {
     cancelLease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancelLease(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): GaxiosResponseWithHTTP2<Schema$Task>;
     cancelLease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2867,11 +2868,11 @@ export namespace cloudtasks_v2beta2 {
     create(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): GaxiosResponseWithHTTP2<Schema$Task>;
     create(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2958,11 +2959,11 @@ export namespace cloudtasks_v2beta2 {
     delete(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3046,11 +3047,11 @@ export namespace cloudtasks_v2beta2 {
     get(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): GaxiosResponseWithHTTP2<Schema$Task>;
     get(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3134,11 +3135,11 @@ export namespace cloudtasks_v2beta2 {
     lease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lease(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaseTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LeaseTasksResponse>;
     lease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3225,11 +3226,11 @@ export namespace cloudtasks_v2beta2 {
     list(
       params: Params$Resource$Projects$Locations$Queues$Tasks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTasksResponse>;
     list(
       params: Params$Resource$Projects$Locations$Queues$Tasks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3316,11 +3317,11 @@ export namespace cloudtasks_v2beta2 {
     renewLease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     renewLease(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): GaxiosResponseWithHTTP2<Schema$Task>;
     renewLease(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3408,11 +3409,11 @@ export namespace cloudtasks_v2beta2 {
     run(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     run(
       params?: Params$Resource$Projects$Locations$Queues$Tasks$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): GaxiosResponseWithHTTP2<Schema$Task>;
     run(
       params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

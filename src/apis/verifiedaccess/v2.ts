@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -384,11 +385,11 @@ export namespace verifiedaccess_v2 {
     generate(
       params: Params$Resource$Challenge$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generate(
       params?: Params$Resource$Challenge$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Challenge>;
+    ): GaxiosResponseWithHTTP2<Schema$Challenge>;
     generate(
       params: Params$Resource$Challenge$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -476,11 +477,11 @@ export namespace verifiedaccess_v2 {
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Challenge$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyChallengeResponseResult>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>;
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

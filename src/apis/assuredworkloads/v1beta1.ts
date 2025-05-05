@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -988,11 +989,11 @@ export namespace assuredworkloads_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1081,11 +1082,11 @@ export namespace assuredworkloads_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1220,11 +1221,11 @@ export namespace assuredworkloads_v1beta1 {
     analyzeWorkloadMove(
       params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     analyzeWorkloadMove(
       params?: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
     analyzeWorkloadMove(
       params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1319,11 +1320,11 @@ export namespace assuredworkloads_v1beta1 {
     create(
       params: Params$Resource$Organizations$Locations$Workloads$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Workloads$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Organizations$Locations$Workloads$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1415,11 +1416,11 @@ export namespace assuredworkloads_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Workloads$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Workloads$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Organizations$Locations$Workloads$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1504,11 +1505,11 @@ export namespace assuredworkloads_v1beta1 {
     enableComplianceUpdates(
       params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enableComplianceUpdates(
       params?: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>;
     enableComplianceUpdates(
       params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1603,11 +1604,11 @@ export namespace assuredworkloads_v1beta1 {
     enableResourceMonitoring(
       params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enableResourceMonitoring(
       params?: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>;
     enableResourceMonitoring(
       params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1701,11 +1702,11 @@ export namespace assuredworkloads_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Workloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>;
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1796,11 +1797,11 @@ export namespace assuredworkloads_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Workloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Workloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Workloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1894,11 +1895,11 @@ export namespace assuredworkloads_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Locations$Workloads$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Workloads$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>;
     patch(
       params: Params$Resource$Organizations$Locations$Workloads$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1989,11 +1990,11 @@ export namespace assuredworkloads_v1beta1 {
     restrictAllowedResources(
       params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restrictAllowedResources(
       params?: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse>;
     restrictAllowedResources(
       params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2213,11 +2214,11 @@ export namespace assuredworkloads_v1beta1 {
     apply(
       params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     apply(
       params?: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     apply(
       params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2310,11 +2311,11 @@ export namespace assuredworkloads_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Workloads$Updates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2444,11 +2445,11 @@ export namespace assuredworkloads_v1beta1 {
     acknowledge(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acknowledge(
       params?: Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse>;
     acknowledge(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2543,11 +2544,11 @@ export namespace assuredworkloads_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Workloads$Violations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1Violation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Violation>;
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2639,11 +2640,11 @@ export namespace assuredworkloads_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Workloads$Violations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Workloads$Violations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

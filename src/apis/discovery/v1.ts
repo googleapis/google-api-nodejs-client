@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -469,11 +470,11 @@ export namespace discovery_v1 {
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRest(
       params?: Params$Resource$Apis$Getrest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RestDescription>;
+    ): GaxiosResponseWithHTTP2<Schema$RestDescription>;
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -559,11 +560,11 @@ export namespace discovery_v1 {
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apis$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectoryList>;
+    ): GaxiosResponseWithHTTP2<Schema$DirectoryList>;
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

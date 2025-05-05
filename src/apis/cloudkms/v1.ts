@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1391,11 +1392,11 @@ export namespace cloudkms_v1 {
     getAutokeyConfig(
       params: Params$Resource$Folders$Getautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAutokeyConfig(
       params?: Params$Resource$Folders$Getautokeyconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutokeyConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$AutokeyConfig>;
     getAutokeyConfig(
       params: Params$Resource$Folders$Getautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1481,11 +1482,11 @@ export namespace cloudkms_v1 {
     updateAutokeyConfig(
       params: Params$Resource$Folders$Updateautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateAutokeyConfig(
       params?: Params$Resource$Folders$Updateautokeyconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutokeyConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$AutokeyConfig>;
     updateAutokeyConfig(
       params: Params$Resource$Folders$Updateautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1604,11 +1605,11 @@ export namespace cloudkms_v1 {
     showEffectiveAutokeyConfig(
       params: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     showEffectiveAutokeyConfig(
       params?: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShowEffectiveAutokeyConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>;
     showEffectiveAutokeyConfig(
       params: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1732,11 +1733,11 @@ export namespace cloudkms_v1 {
     generateRandomBytes(
       params: Params$Resource$Projects$Locations$Generaterandombytes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateRandomBytes(
       params?: Params$Resource$Projects$Locations$Generaterandombytes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateRandomBytesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>;
     generateRandomBytes(
       params: Params$Resource$Projects$Locations$Generaterandombytes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1827,11 +1828,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1915,11 +1916,11 @@ export namespace cloudkms_v1 {
     getEkmConfig(
       params: Params$Resource$Projects$Locations$Getekmconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEkmConfig(
       params?: Params$Resource$Projects$Locations$Getekmconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConfig>;
     getEkmConfig(
       params: Params$Resource$Projects$Locations$Getekmconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2003,11 +2004,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2096,11 +2097,11 @@ export namespace cloudkms_v1 {
     updateEkmConfig(
       params: Params$Resource$Projects$Locations$Updateekmconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateEkmConfig(
       params?: Params$Resource$Projects$Locations$Updateekmconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConfig>;
     updateEkmConfig(
       params: Params$Resource$Projects$Locations$Updateekmconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2257,11 +2258,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2349,11 +2350,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2441,11 +2442,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2580,11 +2581,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
     create(
       params: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2671,11 +2672,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
     get(
       params: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2759,11 +2760,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2851,11 +2852,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ekmconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ekmconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEkmConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ekmconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2946,11 +2947,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
     patch(
       params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3034,11 +3035,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3126,11 +3127,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3222,11 +3223,11 @@ export namespace cloudkms_v1 {
     verifyConnectivity(
       params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verifyConnectivity(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyConnectivityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>;
     verifyConnectivity(
       params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3430,11 +3431,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyhandles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Keyhandles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Keyhandles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3521,11 +3522,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyhandles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Keyhandles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$KeyHandle>;
+    ): GaxiosResponseWithHTTP2<Schema$KeyHandle>;
     get(
       params: Params$Resource$Projects$Locations$Keyhandles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3609,11 +3610,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyhandles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Keyhandles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListKeyHandlesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Keyhandles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3760,11 +3761,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$KeyRing>;
+    ): GaxiosResponseWithHTTP2<Schema$KeyRing>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3851,11 +3852,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$KeyRing>;
+    ): GaxiosResponseWithHTTP2<Schema$KeyRing>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3939,11 +3940,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4030,11 +4031,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListKeyRingsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4123,11 +4124,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4214,11 +4215,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4404,11 +4405,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKey>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4496,11 +4497,11 @@ export namespace cloudkms_v1 {
     decrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     decrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DecryptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DecryptResponse>;
     decrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4588,11 +4589,11 @@ export namespace cloudkms_v1 {
     encrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     encrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EncryptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EncryptResponse>;
     encrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4680,11 +4681,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKey>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4769,11 +4770,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4861,11 +4862,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCryptoKeysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4955,11 +4956,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKey>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5044,11 +5045,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5136,11 +5137,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5232,11 +5233,11 @@ export namespace cloudkms_v1 {
     updatePrimaryVersion(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updatePrimaryVersion(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKey>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
     updatePrimaryVersion(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5475,11 +5476,11 @@ export namespace cloudkms_v1 {
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asymmetricDecrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AsymmetricDecryptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>;
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5571,11 +5572,11 @@ export namespace cloudkms_v1 {
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     asymmetricSign(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AsymmetricSignResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>;
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5667,11 +5668,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5759,11 +5760,11 @@ export namespace cloudkms_v1 {
     destroy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     destroy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     destroy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5851,11 +5852,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5940,11 +5941,11 @@ export namespace cloudkms_v1 {
     getPublicKey(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getPublicKey(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublicKey>;
+    ): GaxiosResponseWithHTTP2<Schema$PublicKey>;
     getPublicKey(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6032,11 +6033,11 @@ export namespace cloudkms_v1 {
     import(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     import(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6124,11 +6125,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6222,11 +6223,11 @@ export namespace cloudkms_v1 {
     macSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     macSign(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MacSignResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$MacSignResponse>;
     macSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6314,11 +6315,11 @@ export namespace cloudkms_v1 {
     macVerify(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     macVerify(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MacVerifyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>;
     macVerify(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6406,11 +6407,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6495,11 +6496,11 @@ export namespace cloudkms_v1 {
     rawDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rawDecrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RawDecryptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>;
     rawDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6587,11 +6588,11 @@ export namespace cloudkms_v1 {
     rawEncrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rawEncrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RawEncryptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>;
     rawEncrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6679,11 +6680,11 @@ export namespace cloudkms_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
     restore(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6960,11 +6961,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportJob>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportJob>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7052,11 +7053,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportJob>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportJob>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7141,11 +7142,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7233,11 +7234,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImportJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7327,11 +7328,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7419,11 +7420,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7604,11 +7605,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

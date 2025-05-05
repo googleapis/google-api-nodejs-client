@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -507,11 +508,11 @@ export namespace bigqueryreservation_v1 {
     getBiReservation(
       params: Params$Resource$Projects$Locations$Getbireservation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getBiReservation(
       params?: Params$Resource$Projects$Locations$Getbireservation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BiReservation>;
+    ): GaxiosResponseWithHTTP2<Schema$BiReservation>;
     getBiReservation(
       params: Params$Resource$Projects$Locations$Getbireservation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -598,11 +599,11 @@ export namespace bigqueryreservation_v1 {
     searchAllAssignments(
       params: Params$Resource$Projects$Locations$Searchallassignments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchAllAssignments(
       params?: Params$Resource$Projects$Locations$Searchallassignments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchAllAssignmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchAllAssignmentsResponse>;
     searchAllAssignments(
       params: Params$Resource$Projects$Locations$Searchallassignments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -696,11 +697,11 @@ export namespace bigqueryreservation_v1 {
     searchAssignments(
       params: Params$Resource$Projects$Locations$Searchassignments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchAssignments(
       params?: Params$Resource$Projects$Locations$Searchassignments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchAssignmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchAssignmentsResponse>;
     searchAssignments(
       params: Params$Resource$Projects$Locations$Searchassignments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -792,11 +793,11 @@ export namespace bigqueryreservation_v1 {
     updateBiReservation(
       params: Params$Resource$Projects$Locations$Updatebireservation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateBiReservation(
       params?: Params$Resource$Projects$Locations$Updatebireservation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BiReservation>;
+    ): GaxiosResponseWithHTTP2<Schema$BiReservation>;
     updateBiReservation(
       params: Params$Resource$Projects$Locations$Updatebireservation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -952,11 +953,11 @@ export namespace bigqueryreservation_v1 {
     create(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CapacityCommitment>;
+    ): GaxiosResponseWithHTTP2<Schema$CapacityCommitment>;
     create(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1045,11 +1046,11 @@ export namespace bigqueryreservation_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1135,11 +1136,11 @@ export namespace bigqueryreservation_v1 {
     get(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CapacityCommitment>;
+    ): GaxiosResponseWithHTTP2<Schema$CapacityCommitment>;
     get(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1225,11 +1226,11 @@ export namespace bigqueryreservation_v1 {
     list(
       params: Params$Resource$Projects$Locations$Capacitycommitments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCapacityCommitmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCapacityCommitmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Capacitycommitments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1324,11 +1325,11 @@ export namespace bigqueryreservation_v1 {
     merge(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     merge(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CapacityCommitment>;
+    ): GaxiosResponseWithHTTP2<Schema$CapacityCommitment>;
     merge(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1417,11 +1418,11 @@ export namespace bigqueryreservation_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CapacityCommitment>;
+    ): GaxiosResponseWithHTTP2<Schema$CapacityCommitment>;
     patch(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1507,11 +1508,11 @@ export namespace bigqueryreservation_v1 {
     split(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Split,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     split(
       params?: Params$Resource$Projects$Locations$Capacitycommitments$Split,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SplitCapacityCommitmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SplitCapacityCommitmentResponse>;
     split(
       params: Params$Resource$Projects$Locations$Capacitycommitments$Split,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1707,11 +1708,11 @@ export namespace bigqueryreservation_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Reservations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): GaxiosResponseWithHTTP2<Schema$Reservation>;
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1799,11 +1800,11 @@ export namespace bigqueryreservation_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reservations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1888,11 +1889,11 @@ export namespace bigqueryreservation_v1 {
     failoverReservation(
       params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     failoverReservation(
       params?: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): GaxiosResponseWithHTTP2<Schema$Reservation>;
     failoverReservation(
       params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1983,11 +1984,11 @@ export namespace bigqueryreservation_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Reservations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): GaxiosResponseWithHTTP2<Schema$Reservation>;
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2072,11 +2073,11 @@ export namespace bigqueryreservation_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reservations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReservationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2166,11 +2167,11 @@ export namespace bigqueryreservation_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Reservations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): GaxiosResponseWithHTTP2<Schema$Reservation>;
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2336,11 +2337,11 @@ export namespace bigqueryreservation_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Reservations$Assignments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Assignment>;
+    ): GaxiosResponseWithHTTP2<Schema$Assignment>;
     create(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2429,11 +2430,11 @@ export namespace bigqueryreservation_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reservations$Assignments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2519,11 +2520,11 @@ export namespace bigqueryreservation_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reservations$Assignments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssignmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAssignmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2614,11 +2615,11 @@ export namespace bigqueryreservation_v1 {
     move(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Projects$Locations$Reservations$Assignments$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Assignment>;
+    ): GaxiosResponseWithHTTP2<Schema$Assignment>;
     move(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2704,11 +2705,11 @@ export namespace bigqueryreservation_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Assignment>;
+    ): GaxiosResponseWithHTTP2<Schema$Assignment>;
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

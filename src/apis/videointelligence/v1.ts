@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3439,11 +3440,11 @@ export namespace videointelligence_v1 {
     cancel(
       params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobuf_Empty>;
     cancel(
       params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3534,11 +3535,11 @@ export namespace videointelligence_v1 {
     delete(
       params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobuf_Empty>;
     delete(
       params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3629,11 +3630,11 @@ export namespace videointelligence_v1 {
     get(
       params: Params$Resource$Operations$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>;
     get(
       params: Params$Resource$Operations$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3775,11 +3776,11 @@ export namespace videointelligence_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobuf_Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3866,11 +3867,11 @@ export namespace videointelligence_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobuf_Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3957,11 +3958,11 @@ export namespace videointelligence_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4050,11 +4051,11 @@ export namespace videointelligence_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4201,11 +4202,11 @@ export namespace videointelligence_v1 {
     annotate(
       params: Params$Resource$Videos$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Videos$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>;
     annotate(
       params: Params$Resource$Videos$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

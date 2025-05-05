@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -159,11 +160,11 @@ export namespace kgsearch_v1 {
     search(
       params: Params$Resource$Entities$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Entities$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
     search(
       params: Params$Resource$Entities$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

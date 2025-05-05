@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -202,11 +203,11 @@ export namespace acceleratedmobilepageurl_v1 {
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Ampurls$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>;
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

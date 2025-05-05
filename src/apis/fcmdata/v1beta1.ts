@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -338,11 +339,11 @@ export namespace fcmdata_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>;
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

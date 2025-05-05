@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1454,11 +1455,11 @@ export namespace osconfig_v1beta {
     create(
       params: Params$Resource$Projects$Guestpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Guestpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GuestPolicy>;
     create(
       params: Params$Resource$Projects$Guestpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1545,11 +1546,11 @@ export namespace osconfig_v1beta {
     delete(
       params: Params$Resource$Projects$Guestpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Guestpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Guestpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1633,11 +1634,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Guestpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Guestpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GuestPolicy>;
     get(
       params: Params$Resource$Projects$Guestpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1721,11 +1722,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Guestpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGuestPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGuestPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1816,11 +1817,11 @@ export namespace osconfig_v1beta {
     patch(
       params: Params$Resource$Projects$Guestpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Guestpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GuestPolicy>;
     patch(
       params: Params$Resource$Projects$Guestpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1973,11 +1974,11 @@ export namespace osconfig_v1beta {
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Patchdeployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchDeployment>;
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2064,11 +2065,11 @@ export namespace osconfig_v1beta {
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Patchdeployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2152,11 +2153,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Patchdeployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchDeployment>;
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2240,11 +2241,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Patchdeployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPatchDeploymentsResponse>;
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2337,11 +2338,11 @@ export namespace osconfig_v1beta {
     patch(
       params: Params$Resource$Projects$Patchdeployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Patchdeployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchDeployment>;
     patch(
       params: Params$Resource$Projects$Patchdeployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2425,11 +2426,11 @@ export namespace osconfig_v1beta {
     pause(
       params: Params$Resource$Projects$Patchdeployments$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Projects$Patchdeployments$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchDeployment>;
     pause(
       params: Params$Resource$Projects$Patchdeployments$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2516,11 +2517,11 @@ export namespace osconfig_v1beta {
     resume(
       params: Params$Resource$Projects$Patchdeployments$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Projects$Patchdeployments$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchDeployment>;
     resume(
       params: Params$Resource$Projects$Patchdeployments$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2704,11 +2705,11 @@ export namespace osconfig_v1beta {
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Patchjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchJob>;
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2795,11 +2796,11 @@ export namespace osconfig_v1beta {
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     execute(
       params?: Params$Resource$Projects$Patchjobs$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchJob>;
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2886,11 +2887,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Patchjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): GaxiosResponseWithHTTP2<Schema$PatchJob>;
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2974,11 +2975,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Patchjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPatchJobsResponse>;
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3125,11 +3126,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPatchJobInstanceDetailsResponse>;
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3258,11 +3259,11 @@ export namespace osconfig_v1beta {
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookupEffectiveGuestPolicy(
       params?: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EffectiveGuestPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$EffectiveGuestPolicy>;
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

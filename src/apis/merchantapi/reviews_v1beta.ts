@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -659,11 +660,11 @@ export namespace merchantapi_reviews_v1beta {
     delete(
       params: Params$Resource$Accounts$Merchantreviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Merchantreviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Merchantreviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -750,11 +751,11 @@ export namespace merchantapi_reviews_v1beta {
     get(
       params: Params$Resource$Accounts$Merchantreviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Merchantreviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MerchantReview>;
+    ): GaxiosResponseWithHTTP2<Schema$MerchantReview>;
     get(
       params: Params$Resource$Accounts$Merchantreviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -841,11 +842,11 @@ export namespace merchantapi_reviews_v1beta {
     insert(
       params: Params$Resource$Accounts$Merchantreviews$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Merchantreviews$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MerchantReview>;
+    ): GaxiosResponseWithHTTP2<Schema$MerchantReview>;
     insert(
       params: Params$Resource$Accounts$Merchantreviews$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -931,11 +932,11 @@ export namespace merchantapi_reviews_v1beta {
     list(
       params: Params$Resource$Accounts$Merchantreviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Merchantreviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMerchantReviewsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMerchantReviewsResponse>;
     list(
       params: Params$Resource$Accounts$Merchantreviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1078,11 +1079,11 @@ export namespace merchantapi_reviews_v1beta {
     delete(
       params: Params$Resource$Accounts$Productreviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Productreviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Productreviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1169,11 +1170,11 @@ export namespace merchantapi_reviews_v1beta {
     get(
       params: Params$Resource$Accounts$Productreviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Productreviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductReview>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductReview>;
     get(
       params: Params$Resource$Accounts$Productreviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1260,11 +1261,11 @@ export namespace merchantapi_reviews_v1beta {
     insert(
       params: Params$Resource$Accounts$Productreviews$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Productreviews$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductReview>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductReview>;
     insert(
       params: Params$Resource$Accounts$Productreviews$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1350,11 +1351,11 @@ export namespace merchantapi_reviews_v1beta {
     list(
       params: Params$Resource$Accounts$Productreviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Productreviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductReviewsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductReviewsResponse>;
     list(
       params: Params$Resource$Accounts$Productreviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

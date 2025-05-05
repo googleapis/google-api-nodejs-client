@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2538,11 +2539,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Folders$Timeseries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Timeseries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTimeSeriesResponse>;
     list(
       params: Params$Resource$Folders$Timeseries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2715,11 +2716,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Organizations$Timeseries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Timeseries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTimeSeriesResponse>;
     list(
       params: Params$Resource$Organizations$Timeseries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2920,11 +2921,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Alertpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Alertpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AlertPolicy>;
     create(
       params: Params$Resource$Projects$Alertpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3011,11 +3012,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Projects$Alertpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Alertpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Alertpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3099,11 +3100,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Alertpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Alertpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AlertPolicy>;
     get(
       params: Params$Resource$Projects$Alertpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3187,11 +3188,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Alertpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Alertpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAlertPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Alertpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3282,11 +3283,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Projects$Alertpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Alertpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AlertPolicy>;
     patch(
       params: Params$Resource$Projects$Alertpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3443,11 +3444,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Collectdtimeseries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Collectdtimeseries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateCollectdTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CreateCollectdTimeSeriesResponse>;
     create(
       params: Params$Resource$Projects$Collectdtimeseries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3562,11 +3563,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Groups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3650,11 +3651,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Groups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3738,11 +3739,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3826,11 +3827,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>;
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3914,11 +3915,11 @@ export namespace monitoring_v3 {
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4087,11 +4088,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Groups$Members$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Groups$Members$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupMembersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupMembersResponse>;
     list(
       params: Params$Resource$Projects$Groups$Members$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4215,11 +4216,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Metricdescriptors$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Metricdescriptors$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetricDescriptor>;
+    ): GaxiosResponseWithHTTP2<Schema$MetricDescriptor>;
     create(
       params: Params$Resource$Projects$Metricdescriptors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4306,11 +4307,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Projects$Metricdescriptors$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Metricdescriptors$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Metricdescriptors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4394,11 +4395,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Metricdescriptors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Metricdescriptors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetricDescriptor>;
+    ): GaxiosResponseWithHTTP2<Schema$MetricDescriptor>;
     get(
       params: Params$Resource$Projects$Metricdescriptors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4482,11 +4483,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Metricdescriptors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Metricdescriptors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMetricDescriptorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMetricDescriptorsResponse>;
     list(
       params: Params$Resource$Projects$Metricdescriptors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4636,11 +4637,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MonitoredResourceDescriptor>;
+    ): GaxiosResponseWithHTTP2<Schema$MonitoredResourceDescriptor>;
     get(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4729,11 +4730,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Monitoredresourcedescriptors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4861,11 +4862,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Notificationchanneldescriptors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationChannelDescriptor>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationChannelDescriptor>;
     get(
       params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4956,11 +4957,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Notificationchanneldescriptors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNotificationChannelDescriptorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNotificationChannelDescriptorsResponse>;
     list(
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5083,11 +5084,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Notificationchannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Notificationchannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationChannel>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationChannel>;
     create(
       params: Params$Resource$Projects$Notificationchannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5174,11 +5175,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Projects$Notificationchannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Notificationchannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Notificationchannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5262,11 +5263,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Notificationchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Notificationchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationChannel>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationChannel>;
     get(
       params: Params$Resource$Projects$Notificationchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5350,11 +5351,11 @@ export namespace monitoring_v3 {
     getVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVerificationCode(
       params?: Params$Resource$Projects$Notificationchannels$Getverificationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetNotificationChannelVerificationCodeResponse>;
     getVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5448,11 +5449,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Notificationchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Notificationchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNotificationChannelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNotificationChannelsResponse>;
     list(
       params: Params$Resource$Projects$Notificationchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5545,11 +5546,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Projects$Notificationchannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Notificationchannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationChannel>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationChannel>;
     patch(
       params: Params$Resource$Projects$Notificationchannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5633,11 +5634,11 @@ export namespace monitoring_v3 {
     sendVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     sendVerificationCode(
       params?: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     sendVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5725,11 +5726,11 @@ export namespace monitoring_v3 {
     verify(
       params: Params$Resource$Projects$Notificationchannels$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verify(
       params?: Params$Resource$Projects$Notificationchannels$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NotificationChannel>;
+    ): GaxiosResponseWithHTTP2<Schema$NotificationChannel>;
     verify(
       params: Params$Resource$Projects$Notificationchannels$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5926,11 +5927,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Snoozes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Snoozes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snooze>;
+    ): GaxiosResponseWithHTTP2<Schema$Snooze>;
     create(
       params: Params$Resource$Projects$Snoozes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6017,11 +6018,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Snoozes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Snoozes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snooze>;
+    ): GaxiosResponseWithHTTP2<Schema$Snooze>;
     get(
       params: Params$Resource$Projects$Snoozes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6105,11 +6106,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Snoozes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Snoozes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnoozesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSnoozesResponse>;
     list(
       params: Params$Resource$Projects$Snoozes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6196,11 +6197,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Projects$Snoozes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Snoozes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snooze>;
+    ): GaxiosResponseWithHTTP2<Schema$Snooze>;
     patch(
       params: Params$Resource$Projects$Snoozes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6346,11 +6347,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Timeseries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Timeseries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     create(
       params: Params$Resource$Projects$Timeseries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6437,11 +6438,11 @@ export namespace monitoring_v3 {
     createService(
       params: Params$Resource$Projects$Timeseries$Createservice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createService(
       params?: Params$Resource$Projects$Timeseries$Createservice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     createService(
       params: Params$Resource$Projects$Timeseries$Createservice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6528,11 +6529,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Timeseries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Timeseries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTimeSeriesResponse>;
     list(
       params: Params$Resource$Projects$Timeseries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6621,11 +6622,11 @@ export namespace monitoring_v3 {
     query(
       params: Params$Resource$Projects$Timeseries$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     query(
       params?: Params$Resource$Projects$Timeseries$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryTimeSeriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryTimeSeriesResponse>;
     query(
       params: Params$Resource$Projects$Timeseries$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6825,11 +6826,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Projects$Uptimecheckconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Uptimecheckconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UptimeCheckConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$UptimeCheckConfig>;
     create(
       params: Params$Resource$Projects$Uptimecheckconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6916,11 +6917,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Uptimecheckconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7004,11 +7005,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Projects$Uptimecheckconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Uptimecheckconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UptimeCheckConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$UptimeCheckConfig>;
     get(
       params: Params$Resource$Projects$Uptimecheckconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7092,11 +7093,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Uptimecheckconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Uptimecheckconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUptimeCheckConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListUptimeCheckConfigsResponse>;
     list(
       params: Params$Resource$Projects$Uptimecheckconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7189,11 +7190,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Uptimecheckconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UptimeCheckConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$UptimeCheckConfig>;
     patch(
       params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7349,11 +7350,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     create(
       params: Params$Resource$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7439,11 +7440,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7526,11 +7527,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7613,11 +7614,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7705,11 +7706,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     patch(
       params: Params$Resource$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7860,11 +7861,11 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Services$Servicelevelobjectives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Servicelevelobjectives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceLevelObjective>;
     create(
       params: Params$Resource$Services$Servicelevelobjectives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7953,11 +7954,11 @@ export namespace monitoring_v3 {
     delete(
       params: Params$Resource$Services$Servicelevelobjectives$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Services$Servicelevelobjectives$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Services$Servicelevelobjectives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8041,11 +8042,11 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Services$Servicelevelobjectives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Services$Servicelevelobjectives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceLevelObjective>;
     get(
       params: Params$Resource$Services$Servicelevelobjectives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8131,11 +8132,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Services$Servicelevelobjectives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Servicelevelobjectives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceLevelObjectivesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceLevelObjectivesResponse>;
     list(
       params: Params$Resource$Services$Servicelevelobjectives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8228,11 +8229,11 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Services$Servicelevelobjectives$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Services$Servicelevelobjectives$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceLevelObjective>;
     patch(
       params: Params$Resource$Services$Servicelevelobjectives$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8399,11 +8400,11 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Uptimecheckips$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Uptimecheckips$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUptimeCheckIpsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListUptimeCheckIpsResponse>;
     list(
       params: Params$Resource$Uptimecheckips$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

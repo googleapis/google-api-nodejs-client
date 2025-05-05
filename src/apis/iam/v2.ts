@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -555,11 +556,11 @@ export namespace iam_v2 {
     createPolicy(
       params: Params$Resource$Policies$Createpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createPolicy(
       params?: Params$Resource$Policies$Createpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     createPolicy(
       params: Params$Resource$Policies$Createpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -647,11 +648,11 @@ export namespace iam_v2 {
     delete(
       params: Params$Resource$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -738,11 +739,11 @@ export namespace iam_v2 {
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV2Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV2Policy>;
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -825,11 +826,11 @@ export namespace iam_v2 {
     listPolicies(
       params: Params$Resource$Policies$Listpolicies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listPolicies(
       params?: Params$Resource$Policies$Listpolicies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV2ListPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV2ListPoliciesResponse>;
     listPolicies(
       params: Params$Resource$Policies$Listpolicies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -919,11 +920,11 @@ export namespace iam_v2 {
     update(
       params: Params$Resource$Policies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Policies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     update(
       params: Params$Resource$Policies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1076,11 +1077,11 @@ export namespace iam_v2 {
     get(
       params: Params$Resource$Policies$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Policies$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Policies$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

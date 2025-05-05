@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -445,11 +446,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): GaxiosResponseWithHTTP2<Schema$Table>;
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -533,11 +534,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTablesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTablesResponse>;
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -649,11 +650,11 @@ export namespace area120tables_v1alpha1 {
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Tables$Rows$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreateRowsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchCreateRowsResponse>;
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -745,11 +746,11 @@ export namespace area120tables_v1alpha1 {
     batchDelete(
       params: Params$Resource$Tables$Rows$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Tables$Rows$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     batchDelete(
       params: Params$Resource$Tables$Rows$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -837,11 +838,11 @@ export namespace area120tables_v1alpha1 {
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Tables$Rows$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateRowsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateRowsResponse>;
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -933,11 +934,11 @@ export namespace area120tables_v1alpha1 {
     create(
       params: Params$Resource$Tables$Rows$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Tables$Rows$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): GaxiosResponseWithHTTP2<Schema$Row>;
     create(
       params: Params$Resource$Tables$Rows$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1025,11 +1026,11 @@ export namespace area120tables_v1alpha1 {
     delete(
       params: Params$Resource$Tables$Rows$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Tables$Rows$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Tables$Rows$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1114,11 +1115,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Tables$Rows$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Tables$Rows$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): GaxiosResponseWithHTTP2<Schema$Row>;
     get(
       params: Params$Resource$Tables$Rows$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1202,11 +1203,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Tables$Rows$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Tables$Rows$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRowsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRowsResponse>;
     list(
       params: Params$Resource$Tables$Rows$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1293,11 +1294,11 @@ export namespace area120tables_v1alpha1 {
     patch(
       params: Params$Resource$Tables$Rows$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Tables$Rows$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): GaxiosResponseWithHTTP2<Schema$Row>;
     patch(
       params: Params$Resource$Tables$Rows$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1505,11 +1506,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Workspaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Workspaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Workspace>;
+    ): GaxiosResponseWithHTTP2<Schema$Workspace>;
     get(
       params: Params$Resource$Workspaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1593,11 +1594,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Workspaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Workspaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkspacesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWorkspacesResponse>;
     list(
       params: Params$Resource$Workspaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

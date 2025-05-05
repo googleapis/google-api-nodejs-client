@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1190,11 +1191,11 @@ export namespace domains_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1278,11 +1279,11 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1405,11 +1406,11 @@ export namespace domains_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1493,11 +1494,11 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1620,11 +1621,11 @@ export namespace domains_v1 {
     configureContactSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configurecontactsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     configureContactSettings(
       params?: Params$Resource$Projects$Locations$Registrations$Configurecontactsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     configureContactSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configurecontactsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1713,11 +1714,11 @@ export namespace domains_v1 {
     configureDnsSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configurednssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     configureDnsSettings(
       params?: Params$Resource$Projects$Locations$Registrations$Configurednssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     configureDnsSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configurednssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1807,11 +1808,11 @@ export namespace domains_v1 {
     configureManagementSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     configureManagementSettings(
       params?: Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     configureManagementSettings(
       params: Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1900,11 +1901,11 @@ export namespace domains_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Registrations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Registrations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Registrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1988,11 +1989,11 @@ export namespace domains_v1 {
     export(
       params: Params$Resource$Projects$Locations$Registrations$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     export(
       params?: Params$Resource$Projects$Locations$Registrations$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     export(
       params: Params$Resource$Projects$Locations$Registrations$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2076,11 +2077,11 @@ export namespace domains_v1 {
     get(
       params: Params$Resource$Projects$Locations$Registrations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Registrations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Registration>;
+    ): GaxiosResponseWithHTTP2<Schema$Registration>;
     get(
       params: Params$Resource$Projects$Locations$Registrations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2164,11 +2165,11 @@ export namespace domains_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Registrations$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Registrations$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Registrations$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2256,11 +2257,11 @@ export namespace domains_v1 {
     import(
       params: Params$Resource$Projects$Locations$Registrations$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     import(
       params?: Params$Resource$Projects$Locations$Registrations$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     import(
       params: Params$Resource$Projects$Locations$Registrations$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2347,11 +2348,11 @@ export namespace domains_v1 {
     initiatePushTransfer(
       params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     initiatePushTransfer(
       params?: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     initiatePushTransfer(
       params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2441,11 +2442,11 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$Registrations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Registrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRegistrationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRegistrationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Registrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2536,11 +2537,11 @@ export namespace domains_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Registrations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Registrations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Registrations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2624,11 +2625,11 @@ export namespace domains_v1 {
     register(
       params: Params$Resource$Projects$Locations$Registrations$Register,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     register(
       params?: Params$Resource$Projects$Locations$Registrations$Register,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     register(
       params: Params$Resource$Projects$Locations$Registrations$Register,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2716,11 +2717,11 @@ export namespace domains_v1 {
     renewDomain(
       params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     renewDomain(
       params?: Params$Resource$Projects$Locations$Registrations$Renewdomain,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     renewDomain(
       params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2808,11 +2809,11 @@ export namespace domains_v1 {
     resetAuthorizationCode(
       params: Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resetAuthorizationCode(
       params?: Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizationCode>;
+    ): GaxiosResponseWithHTTP2<Schema$AuthorizationCode>;
     resetAuthorizationCode(
       params: Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2901,11 +2902,11 @@ export namespace domains_v1 {
     retrieveAuthorizationCode(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveAuthorizationCode(
       params?: Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizationCode>;
+    ): GaxiosResponseWithHTTP2<Schema$AuthorizationCode>;
     retrieveAuthorizationCode(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2994,11 +2995,11 @@ export namespace domains_v1 {
     retrieveGoogleDomainsDnsRecords(
       params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsdnsrecords,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveGoogleDomainsDnsRecords(
       params?: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsdnsrecords,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveGoogleDomainsDnsRecordsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveGoogleDomainsDnsRecordsResponse>;
     retrieveGoogleDomainsDnsRecords(
       params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsdnsrecords,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3091,11 +3092,11 @@ export namespace domains_v1 {
     retrieveGoogleDomainsForwardingConfig(
       params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveGoogleDomainsForwardingConfig(
       params?: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveGoogleDomainsForwardingConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveGoogleDomainsForwardingConfigResponse>;
     retrieveGoogleDomainsForwardingConfig(
       params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3189,11 +3190,11 @@ export namespace domains_v1 {
     retrieveImportableDomains(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveImportableDomains(
       params?: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveImportableDomainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveImportableDomainsResponse>;
     retrieveImportableDomains(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3287,11 +3288,11 @@ export namespace domains_v1 {
     retrieveRegisterParameters(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveRegisterParameters(
       params?: Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveRegisterParametersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveRegisterParametersResponse>;
     retrieveRegisterParameters(
       params: Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3385,11 +3386,11 @@ export namespace domains_v1 {
     retrieveTransferParameters(
       params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     retrieveTransferParameters(
       params?: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveTransferParametersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RetrieveTransferParametersResponse>;
     retrieveTransferParameters(
       params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3483,11 +3484,11 @@ export namespace domains_v1 {
     searchDomains(
       params: Params$Resource$Projects$Locations$Registrations$Searchdomains,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchDomains(
       params?: Params$Resource$Projects$Locations$Registrations$Searchdomains,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchDomainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchDomainsResponse>;
     searchDomains(
       params: Params$Resource$Projects$Locations$Registrations$Searchdomains,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3578,11 +3579,11 @@ export namespace domains_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Registrations$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Registrations$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Registrations$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3670,11 +3671,11 @@ export namespace domains_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Registrations$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Registrations$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Registrations$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3766,11 +3767,11 @@ export namespace domains_v1 {
     transfer(
       params: Params$Resource$Projects$Locations$Registrations$Transfer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     transfer(
       params?: Params$Resource$Projects$Locations$Registrations$Transfer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     transfer(
       params: Params$Resource$Projects$Locations$Registrations$Transfer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

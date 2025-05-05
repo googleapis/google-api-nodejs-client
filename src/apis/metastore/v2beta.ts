@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1208,11 +1209,11 @@ export namespace metastore_v2beta {
     alterLocation(
       params: Params$Resource$Projects$Locations$Services$Alterlocation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     alterLocation(
       params?: Params$Resource$Projects$Locations$Services$Alterlocation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     alterLocation(
       params: Params$Resource$Projects$Locations$Services$Alterlocation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1304,11 +1305,11 @@ export namespace metastore_v2beta {
     alterTableProperties(
       params: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     alterTableProperties(
       params?: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     alterTableProperties(
       params: Params$Resource$Projects$Locations$Services$Altertableproperties,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1400,11 +1401,11 @@ export namespace metastore_v2beta {
     cancelMigration(
       params: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancelMigration(
       params?: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     cancelMigration(
       params: Params$Resource$Projects$Locations$Services$Cancelmigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1496,11 +1497,11 @@ export namespace metastore_v2beta {
     completeMigration(
       params: Params$Resource$Projects$Locations$Services$Completemigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeMigration(
       params?: Params$Resource$Projects$Locations$Services$Completemigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     completeMigration(
       params: Params$Resource$Projects$Locations$Services$Completemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1592,11 +1593,11 @@ export namespace metastore_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1687,11 +1688,11 @@ export namespace metastore_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1779,11 +1780,11 @@ export namespace metastore_v2beta {
     exportMetadata(
       params: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportMetadata(
       params?: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     exportMetadata(
       params: Params$Resource$Projects$Locations$Services$Exportmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1875,11 +1876,11 @@ export namespace metastore_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaService>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaService>;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1969,11 +1970,11 @@ export namespace metastore_v2beta {
     importMetadata(
       params: Params$Resource$Projects$Locations$Services$Importmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importMetadata(
       params?: Params$Resource$Projects$Locations$Services$Importmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     importMetadata(
       params: Params$Resource$Projects$Locations$Services$Importmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2065,11 +2066,11 @@ export namespace metastore_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2162,11 +2163,11 @@ export namespace metastore_v2beta {
     moveTableToDatabase(
       params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     moveTableToDatabase(
       params?: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     moveTableToDatabase(
       params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2258,11 +2259,11 @@ export namespace metastore_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2350,11 +2351,11 @@ export namespace metastore_v2beta {
     queryMetadata(
       params: Params$Resource$Projects$Locations$Services$Querymetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryMetadata(
       params?: Params$Resource$Projects$Locations$Services$Querymetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     queryMetadata(
       params: Params$Resource$Projects$Locations$Services$Querymetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2446,11 +2447,11 @@ export namespace metastore_v2beta {
     removeIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Removeiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaRemoveIamPolicyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaRemoveIamPolicyResponse>;
     removeIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2544,11 +2545,11 @@ export namespace metastore_v2beta {
     restore(
       params: Params$Resource$Projects$Locations$Services$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Services$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     restore(
       params: Params$Resource$Projects$Locations$Services$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2639,11 +2640,11 @@ export namespace metastore_v2beta {
     startMigration(
       params: Params$Resource$Projects$Locations$Services$Startmigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     startMigration(
       params?: Params$Resource$Projects$Locations$Services$Startmigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     startMigration(
       params: Params$Resource$Projects$Locations$Services$Startmigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2956,11 +2957,11 @@ export namespace metastore_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Services$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Services$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3052,11 +3053,11 @@ export namespace metastore_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3145,11 +3146,11 @@ export namespace metastore_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaBackup>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaBackup>;
     get(
       params: Params$Resource$Projects$Locations$Services$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3239,11 +3240,11 @@ export namespace metastore_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Services$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3405,11 +3406,11 @@ export namespace metastore_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3498,11 +3499,11 @@ export namespace metastore_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaMigrationExecution>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaMigrationExecution>;
     get(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3593,11 +3594,11 @@ export namespace metastore_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudMetastoreV2betaListMigrationExecutionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudMetastoreV2betaListMigrationExecutionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

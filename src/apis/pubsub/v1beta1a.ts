@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -406,11 +407,11 @@ export namespace pubsub_v1beta1a {
     acknowledge(
       params: Params$Resource$Subscriptions$Acknowledge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acknowledge(
       params?: Params$Resource$Subscriptions$Acknowledge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     acknowledge(
       params: Params$Resource$Subscriptions$Acknowledge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -497,11 +498,11 @@ export namespace pubsub_v1beta1a {
     create(
       params: Params$Resource$Subscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Subscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     create(
       params: Params$Resource$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -588,11 +589,11 @@ export namespace pubsub_v1beta1a {
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -679,11 +680,11 @@ export namespace pubsub_v1beta1a {
     get(
       params: Params$Resource$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     get(
       params: Params$Resource$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -770,11 +771,11 @@ export namespace pubsub_v1beta1a {
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>;
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -865,11 +866,11 @@ export namespace pubsub_v1beta1a {
     modifyAckDeadline(
       params: Params$Resource$Subscriptions$Modifyackdeadline,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifyAckDeadline(
       params?: Params$Resource$Subscriptions$Modifyackdeadline,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     modifyAckDeadline(
       params: Params$Resource$Subscriptions$Modifyackdeadline,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -955,11 +956,11 @@ export namespace pubsub_v1beta1a {
     modifyPushConfig(
       params: Params$Resource$Subscriptions$Modifypushconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     modifyPushConfig(
       params?: Params$Resource$Subscriptions$Modifypushconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     modifyPushConfig(
       params: Params$Resource$Subscriptions$Modifypushconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1046,11 +1047,11 @@ export namespace pubsub_v1beta1a {
     pull(
       params: Params$Resource$Subscriptions$Pull,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pull(
       params?: Params$Resource$Subscriptions$Pull,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PullResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PullResponse>;
     pull(
       params: Params$Resource$Subscriptions$Pull,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1137,11 +1138,11 @@ export namespace pubsub_v1beta1a {
     pullBatch(
       params: Params$Resource$Subscriptions$Pullbatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pullBatch(
       params?: Params$Resource$Subscriptions$Pullbatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PullBatchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PullBatchResponse>;
     pullBatch(
       params: Params$Resource$Subscriptions$Pullbatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1307,11 +1308,11 @@ export namespace pubsub_v1beta1a {
     create(
       params: Params$Resource$Topics$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Topics$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Topic>;
+    ): GaxiosResponseWithHTTP2<Schema$Topic>;
     create(
       params: Params$Resource$Topics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1394,11 +1395,11 @@ export namespace pubsub_v1beta1a {
     delete(
       params: Params$Resource$Topics$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Topics$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Topics$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1484,11 +1485,11 @@ export namespace pubsub_v1beta1a {
     get(
       params: Params$Resource$Topics$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Topics$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Topic>;
+    ): GaxiosResponseWithHTTP2<Schema$Topic>;
     get(
       params: Params$Resource$Topics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1574,11 +1575,11 @@ export namespace pubsub_v1beta1a {
     list(
       params: Params$Resource$Topics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Topics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTopicsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTopicsResponse>;
     list(
       params: Params$Resource$Topics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1661,11 +1662,11 @@ export namespace pubsub_v1beta1a {
     publish(
       params: Params$Resource$Topics$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publish(
       params?: Params$Resource$Topics$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     publish(
       params: Params$Resource$Topics$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1751,11 +1752,11 @@ export namespace pubsub_v1beta1a {
     publishBatch(
       params: Params$Resource$Topics$Publishbatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publishBatch(
       params?: Params$Resource$Topics$Publishbatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublishBatchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PublishBatchResponse>;
     publishBatch(
       params: Params$Resource$Topics$Publishbatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

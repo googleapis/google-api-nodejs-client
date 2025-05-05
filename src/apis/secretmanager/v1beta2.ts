@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -635,11 +636,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -724,11 +725,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -860,11 +861,11 @@ export namespace secretmanager_v1beta2 {
     addVersion(
       params: Params$Resource$Projects$Locations$Secrets$Addversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addVersion(
       params?: Params$Resource$Projects$Locations$Secrets$Addversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     addVersion(
       params: Params$Resource$Projects$Locations$Secrets$Addversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -952,11 +953,11 @@ export namespace secretmanager_v1beta2 {
     create(
       params: Params$Resource$Projects$Locations$Secrets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Secrets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     create(
       params: Params$Resource$Projects$Locations$Secrets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1044,11 +1045,11 @@ export namespace secretmanager_v1beta2 {
     delete(
       params: Params$Resource$Projects$Locations$Secrets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Secrets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Secrets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1133,11 +1134,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Secrets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Secrets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     get(
       params: Params$Resource$Projects$Locations$Secrets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1222,11 +1223,11 @@ export namespace secretmanager_v1beta2 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1314,11 +1315,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Secrets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Secrets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1406,11 +1407,11 @@ export namespace secretmanager_v1beta2 {
     patch(
       params: Params$Resource$Projects$Locations$Secrets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Secrets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     patch(
       params: Params$Resource$Projects$Locations$Secrets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1495,11 +1496,11 @@ export namespace secretmanager_v1beta2 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1587,11 +1588,11 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1808,11 +1809,11 @@ export namespace secretmanager_v1beta2 {
     access(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     access(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>;
     access(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1905,11 +1906,11 @@ export namespace secretmanager_v1beta2 {
     destroy(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     destroy(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     destroy(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1998,11 +1999,11 @@ export namespace secretmanager_v1beta2 {
     disable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disable(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     disable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2091,11 +2092,11 @@ export namespace secretmanager_v1beta2 {
     enable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enable(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     enable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2184,11 +2185,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     get(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2273,11 +2274,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2448,11 +2449,11 @@ export namespace secretmanager_v1beta2 {
     addVersion(
       params: Params$Resource$Projects$Secrets$Addversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addVersion(
       params?: Params$Resource$Projects$Secrets$Addversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     addVersion(
       params: Params$Resource$Projects$Secrets$Addversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2540,11 +2541,11 @@ export namespace secretmanager_v1beta2 {
     create(
       params: Params$Resource$Projects$Secrets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Secrets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     create(
       params: Params$Resource$Projects$Secrets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2632,11 +2633,11 @@ export namespace secretmanager_v1beta2 {
     delete(
       params: Params$Resource$Projects$Secrets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Secrets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Secrets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2721,11 +2722,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Secrets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Secrets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     get(
       params: Params$Resource$Projects$Secrets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2810,11 +2811,11 @@ export namespace secretmanager_v1beta2 {
     getIamPolicy(
       params: Params$Resource$Projects$Secrets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Secrets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Secrets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2902,11 +2903,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Secrets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Secrets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>;
     list(
       params: Params$Resource$Projects$Secrets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2994,11 +2995,11 @@ export namespace secretmanager_v1beta2 {
     patch(
       params: Params$Resource$Projects$Secrets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Secrets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): GaxiosResponseWithHTTP2<Schema$Secret>;
     patch(
       params: Params$Resource$Projects$Secrets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3083,11 +3084,11 @@ export namespace secretmanager_v1beta2 {
     setIamPolicy(
       params: Params$Resource$Projects$Secrets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Secrets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Secrets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3175,11 +3176,11 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Secrets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3395,11 +3396,11 @@ export namespace secretmanager_v1beta2 {
     access(
       params: Params$Resource$Projects$Secrets$Versions$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     access(
       params?: Params$Resource$Projects$Secrets$Versions$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>;
     access(
       params: Params$Resource$Projects$Secrets$Versions$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3491,11 +3492,11 @@ export namespace secretmanager_v1beta2 {
     destroy(
       params: Params$Resource$Projects$Secrets$Versions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     destroy(
       params?: Params$Resource$Projects$Secrets$Versions$Destroy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     destroy(
       params: Params$Resource$Projects$Secrets$Versions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3583,11 +3584,11 @@ export namespace secretmanager_v1beta2 {
     disable(
       params: Params$Resource$Projects$Secrets$Versions$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disable(
       params?: Params$Resource$Projects$Secrets$Versions$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     disable(
       params: Params$Resource$Projects$Secrets$Versions$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3675,11 +3676,11 @@ export namespace secretmanager_v1beta2 {
     enable(
       params: Params$Resource$Projects$Secrets$Versions$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enable(
       params?: Params$Resource$Projects$Secrets$Versions$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     enable(
       params: Params$Resource$Projects$Secrets$Versions$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3767,11 +3768,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Secrets$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Secrets$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$SecretVersion>;
     get(
       params: Params$Resource$Projects$Secrets$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,11 +3857,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Secrets$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>;
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -661,11 +662,11 @@ export namespace solar_v1 {
     findClosest(
       params: Params$Resource$Buildinginsights$Findclosest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     findClosest(
       params?: Params$Resource$Buildinginsights$Findclosest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildingInsights>;
+    ): GaxiosResponseWithHTTP2<Schema$BuildingInsights>;
     findClosest(
       params: Params$Resource$Buildinginsights$Findclosest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -779,11 +780,11 @@ export namespace solar_v1 {
     get(
       params: Params$Resource$Datalayers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Datalayers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataLayers>;
+    ): GaxiosResponseWithHTTP2<Schema$DataLayers>;
     get(
       params: Params$Resource$Datalayers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -908,11 +909,11 @@ export namespace solar_v1 {
     get(
       params: Params$Resource$Geotiff$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Geotiff$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     get(
       params: Params$Resource$Geotiff$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

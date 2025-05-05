@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2071,11 +2072,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2188,11 +2189,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     get(
       params: Params$Resource$Services$Consumerquotametrics$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Services$Consumerquotametrics$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ConsumerQuotaMetric>;
+    ): GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaMetric>;
     get(
       params: Params$Resource$Services$Consumerquotametrics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2281,11 +2282,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     importProducerOverrides(
       params: Params$Resource$Services$Consumerquotametrics$Importproduceroverrides,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importProducerOverrides(
       params?: Params$Resource$Services$Consumerquotametrics$Importproduceroverrides,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     importProducerOverrides(
       params: Params$Resource$Services$Consumerquotametrics$Importproduceroverrides,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2376,11 +2377,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     importProducerQuotaPolicies(
       params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importProducerQuotaPolicies(
       params?: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     importProducerQuotaPolicies(
       params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2471,11 +2472,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     list(
       params: Params$Resource$Services$Consumerquotametrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Consumerquotametrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ListConsumerQuotaMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$V1Beta1ListConsumerQuotaMetricsResponse>;
     list(
       params: Params$Resource$Services$Consumerquotametrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2641,11 +2642,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     get(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ConsumerQuotaLimit>;
+    ): GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaLimit>;
     get(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2751,11 +2752,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     create(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2844,11 +2845,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     delete(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2934,11 +2935,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ListProducerOverridesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerOverridesResponse>;
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3033,11 +3034,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     patch(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3217,11 +3218,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     create(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3310,11 +3311,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     delete(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3400,11 +3401,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ListProducerQuotaPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerQuotaPoliciesResponse>;
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3499,11 +3500,11 @@ export namespace serviceconsumermanagement_v1beta1 {
     patch(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

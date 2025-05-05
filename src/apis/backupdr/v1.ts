@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2289,11 +2290,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2377,11 +2378,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2508,11 +2509,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2600,11 +2601,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2689,11 +2690,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupPlanAssociation>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupPlanAssociation>;
     get(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2780,11 +2781,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupPlanAssociationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupPlanAssociationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2878,11 +2879,11 @@ export namespace backupdr_v1 {
     triggerBackup(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     triggerBackup(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     triggerBackup(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3047,11 +3048,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplans$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3138,11 +3139,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3226,11 +3227,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplans$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupPlan>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupPlan>;
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3314,11 +3315,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupPlansResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3479,11 +3480,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Backupvaults$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3570,11 +3571,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3658,11 +3659,11 @@ export namespace backupdr_v1 {
     fetchUsable(
       params: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchUsable(
       params?: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchUsableBackupVaultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchUsableBackupVaultsResponse>;
     fetchUsable(
       params: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3756,11 +3757,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupVault>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupVault>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3844,11 +3845,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupVaultsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3937,11 +3938,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4025,11 +4026,11 @@ export namespace backupdr_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4290,11 +4291,11 @@ export namespace backupdr_v1 {
     abandonBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     abandonBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     abandonBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4382,11 +4383,11 @@ export namespace backupdr_v1 {
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     fetchAccessToken(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchAccessTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>;
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4478,11 +4479,11 @@ export namespace backupdr_v1 {
     finalizeBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     finalizeBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     finalizeBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4570,11 +4571,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4659,11 +4660,11 @@ export namespace backupdr_v1 {
     initiateBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     initiateBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InitiateBackupResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>;
     initiateBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4755,11 +4756,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4849,11 +4850,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4938,11 +4939,11 @@ export namespace backupdr_v1 {
     remove(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     remove(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     remove(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5027,11 +5028,11 @@ export namespace backupdr_v1 {
     setInternalStatus(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setInternalStatus(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     setInternalStatus(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5253,11 +5254,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5342,11 +5343,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5431,11 +5432,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5523,11 +5524,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5612,11 +5613,11 @@ export namespace backupdr_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restore(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5793,11 +5794,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Managementservers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Managementservers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Managementservers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5885,11 +5886,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Managementservers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Managementservers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Managementservers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5974,11 +5975,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Managementservers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Managementservers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagementServer>;
+    ): GaxiosResponseWithHTTP2<Schema$ManagementServer>;
     get(
       params: Params$Resource$Projects$Locations$Managementservers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6062,11 +6063,11 @@ export namespace backupdr_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6154,11 +6155,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Managementservers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Managementservers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListManagementServersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListManagementServersResponse>;
     list(
       params: Params$Resource$Projects$Locations$Managementservers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6252,11 +6253,11 @@ export namespace backupdr_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6344,11 +6345,11 @@ export namespace backupdr_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6544,11 +6545,11 @@ export namespace backupdr_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6632,11 +6633,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6720,11 +6721,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6808,11 +6809,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6954,11 +6955,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListResourceBackupConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListResourceBackupConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7083,11 +7084,11 @@ export namespace backupdr_v1 {
     initialize(
       params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     initialize(
       params?: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     initialize(
       params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

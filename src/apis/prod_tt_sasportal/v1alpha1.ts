@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -926,11 +927,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Customers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCustomer>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>;
     get(
       params: Params$Resource$Customers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1014,11 +1015,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListCustomersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListCustomersResponse>;
     list(
       params: Params$Resource$Customers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1111,11 +1112,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     listGcpProjectDeployments(
       params: Params$Resource$Customers$Listgcpprojectdeployments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listGcpProjectDeployments(
       params?: Params$Resource$Customers$Listgcpprojectdeployments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListGcpProjectDeploymentsResponse>;
     listGcpProjectDeployments(
       params: Params$Resource$Customers$Listgcpprojectdeployments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1208,11 +1209,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     listLegacyOrganizations(
       params: Params$Resource$Customers$Listlegacyorganizations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listLegacyOrganizations(
       params?: Params$Resource$Customers$Listlegacyorganizations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListLegacyOrganizationsResponse>;
     listLegacyOrganizations(
       params: Params$Resource$Customers$Listlegacyorganizations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1305,11 +1306,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     migrateOrganization(
       params: Params$Resource$Customers$Migrateorganization,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     migrateOrganization(
       params?: Params$Resource$Customers$Migrateorganization,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     migrateOrganization(
       params: Params$Resource$Customers$Migrateorganization,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1399,11 +1400,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Customers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCustomer>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>;
     patch(
       params: Params$Resource$Customers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1487,11 +1488,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     provisionDeployment(
       params: Params$Resource$Customers$Provisiondeployment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     provisionDeployment(
       params?: Params$Resource$Customers$Provisiondeployment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalProvisionDeploymentResponse>;
     provisionDeployment(
       params: Params$Resource$Customers$Provisiondeployment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1585,11 +1586,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     setupSasAnalytics(
       params: Params$Resource$Customers$Setupsasanalytics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setupSasAnalytics(
       params?: Params$Resource$Customers$Setupsasanalytics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     setupSasAnalytics(
       params: Params$Resource$Customers$Setupsasanalytics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1745,11 +1746,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     create(
       params: Params$Resource$Customers$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1837,11 +1838,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Customers$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Customers$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1926,11 +1927,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Customers$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     get(
       params: Params$Resource$Customers$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2015,11 +2016,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>;
     list(
       params: Params$Resource$Customers$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2113,11 +2114,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Deployments$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Customers$Deployments$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Customers$Deployments$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2205,11 +2206,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Customers$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     patch(
       params: Params$Resource$Customers$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2375,11 +2376,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Deployments$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Deployments$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Customers$Deployments$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2467,11 +2468,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2560,11 +2561,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Deployments$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Deployments$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Customers$Deployments$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2709,11 +2710,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Customers$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2801,11 +2802,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Customers$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2893,11 +2894,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Customers$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Customers$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2982,11 +2983,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Customers$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3071,11 +3072,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Customers$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3169,11 +3170,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Customers$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Customers$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3261,11 +3262,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Customers$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     patch(
       params: Params$Resource$Customers$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3350,11 +3351,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     signDevice(
       params?: Params$Resource$Customers$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3442,11 +3443,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSigned(
       params?: Params$Resource$Customers$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3657,11 +3658,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     create(
       params: Params$Resource$Customers$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3749,11 +3750,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Customers$Nodes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3838,11 +3839,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Customers$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     get(
       params: Params$Resource$Customers$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3927,11 +3928,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>;
     list(
       params: Params$Resource$Customers$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4023,11 +4024,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Nodes$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Customers$Nodes$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Customers$Nodes$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4115,11 +4116,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Customers$Nodes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4285,11 +4286,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Nodes$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     create(
       params: Params$Resource$Customers$Nodes$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4377,11 +4378,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>;
     list(
       params: Params$Resource$Customers$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4514,11 +4515,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Customers$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4606,11 +4607,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4698,11 +4699,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Customers$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4847,11 +4848,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Customers$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4939,11 +4940,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Customers$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>;
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5076,11 +5077,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5178,11 +5179,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Deployments$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Deployments$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Deployments$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5267,11 +5268,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Deployments$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Deployments$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     get(
       params: Params$Resource$Deployments$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5356,11 +5357,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Deployments$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Deployments$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Deployments$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5448,11 +5449,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Deployments$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Deployments$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     patch(
       params: Params$Resource$Deployments$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5537,11 +5538,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Deployments$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     signDevice(
       params?: Params$Resource$Deployments$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     signDevice(
       params: Params$Resource$Deployments$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5629,11 +5630,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Deployments$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSigned(
       params?: Params$Resource$Deployments$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     updateSigned(
       params: Params$Resource$Deployments$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5795,11 +5796,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateSecret(
       params?: Params$Resource$Installer$Generatesecret,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalGenerateSecretResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalGenerateSecretResponse>;
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5893,11 +5894,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     validate(
       params: Params$Resource$Installer$Validate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validate(
       params?: Params$Resource$Installer$Validate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalValidateInstallerResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalValidateInstallerResponse>;
     validate(
       params: Params$Resource$Installer$Validate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6019,11 +6020,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     get(
       params: Params$Resource$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6123,11 +6124,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Nodes$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Nodes$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6212,11 +6213,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Nodes$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     get(
       params: Params$Resource$Nodes$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6301,11 +6302,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>;
     list(
       params: Params$Resource$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6399,11 +6400,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Deployments$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Nodes$Deployments$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Nodes$Deployments$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6491,11 +6492,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Nodes$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     patch(
       params: Params$Resource$Nodes$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6649,11 +6650,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Deployments$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Deployments$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Nodes$Deployments$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6741,11 +6742,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6833,11 +6834,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Deployments$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Deployments$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Nodes$Deployments$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6982,11 +6983,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7074,11 +7075,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7166,11 +7167,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Nodes$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7255,11 +7256,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Nodes$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     get(
       params: Params$Resource$Nodes$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7344,11 +7345,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7442,11 +7443,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Nodes$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Nodes$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7534,11 +7535,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Nodes$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7623,11 +7624,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     signDevice(
       params?: Params$Resource$Nodes$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7715,11 +7716,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSigned(
       params?: Params$Resource$Nodes$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7930,11 +7931,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     create(
       params: Params$Resource$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8022,11 +8023,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Nodes$Nodes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>;
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8111,11 +8112,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Nodes$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     get(
       params: Params$Resource$Nodes$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8199,11 +8200,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>;
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8294,11 +8295,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Nodes$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Nodes$Nodes$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalOperation>;
     move(
       params: Params$Resource$Nodes$Nodes$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8385,11 +8386,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Nodes$Nodes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8552,11 +8553,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Nodes$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>;
     create(
       params: Params$Resource$Nodes$Nodes$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8644,11 +8645,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>;
     list(
       params: Params$Resource$Nodes$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8781,11 +8782,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8873,11 +8874,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createSigned(
       params?: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalDevice>;
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8965,11 +8966,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>;
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9114,11 +9115,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Nodes$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalNode>;
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9206,11 +9207,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Nodes$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>;
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9341,11 +9342,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>;
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9432,11 +9433,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     set(
       params: Params$Resource$Policies$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     set(
       params?: Params$Resource$Policies$Set,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>;
     set(
       params: Params$Resource$Policies$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9523,11 +9524,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     test(
       params: Params$Resource$Policies$Test,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     test(
       params?: Params$Resource$Policies$Test,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalTestPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SasPortalTestPermissionsResponse>;
     test(
       params: Params$Resource$Policies$Test,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

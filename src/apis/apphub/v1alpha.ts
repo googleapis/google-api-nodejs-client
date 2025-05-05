@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -933,11 +934,11 @@ export namespace apphub_v1alpha {
     detachServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detachServiceProjectAttachment(
       params?: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetachServiceProjectAttachmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DetachServiceProjectAttachmentResponse>;
     detachServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1030,11 +1031,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1118,11 +1119,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1211,11 +1212,11 @@ export namespace apphub_v1alpha {
     lookupServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookupServiceProjectAttachment(
       params?: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupServiceProjectAttachmentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupServiceProjectAttachmentResponse>;
     lookupServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1373,11 +1374,11 @@ export namespace apphub_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Applications$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1464,11 +1465,11 @@ export namespace apphub_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1552,11 +1553,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): GaxiosResponseWithHTTP2<Schema$Application>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1640,11 +1641,11 @@ export namespace apphub_v1alpha {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1732,11 +1733,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Applications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApplicationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApplicationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Applications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1825,11 +1826,11 @@ export namespace apphub_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1913,11 +1914,11 @@ export namespace apphub_v1alpha {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2005,11 +2006,11 @@ export namespace apphub_v1alpha {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2225,11 +2226,11 @@ export namespace apphub_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Applications$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2317,11 +2318,11 @@ export namespace apphub_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2406,11 +2407,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Applications$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): GaxiosResponseWithHTTP2<Schema$Service>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2495,11 +2496,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Applications$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Applications$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2589,11 +2590,11 @@ export namespace apphub_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2767,11 +2768,11 @@ export namespace apphub_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2859,11 +2860,11 @@ export namespace apphub_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2948,11 +2949,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Workload>;
+    ): GaxiosResponseWithHTTP2<Schema$Workload>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3037,11 +3038,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWorkloadsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3131,11 +3132,11 @@ export namespace apphub_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3309,11 +3310,11 @@ export namespace apphub_v1alpha {
     findUnregistered(
       params: Params$Resource$Projects$Locations$Discoveredservices$Findunregistered,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     findUnregistered(
       params?: Params$Resource$Projects$Locations$Discoveredservices$Findunregistered,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FindUnregisteredServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FindUnregisteredServicesResponse>;
     findUnregistered(
       params: Params$Resource$Projects$Locations$Discoveredservices$Findunregistered,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3406,11 +3407,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DiscoveredService>;
+    ): GaxiosResponseWithHTTP2<Schema$DiscoveredService>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3495,11 +3496,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Discoveredservices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveredservices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveredServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDiscoveredServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Discoveredservices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3593,11 +3594,11 @@ export namespace apphub_v1alpha {
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupDiscoveredServiceResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupDiscoveredServiceResponse>;
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3762,11 +3763,11 @@ export namespace apphub_v1alpha {
     findUnregistered(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     findUnregistered(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FindUnregisteredWorkloadsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$FindUnregisteredWorkloadsResponse>;
     findUnregistered(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3860,11 +3861,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DiscoveredWorkload>;
+    ): GaxiosResponseWithHTTP2<Schema$DiscoveredWorkload>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3949,11 +3950,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveredWorkloadsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDiscoveredWorkloadsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4047,11 +4048,11 @@ export namespace apphub_v1alpha {
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupDiscoveredWorkloadResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupDiscoveredWorkloadResponse>;
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4216,11 +4217,11 @@ export namespace apphub_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4307,11 +4308,11 @@ export namespace apphub_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4395,11 +4396,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4483,11 +4484,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4629,11 +4630,11 @@ export namespace apphub_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4720,11 +4721,11 @@ export namespace apphub_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4809,11 +4810,11 @@ export namespace apphub_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceProjectAttachment>;
+    ): GaxiosResponseWithHTTP2<Schema$ServiceProjectAttachment>;
     get(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4900,11 +4901,11 @@ export namespace apphub_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceProjectAttachmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListServiceProjectAttachmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

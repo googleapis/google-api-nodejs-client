@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -358,11 +359,11 @@ export namespace keep_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): GaxiosResponseWithHTTP2<Schema$Attachment>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -465,11 +466,11 @@ export namespace keep_v1 {
     create(
       params: Params$Resource$Notes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Notes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Note>;
+    ): GaxiosResponseWithHTTP2<Schema$Note>;
     create(
       params: Params$Resource$Notes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -552,11 +553,11 @@ export namespace keep_v1 {
     delete(
       params: Params$Resource$Notes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Notes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Notes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -639,11 +640,11 @@ export namespace keep_v1 {
     get(
       params: Params$Resource$Notes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Notes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Note>;
+    ): GaxiosResponseWithHTTP2<Schema$Note>;
     get(
       params: Params$Resource$Notes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -726,11 +727,11 @@ export namespace keep_v1 {
     list(
       params: Params$Resource$Notes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Notes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNotesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNotesResponse>;
     list(
       params: Params$Resource$Notes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -853,11 +854,11 @@ export namespace keep_v1 {
     batchCreate(
       params: Params$Resource$Notes$Permissions$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Notes$Permissions$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreatePermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchCreatePermissionsResponse>;
     batchCreate(
       params: Params$Resource$Notes$Permissions$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -950,11 +951,11 @@ export namespace keep_v1 {
     batchDelete(
       params: Params$Resource$Notes$Permissions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Notes$Permissions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     batchDelete(
       params: Params$Resource$Notes$Permissions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

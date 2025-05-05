@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -237,11 +238,11 @@ export namespace mybusinessplaceactions_v1 {
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Locations$Placeactionlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -329,11 +330,11 @@ export namespace mybusinessplaceactions_v1 {
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Locations$Placeactionlinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -418,11 +419,11 @@ export namespace mybusinessplaceactions_v1 {
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Locations$Placeactionlinks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -507,11 +508,11 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Placeactionlinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlaceActionLinksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>;
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -605,11 +606,11 @@ export namespace mybusinessplaceactions_v1 {
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Locations$Placeactionlinks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -763,11 +764,11 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Placeactiontypemetadata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlaceActionTypeMetadataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>;
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

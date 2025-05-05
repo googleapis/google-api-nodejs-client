@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -390,11 +391,11 @@ export namespace merchantapi_inventories_v1beta {
     delete(
       params: Params$Resource$Accounts$Products$Localinventories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Products$Localinventories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Products$Localinventories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -482,11 +483,11 @@ export namespace merchantapi_inventories_v1beta {
     insert(
       params: Params$Resource$Accounts$Products$Localinventories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Products$Localinventories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocalInventory>;
+    ): GaxiosResponseWithHTTP2<Schema$LocalInventory>;
     insert(
       params: Params$Resource$Accounts$Products$Localinventories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -573,11 +574,11 @@ export namespace merchantapi_inventories_v1beta {
     list(
       params: Params$Resource$Accounts$Products$Localinventories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Products$Localinventories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocalInventoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocalInventoriesResponse>;
     list(
       params: Params$Resource$Accounts$Products$Localinventories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -711,11 +712,11 @@ export namespace merchantapi_inventories_v1beta {
     delete(
       params: Params$Resource$Accounts$Products$Regionalinventories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Products$Regionalinventories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Products$Regionalinventories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -803,11 +804,11 @@ export namespace merchantapi_inventories_v1beta {
     insert(
       params: Params$Resource$Accounts$Products$Regionalinventories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Products$Regionalinventories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionalInventory>;
+    ): GaxiosResponseWithHTTP2<Schema$RegionalInventory>;
     insert(
       params: Params$Resource$Accounts$Products$Regionalinventories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -895,11 +896,11 @@ export namespace merchantapi_inventories_v1beta {
     list(
       params: Params$Resource$Accounts$Products$Regionalinventories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Products$Regionalinventories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRegionalInventoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRegionalInventoriesResponse>;
     list(
       params: Params$Resource$Accounts$Products$Regionalinventories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

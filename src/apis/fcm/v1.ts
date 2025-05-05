@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -504,11 +505,11 @@ export namespace fcm_v1 {
     send(
       params: Params$Resource$Projects$Messages$Send,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     send(
       params?: Params$Resource$Projects$Messages$Send,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): GaxiosResponseWithHTTP2<Schema$Message>;
     send(
       params: Params$Resource$Projects$Messages$Send,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

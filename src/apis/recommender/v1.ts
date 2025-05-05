@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -682,11 +683,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     getConfig(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -777,11 +778,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     updateConfig(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -907,11 +908,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     get(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1002,11 +1003,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
     list(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1100,11 +1101,11 @@ export namespace recommender_v1 {
     markAccepted(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAccepted(
       params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     markAccepted(
       params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1249,11 +1250,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     getConfig(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1344,11 +1345,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     updateConfig(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1474,11 +1475,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     get(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1569,11 +1570,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
     list(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1667,11 +1668,11 @@ export namespace recommender_v1 {
     markClaimed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markClaimed(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markClaimed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1765,11 +1766,11 @@ export namespace recommender_v1 {
     markDismissed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markDismissed(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markDismissed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1863,11 +1864,11 @@ export namespace recommender_v1 {
     markFailed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markFailed(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markFailed(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1961,11 +1962,11 @@ export namespace recommender_v1 {
     markSucceeded(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markSucceeded(
       params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markSucceeded(
       params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2176,11 +2177,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Locations$Insighttypes$Insights$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     get(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2271,11 +2272,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Locations$Insighttypes$Insights$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
     list(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2369,11 +2370,11 @@ export namespace recommender_v1 {
     markAccepted(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAccepted(
       params?: Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     markAccepted(
       params: Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2525,11 +2526,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     get(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2620,11 +2621,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
     list(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2718,11 +2719,11 @@ export namespace recommender_v1 {
     markClaimed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markClaimed(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markClaimed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2816,11 +2817,11 @@ export namespace recommender_v1 {
     markDismissed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markDismissed(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markDismissed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2914,11 +2915,11 @@ export namespace recommender_v1 {
     markFailed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markFailed(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markFailed(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3012,11 +3013,11 @@ export namespace recommender_v1 {
     markSucceeded(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markSucceeded(
       params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markSucceeded(
       params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3221,11 +3222,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     getConfig(
       params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3316,11 +3317,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     updateConfig(
       params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3446,11 +3447,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Insighttypes$Insights$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     get(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3541,11 +3542,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Insighttypes$Insights$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3639,11 +3640,11 @@ export namespace recommender_v1 {
     markAccepted(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAccepted(
       params?: Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     markAccepted(
       params: Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3788,11 +3789,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     getConfig(
       params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3883,11 +3884,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     updateConfig(
       params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4013,11 +4014,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     get(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4108,11 +4109,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4206,11 +4207,11 @@ export namespace recommender_v1 {
     markClaimed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markClaimed(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markClaimed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4304,11 +4305,11 @@ export namespace recommender_v1 {
     markDismissed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markDismissed(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markDismissed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4402,11 +4403,11 @@ export namespace recommender_v1 {
     markFailed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markFailed(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markFailed(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4500,11 +4501,11 @@ export namespace recommender_v1 {
     markSucceeded(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markSucceeded(
       params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markSucceeded(
       params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4708,11 +4709,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     getConfig(
       params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4803,11 +4804,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
     updateConfig(
       params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4933,11 +4934,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     get(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5028,11 +5029,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5126,11 +5127,11 @@ export namespace recommender_v1 {
     markAccepted(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markAccepted(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Insight>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>;
     markAccepted(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5275,11 +5276,11 @@ export namespace recommender_v1 {
     getConfig(
       params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getConfig(
       params?: Params$Resource$Projects$Locations$Recommenders$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     getConfig(
       params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5370,11 +5371,11 @@ export namespace recommender_v1 {
     updateConfig(
       params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConfig(
       params?: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
     updateConfig(
       params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5500,11 +5501,11 @@ export namespace recommender_v1 {
     get(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     get(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5595,11 +5596,11 @@ export namespace recommender_v1 {
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5693,11 +5694,11 @@ export namespace recommender_v1 {
     markClaimed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markClaimed(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markClaimed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5791,11 +5792,11 @@ export namespace recommender_v1 {
     markDismissed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markDismissed(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markDismissed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5889,11 +5890,11 @@ export namespace recommender_v1 {
     markFailed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markFailed(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markFailed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5987,11 +5988,11 @@ export namespace recommender_v1 {
     markSucceeded(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     markSucceeded(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>;
     markSucceeded(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

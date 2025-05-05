@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1285,11 +1286,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1374,11 +1375,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1530,11 +1531,11 @@ export namespace managedidentities_v1alpha1 {
     attachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     attachTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     attachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1623,11 +1624,11 @@ export namespace managedidentities_v1alpha1 {
     checkMigrationPermission(
       params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     checkMigrationPermission(
       params?: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckMigrationPermissionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CheckMigrationPermissionResponse>;
     checkMigrationPermission(
       params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1721,11 +1722,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Domains$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1813,11 +1814,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1902,11 +1903,11 @@ export namespace managedidentities_v1alpha1 {
     detachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detachTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     detachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1995,11 +1996,11 @@ export namespace managedidentities_v1alpha1 {
     disableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     disableMigration(
       params?: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     disableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2088,11 +2089,11 @@ export namespace managedidentities_v1alpha1 {
     domainJoinMachine(
       params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     domainJoinMachine(
       params?: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainJoinMachineResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DomainJoinMachineResponse>;
     domainJoinMachine(
       params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2185,11 +2186,11 @@ export namespace managedidentities_v1alpha1 {
     enableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     enableMigration(
       params?: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     enableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2278,11 +2279,11 @@ export namespace managedidentities_v1alpha1 {
     extendSchema(
       params: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     extendSchema(
       params?: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     extendSchema(
       params: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2371,11 +2372,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Domain>;
+    ): GaxiosResponseWithHTTP2<Schema$Domain>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2460,11 +2461,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2553,11 +2554,11 @@ export namespace managedidentities_v1alpha1 {
     getLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getLdapssettings(
       params?: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LDAPSSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$LDAPSSettings>;
     getLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2648,11 +2649,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDomainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2740,11 +2741,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2829,11 +2830,11 @@ export namespace managedidentities_v1alpha1 {
     reconfigureTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reconfigureTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     reconfigureTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2922,11 +2923,11 @@ export namespace managedidentities_v1alpha1 {
     resetAdminPassword(
       params: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resetAdminPassword(
       params?: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResetAdminPasswordResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ResetAdminPasswordResponse>;
     resetAdminPassword(
       params: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3019,11 +3020,11 @@ export namespace managedidentities_v1alpha1 {
     restore(
       params: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restore(
       params: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3112,11 +3113,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3205,11 +3206,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3302,11 +3303,11 @@ export namespace managedidentities_v1alpha1 {
     updateLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateLdapssettings(
       params?: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     updateLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3395,11 +3396,11 @@ export namespace managedidentities_v1alpha1 {
     validateTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validateTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     validateTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3755,11 +3756,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3848,11 +3849,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3938,11 +3939,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4028,11 +4029,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4121,11 +4122,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4214,11 +4215,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4304,11 +4305,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4397,11 +4398,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4606,11 +4607,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SQLIntegration>;
+    ): GaxiosResponseWithHTTP2<Schema$SQLIntegration>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4696,11 +4697,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSQLIntegrationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSQLIntegrationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4831,11 +4832,11 @@ export namespace managedidentities_v1alpha1 {
     cancel(
       params: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4924,11 +4925,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5014,11 +5015,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Global$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5103,11 +5104,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5251,11 +5252,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5344,11 +5345,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5434,11 +5435,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Peering>;
+    ): GaxiosResponseWithHTTP2<Schema$Peering>;
     get(
       params: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5523,11 +5524,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5616,11 +5617,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Peerings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Peerings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPeeringsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPeeringsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Peerings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5710,11 +5711,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5799,11 +5800,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5892,11 +5893,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

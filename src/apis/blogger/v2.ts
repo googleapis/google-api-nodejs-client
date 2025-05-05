@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -568,11 +569,11 @@ export namespace blogger_v2 {
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Blogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Blog>;
+    ): GaxiosResponseWithHTTP2<Schema$Blog>;
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -655,11 +656,11 @@ export namespace blogger_v2 {
     list(
       params: Params$Resource$Blogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Blogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogList>;
+    ): GaxiosResponseWithHTTP2<Schema$BlogList>;
     list(
       params: Params$Resource$Blogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -765,11 +766,11 @@ export namespace blogger_v2 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): GaxiosResponseWithHTTP2<Schema$Comment>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -854,11 +855,11 @@ export namespace blogger_v2 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): GaxiosResponseWithHTTP2<Schema$CommentList>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -991,11 +992,11 @@ export namespace blogger_v2 {
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): GaxiosResponseWithHTTP2<Schema$Page>;
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1081,11 +1082,11 @@ export namespace blogger_v2 {
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PageList>;
+    ): GaxiosResponseWithHTTP2<Schema$PageList>;
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1199,11 +1200,11 @@ export namespace blogger_v2 {
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Posts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): GaxiosResponseWithHTTP2<Schema$Post>;
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1289,11 +1290,11 @@ export namespace blogger_v2 {
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Posts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostList>;
+    ): GaxiosResponseWithHTTP2<Schema$PostList>;
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1419,11 +1420,11 @@ export namespace blogger_v2 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): GaxiosResponseWithHTTP2<Schema$User>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

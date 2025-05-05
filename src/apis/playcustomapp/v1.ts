@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -185,11 +186,11 @@ export namespace playcustomapp_v1 {
     create(
       params: Params$Resource$Accounts$Customapps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Customapps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomApp>;
+    ): GaxiosResponseWithHTTP2<Schema$CustomApp>;
     create(
       params: Params$Resource$Accounts$Customapps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

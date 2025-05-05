@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3139,11 +3140,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instanceconfigoperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instanceconfigoperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstanceConfigOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstanceConfigOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instanceconfigoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3271,11 +3272,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instanceconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instanceconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Instanceconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3362,11 +3363,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instanceconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3450,11 +3451,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instanceconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instanceconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstanceConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$InstanceConfig>;
     get(
       params: Params$Resource$Projects$Instanceconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3538,11 +3539,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instanceconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instanceconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstanceConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstanceConfigsResponse>;
     list(
       params: Params$Resource$Projects$Instanceconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3633,11 +3634,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instanceconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instanceconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Instanceconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3790,11 +3791,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instanceconfigs$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3879,11 +3880,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instanceconfigs$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3968,11 +3969,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instanceconfigs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instanceconfigs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4056,11 +4057,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instanceconfigs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instanceconfigs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instanceconfigs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4206,11 +4207,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4295,11 +4296,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4384,11 +4385,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4473,11 +4474,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4635,11 +4636,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4726,11 +4727,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4814,11 +4815,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): GaxiosResponseWithHTTP2<Schema$Instance>;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4902,11 +4903,11 @@ export namespace spanner_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4993,11 +4994,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>;
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5086,11 +5087,11 @@ export namespace spanner_v1 {
     move(
       params: Params$Resource$Projects$Instances$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     move(
       params?: Params$Resource$Projects$Instances$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     move(
       params: Params$Resource$Projects$Instances$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5174,11 +5175,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5262,11 +5263,11 @@ export namespace spanner_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5353,11 +5354,11 @@ export namespace spanner_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5569,11 +5570,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Backupoperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Backupoperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Backupoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5697,11 +5698,11 @@ export namespace spanner_v1 {
     copy(
       params: Params$Resource$Projects$Instances$Backups$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     copy(
       params?: Params$Resource$Projects$Instances$Backups$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     copy(
       params: Params$Resource$Projects$Instances$Backups$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5788,11 +5789,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Instances$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5879,11 +5880,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5967,11 +5968,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     get(
       params: Params$Resource$Projects$Instances$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6055,11 +6056,11 @@ export namespace spanner_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6146,11 +6147,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6237,11 +6238,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instances$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instances$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): GaxiosResponseWithHTTP2<Schema$Backup>;
     patch(
       params: Params$Resource$Projects$Instances$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6325,11 +6326,11 @@ export namespace spanner_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6416,11 +6417,11 @@ export namespace spanner_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Backups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Backups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Backups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6645,11 +6646,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6734,11 +6735,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Backups$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Backups$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6823,11 +6824,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Backups$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instances$Backups$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6912,11 +6913,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Backups$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Backups$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Backups$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7051,11 +7052,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databaseoperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databaseoperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabaseOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDatabaseOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databaseoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7190,11 +7191,11 @@ export namespace spanner_v1 {
     addSplitPoints(
       params: Params$Resource$Projects$Instances$Databases$Addsplitpoints,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addSplitPoints(
       params?: Params$Resource$Projects$Instances$Databases$Addsplitpoints,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddSplitPointsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AddSplitPointsResponse>;
     addSplitPoints(
       params: Params$Resource$Projects$Instances$Databases$Addsplitpoints,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7286,11 +7287,11 @@ export namespace spanner_v1 {
     changequorum(
       params: Params$Resource$Projects$Instances$Databases$Changequorum,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     changequorum(
       params?: Params$Resource$Projects$Instances$Databases$Changequorum,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     changequorum(
       params: Params$Resource$Projects$Instances$Databases$Changequorum,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7378,11 +7379,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Databases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Databases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Instances$Databases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7469,11 +7470,11 @@ export namespace spanner_v1 {
     dropDatabase(
       params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     dropDatabase(
       params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     dropDatabase(
       params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7558,11 +7559,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): GaxiosResponseWithHTTP2<Schema$Database>;
     get(
       params: Params$Resource$Projects$Instances$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7646,11 +7647,11 @@ export namespace spanner_v1 {
     getDdl(
       params: Params$Resource$Projects$Instances$Databases$Getddl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getDdl(
       params?: Params$Resource$Projects$Instances$Databases$Getddl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetDatabaseDdlResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetDatabaseDdlResponse>;
     getDdl(
       params: Params$Resource$Projects$Instances$Databases$Getddl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7739,11 +7740,11 @@ export namespace spanner_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7831,11 +7832,11 @@ export namespace spanner_v1 {
     getScans(
       params: Params$Resource$Projects$Instances$Databases$Getscans,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getScans(
       params?: Params$Resource$Projects$Instances$Databases$Getscans,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Scan>;
+    ): GaxiosResponseWithHTTP2<Schema$Scan>;
     getScans(
       params: Params$Resource$Projects$Instances$Databases$Getscans,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7919,11 +7920,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabasesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8012,11 +8013,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instances$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instances$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Instances$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8100,11 +8101,11 @@ export namespace spanner_v1 {
     restore(
       params: Params$Resource$Projects$Instances$Databases$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restore(
       params?: Params$Resource$Projects$Instances$Databases$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restore(
       params: Params$Resource$Projects$Instances$Databases$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8191,11 +8192,11 @@ export namespace spanner_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8283,11 +8284,11 @@ export namespace spanner_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Databases$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8379,11 +8380,11 @@ export namespace spanner_v1 {
     updateDdl(
       params: Params$Resource$Projects$Instances$Databases$Updateddl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateDdl(
       params?: Params$Resource$Projects$Instances$Databases$Updateddl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     updateDdl(
       params: Params$Resource$Projects$Instances$Databases$Updateddl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8645,11 +8646,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupSchedule>;
     create(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8737,11 +8738,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8826,11 +8827,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupSchedule>;
     get(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8915,11 +8916,11 @@ export namespace spanner_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9007,11 +9008,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupSchedulesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBackupSchedulesResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9103,11 +9104,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupSchedule>;
+    ): GaxiosResponseWithHTTP2<Schema$BackupSchedule>;
     patch(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9192,11 +9193,11 @@ export namespace spanner_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9284,11 +9285,11 @@ export namespace spanner_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Databases$Backupschedules$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Backupschedules$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9485,11 +9486,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databases$Databaseroles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databases$Databaseroles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabaseRolesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDatabaseRolesResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databases$Databaseroles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9581,11 +9582,11 @@ export namespace spanner_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Databaseroles$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Databases$Databaseroles$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Databaseroles$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9712,11 +9713,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9801,11 +9802,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9890,11 +9891,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Databases$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instances$Databases$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9979,11 +9980,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databases$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databases$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databases$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10118,11 +10119,11 @@ export namespace spanner_v1 {
     adapter(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     adapter(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdapterSession>;
+    ): GaxiosResponseWithHTTP2<Schema$AdapterSession>;
     adapter(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10210,11 +10211,11 @@ export namespace spanner_v1 {
     adaptMessage(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     adaptMessage(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdaptMessageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AdaptMessageResponse>;
     adaptMessage(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10306,11 +10307,11 @@ export namespace spanner_v1 {
     batchCreate(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchCreate(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreateSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchCreateSessionsResponse>;
     batchCreate(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10402,11 +10403,11 @@ export namespace spanner_v1 {
     batchWrite(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchWrite(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchWriteResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchWriteResponse>;
     batchWrite(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10494,11 +10495,11 @@ export namespace spanner_v1 {
     beginTransaction(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     beginTransaction(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Transaction>;
+    ): GaxiosResponseWithHTTP2<Schema$Transaction>;
     beginTransaction(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10586,11 +10587,11 @@ export namespace spanner_v1 {
     commit(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     commit(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommitResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CommitResponse>;
     commit(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10678,11 +10679,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Session>;
+    ): GaxiosResponseWithHTTP2<Schema$Session>;
     create(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10770,11 +10771,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10859,11 +10860,11 @@ export namespace spanner_v1 {
     executeBatchDml(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeBatchDml(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExecuteBatchDmlResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ExecuteBatchDmlResponse>;
     executeBatchDml(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10955,11 +10956,11 @@ export namespace spanner_v1 {
     executeSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeSql(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResultSet>;
+    ): GaxiosResponseWithHTTP2<Schema$ResultSet>;
     executeSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11047,11 +11048,11 @@ export namespace spanner_v1 {
     executeStreamingSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     executeStreamingSql(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartialResultSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PartialResultSet>;
     executeStreamingSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11141,11 +11142,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Session>;
+    ): GaxiosResponseWithHTTP2<Schema$Session>;
     get(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11230,11 +11231,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Databases$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Databases$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11324,11 +11325,11 @@ export namespace spanner_v1 {
     partitionQuery(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     partitionQuery(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartitionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PartitionResponse>;
     partitionQuery(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11418,11 +11419,11 @@ export namespace spanner_v1 {
     partitionRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     partitionRead(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartitionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PartitionResponse>;
     partitionRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11512,11 +11513,11 @@ export namespace spanner_v1 {
     read(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     read(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResultSet>;
+    ): GaxiosResponseWithHTTP2<Schema$ResultSet>;
     read(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11604,11 +11605,11 @@ export namespace spanner_v1 {
     rollback(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     rollback(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11696,11 +11697,11 @@ export namespace spanner_v1 {
     streamingRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     streamingRead(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartialResultSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PartialResultSet>;
     streamingRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12011,11 +12012,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancePartitionOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancePartitionOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12144,11 +12145,11 @@ export namespace spanner_v1 {
     create(
       params: Params$Resource$Projects$Instances$Instancepartitions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Instances$Instancepartitions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12236,11 +12237,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12325,11 +12326,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Instancepartitions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancePartition>;
+    ): GaxiosResponseWithHTTP2<Schema$InstancePartition>;
     get(
       params: Params$Resource$Projects$Instances$Instancepartitions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12414,11 +12415,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Instancepartitions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Instancepartitions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancePartitionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancePartitionsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Instancepartitions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12512,11 +12513,11 @@ export namespace spanner_v1 {
     patch(
       params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12670,11 +12671,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12759,11 +12760,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12848,11 +12849,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12937,11 +12938,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Instancepartitions$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Instancepartitions$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13076,11 +13077,11 @@ export namespace spanner_v1 {
     cancel(
       params: Params$Resource$Projects$Instances$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Instances$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Instances$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13164,11 +13165,11 @@ export namespace spanner_v1 {
     delete(
       params: Params$Resource$Projects$Instances$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Instances$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Instances$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13252,11 +13253,11 @@ export namespace spanner_v1 {
     get(
       params: Params$Resource$Projects$Instances$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Instances$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Instances$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13340,11 +13341,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Projects$Instances$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Instances$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13478,11 +13479,11 @@ export namespace spanner_v1 {
     list(
       params: Params$Resource$Scans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Scans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScansResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListScansResponse>;
     list(
       params: Params$Resource$Scans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,

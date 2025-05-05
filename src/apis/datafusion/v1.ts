@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -818,11 +819,11 @@ export namespace datafusion_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -906,11 +907,11 @@ export namespace datafusion_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1041,11 +1042,11 @@ export namespace datafusion_v1 {
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1132,11 +1133,11 @@ export namespace datafusion_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1220,11 +1221,11 @@ export namespace datafusion_v1 {
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): GaxiosResponseWithHTTP2<Schema$Instance>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1308,11 +1309,11 @@ export namespace datafusion_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1400,11 +1401,11 @@ export namespace datafusion_v1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1493,11 +1494,11 @@ export namespace datafusion_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1581,11 +1582,11 @@ export namespace datafusion_v1 {
     restart(
       params: Params$Resource$Projects$Locations$Instances$Restart,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     restart(
       params?: Params$Resource$Projects$Locations$Instances$Restart,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     restart(
       params: Params$Resource$Projects$Locations$Instances$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1672,11 +1673,11 @@ export namespace datafusion_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1764,11 +1765,11 @@ export namespace datafusion_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1984,11 +1985,11 @@ export namespace datafusion_v1 {
     create(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DnsPeering>;
+    ): GaxiosResponseWithHTTP2<Schema$DnsPeering>;
     create(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2076,11 +2077,11 @@ export namespace datafusion_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2165,11 +2166,11 @@ export namespace datafusion_v1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDnsPeeringsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDnsPeeringsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2305,11 +2306,11 @@ export namespace datafusion_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2393,11 +2394,11 @@ export namespace datafusion_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,11 +2482,11 @@ export namespace datafusion_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2569,11 +2570,11 @@ export namespace datafusion_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2715,11 +2716,11 @@ export namespace datafusion_v1 {
     list(
       params: Params$Resource$Projects$Locations$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAvailableVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAvailableVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
