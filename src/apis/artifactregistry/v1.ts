@@ -1304,11 +1304,11 @@ export namespace artifactregistry_v1 {
      */
     remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -1455,7 +1455,7 @@ export namespace artifactregistry_v1 {
      */
     packageId?: string | null;
     /**
-     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
+     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, the following characters [-.+~:], i.e.[a-z0-9-.+~:] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
      */
     versionId?: string | null;
   }

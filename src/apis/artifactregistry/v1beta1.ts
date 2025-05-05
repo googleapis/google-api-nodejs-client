@@ -403,11 +403,11 @@ export namespace artifactregistry_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      */
     satisfiesPzs?: boolean | null;
     /**

@@ -2455,7 +2455,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250425",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -4171,12 +4171,12 @@
           "description": "Configuration specific for a Remote Repository."
         },
         "satisfiesPzi": {
-          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "description": "Output only. Whether or not this repository satisfies PZI.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. If set, the repository satisfies physical zone separation.",
+          "description": "Output only. Whether or not this repository satisfies PZS.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4373,7 +4373,7 @@
           "type": "string"
         },
         "versionId": {
-          "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.",
+          "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, the following characters [-.+~:], i.e.[a-z0-9-.+~:] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.",
           "type": "string"
         }
       },
