@@ -602,7 +602,7 @@
         "homepage": {
           "methods": {
             "claim": {
-              "description": "Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message will be returned: * PERMISSION_DENIED: user doesn't have the necessary permissions on this MC account; * FAILED_PRECONDITION: - The account is not a Merchant Center account; - MC account doesn't have a homepage; - claiming failed (in this case the error message will contain more details).",
+              "description": "Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage:claim",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.homepage.claim",
@@ -1728,7 +1728,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250505",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfServiceResponse": {
@@ -2270,7 +2270,7 @@
       "id": "ClaimHomepageRequest",
       "properties": {
         "overwrite": {
-          "description": "Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.",
+          "description": "Optional. When set to `true`, this option removes any existing claim on the requested website from any other account to the account making the request, effectively replacing the previous claim.",
           "type": "boolean"
         }
       },
@@ -3472,7 +3472,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {

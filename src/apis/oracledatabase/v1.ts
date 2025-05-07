@@ -151,7 +151,7 @@ export namespace oracledatabase_v1 {
      */
     adminPassword?: string | null;
     /**
-     * Optional. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonomous Database.
      */
     cidr?: string | null;
     /**
@@ -1694,7 +1694,7 @@ export namespace oracledatabase_v1 {
     stopTime?: Schema$TimeOfDay;
   }
   /**
-   * The source configuration for the standby Autonomnous Database.
+   * The source configuration for the standby Autonomous Database.
    */
   export interface Schema$SourceConfig {
     /**
@@ -4946,6 +4946,10 @@ export namespace oracledatabase_v1 {
 
   export interface Params$Resource$Projects$Locations$Giversions$List
     extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Only the shape and gi_version fields are supported in this format: `shape="{shape\}"`.
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of items to return. If unspecified, a maximum of 50 Oracle Grid Infrastructure (GI) versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.
      */

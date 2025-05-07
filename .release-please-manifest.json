@@ -72,6 +72,7 @@
   "src/apis/firebase": "8.0.0",
   "src/apis/firebaseappcheck": "5.14.2",
   "src/apis/firebaseappdistribution": "4.0.0",
+  "src/apis/firebaseapphosting": "0.1.0",
   "src/apis/firebasedatabase": "2.0.9",
   "src/apis/firebasedataconnect": "0.2.0",
   "src/apis/firebasedynamiclinks": "1.2.0",

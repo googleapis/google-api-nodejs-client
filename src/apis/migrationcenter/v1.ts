@@ -447,6 +447,10 @@ export namespace migrationcenter_v1 {
      */
     allowMissing?: boolean | null;
     /**
+     * Optional. Optional cascading rules for deleting related assets.
+     */
+    cascadingRules?: Schema$CascadingRule[];
+    /**
      * Required. The IDs of the assets to delete. A maximum of 1000 assets can be deleted in a batch. Format: projects/{project\}/locations/{location\}/assets/{name\}.
      */
     names?: string[] | null;
@@ -502,6 +506,19 @@ export namespace migrationcenter_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Cascading rule for related logical DBs.
+   */
+  export interface Schema$CascadeLogicalDBsRule {}
+  /**
+   * Specifies cascading rules for traversing relations.
+   */
+  export interface Schema$CascadingRule {
+    /**
+     * Cascading rule for related logical DBs.
+     */
+    cascadeLogicalDbs?: Schema$CascadeLogicalDBsRule;
+  }
   /**
    * Compute engine migration target.
    */

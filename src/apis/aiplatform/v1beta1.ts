@@ -1738,6 +1738,23 @@ export namespace aiplatform_v1beta1 {
     safetyRatings?: Schema$GoogleCloudAiplatformV1beta1SafetyRating[];
   }
   /**
+   * Describes the machine learning model version checkpoint.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1Checkpoint {
+    /**
+     * The ID of the checkpoint.
+     */
+    checkpointId?: string | null;
+    /**
+     * The epoch of the checkpoint.
+     */
+    epoch?: string | null;
+    /**
+     * The step of the checkpoint.
+     */
+    step?: string | null;
+  }
+  /**
    * Request message for ModelGardenService.CheckPublisherModelEula.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CheckPublisherModelEulaAcceptanceRequest {
@@ -3366,6 +3383,10 @@ export namespace aiplatform_v1beta1 {
      */
     automaticResources?: Schema$GoogleCloudAiplatformV1beta1AutomaticResources;
     /**
+     * The checkpoint id of the model.
+     */
+    checkpointId?: string | null;
+    /**
      * Output only. Timestamp when the DeployedModel was created.
      */
     createTime?: string | null;
@@ -4549,6 +4570,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Immutable. Unique identifier of an example. If not specified when upserting new examples, the example_id will be generated.
      */
     exampleId?: string | null;
+    /**
+     * Identifier. The resource name of the Example. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/examples/{example\}`
+     */
+    name?: string | null;
     /**
      * An example of chat history and its expected outcome to be used with GenerateContent.
      */
@@ -9681,6 +9706,10 @@ export namespace aiplatform_v1beta1 {
      */
     baseModelSource?: Schema$GoogleCloudAiplatformV1beta1ModelBaseModelSource;
     /**
+     * Optional. Output only. The checkpoints of the model.
+     */
+    checkpoints?: Schema$GoogleCloudAiplatformV1beta1Checkpoint[];
+    /**
      * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1beta1ModelContainerSpec;
@@ -11795,7 +11824,7 @@ export namespace aiplatform_v1beta1 {
     values?: string[] | null;
   }
   /**
-   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
+   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1NotebookRuntime {
     /**
@@ -12006,7 +12035,7 @@ export namespace aiplatform_v1beta1 {
     notebookRuntimeTemplate?: string | null;
   }
   /**
-   * Notebook Software Config.
+   * Notebook Software Config. This is passed to the backend when user makes software configurations in UI.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1NotebookSoftwareConfig {
     /**
@@ -15746,6 +15775,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Schema {
     /**
+     * Optional. Can either be a boolean or an object; controls the presence of additional properties.
+     */
+    additionalProperties?: any | null;
+    /**
      * Optional. The value should be validated against any (one or more) of the subschemas in the list.
      */
     anyOf?: Schema$GoogleCloudAiplatformV1beta1Schema[];
@@ -15753,6 +15786,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Default value of the data.
      */
     default?: any | null;
+    /**
+     * Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.
+     */
+    defs?: {[key: string]: Schema$GoogleCloudAiplatformV1beta1Schema} | null;
     /**
      * Optional. The description of the data.
      */
@@ -15823,6 +15860,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.
      */
     propertyOrdering?: string[] | null;
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named "Pet": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the "pet" property is a reference to the schema node named "Pet". See details in https://json-schema.org/understanding-json-schema/structuring
+     */
+    ref?: string | null;
     /**
      * Optional. Required properties of Type.OBJECT.
      */
@@ -20253,7 +20294,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SupervisedTuningDataStats {
     /**
-     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.
+     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped.
      */
     droppedExampleReasons?: string[] | null;
     /**
@@ -20305,6 +20346,10 @@ export namespace aiplatform_v1beta1 {
    * Tuning Spec for Supervised Tuning for first party models.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SupervisedTuningSpec {
+    /**
+     * Optional. If set to true, disable intermediate checkpoints for SFT and only the last checkpoint will be exported. Otherwise, enable intermediate checkpoints for SFT. Default is false.
+     */
+    exportLastCheckpointOnly?: boolean | null;
     /**
      * Optional. Hyperparameters for SFT.
      */
@@ -21483,6 +21528,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TunedModel {
     /**
+     * Output only. The checkpoints associated with this TunedModel. This field is only populated for tuning jobs that enable intermediate checkpoints.
+     */
+    checkpoints?: Schema$GoogleCloudAiplatformV1beta1TunedModelCheckpoint[];
+    /**
      * Output only. A resource name of an Endpoint. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
      */
     endpoint?: string | null;
@@ -21490,6 +21539,27 @@ export namespace aiplatform_v1beta1 {
      * Output only. The resource name of the TunedModel. Format: `projects/{project\}/locations/{location\}/models/{model\}`.
      */
     model?: string | null;
+  }
+  /**
+   * TunedModelCheckpoint for the Tuned Model of a Tuning Job.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TunedModelCheckpoint {
+    /**
+     * The ID of the checkpoint.
+     */
+    checkpointId?: string | null;
+    /**
+     * The Endpoint resource name that the checkpoint is deployed to. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
+     */
+    endpoint?: string | null;
+    /**
+     * The epoch of the checkpoint.
+     */
+    epoch?: string | null;
+    /**
+     * The step of the checkpoint.
+     */
+    step?: string | null;
   }
   /**
    * TunedModel Reference for legacy model migration.

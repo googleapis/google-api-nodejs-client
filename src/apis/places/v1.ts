@@ -1030,7 +1030,7 @@ export namespace places_v1 {
      */
     directionsUri?: string | null;
     /**
-     * A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to show reviews of this place on Google Maps.
      */
     photosUri?: string | null;
     /**
@@ -1038,11 +1038,11 @@ export namespace places_v1 {
      */
     placeUri?: string | null;
     /**
-     * A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to show reviews of this place on Google Maps.
      */
     reviewsUri?: string | null;
     /**
-     * A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to show reviews of this place on Google Maps.
      */
     writeAReviewUri?: string | null;
   }
@@ -1306,23 +1306,6 @@ export namespace places_v1 {
      * The localized text of the review.
      */
     text?: Schema$GoogleTypeLocalizedText;
-    /**
-     * The date when the author visited the place. This is trucated to month.
-     */
-    visitDate?: Schema$GoogleMapsPlacesV1ReviewVisitDate;
-  }
-  /**
-   * The date when the author visited the place. This is trucated to month.
-   */
-  export interface Schema$GoogleMapsPlacesV1ReviewVisitDate {
-    /**
-     * The month the author visited the place, e.g. 4. The value is between 1 and 12.
-     */
-    month?: number | null;
-    /**
-     * The year the author visited the place, e.g. 2025.
-     */
-    year?: number | null;
   }
   /**
    * Encapsulates a set of optional conditions to satisfy when calculating the routes.
