@@ -2733,8 +2733,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2823,8 +2823,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2952,8 +2952,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Addgroupmigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3044,8 +3044,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3135,8 +3135,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3223,8 +3223,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3311,8 +3311,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3402,8 +3402,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3492,8 +3492,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Removegroupmigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3702,8 +3702,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3793,8 +3793,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3881,8 +3881,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ImageImport>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ImageImport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3971,8 +3971,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListImageImportsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListImageImportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4131,8 +4131,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4220,8 +4220,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ImageImportJob>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ImageImportJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4313,8 +4313,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListImageImportJobsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListImageImportJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4455,8 +4455,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4543,8 +4543,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4631,8 +4631,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4721,8 +4721,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4879,8 +4879,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4970,8 +4970,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5062,8 +5062,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FetchInventoryResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$FetchInventoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Fetchinventory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5154,8 +5154,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Source>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Source>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5242,8 +5242,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5333,8 +5333,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5529,8 +5529,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5621,8 +5621,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5710,8 +5710,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$DatacenterConnector>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$DatacenterConnector>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5803,10 +5803,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$ListDatacenterConnectorsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListDatacenterConnectorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5899,8 +5897,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6086,8 +6084,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6178,8 +6176,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6267,8 +6265,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Finalizemigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6359,8 +6357,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$MigratingVm>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$MigratingVm>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6450,8 +6448,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListMigratingVmsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListMigratingVmsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6542,8 +6540,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6631,8 +6629,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Pausemigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6723,8 +6721,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Resumemigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6815,8 +6813,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Startmigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7048,8 +7046,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7137,8 +7135,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7229,8 +7227,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$CloneJob>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$CloneJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7320,8 +7318,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListCloneJobsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListCloneJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7482,8 +7480,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7571,8 +7569,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7663,8 +7661,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$CutoverJob>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$CutoverJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7754,8 +7752,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListCutoverJobsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListCutoverJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7916,8 +7914,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ReplicationCycle>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ReplicationCycle>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8009,8 +8007,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListReplicationCyclesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListReplicationCyclesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8141,8 +8139,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Utilizationreports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8233,8 +8231,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Utilizationreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8322,8 +8320,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UtilizationReport>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UtilizationReport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Utilizationreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8415,8 +8413,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListUtilizationReportsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListUtilizationReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Utilizationreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8586,8 +8584,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targetprojects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8677,8 +8675,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targetprojects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8765,8 +8763,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$TargetProject>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$TargetProject>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targetprojects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8857,8 +8855,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListTargetProjectsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListTargetProjectsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targetprojects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8948,8 +8946,8 @@ export namespace vmmigration_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targetprojects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -4033,8 +4033,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4125,8 +4125,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4214,8 +4214,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4303,8 +4303,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4395,8 +4395,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListNotesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListNotesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4487,8 +4487,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4576,8 +4576,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4672,8 +4672,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4885,8 +4885,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListNoteOccurrencesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListNoteOccurrencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5004,8 +5004,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Occurrence>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5096,8 +5096,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5185,8 +5185,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Occurrence>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5274,8 +5274,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5366,8 +5366,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getnotes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5462,10 +5462,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GetVulnzOccurrencesSummaryResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GetVulnzOccurrencesSummaryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5560,8 +5558,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListOccurrencesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListOccurrencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5652,8 +5650,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Occurrence>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Occurrence>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5741,8 +5739,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5837,8 +5835,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6064,8 +6062,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6156,8 +6154,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6277,8 +6275,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ScanConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6368,8 +6366,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListScanConfigsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListScanConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6460,8 +6458,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ScanConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6610,8 +6608,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6702,8 +6700,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6791,8 +6789,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6880,8 +6878,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6972,8 +6970,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListNotesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListNotesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7064,8 +7062,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7153,8 +7151,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7249,8 +7247,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7462,8 +7460,8 @@ export namespace containeranalysis_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListNoteOccurrencesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListNoteOccurrencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Providers$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

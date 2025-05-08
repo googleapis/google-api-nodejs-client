@@ -296,8 +296,8 @@ export namespace merchantapi_notifications_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$NotificationSubscription>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$NotificationSubscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Notificationsubscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -388,8 +388,8 @@ export namespace merchantapi_notifications_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Notificationsubscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -482,8 +482,8 @@ export namespace merchantapi_notifications_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$NotificationSubscription>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$NotificationSubscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Notificationsubscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -577,10 +577,8 @@ export namespace merchantapi_notifications_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$ListNotificationSubscriptionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListNotificationSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Notificationsubscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -676,8 +674,8 @@ export namespace merchantapi_notifications_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$NotificationSubscription>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$NotificationSubscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Notificationsubscriptions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

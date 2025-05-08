@@ -529,10 +529,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -651,8 +649,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -744,8 +742,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -836,8 +834,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -930,8 +928,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1027,10 +1025,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1126,8 +1122,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1311,10 +1307,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1433,10 +1427,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1528,8 +1520,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1620,10 +1612,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1716,10 +1706,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1815,10 +1803,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1972,8 +1958,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2065,8 +2051,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2157,8 +2143,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2251,8 +2237,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2349,10 +2335,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2448,8 +2432,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2629,10 +2613,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2751,8 +2733,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2844,8 +2826,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2936,8 +2918,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3030,8 +3012,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,10 +3109,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3226,8 +3206,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -1028,8 +1028,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1121,10 +1121,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1262,10 +1260,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1363,8 +1359,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1455,8 +1451,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1548,10 +1544,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1649,10 +1643,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1749,10 +1741,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1846,10 +1836,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1946,10 +1934,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2043,10 +2029,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2269,8 +2253,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Updates$Apply;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2366,10 +2350,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Updates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2502,10 +2484,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2603,10 +2583,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Violation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1Violation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Violations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2701,10 +2679,8 @@ export namespace assuredworkloads_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Workloads$Violations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -3300,10 +3300,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Annotationspecsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3395,8 +3393,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Annotationspecsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3487,10 +3485,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Annotationspecsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3583,10 +3579,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Annotationspecsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3751,10 +3745,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Dataset>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3846,8 +3838,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3938,8 +3930,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Exportdata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4033,10 +4025,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Dataset>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4129,8 +4119,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Importdata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4224,10 +4214,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4410,8 +4398,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4503,10 +4491,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4599,10 +4585,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4739,10 +4723,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1DataItem>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1DataItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4836,10 +4818,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4970,10 +4950,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Example>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Example>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Examples$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5067,10 +5045,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5206,8 +5182,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5299,10 +5275,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5396,10 +5370,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5533,8 +5505,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5625,8 +5597,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5718,10 +5690,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5815,10 +5785,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5964,10 +5932,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1DataItem>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1DataItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Dataitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6060,10 +6026,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Dataitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6198,10 +6162,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Evaluation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Evaluation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Evaluations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6309,10 +6271,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6428,8 +6388,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Image$Label;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6543,8 +6503,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Text$Label;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6658,8 +6618,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Video$Label;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6773,10 +6733,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6868,8 +6826,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6960,10 +6918,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7056,10 +7012,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7155,10 +7109,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7247,8 +7199,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7338,8 +7290,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7526,10 +7478,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7652,8 +7602,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instructions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7743,8 +7693,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instructions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7835,10 +7785,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Instruction>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1Instruction>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instructions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7931,10 +7879,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instructions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8079,8 +8025,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8170,8 +8116,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8262,8 +8208,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8354,10 +8300,8 @@ export namespace datalabeling_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

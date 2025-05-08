@@ -4711,10 +4711,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listaccessiblecustomers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4820,10 +4818,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Customcolumns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4919,10 +4915,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Customcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5039,10 +5033,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Searchads360$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5157,10 +5149,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchads360fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5256,10 +5246,8 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchads360fields$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

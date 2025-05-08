@@ -245,8 +245,8 @@ export namespace playgrouping_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Tokens$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -364,8 +364,8 @@ export namespace playgrouping_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Tokens$Tags$Createorupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;

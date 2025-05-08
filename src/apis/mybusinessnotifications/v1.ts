@@ -197,8 +197,8 @@ export namespace mybusinessnotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$NotificationSetting>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$NotificationSetting>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Getnotificationsetting;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -288,8 +288,8 @@ export namespace mybusinessnotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$NotificationSetting>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$NotificationSetting>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Updatenotificationsetting;
       let options = (optionsOrCallback || {}) as MethodOptions;

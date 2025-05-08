@@ -302,10 +302,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Executecommand;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -402,8 +400,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Device>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Device>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -497,10 +495,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -637,10 +633,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Structure>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Structure>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -734,10 +728,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -860,8 +852,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Room>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Room>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -955,10 +947,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

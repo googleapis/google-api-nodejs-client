@@ -2107,8 +2107,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2228,8 +2228,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaMetric>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2319,8 +2319,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Importproduceroverrides;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2414,8 +2414,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2511,10 +2511,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$V1Beta1ListConsumerQuotaMetricsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$V1Beta1ListConsumerQuotaMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2681,8 +2679,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaLimit>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$V1Beta1ConsumerQuotaLimit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2789,8 +2787,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2882,8 +2880,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2976,10 +2974,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerOverridesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerOverridesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3073,8 +3069,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3257,8 +3253,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3350,8 +3346,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3444,10 +3440,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3541,8 +3535,8 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

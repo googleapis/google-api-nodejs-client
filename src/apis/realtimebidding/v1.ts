@@ -1305,8 +1305,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Bidder>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Bidder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bidders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1393,8 +1393,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListBiddersResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListBiddersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bidders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1507,8 +1507,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1601,8 +1601,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$WatchCreativesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$WatchCreativesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Creatives$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,8 +1736,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Endpoint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Endpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1827,8 +1827,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListEndpointsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListEndpointsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Endpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1919,8 +1919,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Endpoint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Endpoints$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2054,8 +2054,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2148,8 +2148,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2242,8 +2242,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2336,8 +2336,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2428,8 +2428,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2520,8 +2520,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2609,8 +2609,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2702,8 +2702,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListPretargetingConfigsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListPretargetingConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2796,8 +2796,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2887,8 +2887,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2981,8 +2981,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3075,8 +3075,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3167,8 +3167,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PretargetingConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Pretargetingconfigs$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3424,10 +3424,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$BatchApprovePublisherConnectionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$BatchApprovePublisherConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Publisherconnections$Batchapprove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3524,10 +3522,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$BatchRejectPublisherConnectionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$BatchRejectPublisherConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Publisherconnections$Batchreject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3619,8 +3615,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PublisherConnection>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PublisherConnection>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Publisherconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3712,10 +3708,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$ListPublisherConnectionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListPublisherConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Publisherconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3874,8 +3868,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Buyer>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Buyer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buyers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3966,8 +3960,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Getremarketingtag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4058,8 +4052,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListBuyersResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListBuyersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buyers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4177,8 +4171,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4269,8 +4263,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4360,8 +4354,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4452,8 +4446,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4611,8 +4605,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UserList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4700,8 +4694,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UserList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4792,8 +4786,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UserList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4885,8 +4879,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GetRemarketingTagResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Getremarketingtag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4979,8 +4973,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListUserListsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ListUserListsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5071,8 +5065,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UserList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Open;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5160,8 +5154,8 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$UserList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Userlists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

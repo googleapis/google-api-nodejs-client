@@ -722,10 +722,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -819,10 +817,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -951,8 +947,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1046,10 +1042,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1146,8 +1140,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1295,10 +1289,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1392,10 +1384,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1524,10 +1514,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1621,10 +1609,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,10 +1707,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1821,10 +1805,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1921,10 +1903,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2021,10 +2001,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2238,8 +2216,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Insighttypes$Insights$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2333,10 +2311,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Insighttypes$Insights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2433,8 +2409,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2589,10 +2565,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2686,10 +2660,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2786,10 +2758,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2886,10 +2856,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2986,10 +2954,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3086,10 +3052,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3297,10 +3261,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Insighttypes$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3394,10 +3356,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Insighttypes$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3526,8 +3486,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Insighttypes$Insights$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3621,10 +3581,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Insighttypes$Insights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3721,8 +3679,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3870,10 +3828,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3967,10 +3923,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4099,10 +4053,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4196,10 +4148,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4296,10 +4246,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4396,10 +4344,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4496,10 +4442,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4596,10 +4540,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4806,10 +4748,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4903,10 +4843,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5035,8 +4973,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5130,10 +5068,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListInsightsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5230,8 +5166,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Insight>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5379,10 +5315,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5476,10 +5410,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5608,10 +5540,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5705,10 +5635,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1ListRecommendationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5805,10 +5733,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5905,10 +5831,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6005,10 +5929,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6105,10 +6027,8 @@ export namespace recommender_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded;
       let options = (optionsOrCallback || {}) as MethodOptions;

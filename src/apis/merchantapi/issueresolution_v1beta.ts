@@ -671,8 +671,8 @@ export namespace merchantapi_issueresolution_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$RenderAccountIssuesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$RenderAccountIssuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Issueresolution$Renderaccountissues;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -765,8 +765,8 @@ export namespace merchantapi_issueresolution_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$RenderProductIssuesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$RenderProductIssuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Issueresolution$Renderproductissues;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -859,8 +859,8 @@ export namespace merchantapi_issueresolution_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$TriggerActionResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$TriggerActionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Issueresolution$Triggeraction;
       let options = (optionsOrCallback || {}) as MethodOptions;

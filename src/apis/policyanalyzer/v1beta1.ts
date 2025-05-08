@@ -264,10 +264,8 @@ export namespace policyanalyzer_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -424,10 +422,8 @@ export namespace policyanalyzer_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -582,10 +578,8 @@ export namespace policyanalyzer_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;

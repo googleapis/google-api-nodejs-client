@@ -287,8 +287,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$CheckAccessTypeResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$CheckAccessTypeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accesstype$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -396,10 +396,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$CancelPortabilityArchiveResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$CancelPortabilityArchiveResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Archivejobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -493,8 +491,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$PortabilityArchiveState>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$PortabilityArchiveState>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Archivejobs$Getportabilityarchivestate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -586,8 +584,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$RetryPortabilityArchiveResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$RetryPortabilityArchiveResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Archivejobs$Retry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -716,8 +714,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Authorization$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -827,10 +825,8 @@ export namespace dataportability_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$InitiatePortabilityArchiveResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$InitiatePortabilityArchiveResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Portabilityarchive$Initiate;
       let options = (optionsOrCallback || {}) as MethodOptions;

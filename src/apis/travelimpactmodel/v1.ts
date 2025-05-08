@@ -301,8 +301,8 @@ export namespace travelimpactmodel_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flights$Computeflightemissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
