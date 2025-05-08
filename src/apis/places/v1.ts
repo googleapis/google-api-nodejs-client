@@ -1042,7 +1042,7 @@ export namespace places_v1 {
      */
     reviewsUri?: string | null;
     /**
-     * A link to show reviews of this place on Google Maps.
+     * A link to write a review for this place on Google Maps.
      */
     writeAReviewUri?: string | null;
   }
@@ -1226,6 +1226,10 @@ export namespace places_v1 {
      * A link where users can flag a problem with the summary.
      */
     flagContentUri?: string | null;
+    /**
+     * A link to show reviews of this place on Google Maps.
+     */
+    reviewsUri?: string | null;
     /**
      * The summary of user reviews.
      */

@@ -895,7 +895,7 @@ export namespace securitycenter_v1 {
      */
     description?: string | null;
     /**
-     * The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed..
+     * The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed.
      */
     end?: Schema$Position;
     /**
@@ -911,6 +911,9 @@ export namespace securitycenter_v1 {
    * A list of zero or more errors encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.
    */
   export interface Schema$CustomModuleValidationErrors {
+    /**
+     * The list of errors.
+     */
     errors?: Schema$CustomModuleValidationError[];
   }
   /**
@@ -5607,7 +5610,13 @@ export namespace securitycenter_v1 {
    * A position in the uploaded text version of a module.
    */
   export interface Schema$Position {
+    /**
+     * The column number.
+     */
     columnNumber?: number | null;
+    /**
+     * The line number.
+     */
     lineNumber?: number | null;
   }
   /**

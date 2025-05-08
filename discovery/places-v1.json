@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20250506",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1509,7 +1509,7 @@
           "type": "string"
         },
         "writeAReviewUri": {
-          "description": "A link to show reviews of this place on Google Maps.",
+          "description": "A link to write a review for this place on Google Maps.",
           "type": "string"
         }
       },
@@ -1755,6 +1755,10 @@
         },
         "flagContentUri": {
           "description": "A link where users can flag a problem with the summary.",
+          "type": "string"
+        },
+        "reviewsUri": {
+          "description": "A link to show reviews of this place on Google Maps.",
           "type": "string"
         },
         "text": {

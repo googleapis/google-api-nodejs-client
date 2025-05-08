@@ -232,7 +232,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountIdAlias?: string | null;
     /**
-     * Identifier. The resource name of the account relationship.
+     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
      */
     name?: string | null;
     /**
@@ -273,7 +273,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     mutability?: string | null;
     /**
-     * Identifier. The resource name of the account service.
+     * Identifier. The resource name of the account service. Format: `accounts/{account\}/services/{service\}`
      */
     name?: string | null;
     /**
@@ -1786,7 +1786,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     carrierService?: string | null;
     /**
-     * Required. Warehouse name. This should match warehouse
+     * Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)
      */
     warehouse?: string | null;
   }
@@ -5571,7 +5571,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Relationships$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the account relationship to get.
+     * Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`
      */
     name?: string;
   }
@@ -5586,14 +5586,14 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent account of the account relationship to filter by.
+     * Required. The parent account of the account relationship to filter by. Format: `accounts/{account\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Relationships$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the account relationship.
+     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
      */
     name?: string;
     /**
@@ -6075,7 +6075,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Approve
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to approve.
+     * Required. The resource name of the account service to approve. Format: `accounts/{account\}/services/{service\}`
      */
     name?: string;
 
@@ -6087,7 +6087,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to get.
+     * Required. The resource name of the account service to get. Format: `accounts/{account\}/services/{service\}`
      */
     name?: string;
   }
@@ -6102,14 +6102,14 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent account of the account service to filter by.
+     * Required. The parent account of the account service to filter by. Format: `accounts/{account\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Services$Propose
     extends StandardParameters {
     /**
-     * Required. The resource name of the parent account for the service.
+     * Required. The resource name of the parent account for the service. Format: `accounts/{account\}`
      */
     parent?: string;
 
@@ -6121,7 +6121,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Reject
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to reject.
+     * Required. The resource name of the account service to reject. Format: `accounts/{account\}/services/{service\}`
      */
     name?: string;
 

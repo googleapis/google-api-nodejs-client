@@ -110,7 +110,7 @@
         "dataSources": {
           "methods": {
             "create": {
-              "description": "Creates the new data source configuration for the given account.",
+              "description": "Creates the new data source configuration for the given account. This method always creates a new data source.",
               "flatPath": "datasources/v1beta/accounts/{accountsId}/dataSources",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.dataSources.create",
@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250507",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {

@@ -335,7 +335,7 @@ export namespace servicenetworking_v1 {
      */
     kind?: string | null;
     /**
-     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
   }

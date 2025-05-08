@@ -1123,7 +1123,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the account relationship to get.",
+                  "description": "Required. The resource name of the account relationship to get. Format: `accounts/{account}/relationships/{relationship}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/relationships/[^/]+$",
                   "required": true,
@@ -1159,7 +1159,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent account of the account relationship to filter by.",
+                  "description": "Required. The parent account of the account relationship to filter by. Format: `accounts/{account}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -1184,7 +1184,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The resource name of the account relationship.",
+                  "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/relationships/[^/]+$",
                   "required": true,
@@ -1222,7 +1222,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the account service to approve.",
+                  "description": "Required. The resource name of the account service to approve. Format: `accounts/{account}/services/{service}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1250,7 +1250,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the account service to get.",
+                  "description": "Required. The resource name of the account service to get. Format: `accounts/{account}/services/{service}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1286,7 +1286,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent account of the account service to filter by.",
+                  "description": "Required. The parent account of the account service to filter by. Format: `accounts/{account}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -1311,7 +1311,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The resource name of the parent account for the service.",
+                  "description": "Required. The resource name of the parent account for the service. Format: `accounts/{account}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -1339,7 +1339,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the account service to reject.",
+                  "description": "Required. The resource name of the account service to reject. Format: `accounts/{account}/services/{service}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1728,7 +1728,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250507",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfServiceResponse": {
@@ -1866,7 +1866,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the account relationship.",
+          "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`",
           "type": "string"
         },
         "provider": {
@@ -1922,7 +1922,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the account service.",
+          "description": "Identifier. The resource name of the account service. Format: `accounts/{account}/services/{service}`",
           "type": "string"
         },
         "productsManagement": {
@@ -4195,7 +4195,7 @@
           "type": "string"
         },
         "warehouse": {
-          "description": "Required. Warehouse name. This should match warehouse",
+          "description": "Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)",
           "type": "string"
         }
       },
