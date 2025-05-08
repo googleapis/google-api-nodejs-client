@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -897,11 +898,11 @@ export namespace manufacturers_v1 {
     delete(
       params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Languages$Productcertifications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -930,7 +931,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -984,11 +988,11 @@ export namespace manufacturers_v1 {
     get(
       params: Params$Resource$Accounts$Languages$Productcertifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Languages$Productcertifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductCertification>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductCertification>;
     get(
       params: Params$Resource$Accounts$Languages$Productcertifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1021,8 +1025,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductCertification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProductCertification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1076,11 +1080,11 @@ export namespace manufacturers_v1 {
     list(
       params: Params$Resource$Accounts$Languages$Productcertifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Languages$Productcertifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductCertificationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductCertificationsResponse>;
     list(
       params: Params$Resource$Accounts$Languages$Productcertifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1115,8 +1119,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductCertificationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductCertificationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1175,11 +1179,11 @@ export namespace manufacturers_v1 {
     patch(
       params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Languages$Productcertifications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductCertification>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductCertification>;
     patch(
       params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1212,8 +1216,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductCertification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProductCertification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,11 +1324,11 @@ export namespace manufacturers_v1 {
     delete(
       params: Params$Resource$Accounts$Products$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Products$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Products$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1353,7 +1357,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1409,11 +1416,11 @@ export namespace manufacturers_v1 {
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1442,7 +1449,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1498,11 +1508,11 @@ export namespace manufacturers_v1 {
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductsResponse>;
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1535,8 +1545,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1592,11 +1602,11 @@ export namespace manufacturers_v1 {
     update(
       params: Params$Resource$Accounts$Products$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Products$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     update(
       params: Params$Resource$Accounts$Products$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1625,7 +1635,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

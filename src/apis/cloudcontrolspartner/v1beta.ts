@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -644,11 +645,11 @@ export namespace cloudcontrolspartner_v1beta {
     getPartner(
       params: Params$Resource$Organizations$Locations$Getpartner,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getPartner(
       params?: Params$Resource$Organizations$Locations$Getpartner,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Partner>;
+    ): GaxiosResponseWithHTTP2<Schema$Partner>;
     getPartner(
       params: Params$Resource$Organizations$Locations$Getpartner,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -677,7 +678,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Partner>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Partner> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Partner>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Getpartner;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -749,11 +753,11 @@ export namespace cloudcontrolspartner_v1beta {
     create(
       params: Params$Resource$Organizations$Locations$Customers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Organizations$Locations$Customers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$Customer>;
     create(
       params: Params$Resource$Organizations$Locations$Customers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -782,7 +786,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -838,11 +845,11 @@ export namespace cloudcontrolspartner_v1beta {
     delete(
       params: Params$Resource$Organizations$Locations$Customers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Customers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Organizations$Locations$Customers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -871,7 +878,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -924,11 +934,11 @@ export namespace cloudcontrolspartner_v1beta {
     get(
       params: Params$Resource$Organizations$Locations$Customers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Customers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$Customer>;
     get(
       params: Params$Resource$Organizations$Locations$Customers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -957,7 +967,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1010,11 +1023,11 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Customers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCustomersResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Customers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1047,8 +1060,8 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1104,11 +1117,11 @@ export namespace cloudcontrolspartner_v1beta {
     patch(
       params: Params$Resource$Organizations$Locations$Customers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Organizations$Locations$Customers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Customer>;
+    ): GaxiosResponseWithHTTP2<Schema$Customer>;
     patch(
       params: Params$Resource$Organizations$Locations$Customers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1137,7 +1150,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1277,11 +1293,11 @@ export namespace cloudcontrolspartner_v1beta {
     get(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Workload>;
+    ): GaxiosResponseWithHTTP2<Schema$Workload>;
     get(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1310,7 +1326,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Workload>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workload> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Workload>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1364,11 +1383,11 @@ export namespace cloudcontrolspartner_v1beta {
     getEkmConnections(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEkmConnections(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EkmConnections>;
+    ): GaxiosResponseWithHTTP2<Schema$EkmConnections>;
     getEkmConnections(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1399,7 +1418,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$EkmConnections>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConnections> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConnections>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1453,11 +1475,11 @@ export namespace cloudcontrolspartner_v1beta {
     getPartnerPermissions(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getPartnerPermissions(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartnerPermissions>;
+    ): GaxiosResponseWithHTTP2<Schema$PartnerPermissions>;
     getPartnerPermissions(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1490,8 +1512,8 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PartnerPermissions>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PartnerPermissions>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1545,11 +1567,11 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWorkloadsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1582,8 +1604,8 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkloadsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1692,11 +1714,11 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccessApprovalRequestsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAccessApprovalRequestsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1731,8 +1753,8 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccessApprovalRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccessApprovalRequestsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1822,11 +1844,11 @@ export namespace cloudcontrolspartner_v1beta {
     get(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Violation>;
+    ): GaxiosResponseWithHTTP2<Schema$Violation>;
     get(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1855,7 +1877,10 @@ export namespace cloudcontrolspartner_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Violation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Violation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Violation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1909,11 +1934,11 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListViolationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListViolationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1946,8 +1971,8 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViolationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViolationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

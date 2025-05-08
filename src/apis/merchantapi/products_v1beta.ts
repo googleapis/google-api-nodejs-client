@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1221,11 +1222,11 @@ export namespace merchantapi_products_v1beta {
     delete(
       params: Params$Resource$Accounts$Productinputs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Accounts$Productinputs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Accounts$Productinputs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1254,7 +1255,10 @@ export namespace merchantapi_products_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productinputs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1309,11 +1313,11 @@ export namespace merchantapi_products_v1beta {
     insert(
       params: Params$Resource$Accounts$Productinputs$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Accounts$Productinputs$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductInput>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductInput>;
     insert(
       params: Params$Resource$Accounts$Productinputs$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1342,7 +1346,10 @@ export namespace merchantapi_products_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ProductInput>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductInput> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductInput>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productinputs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1396,11 +1403,11 @@ export namespace merchantapi_products_v1beta {
     patch(
       params: Params$Resource$Accounts$Productinputs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Accounts$Productinputs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductInput>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductInput>;
     patch(
       params: Params$Resource$Accounts$Productinputs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1429,7 +1436,10 @@ export namespace merchantapi_products_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ProductInput>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductInput> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductInput>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productinputs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1539,11 +1549,11 @@ export namespace merchantapi_products_v1beta {
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1572,7 +1582,10 @@ export namespace merchantapi_products_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1627,11 +1640,11 @@ export namespace merchantapi_products_v1beta {
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductsResponse>;
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1664,8 +1677,8 @@ export namespace merchantapi_products_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

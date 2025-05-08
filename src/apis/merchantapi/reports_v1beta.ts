@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1052,11 +1053,11 @@ export namespace merchantapi_reports_v1beta {
     search(
       params: Params$Resource$Accounts$Reports$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Accounts$Reports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
     search(
       params: Params$Resource$Accounts$Reports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1085,7 +1086,10 @@ export namespace merchantapi_reports_v1beta {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

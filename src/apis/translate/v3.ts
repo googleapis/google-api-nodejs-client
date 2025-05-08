@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1340,11 +1341,11 @@ export namespace translate_v3 {
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detectLanguage(
       params?: Params$Resource$Projects$Detectlanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>;
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1379,8 +1380,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DetectLanguageResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Detectlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1435,11 +1436,11 @@ export namespace translate_v3 {
     getSupportedLanguages(
       params: Params$Resource$Projects$Getsupportedlanguages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSupportedLanguages(
       params?: Params$Resource$Projects$Getsupportedlanguages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SupportedLanguages>;
+    ): GaxiosResponseWithHTTP2<Schema$SupportedLanguages>;
     getSupportedLanguages(
       params: Params$Resource$Projects$Getsupportedlanguages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1472,8 +1473,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SupportedLanguages>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SupportedLanguages>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getsupportedlanguages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1528,11 +1529,11 @@ export namespace translate_v3 {
     romanizeText(
       params: Params$Resource$Projects$Romanizetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     romanizeText(
       params?: Params$Resource$Projects$Romanizetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RomanizeTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RomanizeTextResponse>;
     romanizeText(
       params: Params$Resource$Projects$Romanizetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1567,8 +1568,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RomanizeTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RomanizeTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Romanizetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1623,11 +1624,11 @@ export namespace translate_v3 {
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateText(
       params?: Params$Resource$Projects$Translatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>;
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1662,8 +1663,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TranslateTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Translatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1792,11 +1793,11 @@ export namespace translate_v3 {
     adaptiveMtTranslate(
       params: Params$Resource$Projects$Locations$Adaptivemttranslate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     adaptiveMtTranslate(
       params?: Params$Resource$Projects$Locations$Adaptivemttranslate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdaptiveMtTranslateResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AdaptiveMtTranslateResponse>;
     adaptiveMtTranslate(
       params: Params$Resource$Projects$Locations$Adaptivemttranslate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1831,8 +1832,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdaptiveMtTranslateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdaptiveMtTranslateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemttranslate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1887,11 +1888,11 @@ export namespace translate_v3 {
     batchTranslateDocument(
       params: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchTranslateDocument(
       params?: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchTranslateDocument(
       params: Params$Resource$Projects$Locations$Batchtranslatedocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1922,7 +1923,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batchtranslatedocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1978,11 +1982,11 @@ export namespace translate_v3 {
     batchTranslateText(
       params: Params$Resource$Projects$Locations$Batchtranslatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchTranslateText(
       params?: Params$Resource$Projects$Locations$Batchtranslatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     batchTranslateText(
       params: Params$Resource$Projects$Locations$Batchtranslatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2011,7 +2015,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batchtranslatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2066,11 +2073,11 @@ export namespace translate_v3 {
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     detectLanguage(
       params?: Params$Resource$Projects$Locations$Detectlanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>;
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2105,8 +2112,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DetectLanguageResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DetectLanguageResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Detectlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2161,11 +2168,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2194,7 +2201,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2246,11 +2256,11 @@ export namespace translate_v3 {
     getSupportedLanguages(
       params: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSupportedLanguages(
       params?: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SupportedLanguages>;
+    ): GaxiosResponseWithHTTP2<Schema$SupportedLanguages>;
     getSupportedLanguages(
       params: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2283,8 +2293,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SupportedLanguages>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SupportedLanguages>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsupportedlanguages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2339,11 +2349,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2376,8 +2386,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2432,11 +2442,11 @@ export namespace translate_v3 {
     romanizeText(
       params: Params$Resource$Projects$Locations$Romanizetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     romanizeText(
       params?: Params$Resource$Projects$Locations$Romanizetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RomanizeTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RomanizeTextResponse>;
     romanizeText(
       params: Params$Resource$Projects$Locations$Romanizetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2471,8 +2481,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RomanizeTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RomanizeTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Romanizetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2527,11 +2537,11 @@ export namespace translate_v3 {
     translateDocument(
       params: Params$Resource$Projects$Locations$Translatedocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateDocument(
       params?: Params$Resource$Projects$Locations$Translatedocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateDocumentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateDocumentResponse>;
     translateDocument(
       params: Params$Resource$Projects$Locations$Translatedocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2566,8 +2576,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TranslateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TranslateDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Translatedocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2622,11 +2632,11 @@ export namespace translate_v3 {
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     translateText(
       params?: Params$Resource$Projects$Locations$Translatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>;
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2661,8 +2671,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TranslateTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TranslateTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Translatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2864,11 +2874,11 @@ export namespace translate_v3 {
     create(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdaptiveMtDataset>;
+    ): GaxiosResponseWithHTTP2<Schema$AdaptiveMtDataset>;
     create(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2899,8 +2909,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdaptiveMtDataset>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdaptiveMtDataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2956,11 +2966,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2989,7 +2999,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3042,11 +3055,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdaptiveMtDataset>;
+    ): GaxiosResponseWithHTTP2<Schema$AdaptiveMtDataset>;
     get(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3077,8 +3090,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdaptiveMtDataset>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdaptiveMtDataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3131,11 +3144,11 @@ export namespace translate_v3 {
     importAdaptiveMtFile(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importAdaptiveMtFile(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportAdaptiveMtFileResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportAdaptiveMtFileResponse>;
     importAdaptiveMtFile(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3170,8 +3183,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImportAdaptiveMtFileResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ImportAdaptiveMtFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3229,11 +3242,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdaptiveMtDatasetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtDatasetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3268,8 +3281,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdaptiveMtDatasetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtDatasetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3397,11 +3410,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3430,7 +3443,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3483,11 +3499,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdaptiveMtFile>;
+    ): GaxiosResponseWithHTTP2<Schema$AdaptiveMtFile>;
     get(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3516,7 +3532,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$AdaptiveMtFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdaptiveMtFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdaptiveMtFile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3569,11 +3588,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdaptiveMtFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtFilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3608,8 +3627,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdaptiveMtFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3702,11 +3721,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtSentencesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3741,8 +3760,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtSentencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3823,11 +3842,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtSentencesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3862,8 +3881,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAdaptiveMtSentencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3948,11 +3967,11 @@ export namespace translate_v3 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3981,7 +4000,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4036,11 +4058,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4069,7 +4091,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4121,11 +4146,11 @@ export namespace translate_v3 {
     exportData(
       params: Params$Resource$Projects$Locations$Datasets$Exportdata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exportData(
       params?: Params$Resource$Projects$Locations$Datasets$Exportdata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     exportData(
       params: Params$Resource$Projects$Locations$Datasets$Exportdata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4154,7 +4179,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Exportdata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4209,11 +4237,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): GaxiosResponseWithHTTP2<Schema$Dataset>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4242,7 +4270,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4294,11 +4325,11 @@ export namespace translate_v3 {
     importData(
       params: Params$Resource$Projects$Locations$Datasets$Importdata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importData(
       params?: Params$Resource$Projects$Locations$Datasets$Importdata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     importData(
       params: Params$Resource$Projects$Locations$Datasets$Importdata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4327,7 +4358,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Importdata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4382,11 +4416,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatasetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDatasetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4419,8 +4453,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDatasetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDatasetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4548,11 +4582,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Examples$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Examples$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExamplesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListExamplesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Examples$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4585,8 +4619,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExamplesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExamplesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Examples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4674,11 +4708,11 @@ export namespace translate_v3 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4707,7 +4741,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4762,11 +4799,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4795,7 +4832,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4847,11 +4887,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Glossary>;
+    ): GaxiosResponseWithHTTP2<Schema$Glossary>;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4880,7 +4920,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Glossary>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Glossary> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Glossary>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4932,11 +4975,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGlossariesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGlossariesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4969,8 +5012,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGlossariesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGlossariesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5025,11 +5068,11 @@ export namespace translate_v3 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Glossaries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5058,7 +5101,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5179,11 +5225,11 @@ export namespace translate_v3 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GlossaryEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$GlossaryEntry>;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5212,7 +5258,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$GlossaryEntry>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GlossaryEntry> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GlossaryEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5268,11 +5317,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5301,7 +5350,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5354,11 +5406,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GlossaryEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$GlossaryEntry>;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5387,7 +5439,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$GlossaryEntry>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GlossaryEntry> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GlossaryEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5440,11 +5495,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGlossaryEntriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGlossaryEntriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5479,8 +5534,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGlossaryEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGlossaryEntriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Glossaryentries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5536,11 +5591,11 @@ export namespace translate_v3 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GlossaryEntry>;
+    ): GaxiosResponseWithHTTP2<Schema$GlossaryEntry>;
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5569,7 +5624,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$GlossaryEntry>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GlossaryEntry> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GlossaryEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5683,11 +5741,11 @@ export namespace translate_v3 {
     create(
       params: Params$Resource$Projects$Locations$Models$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Models$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Models$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5716,7 +5774,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Models$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5771,11 +5832,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Models$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5804,7 +5865,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5856,11 +5920,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Model>;
+    ): GaxiosResponseWithHTTP2<Schema$Model>;
     get(
       params: Params$Resource$Projects$Locations$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5889,7 +5953,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Model> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Model>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5941,11 +6008,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Models$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Models$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListModelsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListModelsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5976,8 +6043,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListModelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListModelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6085,11 +6152,11 @@ export namespace translate_v3 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6118,7 +6185,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6170,11 +6240,11 @@ export namespace translate_v3 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6203,7 +6273,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6255,11 +6328,11 @@ export namespace translate_v3 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6288,7 +6361,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6340,11 +6416,11 @@ export namespace translate_v3 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6377,8 +6453,8 @@ export namespace translate_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6433,11 +6509,11 @@ export namespace translate_v3 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6466,7 +6542,10 @@ export namespace translate_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;

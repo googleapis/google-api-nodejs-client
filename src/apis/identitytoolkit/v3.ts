@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1551,11 +1552,11 @@ export namespace identitytoolkit_v3 {
     createAuthUri(
       params: Params$Resource$Relyingparty$Createauthuri,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createAuthUri(
       params?: Params$Resource$Relyingparty$Createauthuri,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateAuthUriResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CreateAuthUriResponse>;
     createAuthUri(
       params: Params$Resource$Relyingparty$Createauthuri,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1590,8 +1591,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreateAuthUriResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreateAuthUriResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Createauthuri;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1645,11 +1646,11 @@ export namespace identitytoolkit_v3 {
     deleteAccount(
       params: Params$Resource$Relyingparty$Deleteaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteAccount(
       params?: Params$Resource$Relyingparty$Deleteaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteAccountResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeleteAccountResponse>;
     deleteAccount(
       params: Params$Resource$Relyingparty$Deleteaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1684,8 +1685,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeleteAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeleteAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Deleteaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1739,11 +1740,11 @@ export namespace identitytoolkit_v3 {
     downloadAccount(
       params: Params$Resource$Relyingparty$Downloadaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     downloadAccount(
       params?: Params$Resource$Relyingparty$Downloadaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadAccountResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DownloadAccountResponse>;
     downloadAccount(
       params: Params$Resource$Relyingparty$Downloadaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1778,8 +1779,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DownloadAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DownloadAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Downloadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1833,11 +1834,11 @@ export namespace identitytoolkit_v3 {
     emailLinkSignin(
       params: Params$Resource$Relyingparty$Emaillinksignin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     emailLinkSignin(
       params?: Params$Resource$Relyingparty$Emaillinksignin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EmailLinkSigninResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EmailLinkSigninResponse>;
     emailLinkSignin(
       params: Params$Resource$Relyingparty$Emaillinksignin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1872,8 +1873,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EmailLinkSigninResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EmailLinkSigninResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Emaillinksignin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1927,11 +1928,11 @@ export namespace identitytoolkit_v3 {
     getAccountInfo(
       params: Params$Resource$Relyingparty$Getaccountinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAccountInfo(
       params?: Params$Resource$Relyingparty$Getaccountinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetAccountInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetAccountInfoResponse>;
     getAccountInfo(
       params: Params$Resource$Relyingparty$Getaccountinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1966,8 +1967,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetAccountInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetAccountInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2021,11 +2022,11 @@ export namespace identitytoolkit_v3 {
     getOobConfirmationCode(
       params: Params$Resource$Relyingparty$Getoobconfirmationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getOobConfirmationCode(
       params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetOobConfirmationCodeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetOobConfirmationCodeResponse>;
     getOobConfirmationCode(
       params: Params$Resource$Relyingparty$Getoobconfirmationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2060,8 +2061,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetOobConfirmationCodeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetOobConfirmationCodeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getoobconfirmationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2118,11 +2119,11 @@ export namespace identitytoolkit_v3 {
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getProjectConfig(
       params?: Params$Resource$Relyingparty$Getprojectconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2157,8 +2158,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2214,11 +2215,11 @@ export namespace identitytoolkit_v3 {
     getPublicKeys(
       params: Params$Resource$Relyingparty$Getpublickeys,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getPublicKeys(
       params?: Params$Resource$Relyingparty$Getpublickeys,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
     getPublicKeys(
       params: Params$Resource$Relyingparty$Getpublickeys,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2253,8 +2254,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getpublickeys;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2310,11 +2311,11 @@ export namespace identitytoolkit_v3 {
     getRecaptchaParam(
       params: Params$Resource$Relyingparty$Getrecaptchaparam,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRecaptchaParam(
       params?: Params$Resource$Relyingparty$Getrecaptchaparam,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetRecaptchaParamResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetRecaptchaParamResponse>;
     getRecaptchaParam(
       params: Params$Resource$Relyingparty$Getrecaptchaparam,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2349,8 +2350,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetRecaptchaParamResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetRecaptchaParamResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getrecaptchaparam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2404,11 +2405,11 @@ export namespace identitytoolkit_v3 {
     resetPassword(
       params: Params$Resource$Relyingparty$Resetpassword,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resetPassword(
       params?: Params$Resource$Relyingparty$Resetpassword,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResetPasswordResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ResetPasswordResponse>;
     resetPassword(
       params: Params$Resource$Relyingparty$Resetpassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2443,8 +2444,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResetPasswordResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ResetPasswordResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Resetpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2498,11 +2499,11 @@ export namespace identitytoolkit_v3 {
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     sendVerificationCode(
       params?: Params$Resource$Relyingparty$Sendverificationcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2537,8 +2538,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Sendverificationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2594,11 +2595,11 @@ export namespace identitytoolkit_v3 {
     setAccountInfo(
       params: Params$Resource$Relyingparty$Setaccountinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setAccountInfo(
       params?: Params$Resource$Relyingparty$Setaccountinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SetAccountInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SetAccountInfoResponse>;
     setAccountInfo(
       params: Params$Resource$Relyingparty$Setaccountinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2633,8 +2634,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SetAccountInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SetAccountInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Setaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2688,11 +2689,11 @@ export namespace identitytoolkit_v3 {
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setProjectConfig(
       params?: Params$Resource$Relyingparty$Setprojectconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2727,8 +2728,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Setprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2784,11 +2785,11 @@ export namespace identitytoolkit_v3 {
     signOutUser(
       params: Params$Resource$Relyingparty$Signoutuser,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     signOutUser(
       params?: Params$Resource$Relyingparty$Signoutuser,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
     signOutUser(
       params: Params$Resource$Relyingparty$Signoutuser,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2823,8 +2824,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Signoutuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2880,11 +2881,11 @@ export namespace identitytoolkit_v3 {
     signupNewUser(
       params: Params$Resource$Relyingparty$Signupnewuser,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     signupNewUser(
       params?: Params$Resource$Relyingparty$Signupnewuser,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SignupNewUserResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SignupNewUserResponse>;
     signupNewUser(
       params: Params$Resource$Relyingparty$Signupnewuser,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2919,8 +2920,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SignupNewUserResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SignupNewUserResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Signupnewuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2974,11 +2975,11 @@ export namespace identitytoolkit_v3 {
     uploadAccount(
       params: Params$Resource$Relyingparty$Uploadaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     uploadAccount(
       params?: Params$Resource$Relyingparty$Uploadaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadAccountResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UploadAccountResponse>;
     uploadAccount(
       params: Params$Resource$Relyingparty$Uploadaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3013,8 +3014,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UploadAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Uploadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3068,11 +3069,11 @@ export namespace identitytoolkit_v3 {
     verifyAssertion(
       params: Params$Resource$Relyingparty$Verifyassertion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verifyAssertion(
       params?: Params$Resource$Relyingparty$Verifyassertion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyAssertionResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyAssertionResponse>;
     verifyAssertion(
       params: Params$Resource$Relyingparty$Verifyassertion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3107,8 +3108,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyAssertionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyAssertionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifyassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3162,11 +3163,11 @@ export namespace identitytoolkit_v3 {
     verifyCustomToken(
       params: Params$Resource$Relyingparty$Verifycustomtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verifyCustomToken(
       params?: Params$Resource$Relyingparty$Verifycustomtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyCustomTokenResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyCustomTokenResponse>;
     verifyCustomToken(
       params: Params$Resource$Relyingparty$Verifycustomtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3201,8 +3202,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyCustomTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyCustomTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifycustomtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3256,11 +3257,11 @@ export namespace identitytoolkit_v3 {
     verifyPassword(
       params: Params$Resource$Relyingparty$Verifypassword,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verifyPassword(
       params?: Params$Resource$Relyingparty$Verifypassword,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyPasswordResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VerifyPasswordResponse>;
     verifyPassword(
       params: Params$Resource$Relyingparty$Verifypassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3295,8 +3296,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyPasswordResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyPasswordResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifypassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3350,11 +3351,11 @@ export namespace identitytoolkit_v3 {
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     verifyPhoneNumber(
       params?: Params$Resource$Relyingparty$Verifyphonenumber,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3389,8 +3390,8 @@ export namespace identitytoolkit_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifyphonenumber;
       let options = (optionsOrCallback || {}) as MethodOptions;

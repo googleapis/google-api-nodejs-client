@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2486,11 +2487,11 @@ export namespace language_v2 {
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     analyzeEntities(
       params?: Params$Resource$Documents$Analyzeentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>;
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2525,8 +2526,8 @@ export namespace language_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2581,11 +2582,11 @@ export namespace language_v2 {
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     analyzeSentiment(
       params?: Params$Resource$Documents$Analyzesentiment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeSentimentResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AnalyzeSentimentResponse>;
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2620,8 +2621,8 @@ export namespace language_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeSentimentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AnalyzeSentimentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2676,11 +2677,11 @@ export namespace language_v2 {
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotateText(
       params?: Params$Resource$Documents$Annotatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnnotateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AnnotateTextResponse>;
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2715,8 +2716,8 @@ export namespace language_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnnotateTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AnnotateTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2771,11 +2772,11 @@ export namespace language_v2 {
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     classifyText(
       params?: Params$Resource$Documents$Classifytext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClassifyTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ClassifyTextResponse>;
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2810,8 +2811,8 @@ export namespace language_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClassifyTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClassifyTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Classifytext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2866,11 +2867,11 @@ export namespace language_v2 {
     moderateText(
       params: Params$Resource$Documents$Moderatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     moderateText(
       params?: Params$Resource$Documents$Moderatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ModerateTextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ModerateTextResponse>;
     moderateText(
       params: Params$Resource$Documents$Moderatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2905,8 +2906,8 @@ export namespace language_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ModerateTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ModerateTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Moderatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;

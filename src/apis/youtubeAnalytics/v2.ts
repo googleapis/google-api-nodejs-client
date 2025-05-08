@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -380,11 +381,11 @@ export namespace youtubeAnalytics_v2 {
     delete(
       params: Params$Resource$Groupitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Groupitems$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EmptyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EmptyResponse>;
     delete(
       params: Params$Resource$Groupitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -413,7 +414,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$EmptyResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmptyResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EmptyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groupitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -466,11 +470,11 @@ export namespace youtubeAnalytics_v2 {
     insert(
       params: Params$Resource$Groupitems$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Groupitems$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GroupItem>;
+    ): GaxiosResponseWithHTTP2<Schema$GroupItem>;
     insert(
       params: Params$Resource$Groupitems$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -499,7 +503,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$GroupItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GroupItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GroupItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groupitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -552,11 +559,11 @@ export namespace youtubeAnalytics_v2 {
     list(
       params: Params$Resource$Groupitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Groupitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupItemsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupItemsResponse>;
     list(
       params: Params$Resource$Groupitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -589,8 +596,8 @@ export namespace youtubeAnalytics_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupItemsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupItemsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groupitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -683,11 +690,11 @@ export namespace youtubeAnalytics_v2 {
     delete(
       params: Params$Resource$Groups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Groups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EmptyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$EmptyResponse>;
     delete(
       params: Params$Resource$Groups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -716,7 +723,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$EmptyResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmptyResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EmptyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -768,11 +778,11 @@ export namespace youtubeAnalytics_v2 {
     insert(
       params: Params$Resource$Groups$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Groups$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     insert(
       params: Params$Resource$Groups$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -801,7 +811,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -853,11 +866,11 @@ export namespace youtubeAnalytics_v2 {
     list(
       params: Params$Resource$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>;
     list(
       params: Params$Resource$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -888,8 +901,8 @@ export namespace youtubeAnalytics_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -941,11 +954,11 @@ export namespace youtubeAnalytics_v2 {
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -974,7 +987,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1084,11 +1100,11 @@ export namespace youtubeAnalytics_v2 {
     query(
       params: Params$Resource$Reports$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     query(
       params?: Params$Resource$Reports$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryResponse>;
     query(
       params: Params$Resource$Reports$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1117,7 +1133,10 @@ export namespace youtubeAnalytics_v2 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$QueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

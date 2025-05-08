@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -194,7 +195,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     kind?: string | null;
     /**
-     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
   }
@@ -2101,11 +2102,11 @@ export namespace serviceconsumermanagement_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2134,7 +2135,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2187,11 +2191,11 @@ export namespace serviceconsumermanagement_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2220,7 +2224,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2273,11 +2280,11 @@ export namespace serviceconsumermanagement_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2306,7 +2313,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2358,11 +2368,11 @@ export namespace serviceconsumermanagement_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2395,8 +2405,8 @@ export namespace serviceconsumermanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2501,11 +2511,11 @@ export namespace serviceconsumermanagement_v1 {
     search(
       params: Params$Resource$Services$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Services$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchTenancyUnitsResponse>;
     search(
       params: Params$Resource$Services$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2540,8 +2550,8 @@ export namespace serviceconsumermanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchTenancyUnitsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchTenancyUnitsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2622,11 +2632,11 @@ export namespace serviceconsumermanagement_v1 {
     addProject(
       params: Params$Resource$Services$Tenancyunits$Addproject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addProject(
       params?: Params$Resource$Services$Tenancyunits$Addproject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addProject(
       params: Params$Resource$Services$Tenancyunits$Addproject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2655,7 +2665,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Addproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2711,11 +2724,11 @@ export namespace serviceconsumermanagement_v1 {
     applyProjectConfig(
       params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     applyProjectConfig(
       params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     applyProjectConfig(
       params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2744,7 +2757,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2800,11 +2816,11 @@ export namespace serviceconsumermanagement_v1 {
     attachProject(
       params: Params$Resource$Services$Tenancyunits$Attachproject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     attachProject(
       params?: Params$Resource$Services$Tenancyunits$Attachproject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     attachProject(
       params: Params$Resource$Services$Tenancyunits$Attachproject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2833,7 +2849,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Attachproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2889,11 +2908,11 @@ export namespace serviceconsumermanagement_v1 {
     create(
       params: Params$Resource$Services$Tenancyunits$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Tenancyunits$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TenancyUnit>;
+    ): GaxiosResponseWithHTTP2<Schema$TenancyUnit>;
     create(
       params: Params$Resource$Services$Tenancyunits$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2922,7 +2941,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$TenancyUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TenancyUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TenancyUnit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2978,11 +3000,11 @@ export namespace serviceconsumermanagement_v1 {
     delete(
       params: Params$Resource$Services$Tenancyunits$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Services$Tenancyunits$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Services$Tenancyunits$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3011,7 +3033,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3064,11 +3089,11 @@ export namespace serviceconsumermanagement_v1 {
     deleteProject(
       params: Params$Resource$Services$Tenancyunits$Deleteproject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteProject(
       params?: Params$Resource$Services$Tenancyunits$Deleteproject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     deleteProject(
       params: Params$Resource$Services$Tenancyunits$Deleteproject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3097,7 +3122,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Deleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3153,11 +3181,11 @@ export namespace serviceconsumermanagement_v1 {
     list(
       params: Params$Resource$Services$Tenancyunits$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Tenancyunits$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTenancyUnitsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListTenancyUnitsResponse>;
     list(
       params: Params$Resource$Services$Tenancyunits$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3190,8 +3218,8 @@ export namespace serviceconsumermanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTenancyUnitsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTenancyUnitsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3247,11 +3275,11 @@ export namespace serviceconsumermanagement_v1 {
     removeProject(
       params: Params$Resource$Services$Tenancyunits$Removeproject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeProject(
       params?: Params$Resource$Services$Tenancyunits$Removeproject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     removeProject(
       params: Params$Resource$Services$Tenancyunits$Removeproject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3280,7 +3308,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Removeproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3336,11 +3367,11 @@ export namespace serviceconsumermanagement_v1 {
     undeleteProject(
       params: Params$Resource$Services$Tenancyunits$Undeleteproject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     undeleteProject(
       params?: Params$Resource$Services$Tenancyunits$Undeleteproject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     undeleteProject(
       params: Params$Resource$Services$Tenancyunits$Undeleteproject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3369,7 +3400,10 @@ export namespace serviceconsumermanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Undeleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;

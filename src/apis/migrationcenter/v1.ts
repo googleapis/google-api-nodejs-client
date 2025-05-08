@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -446,6 +447,10 @@ export namespace migrationcenter_v1 {
      */
     allowMissing?: boolean | null;
     /**
+     * Optional. Optional cascading rules for deleting related assets.
+     */
+    cascadingRules?: Schema$CascadingRule[];
+    /**
      * Required. The IDs of the assets to delete. A maximum of 1000 assets can be deleted in a batch. Format: projects/{project\}/locations/{location\}/assets/{name\}.
      */
     names?: string[] | null;
@@ -501,6 +506,19 @@ export namespace migrationcenter_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Cascading rule for related logical DBs.
+   */
+  export interface Schema$CascadeLogicalDBsRule {}
+  /**
+   * Specifies cascading rules for traversing relations.
+   */
+  export interface Schema$CascadingRule {
+    /**
+     * Cascading rule for related logical DBs.
+     */
+    cascadeLogicalDbs?: Schema$CascadeLogicalDBsRule;
+  }
   /**
    * Compute engine migration target.
    */
@@ -3482,11 +3500,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3515,7 +3533,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3568,11 +3589,11 @@ export namespace migrationcenter_v1 {
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSettings(
       params?: Params$Resource$Projects$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$Settings>;
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3601,7 +3622,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3654,11 +3678,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3691,8 +3715,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3748,11 +3772,11 @@ export namespace migrationcenter_v1 {
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSettings(
       params?: Params$Resource$Projects$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3781,7 +3805,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3899,11 +3926,11 @@ export namespace migrationcenter_v1 {
     aggregateValues(
       params: Params$Resource$Projects$Locations$Assets$Aggregatevalues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     aggregateValues(
       params?: Params$Resource$Projects$Locations$Assets$Aggregatevalues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AggregateAssetsValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AggregateAssetsValuesResponse>;
     aggregateValues(
       params: Params$Resource$Projects$Locations$Assets$Aggregatevalues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3938,8 +3965,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AggregateAssetsValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AggregateAssetsValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Aggregatevalues;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3998,11 +4025,11 @@ export namespace migrationcenter_v1 {
     batchDelete(
       params: Params$Resource$Projects$Locations$Assets$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Projects$Locations$Assets$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     batchDelete(
       params: Params$Resource$Projects$Locations$Assets$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4031,7 +4058,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4087,11 +4117,11 @@ export namespace migrationcenter_v1 {
     batchUpdate(
       params: Params$Resource$Projects$Locations$Assets$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Projects$Locations$Assets$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateAssetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateAssetsResponse>;
     batchUpdate(
       params: Params$Resource$Projects$Locations$Assets$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4126,8 +4156,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateAssetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4183,11 +4213,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Assets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Assets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Assets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4216,7 +4246,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4269,11 +4302,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Assets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Assets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Asset>;
+    ): GaxiosResponseWithHTTP2<Schema$Asset>;
     get(
       params: Params$Resource$Projects$Locations$Assets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4302,7 +4335,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Asset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Asset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4355,11 +4391,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Assets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4390,8 +4426,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4447,11 +4483,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Assets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Assets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Asset>;
+    ): GaxiosResponseWithHTTP2<Schema$Asset>;
     patch(
       params: Params$Resource$Projects$Locations$Assets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4480,7 +4516,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Asset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Asset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4533,11 +4572,11 @@ export namespace migrationcenter_v1 {
     reportAssetFrames(
       params: Params$Resource$Projects$Locations$Assets$Reportassetframes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reportAssetFrames(
       params?: Params$Resource$Projects$Locations$Assets$Reportassetframes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportAssetFramesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ReportAssetFramesResponse>;
     reportAssetFrames(
       params: Params$Resource$Projects$Locations$Assets$Reportassetframes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4572,8 +4611,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReportAssetFramesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReportAssetFramesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Assets$Reportassetframes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4763,11 +4802,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Discoveryclients$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Discoveryclients$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Discoveryclients$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4796,7 +4835,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4853,11 +4895,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Discoveryclients$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4886,7 +4928,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4940,11 +4985,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveryclients$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveryclients$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DiscoveryClient>;
+    ): GaxiosResponseWithHTTP2<Schema$DiscoveryClient>;
     get(
       params: Params$Resource$Projects$Locations$Discoveryclients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4973,7 +5018,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$DiscoveryClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DiscoveryClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DiscoveryClient>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5026,11 +5074,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Discoveryclients$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveryclients$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveryClientsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDiscoveryClientsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Discoveryclients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5065,8 +5113,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDiscoveryClientsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDiscoveryClientsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5124,11 +5172,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Discoveryclients$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5157,7 +5205,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5211,11 +5262,11 @@ export namespace migrationcenter_v1 {
     sendHeartbeat(
       params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     sendHeartbeat(
       params?: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     sendHeartbeat(
       params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5244,7 +5295,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5402,11 +5456,11 @@ export namespace migrationcenter_v1 {
     addAssets(
       params: Params$Resource$Projects$Locations$Groups$Addassets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addAssets(
       params?: Params$Resource$Projects$Locations$Groups$Addassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addAssets(
       params: Params$Resource$Projects$Locations$Groups$Addassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5435,7 +5489,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Addassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5491,11 +5548,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Groups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Groups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Groups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5524,7 +5581,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5580,11 +5640,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Groups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Groups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Groups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5613,7 +5673,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5666,11 +5729,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Group>;
+    ): GaxiosResponseWithHTTP2<Schema$Group>;
     get(
       params: Params$Resource$Projects$Locations$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5699,7 +5762,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5752,11 +5818,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5787,8 +5853,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5844,11 +5910,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5877,7 +5943,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5930,11 +5999,11 @@ export namespace migrationcenter_v1 {
     removeAssets(
       params: Params$Resource$Projects$Locations$Groups$Removeassets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     removeAssets(
       params?: Params$Resource$Projects$Locations$Groups$Removeassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     removeAssets(
       params: Params$Resource$Projects$Locations$Groups$Removeassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5963,7 +6032,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Removeassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6137,11 +6209,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Importjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Importjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Importjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6170,7 +6242,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6226,11 +6301,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Importjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Importjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Importjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6259,7 +6334,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6312,11 +6390,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Importjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Importjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportJob>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportJob>;
     get(
       params: Params$Resource$Projects$Locations$Importjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6345,7 +6423,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImportJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ImportJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6398,11 +6479,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Importjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Importjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImportJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Importjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6435,8 +6516,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImportJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6492,11 +6573,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Importjobs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Importjobs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Importjobs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6525,7 +6606,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6578,11 +6662,11 @@ export namespace migrationcenter_v1 {
     run(
       params: Params$Resource$Projects$Locations$Importjobs$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     run(
       params?: Params$Resource$Projects$Locations$Importjobs$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     run(
       params: Params$Resource$Projects$Locations$Importjobs$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6611,7 +6695,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6664,11 +6751,11 @@ export namespace migrationcenter_v1 {
     validate(
       params: Params$Resource$Projects$Locations$Importjobs$Validate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validate(
       params?: Params$Resource$Projects$Locations$Importjobs$Validate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     validate(
       params: Params$Resource$Projects$Locations$Importjobs$Validate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6697,7 +6784,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6878,11 +6968,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6911,7 +7001,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6968,11 +7061,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7001,7 +7094,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7055,11 +7151,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportDataFile>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportDataFile>;
     get(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7088,7 +7184,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImportDataFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImportDataFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ImportDataFile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7142,11 +7241,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImportDataFilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImportDataFilesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7181,8 +7280,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImportDataFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImportDataFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7308,11 +7407,11 @@ export namespace migrationcenter_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7341,7 +7440,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7394,11 +7496,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7427,7 +7529,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7480,11 +7585,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7513,7 +7618,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7566,11 +7674,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7603,8 +7711,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7713,11 +7821,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Preferencesets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Preferencesets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Preferencesets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7746,7 +7854,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Preferencesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7802,11 +7913,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Preferencesets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Preferencesets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Preferencesets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7835,7 +7946,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Preferencesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7888,11 +8002,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Preferencesets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Preferencesets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PreferenceSet>;
+    ): GaxiosResponseWithHTTP2<Schema$PreferenceSet>;
     get(
       params: Params$Resource$Projects$Locations$Preferencesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7921,7 +8035,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$PreferenceSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PreferenceSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PreferenceSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Preferencesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7974,11 +8091,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Preferencesets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Preferencesets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPreferenceSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPreferenceSetsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Preferencesets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8013,8 +8130,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPreferenceSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPreferenceSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Preferencesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8070,11 +8187,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Preferencesets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Preferencesets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Preferencesets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8103,7 +8220,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Preferencesets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8241,11 +8361,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Relations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Relations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Relation>;
+    ): GaxiosResponseWithHTTP2<Schema$Relation>;
     get(
       params: Params$Resource$Projects$Locations$Relations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8274,7 +8394,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Relation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Relation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Relation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Relations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8327,11 +8450,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Relations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Relations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRelationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRelationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Relations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8364,8 +8487,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRelationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRelationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Relations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8463,11 +8586,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reportconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Reportconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8496,7 +8619,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8552,11 +8678,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8585,7 +8711,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8638,11 +8767,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reportconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$ReportConfig>;
     get(
       params: Params$Resource$Projects$Locations$Reportconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8671,7 +8800,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$ReportConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReportConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8724,11 +8856,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reportconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reportconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReportConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReportConfigsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reportconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8763,8 +8895,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReportConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReportConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8893,11 +9025,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8926,7 +9058,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8983,11 +9118,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9016,7 +9151,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9070,11 +9208,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): GaxiosResponseWithHTTP2<Schema$Report>;
     get(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9103,7 +9241,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Report>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9157,11 +9298,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReportsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9192,8 +9333,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9331,11 +9472,11 @@ export namespace migrationcenter_v1 {
     create(
       params: Params$Resource$Projects$Locations$Sources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Sources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Sources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9364,7 +9505,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9420,11 +9564,11 @@ export namespace migrationcenter_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Sources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Sources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Sources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9453,7 +9597,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9506,11 +9653,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Sources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Sources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Source>;
+    ): GaxiosResponseWithHTTP2<Schema$Source>;
     get(
       params: Params$Resource$Projects$Locations$Sources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9539,7 +9686,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Source>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Source> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Source>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9592,11 +9742,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Sources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Sources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Sources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9627,8 +9777,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9684,11 +9834,11 @@ export namespace migrationcenter_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Sources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Sources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Sources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9717,7 +9867,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9859,11 +10012,11 @@ export namespace migrationcenter_v1 {
     get(
       params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ErrorFrame>;
+    ): GaxiosResponseWithHTTP2<Schema$ErrorFrame>;
     get(
       params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9892,7 +10045,10 @@ export namespace migrationcenter_v1 {
       callback?:
         | BodyResponseCallback<Schema$ErrorFrame>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ErrorFrame> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ErrorFrame>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Errorframes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9946,11 +10102,11 @@ export namespace migrationcenter_v1 {
     list(
       params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Sources$Errorframes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListErrorFramesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListErrorFramesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9983,8 +10139,8 @@ export namespace migrationcenter_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListErrorFramesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListErrorFramesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sources$Errorframes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

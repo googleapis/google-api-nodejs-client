@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1165,11 +1166,11 @@ export namespace tpu_v2alpha1 {
     generateServiceIdentity(
       params: Params$Resource$Projects$Locations$Generateserviceidentity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateServiceIdentity(
       params?: Params$Resource$Projects$Locations$Generateserviceidentity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateServiceIdentityResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GenerateServiceIdentityResponse>;
     generateServiceIdentity(
       params: Params$Resource$Projects$Locations$Generateserviceidentity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1204,8 +1205,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateServiceIdentityResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateServiceIdentityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Generateserviceidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1262,11 +1263,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1295,7 +1296,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1347,11 +1351,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1384,8 +1388,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1490,11 +1494,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AcceleratorType>;
+    ): GaxiosResponseWithHTTP2<Schema$AcceleratorType>;
     get(
       params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1523,7 +1527,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$AcceleratorType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AcceleratorType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AcceleratorType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Acceleratortypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1575,11 +1582,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Acceleratortypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAcceleratorTypesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAcceleratorTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Acceleratortypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1614,8 +1621,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAcceleratorTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAcceleratorTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Acceleratortypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1710,11 +1717,11 @@ export namespace tpu_v2alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1743,7 +1750,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1798,11 +1808,11 @@ export namespace tpu_v2alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Nodes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Nodes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Nodes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1831,7 +1841,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1883,11 +1896,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Node>;
+    ): GaxiosResponseWithHTTP2<Schema$Node>;
     get(
       params: Params$Resource$Projects$Locations$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1916,7 +1929,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Node>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Node> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Node>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1968,11 +1984,11 @@ export namespace tpu_v2alpha1 {
     getGuestAttributes(
       params: Params$Resource$Projects$Locations$Nodes$Getguestattributes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getGuestAttributes(
       params?: Params$Resource$Projects$Locations$Nodes$Getguestattributes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetGuestAttributesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GetGuestAttributesResponse>;
     getGuestAttributes(
       params: Params$Resource$Projects$Locations$Nodes$Getguestattributes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2007,8 +2023,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetGuestAttributesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetGuestAttributesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Getguestattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2064,11 +2080,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNodesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNodesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2099,8 +2115,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListNodesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2155,11 +2171,11 @@ export namespace tpu_v2alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Nodes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Nodes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Nodes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2188,7 +2204,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2240,11 +2259,11 @@ export namespace tpu_v2alpha1 {
     performMaintenance(
       params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     performMaintenance(
       params?: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     performMaintenance(
       params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2273,7 +2292,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Performmaintenance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2329,11 +2351,11 @@ export namespace tpu_v2alpha1 {
     simulateMaintenanceEvent(
       params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     simulateMaintenanceEvent(
       params?: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     simulateMaintenanceEvent(
       params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2364,7 +2386,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2419,11 +2444,11 @@ export namespace tpu_v2alpha1 {
     start(
       params: Params$Resource$Projects$Locations$Nodes$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Projects$Locations$Nodes$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     start(
       params: Params$Resource$Projects$Locations$Nodes$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2452,7 +2477,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2507,11 +2535,11 @@ export namespace tpu_v2alpha1 {
     stop(
       params: Params$Resource$Projects$Locations$Nodes$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Locations$Nodes$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Projects$Locations$Nodes$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2540,7 +2568,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodes$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2732,11 +2763,11 @@ export namespace tpu_v2alpha1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2765,7 +2796,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2820,11 +2854,11 @@ export namespace tpu_v2alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2853,7 +2887,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2905,11 +2942,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2938,7 +2975,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2990,11 +3030,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3027,8 +3067,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3131,11 +3171,11 @@ export namespace tpu_v2alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Queuedresources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Queuedresources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Queuedresources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3164,7 +3204,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3220,11 +3263,11 @@ export namespace tpu_v2alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Queuedresources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Queuedresources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Queuedresources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3253,7 +3296,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3306,11 +3352,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Queuedresources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Queuedresources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueuedResource>;
+    ): GaxiosResponseWithHTTP2<Schema$QueuedResource>;
     get(
       params: Params$Resource$Projects$Locations$Queuedresources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3339,7 +3385,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$QueuedResource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueuedResource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$QueuedResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3391,11 +3440,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Queuedresources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Queuedresources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQueuedResourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQueuedResourcesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Queuedresources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3430,8 +3479,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQueuedResourcesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListQueuedResourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3486,11 +3535,11 @@ export namespace tpu_v2alpha1 {
     performMaintenanceQueuedResource(
       params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     performMaintenanceQueuedResource(
       params?: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     performMaintenanceQueuedResource(
       params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3521,7 +3570,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3576,11 +3628,11 @@ export namespace tpu_v2alpha1 {
     reset(
       params: Params$Resource$Projects$Locations$Queuedresources$Reset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reset(
       params?: Params$Resource$Projects$Locations$Queuedresources$Reset,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     reset(
       params: Params$Resource$Projects$Locations$Queuedresources$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3609,7 +3661,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queuedresources$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3753,11 +3808,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Reservations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReservationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3790,8 +3845,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReservationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3869,11 +3924,11 @@ export namespace tpu_v2alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Runtimeversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Runtimeversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RuntimeVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$RuntimeVersion>;
     get(
       params: Params$Resource$Projects$Locations$Runtimeversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3902,7 +3957,10 @@ export namespace tpu_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$RuntimeVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RuntimeVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RuntimeVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runtimeversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3954,11 +4012,11 @@ export namespace tpu_v2alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Runtimeversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Runtimeversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRuntimeVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListRuntimeVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Runtimeversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3993,8 +4051,8 @@ export namespace tpu_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRuntimeVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRuntimeVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runtimeversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -239,7 +240,7 @@ export namespace servicenetworking_v1beta {
      */
     kind?: string | null;
     /**
-     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
   }
@@ -2060,11 +2061,11 @@ export namespace servicenetworking_v1beta {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2093,7 +2094,10 @@ export namespace servicenetworking_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2161,11 +2165,11 @@ export namespace servicenetworking_v1beta {
     addSubnetwork(
       params: Params$Resource$Services$Addsubnetwork,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addSubnetwork(
       params?: Params$Resource$Services$Addsubnetwork,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     addSubnetwork(
       params: Params$Resource$Services$Addsubnetwork,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2194,7 +2198,10 @@ export namespace servicenetworking_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Addsubnetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2250,11 +2257,11 @@ export namespace servicenetworking_v1beta {
     searchRange(
       params: Params$Resource$Services$Searchrange,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchRange(
       params?: Params$Resource$Services$Searchrange,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     searchRange(
       params: Params$Resource$Services$Searchrange,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2283,7 +2290,10 @@ export namespace servicenetworking_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Searchrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2339,11 +2349,11 @@ export namespace servicenetworking_v1beta {
     updateConnections(
       params: Params$Resource$Services$Updateconnections,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateConnections(
       params?: Params$Resource$Services$Updateconnections,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     updateConnections(
       params: Params$Resource$Services$Updateconnections,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2372,7 +2382,10 @@ export namespace servicenetworking_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Updateconnections;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2480,11 +2493,11 @@ export namespace servicenetworking_v1beta {
     create(
       params: Params$Resource$Services$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Services$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Services$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2513,7 +2526,10 @@ export namespace servicenetworking_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2569,11 +2585,11 @@ export namespace servicenetworking_v1beta {
     list(
       params: Params$Resource$Services$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Services$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
     list(
       params: Params$Resource$Services$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2606,8 +2622,8 @@ export namespace servicenetworking_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

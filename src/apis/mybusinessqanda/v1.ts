@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -283,11 +284,11 @@ export namespace mybusinessqanda_v1 {
     create(
       params: Params$Resource$Locations$Questions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Locations$Questions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Question>;
+    ): GaxiosResponseWithHTTP2<Schema$Question>;
     create(
       params: Params$Resource$Locations$Questions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -316,7 +317,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Question> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Question>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -369,11 +373,11 @@ export namespace mybusinessqanda_v1 {
     delete(
       params: Params$Resource$Locations$Questions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Locations$Questions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Locations$Questions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -402,7 +406,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -455,11 +462,11 @@ export namespace mybusinessqanda_v1 {
     list(
       params: Params$Resource$Locations$Questions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Questions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQuestionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListQuestionsResponse>;
     list(
       params: Params$Resource$Locations$Questions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -492,8 +499,8 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQuestionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListQuestionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -546,11 +553,11 @@ export namespace mybusinessqanda_v1 {
     patch(
       params: Params$Resource$Locations$Questions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Locations$Questions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Question>;
+    ): GaxiosResponseWithHTTP2<Schema$Question>;
     patch(
       params: Params$Resource$Locations$Questions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -579,7 +586,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Question> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Question>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -702,11 +712,11 @@ export namespace mybusinessqanda_v1 {
     delete(
       params: Params$Resource$Locations$Questions$Answers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Locations$Questions$Answers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Locations$Questions$Answers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -735,7 +745,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -791,11 +804,11 @@ export namespace mybusinessqanda_v1 {
     list(
       params: Params$Resource$Locations$Questions$Answers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Locations$Questions$Answers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAnswersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAnswersResponse>;
     list(
       params: Params$Resource$Locations$Questions$Answers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -826,8 +839,8 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAnswersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAnswersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -883,11 +896,11 @@ export namespace mybusinessqanda_v1 {
     upsert(
       params: Params$Resource$Locations$Questions$Answers$Upsert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upsert(
       params?: Params$Resource$Locations$Questions$Answers$Upsert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Answer>;
+    ): GaxiosResponseWithHTTP2<Schema$Answer>;
     upsert(
       params: Params$Resource$Locations$Questions$Answers$Upsert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -916,7 +929,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Answer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Answer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Answer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$Upsert;
       let options = (optionsOrCallback || {}) as MethodOptions;

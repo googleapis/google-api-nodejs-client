@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -210,11 +211,11 @@ export namespace licensing_v1 {
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Licenseassignments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -243,7 +244,10 @@ export namespace licensing_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -298,11 +302,11 @@ export namespace licensing_v1 {
     get(
       params: Params$Resource$Licenseassignments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Licenseassignments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignment>;
     get(
       params: Params$Resource$Licenseassignments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -333,8 +337,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -389,11 +393,11 @@ export namespace licensing_v1 {
     insert(
       params: Params$Resource$Licenseassignments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Licenseassignments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignment>;
     insert(
       params: Params$Resource$Licenseassignments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -424,8 +428,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -480,11 +484,11 @@ export namespace licensing_v1 {
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listForProduct(
       params?: Params$Resource$Licenseassignments$Listforproduct,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>;
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -519,8 +523,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignmentList>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -574,11 +578,11 @@ export namespace licensing_v1 {
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listForProductAndSku(
       params?: Params$Resource$Licenseassignments$Listforproductandsku,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>;
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -613,8 +617,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignmentList>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproductandsku;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -669,11 +673,11 @@ export namespace licensing_v1 {
     patch(
       params: Params$Resource$Licenseassignments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Licenseassignments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignment>;
     patch(
       params: Params$Resource$Licenseassignments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -704,8 +708,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -760,11 +764,11 @@ export namespace licensing_v1 {
     update(
       params: Params$Resource$Licenseassignments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Licenseassignments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): GaxiosResponseWithHTTP2<Schema$LicenseAssignment>;
     update(
       params: Params$Resource$Licenseassignments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -795,8 +799,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LicenseAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

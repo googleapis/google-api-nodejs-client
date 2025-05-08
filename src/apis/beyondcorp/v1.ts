@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1517,11 +1518,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1556,8 +1557,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1635,11 +1636,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1674,8 +1675,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1753,11 +1754,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1792,8 +1793,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1871,11 +1872,11 @@ export namespace beyondcorp_v1 {
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Organizations$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1904,7 +1905,10 @@ export namespace beyondcorp_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1957,11 +1961,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Organizations$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1990,7 +1994,10 @@ export namespace beyondcorp_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2043,11 +2050,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2082,8 +2089,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2135,11 +2142,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2174,8 +2181,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2323,11 +2330,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationLocation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2362,8 +2369,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationLocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2415,11 +2422,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2454,8 +2461,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2550,11 +2557,11 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Appconnections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Appconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2589,8 +2596,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2645,11 +2652,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appconnections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Appconnections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Appconnections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2684,8 +2691,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2737,11 +2744,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Appconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Appconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection>;
     get(
       params: Params$Resource$Projects$Locations$Appconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2776,8 +2783,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnection>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2831,11 +2838,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Appconnections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2868,8 +2875,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2925,11 +2932,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Appconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Appconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Appconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2964,8 +2971,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3022,11 +3029,11 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Appconnections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Appconnections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Appconnections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3061,8 +3068,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3114,11 +3121,11 @@ export namespace beyondcorp_v1 {
     resolve(
       params: Params$Resource$Projects$Locations$Appconnections$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resolve(
       params?: Params$Resource$Projects$Locations$Appconnections$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponse>;
     resolve(
       params: Params$Resource$Projects$Locations$Appconnections$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3153,8 +3160,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3212,11 +3219,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Appconnections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3249,8 +3256,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3306,11 +3313,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appconnections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Appconnections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appconnections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3345,8 +3352,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3563,11 +3570,11 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appconnectors$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Appconnectors$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Appconnectors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3602,8 +3609,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3658,11 +3665,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appconnectors$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Appconnectors$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Appconnectors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3697,8 +3704,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3750,11 +3757,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Appconnectors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Appconnectors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector>;
     get(
       params: Params$Resource$Projects$Locations$Appconnectors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3789,8 +3796,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnector>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3844,11 +3851,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnectors$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Appconnectors$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnectors$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3881,8 +3888,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3938,11 +3945,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Appconnectors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Appconnectors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Appconnectors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3977,8 +3984,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4035,11 +4042,11 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Appconnectors$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Appconnectors$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Appconnectors$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4074,8 +4081,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4127,11 +4134,11 @@ export namespace beyondcorp_v1 {
     reportStatus(
       params: Params$Resource$Projects$Locations$Appconnectors$Reportstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reportStatus(
       params?: Params$Resource$Projects$Locations$Appconnectors$Reportstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     reportStatus(
       params: Params$Resource$Projects$Locations$Appconnectors$Reportstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4166,8 +4173,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4223,11 +4230,11 @@ export namespace beyondcorp_v1 {
     resolveInstanceConfig(
       params: Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resolveInstanceConfig(
       params?: Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse>;
     resolveInstanceConfig(
       params: Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4262,8 +4269,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Resolveinstanceconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4320,11 +4327,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnectors$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Appconnectors$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appconnectors$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4357,8 +4364,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4414,11 +4421,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appconnectors$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Appconnectors$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appconnectors$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4453,8 +4460,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appconnectors$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4667,11 +4674,11 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appgateways$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Appgateways$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Appgateways$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4706,8 +4713,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4762,11 +4769,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appgateways$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Appgateways$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Appgateways$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4801,8 +4808,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4854,11 +4861,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Appgateways$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Appgateways$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppGateway>;
+    ): GaxiosResponseWithHTTP2<Schema$AppGateway>;
     get(
       params: Params$Resource$Projects$Locations$Appgateways$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4887,7 +4894,10 @@ export namespace beyondcorp_v1 {
       callback?:
         | BodyResponseCallback<Schema$AppGateway>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppGateway> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppGateway>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4939,11 +4949,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appgateways$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Appgateways$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Appgateways$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4976,8 +4986,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5033,11 +5043,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Appgateways$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Appgateways$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAppGatewaysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAppGatewaysResponse>;
     list(
       params: Params$Resource$Projects$Locations$Appgateways$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5070,8 +5080,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAppGatewaysResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAppGatewaysResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5126,11 +5136,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appgateways$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Appgateways$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Appgateways$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5163,8 +5173,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5220,11 +5230,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appgateways$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Appgateways$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Appgateways$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5259,8 +5269,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appgateways$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5430,11 +5440,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Clientconnectorservices$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5467,8 +5477,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clientconnectorservices$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5524,11 +5534,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Clientconnectorservices$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5561,8 +5571,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clientconnectorservices$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5618,11 +5628,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Clientconnectorservices$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clientconnectorservices$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5657,8 +5667,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clientconnectorservices$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5759,11 +5769,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clientgateways$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Clientgateways$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clientgateways$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5796,8 +5806,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clientgateways$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5853,11 +5863,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clientgateways$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Clientgateways$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clientgateways$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5892,8 +5902,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clientgateways$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6004,11 +6014,11 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6043,8 +6053,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6100,11 +6110,11 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6139,8 +6149,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6193,11 +6203,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6232,8 +6242,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6351,11 +6361,11 @@ export namespace beyondcorp_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6384,7 +6394,10 @@ export namespace beyondcorp_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6436,11 +6449,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6469,7 +6482,10 @@ export namespace beyondcorp_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6521,11 +6537,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6560,8 +6576,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6613,11 +6629,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6652,8 +6668,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6768,11 +6784,11 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Securitygateways$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Securitygateways$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Securitygateways$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6807,8 +6823,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6864,11 +6880,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Securitygateways$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6903,8 +6919,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6957,11 +6973,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Securitygateways$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Securitygateways$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>;
     get(
       params: Params$Resource$Projects$Locations$Securitygateways$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6996,8 +7012,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7051,11 +7067,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Securitygateways$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7088,8 +7104,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7145,11 +7161,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Securitygateways$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Securitygateways$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>;
     list(
       params: Params$Resource$Projects$Locations$Securitygateways$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7184,8 +7200,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7242,11 +7258,11 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Securitygateways$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Securitygateways$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Securitygateways$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7281,8 +7297,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7335,11 +7351,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Securitygateways$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7372,8 +7388,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7429,11 +7445,11 @@ export namespace beyondcorp_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Securitygateways$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Securitygateways$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Securitygateways$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7468,8 +7484,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7655,11 +7671,11 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7694,8 +7710,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7748,11 +7764,11 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>;
     get(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7787,8 +7803,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7843,11 +7859,11 @@ export namespace beyondcorp_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7880,8 +7896,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7937,11 +7953,11 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7976,8 +7992,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8035,11 +8051,11 @@ export namespace beyondcorp_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8072,8 +8088,8 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;

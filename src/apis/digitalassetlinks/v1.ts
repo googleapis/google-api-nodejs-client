@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -310,11 +311,11 @@ export namespace digitalassetlinks_v1 {
     bulkCheck(
       params: Params$Resource$Assetlinks$Bulkcheck,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     bulkCheck(
       params?: Params$Resource$Assetlinks$Bulkcheck,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkCheckResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BulkCheckResponse>;
     bulkCheck(
       params: Params$Resource$Assetlinks$Bulkcheck,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -345,8 +346,8 @@ export namespace digitalassetlinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkCheckResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BulkCheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Assetlinks$Bulkcheck;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -402,11 +403,11 @@ export namespace digitalassetlinks_v1 {
     check(
       params: Params$Resource$Assetlinks$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     check(
       params?: Params$Resource$Assetlinks$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CheckResponse>;
     check(
       params: Params$Resource$Assetlinks$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -435,7 +436,10 @@ export namespace digitalassetlinks_v1 {
       callback?:
         | BodyResponseCallback<Schema$CheckResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -539,11 +543,11 @@ export namespace digitalassetlinks_v1 {
     list(
       params: Params$Resource$Statements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Statements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListResponse>;
     list(
       params: Params$Resource$Statements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -572,7 +576,10 @@ export namespace digitalassetlinks_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3914,11 +3915,11 @@ export namespace androidpublisher_v3 {
     dataSafety(
       params: Params$Resource$Applications$Datasafety,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     dataSafety(
       params?: Params$Resource$Applications$Datasafety,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SafetyLabelsUpdateResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SafetyLabelsUpdateResponse>;
     dataSafety(
       params: Params$Resource$Applications$Datasafety,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3953,8 +3954,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SafetyLabelsUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SafetyLabelsUpdateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Datasafety;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4030,11 +4031,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Applications$Devicetierconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Applications$Devicetierconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$DeviceTierConfig>;
     create(
       params: Params$Resource$Applications$Devicetierconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4063,7 +4064,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$DeviceTierConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceTierConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Devicetierconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4119,11 +4123,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Applications$Devicetierconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Applications$Devicetierconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$DeviceTierConfig>;
     get(
       params: Params$Resource$Applications$Devicetierconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4152,7 +4156,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$DeviceTierConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceTierConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Devicetierconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4208,11 +4215,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Applications$Devicetierconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Applications$Devicetierconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeviceTierConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDeviceTierConfigsResponse>;
     list(
       params: Params$Resource$Applications$Devicetierconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4247,8 +4254,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeviceTierConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDeviceTierConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Devicetierconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4356,11 +4363,11 @@ export namespace androidpublisher_v3 {
     addTargeting(
       params: Params$Resource$Apprecovery$Addtargeting,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addTargeting(
       params?: Params$Resource$Apprecovery$Addtargeting,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddTargetingResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AddTargetingResponse>;
     addTargeting(
       params: Params$Resource$Apprecovery$Addtargeting,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4395,8 +4402,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AddTargetingResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AddTargetingResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apprecovery$Addtargeting;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4452,11 +4459,11 @@ export namespace androidpublisher_v3 {
     cancel(
       params: Params$Resource$Apprecovery$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Apprecovery$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CancelAppRecoveryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$CancelAppRecoveryResponse>;
     cancel(
       params: Params$Resource$Apprecovery$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4491,8 +4498,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelAppRecoveryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CancelAppRecoveryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apprecovery$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4548,11 +4555,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Apprecovery$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Apprecovery$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppRecoveryAction>;
+    ): GaxiosResponseWithHTTP2<Schema$AppRecoveryAction>;
     create(
       params: Params$Resource$Apprecovery$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4583,8 +4590,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AppRecoveryAction>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AppRecoveryAction>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apprecovery$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4640,11 +4647,11 @@ export namespace androidpublisher_v3 {
     deploy(
       params: Params$Resource$Apprecovery$Deploy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deploy(
       params?: Params$Resource$Apprecovery$Deploy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeployAppRecoveryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeployAppRecoveryResponse>;
     deploy(
       params: Params$Resource$Apprecovery$Deploy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4679,8 +4686,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeployAppRecoveryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeployAppRecoveryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apprecovery$Deploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4736,11 +4743,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Apprecovery$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Apprecovery$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAppRecoveriesResponse>;
     list(
       params: Params$Resource$Apprecovery$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4775,8 +4782,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAppRecoveriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apprecovery$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4933,11 +4940,11 @@ export namespace androidpublisher_v3 {
     commit(
       params: Params$Resource$Edits$Commit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     commit(
       params?: Params$Resource$Edits$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppEdit>;
+    ): GaxiosResponseWithHTTP2<Schema$AppEdit>;
     commit(
       params: Params$Resource$Edits$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4966,7 +4973,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppEdit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5021,11 +5031,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Edits$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Edits$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Edits$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5052,7 +5062,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5107,11 +5120,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppEdit>;
+    ): GaxiosResponseWithHTTP2<Schema$AppEdit>;
     get(
       params: Params$Resource$Edits$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5140,7 +5153,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppEdit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5195,11 +5211,11 @@ export namespace androidpublisher_v3 {
     insert(
       params: Params$Resource$Edits$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Edits$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppEdit>;
+    ): GaxiosResponseWithHTTP2<Schema$AppEdit>;
     insert(
       params: Params$Resource$Edits$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5228,7 +5244,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppEdit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5282,11 +5301,11 @@ export namespace androidpublisher_v3 {
     validate(
       params: Params$Resource$Edits$Validate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     validate(
       params?: Params$Resource$Edits$Validate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppEdit>;
+    ): GaxiosResponseWithHTTP2<Schema$AppEdit>;
     validate(
       params: Params$Resource$Edits$Validate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5315,7 +5334,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppEdit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppEdit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5433,11 +5455,11 @@ export namespace androidpublisher_v3 {
     addexternallyhosted(
       params: Params$Resource$Edits$Apks$Addexternallyhosted,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addexternallyhosted(
       params?: Params$Resource$Edits$Apks$Addexternallyhosted,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApksAddExternallyHostedResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApksAddExternallyHostedResponse>;
     addexternallyhosted(
       params: Params$Resource$Edits$Apks$Addexternallyhosted,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5472,8 +5494,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApksAddExternallyHostedResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ApksAddExternallyHostedResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Apks$Addexternallyhosted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5531,11 +5553,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Apks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Edits$Apks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApksListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ApksListResponse>;
     list(
       params: Params$Resource$Edits$Apks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5564,7 +5586,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$ApksListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApksListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApksListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Apks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5619,11 +5644,11 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Apks$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Edits$Apks$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Apk>;
+    ): GaxiosResponseWithHTTP2<Schema$Apk>;
     upload(
       params: Params$Resource$Edits$Apks$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5652,7 +5677,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Apk>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Apk> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Apk>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Apks$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5777,11 +5805,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Bundles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Edits$Bundles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BundlesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BundlesListResponse>;
     list(
       params: Params$Resource$Edits$Bundles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5812,8 +5840,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BundlesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BundlesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Bundles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5869,11 +5897,11 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Bundles$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Edits$Bundles$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bundle>;
+    ): GaxiosResponseWithHTTP2<Schema$Bundle>;
     upload(
       params: Params$Resource$Edits$Bundles$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5902,7 +5930,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Bundle>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bundle> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bundle>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Bundles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6020,11 +6051,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Countryavailability$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Countryavailability$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TrackCountryAvailability>;
+    ): GaxiosResponseWithHTTP2<Schema$TrackCountryAvailability>;
     get(
       params: Params$Resource$Edits$Countryavailability$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6057,8 +6088,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TrackCountryAvailability>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TrackCountryAvailability>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Countryavailability$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6137,11 +6168,11 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Deobfuscationfiles$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Edits$Deobfuscationfiles$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$DeobfuscationFilesUploadResponse>;
     upload(
       params: Params$Resource$Edits$Deobfuscationfiles$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6176,8 +6207,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeobfuscationFilesUploadResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Deobfuscationfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6296,11 +6327,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Details$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Details$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppDetails>;
+    ): GaxiosResponseWithHTTP2<Schema$AppDetails>;
     get(
       params: Params$Resource$Edits$Details$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6329,7 +6360,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6385,11 +6419,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Edits$Details$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Edits$Details$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppDetails>;
+    ): GaxiosResponseWithHTTP2<Schema$AppDetails>;
     patch(
       params: Params$Resource$Edits$Details$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6418,7 +6452,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6474,11 +6511,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Edits$Details$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Edits$Details$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppDetails>;
+    ): GaxiosResponseWithHTTP2<Schema$AppDetails>;
     update(
       params: Params$Resource$Edits$Details$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6507,7 +6544,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppDetails>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6614,11 +6654,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Expansionfiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Expansionfiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExpansionFile>;
+    ): GaxiosResponseWithHTTP2<Schema$ExpansionFile>;
     get(
       params: Params$Resource$Edits$Expansionfiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6647,7 +6687,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$ExpansionFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ExpansionFile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6713,11 +6756,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Edits$Expansionfiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Edits$Expansionfiles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExpansionFile>;
+    ): GaxiosResponseWithHTTP2<Schema$ExpansionFile>;
     patch(
       params: Params$Resource$Edits$Expansionfiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6746,7 +6789,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$ExpansionFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ExpansionFile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6812,11 +6858,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Edits$Expansionfiles$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Edits$Expansionfiles$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExpansionFile>;
+    ): GaxiosResponseWithHTTP2<Schema$ExpansionFile>;
     update(
       params: Params$Resource$Edits$Expansionfiles$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6845,7 +6891,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$ExpansionFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ExpansionFile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6911,11 +6960,11 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Expansionfiles$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Edits$Expansionfiles$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExpansionFilesUploadResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ExpansionFilesUploadResponse>;
     upload(
       params: Params$Resource$Edits$Expansionfiles$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6950,8 +6999,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExpansionFilesUploadResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExpansionFilesUploadResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7137,11 +7186,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Edits$Images$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Edits$Images$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Edits$Images$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7168,7 +7217,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7236,11 +7288,11 @@ export namespace androidpublisher_v3 {
     deleteall(
       params: Params$Resource$Edits$Images$Deleteall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteall(
       params?: Params$Resource$Edits$Images$Deleteall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImagesDeleteAllResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ImagesDeleteAllResponse>;
     deleteall(
       params: Params$Resource$Edits$Images$Deleteall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7275,8 +7327,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImagesDeleteAllResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ImagesDeleteAllResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7332,11 +7384,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Images$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Edits$Images$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImagesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ImagesListResponse>;
     list(
       params: Params$Resource$Edits$Images$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7367,8 +7419,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImagesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ImagesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7424,11 +7476,11 @@ export namespace androidpublisher_v3 {
     upload(
       params: Params$Resource$Edits$Images$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     upload(
       params?: Params$Resource$Edits$Images$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImagesUploadResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ImagesUploadResponse>;
     upload(
       params: Params$Resource$Edits$Images$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7461,8 +7513,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImagesUploadResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ImagesUploadResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7630,11 +7682,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Edits$Listings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Edits$Listings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Edits$Listings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7661,7 +7713,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7717,11 +7772,11 @@ export namespace androidpublisher_v3 {
     deleteall(
       params: Params$Resource$Edits$Listings$Deleteall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteall(
       params?: Params$Resource$Edits$Listings$Deleteall,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     deleteall(
       params: Params$Resource$Edits$Listings$Deleteall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7748,7 +7803,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7804,11 +7862,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Listings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Listings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     get(
       params: Params$Resource$Edits$Listings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7837,7 +7895,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Listing>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7893,11 +7954,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Listings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Edits$Listings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListingsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListingsListResponse>;
     list(
       params: Params$Resource$Edits$Listings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7930,8 +7991,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListingsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListingsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7987,11 +8048,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Edits$Listings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Edits$Listings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     patch(
       params: Params$Resource$Edits$Listings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8020,7 +8081,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Listing>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8076,11 +8140,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Edits$Listings$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Edits$Listings$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): GaxiosResponseWithHTTP2<Schema$Listing>;
     update(
       params: Params$Resource$Edits$Listings$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8109,7 +8173,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Listing>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8265,11 +8332,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Testers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Testers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Testers>;
+    ): GaxiosResponseWithHTTP2<Schema$Testers>;
     get(
       params: Params$Resource$Edits$Testers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8298,7 +8365,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Testers>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8354,11 +8424,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Edits$Testers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Edits$Testers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Testers>;
+    ): GaxiosResponseWithHTTP2<Schema$Testers>;
     patch(
       params: Params$Resource$Edits$Testers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8387,7 +8457,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Testers>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8443,11 +8516,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Edits$Testers$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Edits$Testers$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Testers>;
+    ): GaxiosResponseWithHTTP2<Schema$Testers>;
     update(
       params: Params$Resource$Edits$Testers$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8476,7 +8549,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Testers>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Testers>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8595,11 +8671,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Edits$Tracks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Edits$Tracks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Track>;
+    ): GaxiosResponseWithHTTP2<Schema$Track>;
     create(
       params: Params$Resource$Edits$Tracks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8628,7 +8704,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Track>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8684,11 +8763,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Edits$Tracks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Edits$Tracks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Track>;
+    ): GaxiosResponseWithHTTP2<Schema$Track>;
     get(
       params: Params$Resource$Edits$Tracks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8717,7 +8796,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Track>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8772,11 +8854,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Edits$Tracks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Edits$Tracks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TracksListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TracksListResponse>;
     list(
       params: Params$Resource$Edits$Tracks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8807,8 +8889,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TracksListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TracksListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8864,11 +8946,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Edits$Tracks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Edits$Tracks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Track>;
+    ): GaxiosResponseWithHTTP2<Schema$Track>;
     patch(
       params: Params$Resource$Edits$Tracks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8897,7 +8979,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Track>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8953,11 +9038,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Edits$Tracks$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Edits$Tracks$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Track>;
+    ): GaxiosResponseWithHTTP2<Schema$Track>;
     update(
       params: Params$Resource$Edits$Tracks$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8986,7 +9071,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Track>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Track>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9131,11 +9219,11 @@ export namespace androidpublisher_v3 {
     createexternaltransaction(
       params: Params$Resource$Externaltransactions$Createexternaltransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     createexternaltransaction(
       params?: Params$Resource$Externaltransactions$Createexternaltransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalTransaction>;
+    ): GaxiosResponseWithHTTP2<Schema$ExternalTransaction>;
     createexternaltransaction(
       params: Params$Resource$Externaltransactions$Createexternaltransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9168,8 +9256,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExternalTransaction>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExternalTransaction>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Externaltransactions$Createexternaltransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9225,11 +9313,11 @@ export namespace androidpublisher_v3 {
     getexternaltransaction(
       params: Params$Resource$Externaltransactions$Getexternaltransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getexternaltransaction(
       params?: Params$Resource$Externaltransactions$Getexternaltransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalTransaction>;
+    ): GaxiosResponseWithHTTP2<Schema$ExternalTransaction>;
     getexternaltransaction(
       params: Params$Resource$Externaltransactions$Getexternaltransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9262,8 +9350,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExternalTransaction>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExternalTransaction>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Externaltransactions$Getexternaltransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9320,11 +9408,11 @@ export namespace androidpublisher_v3 {
     refundexternaltransaction(
       params: Params$Resource$Externaltransactions$Refundexternaltransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     refundexternaltransaction(
       params?: Params$Resource$Externaltransactions$Refundexternaltransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalTransaction>;
+    ): GaxiosResponseWithHTTP2<Schema$ExternalTransaction>;
     refundexternaltransaction(
       params: Params$Resource$Externaltransactions$Refundexternaltransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9357,8 +9445,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExternalTransaction>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExternalTransaction>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Externaltransactions$Refundexternaltransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9458,11 +9546,11 @@ export namespace androidpublisher_v3 {
     download(
       params: Params$Resource$Generatedapks$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Generatedapks$Download,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): GaxiosResponseWithHTTP2<unknown>;
     download(
       params: Params$Resource$Generatedapks$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9489,7 +9577,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<unknown>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Generatedapks$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9545,11 +9636,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Generatedapks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Generatedapks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GeneratedApksListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GeneratedApksListResponse>;
     list(
       params: Params$Resource$Generatedapks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9584,8 +9675,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GeneratedApksListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GeneratedApksListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Generatedapks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9675,11 +9766,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Grants$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Grants$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Grant>;
+    ): GaxiosResponseWithHTTP2<Schema$Grant>;
     create(
       params: Params$Resource$Grants$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9708,7 +9799,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Grant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Grant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Grant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Grants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9763,11 +9857,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Grants$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Grants$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Grants$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9794,7 +9888,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Grants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9849,11 +9946,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Grants$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Grants$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Grant>;
+    ): GaxiosResponseWithHTTP2<Schema$Grant>;
     patch(
       params: Params$Resource$Grants$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9882,7 +9979,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Grant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Grant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Grant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Grants$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9977,11 +10077,11 @@ export namespace androidpublisher_v3 {
     batchDelete(
       params: Params$Resource$Inappproducts$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchDelete(
       params?: Params$Resource$Inappproducts$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     batchDelete(
       params: Params$Resource$Inappproducts$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10008,7 +10108,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10064,11 +10167,11 @@ export namespace androidpublisher_v3 {
     batchGet(
       params: Params$Resource$Inappproducts$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Inappproducts$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InappproductsBatchGetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$InappproductsBatchGetResponse>;
     batchGet(
       params: Params$Resource$Inappproducts$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10103,8 +10206,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InappproductsBatchGetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InappproductsBatchGetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10162,11 +10265,11 @@ export namespace androidpublisher_v3 {
     batchUpdate(
       params: Params$Resource$Inappproducts$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Inappproducts$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InappproductsBatchUpdateResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$InappproductsBatchUpdateResponse>;
     batchUpdate(
       params: Params$Resource$Inappproducts$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10201,8 +10304,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InappproductsBatchUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InappproductsBatchUpdateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10260,11 +10363,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Inappproducts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Inappproducts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Inappproducts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10291,7 +10394,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10347,11 +10453,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Inappproducts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Inappproducts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InAppProduct>;
+    ): GaxiosResponseWithHTTP2<Schema$InAppProduct>;
     get(
       params: Params$Resource$Inappproducts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10380,7 +10486,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$InAppProduct>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InAppProduct>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10436,11 +10545,11 @@ export namespace androidpublisher_v3 {
     insert(
       params: Params$Resource$Inappproducts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     insert(
       params?: Params$Resource$Inappproducts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InAppProduct>;
+    ): GaxiosResponseWithHTTP2<Schema$InAppProduct>;
     insert(
       params: Params$Resource$Inappproducts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10469,7 +10578,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$InAppProduct>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InAppProduct>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10525,11 +10637,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Inappproducts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Inappproducts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InappproductsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$InappproductsListResponse>;
     list(
       params: Params$Resource$Inappproducts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10564,8 +10676,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InappproductsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InappproductsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10621,11 +10733,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Inappproducts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Inappproducts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InAppProduct>;
+    ): GaxiosResponseWithHTTP2<Schema$InAppProduct>;
     patch(
       params: Params$Resource$Inappproducts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10654,7 +10766,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$InAppProduct>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InAppProduct>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10710,11 +10825,11 @@ export namespace androidpublisher_v3 {
     update(
       params: Params$Resource$Inappproducts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Inappproducts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InAppProduct>;
+    ): GaxiosResponseWithHTTP2<Schema$InAppProduct>;
     update(
       params: Params$Resource$Inappproducts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10743,7 +10858,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$InAppProduct>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InAppProduct>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10955,11 +11073,11 @@ export namespace androidpublisher_v3 {
     uploadapk(
       params: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     uploadapk(
       params?: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InternalAppSharingArtifact>;
+    ): GaxiosResponseWithHTTP2<Schema$InternalAppSharingArtifact>;
     uploadapk(
       params: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10994,8 +11112,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InternalAppSharingArtifact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InternalAppSharingArtifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Internalappsharingartifacts$Uploadapk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11055,11 +11173,11 @@ export namespace androidpublisher_v3 {
     uploadbundle(
       params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     uploadbundle(
       params?: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InternalAppSharingArtifact>;
+    ): GaxiosResponseWithHTTP2<Schema$InternalAppSharingArtifact>;
     uploadbundle(
       params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11094,8 +11212,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InternalAppSharingArtifact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InternalAppSharingArtifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Internalappsharingartifacts$Uploadbundle;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11221,11 +11339,11 @@ export namespace androidpublisher_v3 {
     convertRegionPrices(
       params: Params$Resource$Monetization$Convertregionprices,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     convertRegionPrices(
       params?: Params$Resource$Monetization$Convertregionprices,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConvertRegionPricesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ConvertRegionPricesResponse>;
     convertRegionPrices(
       params: Params$Resource$Monetization$Convertregionprices,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11260,8 +11378,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConvertRegionPricesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ConvertRegionPricesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Convertregionprices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11341,11 +11459,11 @@ export namespace androidpublisher_v3 {
     archive(
       params: Params$Resource$Monetization$Subscriptions$Archive,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     archive(
       params?: Params$Resource$Monetization$Subscriptions$Archive,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     archive(
       params: Params$Resource$Monetization$Subscriptions$Archive,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11374,7 +11492,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11430,11 +11551,11 @@ export namespace androidpublisher_v3 {
     batchGet(
       params: Params$Resource$Monetization$Subscriptions$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Monetization$Subscriptions$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetSubscriptionsResponse>;
     batchGet(
       params: Params$Resource$Monetization$Subscriptions$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11469,8 +11590,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11528,11 +11649,11 @@ export namespace androidpublisher_v3 {
     batchUpdate(
       params: Params$Resource$Monetization$Subscriptions$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Monetization$Subscriptions$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionsResponse>;
     batchUpdate(
       params: Params$Resource$Monetization$Subscriptions$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11567,8 +11688,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11626,11 +11747,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Monetization$Subscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Monetization$Subscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     create(
       params: Params$Resource$Monetization$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11659,7 +11780,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11715,11 +11839,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Monetization$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Monetization$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Monetization$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11746,7 +11870,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11802,11 +11929,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Monetization$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Monetization$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     get(
       params: Params$Resource$Monetization$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11835,7 +11962,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11891,11 +12021,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Monetization$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Monetization$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>;
     list(
       params: Params$Resource$Monetization$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11930,8 +12060,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11987,11 +12117,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Monetization$Subscriptions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Monetization$Subscriptions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     patch(
       params: Params$Resource$Monetization$Subscriptions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12020,7 +12150,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12220,11 +12353,11 @@ export namespace androidpublisher_v3 {
     activate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     activate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12253,7 +12386,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12310,11 +12446,11 @@ export namespace androidpublisher_v3 {
     batchMigratePrices(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchMigratePrices(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchMigrateBasePlanPricesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchMigrateBasePlanPricesResponse>;
     batchMigratePrices(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12349,8 +12485,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchMigrateBasePlanPricesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchMigrateBasePlanPricesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12409,11 +12545,11 @@ export namespace androidpublisher_v3 {
     batchUpdateStates(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdateStates(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateBasePlanStatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateBasePlanStatesResponse>;
     batchUpdateStates(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12448,8 +12584,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateBasePlanStatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateBasePlanStatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12508,11 +12644,11 @@ export namespace androidpublisher_v3 {
     deactivate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deactivate(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     deactivate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12541,7 +12677,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12598,11 +12737,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12629,7 +12768,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12686,11 +12828,11 @@ export namespace androidpublisher_v3 {
     migratePrices(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     migratePrices(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MigrateBasePlanPricesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$MigrateBasePlanPricesResponse>;
     migratePrices(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12725,8 +12867,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MigrateBasePlanPricesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MigrateBasePlanPricesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12900,11 +13042,11 @@ export namespace androidpublisher_v3 {
     activate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     activate(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>;
     activate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12935,8 +13077,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionOffer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12993,11 +13135,11 @@ export namespace androidpublisher_v3 {
     batchGet(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetSubscriptionOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetSubscriptionOffersResponse>;
     batchGet(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13032,8 +13174,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetSubscriptionOffersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetSubscriptionOffersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13092,11 +13234,11 @@ export namespace androidpublisher_v3 {
     batchUpdate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateSubscriptionOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionOffersResponse>;
     batchUpdate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13131,8 +13273,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateSubscriptionOffersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionOffersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13191,11 +13333,11 @@ export namespace androidpublisher_v3 {
     batchUpdateStates(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdateStates(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateSubscriptionOfferStatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionOfferStatesResponse>;
     batchUpdateStates(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13230,8 +13372,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateSubscriptionOfferStatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13290,11 +13432,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>;
     create(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13325,8 +13467,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionOffer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13383,11 +13525,11 @@ export namespace androidpublisher_v3 {
     deactivate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deactivate(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>;
     deactivate(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13418,8 +13560,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionOffer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13476,11 +13618,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13507,7 +13649,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13564,11 +13709,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>;
     get(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13599,8 +13744,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionOffer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13657,11 +13802,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubscriptionOffersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSubscriptionOffersResponse>;
     list(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13696,8 +13841,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSubscriptionOffersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSubscriptionOffersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13756,11 +13901,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>;
     patch(
       params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13791,8 +13936,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionOffer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionOffer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14094,11 +14239,11 @@ export namespace androidpublisher_v3 {
     refund(
       params: Params$Resource$Orders$Refund,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     refund(
       params?: Params$Resource$Orders$Refund,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     refund(
       params: Params$Resource$Orders$Refund,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14125,7 +14270,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14221,11 +14369,11 @@ export namespace androidpublisher_v3 {
     acknowledge(
       params: Params$Resource$Purchases$Products$Acknowledge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acknowledge(
       params?: Params$Resource$Purchases$Products$Acknowledge,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     acknowledge(
       params: Params$Resource$Purchases$Products$Acknowledge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14252,7 +14400,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14308,11 +14459,11 @@ export namespace androidpublisher_v3 {
     consume(
       params: Params$Resource$Purchases$Products$Consume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     consume(
       params?: Params$Resource$Purchases$Products$Consume,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     consume(
       params: Params$Resource$Purchases$Products$Consume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14339,7 +14490,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Consume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14395,11 +14549,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Purchases$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductPurchase>;
+    ): GaxiosResponseWithHTTP2<Schema$ProductPurchase>;
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14428,7 +14582,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$ProductPurchase>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductPurchase> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductPurchase>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14542,11 +14699,11 @@ export namespace androidpublisher_v3 {
     acknowledge(
       params: Params$Resource$Purchases$Subscriptions$Acknowledge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     acknowledge(
       params?: Params$Resource$Purchases$Subscriptions$Acknowledge,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     acknowledge(
       params: Params$Resource$Purchases$Subscriptions$Acknowledge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14573,7 +14730,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14629,11 +14789,11 @@ export namespace androidpublisher_v3 {
     cancel(
       params: Params$Resource$Purchases$Subscriptions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Purchases$Subscriptions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     cancel(
       params: Params$Resource$Purchases$Subscriptions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14660,7 +14820,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14716,11 +14879,11 @@ export namespace androidpublisher_v3 {
     defer(
       params: Params$Resource$Purchases$Subscriptions$Defer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     defer(
       params?: Params$Resource$Purchases$Subscriptions$Defer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionPurchasesDeferResponse>;
     defer(
       params: Params$Resource$Purchases$Subscriptions$Defer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14755,8 +14918,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionPurchasesDeferResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Defer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14814,11 +14977,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Purchases$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Purchases$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionPurchase>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionPurchase>;
     get(
       params: Params$Resource$Purchases$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14851,8 +15014,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionPurchase>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionPurchase>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14908,11 +15071,11 @@ export namespace androidpublisher_v3 {
     refund(
       params: Params$Resource$Purchases$Subscriptions$Refund,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     refund(
       params?: Params$Resource$Purchases$Subscriptions$Refund,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     refund(
       params: Params$Resource$Purchases$Subscriptions$Refund,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14939,7 +15102,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14995,11 +15161,11 @@ export namespace androidpublisher_v3 {
     revoke(
       params: Params$Resource$Purchases$Subscriptions$Revoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revoke(
       params?: Params$Resource$Purchases$Subscriptions$Revoke,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     revoke(
       params: Params$Resource$Purchases$Subscriptions$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15026,7 +15192,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15190,11 +15359,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Purchases$Subscriptionsv2$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Purchases$Subscriptionsv2$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionPurchaseV2>;
+    ): GaxiosResponseWithHTTP2<Schema$SubscriptionPurchaseV2>;
     get(
       params: Params$Resource$Purchases$Subscriptionsv2$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15227,8 +15396,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionPurchaseV2>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubscriptionPurchaseV2>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptionsv2$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15284,11 +15453,11 @@ export namespace androidpublisher_v3 {
     revoke(
       params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     revoke(
       params?: Params$Resource$Purchases$Subscriptionsv2$Revoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RevokeSubscriptionPurchaseResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$RevokeSubscriptionPurchaseResponse>;
     revoke(
       params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15323,8 +15492,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RevokeSubscriptionPurchaseResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RevokeSubscriptionPurchaseResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptionsv2$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15417,11 +15586,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Purchases$Voidedpurchases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VoidedPurchasesListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$VoidedPurchasesListResponse>;
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15456,8 +15625,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VoidedPurchasesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VoidedPurchasesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15556,11 +15725,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Reviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Reviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Review>;
+    ): GaxiosResponseWithHTTP2<Schema$Review>;
     get(
       params: Params$Resource$Reviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15589,7 +15758,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Review>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Review> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Review>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15644,11 +15816,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Reviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Reviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReviewsListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ReviewsListResponse>;
     list(
       params: Params$Resource$Reviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15679,8 +15851,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReviewsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReviewsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15735,11 +15907,11 @@ export namespace androidpublisher_v3 {
     reply(
       params: Params$Resource$Reviews$Reply,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     reply(
       params?: Params$Resource$Reviews$Reply,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReviewsReplyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ReviewsReplyResponse>;
     reply(
       params: Params$Resource$Reviews$Reply,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15772,8 +15944,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReviewsReplyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReviewsReplyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Reply;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15896,11 +16068,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Systemapks$Variants$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Systemapks$Variants$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Variant>;
+    ): GaxiosResponseWithHTTP2<Schema$Variant>;
     create(
       params: Params$Resource$Systemapks$Variants$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15929,7 +16101,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Variant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Variant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15985,11 +16160,11 @@ export namespace androidpublisher_v3 {
     download(
       params: Params$Resource$Systemapks$Variants$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     download(
       params?: Params$Resource$Systemapks$Variants$Download,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): GaxiosResponseWithHTTP2<unknown>;
     download(
       params: Params$Resource$Systemapks$Variants$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16016,7 +16191,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<unknown>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16072,11 +16250,11 @@ export namespace androidpublisher_v3 {
     get(
       params: Params$Resource$Systemapks$Variants$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Systemapks$Variants$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Variant>;
+    ): GaxiosResponseWithHTTP2<Schema$Variant>;
     get(
       params: Params$Resource$Systemapks$Variants$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16105,7 +16283,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$Variant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Variant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16161,11 +16342,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Systemapks$Variants$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Systemapks$Variants$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SystemApksListResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SystemApksListResponse>;
     list(
       params: Params$Resource$Systemapks$Variants$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16198,8 +16379,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SystemApksListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SystemApksListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16320,11 +16501,11 @@ export namespace androidpublisher_v3 {
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Users$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): GaxiosResponseWithHTTP2<Schema$User>;
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16353,7 +16534,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16408,11 +16592,11 @@ export namespace androidpublisher_v3 {
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Users$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosResponseWithHTTP2<void>;
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16439,7 +16623,10 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16494,11 +16681,11 @@ export namespace androidpublisher_v3 {
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUsersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListUsersResponse>;
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16529,8 +16716,8 @@ export namespace androidpublisher_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUsersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListUsersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16585,11 +16772,11 @@ export namespace androidpublisher_v3 {
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Users$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): GaxiosResponseWithHTTP2<Schema$User>;
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16618,7 +16805,10 @@ export namespace androidpublisher_v3 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

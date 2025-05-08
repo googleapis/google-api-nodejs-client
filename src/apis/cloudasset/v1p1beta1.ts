@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -966,11 +967,11 @@ export namespace cloudasset_v1p1beta1 {
     searchAll(
       params: Params$Resource$Iampolicies$Searchall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchAll(
       params?: Params$Resource$Iampolicies$Searchall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchAllIamPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchAllIamPoliciesResponse>;
     searchAll(
       params: Params$Resource$Iampolicies$Searchall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1005,8 +1006,8 @@ export namespace cloudasset_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchAllIamPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchAllIamPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1089,11 +1090,11 @@ export namespace cloudasset_v1p1beta1 {
     searchAll(
       params: Params$Resource$Resources$Searchall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchAll(
       params?: Params$Resource$Resources$Searchall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchAllResourcesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchAllResourcesResponse>;
     searchAll(
       params: Params$Resource$Resources$Searchall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1128,8 +1129,8 @@ export namespace cloudasset_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchAllResourcesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchAllResourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;

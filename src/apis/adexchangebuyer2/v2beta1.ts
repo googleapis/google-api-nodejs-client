@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2218,11 +2219,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Accounts$Clients$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Clients$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): GaxiosResponseWithHTTP2<Schema$Client>;
     create(
       params: Params$Resource$Accounts$Clients$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2251,7 +2252,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Client>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2307,11 +2311,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Clients$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Clients$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): GaxiosResponseWithHTTP2<Schema$Client>;
     get(
       params: Params$Resource$Accounts$Clients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2340,7 +2344,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Client>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2396,11 +2403,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Clients$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Clients$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClientsResponse>;
     list(
       params: Params$Resource$Accounts$Clients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2431,8 +2438,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClientsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2488,11 +2495,11 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       params: Params$Resource$Accounts$Clients$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Clients$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): GaxiosResponseWithHTTP2<Schema$Client>;
     update(
       params: Params$Resource$Accounts$Clients$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2521,7 +2528,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Client>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2643,11 +2653,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Accounts$Clients$Invitations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Clients$Invitations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUserInvitation>;
+    ): GaxiosResponseWithHTTP2<Schema$ClientUserInvitation>;
     create(
       params: Params$Resource$Accounts$Clients$Invitations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2680,8 +2690,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClientUserInvitation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClientUserInvitation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2737,11 +2747,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Clients$Invitations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Clients$Invitations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUserInvitation>;
+    ): GaxiosResponseWithHTTP2<Schema$ClientUserInvitation>;
     get(
       params: Params$Resource$Accounts$Clients$Invitations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2774,8 +2784,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClientUserInvitation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClientUserInvitation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2831,11 +2841,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Clients$Invitations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Clients$Invitations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientUserInvitationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClientUserInvitationsResponse>;
     list(
       params: Params$Resource$Accounts$Clients$Invitations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2870,8 +2880,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientUserInvitationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClientUserInvitationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2987,11 +2997,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Clients$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Clients$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): GaxiosResponseWithHTTP2<Schema$ClientUser>;
     get(
       params: Params$Resource$Accounts$Clients$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3020,7 +3030,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ClientUser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3076,11 +3089,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Clients$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Clients$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientUsersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClientUsersResponse>;
     list(
       params: Params$Resource$Accounts$Clients$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3113,8 +3126,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientUsersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClientUsersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3170,11 +3183,11 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       params: Params$Resource$Accounts$Clients$Users$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Clients$Users$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): GaxiosResponseWithHTTP2<Schema$ClientUser>;
     update(
       params: Params$Resource$Accounts$Clients$Users$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3203,7 +3216,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ClientUser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3325,11 +3341,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Accounts$Creatives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Creatives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     create(
       params: Params$Resource$Accounts$Creatives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3358,7 +3374,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3414,11 +3433,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     get(
       params: Params$Resource$Accounts$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3447,7 +3466,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3502,11 +3524,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>;
     list(
       params: Params$Resource$Accounts$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3539,8 +3561,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3596,11 +3618,11 @@ export namespace adexchangebuyer2_v2beta1 {
     stopWatching(
       params: Params$Resource$Accounts$Creatives$Stopwatching,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stopWatching(
       params?: Params$Resource$Accounts$Creatives$Stopwatching,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     stopWatching(
       params: Params$Resource$Accounts$Creatives$Stopwatching,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3629,7 +3651,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Stopwatching;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3685,11 +3710,11 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       params: Params$Resource$Accounts$Creatives$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Creatives$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): GaxiosResponseWithHTTP2<Schema$Creative>;
     update(
       params: Params$Resource$Accounts$Creatives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3718,7 +3743,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3773,11 +3801,11 @@ export namespace adexchangebuyer2_v2beta1 {
     watch(
       params: Params$Resource$Accounts$Creatives$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     watch(
       params?: Params$Resource$Accounts$Creatives$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     watch(
       params: Params$Resource$Accounts$Creatives$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3806,7 +3834,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3964,11 +3995,11 @@ export namespace adexchangebuyer2_v2beta1 {
     add(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     add(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$Add,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     add(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3997,7 +4028,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4053,11 +4087,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Creatives$Dealassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDealAssociationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListDealAssociationsResponse>;
     list(
       params: Params$Resource$Accounts$Creatives$Dealassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4092,8 +4126,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDealAssociationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDealAssociationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4151,11 +4185,11 @@ export namespace adexchangebuyer2_v2beta1 {
     remove(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     remove(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     remove(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4184,7 +4218,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4304,11 +4341,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Finalizedproposals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Finalizedproposals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProposalsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>;
     list(
       params: Params$Resource$Accounts$Finalizedproposals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4341,8 +4378,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProposalsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Finalizedproposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4397,11 +4434,11 @@ export namespace adexchangebuyer2_v2beta1 {
     pause(
       params: Params$Resource$Accounts$Finalizedproposals$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Accounts$Finalizedproposals$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     pause(
       params: Params$Resource$Accounts$Finalizedproposals$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4430,7 +4467,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Finalizedproposals$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4486,11 +4526,11 @@ export namespace adexchangebuyer2_v2beta1 {
     resume(
       params: Params$Resource$Accounts$Finalizedproposals$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Accounts$Finalizedproposals$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     resume(
       params: Params$Resource$Accounts$Finalizedproposals$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4519,7 +4559,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Finalizedproposals$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4638,11 +4681,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): GaxiosResponseWithHTTP2<Schema$Product>;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4671,7 +4714,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4726,11 +4772,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProductsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProductsResponse>;
     list(
       params: Params$Resource$Accounts$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4763,8 +4809,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4858,11 +4904,11 @@ export namespace adexchangebuyer2_v2beta1 {
     accept(
       params: Params$Resource$Accounts$Proposals$Accept,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accept(
       params?: Params$Resource$Accounts$Proposals$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     accept(
       params: Params$Resource$Accounts$Proposals$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4891,7 +4937,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4947,11 +4996,11 @@ export namespace adexchangebuyer2_v2beta1 {
     addNote(
       params: Params$Resource$Accounts$Proposals$Addnote,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     addNote(
       params?: Params$Resource$Accounts$Proposals$Addnote,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Note>;
+    ): GaxiosResponseWithHTTP2<Schema$Note>;
     addNote(
       params: Params$Resource$Accounts$Proposals$Addnote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4980,7 +5029,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Note>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Addnote;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5036,11 +5088,11 @@ export namespace adexchangebuyer2_v2beta1 {
     cancelNegotiation(
       params: Params$Resource$Accounts$Proposals$Cancelnegotiation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancelNegotiation(
       params?: Params$Resource$Accounts$Proposals$Cancelnegotiation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     cancelNegotiation(
       params: Params$Resource$Accounts$Proposals$Cancelnegotiation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5069,7 +5121,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Cancelnegotiation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5125,11 +5180,11 @@ export namespace adexchangebuyer2_v2beta1 {
     completeSetup(
       params: Params$Resource$Accounts$Proposals$Completesetup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     completeSetup(
       params?: Params$Resource$Accounts$Proposals$Completesetup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     completeSetup(
       params: Params$Resource$Accounts$Proposals$Completesetup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5158,7 +5213,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Completesetup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5214,11 +5272,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Accounts$Proposals$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Proposals$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     create(
       params: Params$Resource$Accounts$Proposals$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5247,7 +5305,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5303,11 +5364,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Proposals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Proposals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     get(
       params: Params$Resource$Accounts$Proposals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5336,7 +5397,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5391,11 +5455,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Proposals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Proposals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProposalsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>;
     list(
       params: Params$Resource$Accounts$Proposals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5428,8 +5492,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProposalsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5485,11 +5549,11 @@ export namespace adexchangebuyer2_v2beta1 {
     pause(
       params: Params$Resource$Accounts$Proposals$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     pause(
       params?: Params$Resource$Accounts$Proposals$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     pause(
       params: Params$Resource$Accounts$Proposals$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5518,7 +5582,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5574,11 +5641,11 @@ export namespace adexchangebuyer2_v2beta1 {
     resume(
       params: Params$Resource$Accounts$Proposals$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resume(
       params?: Params$Resource$Accounts$Proposals$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     resume(
       params: Params$Resource$Accounts$Proposals$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5607,7 +5674,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5663,11 +5733,11 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       params: Params$Resource$Accounts$Proposals$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Accounts$Proposals$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): GaxiosResponseWithHTTP2<Schema$Proposal>;
     update(
       params: Params$Resource$Accounts$Proposals$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5696,7 +5766,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Proposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5917,11 +5990,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Publisherprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Accounts$Publisherprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublisherProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$PublisherProfile>;
     get(
       params: Params$Resource$Accounts$Publisherprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5950,7 +6023,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$PublisherProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PublisherProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PublisherProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Publisherprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6006,11 +6082,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Publisherprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Publisherprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPublisherProfilesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListPublisherProfilesResponse>;
     list(
       params: Params$Resource$Accounts$Publisherprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6045,8 +6121,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPublisherProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPublisherProfilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Publisherprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6194,11 +6270,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Bidders$Accounts$Filtersets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     create(
       params: Params$Resource$Bidders$Accounts$Filtersets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6227,7 +6303,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6283,11 +6362,11 @@ export namespace adexchangebuyer2_v2beta1 {
     delete(
       params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6316,7 +6395,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6369,11 +6451,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Bidders$Accounts$Filtersets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     get(
       params: Params$Resource$Bidders$Accounts$Filtersets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6402,7 +6484,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6455,11 +6540,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6492,8 +6577,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilterSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6602,11 +6687,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6639,8 +6724,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6720,11 +6805,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6759,8 +6844,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6841,11 +6926,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6880,8 +6965,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6962,11 +7047,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7001,8 +7086,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7093,11 +7178,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7130,8 +7215,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7211,11 +7296,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7250,8 +7335,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7337,11 +7422,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7376,8 +7461,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7463,11 +7548,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7502,8 +7587,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7584,11 +7669,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7621,8 +7706,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLosingBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7702,11 +7787,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7741,8 +7826,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7850,11 +7935,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Bidders$Filtersets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Bidders$Filtersets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     create(
       params: Params$Resource$Bidders$Filtersets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7883,7 +7968,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7939,11 +8027,11 @@ export namespace adexchangebuyer2_v2beta1 {
     delete(
       params: Params$Resource$Bidders$Filtersets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Bidders$Filtersets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Bidders$Filtersets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7972,7 +8060,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8025,11 +8116,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Bidders$Filtersets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Bidders$Filtersets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     get(
       params: Params$Resource$Bidders$Filtersets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8058,7 +8149,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8111,11 +8205,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8148,8 +8242,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilterSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8258,11 +8352,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8295,8 +8389,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8375,11 +8469,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8414,8 +8508,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidresponseerrors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8496,11 +8590,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8535,8 +8629,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8617,11 +8711,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8656,8 +8750,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbidrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8746,11 +8840,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8783,8 +8877,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8863,11 +8957,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8902,8 +8996,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8989,11 +9083,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9028,8 +9122,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$Details$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9115,11 +9209,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9154,8 +9248,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Impressionmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9236,11 +9330,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9273,8 +9367,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLosingBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Losingbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9353,11 +9447,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>;
     list(
       params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9392,8 +9486,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9508,11 +9602,11 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Buyers$Filtersets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Buyers$Filtersets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     create(
       params: Params$Resource$Buyers$Filtersets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9541,7 +9635,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9597,11 +9694,11 @@ export namespace adexchangebuyer2_v2beta1 {
     delete(
       params: Params$Resource$Buyers$Filtersets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Buyers$Filtersets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Buyers$Filtersets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9630,7 +9727,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9683,11 +9783,11 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Buyers$Filtersets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Buyers$Filtersets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FilterSet>;
+    ): GaxiosResponseWithHTTP2<Schema$FilterSet>;
     get(
       params: Params$Resource$Buyers$Filtersets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9716,7 +9816,10 @@ export namespace adexchangebuyer2_v2beta1 {
       callback?:
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FilterSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9769,11 +9872,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9806,8 +9909,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilterSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilterSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9916,11 +10019,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9953,8 +10056,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Bidmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10033,11 +10136,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10072,8 +10175,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponseErrorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Bidresponseerrors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10153,11 +10256,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10192,8 +10295,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10274,11 +10377,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10313,8 +10416,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Filteredbidrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10403,11 +10506,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Filteredbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10440,8 +10543,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilteredBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFilteredBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Filteredbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10520,11 +10623,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10559,8 +10662,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10646,11 +10749,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10685,8 +10788,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Filteredbids$Details$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10772,11 +10875,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10811,8 +10914,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImpressionMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Impressionmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10892,11 +10995,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Losingbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Losingbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Losingbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10929,8 +11032,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLosingBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLosingBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Losingbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11009,11 +11112,11 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>;
     list(
       params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11048,8 +11151,8 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

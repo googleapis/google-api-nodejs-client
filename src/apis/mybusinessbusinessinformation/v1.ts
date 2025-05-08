@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1016,11 +1017,11 @@ export namespace mybusinessbusinessinformation_v1 {
     create(
       params: Params$Resource$Accounts$Locations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Accounts$Locations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     create(
       params: Params$Resource$Accounts$Locations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1049,7 +1050,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Locations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1106,11 +1110,11 @@ export namespace mybusinessbusinessinformation_v1 {
     list(
       params: Params$Resource$Accounts$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Accounts$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Accounts$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1143,8 +1147,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1256,11 +1260,11 @@ export namespace mybusinessbusinessinformation_v1 {
     list(
       params: Params$Resource$Attributes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Attributes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttributeMetadataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAttributeMetadataResponse>;
     list(
       params: Params$Resource$Attributes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1295,8 +1299,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttributeMetadataResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAttributeMetadataResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Attributes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1389,11 +1393,11 @@ export namespace mybusinessbusinessinformation_v1 {
     batchGet(
       params: Params$Resource$Categories$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Categories$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetCategoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetCategoriesResponse>;
     batchGet(
       params: Params$Resource$Categories$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1428,8 +1432,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetCategoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetCategoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Categories$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1486,11 +1490,11 @@ export namespace mybusinessbusinessinformation_v1 {
     list(
       params: Params$Resource$Categories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Categories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCategoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListCategoriesResponse>;
     list(
       params: Params$Resource$Categories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1523,8 +1527,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCategoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCategoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Categories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1630,11 +1634,11 @@ export namespace mybusinessbusinessinformation_v1 {
     get(
       params: Params$Resource$Chains$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Chains$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Chain>;
+    ): GaxiosResponseWithHTTP2<Schema$Chain>;
     get(
       params: Params$Resource$Chains$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1663,7 +1667,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Chain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Chain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Chain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Chains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1716,11 +1723,11 @@ export namespace mybusinessbusinessinformation_v1 {
     search(
       params: Params$Resource$Chains$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Chains$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchChainsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchChainsResponse>;
     search(
       params: Params$Resource$Chains$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1753,8 +1760,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchChainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchChainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Chains$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1831,11 +1838,11 @@ export namespace mybusinessbusinessinformation_v1 {
     search(
       params: Params$Resource$Googlelocations$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Googlelocations$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchGoogleLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchGoogleLocationsResponse>;
     search(
       params: Params$Resource$Googlelocations$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1870,8 +1877,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchGoogleLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchGoogleLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googlelocations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1947,11 +1954,11 @@ export namespace mybusinessbusinessinformation_v1 {
     delete(
       params: Params$Resource$Locations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Locations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Locations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1980,7 +1987,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2033,11 +2043,11 @@ export namespace mybusinessbusinessinformation_v1 {
     get(
       params: Params$Resource$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2066,7 +2076,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2119,11 +2132,11 @@ export namespace mybusinessbusinessinformation_v1 {
     getAttributes(
       params: Params$Resource$Locations$Getattributes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getAttributes(
       params?: Params$Resource$Locations$Getattributes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attributes>;
+    ): GaxiosResponseWithHTTP2<Schema$Attributes>;
     getAttributes(
       params: Params$Resource$Locations$Getattributes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2152,7 +2165,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2206,11 +2222,11 @@ export namespace mybusinessbusinessinformation_v1 {
     getGoogleUpdated(
       params: Params$Resource$Locations$Getgoogleupdated,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getGoogleUpdated(
       params?: Params$Resource$Locations$Getgoogleupdated,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleUpdatedLocation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleUpdatedLocation>;
     getGoogleUpdated(
       params: Params$Resource$Locations$Getgoogleupdated,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2245,8 +2261,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleUpdatedLocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleUpdatedLocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2303,11 +2319,11 @@ export namespace mybusinessbusinessinformation_v1 {
     patch(
       params: Params$Resource$Locations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Locations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     patch(
       params: Params$Resource$Locations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2336,7 +2352,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2389,11 +2408,11 @@ export namespace mybusinessbusinessinformation_v1 {
     updateAttributes(
       params: Params$Resource$Locations$Updateattributes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateAttributes(
       params?: Params$Resource$Locations$Updateattributes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attributes>;
+    ): GaxiosResponseWithHTTP2<Schema$Attributes>;
     updateAttributes(
       params: Params$Resource$Locations$Updateattributes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2422,7 +2441,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Updateattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2553,11 +2575,11 @@ export namespace mybusinessbusinessinformation_v1 {
     getGoogleUpdated(
       params: Params$Resource$Locations$Attributes$Getgoogleupdated,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getGoogleUpdated(
       params?: Params$Resource$Locations$Attributes$Getgoogleupdated,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attributes>;
+    ): GaxiosResponseWithHTTP2<Schema$Attributes>;
     getGoogleUpdated(
       params: Params$Resource$Locations$Attributes$Getgoogleupdated,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2586,7 +2608,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Attributes$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;

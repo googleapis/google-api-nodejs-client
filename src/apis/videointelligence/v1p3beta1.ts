@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3385,11 +3386,11 @@ export namespace videointelligence_v1p3beta1 {
     annotate(
       params: Params$Resource$Videos$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     annotate(
       params?: Params$Resource$Videos$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>;
     annotate(
       params: Params$Resource$Videos$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3424,8 +3425,8 @@ export namespace videointelligence_v1p3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

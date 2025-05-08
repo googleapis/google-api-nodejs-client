@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -428,11 +429,11 @@ export namespace chromeuxreport_v1 {
     queryHistoryRecord(
       params: Params$Resource$Records$Queryhistoryrecord,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryHistoryRecord(
       params?: Params$Resource$Records$Queryhistoryrecord,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryHistoryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryHistoryResponse>;
     queryHistoryRecord(
       params: Params$Resource$Records$Queryhistoryrecord,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -467,8 +468,8 @@ export namespace chromeuxreport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryHistoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Records$Queryhistoryrecord;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -524,11 +525,11 @@ export namespace chromeuxreport_v1 {
     queryRecord(
       params: Params$Resource$Records$Queryrecord,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     queryRecord(
       params?: Params$Resource$Records$Queryrecord,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$QueryResponse>;
     queryRecord(
       params: Params$Resource$Records$Queryrecord,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -557,7 +558,10 @@ export namespace chromeuxreport_v1 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$QueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Records$Queryrecord;
       let options = (optionsOrCallback || {}) as MethodOptions;

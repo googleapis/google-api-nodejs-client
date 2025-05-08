@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -320,11 +321,11 @@ export namespace advisorynotifications_v1 {
     getSettings(
       params: Params$Resource$Organizations$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSettings(
       params?: Params$Resource$Organizations$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
     getSettings(
       params: Params$Resource$Organizations$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -359,8 +360,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -415,11 +416,11 @@ export namespace advisorynotifications_v1 {
     updateSettings(
       params: Params$Resource$Organizations$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSettings(
       params?: Params$Resource$Organizations$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
     updateSettings(
       params: Params$Resource$Organizations$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -454,8 +455,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -537,11 +538,11 @@ export namespace advisorynotifications_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Notifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Organizations$Locations$Notifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
     get(
       params: Params$Resource$Organizations$Locations$Notifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -576,8 +577,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -633,11 +634,11 @@ export namespace advisorynotifications_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Notifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Organizations$Locations$Notifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Notifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -672,8 +673,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -787,11 +788,11 @@ export namespace advisorynotifications_v1 {
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSettings(
       params?: Params$Resource$Projects$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -826,8 +827,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -882,11 +883,11 @@ export namespace advisorynotifications_v1 {
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSettings(
       params?: Params$Resource$Projects$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -921,8 +922,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1004,11 +1005,11 @@ export namespace advisorynotifications_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Notifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
     get(
       params: Params$Resource$Projects$Locations$Notifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1043,8 +1044,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1099,11 +1100,11 @@ export namespace advisorynotifications_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Notifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Notifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1138,8 +1139,8 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

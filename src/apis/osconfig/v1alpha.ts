@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1609,11 +1610,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstanceOSPoliciesCompliance>;
+    ): GaxiosResponseWithHTTP2<Schema$InstanceOSPoliciesCompliance>;
     get(
       params: Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1648,8 +1649,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstanceOSPoliciesCompliance>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InstanceOSPoliciesCompliance>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instanceospoliciescompliances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1704,11 +1705,11 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Instanceospoliciescompliances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instanceospoliciescompliances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstanceOSPoliciesCompliancesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInstanceOSPoliciesCompliancesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instanceospoliciescompliances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1743,8 +1744,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInstanceOSPoliciesCompliancesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInstanceOSPoliciesCompliancesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instanceospoliciescompliances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1856,11 +1857,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Inventories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Inventory>;
+    ): GaxiosResponseWithHTTP2<Schema$Inventory>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1889,7 +1890,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Inventory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Inventory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Inventory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Inventories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1942,11 +1946,11 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Instances$Inventories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$Inventories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInventoriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListInventoriesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$Inventories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1979,8 +1983,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInventoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInventoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Inventories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2090,11 +2094,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OSPolicyAssignmentReport>;
+    ): GaxiosResponseWithHTTP2<Schema$OSPolicyAssignmentReport>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2127,8 +2131,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OSPolicyAssignmentReport>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OSPolicyAssignmentReport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2181,11 +2185,11 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentReportsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2220,8 +2224,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2313,11 +2317,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VulnerabilityReport>;
+    ): GaxiosResponseWithHTTP2<Schema$VulnerabilityReport>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2348,8 +2352,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VulnerabilityReport>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VulnerabilityReport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2402,11 +2406,11 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVulnerabilityReportsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVulnerabilityReportsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2441,8 +2445,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVulnerabilityReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVulnerabilityReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2539,11 +2543,11 @@ export namespace osconfig_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2572,7 +2576,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2628,11 +2635,11 @@ export namespace osconfig_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2661,7 +2668,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,11 +2724,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OSPolicyAssignment>;
+    ): GaxiosResponseWithHTTP2<Schema$OSPolicyAssignment>;
     get(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2749,8 +2759,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OSPolicyAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OSPolicyAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2803,11 +2813,11 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOSPolicyAssignmentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2842,8 +2852,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOSPolicyAssignmentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2901,11 +2911,11 @@ export namespace osconfig_v1alpha {
     listRevisions(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listRevisions(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOSPolicyAssignmentRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentRevisionsResponse>;
     listRevisions(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2940,8 +2950,8 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOSPolicyAssignmentRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOSPolicyAssignmentRevisionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2999,11 +3009,11 @@ export namespace osconfig_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3032,7 +3042,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3185,11 +3198,11 @@ export namespace osconfig_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3218,7 +3231,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3274,11 +3290,11 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3307,7 +3323,10 @@ export namespace osconfig_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

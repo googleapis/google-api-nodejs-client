@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -250,11 +251,11 @@ export namespace oslogin_v1 {
     getLoginProfile(
       params: Params$Resource$Users$Getloginprofile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getLoginProfile(
       params?: Params$Resource$Users$Getloginprofile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoginProfile>;
+    ): GaxiosResponseWithHTTP2<Schema$LoginProfile>;
     getLoginProfile(
       params: Params$Resource$Users$Getloginprofile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -283,7 +284,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoginProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoginProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LoginProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Getloginprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -338,11 +342,11 @@ export namespace oslogin_v1 {
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     importSshPublicKey(
       params?: Params$Resource$Users$Importsshpublickey,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportSshPublicKeyResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ImportSshPublicKeyResponse>;
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -377,8 +381,8 @@ export namespace oslogin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImportSshPublicKeyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ImportSshPublicKeyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Importsshpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -476,11 +480,11 @@ export namespace oslogin_v1 {
     delete(
       params: Params$Resource$Users$Projects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Users$Projects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Users$Projects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -509,7 +513,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -576,11 +583,11 @@ export namespace oslogin_v1 {
     create(
       params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Users$Sshpublickeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): GaxiosResponseWithHTTP2<Schema$SshPublicKey>;
     create(
       params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -609,7 +616,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SshPublicKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -664,11 +674,11 @@ export namespace oslogin_v1 {
     delete(
       params: Params$Resource$Users$Sshpublickeys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Users$Sshpublickeys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Users$Sshpublickeys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -697,7 +707,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -749,11 +762,11 @@ export namespace oslogin_v1 {
     get(
       params: Params$Resource$Users$Sshpublickeys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Users$Sshpublickeys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): GaxiosResponseWithHTTP2<Schema$SshPublicKey>;
     get(
       params: Params$Resource$Users$Sshpublickeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -782,7 +795,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SshPublicKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -834,11 +850,11 @@ export namespace oslogin_v1 {
     patch(
       params: Params$Resource$Users$Sshpublickeys$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Users$Sshpublickeys$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): GaxiosResponseWithHTTP2<Schema$SshPublicKey>;
     patch(
       params: Params$Resource$Users$Sshpublickeys$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -867,7 +883,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SshPublicKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

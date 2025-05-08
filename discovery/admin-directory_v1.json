@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250505",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5646,7 +5646,23 @@
             "enterpriseUpgrade",
             "educationUpgrade",
             "education",
-            "kioskUpgrade"
+            "kioskUpgrade",
+            "enterpriseUpgradePerpetual",
+            "enterpriseUpgradeFixedTerm",
+            "educationUpgradePerpetual",
+            "educationUpgradeFixedTerm"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The license type is unknown.",
@@ -5654,7 +5670,11 @@
             "The device has an annual standalone Chrome Enterprise Upgrade.",
             "The device has a perpetual standalone Chrome Education Upgrade.",
             "The device is bundled with a perpetual Chrome Education Upgrade.",
-            "The device has an annual Kiosk Upgrade."
+            "The device has an annual Kiosk Upgrade.",
+            "Indicating the device is consumming a standalone, perpetual Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicating the device is consuming a standalone, fixed-term Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicating the device is consuming a standalone, perpetual Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
+            "Indicating the device is consuming a standalone, fixed-term Chrome Education Upgrade(AKA Chrome EDU fixed-term license)."
           ],
           "readOnly": true,
           "type": "string"

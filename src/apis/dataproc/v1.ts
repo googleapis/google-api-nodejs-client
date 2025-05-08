@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4769,11 +4770,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     create(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4804,8 +4805,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4861,11 +4862,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4894,7 +4895,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4947,11 +4951,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     get(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4982,8 +4986,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5036,11 +5040,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5069,7 +5073,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5125,11 +5132,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutoscalingPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5164,8 +5171,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAutoscalingPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5223,11 +5230,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5256,7 +5263,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5312,11 +5322,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5351,8 +5361,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5408,11 +5418,11 @@ export namespace dataproc_v1 {
     update(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     update(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5443,8 +5453,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5597,11 +5607,11 @@ export namespace dataproc_v1 {
     analyze(
       params: Params$Resource$Projects$Locations$Batches$Analyze,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     analyze(
       params?: Params$Resource$Projects$Locations$Batches$Analyze,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     analyze(
       params: Params$Resource$Projects$Locations$Batches$Analyze,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5630,7 +5640,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Analyze;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5685,11 +5698,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Batches$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Batches$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Batches$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5718,7 +5731,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5773,11 +5789,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Batches$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Batches$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Batches$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5806,7 +5822,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5858,11 +5877,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Batches$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Batches$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Batch>;
+    ): GaxiosResponseWithHTTP2<Schema$Batch>;
     get(
       params: Params$Resource$Projects$Locations$Batches$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5891,7 +5910,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Batch>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Batch> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Batch>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5943,11 +5965,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Batches$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Batches$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBatchesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListBatchesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Batches$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5978,8 +6000,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBatchesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBatchesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6111,11 +6133,11 @@ export namespace dataproc_v1 {
     access(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     access(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationResponse>;
     access(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6150,8 +6172,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6206,11 +6228,11 @@ export namespace dataproc_v1 {
     accessEnvironmentInfo(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessEnvironmentInfo(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationEnvironmentInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationEnvironmentInfoResponse>;
     accessEnvironmentInfo(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6245,8 +6267,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationEnvironmentInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6304,11 +6326,11 @@ export namespace dataproc_v1 {
     accessJob(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessJob(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationJobResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationJobResponse>;
     accessJob(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6343,8 +6365,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationJobResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationJobResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6402,11 +6424,11 @@ export namespace dataproc_v1 {
     accessNativeBuildInfo(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessNativeBuildInfo(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationNativeBuildInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeBuildInfoResponse>;
     accessNativeBuildInfo(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6441,8 +6463,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationNativeBuildInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6500,11 +6522,11 @@ export namespace dataproc_v1 {
     accessNativeSqlQuery(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessNativeSqlQuery(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationNativeSqlQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeSqlQueryResponse>;
     accessNativeSqlQuery(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6539,8 +6561,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationNativeSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6598,11 +6620,11 @@ export namespace dataproc_v1 {
     accessSqlPlan(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessSqlPlan(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>;
     accessSqlPlan(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6637,8 +6659,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6696,11 +6718,11 @@ export namespace dataproc_v1 {
     accessSqlQuery(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessSqlQuery(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationSqlQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationSqlQueryResponse>;
     accessSqlQuery(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6735,8 +6757,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationSqlQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6794,11 +6816,11 @@ export namespace dataproc_v1 {
     accessStageAttempt(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessStageAttempt(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationStageAttemptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationStageAttemptResponse>;
     accessStageAttempt(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6833,8 +6855,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationStageAttemptResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationStageAttemptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6892,11 +6914,11 @@ export namespace dataproc_v1 {
     accessStageRddGraph(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessStageRddGraph(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSparkApplicationStageRddOperationGraphResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationStageRddOperationGraphResponse>;
     accessStageRddGraph(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6931,8 +6953,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6990,11 +7012,11 @@ export namespace dataproc_v1 {
     search(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationsResponse>;
     search(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7029,8 +7051,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7088,11 +7110,11 @@ export namespace dataproc_v1 {
     searchExecutors(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchExecutors(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationExecutorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationExecutorsResponse>;
     searchExecutors(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7127,8 +7149,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationExecutorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationExecutorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7186,11 +7208,11 @@ export namespace dataproc_v1 {
     searchExecutorStageSummary(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchExecutorStageSummary(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationExecutorStageSummaryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationExecutorStageSummaryResponse>;
     searchExecutorStageSummary(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7225,8 +7247,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7284,11 +7306,11 @@ export namespace dataproc_v1 {
     searchJobs(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchJobs(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationJobsResponse>;
     searchJobs(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7323,8 +7345,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7382,11 +7404,11 @@ export namespace dataproc_v1 {
     searchNativeSqlQueries(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchNativeSqlQueries(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationNativeSqlQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationNativeSqlQueriesResponse>;
     searchNativeSqlQueries(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7421,8 +7443,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7480,11 +7502,11 @@ export namespace dataproc_v1 {
     searchSqlQueries(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchSqlQueries(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationSqlQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationSqlQueriesResponse>;
     searchSqlQueries(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7519,8 +7541,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationSqlQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationSqlQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7578,11 +7600,11 @@ export namespace dataproc_v1 {
     searchStageAttempts(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStageAttempts(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationStageAttemptsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStageAttemptsResponse>;
     searchStageAttempts(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7617,8 +7639,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationStageAttemptsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStageAttemptsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7676,11 +7698,11 @@ export namespace dataproc_v1 {
     searchStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStageAttemptTasks(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationStageAttemptTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStageAttemptTasksResponse>;
     searchStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7715,8 +7737,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationStageAttemptTasksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7774,11 +7796,11 @@ export namespace dataproc_v1 {
     searchStages(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStages(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSparkApplicationStagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStagesResponse>;
     searchStages(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7813,8 +7835,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSparkApplicationStagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSparkApplicationStagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7872,11 +7894,11 @@ export namespace dataproc_v1 {
     summarizeExecutors(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeExecutors(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSparkApplicationExecutorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationExecutorsResponse>;
     summarizeExecutors(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7911,8 +7933,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSparkApplicationExecutorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationExecutorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7970,11 +7992,11 @@ export namespace dataproc_v1 {
     summarizeJobs(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeJobs(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSparkApplicationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationJobsResponse>;
     summarizeJobs(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8009,8 +8031,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSparkApplicationJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8068,11 +8090,11 @@ export namespace dataproc_v1 {
     summarizeStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeStageAttemptTasks(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>;
     summarizeStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8107,8 +8129,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8166,11 +8188,11 @@ export namespace dataproc_v1 {
     summarizeStages(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeStages(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSparkApplicationStagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationStagesResponse>;
     summarizeStages(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8205,8 +8227,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSparkApplicationStagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSparkApplicationStagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8264,11 +8286,11 @@ export namespace dataproc_v1 {
     write(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteSparkApplicationContextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$WriteSparkApplicationContextResponse>;
     write(
       params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8303,8 +8325,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteSparkApplicationContextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WriteSparkApplicationContextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8813,11 +8835,11 @@ export namespace dataproc_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8846,7 +8868,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8898,11 +8923,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8931,7 +8956,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8983,11 +9011,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9016,7 +9044,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9068,11 +9099,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9105,8 +9136,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9211,11 +9242,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Sessions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Sessions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Sessions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9244,7 +9275,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9299,11 +9333,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9332,7 +9366,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9384,11 +9421,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Sessions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Sessions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Session>;
+    ): GaxiosResponseWithHTTP2<Schema$Session>;
     get(
       params: Params$Resource$Projects$Locations$Sessions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9417,7 +9454,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Session>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Session> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Session>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9469,11 +9509,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSessionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9506,8 +9546,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSessionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9562,11 +9602,11 @@ export namespace dataproc_v1 {
     terminate(
       params: Params$Resource$Projects$Locations$Sessions$Terminate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     terminate(
       params?: Params$Resource$Projects$Locations$Sessions$Terminate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     terminate(
       params: Params$Resource$Projects$Locations$Sessions$Terminate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9595,7 +9635,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Terminate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9727,11 +9770,11 @@ export namespace dataproc_v1 {
     access(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     access(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationResponse>;
     access(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9766,8 +9809,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9822,11 +9865,11 @@ export namespace dataproc_v1 {
     accessEnvironmentInfo(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessEnvironmentInfo(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>;
     accessEnvironmentInfo(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9861,8 +9904,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9920,11 +9963,11 @@ export namespace dataproc_v1 {
     accessJob(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessJob(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationJobResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationJobResponse>;
     accessJob(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9959,8 +10002,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationJobResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationJobResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10018,11 +10061,11 @@ export namespace dataproc_v1 {
     accessNativeBuildInfo(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessNativeBuildInfo(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>;
     accessNativeBuildInfo(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10057,8 +10100,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10116,11 +10159,11 @@ export namespace dataproc_v1 {
     accessNativeSqlQuery(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessNativeSqlQuery(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>;
     accessNativeSqlQuery(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10155,8 +10198,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10214,11 +10257,11 @@ export namespace dataproc_v1 {
     accessSqlPlan(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessSqlPlan(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>;
     accessSqlPlan(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10253,8 +10296,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10312,11 +10355,11 @@ export namespace dataproc_v1 {
     accessSqlQuery(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessSqlQuery(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationSqlQueryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationSqlQueryResponse>;
     accessSqlQuery(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10351,8 +10394,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10410,11 +10453,11 @@ export namespace dataproc_v1 {
     accessStageAttempt(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessStageAttempt(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationStageAttemptResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationStageAttemptResponse>;
     accessStageAttempt(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10449,8 +10492,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationStageAttemptResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10508,11 +10551,11 @@ export namespace dataproc_v1 {
     accessStageRddGraph(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     accessStageRddGraph(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>;
     accessStageRddGraph(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10547,8 +10590,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10606,11 +10649,11 @@ export namespace dataproc_v1 {
     search(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationsResponse>;
     search(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10645,8 +10688,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10704,11 +10747,11 @@ export namespace dataproc_v1 {
     searchExecutors(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchExecutors(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationExecutorsResponse>;
     searchExecutors(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10743,8 +10786,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationExecutorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10802,11 +10845,11 @@ export namespace dataproc_v1 {
     searchExecutorStageSummary(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchExecutorStageSummary(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>;
     searchExecutorStageSummary(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10841,8 +10884,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10900,11 +10943,11 @@ export namespace dataproc_v1 {
     searchJobs(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchJobs(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationJobsResponse>;
     searchJobs(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10939,8 +10982,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10998,11 +11041,11 @@ export namespace dataproc_v1 {
     searchNativeSqlQueries(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchNativeSqlQueries(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>;
     searchNativeSqlQueries(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11037,8 +11080,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11096,11 +11139,11 @@ export namespace dataproc_v1 {
     searchSqlQueries(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchSqlQueries(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationSqlQueriesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationSqlQueriesResponse>;
     searchSqlQueries(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11135,8 +11178,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11194,11 +11237,11 @@ export namespace dataproc_v1 {
     searchStageAttempts(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStageAttempts(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStageAttemptsResponse>;
     searchStageAttempts(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11233,8 +11276,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11292,11 +11335,11 @@ export namespace dataproc_v1 {
     searchStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStageAttemptTasks(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>;
     searchStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11331,8 +11374,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11390,11 +11433,11 @@ export namespace dataproc_v1 {
     searchStages(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     searchStages(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStagesResponse>;
     searchStages(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11429,8 +11472,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchSessionSparkApplicationStagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchSessionSparkApplicationStagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11488,11 +11531,11 @@ export namespace dataproc_v1 {
     summarizeExecutors(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeExecutors(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationExecutorsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationExecutorsResponse>;
     summarizeExecutors(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11527,8 +11570,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11586,11 +11629,11 @@ export namespace dataproc_v1 {
     summarizeJobs(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeJobs(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationJobsResponse>;
     summarizeJobs(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11625,8 +11668,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11684,11 +11727,11 @@ export namespace dataproc_v1 {
     summarizeStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeStageAttemptTasks(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>;
     summarizeStageAttemptTasks(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11723,8 +11766,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11782,11 +11825,11 @@ export namespace dataproc_v1 {
     summarizeStages(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     summarizeStages(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationStagesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationStagesResponse>;
     summarizeStages(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11821,8 +11864,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationStagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SummarizeSessionSparkApplicationStagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11880,11 +11923,11 @@ export namespace dataproc_v1 {
     write(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     write(
       params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteSessionSparkApplicationContextResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$WriteSessionSparkApplicationContextResponse>;
     write(
       params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11919,8 +11962,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteSessionSparkApplicationContextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WriteSessionSparkApplicationContextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12429,11 +12472,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Sessiontemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SessionTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$SessionTemplate>;
     create(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12462,7 +12505,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$SessionTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SessionTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SessionTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessiontemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12518,11 +12564,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Sessiontemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12551,7 +12597,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessiontemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12604,11 +12653,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Sessiontemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SessionTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$SessionTemplate>;
     get(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12637,7 +12686,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$SessionTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SessionTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SessionTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessiontemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12689,11 +12741,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Sessiontemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Sessiontemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSessionTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListSessionTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Sessiontemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12728,8 +12780,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSessionTemplatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSessionTemplatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessiontemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12786,11 +12838,11 @@ export namespace dataproc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Sessiontemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SessionTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$SessionTemplate>;
     patch(
       params: Params$Resource$Projects$Locations$Sessiontemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12819,7 +12871,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$SessionTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SessionTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SessionTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sessiontemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12937,11 +12992,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     create(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12970,7 +13025,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13026,11 +13084,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13059,7 +13117,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13112,11 +13173,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     get(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13145,7 +13206,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13197,11 +13261,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13230,7 +13294,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13286,11 +13353,11 @@ export namespace dataproc_v1 {
     instantiate(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     instantiate(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     instantiate(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13319,7 +13386,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13375,11 +13445,11 @@ export namespace dataproc_v1 {
     instantiateInline(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     instantiateInline(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     instantiateInline(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13408,7 +13478,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13463,11 +13536,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflowtemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWorkflowTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Workflowtemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13502,8 +13575,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkflowTemplatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkflowTemplatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13561,11 +13634,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13594,7 +13667,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13650,11 +13726,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13689,8 +13765,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13746,11 +13822,11 @@ export namespace dataproc_v1 {
     update(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     update(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13779,7 +13855,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13985,11 +14064,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     create(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14020,8 +14099,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14077,11 +14156,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14110,7 +14189,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14163,11 +14245,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     get(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14198,8 +14280,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14251,11 +14333,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14284,7 +14366,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14340,11 +14425,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListAutoscalingPoliciesResponse>;
     list(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14379,8 +14464,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAutoscalingPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14438,11 +14523,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14471,7 +14556,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14527,11 +14615,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14566,8 +14654,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14623,11 +14711,11 @@ export namespace dataproc_v1 {
     update(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>;
     update(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14658,8 +14746,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AutoscalingPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AutoscalingPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14813,11 +14901,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Regions$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Regions$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Regions$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14846,7 +14934,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14900,11 +14991,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Regions$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Regions$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Regions$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14933,7 +15024,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14988,11 +15082,11 @@ export namespace dataproc_v1 {
     diagnose(
       params: Params$Resource$Projects$Regions$Clusters$Diagnose,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     diagnose(
       params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     diagnose(
       params: Params$Resource$Projects$Regions$Clusters$Diagnose,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15021,7 +15115,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Diagnose;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15076,11 +15173,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
     get(
       params: Params$Resource$Projects$Regions$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15109,7 +15206,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Cluster>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15164,11 +15264,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15197,7 +15297,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15252,11 +15355,11 @@ export namespace dataproc_v1 {
     injectCredentials(
       params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     injectCredentials(
       params?: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     injectCredentials(
       params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15285,7 +15388,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Injectcredentials;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15340,11 +15446,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Regions$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
     list(
       params: Params$Resource$Projects$Regions$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15377,8 +15483,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClustersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15432,11 +15538,11 @@ export namespace dataproc_v1 {
     patch(
       params: Params$Resource$Projects$Regions$Clusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Regions$Clusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Regions$Clusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15465,7 +15571,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15520,11 +15629,11 @@ export namespace dataproc_v1 {
     repair(
       params: Params$Resource$Projects$Regions$Clusters$Repair,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     repair(
       params?: Params$Resource$Projects$Regions$Clusters$Repair,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     repair(
       params: Params$Resource$Projects$Regions$Clusters$Repair,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15553,7 +15662,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15608,11 +15720,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15641,7 +15753,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15696,11 +15811,11 @@ export namespace dataproc_v1 {
     start(
       params: Params$Resource$Projects$Regions$Clusters$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     start(
       params?: Params$Resource$Projects$Regions$Clusters$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     start(
       params: Params$Resource$Projects$Regions$Clusters$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15729,7 +15844,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15784,11 +15902,11 @@ export namespace dataproc_v1 {
     stop(
       params: Params$Resource$Projects$Regions$Clusters$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     stop(
       params?: Params$Resource$Projects$Regions$Clusters$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     stop(
       params: Params$Resource$Projects$Regions$Clusters$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15817,7 +15935,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15872,11 +15993,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15911,8 +16032,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16233,11 +16354,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16266,7 +16387,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16322,11 +16446,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodeGroup>;
+    ): GaxiosResponseWithHTTP2<Schema$NodeGroup>;
     get(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16355,7 +16479,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$NodeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NodeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$NodeGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16407,11 +16534,11 @@ export namespace dataproc_v1 {
     repair(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     repair(
       params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     repair(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16440,7 +16567,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16493,11 +16623,11 @@ export namespace dataproc_v1 {
     resize(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     resize(
       params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     resize(
       params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16526,7 +16656,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16642,11 +16775,11 @@ export namespace dataproc_v1 {
     cancel(
       params: Params$Resource$Projects$Regions$Jobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Regions$Jobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): GaxiosResponseWithHTTP2<Schema$Job>;
     cancel(
       params: Params$Resource$Projects$Regions$Jobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16675,7 +16808,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16730,11 +16866,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Regions$Jobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Regions$Jobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Regions$Jobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16763,7 +16899,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16817,11 +16956,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): GaxiosResponseWithHTTP2<Schema$Job>;
     get(
       params: Params$Resource$Projects$Regions$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16850,7 +16989,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16904,11 +17046,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16937,7 +17079,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16992,11 +17137,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Regions$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListJobsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListJobsResponse>;
     list(
       params: Params$Resource$Projects$Regions$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17025,7 +17170,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListJobsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17079,11 +17227,11 @@ export namespace dataproc_v1 {
     patch(
       params: Params$Resource$Projects$Regions$Jobs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Regions$Jobs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): GaxiosResponseWithHTTP2<Schema$Job>;
     patch(
       params: Params$Resource$Projects$Regions$Jobs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17112,7 +17260,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17166,11 +17317,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17199,7 +17350,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17254,11 +17408,11 @@ export namespace dataproc_v1 {
     submit(
       params: Params$Resource$Projects$Regions$Jobs$Submit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     submit(
       params?: Params$Resource$Projects$Regions$Jobs$Submit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): GaxiosResponseWithHTTP2<Schema$Job>;
     submit(
       params: Params$Resource$Projects$Regions$Jobs$Submit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17287,7 +17441,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17341,11 +17498,11 @@ export namespace dataproc_v1 {
     submitAsOperation(
       params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     submitAsOperation(
       params?: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     submitAsOperation(
       params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17374,7 +17531,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Submitasoperation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17429,11 +17589,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17468,8 +17628,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17705,11 +17865,11 @@ export namespace dataproc_v1 {
     cancel(
       params: Params$Resource$Projects$Regions$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Regions$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Regions$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17738,7 +17898,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17790,11 +17953,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Regions$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Regions$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Regions$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17823,7 +17986,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17875,11 +18041,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Regions$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17908,7 +18074,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17960,11 +18129,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17993,7 +18162,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18048,11 +18220,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Regions$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Regions$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18085,8 +18257,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18138,11 +18310,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18171,7 +18343,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18226,11 +18401,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18265,8 +18440,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18406,11 +18581,11 @@ export namespace dataproc_v1 {
     create(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     create(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18439,7 +18614,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18495,11 +18673,11 @@ export namespace dataproc_v1 {
     delete(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18528,7 +18706,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18581,11 +18762,11 @@ export namespace dataproc_v1 {
     get(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     get(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18614,7 +18795,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18666,11 +18850,11 @@ export namespace dataproc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18699,7 +18883,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18755,11 +18942,11 @@ export namespace dataproc_v1 {
     instantiate(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     instantiate(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     instantiate(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18788,7 +18975,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18844,11 +19034,11 @@ export namespace dataproc_v1 {
     instantiateInline(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     instantiateInline(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     instantiateInline(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18877,7 +19067,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18932,11 +19125,11 @@ export namespace dataproc_v1 {
     list(
       params: Params$Resource$Projects$Regions$Workflowtemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListWorkflowTemplatesResponse>;
     list(
       params: Params$Resource$Projects$Regions$Workflowtemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18971,8 +19164,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkflowTemplatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkflowTemplatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19029,11 +19222,11 @@ export namespace dataproc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19062,7 +19255,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19118,11 +19314,11 @@ export namespace dataproc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19157,8 +19353,8 @@ export namespace dataproc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19214,11 +19410,11 @@ export namespace dataproc_v1 {
     update(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    ): GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>;
     update(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19247,7 +19443,10 @@ export namespace dataproc_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

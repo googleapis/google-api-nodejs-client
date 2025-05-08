@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5182,11 +5183,11 @@ export namespace sheets_v4 {
     batchUpdate(
       params: Params$Resource$Spreadsheets$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Spreadsheets$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateSpreadsheetResponse>;
     batchUpdate(
       params: Params$Resource$Spreadsheets$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5221,8 +5222,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateSpreadsheetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5278,11 +5279,11 @@ export namespace sheets_v4 {
     create(
       params: Params$Resource$Spreadsheets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Spreadsheets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Spreadsheet>;
+    ): GaxiosResponseWithHTTP2<Schema$Spreadsheet>;
     create(
       params: Params$Resource$Spreadsheets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5311,7 +5312,10 @@ export namespace sheets_v4 {
       callback?:
         | BodyResponseCallback<Schema$Spreadsheet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Spreadsheet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5363,11 +5367,11 @@ export namespace sheets_v4 {
     get(
       params: Params$Resource$Spreadsheets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spreadsheets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Spreadsheet>;
+    ): GaxiosResponseWithHTTP2<Schema$Spreadsheet>;
     get(
       params: Params$Resource$Spreadsheets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5396,7 +5400,10 @@ export namespace sheets_v4 {
       callback?:
         | BodyResponseCallback<Schema$Spreadsheet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Spreadsheet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5450,11 +5457,11 @@ export namespace sheets_v4 {
     getByDataFilter(
       params: Params$Resource$Spreadsheets$Getbydatafilter,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getByDataFilter(
       params?: Params$Resource$Spreadsheets$Getbydatafilter,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Spreadsheet>;
+    ): GaxiosResponseWithHTTP2<Schema$Spreadsheet>;
     getByDataFilter(
       params: Params$Resource$Spreadsheets$Getbydatafilter,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5483,7 +5490,10 @@ export namespace sheets_v4 {
       callback?:
         | BodyResponseCallback<Schema$Spreadsheet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Spreadsheet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Getbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5594,11 +5604,11 @@ export namespace sheets_v4 {
     get(
       params: Params$Resource$Spreadsheets$Developermetadata$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spreadsheets$Developermetadata$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeveloperMetadata>;
+    ): GaxiosResponseWithHTTP2<Schema$DeveloperMetadata>;
     get(
       params: Params$Resource$Spreadsheets$Developermetadata$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5629,8 +5639,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeveloperMetadata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeveloperMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Developermetadata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5685,11 +5695,11 @@ export namespace sheets_v4 {
     search(
       params: Params$Resource$Spreadsheets$Developermetadata$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     search(
       params?: Params$Resource$Spreadsheets$Developermetadata$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchDeveloperMetadataResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SearchDeveloperMetadataResponse>;
     search(
       params: Params$Resource$Spreadsheets$Developermetadata$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5724,8 +5734,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchDeveloperMetadataResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchDeveloperMetadataResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Developermetadata$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5813,11 +5823,11 @@ export namespace sheets_v4 {
     copyTo(
       params: Params$Resource$Spreadsheets$Sheets$Copyto,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     copyTo(
       params?: Params$Resource$Spreadsheets$Sheets$Copyto,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SheetProperties>;
+    ): GaxiosResponseWithHTTP2<Schema$SheetProperties>;
     copyTo(
       params: Params$Resource$Spreadsheets$Sheets$Copyto,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5846,7 +5856,10 @@ export namespace sheets_v4 {
       callback?:
         | BodyResponseCallback<Schema$SheetProperties>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SheetProperties> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SheetProperties>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Sheets$Copyto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5925,11 +5938,11 @@ export namespace sheets_v4 {
     append(
       params: Params$Resource$Spreadsheets$Values$Append,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     append(
       params?: Params$Resource$Spreadsheets$Values$Append,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppendValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$AppendValuesResponse>;
     append(
       params: Params$Resource$Spreadsheets$Values$Append,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5962,8 +5975,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AppendValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AppendValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Append;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6017,11 +6030,11 @@ export namespace sheets_v4 {
     batchClear(
       params: Params$Resource$Spreadsheets$Values$Batchclear,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchClear(
       params?: Params$Resource$Spreadsheets$Values$Batchclear,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchClearValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchClearValuesResponse>;
     batchClear(
       params: Params$Resource$Spreadsheets$Values$Batchclear,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6056,8 +6069,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchClearValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchClearValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchclear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6111,11 +6124,11 @@ export namespace sheets_v4 {
     batchClearByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchClearByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchClearValuesByDataFilterResponse>;
     batchClearByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6150,8 +6163,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchClearValuesByDataFilterResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchclearbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6209,11 +6222,11 @@ export namespace sheets_v4 {
     batchGet(
       params: Params$Resource$Spreadsheets$Values$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Spreadsheets$Values$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetValuesResponse>;
     batchGet(
       params: Params$Resource$Spreadsheets$Values$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6248,8 +6261,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6303,11 +6316,11 @@ export namespace sheets_v4 {
     batchGetByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGetByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchGetValuesByDataFilterResponse>;
     batchGetByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6342,8 +6355,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetValuesByDataFilterResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchgetbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6400,11 +6413,11 @@ export namespace sheets_v4 {
     batchUpdate(
       params: Params$Resource$Spreadsheets$Values$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Spreadsheets$Values$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateValuesResponse>;
     batchUpdate(
       params: Params$Resource$Spreadsheets$Values$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6439,8 +6452,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6494,11 +6507,11 @@ export namespace sheets_v4 {
     batchUpdateByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdateByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateValuesByDataFilterResponse>;
     batchUpdateByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6533,8 +6546,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateValuesByDataFilterResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6592,11 +6605,11 @@ export namespace sheets_v4 {
     clear(
       params: Params$Resource$Spreadsheets$Values$Clear,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     clear(
       params?: Params$Resource$Spreadsheets$Values$Clear,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClearValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ClearValuesResponse>;
     clear(
       params: Params$Resource$Spreadsheets$Values$Clear,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6627,8 +6640,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClearValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClearValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6682,11 +6695,11 @@ export namespace sheets_v4 {
     get(
       params: Params$Resource$Spreadsheets$Values$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Spreadsheets$Values$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ValueRange>;
+    ): GaxiosResponseWithHTTP2<Schema$ValueRange>;
     get(
       params: Params$Resource$Spreadsheets$Values$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6715,7 +6728,10 @@ export namespace sheets_v4 {
       callback?:
         | BodyResponseCallback<Schema$ValueRange>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ValueRange> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ValueRange>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6769,11 +6785,11 @@ export namespace sheets_v4 {
     update(
       params: Params$Resource$Spreadsheets$Values$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     update(
       params?: Params$Resource$Spreadsheets$Values$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateValuesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$UpdateValuesResponse>;
     update(
       params: Params$Resource$Spreadsheets$Values$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6806,8 +6822,8 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateValuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UpdateValuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

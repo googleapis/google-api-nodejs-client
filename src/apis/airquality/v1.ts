@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -560,11 +561,11 @@ export namespace airquality_v1 {
     lookup(
       params: Params$Resource$Currentconditions$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Currentconditions$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupCurrentConditionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupCurrentConditionsResponse>;
     lookup(
       params: Params$Resource$Currentconditions$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -599,8 +600,8 @@ export namespace airquality_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupCurrentConditionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LookupCurrentConditionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Currentconditions$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -672,11 +673,11 @@ export namespace airquality_v1 {
     lookup(
       params: Params$Resource$Forecast$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$Forecast$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupForecastResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupForecastResponse>;
     lookup(
       params: Params$Resource$Forecast$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -709,8 +710,8 @@ export namespace airquality_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupForecastResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LookupForecastResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Forecast$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -778,11 +779,11 @@ export namespace airquality_v1 {
     lookup(
       params: Params$Resource$History$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookup(
       params?: Params$Resource$History$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupHistoryResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$LookupHistoryResponse>;
     lookup(
       params: Params$Resource$History$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -815,8 +816,8 @@ export namespace airquality_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LookupHistoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$History$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -890,11 +891,11 @@ export namespace airquality_v1 {
     lookupHeatmapTile(
       params: Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     lookupHeatmapTile(
       params?: Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     lookupHeatmapTile(
       params: Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -923,7 +924,10 @@ export namespace airquality_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile;
       let options = (optionsOrCallback || {}) as MethodOptions;

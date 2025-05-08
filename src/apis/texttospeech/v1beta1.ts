@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -508,11 +509,11 @@ export namespace texttospeech_v1beta1 {
     synthesizeLongAudio(
       params: Params$Resource$Projects$Locations$Synthesizelongaudio,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     synthesizeLongAudio(
       params?: Params$Resource$Projects$Locations$Synthesizelongaudio,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     synthesizeLongAudio(
       params: Params$Resource$Projects$Locations$Synthesizelongaudio,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -541,7 +542,10 @@ export namespace texttospeech_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synthesizelongaudio;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -616,11 +620,11 @@ export namespace texttospeech_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -649,7 +653,10 @@ export namespace texttospeech_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -701,11 +708,11 @@ export namespace texttospeech_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -738,8 +745,8 @@ export namespace texttospeech_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -828,11 +835,11 @@ export namespace texttospeech_v1beta1 {
     synthesize(
       params: Params$Resource$Text$Synthesize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     synthesize(
       params?: Params$Resource$Text$Synthesize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SynthesizeSpeechResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$SynthesizeSpeechResponse>;
     synthesize(
       params: Params$Resource$Text$Synthesize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -867,8 +874,8 @@ export namespace texttospeech_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SynthesizeSpeechResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SynthesizeSpeechResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -936,11 +943,11 @@ export namespace texttospeech_v1beta1 {
     list(
       params: Params$Resource$Voices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Voices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVoicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListVoicesResponse>;
     list(
       params: Params$Resource$Voices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -971,8 +978,8 @@ export namespace texttospeech_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVoicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVoicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

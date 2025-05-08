@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -221,11 +222,11 @@ export namespace webfonts_v1 {
     list(
       params: Params$Resource$Webfonts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Webfonts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebfontList>;
+    ): GaxiosResponseWithHTTP2<Schema$WebfontList>;
     list(
       params: Params$Resource$Webfonts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -254,7 +255,10 @@ export namespace webfonts_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebfontList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebfontList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebfontList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

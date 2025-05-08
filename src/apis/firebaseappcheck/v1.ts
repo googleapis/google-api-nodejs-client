@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -701,11 +702,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Jwks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Jwks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PublicJwkSet>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PublicJwkSet>;
     get(
       params: Params$Resource$Jwks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -740,8 +741,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PublicJwkSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PublicJwkSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jwks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -809,11 +810,11 @@ export namespace firebaseappcheck_v1 {
     exchangeAppAttestAssertion(
       params: Params$Resource$Oauthclients$Exchangeappattestassertion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeAppAttestAssertion(
       params?: Params$Resource$Oauthclients$Exchangeappattestassertion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeAppAttestAssertion(
       params: Params$Resource$Oauthclients$Exchangeappattestassertion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -848,8 +849,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Oauthclients$Exchangeappattestassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -907,11 +908,11 @@ export namespace firebaseappcheck_v1 {
     exchangeAppAttestAttestation(
       params: Params$Resource$Oauthclients$Exchangeappattestattestation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeAppAttestAttestation(
       params?: Params$Resource$Oauthclients$Exchangeappattestattestation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>;
     exchangeAppAttestAttestation(
       params: Params$Resource$Oauthclients$Exchangeappattestattestation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -946,8 +947,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Oauthclients$Exchangeappattestattestation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1006,11 +1007,11 @@ export namespace firebaseappcheck_v1 {
     exchangeDebugToken(
       params: Params$Resource$Oauthclients$Exchangedebugtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeDebugToken(
       params?: Params$Resource$Oauthclients$Exchangedebugtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeDebugToken(
       params: Params$Resource$Oauthclients$Exchangedebugtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1045,8 +1046,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Oauthclients$Exchangedebugtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1104,11 +1105,11 @@ export namespace firebaseappcheck_v1 {
     generateAppAttestChallenge(
       params: Params$Resource$Oauthclients$Generateappattestchallenge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateAppAttestChallenge(
       params?: Params$Resource$Oauthclients$Generateappattestchallenge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>;
     generateAppAttestChallenge(
       params: Params$Resource$Oauthclients$Generateappattestchallenge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1143,8 +1144,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Oauthclients$Generateappattestchallenge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1294,11 +1295,11 @@ export namespace firebaseappcheck_v1 {
     exchangeAppAttestAssertion(
       params: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeAppAttestAssertion(
       params?: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeAppAttestAssertion(
       params: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1333,8 +1334,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangeappattestassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1392,11 +1393,11 @@ export namespace firebaseappcheck_v1 {
     exchangeAppAttestAttestation(
       params: Params$Resource$Projects$Apps$Exchangeappattestattestation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeAppAttestAttestation(
       params?: Params$Resource$Projects$Apps$Exchangeappattestattestation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>;
     exchangeAppAttestAttestation(
       params: Params$Resource$Projects$Apps$Exchangeappattestattestation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1431,8 +1432,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangeappattestattestation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1491,11 +1492,11 @@ export namespace firebaseappcheck_v1 {
     exchangeCustomToken(
       params: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeCustomToken(
       params?: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeCustomToken(
       params: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1530,8 +1531,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangecustomtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1589,11 +1590,11 @@ export namespace firebaseappcheck_v1 {
     exchangeDebugToken(
       params: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeDebugToken(
       params?: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeDebugToken(
       params: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1628,8 +1629,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangedebugtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1687,11 +1688,11 @@ export namespace firebaseappcheck_v1 {
     exchangeDeviceCheckToken(
       params: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeDeviceCheckToken(
       params?: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeDeviceCheckToken(
       params: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1726,8 +1727,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangedevicechecktoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1785,11 +1786,11 @@ export namespace firebaseappcheck_v1 {
     exchangePlayIntegrityToken(
       params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangePlayIntegrityToken(
       params?: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangePlayIntegrityToken(
       params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1824,8 +1825,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangeplayintegritytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1883,11 +1884,11 @@ export namespace firebaseappcheck_v1 {
     exchangeRecaptchaEnterpriseToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeRecaptchaEnterpriseToken(
       params?: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeRecaptchaEnterpriseToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1922,8 +1923,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1981,11 +1982,11 @@ export namespace firebaseappcheck_v1 {
     exchangeRecaptchaV3Token(
       params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeRecaptchaV3Token(
       params?: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeRecaptchaV3Token(
       params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2020,8 +2021,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangerecaptchav3token;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2079,11 +2080,11 @@ export namespace firebaseappcheck_v1 {
     exchangeSafetyNetToken(
       params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     exchangeSafetyNetToken(
       params?: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>;
     exchangeSafetyNetToken(
       params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2118,8 +2119,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangesafetynettoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2177,11 +2178,11 @@ export namespace firebaseappcheck_v1 {
     generateAppAttestChallenge(
       params: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generateAppAttestChallenge(
       params?: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>;
     generateAppAttestChallenge(
       params: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2216,8 +2217,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Generateappattestchallenge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2275,11 +2276,11 @@ export namespace firebaseappcheck_v1 {
     generatePlayIntegrityChallenge(
       params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     generatePlayIntegrityChallenge(
       params?: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse>;
     generatePlayIntegrityChallenge(
       params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2314,8 +2315,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Generateplayintegritychallenge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2513,11 +2514,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Appattestconfig$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Appattestconfig$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetAppAttestConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetAppAttestConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Appattestconfig$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2552,8 +2553,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetAppAttestConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetAppAttestConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Appattestconfig$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2610,11 +2611,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Appattestconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Appattestconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>;
     get(
       params: Params$Resource$Projects$Apps$Appattestconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2649,8 +2650,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Appattestconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2705,11 +2706,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Appattestconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Appattestconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>;
     patch(
       params: Params$Resource$Projects$Apps$Appattestconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2744,8 +2745,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppAttestConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Appattestconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2842,11 +2843,11 @@ export namespace firebaseappcheck_v1 {
     create(
       params: Params$Resource$Projects$Apps$Debugtokens$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Apps$Debugtokens$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>;
     create(
       params: Params$Resource$Projects$Apps$Debugtokens$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2881,8 +2882,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Debugtokens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2940,11 +2941,11 @@ export namespace firebaseappcheck_v1 {
     delete(
       params: Params$Resource$Projects$Apps$Debugtokens$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Apps$Debugtokens$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Apps$Debugtokens$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2975,8 +2976,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Debugtokens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3029,11 +3030,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Debugtokens$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Debugtokens$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>;
     get(
       params: Params$Resource$Projects$Apps$Debugtokens$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3068,8 +3069,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Debugtokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3124,11 +3125,11 @@ export namespace firebaseappcheck_v1 {
     list(
       params: Params$Resource$Projects$Apps$Debugtokens$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Apps$Debugtokens$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListDebugTokensResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListDebugTokensResponse>;
     list(
       params: Params$Resource$Projects$Apps$Debugtokens$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3163,8 +3164,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListDebugTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListDebugTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Debugtokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3222,11 +3223,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Debugtokens$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Debugtokens$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>;
     patch(
       params: Params$Resource$Projects$Apps$Debugtokens$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3261,8 +3262,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DebugToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DebugToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Debugtokens$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3382,11 +3383,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Devicecheckconfig$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetDeviceCheckConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetDeviceCheckConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3421,8 +3422,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetDeviceCheckConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetDeviceCheckConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Devicecheckconfig$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3479,11 +3480,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Devicecheckconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>;
     get(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3518,8 +3519,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Devicecheckconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3574,11 +3575,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Devicecheckconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>;
     patch(
       params: Params$Resource$Projects$Apps$Devicecheckconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3613,8 +3614,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1DeviceCheckConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Devicecheckconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3711,11 +3712,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetPlayIntegrityConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetPlayIntegrityConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3750,8 +3751,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetPlayIntegrityConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetPlayIntegrityConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3809,11 +3810,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>;
     get(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3848,8 +3849,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3904,11 +3905,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>;
     patch(
       params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3943,8 +3944,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4041,11 +4042,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaEnterpriseConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaEnterpriseConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4080,8 +4081,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaEnterpriseConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaEnterpriseConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4140,11 +4141,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>;
     get(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4179,8 +4180,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4236,11 +4237,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>;
     patch(
       params: Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4275,8 +4276,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4374,11 +4375,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4413,8 +4414,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchav3config$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4471,11 +4472,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Recaptchav3config$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>;
     get(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4510,8 +4511,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchav3config$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4566,11 +4567,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>;
     patch(
       params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4605,8 +4606,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Recaptchav3config$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4703,11 +4704,11 @@ export namespace firebaseappcheck_v1 {
     batchGet(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchGet(
       params?: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>;
     batchGet(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4742,8 +4743,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Safetynetconfig$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4800,11 +4801,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Apps$Safetynetconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>;
     get(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4839,8 +4840,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Safetynetconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4895,11 +4896,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>;
     patch(
       params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4934,8 +4935,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Safetynetconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5036,11 +5037,11 @@ export namespace firebaseappcheck_v1 {
     batchUpdate(
       params: Params$Resource$Projects$Services$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Projects$Services$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchUpdateServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchUpdateServicesResponse>;
     batchUpdate(
       params: Params$Resource$Projects$Services$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5075,8 +5076,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchUpdateServicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchUpdateServicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5134,11 +5135,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1Service>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1Service>;
     get(
       params: Params$Resource$Projects$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5173,8 +5174,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1Service>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1Service>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5229,11 +5230,11 @@ export namespace firebaseappcheck_v1 {
     list(
       params: Params$Resource$Projects$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListServicesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5268,8 +5269,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListServicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5327,11 +5328,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1Service>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1Service>;
     patch(
       params: Params$Resource$Projects$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5366,8 +5367,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1Service>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1Service>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5480,11 +5481,11 @@ export namespace firebaseappcheck_v1 {
     batchUpdate(
       params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     batchUpdate(
       params?: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesResponse>;
     batchUpdate(
       params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5519,8 +5520,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5578,11 +5579,11 @@ export namespace firebaseappcheck_v1 {
     create(
       params: Params$Resource$Projects$Services$Resourcepolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Services$Resourcepolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
     create(
       params: Params$Resource$Projects$Services$Resourcepolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5617,8 +5618,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5677,11 +5678,11 @@ export namespace firebaseappcheck_v1 {
     delete(
       params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Services$Resourcepolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5712,8 +5713,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5767,11 +5768,11 @@ export namespace firebaseappcheck_v1 {
     get(
       params: Params$Resource$Projects$Services$Resourcepolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Services$Resourcepolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
     get(
       params: Params$Resource$Projects$Services$Resourcepolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5806,8 +5807,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5862,11 +5863,11 @@ export namespace firebaseappcheck_v1 {
     list(
       params: Params$Resource$Projects$Services$Resourcepolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Services$Resourcepolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListResourcePoliciesResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListResourcePoliciesResponse>;
     list(
       params: Params$Resource$Projects$Services$Resourcepolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5901,8 +5902,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ListResourcePoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ListResourcePoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5960,11 +5961,11 @@ export namespace firebaseappcheck_v1 {
     patch(
       params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Services$Resourcepolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
+    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>;
     patch(
       params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5999,8 +6000,8 @@ export namespace firebaseappcheck_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1ResourcePolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Services$Resourcepolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

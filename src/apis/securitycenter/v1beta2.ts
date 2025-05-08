@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5389,11 +5390,11 @@ export namespace securitycenter_v1beta2 {
     getContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContainerThreatDetectionSettings(
       params?: Params$Resource$Folders$Getcontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     getContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5428,8 +5429,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getcontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5485,11 +5486,11 @@ export namespace securitycenter_v1beta2 {
     getEventThreatDetectionSettings(
       params: Params$Resource$Folders$Geteventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEventThreatDetectionSettings(
       params?: Params$Resource$Folders$Geteventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     getEventThreatDetectionSettings(
       params: Params$Resource$Folders$Geteventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5524,8 +5525,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Geteventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5580,11 +5581,11 @@ export namespace securitycenter_v1beta2 {
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5619,8 +5620,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5676,11 +5677,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityCenterSettings(
       params: Params$Resource$Folders$Getsecuritycentersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityCenterSettings(
       params?: Params$Resource$Folders$Getsecuritycentersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityCenterSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>;
     getSecurityCenterSettings(
       params: Params$Resource$Folders$Getsecuritycentersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5715,8 +5716,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityCenterSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getsecuritycentersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5769,11 +5770,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Folders$Getsecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5808,8 +5809,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getsecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5865,11 +5866,11 @@ export namespace securitycenter_v1beta2 {
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5904,8 +5905,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5961,11 +5962,11 @@ export namespace securitycenter_v1beta2 {
     getWebSecurityScannerSettings(
       params: Params$Resource$Folders$Getwebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getWebSecurityScannerSettings(
       params?: Params$Resource$Folders$Getwebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     getWebSecurityScannerSettings(
       params: Params$Resource$Folders$Getwebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6000,8 +6001,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getwebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6054,11 +6055,11 @@ export namespace securitycenter_v1beta2 {
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContainerThreatDetectionSettings(
       params?: Params$Resource$Folders$Updatecontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6093,8 +6094,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updatecontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6150,11 +6151,11 @@ export namespace securitycenter_v1beta2 {
     updateEventThreatDetectionSettings(
       params: Params$Resource$Folders$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateEventThreatDetectionSettings(
       params?: Params$Resource$Folders$Updateeventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     updateEventThreatDetectionSettings(
       params: Params$Resource$Folders$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6189,8 +6190,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateeventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6246,11 +6247,11 @@ export namespace securitycenter_v1beta2 {
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6285,8 +6286,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6342,11 +6343,11 @@ export namespace securitycenter_v1beta2 {
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Folders$Updatesecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6381,8 +6382,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updatesecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6438,11 +6439,11 @@ export namespace securitycenter_v1beta2 {
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6477,8 +6478,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6534,11 +6535,11 @@ export namespace securitycenter_v1beta2 {
     updateWebSecurityScannerSettings(
       params: Params$Resource$Folders$Updatewebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateWebSecurityScannerSettings(
       params?: Params$Resource$Folders$Updatewebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     updateWebSecurityScannerSettings(
       params: Params$Resource$Folders$Updatewebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6573,8 +6574,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updatewebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6780,11 +6781,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Containerthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Folders$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6819,8 +6820,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Containerthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6898,11 +6899,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Eventthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Folders$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6937,8 +6938,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7016,11 +7017,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     calculate(
       params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7055,8 +7056,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7130,11 +7131,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Securityhealthanalyticssettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     calculate(
       params: Params$Resource$Folders$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7169,8 +7170,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Securityhealthanalyticssettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7248,11 +7249,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7287,8 +7288,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7366,11 +7367,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Folders$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Folders$Websecurityscannersettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     calculate(
       params: Params$Resource$Folders$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7405,8 +7406,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Websecurityscannersettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7508,11 +7509,11 @@ export namespace securitycenter_v1beta2 {
     getContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContainerThreatDetectionSettings(
       params?: Params$Resource$Organizations$Getcontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     getContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7547,8 +7548,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getcontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7604,11 +7605,11 @@ export namespace securitycenter_v1beta2 {
     getEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Geteventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEventThreatDetectionSettings(
       params?: Params$Resource$Organizations$Geteventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     getEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Geteventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7643,8 +7644,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Geteventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7700,11 +7701,11 @@ export namespace securitycenter_v1beta2 {
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7739,8 +7740,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7796,11 +7797,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityCenterSettings(
       params: Params$Resource$Organizations$Getsecuritycentersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityCenterSettings(
       params?: Params$Resource$Organizations$Getsecuritycentersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityCenterSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>;
     getSecurityCenterSettings(
       params: Params$Resource$Organizations$Getsecuritycentersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7835,8 +7836,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityCenterSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getsecuritycentersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7889,11 +7890,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Organizations$Getsecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7928,8 +7929,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getsecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7985,11 +7986,11 @@ export namespace securitycenter_v1beta2 {
     getSubscription(
       params: Params$Resource$Organizations$Getsubscription,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSubscription(
       params?: Params$Resource$Organizations$Getsubscription,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): GaxiosResponseWithHTTP2<Schema$Subscription>;
     getSubscription(
       params: Params$Resource$Organizations$Getsubscription,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8018,7 +8019,10 @@ export namespace securitycenter_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getsubscription;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8071,11 +8075,11 @@ export namespace securitycenter_v1beta2 {
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8110,8 +8114,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8167,11 +8171,11 @@ export namespace securitycenter_v1beta2 {
     getWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Getwebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getWebSecurityScannerSettings(
       params?: Params$Resource$Organizations$Getwebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     getWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Getwebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8206,8 +8210,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getwebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8261,11 +8265,11 @@ export namespace securitycenter_v1beta2 {
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContainerThreatDetectionSettings(
       params?: Params$Resource$Organizations$Updatecontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8300,8 +8304,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatecontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8357,11 +8361,11 @@ export namespace securitycenter_v1beta2 {
     updateEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateEventThreatDetectionSettings(
       params?: Params$Resource$Organizations$Updateeventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     updateEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8396,8 +8400,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updateeventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8453,11 +8457,11 @@ export namespace securitycenter_v1beta2 {
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8492,8 +8496,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8549,11 +8553,11 @@ export namespace securitycenter_v1beta2 {
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Organizations$Updatesecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8588,8 +8592,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatesecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8645,11 +8649,11 @@ export namespace securitycenter_v1beta2 {
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8684,8 +8688,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8741,11 +8745,11 @@ export namespace securitycenter_v1beta2 {
     updateWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Updatewebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateWebSecurityScannerSettings(
       params?: Params$Resource$Organizations$Updatewebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     updateWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Updatewebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8780,8 +8784,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatewebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8995,11 +8999,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9034,8 +9038,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9113,11 +9117,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9152,8 +9156,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9231,11 +9235,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     calculate(
       params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9270,8 +9274,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9345,11 +9349,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     calculate(
       params: Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9384,8 +9388,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9463,11 +9467,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9502,8 +9506,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9581,11 +9585,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Organizations$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Organizations$Websecurityscannersettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     calculate(
       params: Params$Resource$Organizations$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9620,8 +9624,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Websecurityscannersettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9719,11 +9723,11 @@ export namespace securitycenter_v1beta2 {
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContainerThreatDetectionSettings(
       params?: Params$Resource$Projects$Getcontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9758,8 +9762,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getcontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9815,11 +9819,11 @@ export namespace securitycenter_v1beta2 {
     getEventThreatDetectionSettings(
       params: Params$Resource$Projects$Geteventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getEventThreatDetectionSettings(
       params?: Params$Resource$Projects$Geteventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     getEventThreatDetectionSettings(
       params: Params$Resource$Projects$Geteventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9854,8 +9858,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Geteventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9910,11 +9914,11 @@ export namespace securitycenter_v1beta2 {
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     getRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9949,8 +9953,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10006,11 +10010,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityCenterSettings(
       params: Params$Resource$Projects$Getsecuritycentersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityCenterSettings(
       params?: Params$Resource$Projects$Getsecuritycentersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityCenterSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>;
     getSecurityCenterSettings(
       params: Params$Resource$Projects$Getsecuritycentersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10045,8 +10049,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityCenterSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityCenterSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getsecuritycentersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10099,11 +10103,11 @@ export namespace securitycenter_v1beta2 {
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Projects$Getsecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Getsecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10138,8 +10142,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getsecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10195,11 +10199,11 @@ export namespace securitycenter_v1beta2 {
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     getVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10234,8 +10238,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10291,11 +10295,11 @@ export namespace securitycenter_v1beta2 {
     getWebSecurityScannerSettings(
       params: Params$Resource$Projects$Getwebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getWebSecurityScannerSettings(
       params?: Params$Resource$Projects$Getwebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     getWebSecurityScannerSettings(
       params: Params$Resource$Projects$Getwebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10330,8 +10334,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getwebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10384,11 +10388,11 @@ export namespace securitycenter_v1beta2 {
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContainerThreatDetectionSettings(
       params?: Params$Resource$Projects$Updatecontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10423,8 +10427,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatecontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10480,11 +10484,11 @@ export namespace securitycenter_v1beta2 {
     updateEventThreatDetectionSettings(
       params: Params$Resource$Projects$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateEventThreatDetectionSettings(
       params?: Params$Resource$Projects$Updateeventthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     updateEventThreatDetectionSettings(
       params: Params$Resource$Projects$Updateeventthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10519,8 +10523,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateeventthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10576,11 +10580,11 @@ export namespace securitycenter_v1beta2 {
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateRapidVulnerabilityDetectionSettings(
       params?: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     updateRapidVulnerabilityDetectionSettings(
       params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10615,8 +10619,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10672,11 +10676,11 @@ export namespace securitycenter_v1beta2 {
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateSecurityHealthAnalyticsSettings(
       params?: Params$Resource$Projects$Updatesecurityhealthanalyticssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Updatesecurityhealthanalyticssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10711,8 +10715,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatesecurityhealthanalyticssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10768,11 +10772,11 @@ export namespace securitycenter_v1beta2 {
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateVirtualMachineThreatDetectionSettings(
       params?: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     updateVirtualMachineThreatDetectionSettings(
       params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10807,8 +10811,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10864,11 +10868,11 @@ export namespace securitycenter_v1beta2 {
     updateWebSecurityScannerSettings(
       params: Params$Resource$Projects$Updatewebsecurityscannersettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateWebSecurityScannerSettings(
       params?: Params$Resource$Projects$Updatewebsecurityscannersettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     updateWebSecurityScannerSettings(
       params: Params$Resource$Projects$Updatewebsecurityscannersettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10903,8 +10907,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatewebsecurityscannersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11111,11 +11115,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Containerthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Projects$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11150,8 +11154,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Containerthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11229,11 +11233,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Eventthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Projects$Eventthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11268,8 +11272,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11361,11 +11365,11 @@ export namespace securitycenter_v1beta2 {
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContainerThreatDetectionSettings(
       params?: Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11400,8 +11404,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11457,11 +11461,11 @@ export namespace securitycenter_v1beta2 {
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     updateContainerThreatDetectionSettings(
       params?: Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11496,8 +11500,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11584,11 +11588,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContainerThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11623,8 +11627,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContainerThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContainerThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11702,11 +11706,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>;
     calculate(
       params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11741,8 +11745,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11816,11 +11820,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Securityhealthanalyticssettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>;
     calculate(
       params: Params$Resource$Projects$Securityhealthanalyticssettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11855,8 +11859,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityHealthAnalyticsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SecurityHealthAnalyticsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Securityhealthanalyticssettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11934,11 +11938,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>;
     calculate(
       params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11973,8 +11977,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12052,11 +12056,11 @@ export namespace securitycenter_v1beta2 {
     calculate(
       params: Params$Resource$Projects$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     calculate(
       params?: Params$Resource$Projects$Websecurityscannersettings$Calculate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WebSecurityScannerSettings>;
+    ): GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>;
     calculate(
       params: Params$Resource$Projects$Websecurityscannersettings$Calculate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12091,8 +12095,8 @@ export namespace securitycenter_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WebSecurityScannerSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WebSecurityScannerSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Websecurityscannersettings$Calculate;
       let options = (optionsOrCallback || {}) as MethodOptions;

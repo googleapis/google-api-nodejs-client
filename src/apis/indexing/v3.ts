@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -185,11 +186,11 @@ export namespace indexing_v3 {
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getMetadata(
       params?: Params$Resource$Urlnotifications$Getmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlNotificationMetadata>;
+    ): GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>;
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -224,8 +225,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UrlNotificationMetadata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -280,11 +281,11 @@ export namespace indexing_v3 {
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     publish(
       params?: Params$Resource$Urlnotifications$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublishUrlNotificationResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>;
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -319,8 +320,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PublishUrlNotificationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;

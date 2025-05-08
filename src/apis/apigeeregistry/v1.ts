@@ -24,6 +24,7 @@ import {
   UserRefreshClient,
   BaseExternalAccountClient,
   GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -837,11 +838,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): GaxiosResponseWithHTTP2<Schema$Location>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -870,7 +871,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -923,11 +927,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -960,8 +964,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1063,11 +1067,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Api>;
+    ): GaxiosResponseWithHTTP2<Schema$Api>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1096,7 +1100,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Api> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Api>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1149,11 +1156,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1182,7 +1189,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1235,11 +1245,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Api>;
+    ): GaxiosResponseWithHTTP2<Schema$Api>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1268,7 +1278,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Api> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Api>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1321,11 +1334,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1354,7 +1367,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1410,11 +1426,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApisResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApisResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1443,7 +1459,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListApisResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListApisResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListApisResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1496,11 +1515,11 @@ export namespace apigeeregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Api>;
+    ): GaxiosResponseWithHTTP2<Schema$Api>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1529,7 +1548,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Api> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Api>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1582,11 +1604,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1615,7 +1637,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1671,11 +1696,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1710,8 +1735,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1888,11 +1913,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1921,7 +1946,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1977,11 +2005,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2010,7 +2038,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2063,11 +2094,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2096,7 +2127,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2149,11 +2183,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2182,7 +2216,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2239,11 +2276,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2272,7 +2309,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2329,11 +2369,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2366,8 +2406,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2423,11 +2463,11 @@ export namespace apigeeregistry_v1 {
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     replaceArtifact(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2456,7 +2496,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Replaceartifact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2510,11 +2553,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2543,7 +2586,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2600,11 +2646,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2639,8 +2685,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2817,11 +2863,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2850,7 +2896,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2907,11 +2956,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2940,7 +2989,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2994,11 +3046,11 @@ export namespace apigeeregistry_v1 {
     deleteRevision(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteRevision(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     deleteRevision(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3027,7 +3079,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3084,11 +3139,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3117,7 +3172,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3170,11 +3228,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3203,7 +3261,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3260,11 +3321,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiDeploymentsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiDeploymentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3299,8 +3360,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListApiDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3356,11 +3417,11 @@ export namespace apigeeregistry_v1 {
     listRevisions(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listRevisions(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiDeploymentRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiDeploymentRevisionsResponse>;
     listRevisions(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3395,8 +3456,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiDeploymentRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListApiDeploymentRevisionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3455,11 +3516,11 @@ export namespace apigeeregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3488,7 +3549,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3542,11 +3606,11 @@ export namespace apigeeregistry_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     rollback(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3575,7 +3639,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3632,11 +3699,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3665,7 +3732,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3722,11 +3792,11 @@ export namespace apigeeregistry_v1 {
     tagRevision(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     tagRevision(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiDeployment>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiDeployment>;
     tagRevision(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3755,7 +3825,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Tagrevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3812,11 +3885,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3851,8 +3924,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4079,11 +4152,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4112,7 +4185,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4169,11 +4245,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4202,7 +4278,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4256,11 +4335,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4289,7 +4368,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4343,11 +4425,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4376,7 +4458,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4433,11 +4518,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4470,8 +4555,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4528,11 +4613,11 @@ export namespace apigeeregistry_v1 {
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     replaceArtifact(
       params?: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4561,7 +4646,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Replaceartifact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4703,11 +4791,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiVersion>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4736,7 +4824,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4792,11 +4883,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4825,7 +4916,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4878,11 +4972,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiVersion>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4911,7 +5005,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4964,11 +5061,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4997,7 +5094,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5054,11 +5154,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiVersionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiVersionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5091,8 +5191,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListApiVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5148,11 +5248,11 @@ export namespace apigeeregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiVersion>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiVersion>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5181,7 +5281,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5234,11 +5337,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5267,7 +5370,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5324,11 +5430,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5363,8 +5469,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,11 +5647,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5574,7 +5680,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5631,11 +5740,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5664,7 +5773,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5718,11 +5830,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5751,7 +5863,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5805,11 +5920,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5838,7 +5953,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5895,11 +6013,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5928,7 +6046,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5985,11 +6106,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6022,8 +6143,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6080,11 +6201,11 @@ export namespace apigeeregistry_v1 {
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     replaceArtifact(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6113,7 +6234,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Replaceartifact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6167,11 +6291,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6200,7 +6324,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6257,11 +6384,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6296,8 +6423,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6474,11 +6601,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6507,7 +6634,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6564,11 +6694,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6597,7 +6727,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6651,11 +6784,11 @@ export namespace apigeeregistry_v1 {
     deleteRevision(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     deleteRevision(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     deleteRevision(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6684,7 +6817,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6741,11 +6877,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6774,7 +6910,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6828,11 +6967,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6861,7 +7000,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6918,11 +7060,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6951,7 +7093,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7008,11 +7153,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiSpecsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiSpecsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7045,8 +7190,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiSpecsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListApiSpecsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7103,11 +7248,11 @@ export namespace apigeeregistry_v1 {
     listRevisions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     listRevisions(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiSpecRevisionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListApiSpecRevisionsResponse>;
     listRevisions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7142,8 +7287,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiSpecRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListApiSpecRevisionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7202,11 +7347,11 @@ export namespace apigeeregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     patch(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7235,7 +7380,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7289,11 +7437,11 @@ export namespace apigeeregistry_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     rollback(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     rollback(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7322,7 +7470,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7379,11 +7530,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7412,7 +7563,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7469,11 +7623,11 @@ export namespace apigeeregistry_v1 {
     tagRevision(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     tagRevision(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiSpec>;
+    ): GaxiosResponseWithHTTP2<Schema$ApiSpec>;
     tagRevision(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7502,7 +7656,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiSpec> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ApiSpec>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Tagrevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7559,11 +7716,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7598,8 +7755,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7833,11 +7990,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7866,7 +8023,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7923,11 +8083,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7956,7 +8116,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8010,11 +8173,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8043,7 +8206,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8097,11 +8263,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8130,7 +8296,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8187,11 +8356,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8220,7 +8389,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8277,11 +8449,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8314,8 +8486,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8372,11 +8544,11 @@ export namespace apigeeregistry_v1 {
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     replaceArtifact(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8405,7 +8577,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Replaceartifact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8459,11 +8634,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8492,7 +8667,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8549,11 +8727,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8588,8 +8766,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8761,11 +8939,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Artifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Artifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     create(
       params: Params$Resource$Projects$Locations$Artifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8794,7 +8972,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8850,11 +9031,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Artifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Artifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Artifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8883,7 +9064,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8936,11 +9120,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Artifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Artifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     get(
       params: Params$Resource$Projects$Locations$Artifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8969,7 +9153,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9022,11 +9209,11 @@ export namespace apigeeregistry_v1 {
     getContents(
       params: Params$Resource$Projects$Locations$Artifacts$Getcontents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getContents(
       params?: Params$Resource$Projects$Locations$Artifacts$Getcontents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
     getContents(
       params: Params$Resource$Projects$Locations$Artifacts$Getcontents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9055,7 +9242,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Getcontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9111,11 +9301,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Artifacts$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Artifacts$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Artifacts$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9144,7 +9334,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9201,11 +9394,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Artifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Artifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListArtifactsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Artifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9238,8 +9431,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListArtifactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9295,11 +9488,11 @@ export namespace apigeeregistry_v1 {
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Artifacts$Replaceartifact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     replaceArtifact(
       params?: Params$Resource$Projects$Locations$Artifacts$Replaceartifact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Artifact>;
+    ): GaxiosResponseWithHTTP2<Schema$Artifact>;
     replaceArtifact(
       params: Params$Resource$Projects$Locations$Artifacts$Replaceartifact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9328,7 +9521,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Artifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Artifact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Replaceartifact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9382,11 +9578,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Artifacts$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Artifacts$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Artifacts$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9415,7 +9611,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9472,11 +9671,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Artifacts$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Artifacts$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Artifacts$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9511,8 +9710,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Artifacts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9684,11 +9883,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Documents$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Documents$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Documents$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9717,7 +9916,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9774,11 +9976,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Documents$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Documents$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Documents$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9807,7 +10009,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9864,11 +10069,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Documents$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Documents$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Documents$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9903,8 +10108,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10004,11 +10209,11 @@ export namespace apigeeregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     create(
       params?: Params$Resource$Projects$Locations$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10037,7 +10242,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10093,11 +10301,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10126,7 +10334,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10179,11 +10390,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): GaxiosResponseWithHTTP2<Schema$Instance>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10212,7 +10423,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Instance>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10265,11 +10479,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10298,7 +10512,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10355,11 +10572,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Instances$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10388,7 +10605,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10445,11 +10665,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10484,8 +10704,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10615,11 +10835,11 @@ export namespace apigeeregistry_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10648,7 +10868,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10701,11 +10924,11 @@ export namespace apigeeregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosResponseWithHTTP2<Schema$Empty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10734,7 +10957,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10787,11 +11013,11 @@ export namespace apigeeregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosResponseWithHTTP2<Schema$Operation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10820,7 +11046,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10873,11 +11102,11 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10910,8 +11139,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11020,11 +11249,11 @@ export namespace apigeeregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Runtime$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Runtime$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Runtime$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11053,7 +11282,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runtime$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11109,11 +11341,11 @@ export namespace apigeeregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Runtime$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Runtime$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): GaxiosResponseWithHTTP2<Schema$Policy>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Runtime$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11142,7 +11374,10 @@ export namespace apigeeregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runtime$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11198,11 +11433,11 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Runtime$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): GaxiosResponseWithHTTP2<Readable>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Runtime$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Runtime$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11237,8 +11472,8 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runtime$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
