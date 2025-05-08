@@ -462,8 +462,8 @@ export namespace merchantapi_ordertracking_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Ordertrackingsignals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

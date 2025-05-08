@@ -5832,8 +5832,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5929,8 +5929,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6026,8 +6026,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Bulkuploadfeedbacklabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6123,8 +6123,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getencryptionspec;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6218,8 +6220,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6313,8 +6317,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Listallfeedbacklabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6411,8 +6417,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Querymetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6507,8 +6513,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6707,8 +6715,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Analysisrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6801,8 +6811,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Analysisrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6894,8 +6904,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Analysisrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6989,8 +7001,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Analysisrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7087,8 +7101,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AnalysisRule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Analysisrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7269,8 +7285,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7396,8 +7412,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Bulkanalyze;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7493,8 +7509,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Calculatestats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7587,8 +7605,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7681,8 +7699,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7777,8 +7797,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7956,8 +7978,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8049,8 +8071,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8143,8 +8165,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8239,8 +8263,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Analyses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8391,8 +8417,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8486,8 +8514,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8580,8 +8608,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8676,8 +8706,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8775,8 +8807,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Feedbacklabels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8940,8 +8974,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9034,8 +9068,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9128,8 +9162,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9277,8 +9313,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Bulkanalyze;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9374,8 +9410,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Bulkdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9471,8 +9507,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Calculatestats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9569,8 +9607,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9663,8 +9703,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9756,8 +9796,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9851,8 +9893,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Ingest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9947,8 +9989,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10045,8 +10089,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10140,8 +10186,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10384,8 +10430,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Analyses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10477,8 +10523,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Analyses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10571,8 +10617,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Analyses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10667,8 +10715,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Analyses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10819,8 +10869,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10914,8 +10966,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11008,8 +11060,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11104,8 +11158,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Feedbacklabels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11203,8 +11259,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Conversations$Feedbacklabels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11386,8 +11444,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11480,8 +11540,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11574,8 +11634,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Conversation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11670,8 +11732,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Ingest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11767,8 +11829,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Conversations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11947,8 +12011,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Insightsdata$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12064,8 +12128,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Encryptionspec$Initialize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12181,8 +12245,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insightsdata$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12301,8 +12365,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Calculateissuemodelstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12399,8 +12465,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12495,8 +12561,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12588,8 +12654,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Deploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12681,8 +12747,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12774,8 +12840,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12869,8 +12937,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12965,8 +13033,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssueModelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssueModelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13063,8 +13133,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1IssueModel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13158,8 +13230,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Undeploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13366,8 +13438,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13459,8 +13531,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13553,8 +13625,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13649,8 +13723,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssuesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListIssuesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13748,8 +13824,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Issue>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13897,8 +13975,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13990,8 +14068,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14083,8 +14161,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14222,8 +14302,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasematchers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14316,8 +14398,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasematchers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14409,8 +14491,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasematchers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14504,8 +14588,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasematchers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14602,8 +14688,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasematchers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14770,8 +14858,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14864,8 +14954,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14957,8 +15047,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15052,8 +15144,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15150,8 +15244,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15323,8 +15419,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15418,8 +15516,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15512,8 +15610,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Deploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15608,8 +15708,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15704,8 +15806,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15803,8 +15907,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15900,8 +16004,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaScorecardRevision>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Undeploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16096,8 +16202,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16191,8 +16299,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16285,8 +16393,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16381,8 +16491,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16480,8 +16592,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1QaQuestion>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Qascorecards$Revisions$Qaquestions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16645,8 +16759,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16739,8 +16855,8 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16832,8 +16948,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16927,8 +17045,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListViewsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListViewsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17025,8 +17145,10 @@ export namespace contactcenterinsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1View>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -378,8 +378,10 @@ export namespace fcmdata_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Deliverydata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

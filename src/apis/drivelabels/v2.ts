@@ -1748,8 +1748,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1837,8 +1837,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1928,8 +1928,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Delta;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2021,8 +2023,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2117,8 +2119,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2210,8 +2212,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2303,8 +2305,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2396,8 +2400,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2492,8 +2496,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Updatelabelcopymode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2589,8 +2593,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Updatepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2847,8 +2853,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Locks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2965,8 +2973,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3060,8 +3068,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3157,8 +3167,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3250,8 +3262,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3342,8 +3354,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3523,8 +3537,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Updatepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3644,8 +3660,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Locks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3762,8 +3780,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3857,8 +3875,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3954,8 +3974,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4047,8 +4069,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4139,8 +4161,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4314,8 +4338,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelLimits>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelLimits>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Limits$Getlabel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4421,8 +4447,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2UserCapabilities>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2UserCapabilities>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Getcapabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;

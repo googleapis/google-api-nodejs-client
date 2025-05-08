@@ -240,8 +240,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -330,8 +330,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Reader>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reader>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -422,8 +422,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Getentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -514,8 +514,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Updateentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;
