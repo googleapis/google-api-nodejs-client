@@ -2925,7 +2925,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250502",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2969,6 +2969,36 @@
         "spokeUri": {
           "description": "Required. The URI of the spoke to accept update.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AllocationOptions": {
+      "description": "Range auto-allocation options, to be optionally used when CIDR block is not explicitly set.",
+      "id": "AllocationOptions",
+      "properties": {
+        "allocationStrategy": {
+          "description": "Optional. Allocation strategy Not setting this field when the allocation is requested means an implementation defined strategy is used.",
+          "enum": [
+            "ALLOCATION_STRATEGY_UNSPECIFIED",
+            "RANDOM",
+            "FIRST_AVAILABLE",
+            "RANDOM_FIRST_N_AVAILABLE",
+            "FIRST_SMALLEST_FITTING"
+          ],
+          "enumDescriptions": [
+            "Unspecified strategy must be used when the range is specified explicitly using ip_cidr_range field. Othherwise unspefified means using the default strategy.",
+            "Random strategy, the legacy algorithm, used for backwards compatibility. This allocation strategy remains efficient in the case of concurrent allocation requests in the same peered network space and doesn't require providing the level of concurrency in an explicit parameter, but it is prone to fragmenting available address space.",
+            "Pick the first available address range. This strategy is deterministic and the result is easy to predict.",
+            "Pick an arbitrary range out of the first N available ones. The N will be set in the first_available_ranges_lookup_size field. This strategy should be used when concurrent allocation requests are made in the same space of peered networks while the fragmentation of the addrress space is reduced.",
+            "Pick the smallest but fitting available range. This deterministic strategy minimizes fragmentation of the address space."
+          ],
+          "type": "string"
+        },
+        "firstAvailableRangesLookupSize": {
+          "description": "Optional. This field must be set only when allocation_strategy is set to RANDOM_FIRST_N_AVAILABLE. The value should be the maximum expected parallelism of range creation requests issued to the same space of peered netwroks.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3646,6 +3676,10 @@
       "description": "The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characteristics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.",
       "id": "InternalRange",
       "properties": {
+        "allocationOptions": {
+          "$ref": "AllocationOptions",
+          "description": "Optional. Range auto-allocation options, may be set only when auto-allocation is selected by not setting ip_cidr_range (and setting prefix_length)."
+        },
         "createTime": {
           "description": "Time when the internal range was created.",
           "format": "google-datetime",
@@ -4411,6 +4445,21 @@
       },
       "type": "object"
     },
+    "NextHopSpoke": {
+      "description": "A route next hop that leads to a spoke resource.",
+      "id": "NextHopSpoke",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this spoke resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations). Whether this route is accessible to other hybrid spokes with site-to-site data transfer enabled. If this is false, the route is only accessible to VPC spokes of the connected Hub.",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the spoke resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NextHopVPNTunnel": {
       "description": "A route next hop that leads to a VPN tunnel resource.",
       "id": "NextHopVPNTunnel",
@@ -5006,6 +5055,10 @@
         "nextHopRouterApplianceInstance": {
           "$ref": "NextHopRouterApplianceInstance",
           "description": "Immutable. The next-hop Router appliance instance for packets on this route."
+        },
+        "nextHopSpoke": {
+          "$ref": "NextHopSpoke",
+          "description": "Immutable. The next-hop spoke for packets on this route."
         },
         "nextHopVpcNetwork": {
           "$ref": "NextHopVpcNetwork",
