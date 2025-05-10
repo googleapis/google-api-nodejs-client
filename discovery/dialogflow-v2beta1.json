@@ -8602,7 +8602,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250508",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -18159,6 +18159,10 @@
         },
         "generatorName": {
           "description": "The resource name of the existing created generator. Format: `projects//locations//generators/`",
+          "type": "string"
+        },
+        "securitySettings": {
+          "description": "Optional. Name of the CX SecuritySettings which is used to redact generated response. If this field is empty, try to fetch v2 security_settings, which is a project level setting. If this field is empty and no v2 security_settings set up in this project, no redaction will be done. Format: `projects//locations//securitySettings/`.",
           "type": "string"
         },
         "triggerEvents": {
