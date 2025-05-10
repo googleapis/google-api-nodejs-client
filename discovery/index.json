@@ -3141,6 +3141,36 @@
       "version": "v1"
     },
     {
+      "description": "Firebase App Hosting streamlines the development and deployment of dynamic Next.js and Angular applications, offering built-in framework support, GitHub integration, and integration with other Firebase products. You can use this API to intervene in the Firebase App Hosting build process and add custom functionality not supported in our default Console & CLI flows, including triggering builds from external CI/CD workflows or deploying from pre-built container images.",
+      "discoveryRestUrl": "https://firebaseapphosting.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://firebase.google.com/docs/app-hosting",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "firebaseapphosting:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "firebaseapphosting",
+      "preferred": false,
+      "title": "Firebase App Hosting API",
+      "version": "v1beta"
+    },
+    {
+      "description": "Firebase App Hosting streamlines the development and deployment of dynamic Next.js and Angular applications, offering built-in framework support, GitHub integration, and integration with other Firebase products. You can use this API to intervene in the Firebase App Hosting build process and add custom functionality not supported in our default Console & CLI flows, including triggering builds from external CI/CD workflows or deploying from pre-built container images.",
+      "discoveryRestUrl": "https://firebaseapphosting.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://firebase.google.com/docs/app-hosting",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "firebaseapphosting:v1",
+      "kind": "discovery#directoryItem",
+      "name": "firebaseapphosting",
+      "preferred": true,
+      "title": "Firebase App Hosting API",
+      "version": "v1"
+    },
+    {
       "description": "The Firebase Realtime Database API enables programmatic provisioning and management of Realtime Database instances.",
       "discoveryRestUrl": "https://firebasedatabase.googleapis.com/$discovery/rest?version=v1beta",
       "documentationLink": "https://firebase.google.com/docs/reference/rest/database/database-management/rest/",
@@ -4282,6 +4312,21 @@
     },
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=issueresolution_v1beta",
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "merchantapi:issueresolution_v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "merchantapi",
+      "preferred": false,
+      "title": "Merchant API",
+      "version": "issueresolution_v1beta"
+    },
+    {
+      "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=lfp_v1beta",
       "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
       "icons": {
@@ -4309,6 +4354,21 @@
       "preferred": false,
       "title": "Merchant API",
       "version": "notifications_v1beta"
+    },
+    {
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=ordertracking_v1beta",
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "merchantapi:ordertracking_v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "merchantapi",
+      "preferred": false,
+      "title": "Merchant API",
+      "version": "ordertracking_v1beta"
     },
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
