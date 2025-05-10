@@ -1748,6 +1748,34 @@
               "resources": {
                 "conversations": {
                   "methods": {
+                    "calculateStats": {
+                      "description": "Gets conversation statistics.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:calculateStats",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.calculateStats",
+                      "parameterOrder": [
+                        "location"
+                      ],
+                      "parameters": {
+                        "location": {
+                          "description": "Required. The location of the conversations.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+location}/conversations:calculateStats",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1CalculateStatsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1CalculateStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "delete": {
                       "description": "Deletes a conversation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}",
@@ -3377,7 +3405,7 @@
       }
     }
   },
-  "revision": "20250428",
+  "revision": "20250505",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -4160,6 +4188,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1CalculateStatsRequest": {
+      "description": "The request for calculating conversation statistics.",
+      "id": "GoogleCloudContactcenterinsightsV1CalculateStatsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1CalculateStatsResponse": {
       "description": "The response for calculating conversation statistics.",
       "id": "GoogleCloudContactcenterinsightsV1CalculateStatsResponse",
@@ -4862,6 +4901,27 @@
         },
         "parent": {
           "description": "Required. The parent resource of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Dataset": {
+      "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
+      "id": "GoogleCloudContactcenterinsightsV1Dataset",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dataset create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Dataset description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
           "type": "string"
         }
       },
@@ -7248,6 +7308,112 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadata": {
+      "description": "The metadata for an SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during sample conversations to dataset operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetRequest",
+          "description": "Output only. The original request for sample conversations to dataset.",
+          "readOnly": true
+        },
+        "sampleConversationsToDatasetStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats",
+          "description": "Output only. Statistics for SampleConversationsToDataset operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats": {
+      "description": "Statistics for SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats",
+      "properties": {
+        "failedSampleCount": {
+          "description": "Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulSampleCount": {
+          "description": "Output only. The number of new conversations added during this sample operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetRequest": {
+      "description": "The request to sample conversations to a dataset.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetRequest",
+      "properties": {
+        "destinationDataset": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Dataset",
+          "description": "Required. The dataset resource to copy the conversations to."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the dataset.",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleRule",
+          "description": "Optional. The sample rule used for sampling conversations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetResponse": {
+      "description": "The response to an SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleRule": {
+      "description": "Message for sampling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleRule",
+      "properties": {
+        "conversationFilter": {
+          "description": "To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.",
+          "type": "string"
+        },
+        "samplePercentage": {
+          "description": "Percentage of conversations that we should sample based on the dimension between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "sampleRow": {
+          "description": "Number of the conversations that we should sample based on the dimension.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1SentimentData": {
       "description": "The data for a sentiment annotation.",
       "id": "GoogleCloudContactcenterinsightsV1SentimentData",
@@ -8659,6 +8825,27 @@
         },
         "parent": {
           "description": "Required. The parent resource of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1Dataset": {
+      "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1Dataset",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dataset create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Dataset description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
           "type": "string"
         }
       },
@@ -10435,6 +10622,112 @@
             "The query is from agents.",
             "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadata": {
+      "description": "The metadata for an SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during sample conversations to dataset operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetRequest",
+          "description": "Output only. The original request for sample conversations to dataset.",
+          "readOnly": true
+        },
+        "sampleConversationsToDatasetStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats",
+          "description": "Output only. Statistics for SampleConversationsToDataset operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats": {
+      "description": "Statistics for SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats",
+      "properties": {
+        "failedSampleCount": {
+          "description": "Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulSampleCount": {
+          "description": "Output only. The number of new conversations added during this sample operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetRequest": {
+      "description": "The request to sample conversations to a dataset.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetRequest",
+      "properties": {
+        "destinationDataset": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1Dataset",
+          "description": "Required. The dataset resource to copy the conversations to."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the dataset.",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleRule",
+          "description": "Optional. The sample rule used for sampling conversations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetResponse": {
+      "description": "The response to an SampleConversationsToDataset operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleRule": {
+      "description": "Message for sampling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleRule",
+      "properties": {
+        "conversationFilter": {
+          "description": "To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.",
+          "type": "string"
+        },
+        "samplePercentage": {
+          "description": "Percentage of conversations that we should sample based on the dimension between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "sampleRow": {
+          "description": "Number of the conversations that we should sample based on the dimension.",
+          "format": "int64",
           "type": "string"
         }
       },
