@@ -1070,10 +1070,6 @@ export namespace retail_v2alpha {
      * The proposed refined search queries. They can be used to fetch the relevant search results. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.
      */
     refinedSearch?: Schema$GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch[];
-    /**
-     * This field is deprecated. Please find the refinded_query from search response when using CONVERSATIONAL_FILTER_ONLY mode in ConversationalSearchResponse.refined_search instead. The rephrased query based on the user's query and the conversation history. It can be used to fetch the relevant search results.
-     */
-    rephrasedQuery?: string | null;
   }
   /**
    * This field specifies all related information that is needed on client side for UI rendering of conversational filtering search.
