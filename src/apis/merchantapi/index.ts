@@ -18,8 +18,10 @@ import {merchantapi_accounts_v1beta} from './accounts_v1beta';
 import {merchantapi_conversions_v1beta} from './conversions_v1beta';
 import {merchantapi_datasources_v1beta} from './datasources_v1beta';
 import {merchantapi_inventories_v1beta} from './inventories_v1beta';
+import {merchantapi_issueresolution_v1beta} from './issueresolution_v1beta';
 import {merchantapi_lfp_v1beta} from './lfp_v1beta';
 import {merchantapi_notifications_v1beta} from './notifications_v1beta';
+import {merchantapi_ordertracking_v1beta} from './ordertracking_v1beta';
 import {merchantapi_products_v1beta} from './products_v1beta';
 import {merchantapi_promotions_v1beta} from './promotions_v1beta';
 import {merchantapi_quota_v1beta} from './quota_v1beta';
@@ -31,8 +33,10 @@ export const VERSIONS = {
   conversions_v1beta: merchantapi_conversions_v1beta.Merchantapi,
   datasources_v1beta: merchantapi_datasources_v1beta.Merchantapi,
   inventories_v1beta: merchantapi_inventories_v1beta.Merchantapi,
+  issueresolution_v1beta: merchantapi_issueresolution_v1beta.Merchantapi,
   lfp_v1beta: merchantapi_lfp_v1beta.Merchantapi,
   notifications_v1beta: merchantapi_notifications_v1beta.Merchantapi,
+  ordertracking_v1beta: merchantapi_ordertracking_v1beta.Merchantapi,
   products_v1beta: merchantapi_products_v1beta.Merchantapi,
   promotions_v1beta: merchantapi_promotions_v1beta.Merchantapi,
   quota_v1beta: merchantapi_quota_v1beta.Merchantapi,
@@ -65,6 +69,12 @@ export function merchantapi(
   options: merchantapi_inventories_v1beta.Options
 ): merchantapi_inventories_v1beta.Merchantapi;
 export function merchantapi(
+  version: 'issueresolution_v1beta'
+): merchantapi_issueresolution_v1beta.Merchantapi;
+export function merchantapi(
+  options: merchantapi_issueresolution_v1beta.Options
+): merchantapi_issueresolution_v1beta.Merchantapi;
+export function merchantapi(
   version: 'lfp_v1beta'
 ): merchantapi_lfp_v1beta.Merchantapi;
 export function merchantapi(
@@ -76,6 +86,12 @@ export function merchantapi(
 export function merchantapi(
   options: merchantapi_notifications_v1beta.Options
 ): merchantapi_notifications_v1beta.Merchantapi;
+export function merchantapi(
+  version: 'ordertracking_v1beta'
+): merchantapi_ordertracking_v1beta.Merchantapi;
+export function merchantapi(
+  options: merchantapi_ordertracking_v1beta.Options
+): merchantapi_ordertracking_v1beta.Merchantapi;
 export function merchantapi(
   version: 'products_v1beta'
 ): merchantapi_products_v1beta.Merchantapi;
@@ -112,8 +128,10 @@ export function merchantapi<
     | merchantapi_conversions_v1beta.Merchantapi
     | merchantapi_datasources_v1beta.Merchantapi
     | merchantapi_inventories_v1beta.Merchantapi
+    | merchantapi_issueresolution_v1beta.Merchantapi
     | merchantapi_lfp_v1beta.Merchantapi
     | merchantapi_notifications_v1beta.Merchantapi
+    | merchantapi_ordertracking_v1beta.Merchantapi
     | merchantapi_products_v1beta.Merchantapi
     | merchantapi_promotions_v1beta.Merchantapi
     | merchantapi_quota_v1beta.Merchantapi
@@ -130,10 +148,14 @@ export function merchantapi<
     | merchantapi_datasources_v1beta.Options
     | 'inventories_v1beta'
     | merchantapi_inventories_v1beta.Options
+    | 'issueresolution_v1beta'
+    | merchantapi_issueresolution_v1beta.Options
     | 'lfp_v1beta'
     | merchantapi_lfp_v1beta.Options
     | 'notifications_v1beta'
     | merchantapi_notifications_v1beta.Options
+    | 'ordertracking_v1beta'
+    | merchantapi_ordertracking_v1beta.Options
     | 'products_v1beta'
     | merchantapi_products_v1beta.Options
     | 'promotions_v1beta'
@@ -154,8 +176,10 @@ export {merchantapi_accounts_v1beta};
 export {merchantapi_conversions_v1beta};
 export {merchantapi_datasources_v1beta};
 export {merchantapi_inventories_v1beta};
+export {merchantapi_issueresolution_v1beta};
 export {merchantapi_lfp_v1beta};
 export {merchantapi_notifications_v1beta};
+export {merchantapi_ordertracking_v1beta};
 export {merchantapi_products_v1beta};
 export {merchantapi_promotions_v1beta};
 export {merchantapi_quota_v1beta};
