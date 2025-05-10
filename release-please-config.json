@@ -311,6 +311,7 @@
     "src/apis/areainsights": {},
     "src/apis/managedkafka": {},
     "src/apis/observability": {},
-    "src/apis/storagebatchoperations": {}
+    "src/apis/storagebatchoperations": {},
+    "src/apis/firebaseapphosting": {}
   }
 }
