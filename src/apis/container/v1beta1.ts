@@ -2384,6 +2384,15 @@ export namespace container_v1beta1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * The option enables the Kubernetes NUMA-aware Memory Manager feature. Detailed description about the feature can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/).
+   */
+  export interface Schema$MemoryManager {
+    /**
+     * Controls the memory management policy on the Node. See https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#policies The following values are allowed. * "none" * "static" The default value is 'none' if unspecified.
+     */
+    policy?: string | null;
+  }
+  /**
    * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
    */
   export interface Schema$MeshCertificates {
@@ -2836,9 +2845,17 @@ export namespace container_v1beta1 {
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     */
+    memoryManager?: Schema$MemoryManager;
+    /**
      * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
      */
     podPidsLimit?: string | null;
+    /**
+     * Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     */
+    topologyManager?: Schema$TopologyManager;
   }
   /**
    * Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
@@ -4251,6 +4268,19 @@ export namespace container_v1beta1 {
      * The time that the window first starts.
      */
     startTime?: string | null;
+  }
+  /**
+   * TopologyManager defines the configuration options for Topology Manager feature. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+   */
+  export interface Schema$TopologyManager {
+    /**
+     * Configures the strategy for resource alignment. Allowed values are: * none: the default policy, and does not perform any topology alignment. * restricted: the topology manager stores the preferred NUMA node affinity for the container, and will reject the pod if the affinity if not preferred. * best-effort: the topology manager stores the preferred NUMA node affinity for the container. If the affinity is not preferred, the topology manager will admit the pod to the node anyway. * single-numa-node: the topology manager determines if the single NUMA node affinity is possible. If it is, Topology Manager will store this and the Hint Providers can then use this information when making the resource allocation decision. If, however, this is not possible then the Topology Manager will reject the pod from the node. This will result in a pod in a Terminated state with a pod admission failure. The default policy value is 'none' if unspecified. Details about each strategy can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-policies).
+     */
+    policy?: string | null;
+    /**
+     * The Topology Manager aligns resources in following scopes: * container * pod The default scope is 'container' if unspecified. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-scopes
+     */
+    scope?: string | null;
   }
   /**
    * Configuration for Cloud TPU. This message is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.

@@ -969,6 +969,23 @@ export namespace contactcenterinsights_v1 {
     parent?: string | null;
   }
   /**
+   * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1Dataset {
+    /**
+     * Output only. Dataset create time.
+     */
+    createTime?: string | null;
+    /**
+     * Dataset description.
+     */
+    description?: string | null;
+    /**
+     * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
+     */
+    name?: string | null;
+  }
+  /**
    * Metadata for deleting an issue model.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadata {
@@ -2255,6 +2272,86 @@ export namespace contactcenterinsights_v1 {
     querySource?: string | null;
   }
   /**
+   * The metadata for an SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during sample conversations to dataset operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for sample conversations to dataset.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetRequest;
+    /**
+     * Output only. Statistics for SampleConversationsToDataset operation.
+     */
+    sampleConversationsToDatasetStats?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats;
+  }
+  /**
+   * Statistics for SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats {
+    /**
+     * Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.
+     */
+    failedSampleCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this sample operation.
+     */
+    successfulSampleCount?: number | null;
+  }
+  /**
+   * The request to sample conversations to a dataset.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetRequest {
+    /**
+     * Required. The dataset resource to copy the conversations to.
+     */
+    destinationDataset?: Schema$GoogleCloudContactcenterinsightsV1alpha1Dataset;
+    /**
+     * Required. The parent resource of the dataset.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The sample rule used for sampling conversations.
+     */
+    sampleRule?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleRule;
+  }
+  /**
+   * The response to an SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsToDatasetResponse {}
+  /**
+   * Message for sampling conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleRule {
+    /**
+     * To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.
+     */
+    dimension?: string | null;
+    /**
+     * Percentage of conversations that we should sample based on the dimension between [0, 100].
+     */
+    samplePercentage?: number | null;
+    /**
+     * Number of the conversations that we should sample based on the dimension.
+     */
+    sampleRow?: string | null;
+  }
+  /**
    * The data for a sentiment annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SentimentData {
@@ -2988,6 +3085,15 @@ export namespace contactcenterinsights_v1 {
     currentStats?: Schema$GoogleCloudContactcenterinsightsV1IssueModelLabelStats;
   }
   /**
+   * The request for calculating conversation statistics.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1CalculateStatsRequest {
+    /**
+     * A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.
+     */
+    filter?: string | null;
+  }
+  /**
    * The response for calculating conversation statistics.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse {
@@ -3518,6 +3624,23 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the issue.
      */
     parent?: string | null;
+  }
+  /**
+   * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Dataset {
+    /**
+     * Output only. Dataset create time.
+     */
+    createTime?: string | null;
+    /**
+     * Dataset description.
+     */
+    description?: string | null;
+    /**
+     * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
+     */
+    name?: string | null;
   }
   /**
    * Metadata for deleting an issue model.
@@ -5202,6 +5325,86 @@ export namespace contactcenterinsights_v1 {
      * Query source for the answer.
      */
     querySource?: string | null;
+  }
+  /**
+   * The metadata for an SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during sample conversations to dataset operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for sample conversations to dataset.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetRequest;
+    /**
+     * Output only. Statistics for SampleConversationsToDataset operation.
+     */
+    sampleConversationsToDatasetStats?: Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats;
+  }
+  /**
+   * Statistics for SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetMetadataSampleConversationsToDatasetStats {
+    /**
+     * Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.
+     */
+    failedSampleCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this sample operation.
+     */
+    successfulSampleCount?: number | null;
+  }
+  /**
+   * The request to sample conversations to a dataset.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetRequest {
+    /**
+     * Required. The dataset resource to copy the conversations to.
+     */
+    destinationDataset?: Schema$GoogleCloudContactcenterinsightsV1Dataset;
+    /**
+     * Required. The parent resource of the dataset.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The sample rule used for sampling conversations.
+     */
+    sampleRule?: Schema$GoogleCloudContactcenterinsightsV1SampleRule;
+  }
+  /**
+   * The response to an SampleConversationsToDataset operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsToDatasetResponse {}
+  /**
+   * Message for sampling conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleRule {
+    /**
+     * To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.
+     */
+    dimension?: string | null;
+    /**
+     * Percentage of conversations that we should sample based on the dimension between [0, 100].
+     */
+    samplePercentage?: number | null;
+    /**
+     * Number of the conversations that we should sample based on the dimension.
+     */
+    sampleRow?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -11133,6 +11336,104 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Gets conversation statistics.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculateStats(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+location}/conversations:calculateStats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes a conversation.
      *
      * @param params - Parameters for request
@@ -11515,6 +11816,18 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats
+    extends StandardParameters {
+    /**
+     * Required. The location of the conversations.
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1CalculateStatsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Conversations$Delete
     extends StandardParameters {
     /**

@@ -2800,7 +2800,7 @@
       }
     }
   },
-  "revision": "20250417",
+  "revision": "20250501",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4694,11 +4694,6 @@
             "$ref": "GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch"
           },
           "type": "array"
-        },
-        "rephrasedQuery": {
-          "deprecated": true,
-          "description": "This field is deprecated. Please find the refinded_query from search response when using CONVERSATIONAL_FILTER_ONLY mode in ConversationalSearchResponse.refined_search instead. The rephrased query based on the user's query and the conversation history. It can be used to fetch the relevant search results.",
-          "type": "string"
         }
       },
       "type": "object"

@@ -164,6 +164,19 @@ export namespace networkconnectivity_v1 {
     spokeUri?: string | null;
   }
   /**
+   * Range auto-allocation options, to be optionally used when CIDR block is not explicitly set.
+   */
+  export interface Schema$AllocationOptions {
+    /**
+     * Optional. Allocation strategy Not setting this field when the allocation is requested means an implementation defined strategy is used.
+     */
+    allocationStrategy?: string | null;
+    /**
+     * Optional. This field must be set only when allocation_strategy is set to RANDOM_FIRST_N_AVAILABLE. The value should be the maximum expected parallelism of range creation requests issued to the same space of peered netwroks.
+     */
+    firstAvailableRangesLookupSize?: number | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -571,6 +584,10 @@ export namespace networkconnectivity_v1 {
    * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characteristics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
    */
   export interface Schema$InternalRange {
+    /**
+     * Optional. Range auto-allocation options, may be set only when auto-allocation is selected by not setting ip_cidr_range (and setting prefix_length).
+     */
+    allocationOptions?: Schema$AllocationOptions;
     /**
      * Time when the internal range was created.
      */
@@ -1077,6 +1094,19 @@ export namespace networkconnectivity_v1 {
      */
     vpcNetwork?: string | null;
   }
+  /**
+   * A route next hop that leads to a spoke resource.
+   */
+  export interface Schema$NextHopSpoke {
+    /**
+     * Indicates whether site-to-site data transfer is allowed for this spoke resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations). Whether this route is accessible to other hybrid spokes with site-to-site data transfer enabled. If this is false, the route is only accessible to VPC spokes of the connected Hub.
+     */
+    siteToSiteDataTransfer?: boolean | null;
+    /**
+     * The URI of the spoke resource.
+     */
+    uri?: string | null;
+  }
   export interface Schema$NextHopVpcNetwork {
     /**
      * The URI of the VPC network resource
@@ -1492,6 +1522,10 @@ export namespace networkconnectivity_v1 {
      * Immutable. The next-hop Router appliance instance for packets on this route.
      */
     nextHopRouterApplianceInstance?: Schema$NextHopRouterApplianceInstance;
+    /**
+     * Immutable. The next-hop spoke for packets on this route.
+     */
+    nextHopSpoke?: Schema$NextHopSpoke;
     /**
      * Immutable. The destination VPC network for packets on this route.
      */
