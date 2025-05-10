@@ -497,19 +497,19 @@ export namespace iam_v1 {
    */
   export interface Schema$InlineCertificateIssuanceConfig {
     /**
-     * Optional. A required mapping of a cloud region to the CA pool resource located in that region used for certificate issuance, adhering to these constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: "projects/{project\}/locations/{location\}/caPools/{ca_pool\}" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).
+     * Optional. A required mapping of a Google Cloud region to the CA pool resource located in that region. The CA pool is used for certificate issuance, adhering to the following constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: "projects/{project\}/locations/{location\}/caPools/{ca_pool\}" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).
      */
     caPools?: {[key: string]: string} | null;
     /**
-     * Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If unspecified, this will default to ECDSA_P256.
+     * Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If not specified, this will default to ECDSA_P256.
      */
     keyAlgorithm?: string | null;
     /**
-     * Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours - 30 days. If unspecified, this will be defaulted to 24 hours.
+     * Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours and 30 days. If not specified, this will be defaulted to 24 hours.
      */
     lifetime?: string | null;
     /**
-     * Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 - 80. If unspecified, this will be defaulted to 50.
+     * Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 and 80. If not specified, this will be defaulted to 50.
      */
     rotationWindowPercentage?: number | null;
   }
@@ -518,7 +518,7 @@ export namespace iam_v1 {
    */
   export interface Schema$InlineTrustConfig {
     /**
-     * Optional. Maps specific trust domains (e.g., "example.com") to their corresponding TrustStore objects, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the Trust Bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.
+     * Optional. Maps specific trust domains (e.g., "example.com") to their corresponding TrustStore, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the trust bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.
      */
     additionalTrustBundles?: {[key: string]: Schema$TrustStore} | null;
   }
@@ -860,7 +860,7 @@ export namespace iam_v1 {
      */
     allowedAudiences?: string[] | null;
     /**
-     * Required. The OIDC issuer URL. Must be an HTTPS endpoint. Used per OpenID Connect Discovery 1.0 spec to locate the provider's public keys (via `jwks_uri`) for verifying tokens like the OIDC ID token. These public key types must be 'EC' or 'RSA'.
+     * Required. The OIDC issuer URL. Must be an HTTPS endpoint. Per OpenID Connect Discovery 1.0 spec, the OIDC issuer URL is used to locate the provider's public keys (via `jwks_uri`) for verifying tokens like the OIDC ID token. These public key types must be 'EC' or 'RSA'.
      */
     issuerUri?: string | null;
     /**
@@ -1042,7 +1042,7 @@ export namespace iam_v1 {
    */
   export interface Schema$QueryGrantableRolesRequest {
     /**
-     * Required. The full resource name to query from the list of grantable roles. The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
+     * Required. Required. The full resource name to query from the list of grantable roles. The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
     fullResourceName?: string | null;
     /**
@@ -1376,15 +1376,15 @@ export namespace iam_v1 {
     pemCertificate?: string | null;
   }
   /**
-   * Trust store that contains trust anchors and optional intermediate CAs used in PKI to build trust chain and verify client's identity.
+   * Trust store that contains trust anchors and optional intermediate CAs used in PKI to build trust chain and verify a client's identity.
    */
   export interface Schema$TrustStore {
     /**
-     * Optional. Set of intermediate CA certificates used for building the trust chain to trust anchor. IMPORTANT: * Intermediate CAs are only supported when configuring x509 federation.
+     * Optional. Set of intermediate CA certificates used for building the trust chain to the trust anchor. Important: Intermediate CAs are only supported for X.509 federation.
      */
     intermediateCas?: Schema$IntermediateCA[];
     /**
-     * Required. List of Trust Anchors to be used while performing validation against a given TrustStore. The incoming end entity's certificate must be chained up to one of the trust anchors here.
+     * Required. List of trust anchors to be used while performing validation against a given TrustStore. The incoming end entity's certificate must be in the trust chain of one of the trust anchors here.
      */
     trustAnchors?: Schema$TrustAnchor[];
   }
@@ -1753,7 +1753,7 @@ export namespace iam_v1 {
    */
   export interface Schema$X509 {
     /**
-     * Required. A Trust store, use this trust store as a wrapper to config the trust anchor and optional intermediate cas to help build the trust chain for the incoming end entity certificate. Follow the x509 guidelines to define those PEM encoded certs. Only 1 trust store is currently supported.
+     * Required. A TrustStore. Use this trust store as a wrapper to config the trust anchor and optional intermediate cas to help build the trust chain for the incoming end entity certificate. Follow the X.509 guidelines to define those PEM encoded certs. Only one trust store is currently supported.
      */
     trustStore?: Schema$TrustStore;
   }
@@ -6852,7 +6852,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Gets IAM policies for one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Gets the IAM policy of a WorkloadIdentityPool.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7125,7 +7125,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Sets IAM policies on one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Sets the IAM policies on a WorkloadIdentityPool
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7214,7 +7214,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Returns the caller's permissions on one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Returns the caller's permissions on a WorkloadIdentityPool
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8527,7 +8527,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Lists all non-deleted WorkloadIdentityPoolManagedIdentitys in a namespace. If `show_deleted` is set to `true`, then deleted managed identites are also listed.
+     * Lists all non-deleted WorkloadIdentityPoolManagedIdentitys in a namespace. If `show_deleted` is set to `true`, then deleted managed identities are also listed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
