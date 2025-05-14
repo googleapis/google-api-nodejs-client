@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -195,11 +195,11 @@ export namespace realtimebidding_v1alpha {
     activate(
       params: Params$Resource$Bidders$Biddingfunctions$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Bidders$Biddingfunctions$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BiddingFunction>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>>;
     activate(
       params: Params$Resource$Bidders$Biddingfunctions$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -228,7 +228,7 @@ export namespace realtimebidding_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$BiddingFunction>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BiddingFunction> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Biddingfunctions$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -284,11 +284,11 @@ export namespace realtimebidding_v1alpha {
     archive(
       params: Params$Resource$Bidders$Biddingfunctions$Archive,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     archive(
       params?: Params$Resource$Bidders$Biddingfunctions$Archive,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BiddingFunction>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>>;
     archive(
       params: Params$Resource$Bidders$Biddingfunctions$Archive,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -317,7 +317,7 @@ export namespace realtimebidding_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$BiddingFunction>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BiddingFunction> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Biddingfunctions$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -373,11 +373,11 @@ export namespace realtimebidding_v1alpha {
     create(
       params: Params$Resource$Bidders$Biddingfunctions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Bidders$Biddingfunctions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BiddingFunction>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>>;
     create(
       params: Params$Resource$Bidders$Biddingfunctions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -406,7 +406,7 @@ export namespace realtimebidding_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$BiddingFunction>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BiddingFunction> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$BiddingFunction>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Biddingfunctions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -462,11 +462,11 @@ export namespace realtimebidding_v1alpha {
     list(
       params: Params$Resource$Bidders$Biddingfunctions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Bidders$Biddingfunctions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBiddingFunctionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBiddingFunctionsResponse>>;
     list(
       params: Params$Resource$Bidders$Biddingfunctions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -501,8 +501,8 @@ export namespace realtimebidding_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBiddingFunctionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBiddingFunctionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Biddingfunctions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

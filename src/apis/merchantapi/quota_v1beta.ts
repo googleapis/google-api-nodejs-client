@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -272,11 +272,11 @@ export namespace merchantapi_quota_v1beta {
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Quotas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQuotaGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListQuotaGroupsResponse>>;
     list(
       params: Params$Resource$Accounts$Quotas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -309,8 +309,8 @@ export namespace merchantapi_quota_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQuotaGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListQuotaGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Quotas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4377,11 +4377,11 @@ export namespace integrations_v1alpha {
     generateToken(
       params: Params$Resource$Callback$Generatetoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateToken(
       params?: Params$Resource$Callback$Generatetoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaGenerateTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaGenerateTokenResponse>>;
     generateToken(
       params: Params$Resource$Callback$Generatetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4416,8 +4416,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaGenerateTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaGenerateTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Callback$Generatetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4543,11 +4543,11 @@ export namespace integrations_v1alpha {
     enumerate(
       params: Params$Resource$Connectorplatformregions$Enumerate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enumerate(
       params?: Params$Resource$Connectorplatformregions$Enumerate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse>>;
     enumerate(
       params: Params$Resource$Connectorplatformregions$Enumerate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4582,8 +4582,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connectorplatformregions$Enumerate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4740,11 +4740,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Appsscriptprojects$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Appsscriptprojects$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse>>;
     create(
       params: Params$Resource$Projects$Locations$Appsscriptprojects$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4779,8 +4779,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appsscriptprojects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4887,11 +4887,11 @@ export namespace integrations_v1alpha {
     link(
       params: Params$Resource$Projects$Locations$Appsscriptprojects$Link,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     link(
       params?: Params$Resource$Projects$Locations$Appsscriptprojects$Link,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse>>;
     link(
       params: Params$Resource$Projects$Locations$Appsscriptprojects$Link,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4926,8 +4926,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Appsscriptprojects$Link;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5103,11 +5103,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Authconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Authconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     create(
       params: Params$Resource$Projects$Locations$Authconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5142,8 +5142,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5239,11 +5239,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Authconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Authconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Authconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5274,8 +5274,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5384,11 +5384,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Authconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Authconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Authconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5423,8 +5423,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5528,11 +5528,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Authconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Authconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Authconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5567,8 +5567,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5714,11 +5714,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Authconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Authconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     patch(
       params: Params$Resource$Projects$Locations$Authconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5753,8 +5753,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5954,11 +5954,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Certificates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>;
     get(
       params: Params$Resource$Projects$Locations$Certificates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5993,8 +5993,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6118,11 +6118,11 @@ export namespace integrations_v1alpha {
     getConnectionSchemaMetadata(
       params: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConnectionSchemaMetadata(
       params?: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata>>;
     getConnectionSchemaMetadata(
       params: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6157,8 +6157,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6263,11 +6263,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6302,8 +6302,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6450,11 +6450,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6489,8 +6489,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6627,11 +6627,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6666,8 +6666,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6799,11 +6799,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Integrations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Integrations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Integrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6834,8 +6834,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6946,11 +6946,11 @@ export namespace integrations_v1alpha {
     execute(
       params: Params$Resource$Projects$Locations$Integrations$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     execute(
       params?: Params$Resource$Projects$Locations$Integrations$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>>;
     execute(
       params: Params$Resource$Projects$Locations$Integrations$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6985,8 +6985,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7093,11 +7093,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Integrations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Integrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Integrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7132,8 +7132,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7244,11 +7244,11 @@ export namespace integrations_v1alpha {
     schedule(
       params: Params$Resource$Projects$Locations$Integrations$Schedule,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     schedule(
       params?: Params$Resource$Projects$Locations$Integrations$Schedule,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>>;
     schedule(
       params: Params$Resource$Projects$Locations$Integrations$Schedule,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7283,8 +7283,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Schedule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7491,11 +7491,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Integrations$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Integrations$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Integrations$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7530,8 +7530,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7732,11 +7732,11 @@ export namespace integrations_v1alpha {
     lift(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lift(
       params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>>;
     lift(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7771,8 +7771,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7884,11 +7884,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7923,8 +7923,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8032,11 +8032,11 @@ export namespace integrations_v1alpha {
     resolve(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>>;
     resolve(
       params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8071,8 +8071,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8280,11 +8280,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     create(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8319,8 +8319,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8418,11 +8418,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8453,8 +8453,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8551,11 +8551,11 @@ export namespace integrations_v1alpha {
     download(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>>;
     download(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8590,8 +8590,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8711,11 +8711,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8750,8 +8750,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8860,11 +8860,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Integrations$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Integrations$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8899,8 +8899,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9053,11 +9053,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     patch(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9092,8 +9092,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9194,11 +9194,11 @@ export namespace integrations_v1alpha {
     publish(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>>;
     publish(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9233,8 +9233,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9343,11 +9343,11 @@ export namespace integrations_v1alpha {
     takeoverEditLock(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Takeovereditlock,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     takeoverEditLock(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Takeovereditlock,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>>;
     takeoverEditLock(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Takeovereditlock,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9382,8 +9382,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Takeovereditlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9486,11 +9486,11 @@ export namespace integrations_v1alpha {
     unpublish(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unpublish(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     unpublish(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9521,8 +9521,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Unpublish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9630,11 +9630,11 @@ export namespace integrations_v1alpha {
     upload(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9669,8 +9669,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Integrations$Versions$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9984,11 +9984,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Authconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10023,8 +10023,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Authconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10123,11 +10123,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Authconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10158,8 +10158,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Authconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10269,11 +10269,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Authconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10308,8 +10308,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Authconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10414,11 +10414,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Authconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10453,8 +10453,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListAuthConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Authconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10601,11 +10601,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Authconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Authconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10640,8 +10640,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaAuthConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Authconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10859,11 +10859,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Certificates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Certificates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Certificates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10898,8 +10898,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Certificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10997,11 +10997,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Certificates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Certificates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Certificates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11032,8 +11032,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Certificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11135,11 +11135,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Certificates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Certificates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Certificates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11174,8 +11174,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Certificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11280,11 +11280,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Certificates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Certificates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListCertificatesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListCertificatesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Certificates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11319,8 +11319,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListCertificatesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListCertificatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Certificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11447,11 +11447,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Products$Certificates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Certificates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Certificates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11486,8 +11486,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCertificate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCertificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Certificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11665,11 +11665,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11700,8 +11700,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11814,11 +11814,11 @@ export namespace integrations_v1alpha {
     execute(
       params: Params$Resource$Projects$Locations$Products$Integrations$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     execute(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>>;
     execute(
       params: Params$Resource$Projects$Locations$Products$Integrations$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11853,8 +11853,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11962,11 +11962,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Integrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12001,8 +12001,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12115,11 +12115,11 @@ export namespace integrations_v1alpha {
     schedule(
       params: Params$Resource$Projects$Locations$Products$Integrations$Schedule,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     schedule(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Schedule,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>>;
     schedule(
       params: Params$Resource$Projects$Locations$Products$Integrations$Schedule,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12154,8 +12154,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Schedule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12330,11 +12330,11 @@ export namespace integrations_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCancelExecutionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCancelExecutionResponse>>;
     cancel(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12369,8 +12369,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCancelExecutionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaCancelExecutionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12481,11 +12481,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecution>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12520,8 +12520,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaExecution>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaExecution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12661,11 +12661,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12700,8 +12700,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12921,11 +12921,11 @@ export namespace integrations_v1alpha {
     lift(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Lift,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lift(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Lift,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>>;
     lift(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Lift,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12960,8 +12960,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Lift;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13073,11 +13073,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13112,8 +13112,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13221,11 +13221,11 @@ export namespace integrations_v1alpha {
     resolve(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>>;
     resolve(
       params: Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13260,8 +13260,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Executions$Suspensions$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13471,11 +13471,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13510,8 +13510,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13611,11 +13611,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13646,8 +13646,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13746,11 +13746,11 @@ export namespace integrations_v1alpha {
     download(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>>;
     download(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13785,8 +13785,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13907,11 +13907,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13946,8 +13946,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14057,11 +14057,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14096,8 +14096,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14249,11 +14249,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14288,8 +14288,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14392,11 +14392,11 @@ export namespace integrations_v1alpha {
     publish(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>>;
     publish(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14431,8 +14431,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14541,11 +14541,11 @@ export namespace integrations_v1alpha {
     takeoverEditLock(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Takeovereditlock,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     takeoverEditLock(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Takeovereditlock,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>>;
     takeoverEditLock(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Takeovereditlock,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14580,8 +14580,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Takeovereditlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14686,11 +14686,11 @@ export namespace integrations_v1alpha {
     unpublish(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unpublish(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     unpublish(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14721,8 +14721,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14832,11 +14832,11 @@ export namespace integrations_v1alpha {
     upload(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14871,8 +14871,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15163,11 +15163,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15202,8 +15202,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15319,11 +15319,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15358,8 +15358,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15466,11 +15466,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15505,8 +15505,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Integrationtemplates$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15681,11 +15681,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15720,8 +15720,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15819,11 +15819,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15854,8 +15854,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15957,11 +15957,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15996,8 +15996,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16104,11 +16104,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16143,8 +16143,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16270,11 +16270,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16309,8 +16309,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16507,11 +16507,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     create(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16546,8 +16546,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16647,11 +16647,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16682,8 +16682,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16788,11 +16788,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     get(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16827,8 +16827,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16937,11 +16937,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16976,8 +16976,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17105,11 +17105,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     patch(
       params: Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17144,8 +17144,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Sfdcinstances$Sfdcchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17343,11 +17343,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     create(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17382,8 +17382,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17479,11 +17479,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17514,8 +17514,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17616,11 +17616,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     get(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17655,8 +17655,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17760,11 +17760,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Sfdcinstances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Sfdcinstances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17799,8 +17799,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17924,11 +17924,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>;
     patch(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17963,8 +17963,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18158,11 +18158,11 @@ export namespace integrations_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     create(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18197,8 +18197,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18296,11 +18296,11 @@ export namespace integrations_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18331,8 +18331,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18435,11 +18435,11 @@ export namespace integrations_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     get(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18474,8 +18474,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18582,11 +18582,11 @@ export namespace integrations_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18621,8 +18621,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18748,11 +18748,11 @@ export namespace integrations_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>;
     patch(
       params: Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18787,8 +18787,8 @@ export namespace integrations_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudIntegrationsV1alphaSfdcChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sfdcinstances$Sfdcchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

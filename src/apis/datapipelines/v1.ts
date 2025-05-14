@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -614,11 +614,13 @@ export namespace datapipelines_v1 {
     create(
       params: Params$Resource$Projects$Locations$Pipelines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Pipelines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Pipelines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -653,8 +655,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -712,11 +716,11 @@ export namespace datapipelines_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Pipelines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Pipelines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -747,8 +751,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -801,11 +805,13 @@ export namespace datapipelines_v1 {
     get(
       params: Params$Resource$Projects$Locations$Pipelines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Pipelines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Pipelines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -840,8 +846,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -896,11 +904,13 @@ export namespace datapipelines_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Pipelines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Pipelines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -935,8 +945,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -994,11 +1006,13 @@ export namespace datapipelines_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Pipelines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Pipelines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Pipelines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1033,8 +1047,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1089,11 +1105,13 @@ export namespace datapipelines_v1 {
     run(
       params: Params$Resource$Projects$Locations$Pipelines$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Projects$Locations$Pipelines$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>
+    >;
     run(
       params: Params$Resource$Projects$Locations$Pipelines$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1128,8 +1146,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1184,11 +1204,13 @@ export namespace datapipelines_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Pipelines$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Projects$Locations$Pipelines$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+    >;
     stop(
       params: Params$Resource$Projects$Locations$Pipelines$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1223,8 +1245,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1372,11 +1396,13 @@ export namespace datapipelines_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1411,8 +1437,10 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

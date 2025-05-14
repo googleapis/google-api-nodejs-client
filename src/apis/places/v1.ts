@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1029,7 +1029,7 @@ export namespace places_v1 {
      */
     directionsUri?: string | null;
     /**
-     * A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to show reviews of this place on Google Maps.
      */
     photosUri?: string | null;
     /**
@@ -1037,11 +1037,11 @@ export namespace places_v1 {
      */
     placeUri?: string | null;
     /**
-     * A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to show reviews of this place on Google Maps.
      */
     reviewsUri?: string | null;
     /**
-     * A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     * A link to write a review for this place on Google Maps.
      */
     writeAReviewUri?: string | null;
   }
@@ -1226,6 +1226,10 @@ export namespace places_v1 {
      */
     flagContentUri?: string | null;
     /**
+     * A link to show reviews of this place on Google Maps.
+     */
+    reviewsUri?: string | null;
+    /**
      * The summary of user reviews.
      */
     text?: Schema$GoogleTypeLocalizedText;
@@ -1305,23 +1309,6 @@ export namespace places_v1 {
      * The localized text of the review.
      */
     text?: Schema$GoogleTypeLocalizedText;
-    /**
-     * The date when the author visited the place. This is trucated to month.
-     */
-    visitDate?: Schema$GoogleMapsPlacesV1ReviewVisitDate;
-  }
-  /**
-   * The date when the author visited the place. This is trucated to month.
-   */
-  export interface Schema$GoogleMapsPlacesV1ReviewVisitDate {
-    /**
-     * The month the author visited the place, e.g. 4. The value is between 1 and 12.
-     */
-    month?: number | null;
-    /**
-     * The year the author visited the place, e.g. 2025.
-     */
-    year?: number | null;
   }
   /**
    * Encapsulates a set of optional conditions to satisfy when calculating the routes.
@@ -1746,11 +1733,13 @@ export namespace places_v1 {
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     autocomplete(
       params?: Params$Resource$Places$Autocomplete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+    >;
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1785,8 +1774,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Autocomplete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1843,11 +1834,11 @@ export namespace places_v1 {
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Places$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1Place>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>>;
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1880,8 +1871,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1Place>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Places$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1932,11 +1923,13 @@ export namespace places_v1 {
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchNearby(
       params?: Params$Resource$Places$Searchnearby,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+    >;
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1971,8 +1964,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchnearby;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2029,11 +2024,13 @@ export namespace places_v1 {
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchText(
       params?: Params$Resource$Places$Searchtext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
+    >;
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2068,8 +2065,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchtext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2173,11 +2172,11 @@ export namespace places_v1 {
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMedia(
       params?: Params$Resource$Places$Photos$Getmedia,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>>;
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2212,8 +2211,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Photos$Getmedia;
       let options = (optionsOrCallback || {}) as MethodOptions;

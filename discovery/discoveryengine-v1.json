@@ -6869,6 +6869,85 @@
                   ]
                 }
               }
+            },
+            "userStores": {
+              "methods": {
+                "batchUpdateUserLicenses": {
+                  "description": "Updates the User License. This method is used for batch assign/unassign licenses to users.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}:batchUpdateUserLicenses",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.userStores.batchUpdateUserLicenses",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:batchUpdateUserLicenses",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "userLicenses": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the User Licenses.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userLicenses",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.userStores.userLicenses.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListUserLicenses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLicenses` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/userLicenses",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1ListUserLicensesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -6973,7 +7052,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250509",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -7453,7 +7532,8 @@
               "CUSTOMER_POLICY_VIOLATION",
               "NON_ANSWER_SEEKING_QUERY_IGNORED_V2",
               "LOW_GROUNDED_ANSWER",
-              "USER_DEFINED_CLASSIFICATION_QUERY_IGNORED"
+              "USER_DEFINED_CLASSIFICATION_QUERY_IGNORED",
+              "UNHELPFUL_ANSWER"
             ],
             "enumDescriptions": [
               "Default value. The answer skipped reason is not specified.",
@@ -7466,7 +7546,8 @@
               "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
               "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent.",
               "The low-grounded answer case. Google skips the answer if a well grounded answer was unable to be generated.",
-              "The user defined query classification ignored case. Google skips the answer if the query is classified as a user defined query classification."
+              "The user defined query classification ignored case. Google skips the answer if the query is classified as a user defined query classification.",
+              "The unhelpful answer case. Google skips the answer if the answer is not helpful. This can be due to a variety of factors, including but not limited to: the query is not answerable, the answer is not relevant to the query, or the answer is not well-formatted."
             ],
             "type": "string"
           },
@@ -8741,6 +8822,44 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest": {
+      "description": "Request message for UserLicenseService.BatchUpdateUserLicenses method.",
+      "id": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest",
+      "properties": {
+        "deleteUnassignedUserLicenses": {
+          "description": "Optional. If true, if user licenses removed associated license config, the user license will be deleted. By default which is false, the user license will be updated to unassigned state.",
+          "type": "boolean"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1GcsSource",
+          "description": "Cloud Storage location for the input content."
+        },
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource",
+          "description": "The inline source for the input content for document embeddings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource": {
+      "description": "The inline source for the input config for BatchUpdateUserLicenses method.",
+      "id": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource",
+      "properties": {
+        "updateMask": {
+          "description": "Optional. The list of fields to update.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "userLicenses": {
+          "description": "Required. A list of user licenses to update. Each user license must have a valid UserLicense.user_principal.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1UserLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1BatchVerifyTargetSitesRequest": {
       "description": "Request message for SiteSearchEngineService.BatchVerifyTargetSites method.",
       "id": "GoogleCloudDiscoveryengineV1BatchVerifyTargetSitesRequest",
@@ -9028,7 +9147,7 @@
           "type": "boolean"
         },
         "score": {
-          "description": "Confidence score for the claim in the answer candidate, in the range of [0, 1]. This is set only when enable_claim_level_score is true.",
+          "description": "Confidence score for the claim in the answer candidate, in the range of [0, 1]. This is set only when `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.",
           "format": "double",
           "type": "number"
         },
@@ -9477,7 +9596,7 @@
         },
         "promoteAction": {
           "$ref": "GoogleCloudDiscoveryengineV1ControlPromoteAction",
-          "description": "Promote certain links based on predefined trigger queries. This now only supports basic site search."
+          "description": "Promote certain links based on predefined trigger queries."
         },
         "redirectAction": {
           "$ref": "GoogleCloudDiscoveryengineV1ControlRedirectAction",
@@ -11901,6 +12020,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ListUserLicensesResponse": {
+      "description": "Response message for UserLicenseService.ListUserLicenses.",
+      "id": "GoogleCloudDiscoveryengineV1ListUserLicensesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userLicenses": {
+          "description": "All the customer's UserLicenses.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1UserLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1MediaInfo": {
       "description": "Media-specific user event information.",
       "id": "GoogleCloudDiscoveryengineV1MediaInfo",
@@ -13108,6 +13245,10 @@
         "boostSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1SearchRequestBoostSpec",
           "description": "Optional. Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)"
+        },
+        "customSearchOperators": {
+          "description": "Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).",
+          "type": "string"
         },
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
@@ -14476,6 +14617,66 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1UserLicense": {
+      "description": "User License information assigned by the admin.",
+      "id": "GoogleCloudDiscoveryengineV1UserLicense",
+      "properties": {
+        "createTime": {
+          "description": "Output only. User created timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "description": "Output only. User last logged in time. If the user has not logged in yet, this field will be empty.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseAssignmentState": {
+          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
+          "enum": [
+            "LICENSE_ASSIGNMENT_STATE_UNSPECIFIED",
+            "ASSIGNED",
+            "UNASSIGNED",
+            "NO_LICENSE",
+            "NO_LICENSE_ATTEMPTED_LOGIN"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "License assigned to the user.",
+            "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
+            "No license assigned to the user.",
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseConfig": {
+          "description": "Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. User update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "user": {
+          "description": "Optional. The full resource name of the User, in the format of `projects/{project}/locations/{location}/userStores/{user_store}/users/{user_id}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.",
+          "type": "string"
+        },
+        "userPrincipal": {
+          "description": "Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.",
+          "type": "string"
+        },
+        "userProfile": {
+          "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1WorkspaceConfig": {
       "description": "Config to store data store type configuration for workspace data",
       "id": "GoogleCloudDiscoveryengineV1WorkspaceConfig",
@@ -14636,7 +14837,8 @@
               "CUSTOMER_POLICY_VIOLATION",
               "NON_ANSWER_SEEKING_QUERY_IGNORED_V2",
               "LOW_GROUNDED_ANSWER",
-              "USER_DEFINED_CLASSIFICATION_QUERY_IGNORED"
+              "USER_DEFINED_CLASSIFICATION_QUERY_IGNORED",
+              "UNHELPFUL_ANSWER"
             ],
             "enumDescriptions": [
               "Default value. The answer skipped reason is not specified.",
@@ -14649,7 +14851,8 @@
               "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
               "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent.",
               "The low-grounded answer case. Google skips the answer if a well grounded answer was unable to be generated.",
-              "The user defined query classification ignored case. Google skips the answer if the query is classified as a user defined query classification."
+              "The user defined query classification ignored case. Google skips the answer if the query is classified as a user defined query classification.",
+              "The unhelpful answer case. Google skips the answer if the answer is not helpful. This can be due to a variety of factors, including but not limited to: the query is not answerable, the answer is not relevant to the query, or the answer is not well-formatted."
             ],
             "type": "string"
           },
@@ -15250,12 +15453,14 @@
             "enum": [
               "CONNECTOR_MODE_UNSPECIFIED",
               "DATA_INGESTION",
-              "ACTIONS"
+              "ACTIONS",
+              "END_USER_AUTHENTICATION"
             ],
             "enumDescriptions": [
               "Connector mode unspecified.",
               "Connector utilized for data ingestion.",
-              "Connector utilized for Actions"
+              "Connector utilized for Actions",
+              "Connector utilized for End User Authentication."
             ],
             "type": "string"
           },
@@ -15289,6 +15494,54 @@
           "description": "TargetSites created.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata": {
+      "description": "Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failureCount": {
+          "description": "Count of user licenses that failed to be updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "Count of user licenses successfully updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesResponse": {
+      "description": "Response message for UserLicenseService.BatchUpdateUserLicenses method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "userLicenses": {
+          "description": "UserLicenses successfully updated.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUserLicense"
           },
           "type": "array"
         }
@@ -15639,13 +15892,15 @@
             "SYNC_TYPE_UNSPECIFIED",
             "FULL",
             "INCREMENTAL",
-            "REALTIME"
+            "REALTIME",
+            "SCALA_SYNC"
           ],
           "enumDescriptions": [
             "Sync type unspecified.",
             "Sync triggers full sync of all documents.",
             "Incremental sync of updated documents.",
-            "Realtime sync."
+            "Realtime sync.",
+            "Scala sync."
           ],
           "type": "string"
         }
@@ -15711,7 +15966,7 @@
         },
         "promoteAction": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaControlPromoteAction",
-          "description": "Promote certain links based on predefined trigger queries. This now only supports basic site search."
+          "description": "Promote certain links based on predefined trigger queries."
         },
         "redirectAction": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaControlRedirectAction",
@@ -16037,7 +16292,7 @@
           "type": "array"
         },
         "autoRunDisabled": {
-          "description": "Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync.",
+          "description": "Optional. Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync. Update: with the introduction of incremental_sync_disabled, auto_run_disabled is used to pause/disable only full syncs",
           "type": "boolean"
         },
         "bapConfig": {
@@ -16084,7 +16339,7 @@
           "type": "array"
         },
         "connectorType": {
-          "description": "Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is notmutable once set by system.",
+          "description": "Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.",
           "enum": [
             "CONNECTOR_TYPE_UNSPECIFIED",
             "THIRD_PARTY",
@@ -16113,6 +16368,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "createEuaSaas": {
+          "description": "Optional. Whether the END USER AUTHENTICATION connector is created in SaaS.",
+          "type": "boolean"
         },
         "createTime": {
           "description": "Output only. Timestamp the DataConnector was created at.",
@@ -16159,6 +16418,15 @@
         "identityScheduleConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig",
           "description": "The configuration for the identity data synchronization runs. This contains the refresh interval to sync the Access Control List information for the documents ingested by this connector."
+        },
+        "incrementalRefreshInterval": {
+          "description": "Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "incrementalSyncDisabled": {
+          "description": "Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled.",
+          "type": "boolean"
         },
         "kmsKeyName": {
           "description": "Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.",
@@ -16270,12 +16538,14 @@
           "enum": [
             "PERIODIC",
             "STREAMING",
-            "UNSPECIFIED"
+            "UNSPECIFIED",
+            "SCALA_SYNC"
           ],
           "enumDescriptions": [
             "The connector will sync data periodically based on the refresh_interval. Use it with auto_run_disabled to pause the periodic sync, or indicate a one-time sync.",
             "The data will be synced in real time.",
-            "Connector that doesn't ingest data will have this value"
+            "Connector that doesn't ingest data will have this value",
+            "The data will be synced with Scala Sync, a data ingestion solution."
           ],
           "type": "string"
         },
@@ -19260,6 +19530,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec",
           "description": "Optional. Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)"
         },
+        "customSearchOperators": {
+          "description": "Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).",
+          "type": "string"
+        },
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
           "type": "string"
@@ -20039,6 +20313,66 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUserLicense": {
+      "description": "User License information assigned by the admin.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUserLicense",
+      "properties": {
+        "createTime": {
+          "description": "Output only. User created timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "description": "Output only. User last logged in time. If the user has not logged in yet, this field will be empty.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseAssignmentState": {
+          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
+          "enum": [
+            "LICENSE_ASSIGNMENT_STATE_UNSPECIFIED",
+            "ASSIGNED",
+            "UNASSIGNED",
+            "NO_LICENSE",
+            "NO_LICENSE_ATTEMPTED_LOGIN"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "License assigned to the user.",
+            "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
+            "No license assigned to the user.",
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseConfig": {
+          "description": "Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. User update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "user": {
+          "description": "Optional. The full resource name of the User, in the format of `projects/{project}/locations/{location}/userStores/{user_store}/users/{user_id}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.",
+          "type": "string"
+        },
+        "userPrincipal": {
+          "description": "Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.",
+          "type": "string"
+        },
+        "userProfile": {
+          "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaWorkspaceConfig": {
       "description": "Config to store data store type configuration for workspace data",
       "id": "GoogleCloudDiscoveryengineV1alphaWorkspaceConfig",
@@ -20303,7 +20637,7 @@
         },
         "promoteAction": {
           "$ref": "GoogleCloudDiscoveryengineV1betaControlPromoteAction",
-          "description": "Promote certain links based on predefined trigger queries. This now only supports basic site search."
+          "description": "Promote certain links based on predefined trigger queries."
         },
         "redirectAction": {
           "$ref": "GoogleCloudDiscoveryengineV1betaControlRedirectAction",
@@ -22697,6 +23031,10 @@
         "boostSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
           "description": "Optional. Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)"
+        },
+        "customSearchOperators": {
+          "description": "Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).",
+          "type": "string"
         },
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",

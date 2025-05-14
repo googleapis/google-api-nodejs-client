@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2012,11 +2012,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2045,7 +2045,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2097,11 +2100,11 @@ export namespace vmwareengine_v1 {
     getDnsBindPermission(
       params: Params$Resource$Projects$Locations$Getdnsbindpermission,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDnsBindPermission(
       params?: Params$Resource$Projects$Locations$Getdnsbindpermission,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DnsBindPermission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DnsBindPermission>>;
     getDnsBindPermission(
       params: Params$Resource$Projects$Locations$Getdnsbindpermission,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2134,8 +2137,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DnsBindPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DnsBindPermission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getdnsbindpermission;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2187,11 +2190,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2224,8 +2227,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2325,11 +2328,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Announcements$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Announcements$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Announcement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>;
     get(
       params: Params$Resource$Projects$Locations$Announcements$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2358,7 +2361,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Announcement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Announcement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Announcements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2410,11 +2416,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Announcements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Announcements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAnnouncementsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Announcements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2449,8 +2455,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAnnouncementsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Announcements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2543,11 +2549,11 @@ export namespace vmwareengine_v1 {
     grant(
       params: Params$Resource$Projects$Locations$Dnsbindpermission$Grant,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     grant(
       params?: Params$Resource$Projects$Locations$Dnsbindpermission$Grant,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     grant(
       params: Params$Resource$Projects$Locations$Dnsbindpermission$Grant,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2576,7 +2582,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsbindpermission$Grant;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2629,11 +2638,11 @@ export namespace vmwareengine_v1 {
     revoke(
       params: Params$Resource$Projects$Locations$Dnsbindpermission$Revoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     revoke(
       params?: Params$Resource$Projects$Locations$Dnsbindpermission$Revoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     revoke(
       params: Params$Resource$Projects$Locations$Dnsbindpermission$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2662,7 +2671,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsbindpermission$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2752,11 +2764,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Networkpeerings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Networkpeerings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Networkpeerings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2785,7 +2797,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2841,11 +2856,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Networkpeerings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Networkpeerings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Networkpeerings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2874,7 +2889,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2927,11 +2945,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Networkpeerings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Networkpeerings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NetworkPeering>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NetworkPeering>>;
     get(
       params: Params$Resource$Projects$Locations$Networkpeerings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2960,7 +2978,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$NetworkPeering>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NetworkPeering> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NetworkPeering>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3012,11 +3033,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkpeerings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Networkpeerings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNetworkPeeringsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPeeringsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Networkpeerings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3051,8 +3072,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNetworkPeeringsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPeeringsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3107,11 +3128,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Networkpeerings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Networkpeerings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Networkpeerings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3140,7 +3161,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3281,11 +3305,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPeeringRoutesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPeeringRoutesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3320,8 +3344,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPeeringRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPeeringRoutesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3409,11 +3433,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Networkpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Networkpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3442,7 +3466,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3498,11 +3525,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Networkpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Networkpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3531,7 +3558,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3584,11 +3614,13 @@ export namespace vmwareengine_v1 {
     fetchExternalAddresses(
       params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchExternalAddresses(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchNetworkPolicyExternalAddressesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchNetworkPolicyExternalAddressesResponse>
+    >;
     fetchExternalAddresses(
       params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3623,8 +3655,10 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchNetworkPolicyExternalAddressesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchNetworkPolicyExternalAddressesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3681,11 +3715,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Networkpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NetworkPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NetworkPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Networkpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3714,7 +3748,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$NetworkPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NetworkPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NetworkPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3766,11 +3803,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Networkpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNetworkPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Networkpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3805,8 +3842,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNetworkPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3861,11 +3898,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Networkpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Networkpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3894,7 +3931,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4050,11 +4090,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4083,7 +4123,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4139,11 +4182,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4172,7 +4215,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4225,11 +4271,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalAccessRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExternalAccessRule>>;
     get(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4260,8 +4306,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExternalAccessRule>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExternalAccessRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4314,11 +4360,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExternalAccessRulesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExternalAccessRulesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4353,8 +4399,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExternalAccessRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExternalAccessRulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4412,11 +4458,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4445,7 +4491,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4587,11 +4636,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Nodetypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Nodetypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NodeType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NodeType>>;
     get(
       params: Params$Resource$Projects$Locations$Nodetypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4620,7 +4669,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$NodeType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NodeType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NodeType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodetypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4672,11 +4724,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Nodetypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Nodetypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNodeTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNodeTypesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Nodetypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4709,8 +4761,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNodeTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNodeTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Nodetypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4799,11 +4851,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4832,7 +4884,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4884,11 +4939,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4917,7 +4972,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4969,11 +5027,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5006,8 +5064,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5135,11 +5193,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5168,7 +5226,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5223,11 +5284,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5256,7 +5317,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5308,11 +5372,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PrivateCloud>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PrivateCloud>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5341,7 +5405,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$PrivateCloud>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PrivateCloud> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PrivateCloud>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5393,11 +5460,11 @@ export namespace vmwareengine_v1 {
     getDnsForwarding(
       params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDnsForwarding(
       params?: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DnsForwarding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DnsForwarding>>;
     getDnsForwarding(
       params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5428,7 +5495,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$DnsForwarding>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DnsForwarding> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DnsForwarding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5481,11 +5551,11 @@ export namespace vmwareengine_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5514,7 +5584,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5570,11 +5643,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPrivateCloudsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPrivateCloudsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5609,8 +5682,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrivateCloudsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPrivateCloudsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5665,11 +5738,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5698,7 +5771,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5750,11 +5826,11 @@ export namespace vmwareengine_v1 {
     resetNsxCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetNsxCredentials(
       params?: Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetNsxCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5783,7 +5859,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5839,11 +5918,11 @@ export namespace vmwareengine_v1 {
     resetVcenterCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetVcenterCredentials(
       params?: Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetVcenterCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5874,7 +5953,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Resetvcentercredentials;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5929,11 +6011,11 @@ export namespace vmwareengine_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5962,7 +6044,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6018,11 +6103,11 @@ export namespace vmwareengine_v1 {
     showNsxCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     showNsxCredentials(
       params?: Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Credentials>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Credentials>>;
     showNsxCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6053,7 +6138,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Credentials>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Credentials> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Credentials>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Shownsxcredentials;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6109,11 +6197,11 @@ export namespace vmwareengine_v1 {
     showVcenterCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     showVcenterCredentials(
       params?: Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Credentials>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Credentials>>;
     showVcenterCredentials(
       params: Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6144,7 +6232,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Credentials>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Credentials> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Credentials>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Showvcentercredentials;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6199,11 +6290,11 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Privateclouds$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6238,8 +6329,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6295,11 +6386,11 @@ export namespace vmwareengine_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Privateclouds$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Privateclouds$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6328,7 +6419,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6384,11 +6478,11 @@ export namespace vmwareengine_v1 {
     updateDnsForwarding(
       params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateDnsForwarding(
       params?: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateDnsForwarding(
       params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6417,7 +6511,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6691,11 +6788,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6724,7 +6821,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6780,11 +6880,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6813,7 +6913,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6866,11 +6969,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6899,7 +7002,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6952,11 +7058,11 @@ export namespace vmwareengine_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6985,7 +7091,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7041,11 +7150,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7078,8 +7187,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7135,11 +7244,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7168,7 +7277,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7221,11 +7333,11 @@ export namespace vmwareengine_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7254,7 +7366,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7310,11 +7425,11 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7349,8 +7464,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7538,11 +7653,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Node>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Node>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7571,7 +7686,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Node>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Node> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Node>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7624,11 +7742,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNodesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNodesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7659,8 +7777,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7746,11 +7864,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7779,7 +7897,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7835,11 +7956,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7868,7 +7989,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7921,11 +8045,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExternalAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExternalAddress>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7954,7 +8078,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$ExternalAddress>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ExternalAddress> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExternalAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8007,11 +8134,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExternalAddressesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExternalAddressesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8046,8 +8173,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExternalAddressesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExternalAddressesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8105,11 +8232,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8138,7 +8265,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8280,11 +8410,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8313,7 +8443,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8369,11 +8502,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HcxActivationKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HcxActivationKey>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8402,7 +8535,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$HcxActivationKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HcxActivationKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HcxActivationKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8455,11 +8591,11 @@ export namespace vmwareengine_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8488,7 +8624,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8544,11 +8683,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHcxActivationKeysResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListHcxActivationKeysResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8583,8 +8722,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHcxActivationKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListHcxActivationKeysResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8642,11 +8781,11 @@ export namespace vmwareengine_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8675,7 +8814,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8731,11 +8873,11 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8770,8 +8912,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8912,11 +9054,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8945,7 +9087,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9001,11 +9146,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9034,7 +9179,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9087,11 +9235,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoggingServer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoggingServer>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9120,7 +9268,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoggingServer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoggingServer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoggingServer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9173,11 +9324,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLoggingServersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLoggingServersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9212,8 +9363,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLoggingServersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLoggingServersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9269,11 +9420,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9302,7 +9453,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9444,11 +9598,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9477,7 +9631,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9533,11 +9690,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9566,7 +9723,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9619,11 +9779,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagementDnsZoneBinding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagementDnsZoneBinding>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9656,8 +9816,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ManagementDnsZoneBinding>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagementDnsZoneBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9710,11 +9870,13 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListManagementDnsZoneBindingsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListManagementDnsZoneBindingsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9749,8 +9911,10 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListManagementDnsZoneBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListManagementDnsZoneBindingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9808,11 +9972,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9841,7 +10005,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9894,11 +10061,11 @@ export namespace vmwareengine_v1 {
     repair(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     repair(
       params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     repair(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9927,7 +10094,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10081,11 +10251,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Subnets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subnet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subnet>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10114,7 +10284,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Subnet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subnet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subnet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Subnets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10167,11 +10340,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Subnets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSubnetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSubnetsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10202,8 +10375,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSubnetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSubnetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Subnets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10259,11 +10432,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10292,7 +10465,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10391,11 +10567,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Upgrade>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Upgrade>>;
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10424,7 +10600,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Upgrade>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Upgrade> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Upgrade>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10477,11 +10656,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUpgradesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUpgradesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10514,8 +10693,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUpgradesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUpgradesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10571,11 +10750,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10604,7 +10783,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10720,11 +10902,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Privateconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Privateconnections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Privateconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10753,7 +10935,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10809,11 +10994,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Privateconnections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10842,7 +11027,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10895,11 +11083,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Privateconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PrivateConnection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PrivateConnection>>;
     get(
       params: Params$Resource$Projects$Locations$Privateconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10930,8 +11118,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PrivateConnection>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PrivateConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10984,11 +11172,11 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPrivateConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPrivateConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11023,8 +11211,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrivateConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPrivateConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11082,11 +11270,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Privateconnections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Privateconnections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Privateconnections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11115,7 +11303,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11257,11 +11448,13 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPrivateConnectionPeeringRoutesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPrivateConnectionPeeringRoutesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11296,8 +11489,10 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrivateConnectionPeeringRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPrivateConnectionPeeringRoutesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Privateconnections$Peeringroutes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11378,11 +11573,11 @@ export namespace vmwareengine_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareenginenetworks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11411,7 +11606,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareenginenetworks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11467,11 +11665,11 @@ export namespace vmwareengine_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11500,7 +11698,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareenginenetworks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11553,11 +11754,11 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareenginenetworks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VmwareEngineNetwork>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareEngineNetwork>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11588,8 +11789,8 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VmwareEngineNetwork>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareEngineNetwork>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareenginenetworks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11642,11 +11843,13 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareenginenetworks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVmwareEngineNetworksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListVmwareEngineNetworksResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11681,8 +11884,10 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVmwareEngineNetworksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListVmwareEngineNetworksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareenginenetworks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11740,11 +11945,11 @@ export namespace vmwareengine_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11773,7 +11978,10 @@ export namespace vmwareengine_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

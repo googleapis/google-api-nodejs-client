@@ -37,13 +37,13 @@ describe(__filename, () => {
     });
 
     it('should create a jwt through googleapis', () => {
-      const jwt = new googleapis.auth.JWT(
-        'someone@somewhere.com',
-        'file1',
-        'key1',
-        'scope1',
-        'subject1'
-      );
+      const jwt = new googleapis.auth.JWT({
+        email: 'someone@somewhere.com',
+        keyFile: 'file1',
+        key: 'key1',
+        scopes: 'scope1',
+        subject: 'subject1',
+      });
       assert.strictEqual(jwt.email, 'someone@somewhere.com');
       assert.strictEqual(jwt.keyFile, 'file1');
       assert.strictEqual(jwt.key, 'key1');

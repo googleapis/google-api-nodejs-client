@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -415,7 +415,7 @@ export namespace iam_v1 {
    */
   export interface Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientQueryParameters {
     /**
-     * Optional. The filter used to request specific records from IdP. In case of attributes type as AZURE_AD_GROUPS_MAIL, it represents the filter used to request specific groups for users from IdP. By default, all of the groups associated with the user are fetched. The groups should be mail enabled and security enabled. See https://learn.microsoft.com/en-us/graph/search-query-parameter for more details.
+     * Optional. The filter used to request specific records from the IdP. By default, all of the groups that are associated with a user are fetched. For Microsoft Entra ID, you can add `$search` query parameters using [Keyword Query Language] (https://learn.microsoft.com/en-us/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference). To learn more about `$search` querying in Microsoft Entra ID, see [Use the `$search` query parameter] (https://learn.microsoft.com/en-us/graph/search-query-parameter). Additionally, Workforce Identity Federation automatically adds the following [`$filter` query parameters] (https://learn.microsoft.com/en-us/graph/filter-query-parameter), based on the value of `attributes_type`. Values passed to `filter` are converted to `$search` query parameters. Additional `$filter` query parameters cannot be added using this field. * `AZURE_AD_GROUPS_MAIL`: `mailEnabled` and `securityEnabled` filters are applied. * `AZURE_AD_GROUPS_ID`: `securityEnabled` filter is applied.
      */
     filter?: string | null;
   }
@@ -497,19 +497,19 @@ export namespace iam_v1 {
    */
   export interface Schema$InlineCertificateIssuanceConfig {
     /**
-     * Optional. A required mapping of a cloud region to the CA pool resource located in that region used for certificate issuance, adhering to these constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: "projects/{project\}/locations/{location\}/caPools/{ca_pool\}" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).
+     * Optional. A required mapping of a Google Cloud region to the CA pool resource located in that region. The CA pool is used for certificate issuance, adhering to the following constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: "projects/{project\}/locations/{location\}/caPools/{ca_pool\}" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).
      */
     caPools?: {[key: string]: string} | null;
     /**
-     * Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If unspecified, this will default to ECDSA_P256.
+     * Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If not specified, this will default to ECDSA_P256.
      */
     keyAlgorithm?: string | null;
     /**
-     * Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours - 30 days. If unspecified, this will be defaulted to 24 hours.
+     * Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours and 30 days. If not specified, this will be defaulted to 24 hours.
      */
     lifetime?: string | null;
     /**
-     * Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 - 80. If unspecified, this will be defaulted to 50.
+     * Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 and 80. If not specified, this will be defaulted to 50.
      */
     rotationWindowPercentage?: number | null;
   }
@@ -518,7 +518,7 @@ export namespace iam_v1 {
    */
   export interface Schema$InlineTrustConfig {
     /**
-     * Optional. Maps specific trust domains (e.g., "example.com") to their corresponding TrustStore objects, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the Trust Bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.
+     * Optional. Maps specific trust domains (e.g., "example.com") to their corresponding TrustStore, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the trust bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.
      */
     additionalTrustBundles?: {[key: string]: Schema$TrustStore} | null;
   }
@@ -860,7 +860,7 @@ export namespace iam_v1 {
      */
     allowedAudiences?: string[] | null;
     /**
-     * Required. The OIDC issuer URL. Must be an HTTPS endpoint. Used per OpenID Connect Discovery 1.0 spec to locate the provider's public keys (via `jwks_uri`) for verifying tokens like the OIDC ID token. These public key types must be 'EC' or 'RSA'.
+     * Required. The OIDC issuer URL. Must be an HTTPS endpoint. Per OpenID Connect Discovery 1.0 spec, the OIDC issuer URL is used to locate the provider's public keys (via `jwks_uri`) for verifying tokens like the OIDC ID token. These public key types must be 'EC' or 'RSA'.
      */
     issuerUri?: string | null;
     /**
@@ -1042,7 +1042,7 @@ export namespace iam_v1 {
    */
   export interface Schema$QueryGrantableRolesRequest {
     /**
-     * Required. The full resource name to query from the list of grantable roles. The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
+     * Required. Required. The full resource name to query from the list of grantable roles. The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
     fullResourceName?: string | null;
     /**
@@ -1376,15 +1376,15 @@ export namespace iam_v1 {
     pemCertificate?: string | null;
   }
   /**
-   * Trust store that contains trust anchors and optional intermediate CAs used in PKI to build trust chain and verify client's identity.
+   * Trust store that contains trust anchors and optional intermediate CAs used in PKI to build trust chain and verify a client's identity.
    */
   export interface Schema$TrustStore {
     /**
-     * Optional. Set of intermediate CA certificates used for building the trust chain to trust anchor. IMPORTANT: * Intermediate CAs are only supported when configuring x509 federation.
+     * Optional. Set of intermediate CA certificates used for building the trust chain to the trust anchor. Important: Intermediate CAs are only supported for X.509 federation.
      */
     intermediateCas?: Schema$IntermediateCA[];
     /**
-     * Required. List of Trust Anchors to be used while performing validation against a given TrustStore. The incoming end entity's certificate must be chained up to one of the trust anchors here.
+     * Required. List of trust anchors to be used while performing validation against a given TrustStore. The incoming end entity's certificate must be in the trust chain of one of the trust anchors here.
      */
     trustAnchors?: Schema$TrustAnchor[];
   }
@@ -1513,6 +1513,10 @@ export namespace iam_v1 {
      * Optional. A user-specified description of the provider. Cannot exceed 256 characters.
      */
     description?: string | null;
+    /**
+     * Optional. If true, populates additional debug information in Cloud Audit Logs for this provider. Logged attribute mappings and values can be found in `sts.googleapis.com` data access logs. Default value is false.
+     */
+    detailedAuditLogging?: boolean | null;
     /**
      * Optional. Disables the workforce pool provider. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
      */
@@ -1753,7 +1757,7 @@ export namespace iam_v1 {
    */
   export interface Schema$X509 {
     /**
-     * Required. A Trust store, use this trust store as a wrapper to config the trust anchor and optional intermediate cas to help build the trust chain for the incoming end entity certificate. Follow the x509 guidelines to define those PEM encoded certs. Only 1 trust store is currently supported.
+     * Required. A TrustStore. Use this trust store as a wrapper to config the trust anchor and optional intermediate cas to help build the trust chain for the incoming end entity certificate. Follow the X.509 guidelines to define those PEM encoded certs. Only one trust store is currently supported.
      */
     trustStore?: Schema$TrustStore;
   }
@@ -1775,11 +1779,11 @@ export namespace iam_v1 {
     lintPolicy(
       params: Params$Resource$Iampolicies$Lintpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lintPolicy(
       params?: Params$Resource$Iampolicies$Lintpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LintPolicyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LintPolicyResponse>>;
     lintPolicy(
       params: Params$Resource$Iampolicies$Lintpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1810,8 +1814,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LintPolicyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LintPolicyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Lintpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1866,11 +1870,11 @@ export namespace iam_v1 {
     queryAuditableServices(
       params: Params$Resource$Iampolicies$Queryauditableservices,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryAuditableServices(
       params?: Params$Resource$Iampolicies$Queryauditableservices,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryAuditableServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryAuditableServicesResponse>>;
     queryAuditableServices(
       params: Params$Resource$Iampolicies$Queryauditableservices,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1905,8 +1909,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryAuditableServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryAuditableServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Queryauditableservices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2006,11 +2010,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Locations$Workforcepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Workforcepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Locations$Workforcepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2039,7 +2043,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2094,11 +2101,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Locations$Workforcepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Workforcepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Locations$Workforcepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2127,7 +2134,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2179,11 +2189,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkforcePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePool>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2212,7 +2222,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkforcePool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkforcePool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2264,11 +2277,11 @@ export namespace iam_v1 {
     getIamPolicy(
       params: Params$Resource$Locations$Workforcepools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Locations$Workforcepools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Locations$Workforcepools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2297,7 +2310,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2352,11 +2368,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Locations$Workforcepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Workforcepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkforcePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolsResponse>>;
     list(
       params: Params$Resource$Locations$Workforcepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2391,8 +2407,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkforcePoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2447,11 +2463,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Locations$Workforcepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Locations$Workforcepools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Locations$Workforcepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2480,7 +2496,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2532,11 +2551,11 @@ export namespace iam_v1 {
     setIamPolicy(
       params: Params$Resource$Locations$Workforcepools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Locations$Workforcepools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Locations$Workforcepools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2565,7 +2584,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2620,11 +2642,11 @@ export namespace iam_v1 {
     testIamPermissions(
       params: Params$Resource$Locations$Workforcepools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Locations$Workforcepools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Locations$Workforcepools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2659,8 +2681,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2716,11 +2738,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Locations$Workforcepools$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Locations$Workforcepools$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Locations$Workforcepools$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2749,7 +2771,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2929,11 +2954,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2962,7 +2987,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3038,11 +3066,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Locations$Workforcepools$Providers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Workforcepools$Providers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Locations$Workforcepools$Providers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3071,7 +3099,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,11 +3158,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Locations$Workforcepools$Providers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Workforcepools$Providers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Locations$Workforcepools$Providers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3160,7 +3191,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3213,11 +3247,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Providers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkforcePoolProvider>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProvider>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3250,8 +3284,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkforcePoolProvider>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProvider>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,11 +3337,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Locations$Workforcepools$Providers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Workforcepools$Providers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkforcePoolProvidersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProvidersResponse>
+    >;
     list(
       params: Params$Resource$Locations$Workforcepools$Providers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3342,8 +3378,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkforcePoolProvidersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProvidersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3400,11 +3438,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Locations$Workforcepools$Providers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Locations$Workforcepools$Providers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Locations$Workforcepools$Providers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3433,7 +3471,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3485,11 +3526,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Locations$Workforcepools$Providers$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Locations$Workforcepools$Providers$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Locations$Workforcepools$Providers$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3518,7 +3559,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3664,11 +3708,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3697,7 +3741,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3750,11 +3797,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3783,7 +3830,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3836,11 +3886,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkforcePoolProviderKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderKey>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3873,8 +3923,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkforcePoolProviderKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3927,11 +3977,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkforcePoolProviderKeysResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderKeysResponse>
+    >;
     list(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3966,8 +4018,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkforcePoolProviderKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderKeysResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4022,11 +4076,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4055,7 +4109,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4180,11 +4237,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4213,7 +4270,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4281,11 +4341,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Providers$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Providers$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4314,7 +4374,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Providers$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4385,11 +4448,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Locations$Workforcepools$Subjects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Workforcepools$Subjects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Locations$Workforcepools$Subjects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4418,7 +4481,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Subjects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4470,11 +4536,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Locations$Workforcepools$Subjects$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Locations$Workforcepools$Subjects$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Locations$Workforcepools$Subjects$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4503,7 +4569,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Subjects$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4586,11 +4655,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Locations$Workforcepools$Subjects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Workforcepools$Subjects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Locations$Workforcepools$Subjects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4619,7 +4688,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Subjects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4696,11 +4768,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Organizations$Roles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Roles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     create(
       params: Params$Resource$Organizations$Roles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4729,7 +4801,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4784,11 +4859,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Organizations$Roles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Roles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     delete(
       params: Params$Resource$Organizations$Roles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4817,7 +4892,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4869,11 +4947,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Organizations$Roles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Roles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     get(
       params: Params$Resource$Organizations$Roles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4902,7 +4980,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4954,11 +5035,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Organizations$Roles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Roles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRolesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>;
     list(
       params: Params$Resource$Organizations$Roles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4989,8 +5070,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRolesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5045,11 +5126,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Organizations$Roles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Roles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     patch(
       params: Params$Resource$Organizations$Roles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5078,7 +5159,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5130,11 +5214,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Organizations$Roles$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Organizations$Roles$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     undelete(
       params: Params$Resource$Organizations$Roles$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5163,7 +5247,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5307,11 +5394,13 @@ export namespace iam_v1 {
     queryTestablePermissions(
       params: Params$Resource$Permissions$Querytestablepermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryTestablePermissions(
       params?: Params$Resource$Permissions$Querytestablepermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryTestablePermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryTestablePermissionsResponse>
+    >;
     queryTestablePermissions(
       params: Params$Resource$Permissions$Querytestablepermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5346,8 +5435,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryTestablePermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryTestablePermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Querytestablepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5451,11 +5542,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Oauthclients$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Oauthclients$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>;
     create(
       params: Params$Resource$Projects$Locations$Oauthclients$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5484,7 +5575,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$OauthClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OauthClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5539,11 +5633,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Oauthclients$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Oauthclients$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>;
     delete(
       params: Params$Resource$Projects$Locations$Oauthclients$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5572,7 +5666,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$OauthClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OauthClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5624,11 +5721,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Oauthclients$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Oauthclients$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>;
     get(
       params: Params$Resource$Projects$Locations$Oauthclients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5657,7 +5754,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$OauthClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OauthClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5709,11 +5809,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Oauthclients$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Oauthclients$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOauthClientsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOauthClientsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Oauthclients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5746,8 +5846,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOauthClientsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOauthClientsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5802,11 +5902,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Oauthclients$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Oauthclients$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>;
     patch(
       params: Params$Resource$Projects$Locations$Oauthclients$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5835,7 +5935,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$OauthClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OauthClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5887,11 +5990,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Oauthclients$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Oauthclients$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>;
     undelete(
       params: Params$Resource$Projects$Locations$Oauthclients$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5920,7 +6023,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$OauthClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OauthClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6060,11 +6166,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Oauthclients$Credentials$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClientCredential>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>;
     create(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6097,8 +6203,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OauthClientCredential>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Credentials$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6154,11 +6260,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6187,7 +6293,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Credentials$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6240,11 +6349,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Oauthclients$Credentials$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClientCredential>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>;
     get(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6277,8 +6386,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OauthClientCredential>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Credentials$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6331,11 +6440,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Oauthclients$Credentials$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOauthClientCredentialsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListOauthClientCredentialsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6370,8 +6481,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOauthClientCredentialsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListOauthClientCredentialsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Credentials$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6429,11 +6542,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OauthClientCredential>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>;
     patch(
       params: Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6466,8 +6579,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OauthClientCredential>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OauthClientCredential>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6596,11 +6709,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6629,7 +6742,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6685,11 +6801,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6718,7 +6834,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6771,11 +6890,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPool>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6808,8 +6927,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPool>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6852,7 +6971,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Gets IAM policies for one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Gets the IAM policy of a WorkloadIdentityPool.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6862,11 +6981,11 @@ export namespace iam_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6895,7 +7014,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6951,11 +7073,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6990,8 +7114,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadIdentityPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7049,11 +7175,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7082,7 +7208,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7125,7 +7254,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Sets IAM policies on one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Sets the IAM policies on a WorkloadIdentityPool
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7135,11 +7264,11 @@ export namespace iam_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7168,7 +7297,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7214,7 +7346,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Returns the caller's permissions on one of WorkloadIdentityPool WorkloadIdentityPoolNamespace WorkloadIdentityPoolManagedIdentity
+     * Returns the caller's permissions on a WorkloadIdentityPool
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7224,11 +7356,11 @@ export namespace iam_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7263,8 +7395,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7320,11 +7452,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7353,7 +7485,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7540,11 +7675,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7573,7 +7708,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7629,11 +7767,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7662,7 +7800,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7715,11 +7856,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPoolNamespace>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolNamespace>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7754,8 +7895,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPoolNamespace>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolNamespace>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7810,11 +7951,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolNamespacesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolNamespacesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7849,8 +7992,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadIdentityPoolNamespacesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolNamespacesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7908,11 +8053,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7941,7 +8086,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7994,11 +8142,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8027,7 +8175,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8178,11 +8329,11 @@ export namespace iam_v1 {
     addAttestationRule(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addAttestationRule(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addAttestationRule(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8211,7 +8362,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Addattestationrule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8267,11 +8421,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8300,7 +8454,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8356,11 +8513,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8389,7 +8546,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8442,11 +8602,13 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPoolManagedIdentity>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolManagedIdentity>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8481,8 +8643,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPoolManagedIdentity>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolManagedIdentity>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8527,7 +8691,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Lists all non-deleted WorkloadIdentityPoolManagedIdentitys in a namespace. If `show_deleted` is set to `true`, then deleted managed identites are also listed.
+     * Lists all non-deleted WorkloadIdentityPoolManagedIdentitys in a namespace. If `show_deleted` is set to `true`, then deleted managed identities are also listed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8537,11 +8701,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolManagedIdentitiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolManagedIdentitiesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8576,8 +8742,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadIdentityPoolManagedIdentitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolManagedIdentitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8635,11 +8803,11 @@ export namespace iam_v1 {
     listAttestationRules(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listAttestationRules(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttestationRulesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttestationRulesResponse>>;
     listAttestationRules(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8674,8 +8842,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttestationRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttestationRulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Listattestationrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8733,11 +8901,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8766,7 +8934,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8819,11 +8990,11 @@ export namespace iam_v1 {
     removeAttestationRule(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeAttestationRule(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     removeAttestationRule(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8854,7 +9025,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Removeattestationrule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8910,11 +9084,11 @@ export namespace iam_v1 {
     setAttestationRules(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setAttestationRules(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setAttestationRules(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8943,7 +9117,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Setattestationrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8999,11 +9176,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9032,7 +9209,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9228,11 +9408,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9261,7 +9441,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9341,11 +9524,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9374,7 +9557,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Workloadsources$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9442,11 +9628,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9475,7 +9661,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9543,11 +9732,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9576,7 +9765,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9654,11 +9846,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9687,7 +9879,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9743,11 +9938,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9776,7 +9971,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9829,11 +10027,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPoolProvider>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolProvider>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9868,8 +10066,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPoolProvider>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolProvider>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9924,11 +10122,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolProvidersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolProvidersResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9963,8 +10163,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadIdentityPoolProvidersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolProvidersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10022,11 +10224,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10055,7 +10257,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10108,11 +10313,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10141,7 +10346,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10287,11 +10495,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10320,7 +10528,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10373,11 +10584,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10406,7 +10617,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10459,11 +10673,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPoolProviderKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolProviderKey>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10498,8 +10712,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPoolProviderKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolProviderKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10554,11 +10768,13 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolProviderKeysResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10593,8 +10809,10 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10649,11 +10867,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10682,7 +10900,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10807,11 +11028,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10840,7 +11061,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10908,11 +11132,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10941,7 +11165,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11009,11 +11236,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Roles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Roles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     create(
       params: Params$Resource$Projects$Roles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11042,7 +11269,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11097,11 +11327,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Roles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Roles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     delete(
       params: Params$Resource$Projects$Roles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11130,7 +11360,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11182,11 +11415,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Roles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Roles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     get(
       params: Params$Resource$Projects$Roles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11215,7 +11448,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11267,11 +11503,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Roles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Roles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRolesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>;
     list(
       params: Params$Resource$Projects$Roles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11302,8 +11538,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRolesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11358,11 +11594,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Roles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Roles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     patch(
       params: Params$Resource$Projects$Roles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11391,7 +11627,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11443,11 +11682,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Roles$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Roles$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     undelete(
       params: Params$Resource$Projects$Roles$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11476,7 +11715,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11622,11 +11864,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Serviceaccounts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Serviceaccounts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>;
     create(
       params: Params$Resource$Projects$Serviceaccounts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11655,7 +11897,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11710,11 +11955,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Serviceaccounts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11743,7 +11988,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11795,11 +12043,11 @@ export namespace iam_v1 {
     disable(
       params: Params$Resource$Projects$Serviceaccounts$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Serviceaccounts$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     disable(
       params: Params$Resource$Projects$Serviceaccounts$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11828,7 +12076,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11883,11 +12134,11 @@ export namespace iam_v1 {
     enable(
       params: Params$Resource$Projects$Serviceaccounts$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Serviceaccounts$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     enable(
       params: Params$Resource$Projects$Serviceaccounts$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11916,7 +12167,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11968,11 +12222,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Serviceaccounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Serviceaccounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>;
     get(
       params: Params$Resource$Projects$Serviceaccounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12001,7 +12255,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12053,11 +12310,11 @@ export namespace iam_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12086,7 +12343,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12141,11 +12401,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Serviceaccounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Serviceaccounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceAccountsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServiceAccountsResponse>>;
     list(
       params: Params$Resource$Projects$Serviceaccounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12180,8 +12440,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServiceAccountsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12236,11 +12496,11 @@ export namespace iam_v1 {
     patch(
       params: Params$Resource$Projects$Serviceaccounts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Serviceaccounts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>;
     patch(
       params: Params$Resource$Projects$Serviceaccounts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12269,7 +12529,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12321,11 +12584,11 @@ export namespace iam_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12354,7 +12617,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12409,11 +12675,11 @@ export namespace iam_v1 {
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SignBlobResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12442,7 +12708,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$SignBlobResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SignBlobResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12497,11 +12766,11 @@ export namespace iam_v1 {
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SignJwtResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12530,7 +12799,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$SignJwtResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SignJwtResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12585,11 +12857,11 @@ export namespace iam_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12624,8 +12896,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12681,11 +12953,11 @@ export namespace iam_v1 {
     undelete(
       params: Params$Resource$Projects$Serviceaccounts$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Serviceaccounts$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UndeleteServiceAccountResponse>>;
     undelete(
       params: Params$Resource$Projects$Serviceaccounts$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12720,8 +12992,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UndeleteServiceAccountResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UndeleteServiceAccountResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12778,11 +13050,11 @@ export namespace iam_v1 {
     update(
       params: Params$Resource$Projects$Serviceaccounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Serviceaccounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>;
     update(
       params: Params$Resource$Projects$Serviceaccounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12811,7 +13083,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13031,11 +13306,11 @@ export namespace iam_v1 {
     create(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccountKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>;
     create(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13066,8 +13341,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceAccountKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13119,11 +13394,11 @@ export namespace iam_v1 {
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13152,7 +13427,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13204,11 +13482,11 @@ export namespace iam_v1 {
     disable(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     disable(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13237,7 +13515,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13292,11 +13573,11 @@ export namespace iam_v1 {
     enable(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     enable(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13325,7 +13606,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13377,11 +13661,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccountKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>;
     get(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13412,8 +13696,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceAccountKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13465,11 +13749,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Projects$Serviceaccounts$Keys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceAccountKeysResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServiceAccountKeysResponse>>;
     list(
       params: Params$Resource$Projects$Serviceaccounts$Keys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13504,8 +13788,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceAccountKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServiceAccountKeysResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13559,11 +13843,11 @@ export namespace iam_v1 {
     upload(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccountKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>;
     upload(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13594,8 +13878,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceAccountKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13735,11 +14019,11 @@ export namespace iam_v1 {
     get(
       params: Params$Resource$Roles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Roles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Role>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Role>>;
     get(
       params: Params$Resource$Roles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13768,7 +14052,10 @@ export namespace iam_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Role>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13819,11 +14106,11 @@ export namespace iam_v1 {
     list(
       params: Params$Resource$Roles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Roles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRolesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>;
     list(
       params: Params$Resource$Roles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13854,8 +14141,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRolesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13906,11 +14193,11 @@ export namespace iam_v1 {
     queryGrantableRoles(
       params: Params$Resource$Roles$Querygrantableroles,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryGrantableRoles(
       params?: Params$Resource$Roles$Querygrantableroles,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryGrantableRolesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryGrantableRolesResponse>>;
     queryGrantableRoles(
       params: Params$Resource$Roles$Querygrantableroles,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13945,8 +14232,8 @@ export namespace iam_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryGrantableRolesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryGrantableRolesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roles$Querygrantableroles;
       let options = (optionsOrCallback || {}) as MethodOptions;

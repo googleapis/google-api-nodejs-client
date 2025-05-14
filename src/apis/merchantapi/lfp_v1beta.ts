@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -510,11 +510,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpinventories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpInventory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpInventory>>;
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -543,7 +543,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpInventory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpInventory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpInventory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpinventories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -617,11 +620,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpMerchantState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpMerchantState>>;
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -650,7 +653,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpMerchantState>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpMerchantState> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpMerchantState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpmerchantstates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -720,11 +726,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpsales$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpSale>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpSale>>;
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -753,7 +759,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpSale>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpSale> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpSale>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpsales$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -828,11 +837,11 @@ export namespace merchantapi_lfp_v1beta {
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Lfpstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -861,7 +870,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -916,11 +928,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Lfpstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>;
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -949,7 +961,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1004,11 +1019,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpstores$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>;
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1037,7 +1052,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1092,11 +1110,11 @@ export namespace merchantapi_lfp_v1beta {
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Lfpstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLfpStoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLfpStoresResponse>>;
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1129,8 +1147,8 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLfpStoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLfpStoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

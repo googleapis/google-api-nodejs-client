@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -263,11 +263,11 @@ export namespace translate_v2 {
     detect(
       params: Params$Resource$Detections$Detect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     detect(
       params?: Params$Resource$Detections$Detect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectionsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DetectionsListResponse>>;
     detect(
       params: Params$Resource$Detections$Detect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -300,8 +300,8 @@ export namespace translate_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DetectionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DetectionsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Detections$Detect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -356,11 +356,11 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Detections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Detections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetectionsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DetectionsListResponse>>;
     list(
       params: Params$Resource$Detections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -393,8 +393,8 @@ export namespace translate_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DetectionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DetectionsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Detections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -470,11 +470,11 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Languages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Languages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LanguagesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguagesListResponse>>;
     list(
       params: Params$Resource$Languages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -507,8 +507,8 @@ export namespace translate_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LanguagesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguagesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -581,11 +581,11 @@ export namespace translate_v2 {
     list(
       params: Params$Resource$Translations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Translations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslationsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TranslationsListResponse>>;
     list(
       params: Params$Resource$Translations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -618,8 +618,8 @@ export namespace translate_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TranslationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TranslationsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Translations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -674,11 +674,11 @@ export namespace translate_v2 {
     translate(
       params: Params$Resource$Translations$Translate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     translate(
       params?: Params$Resource$Translations$Translate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TranslationsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TranslationsListResponse>>;
     translate(
       params: Params$Resource$Translations$Translate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -713,8 +713,8 @@ export namespace translate_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TranslationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TranslationsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Translations$Translate;
       let options = (optionsOrCallback || {}) as MethodOptions;

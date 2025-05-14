@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20230724",
+  "revision": "20230711",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {

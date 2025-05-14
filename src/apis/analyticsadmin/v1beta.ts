@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1315,11 +1315,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Accounts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Accounts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1350,8 +1350,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1403,11 +1403,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAccount>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAccount>
+    >;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1442,8 +1444,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAccount>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAccount>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1497,11 +1501,13 @@ export namespace analyticsadmin_v1beta {
     getDataSharingSettings(
       params: Params$Resource$Accounts$Getdatasharingsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDataSharingSettings(
       params?: Params$Resource$Accounts$Getdatasharingsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataSharingSettings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataSharingSettings>
+    >;
     getDataSharingSettings(
       params: Params$Resource$Accounts$Getdatasharingsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1536,8 +1542,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataSharingSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataSharingSettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Getdatasharingsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1592,11 +1600,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListAccountsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListAccountsResponse>
+    >;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1631,8 +1641,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListAccountsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1686,11 +1698,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAccount>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAccount>
+    >;
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1725,8 +1739,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAccount>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAccount>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1780,11 +1796,13 @@ export namespace analyticsadmin_v1beta {
     provisionAccountTicket(
       params: Params$Resource$Accounts$Provisionaccountticket,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     provisionAccountTicket(
       params?: Params$Resource$Accounts$Provisionaccountticket,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse>
+    >;
     provisionAccountTicket(
       params: Params$Resource$Accounts$Provisionaccountticket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1819,8 +1837,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Provisionaccountticket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1878,11 +1898,13 @@ export namespace analyticsadmin_v1beta {
     runAccessReport(
       params: Params$Resource$Accounts$Runaccessreport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runAccessReport(
       params?: Params$Resource$Accounts$Runaccessreport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    >;
     runAccessReport(
       params: Params$Resource$Accounts$Runaccessreport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1917,8 +1939,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Runaccessreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1976,11 +2000,13 @@ export namespace analyticsadmin_v1beta {
     searchChangeHistoryEvents(
       params: Params$Resource$Accounts$Searchchangehistoryevents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchChangeHistoryEvents(
       params?: Params$Resource$Accounts$Searchchangehistoryevents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse>
+    >;
     searchChangeHistoryEvents(
       params: Params$Resource$Accounts$Searchchangehistoryevents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2015,8 +2041,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Searchchangehistoryevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2160,11 +2188,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Accountsummaries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accountsummaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListAccountSummariesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListAccountSummariesResponse>
+    >;
     list(
       params: Params$Resource$Accountsummaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2199,8 +2229,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListAccountSummariesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListAccountSummariesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2297,11 +2329,13 @@ export namespace analyticsadmin_v1beta {
     acknowledgeUserDataCollection(
       params: Params$Resource$Properties$Acknowledgeuserdatacollection,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     acknowledgeUserDataCollection(
       params?: Params$Resource$Properties$Acknowledgeuserdatacollection,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse>
+    >;
     acknowledgeUserDataCollection(
       params: Params$Resource$Properties$Acknowledgeuserdatacollection,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2336,8 +2370,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Acknowledgeuserdatacollection;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2394,11 +2430,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+    >;
     create(
       params: Params$Resource$Properties$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2433,8 +2471,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2489,11 +2529,13 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+    >;
     delete(
       params: Params$Resource$Properties$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2528,8 +2570,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2584,11 +2628,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+    >;
     get(
       params: Params$Resource$Properties$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2623,8 +2669,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2678,11 +2726,13 @@ export namespace analyticsadmin_v1beta {
     getDataRetentionSettings(
       params: Params$Resource$Properties$Getdataretentionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDataRetentionSettings(
       params?: Params$Resource$Properties$Getdataretentionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
+    >;
     getDataRetentionSettings(
       params: Params$Resource$Properties$Getdataretentionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2717,8 +2767,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getdataretentionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2773,11 +2825,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListPropertiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListPropertiesResponse>
+    >;
     list(
       params: Params$Resource$Properties$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2812,8 +2866,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListPropertiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListPropertiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2867,11 +2923,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+    >;
     patch(
       params: Params$Resource$Properties$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2906,8 +2964,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaProperty>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaProperty>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2961,11 +3021,13 @@ export namespace analyticsadmin_v1beta {
     runAccessReport(
       params: Params$Resource$Properties$Runaccessreport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runAccessReport(
       params?: Params$Resource$Properties$Runaccessreport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    >;
     runAccessReport(
       params: Params$Resource$Properties$Runaccessreport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3000,8 +3062,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runaccessreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3059,11 +3123,13 @@ export namespace analyticsadmin_v1beta {
     updateDataRetentionSettings(
       params: Params$Resource$Properties$Updatedataretentionsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateDataRetentionSettings(
       params?: Params$Resource$Properties$Updatedataretentionsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
+    >;
     updateDataRetentionSettings(
       params: Params$Resource$Properties$Updatedataretentionsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3098,8 +3164,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Updatedataretentionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3262,11 +3330,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Conversionevents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Conversionevents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    >;
     create(
       params: Params$Resource$Properties$Conversionevents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3301,8 +3371,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3360,11 +3432,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Conversionevents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Conversionevents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Conversionevents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3395,8 +3467,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3449,11 +3521,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Conversionevents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Conversionevents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    >;
     get(
       params: Params$Resource$Properties$Conversionevents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3488,8 +3562,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3544,11 +3620,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Conversionevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Conversionevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListConversionEventsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListConversionEventsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Conversionevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3583,8 +3661,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListConversionEventsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListConversionEventsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3642,11 +3722,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Conversionevents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Conversionevents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    >;
     patch(
       params: Params$Resource$Properties$Conversionevents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3681,8 +3763,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3802,11 +3886,11 @@ export namespace analyticsadmin_v1beta {
     archive(
       params: Params$Resource$Properties$Customdimensions$Archive,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     archive(
       params?: Params$Resource$Properties$Customdimensions$Archive,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     archive(
       params: Params$Resource$Properties$Customdimensions$Archive,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3837,8 +3921,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3894,11 +3978,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Customdimensions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Customdimensions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+    >;
     create(
       params: Params$Resource$Properties$Customdimensions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3933,8 +4019,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3992,11 +4080,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Customdimensions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Customdimensions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+    >;
     get(
       params: Params$Resource$Properties$Customdimensions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4031,8 +4121,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4087,11 +4179,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Customdimensions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Customdimensions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListCustomDimensionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListCustomDimensionsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Customdimensions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4126,8 +4220,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListCustomDimensionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListCustomDimensionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4185,11 +4281,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Customdimensions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Customdimensions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+    >;
     patch(
       params: Params$Resource$Properties$Customdimensions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4224,8 +4322,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomDimension>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4350,11 +4450,11 @@ export namespace analyticsadmin_v1beta {
     archive(
       params: Params$Resource$Properties$Custommetrics$Archive,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     archive(
       params?: Params$Resource$Properties$Custommetrics$Archive,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     archive(
       params: Params$Resource$Properties$Custommetrics$Archive,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4385,8 +4485,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4442,11 +4542,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Custommetrics$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Custommetrics$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+    >;
     create(
       params: Params$Resource$Properties$Custommetrics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4481,8 +4583,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4540,11 +4644,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Custommetrics$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Custommetrics$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+    >;
     get(
       params: Params$Resource$Properties$Custommetrics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4579,8 +4685,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4635,11 +4743,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Custommetrics$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Custommetrics$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListCustomMetricsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListCustomMetricsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Custommetrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4674,8 +4784,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListCustomMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListCustomMetricsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4733,11 +4845,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Custommetrics$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Custommetrics$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+    >;
     patch(
       params: Params$Resource$Properties$Custommetrics$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4772,8 +4886,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaCustomMetric>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4903,11 +5019,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Datastreams$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Datastreams$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+    >;
     create(
       params: Params$Resource$Properties$Datastreams$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4942,8 +5060,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5001,11 +5121,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Datastreams$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Datastreams$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Datastreams$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5036,8 +5156,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5090,11 +5210,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Datastreams$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Datastreams$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+    >;
     get(
       params: Params$Resource$Properties$Datastreams$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5129,8 +5251,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5185,11 +5309,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Datastreams$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Datastreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListDataStreamsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListDataStreamsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Datastreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5224,8 +5350,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListDataStreamsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListDataStreamsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5283,11 +5411,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Datastreams$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Datastreams$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+    >;
     patch(
       params: Params$Resource$Properties$Datastreams$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5322,8 +5452,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaDataStream>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaDataStream>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5443,11 +5575,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+    >;
     create(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5482,8 +5616,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,11 +5677,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5576,8 +5712,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5631,11 +5767,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+    >;
     get(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5670,8 +5808,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5727,11 +5867,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5766,8 +5908,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5825,11 +5969,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+    >;
     patch(
       params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5864,8 +6010,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaMeasurementProtocolSecret>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5986,11 +6134,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Firebaselinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Firebaselinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaFirebaseLink>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaFirebaseLink>
+    >;
     create(
       params: Params$Resource$Properties$Firebaselinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6025,8 +6175,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaFirebaseLink>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaFirebaseLink>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6084,11 +6236,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Firebaselinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Firebaselinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Firebaselinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6119,8 +6271,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6173,11 +6325,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Firebaselinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Firebaselinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListFirebaseLinksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListFirebaseLinksResponse>
+    >;
     list(
       params: Params$Resource$Properties$Firebaselinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6212,8 +6366,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListFirebaseLinksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListFirebaseLinksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6313,11 +6469,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Googleadslinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Googleadslinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
+    >;
     create(
       params: Params$Resource$Properties$Googleadslinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6352,8 +6510,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6411,11 +6571,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Googleadslinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Googleadslinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Googleadslinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6446,8 +6606,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6500,11 +6660,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Googleadslinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Googleadslinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse>
+    >;
     list(
       params: Params$Resource$Properties$Googleadslinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6539,8 +6701,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6598,11 +6762,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Googleadslinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Googleadslinks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
+    >;
     patch(
       params: Params$Resource$Properties$Googleadslinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6637,8 +6803,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6751,11 +6919,13 @@ export namespace analyticsadmin_v1beta {
     create(
       params: Params$Resource$Properties$Keyevents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Properties$Keyevents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+    >;
     create(
       params: Params$Resource$Properties$Keyevents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6790,8 +6960,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6849,11 +7021,11 @@ export namespace analyticsadmin_v1beta {
     delete(
       params: Params$Resource$Properties$Keyevents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Properties$Keyevents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Properties$Keyevents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6884,8 +7056,8 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6938,11 +7110,13 @@ export namespace analyticsadmin_v1beta {
     get(
       params: Params$Resource$Properties$Keyevents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Properties$Keyevents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+    >;
     get(
       params: Params$Resource$Properties$Keyevents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6977,8 +7151,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7033,11 +7209,13 @@ export namespace analyticsadmin_v1beta {
     list(
       params: Params$Resource$Properties$Keyevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Properties$Keyevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListKeyEventsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListKeyEventsResponse>
+    >;
     list(
       params: Params$Resource$Properties$Keyevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7072,8 +7250,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaListKeyEventsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaListKeyEventsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7131,11 +7311,13 @@ export namespace analyticsadmin_v1beta {
     patch(
       params: Params$Resource$Properties$Keyevents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Properties$Keyevents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+    >;
     patch(
       params: Params$Resource$Properties$Keyevents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7170,8 +7352,10 @@ export namespace analyticsadmin_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1betaKeyEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

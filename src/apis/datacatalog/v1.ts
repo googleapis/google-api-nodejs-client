@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -793,7 +793,7 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1GcsFilesetSpec {
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. For more information, see [Wildcard Names] (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames). Note: Currently, bucket wildcards are not supported. Examples of valid `file_patterns`: * `gs://bucket_name/dir/x`: matches all files in `bucket_name/dir` directory * `gs://bucket_name/dir/x*`: matches all files in `bucket_name/dir` and all subdirectories * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match the `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt` You can combine wildcards to match complex sets of files, for example: `gs://bucket_name/[a-m]??.j*g`
+     * Required. Patterns to identify a set of files in Google Cloud Storage. For more information, see [Wildcard Names] (https://cloud.google.com/storage/docs/wildcards). Note: Currently, bucket wildcards are not supported. Examples of valid `file_patterns`: * `gs://bucket_name/dir/x`: matches all files in `bucket_name/dir` directory * `gs://bucket_name/dir/x*`: matches all files in `bucket_name/dir` and all subdirectories * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match the `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt` You can combine wildcards to match complex sets of files, for example: `gs://bucket_name/[a-m]??.j*g`
      */
     filePatterns?: string[] | null;
     /**
@@ -1949,11 +1949,13 @@ export namespace datacatalog_v1 {
     search(
       params: Params$Resource$Catalog$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Catalog$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1SearchCatalogResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1SearchCatalogResponse>
+    >;
     search(
       params: Params$Resource$Catalog$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1988,8 +1990,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1SearchCatalogResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1SearchCatalogResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Catalog$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2056,11 +2060,11 @@ export namespace datacatalog_v1 {
     lookup(
       params: Params$Resource$Entries$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookup(
       params?: Params$Resource$Entries$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>;
     lookup(
       params: Params$Resource$Entries$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2095,8 +2099,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2188,11 +2192,13 @@ export namespace datacatalog_v1 {
     retrieveConfig(
       params: Params$Resource$Organizations$Locations$Retrieveconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveConfig(
       params?: Params$Resource$Organizations$Locations$Retrieveconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1OrganizationConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+    >;
     retrieveConfig(
       params: Params$Resource$Organizations$Locations$Retrieveconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2227,8 +2233,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Retrieveconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2285,11 +2293,13 @@ export namespace datacatalog_v1 {
     retrieveEffectiveConfig(
       params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveEffectiveConfig(
       params?: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    >;
     retrieveEffectiveConfig(
       params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2324,8 +2334,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Retrieveeffectiveconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2383,11 +2395,13 @@ export namespace datacatalog_v1 {
     setConfig(
       params: Params$Resource$Organizations$Locations$Setconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setConfig(
       params?: Params$Resource$Organizations$Locations$Setconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    >;
     setConfig(
       params: Params$Resource$Organizations$Locations$Setconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2422,8 +2436,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Setconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2539,11 +2555,13 @@ export namespace datacatalog_v1 {
     retrieveEffectiveConfig(
       params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveEffectiveConfig(
       params?: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    >;
     retrieveEffectiveConfig(
       params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2578,8 +2596,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Retrieveeffectiveconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2637,11 +2657,13 @@ export namespace datacatalog_v1 {
     setConfig(
       params: Params$Resource$Projects$Locations$Setconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setConfig(
       params?: Params$Resource$Projects$Locations$Setconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    >;
     setConfig(
       params: Params$Resource$Projects$Locations$Setconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2676,8 +2698,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Setconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2769,11 +2793,13 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2808,8 +2834,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2866,11 +2894,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2899,7 +2927,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2951,11 +2982,13 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrygroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2990,8 +3023,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3045,11 +3080,11 @@ export namespace datacatalog_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3078,7 +3113,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3134,11 +3172,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListEntryGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListEntryGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3173,8 +3213,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListEntryGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListEntryGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3231,11 +3273,13 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3270,8 +3314,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryGroup>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3325,11 +3371,11 @@ export namespace datacatalog_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3358,7 +3404,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3414,11 +3463,11 @@ export namespace datacatalog_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3453,8 +3502,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3627,11 +3676,11 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3666,8 +3715,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3725,11 +3774,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3758,7 +3807,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3811,11 +3863,11 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3850,8 +3902,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3906,11 +3958,11 @@ export namespace datacatalog_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3939,7 +3991,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3995,11 +4050,11 @@ export namespace datacatalog_v1 {
     import(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4028,7 +4083,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4084,11 +4142,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListEntriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListEntriesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4123,8 +4183,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListEntriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4182,11 +4244,13 @@ export namespace datacatalog_v1 {
     modifyEntryContacts(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyEntryContacts(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Contacts>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Contacts>
+    >;
     modifyEntryContacts(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4221,8 +4285,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Contacts>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Contacts>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4280,11 +4346,13 @@ export namespace datacatalog_v1 {
     modifyEntryOverview(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyEntryOverview(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryOverview>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryOverview>
+    >;
     modifyEntryOverview(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4319,8 +4387,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryOverview>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1EntryOverview>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4378,11 +4448,11 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4417,8 +4487,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4473,11 +4543,13 @@ export namespace datacatalog_v1 {
     star(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     star(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1StarEntryResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+    >;
     star(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4512,8 +4584,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Star;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4568,11 +4642,11 @@ export namespace datacatalog_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4607,8 +4681,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4664,11 +4738,13 @@ export namespace datacatalog_v1 {
     unstar(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unstar(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+    >;
     unstar(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4703,8 +4779,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4916,11 +4994,11 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4955,8 +5033,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5009,11 +5087,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5042,7 +5120,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5095,11 +5176,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTagsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5134,8 +5217,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5190,11 +5275,11 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5229,8 +5314,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5283,11 +5368,11 @@ export namespace datacatalog_v1 {
     reconcile(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reconcile(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     reconcile(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5316,7 +5401,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5442,11 +5530,11 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Tags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5481,8 +5569,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5535,11 +5623,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5568,7 +5656,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5621,11 +5712,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$Tags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTagsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5660,8 +5753,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTagsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5715,11 +5810,11 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Tags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5754,8 +5849,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Tag>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Tags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5866,11 +5961,11 @@ export namespace datacatalog_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5899,7 +5994,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5951,11 +6049,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5984,7 +6082,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6036,11 +6137,11 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6069,7 +6170,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6121,11 +6225,11 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6158,8 +6262,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6266,11 +6370,13 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6305,8 +6411,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6363,11 +6471,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tagtemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Tagtemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6396,7 +6504,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6448,11 +6559,13 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tagtemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Tagtemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6487,8 +6600,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6542,11 +6657,11 @@ export namespace datacatalog_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6575,7 +6690,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6631,11 +6749,13 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6670,8 +6790,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplate>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6725,11 +6847,11 @@ export namespace datacatalog_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6758,7 +6880,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6814,11 +6939,11 @@ export namespace datacatalog_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6853,8 +6978,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7009,11 +7134,13 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7048,8 +7175,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7107,11 +7236,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7140,7 +7269,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7193,11 +7325,13 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7232,8 +7366,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7288,11 +7424,13 @@ export namespace datacatalog_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+    >;
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7327,8 +7465,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7446,11 +7586,13 @@ export namespace datacatalog_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+    >;
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7485,8 +7627,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1TagTemplateField>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1TagTemplateField>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7565,11 +7709,13 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Taxonomies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7604,8 +7750,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7662,11 +7810,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Taxonomies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Taxonomies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Taxonomies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7695,7 +7843,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7747,11 +7898,13 @@ export namespace datacatalog_v1 {
     export(
       params: Params$Resource$Projects$Locations$Taxonomies$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Taxonomies$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ExportTaxonomiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ExportTaxonomiesResponse>
+    >;
     export(
       params: Params$Resource$Projects$Locations$Taxonomies$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7786,8 +7939,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ExportTaxonomiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ExportTaxonomiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7844,11 +7999,13 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Taxonomies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7883,8 +8040,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7938,11 +8097,11 @@ export namespace datacatalog_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Taxonomies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7971,7 +8130,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8027,11 +8189,13 @@ export namespace datacatalog_v1 {
     import(
       params: Params$Resource$Projects$Locations$Taxonomies$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Taxonomies$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ImportTaxonomiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ImportTaxonomiesResponse>
+    >;
     import(
       params: Params$Resource$Projects$Locations$Taxonomies$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8066,8 +8230,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ImportTaxonomiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ImportTaxonomiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8124,11 +8290,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Taxonomies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTaxonomiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTaxonomiesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8163,8 +8331,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListTaxonomiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListTaxonomiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8221,11 +8391,13 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Taxonomies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8260,8 +8432,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8315,11 +8489,13 @@ export namespace datacatalog_v1 {
     replace(
       params: Params$Resource$Projects$Locations$Taxonomies$Replace,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Projects$Locations$Taxonomies$Replace,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+    >;
     replace(
       params: Params$Resource$Projects$Locations$Taxonomies$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8354,8 +8530,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Taxonomy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1Taxonomy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8412,11 +8590,11 @@ export namespace datacatalog_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Taxonomies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8445,7 +8623,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8501,11 +8682,11 @@ export namespace datacatalog_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Taxonomies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Taxonomies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Taxonomies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8540,8 +8721,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8741,11 +8922,13 @@ export namespace datacatalog_v1 {
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8780,8 +8963,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8839,11 +9024,11 @@ export namespace datacatalog_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8872,7 +9057,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8925,11 +9113,13 @@ export namespace datacatalog_v1 {
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8964,8 +9154,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9020,11 +9212,11 @@ export namespace datacatalog_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9053,7 +9245,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9109,11 +9304,13 @@ export namespace datacatalog_v1 {
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListPolicyTagsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListPolicyTagsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9148,8 +9345,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1ListPolicyTagsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1ListPolicyTagsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9207,11 +9406,13 @@ export namespace datacatalog_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9246,8 +9447,10 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1PolicyTag>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogV1PolicyTag>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9302,11 +9505,11 @@ export namespace datacatalog_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9335,7 +9538,10 @@ export namespace datacatalog_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9391,11 +9597,11 @@ export namespace datacatalog_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9430,8 +9636,8 @@ export namespace datacatalog_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

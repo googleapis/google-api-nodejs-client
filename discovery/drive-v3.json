@@ -1949,6 +1949,12 @@
               "location": "query",
               "type": "string"
             },
+            "enforceExpansiveAccess": {
+              "default": "false",
+              "description": "Whether the request should enforce expansive access rules.",
+              "location": "query",
+              "type": "boolean"
+            },
             "enforceSingleParent": {
               "default": "false",
               "deprecated": true,
@@ -2800,7 +2806,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250506",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {

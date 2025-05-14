@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -461,11 +461,11 @@ export namespace cloudtrace_v2 {
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchWrite(
       params?: Params$Resource$Projects$Traces$Batchwrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -494,7 +494,10 @@ export namespace cloudtrace_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -569,11 +572,11 @@ export namespace cloudtrace_v2 {
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSpan(
       params?: Params$Resource$Projects$Traces$Spans$Createspan,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Span>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Span>>;
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -602,7 +605,10 @@ export namespace cloudtrace_v2 {
       callback?:
         | BodyResponseCallback<Schema$Span>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Span> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Span>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;

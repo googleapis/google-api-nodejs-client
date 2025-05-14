@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1701,11 +1701,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1734,7 +1734,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1786,11 +1789,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1823,8 +1826,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1922,11 +1925,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupchannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupchannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupchannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1961,8 +1964,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2017,11 +2020,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupchannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupchannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupchannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2056,8 +2059,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2109,11 +2112,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupChannel>>;
     get(
       params: Params$Resource$Projects$Locations$Backupchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2142,7 +2145,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$BackupChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BackupChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2194,11 +2200,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupChannelsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2233,8 +2239,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2289,11 +2295,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupchannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupchannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupchannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2328,8 +2334,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2466,11 +2472,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupPlanBinding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupPlanBinding>>;
     get(
       params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2501,8 +2507,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BackupPlanBinding>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupPlanBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2555,11 +2561,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupPlanBindingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlanBindingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2594,8 +2600,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupPlanBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlanBindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2695,11 +2701,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplans$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2734,8 +2740,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2790,11 +2796,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2829,8 +2835,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2882,11 +2888,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplans$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupPlan>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupPlan>>;
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2915,7 +2921,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$BackupPlan>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BackupPlan> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupPlan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2967,11 +2976,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3000,7 +3009,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3056,11 +3068,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupPlansResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3093,8 +3105,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupPlansResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3149,11 +3161,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupplans$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3188,8 +3200,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3241,11 +3253,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3274,7 +3286,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3330,11 +3345,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Backupplans$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3369,8 +3384,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3547,11 +3562,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3586,8 +3601,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3643,11 +3658,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3682,8 +3697,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3736,11 +3751,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3769,7 +3784,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3822,11 +3840,13 @@ export namespace gkebackup_v1 {
     getBackupIndexDownloadUrl(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getBackupIndexDownloadUrl(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetBackupIndexDownloadUrlResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetBackupIndexDownloadUrlResponse>
+    >;
     getBackupIndexDownloadUrl(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3861,8 +3881,10 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetBackupIndexDownloadUrlResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetBackupIndexDownloadUrlResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3920,11 +3942,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3953,7 +3975,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4009,11 +4034,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4044,8 +4069,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4101,11 +4126,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4140,8 +4165,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4194,11 +4219,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4227,7 +4252,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4283,11 +4311,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4322,8 +4350,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4510,11 +4538,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VolumeBackup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VolumeBackup>>;
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4543,7 +4571,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$VolumeBackup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VolumeBackup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VolumeBackup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4596,11 +4627,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4629,7 +4660,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4685,11 +4719,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVolumeBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVolumeBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4724,8 +4758,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVolumeBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVolumeBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4781,11 +4815,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4814,7 +4848,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4870,11 +4907,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4909,8 +4946,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5039,11 +5076,11 @@ export namespace gkebackup_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5072,7 +5109,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5124,11 +5164,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5157,7 +5197,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5209,11 +5252,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5248,8 +5291,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5301,11 +5344,13 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5340,8 +5385,10 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5456,11 +5503,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restorechannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Restorechannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Restorechannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5495,8 +5542,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5552,11 +5599,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restorechannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Restorechannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Restorechannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5591,8 +5638,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5645,11 +5692,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Restorechannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Restorechannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RestoreChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RestoreChannel>>;
     get(
       params: Params$Resource$Projects$Locations$Restorechannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5678,7 +5725,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$RestoreChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RestoreChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RestoreChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5730,11 +5780,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restorechannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Restorechannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRestoreChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRestoreChannelsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Restorechannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5769,8 +5819,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRestoreChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRestoreChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5825,11 +5875,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restorechannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Restorechannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Restorechannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5864,8 +5914,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5998,11 +6048,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RestorePlanBinding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RestorePlanBinding>>;
     get(
       params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6033,8 +6083,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RestorePlanBinding>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RestorePlanBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6087,11 +6137,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRestorePlanBindingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRestorePlanBindingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6126,8 +6176,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRestorePlanBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRestorePlanBindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6227,11 +6277,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Restoreplans$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6266,8 +6316,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6322,11 +6372,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Restoreplans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6361,8 +6411,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6414,11 +6464,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Restoreplans$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RestorePlan>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RestorePlan>>;
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6447,7 +6497,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$RestorePlan>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RestorePlan> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RestorePlan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6499,11 +6552,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6532,7 +6585,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6588,11 +6644,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Restoreplans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRestorePlansResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRestorePlansResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6625,8 +6681,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRestorePlansResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRestorePlansResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6681,11 +6737,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Restoreplans$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6720,8 +6776,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6773,11 +6829,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6806,7 +6862,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6862,11 +6921,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Restoreplans$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6901,8 +6960,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7083,11 +7142,11 @@ export namespace gkebackup_v1 {
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7122,8 +7181,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7179,11 +7238,11 @@ export namespace gkebackup_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7218,8 +7277,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7272,11 +7331,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Restore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Restore>>;
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7305,7 +7364,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Restore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Restore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Restore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7358,11 +7420,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7391,7 +7453,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7447,11 +7512,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRestoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRestoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7484,8 +7549,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRestoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRestoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7541,11 +7606,11 @@ export namespace gkebackup_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7580,8 +7645,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7634,11 +7699,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7667,7 +7732,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7723,11 +7791,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7762,8 +7830,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7939,11 +8007,11 @@ export namespace gkebackup_v1 {
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VolumeRestore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VolumeRestore>>;
     get(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7972,7 +8040,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$VolumeRestore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VolumeRestore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VolumeRestore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8025,11 +8096,11 @@ export namespace gkebackup_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8058,7 +8129,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8114,11 +8188,11 @@ export namespace gkebackup_v1 {
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVolumeRestoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVolumeRestoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8153,8 +8227,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVolumeRestoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVolumeRestoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8210,11 +8284,11 @@ export namespace gkebackup_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8243,7 +8317,10 @@ export namespace gkebackup_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8299,11 +8376,11 @@ export namespace gkebackup_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8338,8 +8415,8 @@ export namespace gkebackup_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

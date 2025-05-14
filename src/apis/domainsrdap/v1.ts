@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -256,11 +256,11 @@ export namespace domainsrdap_v1 {
     get(
       params: Params$Resource$Autnum$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Autnum$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     get(
       params: Params$Resource$Autnum$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -289,7 +289,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Autnum$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -357,11 +357,11 @@ export namespace domainsrdap_v1 {
     get(
       params: Params$Resource$Domain$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Domain$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     get(
       params: Params$Resource$Domain$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -390,7 +390,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domain$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -458,11 +458,11 @@ export namespace domainsrdap_v1 {
     get(
       params: Params$Resource$Entity$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Entity$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     get(
       params: Params$Resource$Entity$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -491,7 +491,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entity$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -559,11 +559,11 @@ export namespace domainsrdap_v1 {
     get(
       params: Params$Resource$Ip$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Ip$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     get(
       params: Params$Resource$Ip$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -592,7 +592,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ip$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -664,11 +664,11 @@ export namespace domainsrdap_v1 {
     get(
       params: Params$Resource$Nameserver$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Nameserver$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     get(
       params: Params$Resource$Nameserver$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -697,7 +697,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nameserver$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -765,11 +765,11 @@ export namespace domainsrdap_v1 {
     getDomains(
       params: Params$Resource$V1$Getdomains,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDomains(
       params?: Params$Resource$V1$Getdomains,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     getDomains(
       params: Params$Resource$V1$Getdomains,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -798,7 +798,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getdomains;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -849,11 +849,11 @@ export namespace domainsrdap_v1 {
     getEntities(
       params: Params$Resource$V1$Getentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEntities(
       params?: Params$Resource$V1$Getentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     getEntities(
       params: Params$Resource$V1$Getentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -882,7 +882,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -933,11 +933,11 @@ export namespace domainsrdap_v1 {
     getHelp(
       params: Params$Resource$V1$Gethelp,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getHelp(
       params?: Params$Resource$V1$Gethelp,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     getHelp(
       params: Params$Resource$V1$Gethelp,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -966,7 +966,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Gethelp;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1017,11 +1017,11 @@ export namespace domainsrdap_v1 {
     getIp(
       params: Params$Resource$V1$Getip,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIp(
       params?: Params$Resource$V1$Getip,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     getIp(
       params: Params$Resource$V1$Getip,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1050,7 +1050,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getip;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1101,11 +1101,11 @@ export namespace domainsrdap_v1 {
     getNameservers(
       params: Params$Resource$V1$Getnameservers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getNameservers(
       params?: Params$Resource$V1$Getnameservers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RdapResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>>;
     getNameservers(
       params: Params$Resource$V1$Getnameservers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1134,7 +1134,7 @@ export namespace domainsrdap_v1 {
       callback?:
         | BodyResponseCallback<Schema$RdapResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$RdapResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Getnameservers;
       let options = (optionsOrCallback || {}) as MethodOptions;

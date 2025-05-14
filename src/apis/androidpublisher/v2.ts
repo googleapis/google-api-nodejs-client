@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -266,11 +266,11 @@ export namespace androidpublisher_v2 {
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Purchases$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductPurchase>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductPurchase>>;
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -299,7 +299,7 @@ export namespace androidpublisher_v2 {
       callback?:
         | BodyResponseCallback<Schema$ProductPurchase>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductPurchase> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ProductPurchase>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -437,11 +437,11 @@ export namespace androidpublisher_v2 {
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Purchases$Voidedpurchases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VoidedPurchasesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VoidedPurchasesListResponse>>;
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -476,8 +476,8 @@ export namespace androidpublisher_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VoidedPurchasesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VoidedPurchasesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

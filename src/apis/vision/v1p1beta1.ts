@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5029,11 +5029,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+    >;
     annotate(
       params: Params$Resource$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5068,8 +5070,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5125,11 +5129,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5158,7 +5162,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5234,11 +5241,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+    >;
     annotate(
       params: Params$Resource$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5273,8 +5282,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5330,11 +5341,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5363,7 +5374,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5452,11 +5466,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Projects$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+    >;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5491,8 +5507,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5549,11 +5567,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5582,7 +5600,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5668,11 +5689,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Projects$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+    >;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5707,8 +5730,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5765,11 +5790,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5798,7 +5823,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5895,11 +5923,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Projects$Locations$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+    >;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5934,8 +5964,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5992,11 +6024,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6025,7 +6057,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6112,11 +6147,13 @@ export namespace vision_v1p1beta1 {
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Projects$Locations$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+    >;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6151,8 +6188,10 @@ export namespace vision_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6209,11 +6248,11 @@ export namespace vision_v1p1beta1 {
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6242,7 +6281,10 @@ export namespace vision_v1p1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;

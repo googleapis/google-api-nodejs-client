@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1356,11 +1356,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Bidders$Auctionpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Bidders$Auctionpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuctionPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuctionPackagesResponse>>;
     list(
       params: Params$Resource$Bidders$Auctionpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1395,8 +1395,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuctionPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuctionPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Auctionpackages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1484,11 +1484,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Bidders$Finalizeddeals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Bidders$Finalizeddeals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFinalizedDealsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFinalizedDealsResponse>>;
     list(
       params: Params$Resource$Bidders$Finalizeddeals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1523,8 +1523,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFinalizedDealsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFinalizedDealsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Finalizeddeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1633,11 +1633,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Auctionpackages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Auctionpackages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuctionPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>;
     get(
       params: Params$Resource$Buyers$Auctionpackages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1666,7 +1666,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$AuctionPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuctionPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1720,11 +1723,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Auctionpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Auctionpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuctionPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuctionPackagesResponse>>;
     list(
       params: Params$Resource$Buyers$Auctionpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1759,8 +1762,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuctionPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuctionPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1817,11 +1820,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     subscribe(
       params: Params$Resource$Buyers$Auctionpackages$Subscribe,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     subscribe(
       params?: Params$Resource$Buyers$Auctionpackages$Subscribe,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuctionPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>;
     subscribe(
       params: Params$Resource$Buyers$Auctionpackages$Subscribe,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1850,7 +1853,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$AuctionPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuctionPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$Subscribe;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1907,11 +1913,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     subscribeClients(
       params: Params$Resource$Buyers$Auctionpackages$Subscribeclients,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     subscribeClients(
       params?: Params$Resource$Buyers$Auctionpackages$Subscribeclients,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuctionPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>;
     subscribeClients(
       params: Params$Resource$Buyers$Auctionpackages$Subscribeclients,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1942,7 +1948,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$AuctionPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuctionPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$Subscribeclients;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1998,11 +2007,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     unsubscribe(
       params: Params$Resource$Buyers$Auctionpackages$Unsubscribe,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unsubscribe(
       params?: Params$Resource$Buyers$Auctionpackages$Unsubscribe,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuctionPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>;
     unsubscribe(
       params: Params$Resource$Buyers$Auctionpackages$Unsubscribe,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2031,7 +2040,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$AuctionPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuctionPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$Unsubscribe;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2088,11 +2100,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     unsubscribeClients(
       params: Params$Resource$Buyers$Auctionpackages$Unsubscribeclients,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unsubscribeClients(
       params?: Params$Resource$Buyers$Auctionpackages$Unsubscribeclients,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuctionPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>;
     unsubscribeClients(
       params: Params$Resource$Buyers$Auctionpackages$Unsubscribeclients,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2123,7 +2135,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$AuctionPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuctionPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuctionPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Auctionpackages$Unsubscribeclients;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2268,11 +2283,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     activate(
       params: Params$Resource$Buyers$Clients$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Buyers$Clients$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Client>>;
     activate(
       params: Params$Resource$Buyers$Clients$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2301,7 +2316,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2358,11 +2376,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     create(
       params: Params$Resource$Buyers$Clients$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Buyers$Clients$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Client>>;
     create(
       params: Params$Resource$Buyers$Clients$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2391,7 +2409,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2448,11 +2469,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     deactivate(
       params: Params$Resource$Buyers$Clients$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deactivate(
       params?: Params$Resource$Buyers$Clients$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Client>>;
     deactivate(
       params: Params$Resource$Buyers$Clients$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,7 +2502,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2538,11 +2562,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Clients$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Clients$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Client>>;
     get(
       params: Params$Resource$Buyers$Clients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2571,7 +2595,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2625,11 +2652,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Clients$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Clients$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClientsResponse>>;
     list(
       params: Params$Resource$Buyers$Clients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2660,8 +2687,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClientsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2718,11 +2745,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     patch(
       params: Params$Resource$Buyers$Clients$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buyers$Clients$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Client>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Client>>;
     patch(
       params: Params$Resource$Buyers$Clients$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2751,7 +2778,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2891,11 +2921,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     activate(
       params: Params$Resource$Buyers$Clients$Users$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Buyers$Clients$Users$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>;
     activate(
       params: Params$Resource$Buyers$Clients$Users$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2924,7 +2954,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2981,11 +3014,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     create(
       params: Params$Resource$Buyers$Clients$Users$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Buyers$Clients$Users$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>;
     create(
       params: Params$Resource$Buyers$Clients$Users$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3014,7 +3047,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3071,11 +3107,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     deactivate(
       params: Params$Resource$Buyers$Clients$Users$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deactivate(
       params?: Params$Resource$Buyers$Clients$Users$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>;
     deactivate(
       params: Params$Resource$Buyers$Clients$Users$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3104,7 +3140,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3161,11 +3200,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     delete(
       params: Params$Resource$Buyers$Clients$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Buyers$Clients$Users$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Buyers$Clients$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3194,7 +3233,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3248,11 +3290,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Clients$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Clients$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientUser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>;
     get(
       params: Params$Resource$Buyers$Clients$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3281,7 +3323,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3335,11 +3380,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Clients$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Clients$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientUsersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClientUsersResponse>>;
     list(
       params: Params$Resource$Buyers$Clients$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3372,8 +3417,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientUsersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClientUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Clients$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3503,11 +3548,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     activate(
       params: Params$Resource$Buyers$Datasegments$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Buyers$Datasegments$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSegment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>;
     activate(
       params: Params$Resource$Buyers$Datasegments$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3536,7 +3581,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$DataSegment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSegment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3593,11 +3641,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     create(
       params: Params$Resource$Buyers$Datasegments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Buyers$Datasegments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSegment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>;
     create(
       params: Params$Resource$Buyers$Datasegments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3626,7 +3674,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$DataSegment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSegment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3683,11 +3734,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     deactivate(
       params: Params$Resource$Buyers$Datasegments$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deactivate(
       params?: Params$Resource$Buyers$Datasegments$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSegment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>;
     deactivate(
       params: Params$Resource$Buyers$Datasegments$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3716,7 +3767,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$DataSegment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSegment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3773,11 +3827,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Datasegments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Datasegments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSegment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>;
     get(
       params: Params$Resource$Buyers$Datasegments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3806,7 +3860,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$DataSegment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSegment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3860,11 +3917,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Datasegments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Datasegments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataSegmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSegmentsResponse>>;
     list(
       params: Params$Resource$Buyers$Datasegments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3897,8 +3954,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataSegmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSegmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3955,11 +4012,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     patch(
       params: Params$Resource$Buyers$Datasegments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buyers$Datasegments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSegment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>;
     patch(
       params: Params$Resource$Buyers$Datasegments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3988,7 +4045,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$DataSegment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSegment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSegment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Datasegments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4124,11 +4184,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     addCreative(
       params: Params$Resource$Buyers$Finalizeddeals$Addcreative,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addCreative(
       params?: Params$Resource$Buyers$Finalizeddeals$Addcreative,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FinalizedDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
     addCreative(
       params: Params$Resource$Buyers$Finalizeddeals$Addcreative,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4157,7 +4217,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$FinalizedDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FinalizedDeal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$Addcreative;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4214,11 +4277,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Finalizeddeals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Finalizeddeals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FinalizedDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
     get(
       params: Params$Resource$Buyers$Finalizeddeals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4247,7 +4310,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$FinalizedDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FinalizedDeal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4301,11 +4367,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Finalizeddeals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Finalizeddeals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFinalizedDealsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFinalizedDealsResponse>>;
     list(
       params: Params$Resource$Buyers$Finalizeddeals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4340,8 +4406,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFinalizedDealsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFinalizedDealsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4398,11 +4464,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     pause(
       params: Params$Resource$Buyers$Finalizeddeals$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pause(
       params?: Params$Resource$Buyers$Finalizeddeals$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FinalizedDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
     pause(
       params: Params$Resource$Buyers$Finalizeddeals$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4431,7 +4497,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$FinalizedDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FinalizedDeal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4488,11 +4557,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     resume(
       params: Params$Resource$Buyers$Finalizeddeals$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Buyers$Finalizeddeals$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FinalizedDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
     resume(
       params: Params$Resource$Buyers$Finalizeddeals$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4521,7 +4590,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$FinalizedDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FinalizedDeal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4578,11 +4650,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     setReadyToServe(
       params: Params$Resource$Buyers$Finalizeddeals$Setreadytoserve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setReadyToServe(
       params?: Params$Resource$Buyers$Finalizeddeals$Setreadytoserve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FinalizedDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>;
     setReadyToServe(
       params: Params$Resource$Buyers$Finalizeddeals$Setreadytoserve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4611,7 +4683,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$FinalizedDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FinalizedDeal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinalizedDeal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Finalizeddeals$Setreadytoserve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4756,11 +4831,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     accept(
       params: Params$Resource$Buyers$Proposals$Accept,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     accept(
       params?: Params$Resource$Buyers$Proposals$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     accept(
       params: Params$Resource$Buyers$Proposals$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4789,7 +4864,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4846,11 +4924,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     addNote(
       params: Params$Resource$Buyers$Proposals$Addnote,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addNote(
       params?: Params$Resource$Buyers$Proposals$Addnote,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     addNote(
       params: Params$Resource$Buyers$Proposals$Addnote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4879,7 +4957,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Addnote;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4936,11 +5017,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     cancelNegotiation(
       params: Params$Resource$Buyers$Proposals$Cancelnegotiation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancelNegotiation(
       params?: Params$Resource$Buyers$Proposals$Cancelnegotiation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     cancelNegotiation(
       params: Params$Resource$Buyers$Proposals$Cancelnegotiation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4969,7 +5050,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Cancelnegotiation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5026,11 +5110,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Proposals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Proposals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     get(
       params: Params$Resource$Buyers$Proposals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5059,7 +5143,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5113,11 +5200,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Proposals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Proposals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProposalsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>>;
     list(
       params: Params$Resource$Buyers$Proposals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5150,8 +5237,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProposalsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProposalsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5208,11 +5295,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     patch(
       params: Params$Resource$Buyers$Proposals$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buyers$Proposals$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     patch(
       params: Params$Resource$Buyers$Proposals$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5241,7 +5328,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5295,11 +5385,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     sendRfp(
       params: Params$Resource$Buyers$Proposals$Sendrfp,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendRfp(
       params?: Params$Resource$Buyers$Proposals$Sendrfp,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Proposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>;
     sendRfp(
       params: Params$Resource$Buyers$Proposals$Sendrfp,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5328,7 +5418,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Sendrfp;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5483,11 +5576,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     batchUpdate(
       params: Params$Resource$Buyers$Proposals$Deals$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Buyers$Proposals$Deals$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateDealsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDealsResponse>>;
     batchUpdate(
       params: Params$Resource$Buyers$Proposals$Deals$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5522,8 +5615,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateDealsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDealsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Deals$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5580,11 +5673,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Proposals$Deals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Proposals$Deals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deal>>;
     get(
       params: Params$Resource$Buyers$Proposals$Deals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5613,7 +5706,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Deals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5667,11 +5763,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Proposals$Deals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Proposals$Deals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDealsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDealsResponse>>;
     list(
       params: Params$Resource$Buyers$Proposals$Deals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5702,8 +5798,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDealsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDealsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Deals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5760,11 +5856,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     patch(
       params: Params$Resource$Buyers$Proposals$Deals$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buyers$Proposals$Deals$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deal>>;
     patch(
       params: Params$Resource$Buyers$Proposals$Deals$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5793,7 +5889,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Proposals$Deals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5905,11 +6004,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     get(
       params: Params$Resource$Buyers$Publisherprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buyers$Publisherprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PublisherProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PublisherProfile>>;
     get(
       params: Params$Resource$Buyers$Publisherprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5938,7 +6037,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$PublisherProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PublisherProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PublisherProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Publisherprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5992,11 +6094,11 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Publisherprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buyers$Publisherprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPublisherProfilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPublisherProfilesResponse>>;
     list(
       params: Params$Resource$Buyers$Publisherprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6031,8 +6133,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPublisherProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPublisherProfilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buyers$Publisherprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -155,15 +155,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$AuthConfig {
     /**
-     * List containing additional auth configs.
+     * Optional. List containing additional auth configs.
      */
     additionalVariables?: Schema$ConfigVariable[];
     /**
-     * Identifier key for auth config
+     * Optional. Identifier key for auth config
      */
     authKey?: string | null;
     /**
-     * The type of authentication configured.
+     * Optional. The type of authentication configured.
      */
     authType?: string | null;
     /**
@@ -388,7 +388,7 @@ export namespace connectors_v1 {
      */
     intValue?: string | null;
     /**
-     * Key of the config variable.
+     * Optional. Key of the config variable.
      */
     key?: string | null;
     /**
@@ -522,6 +522,10 @@ export namespace connectors_v1 {
      */
     envoyImageLocation?: string | null;
     /**
+     * Optional. Additional Oauth2.0 Auth config for EUA. If the connection is configured using non-OAuth authentication but OAuth needs to be used for EUA, this field can be populated with the OAuth config. This should be a OAuth2AuthCodeFlow Auth type only.
+     */
+    euaOauthAuthConfig?: Schema$AuthConfig;
+    /**
      * Optional. Eventing config of a connection
      */
     eventingConfig?: Schema$EventingConfig;
@@ -533,6 +537,10 @@ export namespace connectors_v1 {
      * Output only. Eventing Runtime Data.
      */
     eventingRuntimeData?: Schema$EventingRuntimeData;
+    /**
+     * Optional. Fallback on admin credentials for the connection. If this both auth_override_enabled and fallback_on_admin_credentials are set to true, the connection will use the admin credentials if the dynamic auth header is not present during auth override.
+     */
+    fallbackOnAdminCredentials?: boolean | null;
     /**
      * Output only. The name of the Hostname of the Service Directory service with TLS.
      */
@@ -758,6 +766,10 @@ export namespace connectors_v1 {
      */
     migrateTls?: boolean | null;
     /**
+     * Indicate whether connector is being migrated to use direct VPC egress.
+     */
+    networkEgressMode?: string | null;
+    /**
      * Indicate whether cloud spanner is required for connector job.
      */
     provisionCloudSpanner?: boolean | null;
@@ -787,7 +799,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorsLogConfig {
     /**
-     * Enabled represents whether logging is enabled or not for a connection.
+     * Optional. Enabled represents whether logging is enabled or not for a connection.
      */
     enabled?: boolean | null;
     /**
@@ -855,6 +867,10 @@ export namespace connectors_v1 {
      * Output only. Resource name of the Version. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}/versions/{version\} Only global location is supported for Connector resource.
      */
     name?: string | null;
+    /**
+     * Optional. The priority entity types for the connector version.
+     */
+    priorityEntityTypes?: Schema$PriorityEntityType[];
     /**
      * Output only. ReleaseVersion of the connector, for example: "1.0.1-alpha".
      */
@@ -1242,7 +1258,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$EncryptionKey {
     /**
-     * The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`. Will be empty string if google managed.
+     * Optional. The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`. Will be empty string if google managed.
      */
     kmsKeyName?: string | null;
     /**
@@ -1255,11 +1271,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$EndPoint {
     /**
-     * The URI of the Endpoint.
+     * Optional. The URI of the Endpoint.
      */
     endpointUri?: string | null;
     /**
-     * List of Header to be added to the Endpoint.
+     * Optional. List of Header to be added to the Endpoint.
      */
     headers?: Schema$Header[];
   }
@@ -1305,6 +1321,316 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * AuthConfig defines details of a authentication type.
+   */
+  export interface Schema$EndUserAuthentication {
+    /**
+     * Optional. Config variables for the EndUserAuthentication.
+     */
+    configVariables?: Schema$EndUserAuthenticationConfigVariable[];
+    /**
+     * Output only. Created time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Destination configs for the EndUserAuthentication.
+     */
+    destinationConfigs?: Schema$DestinationConfig[];
+    /**
+     * Optional. The EndUserAuthenticationConfig for the EndUserAuthentication.
+     */
+    endUserAuthenticationConfig?: Schema$EndUserAuthenticationConfig;
+    /**
+     * Optional. Labels for the EndUserAuthentication.
+     */
+    labels?: string[] | null;
+    /**
+     * Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project\}/locations/{location\}/connections/{connection\}/endUserAuthentications/{end_user_authentication\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The destination to hit when we receive an event
+     */
+    notifyEndpointDestination?: Schema$EndUserAuthenticationNotifyEndpointDestination;
+    /**
+     * Optional. Roles for the EndUserAuthentication.
+     */
+    roles?: string[] | null;
+    /**
+     * Optional. Status of the EndUserAuthentication.
+     */
+    status?: Schema$EndUserAuthenticationEndUserAuthenticationStatus;
+    /**
+     * Output only. Updated time.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. The user id of the user.
+     */
+    userId?: string | null;
+  }
+  /**
+   * EndUserAuthenticationConfig defines details of a authentication configuration for EUC
+   */
+  export interface Schema$EndUserAuthenticationConfig {
+    /**
+     * Optional. List containing additional auth configs.
+     */
+    additionalVariables?: Schema$EndUserAuthenticationConfigVariable[];
+    /**
+     * Identifier key for auth config
+     */
+    authKey?: string | null;
+    /**
+     * The type of authentication configured.
+     */
+    authType?: string | null;
+    /**
+     * Oauth2AuthCodeFlow.
+     */
+    oauth2AuthCodeFlow?: Schema$EndUserAuthenticationConfigOauth2AuthCodeFlow;
+    /**
+     * Oauth2AuthCodeFlowGoogleManaged.
+     */
+    oauth2AuthCodeFlowGoogleManaged?: Schema$EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged;
+    /**
+     * Oauth2ClientCredentials.
+     */
+    oauth2ClientCredentials?: Schema$EndUserAuthenticationConfigOauth2ClientCredentials;
+    /**
+     * Oauth2JwtBearer.
+     */
+    oauth2JwtBearer?: Schema$EndUserAuthenticationConfigOauth2JwtBearer;
+    /**
+     * SSH Public Key.
+     */
+    sshPublicKey?: Schema$EndUserAuthenticationConfigSshPublicKey;
+    /**
+     * UserPassword.
+     */
+    userPassword?: Schema$EndUserAuthenticationConfigUserPassword;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$EndUserAuthenticationConfigOauth2AuthCodeFlow {
+    /**
+     * Optional. Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Optional. Auth URL for Authorization Code Flow
+     */
+    authUri?: string | null;
+    /**
+     * Optional. Client ID for user-provided OAuth app.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Client secret for user-provided OAuth app.
+     */
+    clientSecret?: Schema$EUASecret;
+    /**
+     * Optional. Whether to enable PKCE when the user performs the auth code flow.
+     */
+    enablePkce?: boolean | null;
+    /**
+     * Optional. Auth Code Data
+     */
+    oauthTokenData?: Schema$OAuthTokenData;
+    /**
+     * Optional. PKCE verifier to be used during the auth code exchange.
+     */
+    pkceVerifier?: string | null;
+    /**
+     * Optional. Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Optional. Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged {
+    /**
+     * Optional. Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Auth Code Data
+     */
+    oauthTokenData?: Schema$OAuthTokenData;
+    /**
+     * Optional. Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Required. Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
+   */
+  export interface Schema$EndUserAuthenticationConfigOauth2ClientCredentials {
+    /**
+     * The client identifier.
+     */
+    clientId?: string | null;
+    /**
+     * Required. string value or secret version containing the client secret.
+     */
+    clientSecret?: Schema$EUASecret;
+  }
+  /**
+   * Parameters to support JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication. See https://tools.ietf.org/html/rfc7523 for more details.
+   */
+  export interface Schema$EndUserAuthenticationConfigOauth2JwtBearer {
+    /**
+     * Required. secret version/value reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/strings/x/versions/x`.
+     */
+    clientKey?: Schema$EUASecret;
+    /**
+     * JwtClaims providers fields to generate the token.
+     */
+    jwtClaims?: Schema$EndUserAuthenticationConfigOauth2JwtBearerJwtClaims;
+  }
+  /**
+   * JWT claims used for the jwt-bearer authorization grant.
+   */
+  export interface Schema$EndUserAuthenticationConfigOauth2JwtBearerJwtClaims {
+    /**
+     * Value for the "aud" claim.
+     */
+    audience?: string | null;
+    /**
+     * Value for the "iss" claim.
+     */
+    issuer?: string | null;
+    /**
+     * Value for the "sub" claim.
+     */
+    subject?: string | null;
+  }
+  /**
+   * Parameters to support Ssh public key Authentication.
+   */
+  export interface Schema$EndUserAuthenticationConfigSshPublicKey {
+    /**
+     * Format of SSH Client cert.
+     */
+    certType?: string | null;
+    /**
+     * Required. SSH Client Cert. It should contain both public and private key.
+     */
+    sshClientCert?: Schema$EUASecret;
+    /**
+     * Required. Password (passphrase) for ssh client certificate if it has one.
+     */
+    sshClientCertPass?: Schema$EUASecret;
+    /**
+     * The user account used to authenticate.
+     */
+    username?: string | null;
+  }
+  /**
+   * Parameters to support Username and Password Authentication.
+   */
+  export interface Schema$EndUserAuthenticationConfigUserPassword {
+    /**
+     * Required. string value or secret version reference containing the password.
+     */
+    password?: Schema$EUASecret;
+    /**
+     * Username.
+     */
+    username?: string | null;
+  }
+  /**
+   * EndUserAuthenticationConfigVariable represents a configuration variable present in a EndUserAuthentication.
+   */
+  export interface Schema$EndUserAuthenticationConfigVariable {
+    /**
+     * Value is a bool.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Value is an integer
+     */
+    intValue?: string | null;
+    /**
+     * Required. Key of the config variable.
+     */
+    key?: string | null;
+    /**
+     * Value is a secret
+     */
+    secretValue?: Schema$EUASecret;
+    /**
+     * Value is a string.
+     */
+    stringValue?: string | null;
+  }
+  /**
+   * EndUserAuthentication Status denotes the status of the EndUserAuthentication resource.
+   */
+  export interface Schema$EndUserAuthenticationEndUserAuthenticationStatus {
+    /**
+     * Output only. Description of the state.
+     */
+    description?: string | null;
+    /**
+     * Output only. State of Event Subscription resource.
+     */
+    state?: string | null;
+  }
+  /**
+   * Message for NotifyEndpointDestination Destination to hit when the refresh token is expired.
+   */
+  export interface Schema$EndUserAuthenticationNotifyEndpointDestination {
+    /**
+     * Optional. OPTION 1: Hit an endpoint when the refresh token is expired.
+     */
+    endpoint?: Schema$EndUserAuthenticationNotifyEndpointDestinationEndPoint;
+    /**
+     * Required. Service account needed for runtime plane to notify the backend.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. type of the destination
+     */
+    type?: string | null;
+  }
+  /**
+   * Endpoint message includes details of the Destination endpoint.
+   */
+  export interface Schema$EndUserAuthenticationNotifyEndpointDestinationEndPoint {
+    /**
+     * Required. The URI of the Endpoint.
+     */
+    endpointUri?: string | null;
+    /**
+     * Optional. List of Header to be added to the Endpoint.
+     */
+    headers?: Schema$EndUserAuthenticationNotifyEndpointDestinationEndPointHeader[];
+  }
+  /**
+   * Header details for a given header to be added to Endpoint.
+   */
+  export interface Schema$EndUserAuthenticationNotifyEndpointDestinationEndPointHeader {
+    /**
+     * Required. Key of Header.
+     */
+    key?: string | null;
+    /**
+     * Required. Value of Header.
+     */
+    value?: string | null;
+  }
+  /**
    * Data enrichment configuration.
    */
   export interface Schema$EnrichmentConfig {
@@ -1325,6 +1651,19 @@ export namespace connectors_v1 {
      * Optional. Id of the option.
      */
     id?: string | null;
+  }
+  /**
+   * EUASecret provides a reference to entries in Secret Manager.
+   */
+  export interface Schema$EUASecret {
+    /**
+     * Optional. The plain string value of the secret.
+     */
+    secretValue?: string | null;
+    /**
+     * Optional. The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
+     */
+    secretVersion?: string | null;
   }
   /**
    * Eventing Configuration of a connection next: 18
@@ -1528,7 +1867,7 @@ export namespace connectors_v1 {
      */
     jms?: Schema$JMS;
     /**
-     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     * Required. Identifier. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
      */
     name?: string | null;
     /**
@@ -1565,11 +1904,11 @@ export namespace connectors_v1 {
      */
     pubsub?: Schema$PubSub;
     /**
-     * Service account needed for runtime plane to trigger IP workflow.
+     * Optional. Service account needed for runtime plane to trigger IP workflow.
      */
     serviceAccount?: string | null;
     /**
-     * type of the destination
+     * Optional. type of the destination
      */
     type?: string | null;
   }
@@ -1750,11 +2089,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$Header {
     /**
-     * Key of Header.
+     * Optional. Key of Header.
      */
     key?: string | null;
     /**
-     * Value of Header.
+     * Optional. Value of Header.
      */
     value?: string | null;
   }
@@ -1955,15 +2294,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$JwtClaims {
     /**
-     * Value for the "aud" claim.
+     * Optional. Value for the "aud" claim.
      */
     audience?: string | null;
     /**
-     * Value for the "iss" claim.
+     * Optional. Value for the "iss" claim.
      */
     issuer?: string | null;
     /**
-     * Value for the "sub" claim.
+     * Optional. Value for the "sub" claim.
      */
     subject?: string | null;
   }
@@ -2073,6 +2412,23 @@ export namespace connectors_v1 {
      * EndpointAttachments.
      */
     endpointAttachments?: Schema$EndpointAttachment[];
+    /**
+     * Next page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ConnectorsService.ListEndUserAuthentications
+   */
+  export interface Schema$ListEndUserAuthenticationsResponse {
+    /**
+     * Subscriptions.
+     */
+    endUserAuthentications?: Schema$EndUserAuthentication[];
     /**
      * Next page token.
      */
@@ -2254,11 +2610,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$LockConfig {
     /**
-     * Indicates whether or not the connection is locked.
+     * Optional. Indicates whether or not the connection is locked.
      */
     locked?: boolean | null;
     /**
-     * Describes why a connection is locked.
+     * Optional. Describes why a connection is locked.
      */
     reason?: string | null;
   }
@@ -2481,11 +2837,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * Maximum number of nodes in the runtime nodes.
+     * Optional. Maximum number of nodes in the runtime nodes.
      */
     maxNodeCount?: number | null;
     /**
-     * Minimum number of nodes in the runtime nodes.
+     * Optional. Minimum number of nodes in the runtime nodes.
      */
     minNodeCount?: number | null;
   }
@@ -2520,35 +2876,35 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2AuthCodeFlow {
     /**
-     * Authorization code to be exchanged for access and refresh tokens.
+     * Optional. Authorization code to be exchanged for access and refresh tokens.
      */
     authCode?: string | null;
     /**
-     * Auth URL for Authorization Code Flow
+     * Optional. Auth URL for Authorization Code Flow
      */
     authUri?: string | null;
     /**
-     * Client ID for user-provided OAuth app.
+     * Optional. Client ID for user-provided OAuth app.
      */
     clientId?: string | null;
     /**
-     * Client secret for user-provided OAuth app.
+     * Optional. Client secret for user-provided OAuth app.
      */
     clientSecret?: Schema$Secret;
     /**
-     * Whether to enable PKCE when the user performs the auth code flow.
+     * Optional. Whether to enable PKCE when the user performs the auth code flow.
      */
     enablePkce?: boolean | null;
     /**
-     * PKCE verifier to be used during the auth code exchange.
+     * Optional. PKCE verifier to be used during the auth code exchange.
      */
     pkceVerifier?: string | null;
     /**
-     * Redirect URI to be provided during the auth code exchange.
+     * Optional. Redirect URI to be provided during the auth code exchange.
      */
     redirectUri?: string | null;
     /**
-     * Scopes the connection will request when the user performs the auth code flow.
+     * Optional. Scopes the connection will request when the user performs the auth code flow.
      */
     scopes?: string[] | null;
   }
@@ -2574,11 +2930,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2ClientCredentials {
     /**
-     * The client identifier.
+     * Optional. The client identifier.
      */
     clientId?: string | null;
     /**
-     * Secret version reference containing the client secret.
+     * Optional. Secret version reference containing the client secret.
      */
     clientSecret?: Schema$Secret;
   }
@@ -2587,13 +2943,34 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2JwtBearer {
     /**
-     * Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/secrets/x/versions/x`.
+     * Optional. Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/secrets/x/versions/x`.
      */
     clientKey?: Schema$Secret;
     /**
-     * JwtClaims providers fields to generate the token.
+     * Optional. JwtClaims providers fields to generate the token.
      */
     jwtClaims?: Schema$JwtClaims;
+  }
+  /**
+   * pass only at create and not update using updateMask Auth Code Data
+   */
+  export interface Schema$OAuthTokenData {
+    /**
+     * Optional. Access token for the connection.
+     */
+    accessToken?: Schema$EUASecret;
+    /**
+     * Optional. Timestamp when the access token was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Time in seconds when the access token expires.
+     */
+    expiry?: string | null;
+    /**
+     * Optional. Refresh token for the connection.
+     */
+    refreshToken?: Schema$EUASecret;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2755,6 +3132,27 @@ export namespace connectors_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * PriorityEntityType represents an entity type with its associated priority and order.
+   */
+  export interface Schema$PriorityEntityType {
+    /**
+     * The description of the entity type.
+     */
+    description?: string | null;
+    /**
+     * The entity type.
+     */
+    id?: string | null;
+    /**
+     * The order of the entity type within its priority group.
+     */
+    order?: number | null;
+    /**
+     * The priority of the entity type, such as P0, P1, etc.
+     */
+    priority?: string | null;
   }
   /**
    * Provider indicates the owner who provides the connectors.
@@ -3163,7 +3561,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$Secret {
     /**
-     * The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
+     * Optional. The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
      */
     secretVersion?: string | null;
   }
@@ -3249,19 +3647,19 @@ export namespace connectors_v1 {
    */
   export interface Schema$SshPublicKey {
     /**
-     * Format of SSH Client cert.
+     * Optional. Format of SSH Client cert.
      */
     certType?: string | null;
     /**
-     * SSH Client Cert. It should contain both public and private key.
+     * Optional. SSH Client Cert. It should contain both public and private key.
      */
     sshClientCert?: Schema$Secret;
     /**
-     * Password (passphrase) for ssh client certificate if it has one.
+     * Optional. Password (passphrase) for ssh client certificate if it has one.
      */
     sshClientCertPass?: Schema$Secret;
     /**
-     * The user account used to authenticate.
+     * Optional. The user account used to authenticate.
      */
     username?: string | null;
   }
@@ -3465,11 +3863,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$UserPassword {
     /**
-     * Secret version reference containing the password.
+     * Optional. Secret version reference containing the password.
      */
     password?: Schema$Secret;
     /**
-     * Username.
+     * Optional. Username.
      */
     username?: string | null;
   }
@@ -3596,11 +3994,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3629,7 +4027,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3681,11 +4082,11 @@ export namespace connectors_v1 {
     getRegionalSettings(
       params: Params$Resource$Projects$Locations$Getregionalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getRegionalSettings(
       params?: Params$Resource$Projects$Locations$Getregionalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RegionalSettings>>;
     getRegionalSettings(
       params: Params$Resource$Projects$Locations$Getregionalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3716,7 +4117,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$RegionalSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RegionalSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RegionalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getregionalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3768,11 +4172,11 @@ export namespace connectors_v1 {
     getRuntimeConfig(
       params: Params$Resource$Projects$Locations$Getruntimeconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getRuntimeConfig(
       params?: Params$Resource$Projects$Locations$Getruntimeconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RuntimeConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RuntimeConfig>>;
     getRuntimeConfig(
       params: Params$Resource$Projects$Locations$Getruntimeconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3803,7 +4207,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$RuntimeConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RuntimeConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RuntimeConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getruntimeconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3855,11 +4262,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3892,8 +4299,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3948,11 +4355,11 @@ export namespace connectors_v1 {
     updateRegionalSettings(
       params: Params$Resource$Projects$Locations$Updateregionalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateRegionalSettings(
       params?: Params$Resource$Projects$Locations$Updateregionalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateRegionalSettings(
       params: Params$Resource$Projects$Locations$Updateregionalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3983,7 +4390,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updateregionalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4090,6 +4500,7 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations$Connections {
     context: APIRequestContext;
     connectionSchemaMetadata: Resource$Projects$Locations$Connections$Connectionschemametadata;
+    endUserAuthentications: Resource$Projects$Locations$Connections$Enduserauthentications;
     eventSubscriptions: Resource$Projects$Locations$Connections$Eventsubscriptions;
     runtimeActionSchemas: Resource$Projects$Locations$Connections$Runtimeactionschemas;
     runtimeEntitySchemas: Resource$Projects$Locations$Connections$Runtimeentityschemas;
@@ -4097,6 +4508,10 @@ export namespace connectors_v1 {
       this.context = context;
       this.connectionSchemaMetadata =
         new Resource$Projects$Locations$Connections$Connectionschemametadata(
+          this.context
+        );
+      this.endUserAuthentications =
+        new Resource$Projects$Locations$Connections$Enduserauthentications(
           this.context
         );
       this.eventSubscriptions =
@@ -4124,11 +4539,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4157,7 +4572,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4212,11 +4630,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4245,7 +4663,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4297,11 +4718,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Connection>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4330,7 +4751,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4382,11 +4806,11 @@ export namespace connectors_v1 {
     getConnectionSchemaMetadata(
       params: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConnectionSchemaMetadata(
       params?: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectionSchemaMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectionSchemaMetadata>>;
     getConnectionSchemaMetadata(
       params: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4421,8 +4845,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConnectionSchemaMetadata>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectionSchemaMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4475,11 +4899,11 @@ export namespace connectors_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4508,7 +4932,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4564,11 +4991,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4601,8 +5028,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4657,11 +5084,11 @@ export namespace connectors_v1 {
     listenEvent(
       params: Params$Resource$Projects$Locations$Connections$Listenevent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listenEvent(
       params?: Params$Resource$Projects$Locations$Connections$Listenevent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListenEventResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListenEventResponse>>;
     listenEvent(
       params: Params$Resource$Projects$Locations$Connections$Listenevent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4694,8 +5121,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListenEventResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListenEventResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Listenevent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4751,11 +5178,11 @@ export namespace connectors_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4784,7 +5211,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4836,11 +5266,11 @@ export namespace connectors_v1 {
     repairEventing(
       params: Params$Resource$Projects$Locations$Connections$Repaireventing,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     repairEventing(
       params?: Params$Resource$Projects$Locations$Connections$Repaireventing,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     repairEventing(
       params: Params$Resource$Projects$Locations$Connections$Repaireventing,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4869,7 +5299,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Repaireventing;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4925,11 +5358,11 @@ export namespace connectors_v1 {
     search(
       params: Params$Resource$Projects$Locations$Connections$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Locations$Connections$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchConnectionsResponse>>;
     search(
       params: Params$Resource$Projects$Locations$Connections$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4964,8 +5397,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5017,11 +5450,11 @@ export namespace connectors_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5050,7 +5483,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5106,11 +5542,11 @@ export namespace connectors_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5145,8 +5581,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5290,7 +5726,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`
+     * Required. The list of fields to update. Fields are specified relative to the connection. A field will be overwritten if it is in the mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`
      */
     updateMask?: string;
 
@@ -5372,11 +5808,11 @@ export namespace connectors_v1 {
     getAction(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAction(
       params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     getAction(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5405,7 +5841,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5461,11 +5900,11 @@ export namespace connectors_v1 {
     getEntityType(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEntityType(
       params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     getEntityType(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5494,7 +5933,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Getentitytype;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5550,11 +5992,11 @@ export namespace connectors_v1 {
     listActions(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listActions(
       params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListActionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListActionsResponse>>;
     listActions(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5587,8 +6029,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListActionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listactions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5644,11 +6086,11 @@ export namespace connectors_v1 {
     listEntityTypes(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listEntityTypes(
       params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEntityTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEntityTypesResponse>>;
     listEntityTypes(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5683,8 +6125,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEntityTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5740,11 +6182,11 @@ export namespace connectors_v1 {
     refresh(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     refresh(
       params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     refresh(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5773,7 +6215,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5900,6 +6345,550 @@ export namespace connectors_v1 {
     requestBody?: Schema$RefreshConnectionSchemaMetadataRequest;
   }
 
+  export class Resource$Projects$Locations$Connections$Enduserauthentications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new EndUserAuthentication in a given project,location and connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/endUserAuthentications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single EndUserAuthentication.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single EndUserAuthentication.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EndUserAuthentication>>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EndUserAuthentication>,
+      callback: BodyResponseCallback<Schema$EndUserAuthentication>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
+      callback: BodyResponseCallback<Schema$EndUserAuthentication>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EndUserAuthentication>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get
+        | BodyResponseCallback<Schema$EndUserAuthentication>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EndUserAuthentication>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EndUserAuthentication>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EndUserAuthentication>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EndUserAuthentication>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EndUserAuthentication>(parameters);
+      }
+    }
+
+    /**
+     * List EndUserAuthentications in a given project,location and connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListEndUserAuthenticationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>,
+      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
+      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$List
+        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListEndUserAuthenticationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/endUserAuthentications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEndUserAuthenticationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEndUserAuthenticationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single EndUserAuthentication.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create
+    extends StandardParameters {
+    /**
+     * Required. Identifier to assign to the EndUserAuthentication. Must be unique within scope of the parent resource.
+     */
+    endUserAuthenticationId?: string;
+    /**
+     * Required. Parent resource of the EndUserAuthentication, of the form: `projects/x/locations/x/connections/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EndUserAuthentication;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x/endUserAuthentication/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x/EndUserAuthentications/x`
+     */
+    name?: string;
+    /**
+     * Optional. View of the EndUserAuthentication to return.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$List
+    extends StandardParameters {
+    /**
+     * Filter.
+     */
+    filter?: string;
+    /**
+     * Order by parameters.
+     */
+    orderBy?: string;
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the EndUserAuthentication, of the form: `projects/x/locations/x/connections/x`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project\}/locations/{location\}/connections/{connection\}/endUserAuthentications/{end_user_authentication\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EndUserAuthentication details: * `notify_endpoint_destination`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EndUserAuthentication;
+  }
+
   export class Resource$Projects$Locations$Connections$Eventsubscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5917,11 +6906,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5950,7 +6939,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6006,11 +6998,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6039,7 +7031,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6092,11 +7087,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventSubscription>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventSubscription>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6127,8 +7122,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventSubscription>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventSubscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6181,11 +7176,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEventSubscriptionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEventSubscriptionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6220,8 +7215,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEventSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEventSubscriptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6279,11 +7274,11 @@ export namespace connectors_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6312,7 +7307,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6365,11 +7363,11 @@ export namespace connectors_v1 {
     retry(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retry(
       params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     retry(
       params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6398,7 +7396,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6497,7 +7498,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     * Required. Identifier. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
      */
     name?: string;
     /**
@@ -6540,11 +7541,13 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRuntimeActionSchemasResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListRuntimeActionSchemasResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6579,8 +7582,10 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRuntimeActionSchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListRuntimeActionSchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Runtimeactionschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6669,11 +7674,13 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRuntimeEntitySchemasResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListRuntimeEntitySchemasResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6708,8 +7715,10 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRuntimeEntitySchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListRuntimeEntitySchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Runtimeentityschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6799,11 +7808,13 @@ export namespace connectors_v1 {
     validateCustomConnectorSpec(
       params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     validateCustomConnectorSpec(
       params?: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ValidateCustomConnectorSpecResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ValidateCustomConnectorSpecResponse>
+    >;
     validateCustomConnectorSpec(
       params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6838,8 +7849,10 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ValidateCustomConnectorSpecResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ValidateCustomConnectorSpecResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6917,11 +7930,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6950,7 +7963,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7003,11 +8019,11 @@ export namespace connectors_v1 {
     deprecate(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deprecate(
       params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deprecate(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7036,7 +8052,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7092,11 +8111,11 @@ export namespace connectors_v1 {
     publish(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     publish(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7125,7 +8144,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7181,11 +8203,11 @@ export namespace connectors_v1 {
     withdraw(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     withdraw(
       params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     withdraw(
       params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7214,7 +8236,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7321,11 +8346,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Endpointattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Endpointattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Endpointattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7354,7 +8379,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Endpointattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7410,11 +8438,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Endpointattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Endpointattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Endpointattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7443,7 +8471,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Endpointattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7496,11 +8527,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Endpointattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Endpointattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EndpointAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EndpointAttachment>>;
     get(
       params: Params$Resource$Projects$Locations$Endpointattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7531,8 +8562,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EndpointAttachment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EndpointAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Endpointattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7585,11 +8616,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Endpointattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Endpointattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEndpointAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEndpointAttachmentsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Endpointattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7624,8 +8655,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEndpointAttachmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEndpointAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Endpointattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7683,11 +8714,11 @@ export namespace connectors_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Endpointattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Endpointattachments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Endpointattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7716,7 +8747,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Endpointattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7861,11 +8895,11 @@ export namespace connectors_v1 {
     getSettings(
       params: Params$Resource$Projects$Locations$Global$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSettings(
       params?: Params$Resource$Projects$Locations$Global$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     getSettings(
       params: Params$Resource$Projects$Locations$Global$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7894,7 +8928,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7946,11 +8983,11 @@ export namespace connectors_v1 {
     updateSettings(
       params: Params$Resource$Projects$Locations$Global$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSettings(
       params?: Params$Resource$Projects$Locations$Global$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateSettings(
       params: Params$Resource$Projects$Locations$Global$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7979,7 +9016,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8067,11 +9107,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8100,7 +9140,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8156,11 +9199,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8189,7 +9232,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8242,11 +9288,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomConnector>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomConnector>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8275,7 +9321,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$CustomConnector>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomConnector> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomConnector>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8328,11 +9377,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomConnectorsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomConnectorsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8367,8 +9416,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomConnectorsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomConnectorsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8426,11 +9475,11 @@ export namespace connectors_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8459,7 +9508,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8589,11 +9641,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8622,7 +9674,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8678,11 +9733,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomConnectorVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomConnectorVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8715,8 +9770,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomConnectorVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomConnectorVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8769,11 +9824,13 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomConnectorVersionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomConnectorVersionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8808,8 +9865,10 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomConnectorVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomConnectorVersionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8913,11 +9972,11 @@ export namespace connectors_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Managedzones$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8946,7 +10005,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Managedzones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9002,11 +10064,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Managedzones$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9035,7 +10097,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Managedzones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9088,11 +10153,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Managedzones$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedZone>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9121,7 +10186,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$ManagedZone>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManagedZone> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Managedzones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9174,11 +10242,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Managedzones$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Managedzones$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListManagedZonesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListManagedZonesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Managedzones$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9211,8 +10279,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListManagedZonesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListManagedZonesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Managedzones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9268,11 +10336,11 @@ export namespace connectors_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Managedzones$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Managedzones$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9301,7 +10369,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Managedzones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9435,11 +10506,11 @@ export namespace connectors_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9468,7 +10539,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9520,11 +10594,11 @@ export namespace connectors_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9553,7 +10627,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9605,11 +10682,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9638,7 +10715,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9690,11 +10770,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9727,8 +10807,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9840,11 +10920,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Providers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Providers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Provider>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Provider>>;
     get(
       params: Params$Resource$Projects$Locations$Providers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9873,7 +10953,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Provider>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Provider> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Provider>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9925,11 +11008,11 @@ export namespace connectors_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Providers$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Providers$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Providers$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9958,7 +11041,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10014,11 +11100,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Providers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProvidersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProvidersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10051,8 +11137,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProvidersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProvidersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10107,11 +11193,11 @@ export namespace connectors_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Providers$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Providers$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Providers$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10140,7 +11226,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10196,11 +11285,11 @@ export namespace connectors_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Providers$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Providers$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Providers$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10235,8 +11324,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10362,11 +11451,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Connector>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Connector>>;
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10395,7 +11484,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10448,11 +11540,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectorsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConnectorsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10485,8 +11577,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectorsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConnectorsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10581,11 +11673,11 @@ export namespace connectors_v1 {
     fetchAuthSchema(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchAuthSchema(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchAuthSchemaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchAuthSchemaResponse>>;
     fetchAuthSchema(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10620,8 +11712,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchAuthSchemaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchAuthSchemaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10677,11 +11769,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectorVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectorVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10710,7 +11802,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConnectorVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectorVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectorVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10763,11 +11858,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectorVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConnectorVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10802,8 +11897,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectorVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConnectorVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10869,6 +11964,10 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
+     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
+     */
+    schemaView?: string;
+    /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
      */
     view?: string;
@@ -10887,6 +11986,10 @@ export namespace connectors_v1 {
      * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for ConnectorVersion resource.
      */
     parent?: string;
+    /**
+     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
+     */
+    schemaView?: string;
     /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
      */
@@ -10910,11 +12013,11 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventType>>;
     get(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10943,7 +12046,10 @@ export namespace connectors_v1 {
       callback?:
         | BodyResponseCallback<Schema$EventType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10996,11 +12102,11 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEventTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEventTypesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11033,8 +12139,8 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEventTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEventTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -300,11 +300,13 @@ export namespace businessprofileperformance_v1 {
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchMultiDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+    >;
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -339,8 +341,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Fetchmultidailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -398,11 +402,13 @@ export namespace businessprofileperformance_v1 {
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Getdailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetDailyMetricsTimeSeriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
+    >;
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -437,8 +443,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetDailyMetricsTimeSeriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getdailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -616,11 +624,13 @@ export namespace businessprofileperformance_v1 {
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSearchKeywordImpressionsMonthlyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
+    >;
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -655,8 +665,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSearchKeywordImpressionsMonthlyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

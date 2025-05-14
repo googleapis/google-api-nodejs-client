@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4821,11 +4821,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4860,8 +4860,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4917,11 +4917,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4956,8 +4956,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5010,11 +5010,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EncryptionConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EncryptionConfig>
+    >;
     get(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5049,8 +5051,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EncryptionConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EncryptionConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5105,11 +5109,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5142,8 +5146,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5199,11 +5203,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5238,8 +5244,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5297,11 +5305,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5336,8 +5344,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5390,11 +5398,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5427,8 +5435,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5484,11 +5492,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5523,8 +5533,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5698,11 +5710,11 @@ export namespace dataplex_v1 {
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Organizations$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5731,7 +5743,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5784,11 +5799,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5817,7 +5832,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5870,11 +5888,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5909,8 +5927,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5962,11 +5980,13 @@ export namespace dataplex_v1 {
     listOperations(
       params: Params$Resource$Organizations$Locations$Operations$Listoperations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listOperations(
       params?: Params$Resource$Organizations$Locations$Operations$Listoperations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     listOperations(
       params: Params$Resource$Organizations$Locations$Operations$Listoperations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6001,8 +6021,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Listoperations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6162,11 +6184,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationLocation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6201,8 +6223,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationLocation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6254,11 +6276,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6293,8 +6317,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6351,11 +6377,11 @@ export namespace dataplex_v1 {
     lookupEntry(
       params: Params$Resource$Projects$Locations$Lookupentry,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookupEntry(
       params?: Params$Resource$Projects$Locations$Lookupentry,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>;
     lookupEntry(
       params: Params$Resource$Projects$Locations$Lookupentry,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6390,8 +6416,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lookupentry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6446,11 +6472,13 @@ export namespace dataplex_v1 {
     searchEntries(
       params: Params$Resource$Projects$Locations$Searchentries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchEntries(
       params?: Params$Resource$Projects$Locations$Searchentries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1SearchEntriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+    >;
     searchEntries(
       params: Params$Resource$Projects$Locations$Searchentries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6485,8 +6513,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Searchentries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6635,11 +6665,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Aspecttypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Aspecttypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6674,8 +6704,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6730,11 +6760,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6769,8 +6799,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6822,11 +6852,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Aspecttypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1AspectType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1AspectType>>;
     get(
       params: Params$Resource$Projects$Locations$Aspecttypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6861,8 +6891,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1AspectType>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1AspectType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6916,11 +6946,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6953,8 +6983,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7010,11 +7040,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Aspecttypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Aspecttypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Aspecttypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7049,8 +7081,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7107,11 +7141,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7146,8 +7180,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7199,11 +7233,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7236,8 +7270,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7293,11 +7327,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7332,8 +7368,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Aspecttypes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7515,11 +7553,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7554,8 +7592,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7611,11 +7649,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7650,8 +7688,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7704,11 +7742,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttributeBinding>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7743,8 +7783,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttributeBinding>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7799,11 +7841,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7836,8 +7878,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7893,11 +7935,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataattributebindings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Dataattributebindings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7932,8 +7976,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7991,11 +8037,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8030,8 +8076,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8084,11 +8130,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8121,8 +8167,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8178,11 +8224,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8217,8 +8265,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataattributebindings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8402,11 +8452,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datascans$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datascans$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Datascans$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8441,8 +8491,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8497,11 +8547,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datascans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datascans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Datascans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8536,8 +8586,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8589,11 +8639,13 @@ export namespace dataplex_v1 {
     generateDataQualityRules(
       params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDataQualityRules(
       params?: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    >;
     generateDataQualityRules(
       params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8628,8 +8680,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8687,11 +8741,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datascans$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datascans$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataScan>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataScan>>;
     get(
       params: Params$Resource$Projects$Locations$Datascans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8726,8 +8780,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataScan>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataScan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8781,11 +8835,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datascans$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datascans$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datascans$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8818,8 +8872,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8875,11 +8929,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datascans$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datascans$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataScansResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataScansResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Datascans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8914,8 +8970,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataScansResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataScansResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8972,11 +9030,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datascans$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datascans$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Datascans$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9011,8 +9069,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9064,11 +9122,13 @@ export namespace dataplex_v1 {
     run(
       params: Params$Resource$Projects$Locations$Datascans$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Projects$Locations$Datascans$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1RunDataScanResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RunDataScanResponse>
+    >;
     run(
       params: Params$Resource$Projects$Locations$Datascans$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9103,8 +9163,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1RunDataScanResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RunDataScanResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9158,11 +9220,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datascans$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datascans$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datascans$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9195,8 +9257,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9252,11 +9314,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datascans$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datascans$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datascans$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9291,8 +9355,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9502,11 +9568,13 @@ export namespace dataplex_v1 {
     generateDataQualityRules(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDataQualityRules(
       params?: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    >;
     generateDataQualityRules(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9541,8 +9609,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9600,11 +9670,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datascans$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataScanJob>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataScanJob>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9639,8 +9711,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataScanJob>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataScanJob>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9694,11 +9768,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datascans$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataScanJobsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataScanJobsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Datascans$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9733,8 +9809,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataScanJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataScanJobsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datascans$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9841,11 +9919,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9880,8 +9958,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9936,11 +10014,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9975,8 +10053,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10028,11 +10106,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datataxonomies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataTaxonomy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataTaxonomy>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Datataxonomies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10067,8 +10147,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataTaxonomy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataTaxonomy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10122,11 +10204,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10159,8 +10241,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10216,11 +10298,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datataxonomies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datataxonomies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Datataxonomies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10255,8 +10339,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10313,11 +10399,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10352,8 +10438,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10405,11 +10491,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10442,8 +10528,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10499,11 +10585,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10538,8 +10626,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10721,11 +10811,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10760,8 +10850,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10817,11 +10907,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10856,8 +10946,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10910,11 +11000,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttribute>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataAttribute>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10949,8 +11041,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttribute>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1DataAttribute>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11005,11 +11099,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11042,8 +11136,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11099,11 +11193,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11138,8 +11234,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11197,11 +11295,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11236,8 +11334,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11290,11 +11388,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11327,8 +11425,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11384,11 +11482,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11423,8 +11523,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11614,11 +11716,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11653,8 +11755,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11709,11 +11811,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11748,8 +11850,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11801,11 +11903,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrygroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11840,8 +11942,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11895,11 +11997,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11932,8 +12034,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11989,11 +12091,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12028,8 +12132,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12086,11 +12192,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12125,8 +12231,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12178,11 +12284,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrygroups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12215,8 +12321,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12272,11 +12378,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrygroups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12311,8 +12419,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12494,11 +12604,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12533,8 +12643,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12590,11 +12700,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12629,8 +12739,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12683,11 +12793,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12722,8 +12832,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12776,11 +12886,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12815,8 +12927,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12874,11 +12988,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12913,8 +13027,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13064,11 +13178,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13103,8 +13217,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13162,11 +13276,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13201,8 +13315,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13257,11 +13371,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13296,8 +13410,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13390,11 +13504,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13427,8 +13541,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrylinktypes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13484,11 +13598,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13521,8 +13635,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrylinktypes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13578,11 +13692,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13617,8 +13733,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrylinktypes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13719,11 +13837,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Entrytypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Entrytypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Entrytypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13758,8 +13876,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13814,11 +13932,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Entrytypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Entrytypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Entrytypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13853,8 +13971,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13906,11 +14024,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Entrytypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Entrytypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryType>>;
     get(
       params: Params$Resource$Projects$Locations$Entrytypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13945,8 +14063,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryType>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14000,11 +14118,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrytypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrytypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Entrytypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14037,8 +14155,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14094,11 +14212,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Entrytypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Entrytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14133,8 +14253,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14191,11 +14313,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Entrytypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Entrytypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Entrytypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14230,8 +14352,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14283,11 +14405,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrytypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Entrytypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Entrytypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14320,8 +14442,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14377,11 +14499,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrytypes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Entrytypes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Entrytypes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14416,8 +14540,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrytypes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14607,11 +14733,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14646,8 +14772,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14702,11 +14828,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14741,8 +14867,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14794,11 +14920,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Glossary>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Glossary>>;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14833,8 +14959,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Glossary>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Glossary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14888,11 +15014,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14925,8 +15051,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14982,11 +15108,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossariesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15021,8 +15149,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15079,11 +15209,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Glossaries$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15118,8 +15248,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15171,11 +15301,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15208,8 +15338,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15265,11 +15395,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15304,8 +15436,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15487,11 +15621,13 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15526,8 +15662,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15585,11 +15723,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15618,7 +15756,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15671,11 +15812,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15710,8 +15853,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15766,11 +15911,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15803,8 +15948,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15860,11 +16005,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15899,8 +16046,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15958,11 +16107,13 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15997,8 +16148,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16053,11 +16206,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16090,8 +16243,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16147,11 +16300,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16186,8 +16341,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16357,11 +16514,13 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16396,8 +16555,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16455,11 +16616,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16488,7 +16649,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16541,11 +16705,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16580,8 +16746,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16635,11 +16803,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16672,8 +16840,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16729,11 +16897,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16768,8 +16938,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16826,11 +16998,13 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16865,8 +17039,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16921,11 +17097,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16958,8 +17134,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17015,11 +17191,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17054,8 +17232,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17225,11 +17405,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Governancerules$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Governancerules$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Governancerules$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17262,8 +17442,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Governancerules$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17319,11 +17499,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Governancerules$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Governancerules$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Governancerules$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17356,8 +17536,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Governancerules$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17413,11 +17593,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Governancerules$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Governancerules$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Governancerules$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17452,8 +17634,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Governancerules$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17574,11 +17758,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17613,8 +17797,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17669,11 +17853,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17708,8 +17892,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17761,11 +17945,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Lake>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Lake>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17798,8 +17982,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Lake>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Lake>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17851,11 +18035,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17888,8 +18072,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17944,11 +18128,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListLakesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListLakesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17983,8 +18169,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListLakesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListLakesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18041,11 +18229,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18080,8 +18268,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18133,11 +18321,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18170,8 +18358,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18226,11 +18414,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18265,8 +18455,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18444,11 +18636,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Actions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Actions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Actions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18483,8 +18677,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Actions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18564,11 +18760,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Content$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Content$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18603,8 +18799,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18661,11 +18857,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18694,7 +18890,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18746,11 +18945,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Content$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Content$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18785,8 +18984,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18840,11 +19039,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18877,8 +19076,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18934,11 +19133,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Content$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Content$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListContentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Content$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18973,8 +19174,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListContentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19031,11 +19234,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19070,8 +19273,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19125,11 +19328,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19162,8 +19365,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19219,11 +19422,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19258,8 +19463,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19433,11 +19640,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19472,8 +19679,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19531,11 +19738,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19564,7 +19771,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19617,11 +19827,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19656,8 +19866,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19712,11 +19922,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19749,8 +19959,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19806,11 +20016,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListContentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19845,8 +20057,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListContentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19904,11 +20118,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19943,8 +20157,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Content>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19999,11 +20213,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20036,8 +20250,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20093,11 +20307,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20132,8 +20348,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20312,11 +20530,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20351,8 +20569,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20408,11 +20626,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20447,8 +20665,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20501,11 +20719,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Environment>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Environment>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20540,8 +20760,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Environment>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Environment>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20596,11 +20818,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20633,8 +20855,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20690,11 +20912,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Environments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Environments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20729,8 +20953,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20788,11 +21014,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20827,8 +21053,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20881,11 +21107,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20918,8 +21144,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20975,11 +21201,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21014,8 +21242,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21193,11 +21423,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListSessionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListSessionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21232,8 +21464,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListSessionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21322,11 +21556,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21361,8 +21595,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21417,11 +21651,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21456,8 +21690,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21509,11 +21743,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Task>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21546,8 +21780,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Task>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21599,11 +21833,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21636,8 +21870,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21693,11 +21927,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListTasksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListTasksResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21732,8 +21968,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListTasksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListTasksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21790,11 +22028,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21829,8 +22067,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21882,11 +22120,13 @@ export namespace dataplex_v1 {
     run(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1RunTaskResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RunTaskResponse>
+    >;
     run(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21921,8 +22161,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1RunTaskResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RunTaskResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21976,11 +22218,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22013,8 +22255,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22070,11 +22312,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22109,8 +22353,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22300,11 +22546,11 @@ export namespace dataplex_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22333,7 +22579,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22386,11 +22635,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Job>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22423,8 +22672,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Job>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22476,11 +22725,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListJobsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListJobsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22515,8 +22766,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListJobsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22624,11 +22877,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22663,8 +22916,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22719,11 +22972,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22758,8 +23011,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22811,11 +23064,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Zone>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Zone>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22848,8 +23101,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Zone>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Zone>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22901,11 +23154,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22938,8 +23191,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22995,11 +23248,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListZonesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListZonesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23034,8 +23289,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListZonesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListZonesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23092,11 +23349,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23131,8 +23388,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23184,11 +23441,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23221,8 +23478,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23278,11 +23535,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23317,8 +23576,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23496,11 +23757,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Actions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Actions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Actions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23535,8 +23798,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Actions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23621,11 +23886,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23660,8 +23925,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23717,11 +23982,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23756,8 +24021,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23810,11 +24075,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Asset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Asset>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23849,8 +24114,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Asset>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Asset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23903,11 +24168,11 @@ export namespace dataplex_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23940,8 +24205,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23997,11 +24262,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListAssetsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListAssetsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24036,8 +24303,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListAssetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24095,11 +24364,11 @@ export namespace dataplex_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24134,8 +24403,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24188,11 +24457,11 @@ export namespace dataplex_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24225,8 +24494,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24282,11 +24551,13 @@ export namespace dataplex_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24321,8 +24592,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24500,11 +24773,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24539,8 +24814,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListActionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Assets$Actions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24626,11 +24903,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24665,8 +24942,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24722,11 +24999,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24755,7 +25032,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24808,11 +25088,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24847,8 +25127,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24901,11 +25181,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntitiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntitiesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24940,8 +25222,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEntitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24999,11 +25283,11 @@ export namespace dataplex_v1 {
     update(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>;
     update(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25038,8 +25322,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25177,11 +25461,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Partition>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Partition>>;
     create(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25216,8 +25500,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Partition>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Partition>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25275,11 +25559,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25308,7 +25592,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25361,11 +25648,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Partition>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Partition>>;
     get(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25400,8 +25687,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1Partition>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Partition>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25456,11 +25743,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListPartitionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListPartitionsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25495,8 +25784,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListPartitionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListPartitionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lakes$Zones$Entities$Partitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25615,11 +25906,11 @@ export namespace dataplex_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25648,7 +25939,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Metadatajobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25700,11 +25994,11 @@ export namespace dataplex_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatajobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Metadatajobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Metadatajobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25739,8 +26033,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Metadatajobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25795,11 +26089,13 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatajobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Metadatajobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1MetadataJob>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1MetadataJob>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Metadatajobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25834,8 +26130,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1MetadataJob>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1MetadataJob>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Metadatajobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25889,11 +26187,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Metadatajobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Metadatajobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Metadatajobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25928,8 +26228,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Metadatajobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26056,11 +26358,11 @@ export namespace dataplex_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26089,7 +26391,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26141,11 +26446,11 @@ export namespace dataplex_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26174,7 +26479,10 @@ export namespace dataplex_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26226,11 +26534,11 @@ export namespace dataplex_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26265,8 +26573,8 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26318,11 +26626,13 @@ export namespace dataplex_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26357,8 +26667,10 @@ export namespace dataplex_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

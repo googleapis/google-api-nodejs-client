@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1056,11 +1056,11 @@ export namespace driveactivity_v2 {
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Activity$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>>;
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1095,8 +1095,8 @@ export namespace driveactivity_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryDriveActivityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -28,8 +28,22 @@ describe(__filename, () => {
     'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries';
   const fakeIndexPath = 'test/fixtures/index.json';
   const sandbox = sinon.createSandbox();
+  beforeEach(() => {
+    try {
+      fs.mkdirSync('build/test/temp');
+    } catch (err) {
+      console.log('no directory');
+    }
+  });
 
-  afterEach(() => sandbox.restore());
+  afterEach(() => {
+    try {
+      fs.unlinkSync('build/test/tmp');
+    } catch (err) {
+      console.log('no directory');
+    }
+    sandbox.restore();
+  });
 
   it('should sort an object by key order', () => {
     const unsorted = {
@@ -99,7 +113,7 @@ describe(__filename, () => {
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile');
-    const downloadPath = path.join(__dirname, '../../discovery');
+    const downloadPath = 'build/test/temp';
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
     assert(mkdirpStub.calledOnce);
     assert(writeFileStub.calledTwice);
@@ -132,7 +146,7 @@ describe(__filename, () => {
         2
       );
     });
-    const downloadPath = path.join(__dirname, '../../discovery');
+    const downloadPath = 'build/test/temp';
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
     assert(writeFileStub.calledOnce);
     assert(readFileStub.calledOnce);

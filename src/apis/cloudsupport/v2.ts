@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -747,11 +747,13 @@ export namespace cloudsupport_v2 {
     search(
       params: Params$Resource$Caseclassifications$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Caseclassifications$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchCaseClassificationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SearchCaseClassificationsResponse>
+    >;
     search(
       params: Params$Resource$Caseclassifications$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -786,8 +788,10 @@ export namespace cloudsupport_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchCaseClassificationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SearchCaseClassificationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Caseclassifications$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -871,11 +875,11 @@ export namespace cloudsupport_v2 {
     close(
       params: Params$Resource$Cases$Close,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     close(
       params?: Params$Resource$Cases$Close,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Case>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Case>>;
     close(
       params: Params$Resource$Cases$Close,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -904,7 +908,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Case>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Case> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Case>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -955,11 +962,11 @@ export namespace cloudsupport_v2 {
     create(
       params: Params$Resource$Cases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Cases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Case>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Case>>;
     create(
       params: Params$Resource$Cases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -988,7 +995,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Case>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Case> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Case>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1042,11 +1052,11 @@ export namespace cloudsupport_v2 {
     escalate(
       params: Params$Resource$Cases$Escalate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     escalate(
       params?: Params$Resource$Cases$Escalate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Case>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Case>>;
     escalate(
       params: Params$Resource$Cases$Escalate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1075,7 +1085,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Case>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Case> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Case>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Escalate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1129,11 +1142,11 @@ export namespace cloudsupport_v2 {
     get(
       params: Params$Resource$Cases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Cases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Case>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Case>>;
     get(
       params: Params$Resource$Cases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1162,7 +1175,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Case>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Case> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Case>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1213,11 +1229,11 @@ export namespace cloudsupport_v2 {
     list(
       params: Params$Resource$Cases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCasesResponse>>;
     list(
       params: Params$Resource$Cases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1248,8 +1264,8 @@ export namespace cloudsupport_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1303,11 +1319,11 @@ export namespace cloudsupport_v2 {
     patch(
       params: Params$Resource$Cases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Cases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Case>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Case>>;
     patch(
       params: Params$Resource$Cases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1336,7 +1352,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Case>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Case> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Case>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1387,11 +1406,11 @@ export namespace cloudsupport_v2 {
     search(
       params: Params$Resource$Cases$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Cases$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchCasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchCasesResponse>>;
     search(
       params: Params$Resource$Cases$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1422,8 +1441,8 @@ export namespace cloudsupport_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchCasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchCasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cases$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1575,11 +1594,11 @@ export namespace cloudsupport_v2 {
     list(
       params: Params$Resource$Cases$Attachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cases$Attachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttachmentsResponse>>;
     list(
       params: Params$Resource$Cases$Attachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1612,8 +1631,8 @@ export namespace cloudsupport_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttachmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cases$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1691,11 +1710,11 @@ export namespace cloudsupport_v2 {
     create(
       params: Params$Resource$Cases$Comments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Cases$Comments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     create(
       params: Params$Resource$Cases$Comments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1724,7 +1743,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cases$Comments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1779,11 +1801,11 @@ export namespace cloudsupport_v2 {
     list(
       params: Params$Resource$Cases$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cases$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCommentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCommentsResponse>>;
     list(
       params: Params$Resource$Cases$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1816,8 +1838,8 @@ export namespace cloudsupport_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCommentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCommentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cases$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1907,11 +1929,11 @@ export namespace cloudsupport_v2 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Media>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Media>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1940,7 +1962,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Media> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1994,11 +2019,11 @@ export namespace cloudsupport_v2 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2027,7 +2052,10 @@ export namespace cloudsupport_v2 {
       callback?:
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

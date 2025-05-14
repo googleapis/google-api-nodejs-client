@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -306,7 +306,7 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
     /**
-     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the forwarding rule or Gateway. For Application Load Balancers, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or SPIFFE ID, or the subject field in the client's certificate. For Cloud Service Mesh, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or the subject field in the client's certificate. The match can be exact, prefix, suffix, or a substring match. One of exact, prefix, suffix, or contains must be specified. Limited to 5 principals.
+     * Optional. A list of identities derived from the client's certificate. This field is under development and we don't recommend using it at this time. Limited to 5 principals.
      */
     principals?: Schema$AuthzPolicyAuthzRuleStringMatch[];
     /**
@@ -2307,11 +2307,11 @@ export namespace networksecurity_v1beta1 {
     addItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Additems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addItems(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Additems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Additems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2340,7 +2340,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Additems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2397,11 +2400,11 @@ export namespace networksecurity_v1beta1 {
     cloneItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Cloneitems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cloneItems(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Cloneitems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     cloneItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Cloneitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2430,7 +2433,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Cloneitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2487,11 +2493,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Organizations$Locations$Addressgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Locations$Addressgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2520,7 +2526,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2577,11 +2586,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Addressgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Addressgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2610,7 +2619,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2664,11 +2676,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Addressgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddressGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddressGroup>>;
     get(
       params: Params$Resource$Organizations$Locations$Addressgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2697,7 +2709,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AddressGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AddressGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddressGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2751,11 +2766,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Addressgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Addressgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddressGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddressGroupsResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Addressgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2790,8 +2805,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAddressGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddressGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2848,11 +2863,13 @@ export namespace networksecurity_v1beta1 {
     listReferences(
       params: Params$Resource$Organizations$Locations$Addressgroups$Listreferences,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listReferences(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Listreferences,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddressGroupReferencesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAddressGroupReferencesResponse>
+    >;
     listReferences(
       params: Params$Resource$Organizations$Locations$Addressgroups$Listreferences,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2887,8 +2904,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAddressGroupReferencesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAddressGroupReferencesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Listreferences;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2947,11 +2966,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Locations$Addressgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Addressgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2980,7 +2999,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3034,11 +3056,11 @@ export namespace networksecurity_v1beta1 {
     removeItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Removeitems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeItems(
       params?: Params$Resource$Organizations$Locations$Addressgroups$Removeitems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     removeItems(
       params: Params$Resource$Organizations$Locations$Addressgroups$Removeitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3067,7 +3089,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Addressgroups$Removeitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3260,11 +3285,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3293,7 +3318,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3350,11 +3378,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3383,7 +3411,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3437,11 +3468,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirewallEndpoint>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpoint>>;
     get(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3470,7 +3501,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$FirewallEndpoint>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FirewallEndpoint> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3524,11 +3558,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Firewallendpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFirewallEndpointsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointsResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3563,8 +3597,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFirewallEndpointsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Firewallendpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3623,11 +3657,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3656,7 +3690,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3799,11 +3836,11 @@ export namespace networksecurity_v1beta1 {
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Organizations$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3832,7 +3869,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3889,11 +3929,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3922,7 +3962,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3976,11 +4019,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4009,7 +4052,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4062,11 +4108,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4099,8 +4145,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4209,11 +4255,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4242,7 +4288,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4299,11 +4348,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4332,7 +4381,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4386,11 +4438,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityProfileGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecurityProfileGroup>>;
     get(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4423,8 +4475,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SecurityProfileGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecurityProfileGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4478,11 +4530,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecurityProfileGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSecurityProfileGroupsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4517,8 +4571,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecurityProfileGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSecurityProfileGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4577,11 +4633,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4610,7 +4666,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4737,11 +4796,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Securityprofiles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4770,7 +4829,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4827,11 +4889,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4860,7 +4922,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4914,11 +4979,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Securityprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecurityProfile>>;
     get(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4947,7 +5012,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$SecurityProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecurityProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecurityProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5001,11 +5069,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Securityprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Securityprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecurityProfilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSecurityProfilesResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Securityprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5040,8 +5108,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecurityProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSecurityProfilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5100,11 +5168,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5133,7 +5201,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Securityprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5336,11 +5407,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5369,7 +5440,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5422,11 +5496,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5459,8 +5533,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5554,11 +5628,11 @@ export namespace networksecurity_v1beta1 {
     addItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Additems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addItems(
       params?: Params$Resource$Projects$Locations$Addressgroups$Additems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Additems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5587,7 +5661,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Additems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5644,11 +5721,11 @@ export namespace networksecurity_v1beta1 {
     cloneItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Cloneitems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cloneItems(
       params?: Params$Resource$Projects$Locations$Addressgroups$Cloneitems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     cloneItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Cloneitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5677,7 +5754,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Cloneitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5734,11 +5814,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Addressgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Addressgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Addressgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5767,7 +5847,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5823,11 +5906,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Addressgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Addressgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Addressgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5856,7 +5939,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5909,11 +5995,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Addressgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Addressgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AddressGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddressGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Addressgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5942,7 +6028,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AddressGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AddressGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddressGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5995,11 +6084,11 @@ export namespace networksecurity_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Addressgroups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Addressgroups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Addressgroups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6032,8 +6121,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6090,11 +6179,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Addressgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Addressgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddressGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddressGroupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Addressgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6129,8 +6218,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAddressGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddressGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6186,11 +6275,13 @@ export namespace networksecurity_v1beta1 {
     listReferences(
       params: Params$Resource$Projects$Locations$Addressgroups$Listreferences,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listReferences(
       params?: Params$Resource$Projects$Locations$Addressgroups$Listreferences,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAddressGroupReferencesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAddressGroupReferencesResponse>
+    >;
     listReferences(
       params: Params$Resource$Projects$Locations$Addressgroups$Listreferences,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6225,8 +6316,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAddressGroupReferencesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAddressGroupReferencesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Listreferences;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6285,11 +6378,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Addressgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Addressgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Addressgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6318,7 +6411,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6371,11 +6467,11 @@ export namespace networksecurity_v1beta1 {
     removeItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Removeitems,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeItems(
       params?: Params$Resource$Projects$Locations$Addressgroups$Removeitems,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     removeItems(
       params: Params$Resource$Projects$Locations$Addressgroups$Removeitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6404,7 +6500,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Removeitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6461,11 +6560,11 @@ export namespace networksecurity_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Addressgroups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Addressgroups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Addressgroups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6498,8 +6597,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6556,11 +6655,13 @@ export namespace networksecurity_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Addressgroups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Addressgroups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Addressgroups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6595,8 +6696,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Addressgroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6826,11 +6929,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6859,7 +6962,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6916,11 +7022,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6949,7 +7055,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7003,11 +7112,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizationPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuthorizationPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7038,8 +7147,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AuthorizationPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuthorizationPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7093,11 +7202,11 @@ export namespace networksecurity_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7130,8 +7239,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7188,11 +7297,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizationPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAuthorizationPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7227,8 +7338,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizationPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAuthorizationPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7287,11 +7400,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7320,7 +7433,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7374,11 +7490,11 @@ export namespace networksecurity_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7411,8 +7527,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7469,11 +7585,13 @@ export namespace networksecurity_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7508,8 +7626,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7672,11 +7792,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Authzpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Authzpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7705,7 +7825,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7761,11 +7884,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7794,7 +7917,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7847,11 +7973,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Authzpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthzPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuthzPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Authzpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7880,7 +8006,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AuthzPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuthzPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuthzPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7933,11 +8062,11 @@ export namespace networksecurity_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7970,8 +8099,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8028,11 +8157,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Authzpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Authzpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthzPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthzPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Authzpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8067,8 +8196,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthzPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthzPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8124,11 +8253,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8157,7 +8286,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8210,11 +8342,11 @@ export namespace networksecurity_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8247,8 +8379,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8305,11 +8437,13 @@ export namespace networksecurity_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8344,8 +8478,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8528,11 +8664,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8561,7 +8697,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8617,11 +8756,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8650,7 +8789,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8704,11 +8846,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackendAuthenticationConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackendAuthenticationConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8743,8 +8885,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BackendAuthenticationConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackendAuthenticationConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8798,11 +8940,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backendauthenticationconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackendAuthenticationConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBackendAuthenticationConfigsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8837,8 +8981,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackendAuthenticationConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBackendAuthenticationConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backendauthenticationconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8896,11 +9042,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8929,7 +9075,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9056,11 +9205,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9089,7 +9238,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9146,11 +9298,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9179,7 +9331,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9233,11 +9388,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClientTlsPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientTlsPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9266,7 +9421,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ClientTlsPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientTlsPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientTlsPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9319,11 +9477,11 @@ export namespace networksecurity_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9356,8 +9514,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9414,11 +9572,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClientTlsPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClientTlsPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9453,8 +9611,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClientTlsPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClientTlsPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9513,11 +9671,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9546,7 +9704,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9600,11 +9761,11 @@ export namespace networksecurity_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9637,8 +9798,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9695,11 +9856,13 @@ export namespace networksecurity_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9734,8 +9897,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9898,11 +10063,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9931,7 +10096,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9987,11 +10155,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10020,7 +10188,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10074,11 +10245,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FirewallEndpointAssociation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpointAssociation>>;
     get(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10113,8 +10284,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FirewallEndpointAssociation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpointAssociation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10168,11 +10339,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFirewallEndpointAssociationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointAssociationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10207,8 +10380,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFirewallEndpointAssociationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10266,11 +10441,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10299,7 +10474,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10447,11 +10625,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10480,7 +10658,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10536,11 +10717,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10569,7 +10750,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10623,11 +10807,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GatewaySecurityPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GatewaySecurityPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10660,8 +10844,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GatewaySecurityPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GatewaySecurityPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10715,11 +10899,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGatewaySecurityPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGatewaySecurityPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10754,8 +10940,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGatewaySecurityPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGatewaySecurityPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10813,11 +11001,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10846,7 +11034,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10969,11 +11160,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11002,7 +11193,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11059,11 +11253,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11092,7 +11286,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11146,11 +11343,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GatewaySecurityPolicyRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GatewaySecurityPolicyRule>>;
     get(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11183,8 +11380,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GatewaySecurityPolicyRule>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GatewaySecurityPolicyRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11238,11 +11435,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGatewaySecurityPolicyRulesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGatewaySecurityPolicyRulesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11277,8 +11476,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGatewaySecurityPolicyRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGatewaySecurityPolicyRulesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11337,11 +11538,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11370,7 +11571,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11493,11 +11697,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11526,7 +11730,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11582,11 +11789,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11615,7 +11822,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11669,11 +11879,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InterceptDeploymentGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InterceptDeploymentGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11706,8 +11916,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InterceptDeploymentGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InterceptDeploymentGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11761,11 +11971,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInterceptDeploymentGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInterceptDeploymentGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11800,8 +12012,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInterceptDeploymentGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInterceptDeploymentGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11859,11 +12073,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11892,7 +12106,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12035,11 +12252,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Interceptdeployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12068,7 +12285,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12125,11 +12345,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12158,7 +12378,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12212,11 +12435,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Interceptdeployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InterceptDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InterceptDeployment>>;
     get(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12247,8 +12470,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InterceptDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InterceptDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12302,11 +12525,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Interceptdeployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Interceptdeployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInterceptDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInterceptDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Interceptdeployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12341,8 +12566,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInterceptDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInterceptDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12401,11 +12628,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12434,7 +12661,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptdeployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12577,11 +12807,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12610,7 +12840,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12666,11 +12899,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12699,7 +12932,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12753,11 +12989,13 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InterceptEndpointGroupAssociation>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$InterceptEndpointGroupAssociation>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12792,8 +13030,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InterceptEndpointGroupAssociation>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$InterceptEndpointGroupAssociation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12849,11 +13089,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInterceptEndpointGroupAssociationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInterceptEndpointGroupAssociationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12888,8 +13130,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInterceptEndpointGroupAssociationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInterceptEndpointGroupAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12947,11 +13191,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12980,7 +13224,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13123,11 +13370,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13156,7 +13403,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13212,11 +13462,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13245,7 +13495,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13299,11 +13552,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InterceptEndpointGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InterceptEndpointGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13336,8 +13589,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InterceptEndpointGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InterceptEndpointGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13391,11 +13644,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInterceptEndpointGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInterceptEndpointGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13430,8 +13685,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInterceptEndpointGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInterceptEndpointGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13489,11 +13746,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13522,7 +13779,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13665,11 +13925,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13698,7 +13958,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13754,11 +14017,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13787,7 +14050,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13841,11 +14107,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MirroringDeploymentGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MirroringDeploymentGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13878,8 +14144,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MirroringDeploymentGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MirroringDeploymentGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13933,11 +14199,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMirroringDeploymentGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListMirroringDeploymentGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13972,8 +14240,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMirroringDeploymentGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListMirroringDeploymentGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14031,11 +14301,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14064,7 +14334,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14207,11 +14480,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14240,7 +14513,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14297,11 +14573,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14330,7 +14606,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14384,11 +14663,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MirroringDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MirroringDeployment>>;
     get(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14419,8 +14698,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MirroringDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MirroringDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14474,11 +14753,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Mirroringdeployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMirroringDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListMirroringDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14513,8 +14794,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMirroringDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListMirroringDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14573,11 +14856,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14606,7 +14889,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14749,11 +15035,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14782,7 +15068,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14838,11 +15127,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14871,7 +15160,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14925,11 +15217,13 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MirroringEndpointGroupAssociation>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$MirroringEndpointGroupAssociation>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14964,8 +15258,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MirroringEndpointGroupAssociation>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$MirroringEndpointGroupAssociation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15021,11 +15317,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMirroringEndpointGroupAssociationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListMirroringEndpointGroupAssociationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15060,8 +15358,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMirroringEndpointGroupAssociationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListMirroringEndpointGroupAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15119,11 +15419,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15152,7 +15452,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15295,11 +15598,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15328,7 +15631,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15384,11 +15690,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15417,7 +15723,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15471,11 +15780,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MirroringEndpointGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MirroringEndpointGroup>>;
     get(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15508,8 +15817,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MirroringEndpointGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MirroringEndpointGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15563,11 +15872,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMirroringEndpointGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListMirroringEndpointGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15602,8 +15913,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMirroringEndpointGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListMirroringEndpointGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15661,11 +15974,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15694,7 +16007,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15837,11 +16153,11 @@ export namespace networksecurity_v1beta1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15870,7 +16186,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15926,11 +16245,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15959,7 +16278,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16012,11 +16334,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16045,7 +16367,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16098,11 +16423,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16135,8 +16460,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16245,11 +16570,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16278,7 +16603,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16335,11 +16663,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16368,7 +16696,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16422,11 +16753,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServerTlsPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServerTlsPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16455,7 +16786,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ServerTlsPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServerTlsPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServerTlsPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16508,11 +16842,11 @@ export namespace networksecurity_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16545,8 +16879,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16603,11 +16937,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Servertlspolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServerTlsPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServerTlsPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Servertlspolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16642,8 +16976,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServerTlsPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServerTlsPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16702,11 +17036,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16735,7 +17069,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16789,11 +17126,11 @@ export namespace networksecurity_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16826,8 +17163,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16884,11 +17221,13 @@ export namespace networksecurity_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16923,8 +17262,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17091,11 +17432,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17124,7 +17465,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17181,11 +17525,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17214,7 +17558,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17268,11 +17615,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TlsInspectionPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TlsInspectionPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17303,8 +17650,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TlsInspectionPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TlsInspectionPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17358,11 +17705,13 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Tlsinspectionpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTlsInspectionPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListTlsInspectionPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17397,8 +17746,10 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTlsInspectionPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListTlsInspectionPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tlsinspectionpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17457,11 +17808,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17490,7 +17841,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17617,11 +17971,11 @@ export namespace networksecurity_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Urllists$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Urllists$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Urllists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17650,7 +18004,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Urllists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17706,11 +18063,11 @@ export namespace networksecurity_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Urllists$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Urllists$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Urllists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17739,7 +18096,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Urllists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17792,11 +18152,11 @@ export namespace networksecurity_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Urllists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Urllists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UrlList>>;
     get(
       params: Params$Resource$Projects$Locations$Urllists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17825,7 +18185,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$UrlList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UrlList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UrlList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Urllists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17878,11 +18241,11 @@ export namespace networksecurity_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Urllists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Urllists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUrlListsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUrlListsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Urllists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17915,8 +18278,8 @@ export namespace networksecurity_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUrlListsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUrlListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Urllists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17972,11 +18335,11 @@ export namespace networksecurity_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Urllists$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Urllists$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Urllists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18005,7 +18368,10 @@ export namespace networksecurity_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Urllists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

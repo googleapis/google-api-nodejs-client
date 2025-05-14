@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -924,11 +924,13 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -963,8 +965,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1050,11 +1054,13 @@ export namespace paymentsresellersubscription_v1 {
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     findEligible(
       params?: Params$Resource$Partners$Promotions$Findeligible,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+    >;
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1089,8 +1095,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$Findeligible;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1149,11 +1157,13 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Promotions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Promotions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1188,8 +1198,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1287,11 +1299,13 @@ export namespace paymentsresellersubscription_v1 {
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Partners$Subscriptions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+    >;
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1326,8 +1340,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1383,11 +1399,13 @@ export namespace paymentsresellersubscription_v1 {
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Subscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1422,8 +1440,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1482,11 +1502,13 @@ export namespace paymentsresellersubscription_v1 {
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     entitle(
       params?: Params$Resource$Partners$Subscriptions$Entitle,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+    >;
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1521,8 +1543,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Entitle;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1581,11 +1605,13 @@ export namespace paymentsresellersubscription_v1 {
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     extend(
       params?: Params$Resource$Partners$Subscriptions$Extend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+    >;
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1620,8 +1646,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Extend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1677,11 +1705,13 @@ export namespace paymentsresellersubscription_v1 {
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1716,8 +1746,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1773,11 +1805,13 @@ export namespace paymentsresellersubscription_v1 {
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     provision(
       params?: Params$Resource$Partners$Subscriptions$Provision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1812,8 +1846,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Provision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1872,11 +1908,13 @@ export namespace paymentsresellersubscription_v1 {
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Partners$Subscriptions$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+    >;
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1911,8 +1949,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1968,11 +2008,13 @@ export namespace paymentsresellersubscription_v1 {
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     suspend(
       params?: Params$Resource$Partners$Subscriptions$Suspend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+    >;
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2007,8 +2049,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2067,11 +2111,13 @@ export namespace paymentsresellersubscription_v1 {
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undoCancel(
       params?: Params$Resource$Partners$Subscriptions$Undocancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+    >;
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2106,8 +2152,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Undocancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2285,11 +2333,13 @@ export namespace paymentsresellersubscription_v1 {
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Partners$Usersessions$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+    >;
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2324,8 +2374,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Usersessions$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -753,11 +753,11 @@ export namespace bigquerydatatransfer_v1 {
     enrollDataSources(
       params: Params$Resource$Projects$Enrolldatasources,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enrollDataSources(
       params?: Params$Resource$Projects$Enrolldatasources,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     enrollDataSources(
       params: Params$Resource$Projects$Enrolldatasources,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -786,7 +786,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Enrolldatasources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -862,11 +865,11 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       params: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkValidCreds(
       params?: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckValidCredsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckValidCredsResponse>>;
     checkValidCreds(
       params: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -901,8 +904,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckValidCredsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckValidCredsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -958,11 +961,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Projects$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -991,7 +994,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1044,11 +1050,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Datasources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Projects$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1081,8 +1087,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1188,11 +1194,11 @@ export namespace bigquerydatatransfer_v1 {
     enrollDataSources(
       params: Params$Resource$Projects$Locations$Enrolldatasources,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enrollDataSources(
       params?: Params$Resource$Projects$Locations$Enrolldatasources,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     enrollDataSources(
       params: Params$Resource$Projects$Locations$Enrolldatasources,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1221,7 +1227,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrolldatasources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1277,11 +1286,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1310,7 +1319,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1363,11 +1375,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1400,8 +1412,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1457,11 +1469,11 @@ export namespace bigquerydatatransfer_v1 {
     unenrollDataSources(
       params: Params$Resource$Projects$Locations$Unenrolldatasources,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenrollDataSources(
       params?: Params$Resource$Projects$Locations$Unenrolldatasources,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     unenrollDataSources(
       params: Params$Resource$Projects$Locations$Unenrolldatasources,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1490,7 +1502,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Unenrolldatasources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1608,11 +1623,11 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkValidCreds(
       params?: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckValidCredsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckValidCredsResponse>>;
     checkValidCreds(
       params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1647,8 +1662,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckValidCredsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckValidCredsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1705,11 +1720,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Projects$Locations$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1738,7 +1753,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1791,11 +1809,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1828,8 +1846,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1931,11 +1949,11 @@ export namespace bigquerydatatransfer_v1 {
     create(
       params: Params$Resource$Projects$Locations$Transferconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     create(
       params: Params$Resource$Projects$Locations$Transferconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1964,7 +1982,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2021,11 +2042,11 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2054,7 +2075,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2108,11 +2132,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2141,7 +2165,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2194,11 +2221,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2233,8 +2260,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2290,11 +2317,11 @@ export namespace bigquerydatatransfer_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     patch(
       params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2323,7 +2350,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2376,11 +2406,11 @@ export namespace bigquerydatatransfer_v1 {
     scheduleRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     scheduleRuns(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScheduleTransferRunsResponse>>;
     scheduleRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2415,8 +2445,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ScheduleTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScheduleTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2475,11 +2505,11 @@ export namespace bigquerydatatransfer_v1 {
     startManualRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startManualRuns(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StartManualTransferRunsResponse>>;
     startManualRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2514,8 +2544,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$StartManualTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StartManualTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2696,11 +2726,11 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2729,7 +2759,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2783,11 +2816,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferRun>>;
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2816,7 +2849,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2870,11 +2906,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferRunsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2907,8 +2943,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3007,11 +3043,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferLogsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferLogsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3044,8 +3080,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferLogsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferLogsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3131,11 +3167,11 @@ export namespace bigquerydatatransfer_v1 {
     create(
       params: Params$Resource$Projects$Transferconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Transferconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     create(
       params: Params$Resource$Projects$Transferconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3164,7 +3200,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3220,11 +3259,11 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       params: Params$Resource$Projects$Transferconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Transferconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Transferconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3253,7 +3292,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3306,11 +3348,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Transferconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Transferconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     get(
       params: Params$Resource$Projects$Transferconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3339,7 +3381,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3392,11 +3437,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Transferconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Transferconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Transferconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3431,8 +3476,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3488,11 +3533,11 @@ export namespace bigquerydatatransfer_v1 {
     patch(
       params: Params$Resource$Projects$Transferconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Transferconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>;
     patch(
       params: Params$Resource$Projects$Transferconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3521,7 +3566,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3574,11 +3622,11 @@ export namespace bigquerydatatransfer_v1 {
     scheduleRuns(
       params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     scheduleRuns(
       params?: Params$Resource$Projects$Transferconfigs$Scheduleruns,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScheduleTransferRunsResponse>>;
     scheduleRuns(
       params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3613,8 +3661,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ScheduleTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScheduleTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3672,11 +3720,11 @@ export namespace bigquerydatatransfer_v1 {
     startManualRuns(
       params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startManualRuns(
       params?: Params$Resource$Projects$Transferconfigs$Startmanualruns,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StartManualTransferRunsResponse>>;
     startManualRuns(
       params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3711,8 +3759,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$StartManualTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StartManualTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3890,11 +3938,11 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3923,7 +3971,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3976,11 +4027,11 @@ export namespace bigquerydatatransfer_v1 {
     get(
       params: Params$Resource$Projects$Transferconfigs$Runs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransferRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferRun>>;
     get(
       params: Params$Resource$Projects$Transferconfigs$Runs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4009,7 +4060,10 @@ export namespace bigquerydatatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4062,11 +4116,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Transferconfigs$Runs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferRunsResponse>>;
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4099,8 +4153,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4198,11 +4252,11 @@ export namespace bigquerydatatransfer_v1 {
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTransferLogsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferLogsResponse>>;
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4235,8 +4289,8 @@ export namespace bigquerydatatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferLogsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferLogsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

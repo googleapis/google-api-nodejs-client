@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -367,11 +367,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -400,7 +400,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -455,11 +458,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -488,7 +491,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -540,11 +546,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -573,7 +579,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -625,11 +634,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCatalogsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCatalogsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -662,8 +671,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCatalogsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCatalogsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -775,11 +784,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -808,7 +817,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -864,11 +876,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -897,7 +909,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -950,11 +965,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -983,7 +998,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1036,11 +1054,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1073,8 +1091,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDatabasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1130,11 +1148,11 @@ export namespace biglake_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1163,7 +1181,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1285,11 +1306,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1318,7 +1339,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1374,11 +1398,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1407,7 +1431,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1460,11 +1487,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1493,7 +1520,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1546,11 +1576,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTablesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1581,8 +1611,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1638,11 +1668,11 @@ export namespace biglake_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1671,7 +1701,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1724,11 +1757,11 @@ export namespace biglake_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     rename(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1757,7 +1790,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;

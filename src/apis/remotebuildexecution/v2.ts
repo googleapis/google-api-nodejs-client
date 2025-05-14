@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1680,11 +1680,11 @@ export namespace remotebuildexecution_v2 {
     get(
       params: Params$Resource$Actionresults$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Actionresults$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ActionResult>>;
     get(
       params: Params$Resource$Actionresults$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1719,8 +1719,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ActionResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Actionresults$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1852,11 +1852,11 @@ export namespace remotebuildexecution_v2 {
     update(
       params: Params$Resource$Actionresults$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Actionresults$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ActionResult>>;
     update(
       params: Params$Resource$Actionresults$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1891,8 +1891,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ActionResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Actionresults$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2064,11 +2064,11 @@ export namespace remotebuildexecution_v2 {
     execute(
       params: Params$Resource$Actions$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     execute(
       params?: Params$Resource$Actions$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     execute(
       params: Params$Resource$Actions$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2103,8 +2103,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Actions$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2227,11 +2227,11 @@ export namespace remotebuildexecution_v2 {
     batchRead(
       params: Params$Resource$Blobs$Batchread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchRead(
       params?: Params$Resource$Blobs$Batchread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>>;
     batchRead(
       params: Params$Resource$Blobs$Batchread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2266,8 +2266,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Batchread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2373,11 +2373,11 @@ export namespace remotebuildexecution_v2 {
     batchUpdate(
       params: Params$Resource$Blobs$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Blobs$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>>;
     batchUpdate(
       params: Params$Resource$Blobs$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2412,8 +2412,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2520,11 +2520,11 @@ export namespace remotebuildexecution_v2 {
     findMissing(
       params: Params$Resource$Blobs$Findmissing,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     findMissing(
       params?: Params$Resource$Blobs$Findmissing,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>>;
     findMissing(
       params: Params$Resource$Blobs$Findmissing,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2559,8 +2559,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Findmissing;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2668,11 +2668,11 @@ export namespace remotebuildexecution_v2 {
     getTree(
       params: Params$Resource$Blobs$Gettree,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getTree(
       params?: Params$Resource$Blobs$Gettree,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>>;
     getTree(
       params: Params$Resource$Blobs$Gettree,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2707,8 +2707,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Gettree;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2880,11 +2880,11 @@ export namespace remotebuildexecution_v2 {
     waitExecution(
       params: Params$Resource$Operations$Waitexecution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     waitExecution(
       params?: Params$Resource$Operations$Waitexecution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     waitExecution(
       params: Params$Resource$Operations$Waitexecution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2919,8 +2919,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Waitexecution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3041,11 +3041,11 @@ export namespace remotebuildexecution_v2 {
     getCapabilities(
       params: Params$Resource$V2$Getcapabilities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getCapabilities(
       params?: Params$Resource$V2$Getcapabilities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>>;
     getCapabilities(
       params: Params$Resource$V2$Getcapabilities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3080,8 +3080,8 @@ export namespace remotebuildexecution_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getcapabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;

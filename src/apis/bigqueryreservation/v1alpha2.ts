@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -396,11 +396,11 @@ export namespace bigqueryreservation_v1alpha2 {
     searchReservationGrants(
       params: Params$Resource$Projects$Locations$Searchreservationgrants,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchReservationGrants(
       params?: Params$Resource$Projects$Locations$Searchreservationgrants,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchReservationGrantsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchReservationGrantsResponse>>;
     searchReservationGrants(
       params: Params$Resource$Projects$Locations$Searchreservationgrants,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -435,8 +435,8 @@ export namespace bigqueryreservation_v1alpha2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchReservationGrantsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchReservationGrantsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Searchreservationgrants;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -562,11 +562,11 @@ export namespace bigqueryreservation_v1alpha2 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -595,7 +595,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -699,11 +699,11 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -732,7 +732,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -869,11 +869,11 @@ export namespace bigqueryreservation_v1alpha2 {
     create(
       params: Params$Resource$Projects$Locations$Reservationgrants$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Reservationgrants$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReservationGrant>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationGrant>>;
     create(
       params: Params$Resource$Projects$Locations$Reservationgrants$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -902,7 +902,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$ReservationGrant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReservationGrant> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ReservationGrant>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1003,11 +1003,11 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Reservationgrants$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1036,7 +1036,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1140,11 +1140,11 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       params: Params$Resource$Projects$Locations$Reservationgrants$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Reservationgrants$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReservationGrantsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReservationGrantsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Reservationgrants$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1179,8 +1179,8 @@ export namespace bigqueryreservation_v1alpha2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReservationGrantsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReservationGrantsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1342,11 +1342,11 @@ export namespace bigqueryreservation_v1alpha2 {
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Reservations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reservation>>;
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1375,7 +1375,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Reservation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1491,11 +1491,11 @@ export namespace bigqueryreservation_v1alpha2 {
     createReservation(
       params: Params$Resource$Projects$Locations$Reservations$Createreservation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createReservation(
       params?: Params$Resource$Projects$Locations$Reservations$Createreservation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reservation>>;
     createReservation(
       params: Params$Resource$Projects$Locations$Reservations$Createreservation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1524,7 +1524,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Reservation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Createreservation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1624,11 +1624,11 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Reservations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1657,7 +1657,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1756,11 +1756,11 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Reservations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reservation>>;
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1789,7 +1789,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Reservation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1893,11 +1893,11 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Reservations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReservationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1930,8 +1930,8 @@ export namespace bigqueryreservation_v1alpha2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReservationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2046,11 +2046,11 @@ export namespace bigqueryreservation_v1alpha2 {
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Reservations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reservation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reservation>>;
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2079,7 +2079,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Reservation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2270,11 +2270,11 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2303,7 +2303,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2408,11 +2408,11 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SlotPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SlotPool>>;
     get(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2441,7 +2441,7 @@ export namespace bigqueryreservation_v1alpha2 {
       callback?:
         | BodyResponseCallback<Schema$SlotPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SlotPool> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$SlotPool>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2546,11 +2546,11 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSlotPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSlotPoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2583,8 +2583,8 @@ export namespace bigqueryreservation_v1alpha2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSlotPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSlotPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

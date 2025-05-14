@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -444,11 +444,11 @@ export namespace playablelocations_v3 {
     logImpressions(
       params: Params$Resource$V3$Logimpressions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     logImpressions(
       params?: Params$Resource$V3$Logimpressions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>>;
     logImpressions(
       params: Params$Resource$V3$Logimpressions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -483,8 +483,8 @@ export namespace playablelocations_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Logimpressions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -585,11 +585,11 @@ export namespace playablelocations_v3 {
     logPlayerReports(
       params: Params$Resource$V3$Logplayerreports,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     logPlayerReports(
       params?: Params$Resource$V3$Logplayerreports,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>>;
     logPlayerReports(
       params: Params$Resource$V3$Logplayerreports,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -624,8 +624,8 @@ export namespace playablelocations_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Logplayerreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -731,11 +731,11 @@ export namespace playablelocations_v3 {
     samplePlayableLocations(
       params: Params$Resource$V3$Sampleplayablelocations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     samplePlayableLocations(
       params?: Params$Resource$V3$Sampleplayablelocations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>>;
     samplePlayableLocations(
       params: Params$Resource$V3$Sampleplayablelocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -770,8 +770,8 @@ export namespace playablelocations_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Sampleplayablelocations;
       let options = (optionsOrCallback || {}) as MethodOptions;

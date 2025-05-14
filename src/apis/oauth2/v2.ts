@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -117,11 +117,11 @@ export namespace oauth2_v2 {
     tokeninfo(
       params: Params$$Tokeninfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     tokeninfo(
       params?: Params$$Tokeninfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tokeninfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tokeninfo>>;
     tokeninfo(
       params: Params$$Tokeninfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -150,7 +150,10 @@ export namespace oauth2_v2 {
       callback?:
         | BodyResponseCallback<Schema$Tokeninfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tokeninfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tokeninfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$$Tokeninfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -300,11 +303,11 @@ export namespace oauth2_v2 {
     get(
       params: Params$Resource$Userinfo$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userinfo$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Userinfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>;
     get(
       params: Params$Resource$Userinfo$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -333,7 +336,10 @@ export namespace oauth2_v2 {
       callback?:
         | BodyResponseCallback<Schema$Userinfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Userinfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -404,11 +410,11 @@ export namespace oauth2_v2 {
     get(
       params: Params$Resource$Userinfo$V2$Me$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userinfo$V2$Me$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Userinfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>;
     get(
       params: Params$Resource$Userinfo$V2$Me$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -437,7 +443,10 @@ export namespace oauth2_v2 {
       callback?:
         | BodyResponseCallback<Schema$Userinfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Userinfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Userinfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userinfo$V2$Me$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

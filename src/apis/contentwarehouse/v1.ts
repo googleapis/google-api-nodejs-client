@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3572,11 +3572,13 @@ export namespace contentwarehouse_v1 {
     fetchAcl(
       params: Params$Resource$Projects$Fetchacl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchAcl(
       params?: Params$Resource$Projects$Fetchacl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+    >;
     fetchAcl(
       params: Params$Resource$Projects$Fetchacl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3611,8 +3613,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Fetchacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3670,11 +3674,13 @@ export namespace contentwarehouse_v1 {
     setAcl(
       params: Params$Resource$Projects$Setacl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setAcl(
       params?: Params$Resource$Projects$Setacl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+    >;
     setAcl(
       params: Params$Resource$Projects$Setacl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3709,8 +3715,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Setacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3814,11 +3822,13 @@ export namespace contentwarehouse_v1 {
     getStatus(
       params: Params$Resource$Projects$Locations$Getstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStatus(
       params?: Params$Resource$Projects$Locations$Getstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ProjectStatus>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ProjectStatus>
+    >;
     getStatus(
       params: Params$Resource$Projects$Locations$Getstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3853,8 +3863,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ProjectStatus>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ProjectStatus>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3912,11 +3924,11 @@ export namespace contentwarehouse_v1 {
     initialize(
       params: Params$Resource$Projects$Locations$Initialize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     initialize(
       params?: Params$Resource$Projects$Locations$Initialize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     initialize(
       params: Params$Resource$Projects$Locations$Initialize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3951,8 +3963,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Initialize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4008,11 +4020,11 @@ export namespace contentwarehouse_v1 {
     runPipeline(
       params: Params$Resource$Projects$Locations$Runpipeline,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runPipeline(
       params?: Params$Resource$Projects$Locations$Runpipeline,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     runPipeline(
       params: Params$Resource$Projects$Locations$Runpipeline,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4047,8 +4059,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runpipeline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4150,11 +4162,13 @@ export namespace contentwarehouse_v1 {
     create(
       params: Params$Resource$Projects$Locations$Documents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Documents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Documents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4189,8 +4203,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4248,11 +4264,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Documents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Documents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Documents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4283,8 +4299,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4337,11 +4353,13 @@ export namespace contentwarehouse_v1 {
     fetchAcl(
       params: Params$Resource$Projects$Locations$Documents$Fetchacl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchAcl(
       params?: Params$Resource$Projects$Locations$Documents$Fetchacl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+    >;
     fetchAcl(
       params: Params$Resource$Projects$Locations$Documents$Fetchacl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4376,8 +4394,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Fetchacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4435,11 +4455,13 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4474,8 +4496,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4530,11 +4554,13 @@ export namespace contentwarehouse_v1 {
     linkedSources(
       params: Params$Resource$Projects$Locations$Documents$Linkedsources,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     linkedSources(
       params?: Params$Resource$Projects$Locations$Documents$Linkedsources,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>
+    >;
     linkedSources(
       params: Params$Resource$Projects$Locations$Documents$Linkedsources,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4569,8 +4595,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Linkedsources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4629,11 +4657,13 @@ export namespace contentwarehouse_v1 {
     linkedTargets(
       params: Params$Resource$Projects$Locations$Documents$Linkedtargets,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     linkedTargets(
       params?: Params$Resource$Projects$Locations$Documents$Linkedtargets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>
+    >;
     linkedTargets(
       params: Params$Resource$Projects$Locations$Documents$Linkedtargets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4668,8 +4698,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Linkedtargets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4728,11 +4760,13 @@ export namespace contentwarehouse_v1 {
     lock(
       params: Params$Resource$Projects$Locations$Documents$Lock,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lock(
       params?: Params$Resource$Projects$Locations$Documents$Lock,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+    >;
     lock(
       params: Params$Resource$Projects$Locations$Documents$Lock,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4767,8 +4801,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Lock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4823,11 +4859,13 @@ export namespace contentwarehouse_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Documents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Documents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Documents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4862,8 +4900,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4918,11 +4958,13 @@ export namespace contentwarehouse_v1 {
     search(
       params: Params$Resource$Projects$Locations$Documents$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Locations$Documents$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>
+    >;
     search(
       params: Params$Resource$Projects$Locations$Documents$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4957,8 +4999,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5016,11 +5060,13 @@ export namespace contentwarehouse_v1 {
     setAcl(
       params: Params$Resource$Projects$Locations$Documents$Setacl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setAcl(
       params?: Params$Resource$Projects$Locations$Documents$Setacl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+    >;
     setAcl(
       params: Params$Resource$Projects$Locations$Documents$Setacl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5055,8 +5101,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Setacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5242,11 +5290,13 @@ export namespace contentwarehouse_v1 {
     create(
       params: Params$Resource$Projects$Locations$Documents$Documentlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Documents$Documentlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentLink>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentLink>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Documents$Documentlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5281,8 +5331,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentLink>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentLink>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Documentlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5341,11 +5393,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Documents$Documentlinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Documents$Documentlinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Documents$Documentlinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5376,8 +5428,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Documentlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5463,11 +5515,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Documents$Referenceid$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5498,8 +5550,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5553,11 +5605,13 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Documents$Referenceid$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5592,8 +5646,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5649,11 +5705,13 @@ export namespace contentwarehouse_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Documents$Referenceid$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Documents$Referenceid$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5688,8 +5746,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5789,11 +5849,13 @@ export namespace contentwarehouse_v1 {
     create(
       params: Params$Resource$Projects$Locations$Documentschemas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Documentschemas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Documentschemas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5828,8 +5890,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5888,11 +5952,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Documentschemas$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Documentschemas$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Documentschemas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5923,8 +5987,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5978,11 +6042,13 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Documentschemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Documentschemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Documentschemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6017,8 +6083,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6073,11 +6141,13 @@ export namespace contentwarehouse_v1 {
     list(
       params: Params$Resource$Projects$Locations$Documentschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Documentschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Documentschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6112,8 +6182,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6171,11 +6243,13 @@ export namespace contentwarehouse_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Documentschemas$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Documentschemas$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Documentschemas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6210,8 +6284,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6327,11 +6403,11 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6366,8 +6442,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6435,11 +6511,13 @@ export namespace contentwarehouse_v1 {
     create(
       params: Params$Resource$Projects$Locations$Rulesets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Rulesets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Rulesets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6474,8 +6552,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6533,11 +6613,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Rulesets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Rulesets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Rulesets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6568,8 +6648,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6622,11 +6702,13 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Rulesets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Rulesets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Rulesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6661,8 +6743,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6717,11 +6801,13 @@ export namespace contentwarehouse_v1 {
     list(
       params: Params$Resource$Projects$Locations$Rulesets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Rulesets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Rulesets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6756,8 +6842,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6815,11 +6903,13 @@ export namespace contentwarehouse_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Rulesets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Rulesets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Rulesets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6854,8 +6944,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6971,11 +7063,13 @@ export namespace contentwarehouse_v1 {
     create(
       params: Params$Resource$Projects$Locations$Synonymsets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Synonymsets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Synonymsets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7010,8 +7104,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7069,11 +7165,11 @@ export namespace contentwarehouse_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Synonymsets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Synonymsets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Synonymsets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7104,8 +7200,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7158,11 +7254,13 @@ export namespace contentwarehouse_v1 {
     get(
       params: Params$Resource$Projects$Locations$Synonymsets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Synonymsets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Synonymsets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7197,8 +7295,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7253,11 +7353,13 @@ export namespace contentwarehouse_v1 {
     list(
       params: Params$Resource$Projects$Locations$Synonymsets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Synonymsets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Synonymsets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7292,8 +7394,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7351,11 +7455,13 @@ export namespace contentwarehouse_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Synonymsets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Synonymsets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Synonymsets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7390,8 +7496,10 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

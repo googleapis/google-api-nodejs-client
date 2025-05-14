@@ -2018,7 +2018,7 @@
       }
     }
   },
-  "revision": "20250320",
+  "revision": "20250506",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2755,7 +2755,7 @@
       "properties": {
         "mustFix": {
           "deprecated": true,
-          "description": "Required. Deprecated. Policy topics no longer have a \"must-fix\" classification.",
+          "description": "Required. Deprecated. Always set to false.",
           "type": "boolean"
         },
         "topic": {

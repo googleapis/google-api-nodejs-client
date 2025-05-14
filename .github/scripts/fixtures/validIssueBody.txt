@@ -1,0 +1,50 @@
+### Please make sure you have searched for information in the following guides.
+
+- [X] Search the issues already opened: https://github.com/GoogleCloudPlatform/google-cloud-node/issues
+- [X] Search StackOverflow: http://stackoverflow.com/questions/tagged/google-cloud-platform+node.js
+- [X] Check our Troubleshooting guide: https://googlecloudplatform.github.io/google-cloud-node/#/docs/guides/troubleshooting
+- [X] Check our FAQ: https://googlecloudplatform.github.io/google-cloud-node/#/docs/guides/faq
+- [X] Check our libraries HOW-TO: https://github.com/googleapis/gax-nodejs/blob/main/client-libraries.md
+- [X] Check out our authentication guide: https://github.com/googleapis/google-auth-library-nodejs
+- [X] Check out handwritten samples for many of our APIs: https://github.com/GoogleCloudPlatform/nodejs-docs-samples
+
+### A screenshot that you have tested with "Try this API".
+
+
+N/A
+
+### Link to the code that reproduces this issue. A link to a **public** Github Repository or gist with a minimal reproduction.
+
+https://gist.github.com/orgads/13cbf44c91923da27d8772b5f10489c9
+
+### A step-by-step description of how to reproduce the issue, based on the linked reproduction.
+
+
+Change MY_PROJECT to your project name, add credentials if needed and run.
+
+### A clear and concise description of what the bug is, and what you expected to happen.
+
+The application crashes with the following exception (which there is no way to catch). It should just emit error, and allow graceful handling.
+TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer or Uint8Array. Received an instance of Object
+    at _write (node:internal/streams/writable:474:13)
+    at Writable.write (node:internal/streams/writable:502:10)
+    at Duplexify._write (/project/node_modules/duplexify/index.js:212:22)
+    at doWrite (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:390:139)
+    at writeOrBuffer (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:381:5)
+    at Writable.write (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:302:11)
+    at Pumpify.<anonymous> (/project/node_modules/@google-cloud/speech/build/src/helpers.js:79:27)
+    at Object.onceWrapper (node:events:633:26)
+    at Pumpify.emit (node:events:518:28)
+    at obj.<computed> [as _write] (/project/node_modules/stubs/index.js:28:22)
+    at doWrite (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:390:139)
+    at writeOrBuffer (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:381:5)
+    at Writable.write (/project/node_modules/duplexify/node_modules/readable-stream/lib/_stream_writable.js:302:11)
+    at PassThrough.ondata (node:internal/streams/readable:1007:22)
+    at PassThrough.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:559:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+
+
+### A clear and concise description WHY you expect this behavior, i.e., was it a recent change, there is documentation that points to this behavior, etc. **
+
+No library should crash an application this way.

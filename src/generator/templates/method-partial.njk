@@ -26,13 +26,13 @@
 {% else %}
   {% set responseType = "void" %}
 {% endif %}
-{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions): GaxiosPromise<Readable>;
-{{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): GaxiosPromise<{{responseType}}>;
+{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions): Promise<GaxiosResponseWithHTTP2<Readable>>;
+{{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): Promise<GaxiosResponseWithHTTP2<{{responseType}}>>;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions|BodyResponseCallback<Readable>, callback: BodyResponseCallback<Readable>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: MethodOptions|BodyResponseCallback<{{responseType}}>, callback: BodyResponseCallback<{{responseType}}>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, callback: BodyResponseCallback<{{responseType}}>): void;
 {{ mname|camelify }}(callback: BodyResponseCallback<{{responseType}}>): void;
-{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>, optionsOrCallback?: MethodOptions|StreamMethodOptions|BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>, callback?: BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>): void|GaxiosPromise<{{responseType}}>|GaxiosPromise<Readable> {
+{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>, optionsOrCallback?: MethodOptions|StreamMethodOptions|BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>, callback?: BodyResponseCallback<{{responseType}}>|BodyResponseCallback<Readable>): void|Promise<GaxiosResponseWithHTTP2<{{responseType}}>>|Promise<GaxiosResponseWithHTTP2<Readable>> {
   let params = (paramsOrCallback || {}) as Params${{ClassName}}${{mname|camelify|capitalize}};
   let options = (optionsOrCallback || {}) as MethodOptions;
 

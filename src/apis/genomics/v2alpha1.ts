@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -877,11 +877,11 @@ export namespace genomics_v2alpha1 {
     run(
       params: Params$Resource$Pipelines$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Pipelines$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     run(
       params: Params$Resource$Pipelines$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -910,7 +910,7 @@ export namespace genomics_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1037,11 +1037,11 @@ export namespace genomics_v2alpha1 {
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1070,7 +1070,7 @@ export namespace genomics_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1173,11 +1173,11 @@ export namespace genomics_v2alpha1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1206,7 +1206,7 @@ export namespace genomics_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1309,11 +1309,11 @@ export namespace genomics_v2alpha1 {
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1346,8 +1346,8 @@ export namespace genomics_v2alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1504,11 +1504,11 @@ export namespace genomics_v2alpha1 {
     checkIn(
       params: Params$Resource$Projects$Workers$Checkin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkIn(
       params?: Params$Resource$Projects$Workers$Checkin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckInResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckInResponse>>;
     checkIn(
       params: Params$Resource$Projects$Workers$Checkin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1537,7 +1537,7 @@ export namespace genomics_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$CheckInResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckInResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$CheckInResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workers$Checkin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1671,11 +1671,11 @@ export namespace genomics_v2alpha1 {
     checkIn(
       params: Params$Resource$Workers$Checkin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkIn(
       params?: Params$Resource$Workers$Checkin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckInResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckInResponse>>;
     checkIn(
       params: Params$Resource$Workers$Checkin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1704,7 +1704,7 @@ export namespace genomics_v2alpha1 {
       callback?:
         | BodyResponseCallback<Schema$CheckInResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckInResponse> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$CheckInResponse>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workers$Checkin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

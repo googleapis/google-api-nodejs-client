@@ -321,7 +321,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Output only. The resource name of the folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
+              "description": "Identifier. The resource name of the folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
               "location": "path",
               "pattern": "^folders/[^/]+$",
               "required": true,
@@ -1870,7 +1870,7 @@
       }
     }
   },
-  "revision": "20250417",
+  "revision": "20250508",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2212,8 +2212,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
           "type": "string"
         },
         "parent": {
