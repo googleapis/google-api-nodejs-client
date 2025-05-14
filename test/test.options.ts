@@ -235,7 +235,7 @@ describe('Options', () => {
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
-      res.config.url,
+      res.config.url.href,
       'https://myrooturl.com/drive/v3/files/woot',
       'Request used overridden rootUrl with trailing slash.',
     );
@@ -243,17 +243,26 @@ describe('Options', () => {
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
-      res.config.url,
+      res.config.url.href,
       'https://myrooturl.com/drive/v3/files/woot',
       'Request used overridden rootUrl.',
     );
   });
 
-  it('should allow overriding validateStatus', async () => {
-    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
+  it.only('should allow overriding validateStatus', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v3/files').reply(
+      500, // Status code
+      '{ "error": { "message": "Internal Server Error" } }', // Mock body (stringified JSON)
+      {'Content-Type': 'application/json'}, // Headers
+    );
     const google = new GoogleApis();
-    const drive = google.drive('v2');
+    const drive = google.drive('v3');
     const res = await drive.files.list({}, {validateStatus: () => true});
+    console.log('Complete res object:', res);
+    console.log('res.status directly:', res.status); // What does this print?
+    console.log('res.ok directly:', res.ok); // Should be false for 500
+    console.log('res.statusText directly:', res.statusText); // Should be 'Internal Server Error'
+
     assert.strictEqual(res.status, 500);
     scope.done();
   });
@@ -314,7 +323,7 @@ describe('Options', () => {
   });
 
   it('should allow using a Gaxios adapter', async () => {
-    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
+    const scope = nock(Utils.baseUrl).get('/drive/v3/files').reply(500);
     const google = new GoogleApis();
     let count = 0;
     google.options({

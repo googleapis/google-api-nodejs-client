@@ -969,6 +969,39 @@ export namespace contactcenterinsights_v1 {
     parent?: string | null;
   }
   /**
+   * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1Dataset {
+    /**
+     * Output only. Dataset create time.
+     */
+    createTime?: string | null;
+    /**
+     * Dataset description.
+     */
+    description?: string | null;
+    /**
+     * Display name for the dataaset
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Option TTL for the dataset.
+     */
+    ttl?: string | null;
+    /**
+     * Dataset usage type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Dataset update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata for deleting an issue model.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadata {
@@ -2255,6 +2288,86 @@ export namespace contactcenterinsights_v1 {
     querySource?: string | null;
   }
   /**
+   * The metadata for an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for sample conversations to dataset.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest;
+    /**
+     * Output only. Statistics for SampleConversations operation.
+     */
+    sampleConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats;
+  }
+  /**
+   * Statistics for SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats {
+    /**
+     * Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.
+     */
+    failedSampleCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this sample operation.
+     */
+    successfulSampleCount?: number | null;
+  }
+  /**
+   * The request to sample conversations to a dataset.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest {
+    /**
+     * The dataset resource to copy the sampled conversations to.
+     */
+    destinationDataset?: Schema$GoogleCloudContactcenterinsightsV1alpha1Dataset;
+    /**
+     * Required. The parent resource of the dataset.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The sample rule used for sampling conversations.
+     */
+    sampleRule?: Schema$GoogleCloudContactcenterinsightsV1alpha1SampleRule;
+  }
+  /**
+   * The response to an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleConversationsResponse {}
+  /**
+   * Message for sampling conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SampleRule {
+    /**
+     * To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.
+     */
+    dimension?: string | null;
+    /**
+     * Percentage of conversations that we should sample based on the dimension between [0, 100].
+     */
+    samplePercentage?: number | null;
+    /**
+     * Number of the conversations that we should sample based on the dimension.
+     */
+    sampleRow?: string | null;
+  }
+  /**
    * The data for a sentiment annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SentimentData {
@@ -2672,6 +2785,52 @@ export namespace contactcenterinsights_v1 {
     uri?: string | null;
   }
   /**
+   * An AuthorizedView represents a view of accessible Insights resources (for example, Conversation and Scorecard). Who have read access to the AuthorizedView resource will have access to these Insight resources as well.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1AuthorizedView {
+    /**
+     * A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations liked to the conversation) that this AuthorizedView has.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Output only. The time at which the authorized view was created.
+     */
+    createTime?: string | null;
+    /**
+     * Display Name. Limit 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the AuthorizedView. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}/authorizedViews/{authorized_view\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The most recent time at which the authorized view was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An AuthorizedViewSet contains a set of AuthorizedView resources.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet {
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Display Name. Limit 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The metadata for a bulk analyze conversations operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata {
@@ -2986,6 +3145,15 @@ export namespace contactcenterinsights_v1 {
      * The latest label statistics for the queried issue model. Includes results on both training data and data labeled after deployment.
      */
     currentStats?: Schema$GoogleCloudContactcenterinsightsV1IssueModelLabelStats;
+  }
+  /**
+   * The request for calculating conversation statistics.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1CalculateStatsRequest {
+    /**
+     * A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.
+     */
+    filter?: string | null;
   }
   /**
    * The response for calculating conversation statistics.
@@ -3518,6 +3686,39 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the issue.
      */
     parent?: string | null;
+  }
+  /**
+   * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Dataset {
+    /**
+     * Output only. Dataset create time.
+     */
+    createTime?: string | null;
+    /**
+     * Dataset description.
+     */
+    description?: string | null;
+    /**
+     * Display name for the dataaset
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Option TTL for the dataset.
+     */
+    ttl?: string | null;
+    /**
+     * Dataset usage type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Dataset update time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Metadata for deleting an issue model.
@@ -4422,6 +4623,32 @@ export namespace contactcenterinsights_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response from a ListAuthorizedViewSet request.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse {
+    /**
+     * The AuthorizedViewSets under the parent.
+     */
+    authorizedViewSets?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response from a ListAuthorizedViews request.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse {
+    /**
+     * The AuthorizedViews under the parent.
+     */
+    authorizedViews?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response of listing conversations.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse {
@@ -4747,7 +4974,7 @@ export namespace contactcenterinsights_v1 {
      */
     questionBody?: string | null;
     /**
-     * User-defined list of arbitrary tags for the question. Used for grouping/organization and for weighting the score of each question.
+     * Questions are tagged for categorization and scoring. Tags can either be: - Default Tags: These are predefined categories. They are identified by their string value (e.g., "BUSINESS", "COMPLIANCE", and "CUSTOMER"). - Custom Tags: These are user-defined categories. They are identified by their full resource name (e.g., projects/{project\}/locations/{location\}/qaQuestionTags/{qa_question_tag\}). Both default and custom tags are used to group questions and to influence the scoring of each question.
      */
     tags?: string[] | null;
     /**
@@ -5202,6 +5429,99 @@ export namespace contactcenterinsights_v1 {
      * Query source for the answer.
      */
     querySource?: string | null;
+  }
+  /**
+   * The metadata for an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for sample conversations to dataset.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1SampleConversationsRequest;
+    /**
+     * Output only. Statistics for SampleConversations operation.
+     */
+    sampleConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats;
+  }
+  /**
+   * Statistics for SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats {
+    /**
+     * Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.
+     */
+    failedSampleCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this sample operation.
+     */
+    successfulSampleCount?: number | null;
+  }
+  /**
+   * The request to sample conversations to a dataset.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsRequest {
+    /**
+     * The dataset resource to copy the sampled conversations to.
+     */
+    destinationDataset?: Schema$GoogleCloudContactcenterinsightsV1Dataset;
+    /**
+     * Required. The parent resource of the dataset.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The sample rule used for sampling conversations.
+     */
+    sampleRule?: Schema$GoogleCloudContactcenterinsightsV1SampleRule;
+  }
+  /**
+   * The response to an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleConversationsResponse {}
+  /**
+   * Message for sampling conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SampleRule {
+    /**
+     * To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.
+     */
+    dimension?: string | null;
+    /**
+     * Percentage of conversations that we should sample based on the dimension between [0, 100].
+     */
+    samplePercentage?: number | null;
+    /**
+     * Number of the conversations that we should sample based on the dimension.
+     */
+    sampleRow?: string | null;
+  }
+  /**
+   * The response from a ListAuthorizedViews request.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse {
+    /**
+     * The AuthorizedViews under the parent.
+     */
+    authorizedViews?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -7029,6 +7349,576 @@ export namespace contactcenterinsights_v1 {
           this.context
         );
     }
+
+    /**
+     * Create AuthorizedViewSet
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Create
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authorizedViewSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an AuthorizedViewSet.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get AuthorizedViewSet
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List AuthorizedViewSets
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authorizedViewSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an AuthorizedViewSet.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Create
+    extends StandardParameters {
+    /**
+     * Optional. A unique ID for the new AuthorizedViewSet. This ID will become the final component of the AuthorizedViewSet's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. See go/aip/122#resource-id-segments
+     */
+    authorizedViewSetId?: string;
+    /**
+     * Required. The parent resource of the AuthorizedViewSet.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, all of this AuthorizedViewSet's child resources will also be deleted. Otherwise, the request will only succeed if it has none.
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the AuthorizedViewSet to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the AuthorizedViewSet to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter expression to filter authorized view sets listed in the response.
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to order authorized view sets listed in the response.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of view sets to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListAuthorizedViewSetsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViewSets` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the AuthorizedViewSets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedViewSet;
   }
 
   export class Resource$Projects$Locations$Authorizedviewsets$Authorizedviews {
@@ -7045,6 +7935,502 @@ export namespace contactcenterinsights_v1 {
         new Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Operations(
           this.context
         );
+    }
+
+    /**
+     * Create AuthorizedView
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authorizedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an AuthorizedView.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get AuthorizedView
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List AuthorizedViewSets
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authorizedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an AuthorizedView.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1AuthorizedView>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -7143,8 +8529,180 @@ export namespace contactcenterinsights_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * SearchAuthorizedViewSets
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+    >;
+    search(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authorizedViews:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Create
+    extends StandardParameters {
+    /**
+     * Optional. A unique ID for the new AuthorizedView. This ID will become the final component of the AuthorizedView's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. See go/aip/122#resource-id-segments
+     */
+    authorizedViewId?: string;
+    /**
+     * Required. The parent resource of the AuthorizedView.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the AuthorizedView to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the AuthorizedView to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter expression to filter authorized views listed in the response.
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to order authorized views listed in the response.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of view to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListAuthorizedViewsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViews` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the AuthorizedViews. If the parent is set to `-`, all AuthorizedViews under the location will be returned.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the AuthorizedView. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}/authorizedViews/{authorized_view\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `conversation_filter` * `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1AuthorizedView;
+  }
   export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Querymetrics
     extends StandardParameters {
     /**
@@ -7156,6 +8714,29 @@ export namespace contactcenterinsights_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1QueryMetricsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Search
+    extends StandardParameters {
+    /**
+     * Optional. The order by expression to order authorized views listed in the response.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of view to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListAuthorizedViewsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViews` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the AuthorizedViews. If the parent is set to `-`, all AuthorizedViews under the location will be returned.
+     */
+    parent?: string;
+    /**
+     * Optional. The query expression to search authorized views.
+     */
+    query?: string;
   }
 
   export class Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations {
@@ -11240,12 +12821,768 @@ export namespace contactcenterinsights_v1 {
         this.context
       );
     }
+
+    /**
+     * Delete feedback labels in bulk using a filter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkDeleteFeedbackLabels(
+      params?: Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:bulkDeleteFeedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Download feedback labels in bulk from an external source. Currently supports exporting Quality AI example conversations with transcripts and question bodies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDownloadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkDownloadFeedbackLabels(
+      params?: Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    bulkDownloadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDownloadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDownloadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDownloadFeedbackLabels(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDownloadFeedbackLabels(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:bulkDownloadFeedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Upload feedback labels from an external source in bulk. Currently supports labeling Quality AI example conversations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkUploadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkUploadFeedbackLabels(
+      params?: Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    bulkUploadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkUploadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkUploadFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkUploadFeedbackLabels(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkUploadFeedbackLabels(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:bulkUploadFeedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * List all feedback labels by project number.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAllFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listAllFeedbackLabels(
+      params?: Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+    >;
+    listAllFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAllFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+    ): void;
+    listAllFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+    ): void;
+    listAllFeedbackLabels(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+    ): void;
+    listAllFeedbackLabels(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:listAllFeedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkdeletefeedbacklabels
+    extends StandardParameters {
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkdownloadfeedbacklabels
+    extends StandardParameters {
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Bulkuploadfeedbacklabels
+    extends StandardParameters {
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Listallfeedbacklabels
+    extends StandardParameters {
+    /**
+     * Optional. A filter to reduce results to a specific subset in the entire project. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of feedback labels to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListAllFeedbackLabelsResponse`. This value indicates that this is a continuation of a prior `ListAllFeedbackLabels` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of all feedback labels per project.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Conversations {
     context: APIRequestContext;
+    analyses: Resource$Projects$Locations$Datasets$Conversations$Analyses;
+    feedbackLabels: Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.analyses =
+        new Resource$Projects$Locations$Datasets$Conversations$Analyses(
+          this.context
+        );
+      this.feedbackLabels =
+        new Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels(
+          this.context
+        );
+    }
+
+    /**
+     * Analyzes multiple conversations in a single request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkAnalyze(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversations:bulkAnalyze').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes multiple conversations in a single request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    bulkDelete(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversations:bulkDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets conversation statistics.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    calculateStats(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    >;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+    ): void;
+    calculateStats(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+location}/conversations:calculateStats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1CalculateStatsResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -11639,6 +13976,42 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Bulkanalyze
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to create analyses in.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Bulkdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Calculatestats
+    extends StandardParameters {
+    /**
+     * Required. The location of the conversations.
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1CalculateStatsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Conversations$Delete
     extends StandardParameters {
     /**
@@ -11699,6 +14072,1018 @@ export namespace contactcenterinsights_v1 {
      * The level of details of the conversation. Default is `BASIC`.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Conversations$Analyses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an analysis. The long running operation is done when the analysis has completed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/analyses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an analysis.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an analysis.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Analysis>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Analysis>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Analysis>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists analyses.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/analyses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListAnalysesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the analysis.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1Analysis;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the analysis to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the analysis to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Analyses$List
+    extends StandardParameters {
+    /**
+     * A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
+     */
+    filter?: string;
+    /**
+     * The maximum number of analyses to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAnalysesResponse`; indicates that this is a continuation of a prior `ListAnalyses` call and the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the analyses.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create feedback label.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/feedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete feedback label.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get feedback label.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List feedback labels.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/feedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update feedback label.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID of the feedback label to create. If one is not specified it will be generated by the server.
+     */
+    feedbackLabelId?: string;
+    /**
+     * Required. The parent resource of the feedback label.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the feedback label to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the feedback label to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Automatically sorts by conversation ID. To sort by all feedback labels in a project see ListAllFeedbackLabels. Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of feedback labels to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListFeedbackLabelsResponse`. This value indicates that this is a continuation of a prior `ListFeedbackLabels` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the feedback labels.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Feedbacklabels$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of the FeedbackLabel. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/feedbackLabels/{feedback_label\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel;
   }
 
   export class Resource$Projects$Locations$Datasets$Insightsdata {

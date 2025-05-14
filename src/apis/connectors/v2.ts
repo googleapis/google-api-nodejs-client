@@ -190,6 +190,10 @@ export namespace connectors_v2 {
      * OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.
      */
     redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
   }
   /**
    * Response containing status of the connector for readiness prober.

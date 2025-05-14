@@ -96,6 +96,7 @@ import {
   VERSIONS as apigeeregistryVersions,
   apigeeregistry,
 } from './apigeeregistry';
+import {VERSIONS as apihubVersions, apihub} from './apihub';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
@@ -779,6 +780,7 @@ export const APIS: APIList = {
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
   apigeeregistry: apigeeregistryVersions,
+  apihub: apihubVersions,
   apikeys: apikeysVersions,
   apim: apimVersions,
   appengine: appengineVersions,
@@ -1092,6 +1094,7 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher;
   apigateway = apigateway;
   apigeeregistry = apigeeregistry;
+  apihub = apihub;
   apikeys = apikeys;
   apim = apim;
   appengine = appengine;

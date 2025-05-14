@@ -420,7 +420,7 @@ describe('Media', () => {
       requestBody,
       media,
     });
-    const boundary2 = res.config.headers
+    const boundary2 = res2.config.headers
       .get('content-type')!
       .replace(boundaryPrefix, '');
     expectedBody = expectedBody
@@ -430,6 +430,10 @@ describe('Media', () => {
       .replace('$resource', JSON.stringify(requestBody))
       .replace('$mimeType', 'message/rfc822')
       .trim();
+    console.log('EXPECTED BODY');
+    console.log(expectedBody);
+    console.log('RES2DATA');
+    console.log(res2.data);
     assert.strictEqual(expectedBody, res2.data);
   });
 

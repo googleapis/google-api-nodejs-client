@@ -558,7 +558,7 @@
       }
     }
   },
-  "revision": "20250424",
+  "revision": "20250430",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -798,6 +798,16 @@
         "runtime": {
           "description": "The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "secretEnvironmentVariables": {
           "description": "Secret environment variables configuration.",

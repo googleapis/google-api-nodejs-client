@@ -3750,7 +3750,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
+     * Updates the retention period and description of the backup. You can use this API to update final backups only.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3890,7 +3890,7 @@ export namespace sqladmin_v1 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
+     * The list of fields that you can update. You can update only the description and retention period of the final backup.
      */
     updateMask?: string;
 

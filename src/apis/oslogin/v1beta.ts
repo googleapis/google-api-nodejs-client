@@ -135,7 +135,7 @@ export namespace oslogin_v1beta {
    */
   export interface Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyRequest {
     /**
-     * The App Engine instance to sign the SSH public key for. Expected format: services/{service\}/versions/{version\}/instances/{instance\}
+     * The App Engine instance to sign the SSH public key for. Expected format: apps/{app\}/services/{service\}/versions/{version\}/instances/{instance\}
      */
     appEngineInstance?: string | null;
     /**

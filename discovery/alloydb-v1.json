@@ -1622,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250417",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2737,6 +2737,20 @@
       "description": "An Instance is a computing unit that an end customer can connect to. It's the main unit of computing resources in AlloyDB.",
       "id": "Instance",
       "properties": {
+        "activationPolicy": {
+          "description": "Optional. Specifies whether an instance needs to spin up. Once the instance is active, the activation policy can be updated to the `NEVER` to stop the instance. Likewise, the activation policy can be updated to `ALWAYS` to start the instance. There are restrictions around when an instance can/cannot be activated (for example, a read pool instance should be stopped before stopping primary etc.). Please refer to the API documentation for more details.",
+          "enum": [
+            "ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ],
+          "enumDescriptions": [
+            "The policy is not specified.",
+            "The instance is running.",
+            "The instance is not running."
+          ],
+          "type": "string"
+        },
         "annotations": {
           "additionalProperties": {
             "type": "string"
@@ -4352,7 +4366,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -4360,6 +4380,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4536,7 +4562,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         },
@@ -4947,7 +4979,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -4955,6 +4993,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -5131,7 +5175,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         }
@@ -5493,8 +5543,9 @@
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
             "PRODUCT_TYPE_BIGTABLE",
-            "PRODUCT_TYPE_OTHER",
-            "PRODUCT_TYPE_FIRESTORE"
+            "PRODUCT_TYPE_FIRESTORE",
+            "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
             false,
@@ -5505,6 +5556,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -5521,8 +5573,9 @@
             "On premises database product.",
             "Memorystore product area in GCP",
             "Bigtable product area in GCP",
-            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum.",
-            "Firestore product area in GCP."
+            "Firestore product area in GCP.",
+            "Compute Engine self managed databases",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
         },

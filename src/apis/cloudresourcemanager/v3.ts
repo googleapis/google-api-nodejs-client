@@ -387,7 +387,7 @@ export namespace cloudresourcemanager_v3 {
      */
     managementProject?: string | null;
     /**
-     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Identifier. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string | null;
     /**
@@ -2203,7 +2203,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Identifier. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string;
     /**

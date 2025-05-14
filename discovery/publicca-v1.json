@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230425",
+  "revision": "20230424",
   "rootUrl": "https://publicca.googleapis.com/",
   "schemas": {
     "ExternalAccountKey": {

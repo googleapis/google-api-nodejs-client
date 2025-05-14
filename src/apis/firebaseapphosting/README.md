@@ -2,7 +2,7 @@
 
 # firebaseapphosting
 
-> 
+> Firebase App Hosting streamlines the development and deployment of dynamic Next.js and Angular applications, offering built-in framework support, GitHub integration, and integration with other Firebase products. You can use this API to intervene in the Firebase App Hosting build process and add custom functionality not supported in our default Console &amp; CLI flows, including triggering builds from external CI/CD workflows or deploying from pre-built container images.
 
 ## Installation
 

@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250513",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5646,7 +5646,23 @@
             "enterpriseUpgrade",
             "educationUpgrade",
             "education",
-            "kioskUpgrade"
+            "kioskUpgrade",
+            "enterpriseUpgradePerpetual",
+            "enterpriseUpgradeFixedTerm",
+            "educationUpgradePerpetual",
+            "educationUpgradeFixedTerm"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The license type is unknown.",
@@ -5654,7 +5670,11 @@
             "The device has an annual standalone Chrome Enterprise Upgrade.",
             "The device has a perpetual standalone Chrome Education Upgrade.",
             "The device is bundled with a perpetual Chrome Education Upgrade.",
-            "The device has an annual Kiosk Upgrade."
+            "The device has an annual Kiosk Upgrade.",
+            "Indicates that the device is consuming a standalone, perpetual Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicates that the device is consuming a standalone, fixed-term Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicates that the device is consuming a standalone, perpetual Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
+            "Indicates that the device is consuming a standalone, fixed-term Chrome Education Upgrade(AKA Chrome EDU fixed-term license)."
           ],
           "readOnly": true,
           "type": "string"
@@ -6184,6 +6204,7 @@
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
             "CAPTURE_LOGS",
+            "FETCH_CRD_AVAILABILITY_INFO",
             "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
@@ -6195,6 +6216,7 @@
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
             "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
             "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
@@ -6207,7 +6229,7 @@
       "id": "DirectoryChromeosdevicesCommandResult",
       "properties": {
         "commandResultPayload": {
-          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session.",
+          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session. * `FETCH_CRD_AVAILABILITY_INFO`: Payload is a stringified JSON object in the form: { \"deviceIdleTimeInSeconds\": number, \"userSessionType\": string, \"remoteSupportAvailability\": string, \"remoteAccessAvailability\": string }. The \"remoteSupportAvailability\" field is set to \"AVAILABLE\" if `shared` CRD session to the device is available. The \"remoteAccessAvailability\" field is set to \"AVAILABLE\" if `private` CRD session to the device is available.",
           "type": "string"
         },
         "errorMessage": {
@@ -6253,6 +6275,7 @@
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
             "CAPTURE_LOGS",
+            "FETCH_CRD_AVAILABILITY_INFO",
             "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
@@ -6264,6 +6287,7 @@
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
             "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
             "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"

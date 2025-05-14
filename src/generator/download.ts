@@ -121,6 +121,7 @@ function cleanupLibrariesNotInIndexJSON(
   apis: gapi.Schema[],
   options: DownloadOptions,
 ): void {
+  const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
   const apisReplaced = apis.map(
     x => x.id.toString().replace(':', '-') + '.json',
@@ -130,9 +131,15 @@ function cleanupLibrariesNotInIndexJSON(
   const discoveryDocsToDelete = discoveryDirectory.filter(
     x => !apisReplaced.includes(x),
   );
+  const clientFilesToDelete = discoveryDocsToDelete.map(x => {
+    const apiName = x.split('-')[0];
+    const versionName = apiName[1].split('.')[0];
+    return path.join(srcPath, apiName, `${versionName}.ts`)
+  })
   discoveryDocsToDelete.forEach(x =>
     fs.unlinkSync(path.join(options.downloadPath, x)),
   );
+  clientFilesToDelete.forEach(x => fs.unlinkSync(x));
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;

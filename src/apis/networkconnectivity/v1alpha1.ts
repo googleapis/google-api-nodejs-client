@@ -129,7 +129,7 @@ export namespace networkconnectivity_v1alpha1 {
    */
   export interface Schema$AllocationOptions {
     /**
-     * Optional. Allocation strategy Not setting this field when the allocation is requested means an implementation defined strategy is used.
+     * Optional. Allocation strategy. Not setting this field when the allocation is requested means an implementation defined strategy is used.
      */
     allocationStrategy?: string | null;
     /**

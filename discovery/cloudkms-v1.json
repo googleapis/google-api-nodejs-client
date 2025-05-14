@@ -103,6 +103,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us.rep.googleapis.com/",
       "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.in.rep.googleapis.com/",
+      "location": "in"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2158,7 +2163,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250501",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -3551,7 +3556,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of CryptoKeyVersions that matched the query.",
+          "description": "The total number of CryptoKeyVersions that matched the query. This field is not populated if ListCryptoKeyVersionsRequest.filter is applied.",
           "format": "int32",
           "type": "integer"
         }
@@ -3574,7 +3579,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of CryptoKeys that matched the query.",
+          "description": "The total number of CryptoKeys that matched the query. This field is not populated if ListCryptoKeysRequest.filter is applied.",
           "format": "int32",
           "type": "integer"
         }
@@ -3597,7 +3602,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of EkmConnections that matched the query.",
+          "description": "The total number of EkmConnections that matched the query. This field is not populated if ListEkmConnectionsRequest.filter is applied.",
           "format": "int32",
           "type": "integer"
         }
@@ -3620,7 +3625,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of ImportJobs that matched the query.",
+          "description": "The total number of ImportJobs that matched the query. This field is not populated if ListImportJobsRequest.filter is applied.",
           "format": "int32",
           "type": "integer"
         }
@@ -3661,7 +3666,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of KeyRings that matched the query.",
+          "description": "The total number of KeyRings that matched the query. This field is not populated if ListKeyRingsRequest.filter is applied.",
           "format": "int32",
           "type": "integer"
         }
