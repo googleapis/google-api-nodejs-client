@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -640,11 +639,11 @@ export namespace searchconsole_v1 {
     query(
       params: Params$Resource$Searchanalytics$Query,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Searchanalytics$Query,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchAnalyticsQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchAnalyticsQueryResponse>>;
     query(
       params: Params$Resource$Searchanalytics$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -679,8 +678,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchAnalyticsQueryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchAnalyticsQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchanalytics$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -757,11 +756,11 @@ export namespace searchconsole_v1 {
     delete(
       params: Params$Resource$Sitemaps$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Sitemaps$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Sitemaps$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -790,8 +789,8 @@ export namespace searchconsole_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -845,11 +844,11 @@ export namespace searchconsole_v1 {
     get(
       params: Params$Resource$Sitemaps$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sitemaps$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$WmxSitemap>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WmxSitemap>>;
     get(
       params: Params$Resource$Sitemaps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -880,8 +879,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$WmxSitemap>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WmxSitemap>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -935,11 +934,11 @@ export namespace searchconsole_v1 {
     list(
       params: Params$Resource$Sitemaps$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sitemaps$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SitemapsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SitemapsListResponse>>;
     list(
       params: Params$Resource$Sitemaps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -972,8 +971,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SitemapsListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SitemapsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1028,11 +1027,11 @@ export namespace searchconsole_v1 {
     submit(
       params: Params$Resource$Sitemaps$Submit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     submit(
       params?: Params$Resource$Sitemaps$Submit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     submit(
       params: Params$Resource$Sitemaps$Submit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1061,8 +1060,8 @@ export namespace searchconsole_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1164,11 +1163,11 @@ export namespace searchconsole_v1 {
     add(
       params: Params$Resource$Sites$Add,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     add(
       params?: Params$Resource$Sites$Add,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     add(
       params: Params$Resource$Sites$Add,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1197,8 +1196,8 @@ export namespace searchconsole_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1253,11 +1252,11 @@ export namespace searchconsole_v1 {
     delete(
       params: Params$Resource$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1286,8 +1285,8 @@ export namespace searchconsole_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1342,11 +1341,11 @@ export namespace searchconsole_v1 {
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$WmxSite>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WmxSite>>;
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1377,8 +1376,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$WmxSite>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WmxSite>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1433,11 +1432,11 @@ export namespace searchconsole_v1 {
     list(
       params: Params$Resource$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sites$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SitesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SitesListResponse>>;
     list(
       params: Params$Resource$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1468,8 +1467,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SitesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SitesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1560,11 +1559,11 @@ export namespace searchconsole_v1 {
     inspect(
       params: Params$Resource$Urlinspection$Index$Inspect,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     inspect(
       params?: Params$Resource$Urlinspection$Index$Inspect,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InspectUrlIndexResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InspectUrlIndexResponse>>;
     inspect(
       params: Params$Resource$Urlinspection$Index$Inspect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1599,8 +1598,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InspectUrlIndexResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InspectUrlIndexResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlinspection$Index$Inspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1682,11 +1681,11 @@ export namespace searchconsole_v1 {
     run(
       params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RunMobileFriendlyTestResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunMobileFriendlyTestResponse>>;
     run(
       params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1721,8 +1720,8 @@ export namespace searchconsole_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RunMobileFriendlyTestResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunMobileFriendlyTestResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;

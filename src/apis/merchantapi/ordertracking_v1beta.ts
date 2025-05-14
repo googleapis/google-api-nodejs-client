@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -427,11 +426,11 @@ export namespace merchantapi_ordertracking_v1beta {
     create(
       params: Params$Resource$Accounts$Ordertrackingsignals$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Ordertrackingsignals$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>>;
     create(
       params: Params$Resource$Accounts$Ordertrackingsignals$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -462,8 +461,8 @@ export namespace merchantapi_ordertracking_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Ordertrackingsignals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

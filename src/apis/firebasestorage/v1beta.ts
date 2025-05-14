@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -202,11 +201,11 @@ export namespace firebasestorage_v1beta {
     deleteDefaultBucket(
       params: Params$Resource$Projects$Deletedefaultbucket,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteDefaultBucket(
       params?: Params$Resource$Projects$Deletedefaultbucket,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteDefaultBucket(
       params: Params$Resource$Projects$Deletedefaultbucket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -237,8 +236,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deletedefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -291,11 +290,11 @@ export namespace firebasestorage_v1beta {
     getDefaultBucket(
       params: Params$Resource$Projects$Getdefaultbucket,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDefaultBucket(
       params?: Params$Resource$Projects$Getdefaultbucket,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DefaultBucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>;
     getDefaultBucket(
       params: Params$Resource$Projects$Getdefaultbucket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -328,8 +327,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DefaultBucket>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getdefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -404,11 +403,11 @@ export namespace firebasestorage_v1beta {
     addFirebase(
       params: Params$Resource$Projects$Buckets$Addfirebase,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addFirebase(
       params?: Params$Resource$Projects$Buckets$Addfirebase,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     addFirebase(
       params: Params$Resource$Projects$Buckets$Addfirebase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -439,8 +438,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Bucket>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Addfirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -496,11 +495,11 @@ export namespace firebasestorage_v1beta {
     get(
       params: Params$Resource$Projects$Buckets$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Buckets$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     get(
       params: Params$Resource$Projects$Buckets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -531,8 +530,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Bucket>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -585,11 +584,11 @@ export namespace firebasestorage_v1beta {
     list(
       params: Params$Resource$Projects$Buckets$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Buckets$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>>;
     list(
       params: Params$Resource$Projects$Buckets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -620,8 +619,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -677,11 +676,11 @@ export namespace firebasestorage_v1beta {
     removeFirebase(
       params: Params$Resource$Projects$Buckets$Removefirebase,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeFirebase(
       params?: Params$Resource$Projects$Buckets$Removefirebase,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     removeFirebase(
       params: Params$Resource$Projects$Buckets$Removefirebase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -712,8 +711,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Removefirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -823,11 +822,11 @@ export namespace firebasestorage_v1beta {
     create(
       params: Params$Resource$Projects$Defaultbucket$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Defaultbucket$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DefaultBucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>;
     create(
       params: Params$Resource$Projects$Defaultbucket$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -858,8 +857,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DefaultBucket>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultbucket$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

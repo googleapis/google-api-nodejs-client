@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -186,11 +185,11 @@ export namespace indexing_v3 {
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetadata(
       params?: Params$Resource$Urlnotifications$Getmetadata,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>>;
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -225,8 +224,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -281,11 +280,11 @@ export namespace indexing_v3 {
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Urlnotifications$Publish,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>>;
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -320,8 +319,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;

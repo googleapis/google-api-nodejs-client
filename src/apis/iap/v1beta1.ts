@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -243,11 +242,11 @@ export namespace iap_v1beta1 {
     getIamPolicy(
       params: Params$Resource$V1beta1$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$V1beta1$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$V1beta1$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -278,8 +277,8 @@ export namespace iap_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -334,11 +333,11 @@ export namespace iap_v1beta1 {
     setIamPolicy(
       params: Params$Resource$V1beta1$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$V1beta1$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$V1beta1$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -369,8 +368,8 @@ export namespace iap_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -425,11 +424,11 @@ export namespace iap_v1beta1 {
     testIamPermissions(
       params: Params$Resource$V1beta1$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$V1beta1$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$V1beta1$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -464,8 +463,8 @@ export namespace iap_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

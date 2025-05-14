@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -352,11 +351,11 @@ export namespace cloudshell_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -387,8 +386,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -440,11 +439,11 @@ export namespace cloudshell_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -475,8 +474,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -528,11 +527,11 @@ export namespace cloudshell_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -563,8 +562,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -615,11 +614,11 @@ export namespace cloudshell_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -652,8 +651,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -764,11 +763,11 @@ export namespace cloudshell_v1 {
     addPublicKey(
       params: Params$Resource$Users$Environments$Addpublickey,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addPublicKey(
       params?: Params$Resource$Users$Environments$Addpublickey,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addPublicKey(
       params: Params$Resource$Users$Environments$Addpublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -799,8 +798,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Addpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -855,11 +854,11 @@ export namespace cloudshell_v1 {
     authorize(
       params: Params$Resource$Users$Environments$Authorize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     authorize(
       params?: Params$Resource$Users$Environments$Authorize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     authorize(
       params: Params$Resource$Users$Environments$Authorize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -890,8 +889,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Authorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -946,11 +945,11 @@ export namespace cloudshell_v1 {
     get(
       params: Params$Resource$Users$Environments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Environments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Environment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Environment>>;
     get(
       params: Params$Resource$Users$Environments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -981,8 +980,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Environment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Environment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1034,11 +1033,11 @@ export namespace cloudshell_v1 {
     removePublicKey(
       params: Params$Resource$Users$Environments$Removepublickey,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removePublicKey(
       params?: Params$Resource$Users$Environments$Removepublickey,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     removePublicKey(
       params: Params$Resource$Users$Environments$Removepublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1069,8 +1068,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Removepublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1125,11 +1124,11 @@ export namespace cloudshell_v1 {
     start(
       params: Params$Resource$Users$Environments$Start,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     start(
       params?: Params$Resource$Users$Environments$Start,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     start(
       params: Params$Resource$Users$Environments$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1160,8 +1159,8 @@ export namespace cloudshell_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;

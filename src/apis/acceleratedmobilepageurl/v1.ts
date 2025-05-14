@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -203,11 +202,11 @@ export namespace acceleratedmobilepageurl_v1 {
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchGet(
       params?: Params$Resource$Ampurls$Batchget,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>>;
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -242,8 +241,8 @@ export namespace acceleratedmobilepageurl_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

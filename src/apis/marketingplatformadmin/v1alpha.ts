@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -214,11 +213,11 @@ export namespace marketingplatformadmin_v1alpha {
     get(
       params: Params$Resource$Organizations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Organization>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Organization>>;
     get(
       params: Params$Resource$Organizations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -249,8 +248,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Organization>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Organization>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -318,11 +317,11 @@ export namespace marketingplatformadmin_v1alpha {
     create(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Analyticsaccountlinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AnalyticsAccountLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyticsAccountLink>>;
     create(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -355,8 +354,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AnalyticsAccountLink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyticsAccountLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -413,11 +412,11 @@ export namespace marketingplatformadmin_v1alpha {
     delete(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Analyticsaccountlinks$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -448,8 +447,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -503,11 +502,13 @@ export namespace marketingplatformadmin_v1alpha {
     list(
       params: Params$Resource$Organizations$Analyticsaccountlinks$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Analyticsaccountlinks$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAnalyticsAccountLinksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAnalyticsAccountLinksResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Analyticsaccountlinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -542,8 +543,10 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAnalyticsAccountLinksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAnalyticsAccountLinksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -601,11 +604,11 @@ export namespace marketingplatformadmin_v1alpha {
     setPropertyServiceLevel(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setPropertyServiceLevel(
       params?: Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SetPropertyServiceLevelResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetPropertyServiceLevelResponse>>;
     setPropertyServiceLevel(
       params: Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -640,8 +643,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SetPropertyServiceLevelResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetPropertyServiceLevelResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel;
       let options = (optionsOrCallback || {}) as MethodOptions;

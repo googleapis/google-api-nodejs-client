@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -537,11 +536,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -572,8 +571,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -626,11 +625,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -663,8 +662,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -758,11 +757,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -793,8 +792,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -870,11 +869,11 @@ export namespace artifactregistry_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -905,8 +904,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -962,11 +961,11 @@ export namespace artifactregistry_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -997,8 +996,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1051,11 +1050,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Repository>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repository>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1086,8 +1085,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Repository>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1140,11 +1139,11 @@ export namespace artifactregistry_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1175,8 +1174,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1233,11 +1232,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1270,8 +1269,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1327,11 +1326,11 @@ export namespace artifactregistry_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Repository>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repository>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1362,8 +1361,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Repository>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1416,11 +1415,11 @@ export namespace artifactregistry_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1451,8 +1450,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1509,11 +1508,11 @@ export namespace artifactregistry_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1548,8 +1547,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1714,11 +1713,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1749,8 +1748,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$File>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1804,11 +1803,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Files$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFilesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1839,8 +1838,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFilesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1940,11 +1939,11 @@ export namespace artifactregistry_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1975,8 +1974,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2030,11 +2029,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Package>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Package>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2065,8 +2064,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Package>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2120,11 +2119,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2157,8 +2156,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2256,11 +2255,11 @@ export namespace artifactregistry_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2291,8 +2290,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Tag>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2349,11 +2348,11 @@ export namespace artifactregistry_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2384,8 +2383,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2439,11 +2438,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2474,8 +2473,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Tag>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2529,11 +2528,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTagsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTagsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2564,8 +2563,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTagsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2622,11 +2621,11 @@ export namespace artifactregistry_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2657,8 +2656,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Tag>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2785,11 +2784,11 @@ export namespace artifactregistry_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2820,8 +2819,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2875,11 +2874,11 @@ export namespace artifactregistry_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Version>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Version>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2910,8 +2909,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Version>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2965,11 +2964,11 @@ export namespace artifactregistry_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3002,8 +3001,8 @@ export namespace artifactregistry_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -810,11 +809,11 @@ export namespace speech_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -845,8 +844,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -900,11 +899,11 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -937,8 +936,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1045,11 +1044,11 @@ export namespace speech_v1 {
     create(
       params: Params$Resource$Projects$Locations$Customclasses$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Customclasses$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>;
     create(
       params: Params$Resource$Projects$Locations$Customclasses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1080,8 +1079,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customclasses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1136,11 +1135,11 @@ export namespace speech_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customclasses$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Customclasses$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Customclasses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1171,8 +1170,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customclasses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1224,11 +1223,11 @@ export namespace speech_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Customclasses$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>;
     get(
       params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1259,8 +1258,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customclasses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1312,11 +1311,11 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Customclasses$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCustomClassesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomClassesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1351,8 +1350,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCustomClassesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomClassesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customclasses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1407,11 +1406,11 @@ export namespace speech_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Customclasses$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Customclasses$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>;
     patch(
       params: Params$Resource$Projects$Locations$Customclasses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1442,8 +1441,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customclasses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1560,11 +1559,11 @@ export namespace speech_v1 {
     create(
       params: Params$Resource$Projects$Locations$Phrasesets$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Phrasesets$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>;
     create(
       params: Params$Resource$Projects$Locations$Phrasesets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1595,8 +1594,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PhraseSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1651,11 +1650,11 @@ export namespace speech_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Phrasesets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1686,8 +1685,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1739,11 +1738,11 @@ export namespace speech_v1 {
     get(
       params: Params$Resource$Projects$Locations$Phrasesets$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Phrasesets$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>;
     get(
       params: Params$Resource$Projects$Locations$Phrasesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1774,8 +1773,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PhraseSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1827,11 +1826,11 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Projects$Locations$Phrasesets$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Phrasesets$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPhraseSetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPhraseSetResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Phrasesets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1864,8 +1863,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPhraseSetResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPhraseSetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1920,11 +1919,11 @@ export namespace speech_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PhraseSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>;
     patch(
       params: Params$Resource$Projects$Locations$Phrasesets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1955,8 +1954,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PhraseSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Phrasesets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2073,11 +2072,11 @@ export namespace speech_v1 {
     longrunningrecognize(
       params: Params$Resource$Speech$Longrunningrecognize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     longrunningrecognize(
       params?: Params$Resource$Speech$Longrunningrecognize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     longrunningrecognize(
       params: Params$Resource$Speech$Longrunningrecognize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2110,8 +2109,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Speech$Longrunningrecognize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2166,11 +2165,11 @@ export namespace speech_v1 {
     recognize(
       params: Params$Resource$Speech$Recognize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     recognize(
       params?: Params$Resource$Speech$Recognize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RecognizeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RecognizeResponse>>;
     recognize(
       params: Params$Resource$Speech$Recognize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2201,8 +2200,8 @@ export namespace speech_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RecognizeResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RecognizeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Speech$Recognize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

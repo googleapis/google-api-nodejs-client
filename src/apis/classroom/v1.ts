@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1680,11 +1679,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Course>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Course>>;
     create(
       params: Params$Resource$Courses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1715,8 +1714,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Course>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1767,11 +1766,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1802,8 +1801,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1854,11 +1853,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Course>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Course>>;
     get(
       params: Params$Resource$Courses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1889,8 +1888,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Course>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1941,11 +1940,11 @@ export namespace classroom_v1 {
     getGradingPeriodSettings(
       params: Params$Resource$Courses$Getgradingperiodsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getGradingPeriodSettings(
       params?: Params$Resource$Courses$Getgradingperiodsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>>;
     getGradingPeriodSettings(
       params: Params$Resource$Courses$Getgradingperiodsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1980,8 +1979,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Getgradingperiodsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2035,11 +2034,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCoursesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCoursesResponse>>;
     list(
       params: Params$Resource$Courses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2070,8 +2069,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCoursesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCoursesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2122,11 +2121,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Course>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Course>>;
     patch(
       params: Params$Resource$Courses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2157,8 +2156,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Course>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2209,11 +2208,11 @@ export namespace classroom_v1 {
     update(
       params: Params$Resource$Courses$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Courses$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Course>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Course>>;
     update(
       params: Params$Resource$Courses$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2244,8 +2243,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Course>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Course>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2296,11 +2295,11 @@ export namespace classroom_v1 {
     updateGradingPeriodSettings(
       params: Params$Resource$Courses$Updategradingperiodsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGradingPeriodSettings(
       params?: Params$Resource$Courses$Updategradingperiodsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>>;
     updateGradingPeriodSettings(
       params: Params$Resource$Courses$Updategradingperiodsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2335,8 +2334,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GradingPeriodSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Updategradingperiodsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2487,11 +2486,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Aliases$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Aliases$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseAlias>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseAlias>>;
     create(
       params: Params$Resource$Courses$Aliases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2522,8 +2521,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseAlias>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseAlias>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Aliases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2578,11 +2577,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Aliases$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Aliases$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Aliases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2613,8 +2612,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2669,11 +2668,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Aliases$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Aliases$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCourseAliasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCourseAliasesResponse>>;
     list(
       params: Params$Resource$Courses$Aliases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2708,8 +2707,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCourseAliasesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCourseAliasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2813,11 +2812,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Announcements$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Announcements$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>;
     create(
       params: Params$Resource$Courses$Announcements$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2848,8 +2847,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Announcement>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2904,11 +2903,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Announcements$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Announcements$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Announcements$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2939,8 +2938,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2994,11 +2993,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Announcements$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Announcements$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>;
     get(
       params: Params$Resource$Courses$Announcements$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3029,8 +3028,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Announcement>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3084,11 +3083,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Announcements$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAddOnContext(
       params?: Params$Resource$Courses$Announcements$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>;
     getAddOnContext(
       params: Params$Resource$Courses$Announcements$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3119,8 +3118,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnContext>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Getaddoncontext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3175,11 +3174,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Announcements$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Announcements$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>>;
     list(
       params: Params$Resource$Courses$Announcements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3214,8 +3213,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAnnouncementsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3270,11 +3269,11 @@ export namespace classroom_v1 {
     modifyAssignees(
       params: Params$Resource$Courses$Announcements$Modifyassignees,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyAssignees(
       params?: Params$Resource$Courses$Announcements$Modifyassignees,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>;
     modifyAssignees(
       params: Params$Resource$Courses$Announcements$Modifyassignees,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3305,8 +3304,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Announcement>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3361,11 +3360,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Announcements$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Announcements$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Announcement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>;
     patch(
       params: Params$Resource$Courses$Announcements$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3396,8 +3395,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Announcement>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Announcement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3575,11 +3574,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     create(
       params: Params$Resource$Courses$Announcements$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3610,8 +3609,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Addonattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3667,11 +3666,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3702,8 +3701,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Addonattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3759,11 +3758,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     get(
       params: Params$Resource$Courses$Announcements$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3794,8 +3793,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Addonattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3851,11 +3850,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Announcements$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Announcements$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>;
     list(
       params: Params$Resource$Courses$Announcements$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3890,8 +3889,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Addonattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3949,11 +3948,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     patch(
       params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3984,8 +3983,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Announcements$Addonattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4171,11 +4170,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Coursework$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>;
     create(
       params: Params$Resource$Courses$Coursework$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4206,8 +4205,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWork>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4262,11 +4261,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Coursework$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Coursework$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4297,8 +4296,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4353,11 +4352,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Coursework$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>;
     get(
       params: Params$Resource$Courses$Coursework$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4388,8 +4387,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWork>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4444,11 +4443,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Coursework$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAddOnContext(
       params?: Params$Resource$Courses$Coursework$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>;
     getAddOnContext(
       params: Params$Resource$Courses$Coursework$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4479,8 +4478,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnContext>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Getaddoncontext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4535,11 +4534,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Coursework$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCourseWorkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCourseWorkResponse>>;
     list(
       params: Params$Resource$Courses$Coursework$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4572,8 +4571,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCourseWorkResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCourseWorkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4628,11 +4627,11 @@ export namespace classroom_v1 {
     modifyAssignees(
       params: Params$Resource$Courses$Coursework$Modifyassignees,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyAssignees(
       params?: Params$Resource$Courses$Coursework$Modifyassignees,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>;
     modifyAssignees(
       params: Params$Resource$Courses$Coursework$Modifyassignees,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4663,8 +4662,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWork>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4718,11 +4717,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Coursework$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWork>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>;
     patch(
       params: Params$Resource$Courses$Coursework$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4753,8 +4752,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWork>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWork>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4809,11 +4808,11 @@ export namespace classroom_v1 {
     updateRubric(
       params: Params$Resource$Courses$Coursework$Updaterubric,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateRubric(
       params?: Params$Resource$Courses$Coursework$Updaterubric,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>;
     updateRubric(
       params: Params$Resource$Courses$Coursework$Updaterubric,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4844,8 +4843,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Rubric>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Updaterubric;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5053,11 +5052,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     create(
       params: Params$Resource$Courses$Coursework$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5088,8 +5087,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5145,11 +5144,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5180,8 +5179,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5237,11 +5236,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5272,8 +5271,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5328,11 +5327,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Coursework$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>;
     list(
       params: Params$Resource$Courses$Coursework$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5367,8 +5366,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5425,11 +5424,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5460,8 +5459,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5638,11 +5637,13 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+    >;
     get(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5677,8 +5678,10 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5736,11 +5739,13 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+    >;
     patch(
       params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5775,8 +5780,10 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5897,11 +5904,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Coursework$Rubrics$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Coursework$Rubrics$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>;
     create(
       params: Params$Resource$Courses$Coursework$Rubrics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5932,8 +5939,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Rubric>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Rubrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5988,11 +5995,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Coursework$Rubrics$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6023,8 +6030,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Rubrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6079,11 +6086,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Rubrics$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Coursework$Rubrics$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>;
     get(
       params: Params$Resource$Courses$Coursework$Rubrics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6114,8 +6121,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Rubric>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Rubrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6170,11 +6177,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Rubrics$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Coursework$Rubrics$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListRubricsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRubricsResponse>>;
     list(
       params: Params$Resource$Courses$Coursework$Rubrics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6205,8 +6212,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListRubricsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRubricsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Rubrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6261,11 +6268,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Rubric>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>;
     patch(
       params: Params$Resource$Courses$Coursework$Rubrics$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6296,8 +6303,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Rubric>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rubric>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Rubrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6449,11 +6456,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>;
     get(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6484,8 +6491,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$StudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6541,11 +6548,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListStudentSubmissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListStudentSubmissionsResponse>>;
     list(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6580,8 +6587,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListStudentSubmissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListStudentSubmissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6639,11 +6646,11 @@ export namespace classroom_v1 {
     modifyAttachments(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyAttachments(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>;
     modifyAttachments(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6676,8 +6683,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$StudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6733,11 +6740,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$StudentSubmission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>;
     patch(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6768,8 +6775,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$StudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentSubmission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6825,11 +6832,11 @@ export namespace classroom_v1 {
     reclaim(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reclaim(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     reclaim(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6860,8 +6867,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6917,11 +6924,11 @@ export namespace classroom_v1 {
     return(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     return(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     return(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6952,8 +6959,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7009,11 +7016,11 @@ export namespace classroom_v1 {
     turnIn(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     turnIn(
       params?: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     turnIn(
       params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7044,8 +7051,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7262,11 +7269,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Courseworkmaterials$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>;
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7297,8 +7304,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7352,11 +7359,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Courseworkmaterials$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7387,8 +7394,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7442,11 +7449,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Courseworkmaterials$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>;
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7477,8 +7484,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7532,11 +7539,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAddOnContext(
       params?: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>;
     getAddOnContext(
       params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7567,8 +7574,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnContext>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Getaddoncontext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7624,11 +7631,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Courseworkmaterials$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Courseworkmaterials$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCourseWorkMaterialResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCourseWorkMaterialResponse>>;
     list(
       params: Params$Resource$Courses$Courseworkmaterials$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7663,8 +7670,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCourseWorkMaterialResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCourseWorkMaterialResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7720,11 +7727,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Courseworkmaterials$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>;
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7755,8 +7762,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CourseWorkMaterial>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7926,11 +7933,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     create(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7961,8 +7968,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8018,11 +8025,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8053,8 +8060,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8110,11 +8117,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     get(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8145,8 +8152,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8202,11 +8209,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>;
     list(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8241,8 +8248,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8300,11 +8307,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     patch(
       params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8335,8 +8342,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8517,11 +8524,11 @@ export namespace classroom_v1 {
     getAddOnContext(
       params: Params$Resource$Courses$Posts$Getaddoncontext,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAddOnContext(
       params?: Params$Resource$Courses$Posts$Getaddoncontext,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnContext>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>;
     getAddOnContext(
       params: Params$Resource$Courses$Posts$Getaddoncontext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8552,8 +8559,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnContext>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnContext>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Getaddoncontext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8643,11 +8650,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Posts$Addonattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Posts$Addonattachments$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     create(
       params: Params$Resource$Courses$Posts$Addonattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8678,8 +8685,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8733,11 +8740,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Posts$Addonattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8768,8 +8775,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8824,11 +8831,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Posts$Addonattachments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8859,8 +8866,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8915,11 +8922,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Posts$Addonattachments$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Posts$Addonattachments$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>;
     list(
       params: Params$Resource$Courses$Posts$Addonattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8954,8 +8961,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9011,11 +9018,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>;
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9046,8 +9053,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AddOnAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9223,11 +9230,13 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+    >;
     get(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9262,8 +9271,10 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9321,11 +9332,13 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+    >;
     patch(
       params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9360,8 +9373,10 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AddOnAttachmentStudentSubmission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9482,11 +9497,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Students$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Students$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Student>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Student>>;
     create(
       params: Params$Resource$Courses$Students$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9517,8 +9532,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Student>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Student>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Students$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9573,11 +9588,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Students$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Students$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Students$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9608,8 +9623,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Students$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9664,11 +9679,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Students$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Students$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Student>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Student>>;
     get(
       params: Params$Resource$Courses$Students$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9699,8 +9714,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Student>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Student>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Students$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9755,11 +9770,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Students$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Students$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListStudentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListStudentsResponse>>;
     list(
       params: Params$Resource$Courses$Students$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9792,8 +9807,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListStudentsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListStudentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Students$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9909,11 +9924,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Teachers$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Teachers$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Teacher>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>;
     create(
       params: Params$Resource$Courses$Teachers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9944,8 +9959,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Teacher>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Teachers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10000,11 +10015,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Teachers$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Teachers$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Teachers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10035,8 +10050,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Teachers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10091,11 +10106,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Teachers$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Teachers$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Teacher>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>;
     get(
       params: Params$Resource$Courses$Teachers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10126,8 +10141,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Teacher>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Teacher>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Teachers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10182,11 +10197,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Teachers$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Teachers$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTeachersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTeachersResponse>>;
     list(
       params: Params$Resource$Courses$Teachers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10219,8 +10234,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTeachersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTeachersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Teachers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10332,11 +10347,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Courses$Topics$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Courses$Topics$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Topic>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Topic>>;
     create(
       params: Params$Resource$Courses$Topics$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10367,8 +10382,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Topic>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10423,11 +10438,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Courses$Topics$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Courses$Topics$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Courses$Topics$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10458,8 +10473,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10514,11 +10529,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Courses$Topics$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Courses$Topics$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Topic>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Topic>>;
     get(
       params: Params$Resource$Courses$Topics$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10549,8 +10564,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Topic>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10605,11 +10620,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Courses$Topics$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Courses$Topics$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTopicResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTopicResponse>>;
     list(
       params: Params$Resource$Courses$Topics$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10640,8 +10655,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTopicResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTopicResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10696,11 +10711,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Courses$Topics$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Courses$Topics$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Topic>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Topic>>;
     patch(
       params: Params$Resource$Courses$Topics$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10731,8 +10746,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Topic>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Courses$Topics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10864,11 +10879,11 @@ export namespace classroom_v1 {
     accept(
       params: Params$Resource$Invitations$Accept,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     accept(
       params?: Params$Resource$Invitations$Accept,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     accept(
       params: Params$Resource$Invitations$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10899,8 +10914,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Invitations$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10955,11 +10970,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Invitations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Invitations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Invitation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>;
     create(
       params: Params$Resource$Invitations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10990,8 +11005,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Invitation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Invitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11043,11 +11058,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Invitations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Invitations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Invitations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11078,8 +11093,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Invitations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11134,11 +11149,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Invitations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Invitations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Invitation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>;
     get(
       params: Params$Resource$Invitations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11169,8 +11184,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Invitation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Invitation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11224,11 +11239,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Invitations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Invitations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>>;
     list(
       params: Params$Resource$Invitations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11261,8 +11276,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11366,11 +11381,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Registrations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Registrations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Registration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Registration>>;
     create(
       params: Params$Resource$Registrations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11401,8 +11416,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Registration>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Registration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Registrations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11454,11 +11469,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Registrations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Registrations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Registrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11489,8 +11504,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Registrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11573,11 +11588,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userprofiles$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserProfile>>;
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11608,8 +11623,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UserProfile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11677,11 +11692,11 @@ export namespace classroom_v1 {
     create(
       params: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>;
     create(
       params: Params$Resource$Userprofiles$Guardianinvitations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11712,8 +11727,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuardianInvitation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardianinvitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11767,11 +11782,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>;
     get(
       params: Params$Resource$Userprofiles$Guardianinvitations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11802,8 +11817,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuardianInvitation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardianinvitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11858,11 +11873,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Userprofiles$Guardianinvitations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userprofiles$Guardianinvitations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGuardianInvitationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGuardianInvitationsResponse>>;
     list(
       params: Params$Resource$Userprofiles$Guardianinvitations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11897,8 +11912,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGuardianInvitationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGuardianInvitationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardianinvitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11954,11 +11969,11 @@ export namespace classroom_v1 {
     patch(
       params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuardianInvitation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>;
     patch(
       params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11989,8 +12004,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuardianInvitation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuardianInvitation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardianinvitations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12119,11 +12134,11 @@ export namespace classroom_v1 {
     delete(
       params: Params$Resource$Userprofiles$Guardians$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Userprofiles$Guardians$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Userprofiles$Guardians$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12154,8 +12169,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardians$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12209,11 +12224,11 @@ export namespace classroom_v1 {
     get(
       params: Params$Resource$Userprofiles$Guardians$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userprofiles$Guardians$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Guardian>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Guardian>>;
     get(
       params: Params$Resource$Userprofiles$Guardians$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12244,8 +12259,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Guardian>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Guardian>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardians$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12299,11 +12314,11 @@ export namespace classroom_v1 {
     list(
       params: Params$Resource$Userprofiles$Guardians$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userprofiles$Guardians$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGuardiansResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGuardiansResponse>>;
     list(
       params: Params$Resource$Userprofiles$Guardians$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12336,8 +12351,8 @@ export namespace classroom_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGuardiansResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGuardiansResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$Guardians$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -606,11 +605,11 @@ export namespace youtubereporting_v1 {
     create(
       params: Params$Resource$Jobs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Jobs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Jobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -641,8 +640,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -694,11 +693,11 @@ export namespace youtubereporting_v1 {
     delete(
       params: Params$Resource$Jobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Jobs$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Jobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -729,8 +728,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -782,11 +781,11 @@ export namespace youtubereporting_v1 {
     get(
       params: Params$Resource$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     get(
       params: Params$Resource$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -817,8 +816,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -870,11 +869,11 @@ export namespace youtubereporting_v1 {
     list(
       params: Params$Resource$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Jobs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>;
     list(
       params: Params$Resource$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -905,8 +904,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1015,11 +1014,11 @@ export namespace youtubereporting_v1 {
     get(
       params: Params$Resource$Jobs$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Jobs$Reports$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     get(
       params: Params$Resource$Jobs$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1050,8 +1049,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Report>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1106,11 +1105,11 @@ export namespace youtubereporting_v1 {
     list(
       params: Params$Resource$Jobs$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Jobs$Reports$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReportsResponse>>;
     list(
       params: Params$Resource$Jobs$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1141,8 +1140,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListReportsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Jobs$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1251,11 +1250,11 @@ export namespace youtubereporting_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GdataMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1286,8 +1285,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GdataMedia>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1356,11 +1355,11 @@ export namespace youtubereporting_v1 {
     list(
       params: Params$Resource$Reporttypes$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Reporttypes$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListReportTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReportTypesResponse>>;
     list(
       params: Params$Resource$Reporttypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1393,8 +1392,8 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListReportTypesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReportTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reporttypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

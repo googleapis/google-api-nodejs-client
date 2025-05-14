@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -446,11 +446,11 @@ export namespace sourcerepo_v1 {
     getConfig(
       params: Params$Resource$Projects$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConfig(
       params?: Params$Resource$Projects$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectConfig>>;
     getConfig(
       params: Params$Resource$Projects$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -479,7 +479,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProjectConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectConfig> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ProjectConfig>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -531,11 +531,11 @@ export namespace sourcerepo_v1 {
     updateConfig(
       params: Params$Resource$Projects$Updateconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateConfig(
       params?: Params$Resource$Projects$Updateconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectConfig>>;
     updateConfig(
       params: Params$Resource$Projects$Updateconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -564,7 +564,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProjectConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectConfig> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ProjectConfig>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -643,11 +643,11 @@ export namespace sourcerepo_v1 {
     create(
       params: Params$Resource$Projects$Repos$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Repos$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repo>>;
     create(
       params: Params$Resource$Projects$Repos$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -676,7 +676,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Repo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repo> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Repo>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -731,11 +731,11 @@ export namespace sourcerepo_v1 {
     delete(
       params: Params$Resource$Projects$Repos$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Repos$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Repos$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -764,7 +764,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -816,11 +816,11 @@ export namespace sourcerepo_v1 {
     get(
       params: Params$Resource$Projects$Repos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Repos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repo>>;
     get(
       params: Params$Resource$Projects$Repos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -849,7 +849,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Repo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repo> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Repo>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -901,11 +901,11 @@ export namespace sourcerepo_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Repos$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Repos$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Repos$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -934,7 +934,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -989,11 +989,11 @@ export namespace sourcerepo_v1 {
     list(
       params: Params$Resource$Projects$Repos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Repos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReposResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReposResponse>>;
     list(
       params: Params$Resource$Projects$Repos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1024,8 +1024,8 @@ export namespace sourcerepo_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReposResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReposResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1077,11 +1077,11 @@ export namespace sourcerepo_v1 {
     patch(
       params: Params$Resource$Projects$Repos$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Repos$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repo>>;
     patch(
       params: Params$Resource$Projects$Repos$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1110,7 +1110,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Repo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repo> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Repo>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1162,11 +1162,11 @@ export namespace sourcerepo_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Repos$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Repos$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Repos$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1195,7 +1195,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1250,11 +1250,11 @@ export namespace sourcerepo_v1 {
     sync(
       params: Params$Resource$Projects$Repos$Sync,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sync(
       params?: Params$Resource$Projects$Repos$Sync,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     sync(
       params: Params$Resource$Projects$Repos$Sync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1283,7 +1283,7 @@ export namespace sourcerepo_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1335,11 +1335,11 @@ export namespace sourcerepo_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Repos$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Repos$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Repos$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1374,8 +1374,8 @@ export namespace sourcerepo_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Repos$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -566,11 +566,11 @@ export namespace vectortile_v1 {
     get(
       params: Params$Resource$Featuretiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Featuretiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FeatureTile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FeatureTile>>;
     get(
       params: Params$Resource$Featuretiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -599,7 +599,7 @@ export namespace vectortile_v1 {
       callback?:
         | BodyResponseCallback<Schema$FeatureTile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FeatureTile> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$FeatureTile>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Featuretiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -798,11 +798,11 @@ export namespace vectortile_v1 {
     get(
       params: Params$Resource$Terraintiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Terraintiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TerrainTile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TerrainTile>>;
     get(
       params: Params$Resource$Terraintiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -831,7 +831,7 @@ export namespace vectortile_v1 {
       callback?:
         | BodyResponseCallback<Schema$TerrainTile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TerrainTile> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$TerrainTile>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Terraintiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

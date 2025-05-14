@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -431,11 +430,11 @@ export namespace homegraph_v1 {
     delete(
       params: Params$Resource$Agentusers$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Agentusers$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Agentusers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -466,8 +465,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Agentusers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -538,11 +537,11 @@ export namespace homegraph_v1 {
     query(
       params: Params$Resource$Devices$Query,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Devices$Query,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$QueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>;
     query(
       params: Params$Resource$Devices$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -573,8 +572,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$QueryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -625,11 +624,13 @@ export namespace homegraph_v1 {
     reportStateAndNotification(
       params: Params$Resource$Devices$Reportstateandnotification,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reportStateAndNotification(
       params?: Params$Resource$Devices$Reportstateandnotification,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReportStateAndNotificationResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ReportStateAndNotificationResponse>
+    >;
     reportStateAndNotification(
       params: Params$Resource$Devices$Reportstateandnotification,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -664,8 +665,10 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReportStateAndNotificationResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ReportStateAndNotificationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Reportstateandnotification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -722,11 +725,11 @@ export namespace homegraph_v1 {
     requestSync(
       params: Params$Resource$Devices$Requestsync,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestSync(
       params?: Params$Resource$Devices$Requestsync,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RequestSyncDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RequestSyncDevicesResponse>>;
     requestSync(
       params: Params$Resource$Devices$Requestsync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -761,8 +764,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RequestSyncDevicesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RequestSyncDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Requestsync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -817,11 +820,11 @@ export namespace homegraph_v1 {
     sync(
       params: Params$Resource$Devices$Sync,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sync(
       params?: Params$Resource$Devices$Sync,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SyncResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SyncResponse>>;
     sync(
       params: Params$Resource$Devices$Sync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -852,8 +855,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SyncResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SyncResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

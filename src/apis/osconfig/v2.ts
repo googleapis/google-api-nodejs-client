@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1062,11 +1061,11 @@ export namespace osconfig_v2 {
     create(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1097,8 +1096,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1154,11 +1153,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1189,8 +1188,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1243,11 +1242,13 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+    >;
     get(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1282,8 +1283,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1338,11 +1341,13 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+    >;
     list(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1377,8 +1382,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1436,11 +1443,11 @@ export namespace osconfig_v2 {
     patch(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1471,8 +1478,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1614,11 +1621,11 @@ export namespace osconfig_v2 {
     cancel(
       params: Params$Resource$Folders$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Folders$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Folders$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1649,8 +1656,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1702,11 +1709,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Folders$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Folders$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Folders$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1737,8 +1744,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1790,11 +1797,11 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Folders$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Folders$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1825,8 +1832,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1878,11 +1885,11 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Folders$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Folders$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1915,8 +1922,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2058,11 +2065,11 @@ export namespace osconfig_v2 {
     create(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2093,8 +2100,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2150,11 +2157,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2185,8 +2192,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2239,11 +2246,13 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+    >;
     get(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2278,8 +2287,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2334,11 +2345,13 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2373,8 +2386,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2432,11 +2447,11 @@ export namespace osconfig_v2 {
     patch(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2467,8 +2482,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2610,11 +2625,11 @@ export namespace osconfig_v2 {
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Organizations$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Organizations$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2645,8 +2660,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2699,11 +2714,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Organizations$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2734,8 +2749,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2788,11 +2803,11 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2823,8 +2838,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2876,11 +2891,11 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2913,8 +2928,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3056,11 +3071,11 @@ export namespace osconfig_v2 {
     create(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3091,8 +3106,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3148,11 +3163,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3183,8 +3198,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3237,11 +3252,13 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3276,8 +3293,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3332,11 +3351,13 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3371,8 +3392,10 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3430,11 +3453,11 @@ export namespace osconfig_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3465,8 +3488,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3608,11 +3631,11 @@ export namespace osconfig_v2 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3643,8 +3666,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3696,11 +3719,11 @@ export namespace osconfig_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3731,8 +3754,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3784,11 +3807,11 @@ export namespace osconfig_v2 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3819,8 +3842,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3872,11 +3895,11 @@ export namespace osconfig_v2 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3909,8 +3932,8 @@ export namespace osconfig_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

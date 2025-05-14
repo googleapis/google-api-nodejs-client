@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -446,11 +445,13 @@ export namespace mybusinessverifications_v1 {
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchVerificationOptions(
       params?: Params$Resource$Locations$Fetchverificationoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>
+    >;
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -485,8 +486,10 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Fetchverificationoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -544,11 +547,11 @@ export namespace mybusinessverifications_v1 {
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getVoiceOfMerchantState(
       params?: Params$Resource$Locations$Getvoiceofmerchantstate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>>;
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -583,8 +586,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getvoiceofmerchantstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -640,11 +643,11 @@ export namespace mybusinessverifications_v1 {
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Locations$Verify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>>;
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -677,8 +680,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -768,11 +771,11 @@ export namespace mybusinessverifications_v1 {
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     complete(
       params?: Params$Resource$Locations$Verifications$Complete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>>;
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -807,8 +810,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Verifications$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -866,11 +869,11 @@ export namespace mybusinessverifications_v1 {
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Verifications$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>>;
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -905,8 +908,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Verifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

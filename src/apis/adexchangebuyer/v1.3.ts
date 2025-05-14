@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -734,11 +734,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -767,7 +767,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Account>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -860,11 +860,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsList>>;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -893,7 +893,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$AccountsList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountsList> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$AccountsList>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1010,11 +1010,11 @@ export namespace adexchangebuyer_v1_3 {
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1043,7 +1043,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Account>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1160,11 +1160,11 @@ export namespace adexchangebuyer_v1_3 {
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1193,7 +1193,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Account>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1328,11 +1328,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Billinginfo$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billinginfo$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingInfo>>;
     get(
       params: Params$Resource$Billinginfo$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1361,7 +1361,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$BillingInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingInfo> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$BillingInfo>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1453,11 +1453,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Billinginfo$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billinginfo$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingInfoList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingInfoList>>;
     list(
       params: Params$Resource$Billinginfo$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1486,7 +1486,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$BillingInfoList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingInfoList> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$BillingInfoList>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1604,11 +1604,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Budget$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Budget$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Budget>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Budget>>;
     get(
       params: Params$Resource$Budget$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1637,7 +1637,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Budget>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Budget>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1752,11 +1752,11 @@ export namespace adexchangebuyer_v1_3 {
     patch(
       params: Params$Resource$Budget$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Budget$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Budget>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Budget>>;
     patch(
       params: Params$Resource$Budget$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1785,7 +1785,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Budget>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Budget>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1900,11 +1900,11 @@ export namespace adexchangebuyer_v1_3 {
     update(
       params: Params$Resource$Budget$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Budget$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Budget>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Budget>>;
     update(
       params: Params$Resource$Budget$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1933,7 +1933,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Budget>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Budget>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2102,11 +2102,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     get(
       params: Params$Resource$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2135,7 +2135,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Creative>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2283,11 +2283,11 @@ export namespace adexchangebuyer_v1_3 {
     insert(
       params: Params$Resource$Creatives$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creatives$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     insert(
       params: Params$Resource$Creatives$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2316,7 +2316,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Creative>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2421,11 +2421,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativesList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativesList>>;
     list(
       params: Params$Resource$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2454,7 +2454,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$CreativesList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativesList> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$CreativesList>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2609,11 +2609,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Directdeals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Directdeals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectDeal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectDeal>>;
     get(
       params: Params$Resource$Directdeals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2642,7 +2642,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$DirectDeal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectDeal> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$DirectDeal>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Directdeals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2735,11 +2735,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Directdeals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Directdeals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectDealsList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectDealsList>>;
     list(
       params: Params$Resource$Directdeals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2768,7 +2768,7 @@ export namespace adexchangebuyer_v1_3 {
       callback?:
         | BodyResponseCallback<Schema$DirectDealsList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectDealsList> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$DirectDealsList>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Directdeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2888,11 +2888,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Performancereport$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Performancereport$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PerformanceReportList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PerformanceReportList>>;
     list(
       params: Params$Resource$Performancereport$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2925,8 +2925,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PerformanceReportList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PerformanceReportList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Performancereport$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3050,11 +3050,11 @@ export namespace adexchangebuyer_v1_3 {
     delete(
       params: Params$Resource$Pretargetingconfig$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Pretargetingconfig$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Pretargetingconfig$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3081,7 +3081,7 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3202,11 +3202,11 @@ export namespace adexchangebuyer_v1_3 {
     get(
       params: Params$Resource$Pretargetingconfig$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pretargetingconfig$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>;
     get(
       params: Params$Resource$Pretargetingconfig$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3237,8 +3237,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PretargetingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3388,11 +3388,11 @@ export namespace adexchangebuyer_v1_3 {
     insert(
       params: Params$Resource$Pretargetingconfig$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Pretargetingconfig$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>;
     insert(
       params: Params$Resource$Pretargetingconfig$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3423,8 +3423,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PretargetingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3520,11 +3520,11 @@ export namespace adexchangebuyer_v1_3 {
     list(
       params: Params$Resource$Pretargetingconfig$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Pretargetingconfig$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfigList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfigList>>;
     list(
       params: Params$Resource$Pretargetingconfig$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3557,8 +3557,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PretargetingConfigList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfigList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3709,11 +3709,11 @@ export namespace adexchangebuyer_v1_3 {
     patch(
       params: Params$Resource$Pretargetingconfig$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Pretargetingconfig$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>;
     patch(
       params: Params$Resource$Pretargetingconfig$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3744,8 +3744,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PretargetingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3897,11 +3897,11 @@ export namespace adexchangebuyer_v1_3 {
     update(
       params: Params$Resource$Pretargetingconfig$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Pretargetingconfig$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PretargetingConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>;
     update(
       params: Params$Resource$Pretargetingconfig$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3932,8 +3932,8 @@ export namespace adexchangebuyer_v1_3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PretargetingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PretargetingConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

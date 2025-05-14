@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -528,11 +527,11 @@ export namespace merchantapi_promotions_v1beta {
     get(
       params: Params$Resource$Accounts$Promotions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Promotions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     get(
       params: Params$Resource$Accounts$Promotions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -563,8 +562,8 @@ export namespace merchantapi_promotions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Promotion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -619,11 +618,11 @@ export namespace merchantapi_promotions_v1beta {
     insert(
       params: Params$Resource$Accounts$Promotions$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Promotions$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     insert(
       params: Params$Resource$Accounts$Promotions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -654,8 +653,8 @@ export namespace merchantapi_promotions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Promotion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -709,11 +708,11 @@ export namespace merchantapi_promotions_v1beta {
     list(
       params: Params$Resource$Accounts$Promotions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Promotions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>;
     list(
       params: Params$Resource$Accounts$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -746,8 +745,8 @@ export namespace merchantapi_promotions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

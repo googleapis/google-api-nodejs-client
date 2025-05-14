@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -699,11 +698,11 @@ export namespace trafficdirector_v2 {
     client_status(
       params: Params$Resource$Discovery$Client_status,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     client_status(
       params?: Params$Resource$Discovery$Client_status,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>>;
     client_status(
       params: Params$Resource$Discovery$Client_status,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -738,8 +737,8 @@ export namespace trafficdirector_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Discovery$Client_status;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -981,11 +980,13 @@ export namespace chromepolicy_v1 {
     resolve(
       params: Params$Resource$Customers$Policies$Resolve,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Customers$Policies$Resolve,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
+    >;
     resolve(
       params: Params$Resource$Customers$Policies$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1020,8 +1021,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1098,11 +1101,11 @@ export namespace chromepolicy_v1 {
     batchDelete(
       params: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchDelete(
       params: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1135,8 +1138,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,11 +1193,11 @@ export namespace chromepolicy_v1 {
     batchModify(
       params: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchModify(
       params: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1227,8 +1230,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1282,11 +1285,13 @@ export namespace chromepolicy_v1 {
     listGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listGroupPriorityOrdering(
       params?: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
+    >;
     listGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1321,8 +1326,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1380,11 +1387,11 @@ export namespace chromepolicy_v1 {
     updateGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGroupPriorityOrdering(
       params?: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     updateGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1417,8 +1424,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1530,11 +1537,13 @@ export namespace chromepolicy_v1 {
     defineCertificate(
       params: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     defineCertificate(
       params?: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
+    >;
     defineCertificate(
       params: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1569,8 +1578,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Definecertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1627,11 +1638,13 @@ export namespace chromepolicy_v1 {
     defineNetwork(
       params: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     defineNetwork(
       params?: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
+    >;
     defineNetwork(
       params: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1666,8 +1679,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Definenetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1724,11 +1739,13 @@ export namespace chromepolicy_v1 {
     removeCertificate(
       params: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeCertificate(
       params?: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
+    >;
     removeCertificate(
       params: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1763,8 +1780,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Removecertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1821,11 +1840,13 @@ export namespace chromepolicy_v1 {
     removeNetwork(
       params: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeNetwork(
       params?: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
+    >;
     removeNetwork(
       params: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1860,8 +1881,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Removenetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1974,11 +1997,11 @@ export namespace chromepolicy_v1 {
     batchInherit(
       params: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchInherit(
       params?: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchInherit(
       params: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2011,8 +2034,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Orgunits$Batchinherit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2066,11 +2089,11 @@ export namespace chromepolicy_v1 {
     batchModify(
       params: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchModify(
       params: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2103,8 +2126,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Orgunits$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2190,11 +2213,13 @@ export namespace chromepolicy_v1 {
     get(
       params: Params$Resource$Customers$Policyschemas$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Policyschemas$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>
+    >;
     get(
       params: Params$Resource$Customers$Policyschemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2229,8 +2254,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policyschemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2284,11 +2311,13 @@ export namespace chromepolicy_v1 {
     list(
       params: Params$Resource$Customers$Policyschemas$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Policyschemas$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
+    >;
     list(
       params: Params$Resource$Customers$Policyschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2323,8 +2352,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policyschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2415,11 +2446,13 @@ export namespace chromepolicy_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
+    >;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2454,8 +2487,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1636,11 +1635,11 @@ export namespace people_v1 {
     batchGet(
       params: Params$Resource$Contactgroups$Batchget,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchGet(
       params?: Params$Resource$Contactgroups$Batchget,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>>;
     batchGet(
       params: Params$Resource$Contactgroups$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1675,8 +1674,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1733,11 +1732,11 @@ export namespace people_v1 {
     create(
       params: Params$Resource$Contactgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Contactgroups$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>;
     create(
       params: Params$Resource$Contactgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1768,8 +1767,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1821,11 +1820,11 @@ export namespace people_v1 {
     delete(
       params: Params$Resource$Contactgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Contactgroups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Contactgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1856,8 +1855,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1912,11 +1911,11 @@ export namespace people_v1 {
     get(
       params: Params$Resource$Contactgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Contactgroups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>;
     get(
       params: Params$Resource$Contactgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1947,8 +1946,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2003,11 +2002,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Contactgroups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Contactgroups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>>;
     list(
       params: Params$Resource$Contactgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2042,8 +2041,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2095,11 +2094,11 @@ export namespace people_v1 {
     update(
       params: Params$Resource$Contactgroups$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Contactgroups$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ContactGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>;
     update(
       params: Params$Resource$Contactgroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2130,8 +2129,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContactGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2273,11 +2272,13 @@ export namespace people_v1 {
     modify(
       params: Params$Resource$Contactgroups$Members$Modify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modify(
       params?: Params$Resource$Contactgroups$Members$Modify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>
+    >;
     modify(
       params: Params$Resource$Contactgroups$Members$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2312,8 +2313,10 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2390,11 +2393,11 @@ export namespace people_v1 {
     copyOtherContactToMyContactsGroup(
       params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copyOtherContactToMyContactsGroup(
       params?: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Person>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Person>>;
     copyOtherContactToMyContactsGroup(
       params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2427,8 +2430,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Person>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2483,11 +2486,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Othercontacts$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Othercontacts$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>>;
     list(
       params: Params$Resource$Othercontacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2522,8 +2525,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2575,11 +2578,11 @@ export namespace people_v1 {
     search(
       params: Params$Resource$Othercontacts$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Othercontacts$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>;
     search(
       params: Params$Resource$Othercontacts$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2610,8 +2613,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2730,11 +2733,11 @@ export namespace people_v1 {
     batchCreateContacts(
       params: Params$Resource$People$Batchcreatecontacts,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchCreateContacts(
       params?: Params$Resource$People$Batchcreatecontacts,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>>;
     batchCreateContacts(
       params: Params$Resource$People$Batchcreatecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2769,8 +2772,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchcreatecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2825,11 +2828,11 @@ export namespace people_v1 {
     batchDeleteContacts(
       params: Params$Resource$People$Batchdeletecontacts,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDeleteContacts(
       params?: Params$Resource$People$Batchdeletecontacts,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     batchDeleteContacts(
       params: Params$Resource$People$Batchdeletecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2860,8 +2863,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchdeletecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2916,11 +2919,11 @@ export namespace people_v1 {
     batchUpdateContacts(
       params: Params$Resource$People$Batchupdatecontacts,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdateContacts(
       params?: Params$Resource$People$Batchupdatecontacts,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>>;
     batchUpdateContacts(
       params: Params$Resource$People$Batchupdatecontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2955,8 +2958,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchupdatecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3011,11 +3014,11 @@ export namespace people_v1 {
     createContact(
       params: Params$Resource$People$Createcontact,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createContact(
       params?: Params$Resource$People$Createcontact,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Person>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Person>>;
     createContact(
       params: Params$Resource$People$Createcontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3046,8 +3049,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Person>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3102,11 +3105,11 @@ export namespace people_v1 {
     deleteContact(
       params: Params$Resource$People$Deletecontact,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteContact(
       params?: Params$Resource$People$Deletecontact,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteContact(
       params: Params$Resource$People$Deletecontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3137,8 +3140,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3193,11 +3196,11 @@ export namespace people_v1 {
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteContactPhoto(
       params?: Params$Resource$People$Deletecontactphoto,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>>;
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3232,8 +3235,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3288,11 +3291,11 @@ export namespace people_v1 {
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$People$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Person>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Person>>;
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3323,8 +3326,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Person>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3378,11 +3381,11 @@ export namespace people_v1 {
     getBatchGet(
       params: Params$Resource$People$Getbatchget,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getBatchGet(
       params?: Params$Resource$People$Getbatchget,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>>;
     getBatchGet(
       params: Params$Resource$People$Getbatchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3413,8 +3416,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3469,11 +3472,11 @@ export namespace people_v1 {
     listDirectoryPeople(
       params: Params$Resource$People$Listdirectorypeople,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listDirectoryPeople(
       params?: Params$Resource$People$Listdirectorypeople,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>>;
     listDirectoryPeople(
       params: Params$Resource$People$Listdirectorypeople,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3508,8 +3511,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Listdirectorypeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3564,11 +3567,11 @@ export namespace people_v1 {
     searchContacts(
       params: Params$Resource$People$Searchcontacts,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchContacts(
       params?: Params$Resource$People$Searchcontacts,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>;
     searchContacts(
       params: Params$Resource$People$Searchcontacts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3599,8 +3602,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Searchcontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3655,11 +3658,11 @@ export namespace people_v1 {
     searchDirectoryPeople(
       params: Params$Resource$People$Searchdirectorypeople,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchDirectoryPeople(
       params?: Params$Resource$People$Searchdirectorypeople,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>>;
     searchDirectoryPeople(
       params: Params$Resource$People$Searchdirectorypeople,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3694,8 +3697,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Searchdirectorypeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3752,11 +3755,11 @@ export namespace people_v1 {
     updateContact(
       params: Params$Resource$People$Updatecontact,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateContact(
       params?: Params$Resource$People$Updatecontact,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Person>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Person>>;
     updateContact(
       params: Params$Resource$People$Updatecontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3787,8 +3790,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Person>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3843,11 +3846,11 @@ export namespace people_v1 {
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateContactPhoto(
       params?: Params$Resource$People$Updatecontactphoto,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>>;
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3882,8 +3885,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4155,11 +4158,11 @@ export namespace people_v1 {
     list(
       params: Params$Resource$People$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$People$Connections$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>;
     list(
       params: Params$Resource$People$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4192,8 +4195,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

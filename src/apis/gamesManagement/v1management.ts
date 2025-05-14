@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -379,11 +378,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Achievements$Reset,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Achievements$Reset,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>>;
     reset(
       params: Params$Resource$Achievements$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -418,8 +417,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -474,11 +473,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Achievements$Resetall,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Achievements$Resetall,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>>;
     resetAll(
       params: Params$Resource$Achievements$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -513,8 +512,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -570,11 +569,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Achievements$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -603,8 +602,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -659,11 +658,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Achievements$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -692,8 +691,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -749,11 +748,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Achievements$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -782,8 +781,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -872,11 +871,11 @@ export namespace gamesManagement_v1management {
     listHidden(
       params: Params$Resource$Applications$Listhidden,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listHidden(
       params?: Params$Resource$Applications$Listhidden,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>>;
     listHidden(
       params: Params$Resource$Applications$Listhidden,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -907,8 +906,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Listhidden;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -987,11 +986,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Events$Reset,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Events$Reset,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     reset(
       params: Params$Resource$Events$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1020,8 +1019,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1075,11 +1074,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Events$Resetall,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Events$Resetall,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAll(
       params: Params$Resource$Events$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1108,8 +1107,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1164,11 +1163,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Events$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1197,8 +1196,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1253,11 +1252,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Events$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1286,8 +1285,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1343,11 +1342,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Events$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1376,8 +1375,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1463,11 +1462,11 @@ export namespace gamesManagement_v1management {
     hide(
       params: Params$Resource$Players$Hide,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     hide(
       params?: Params$Resource$Players$Hide,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     hide(
       params: Params$Resource$Players$Hide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1496,8 +1495,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1552,11 +1551,11 @@ export namespace gamesManagement_v1management {
     unhide(
       params: Params$Resource$Players$Unhide,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unhide(
       params?: Params$Resource$Players$Unhide,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     unhide(
       params: Params$Resource$Players$Unhide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1585,8 +1584,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1669,11 +1668,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Scores$Reset,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Scores$Reset,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>>;
     reset(
       params: Params$Resource$Scores$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1708,8 +1707,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1764,11 +1763,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Scores$Resetall,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Scores$Resetall,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>>;
     resetAll(
       params: Params$Resource$Scores$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1803,8 +1802,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1859,11 +1858,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Scores$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1892,8 +1891,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1948,11 +1947,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Scores$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1981,8 +1980,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2038,11 +2037,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Scores$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2071,8 +2070,8 @@ export namespace gamesManagement_v1management {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;

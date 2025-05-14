@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -588,11 +587,13 @@ export namespace safebrowsing_v4 {
     get(
       params: Params$Resource$Encodedfullhashes$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Encodedfullhashes$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+    >;
     get(
       params: Params$Resource$Encodedfullhashes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -627,8 +628,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -707,11 +710,13 @@ export namespace safebrowsing_v4 {
     get(
       params: Params$Resource$Encodedupdates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Encodedupdates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+    >;
     get(
       params: Params$Resource$Encodedupdates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -746,8 +751,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -827,11 +834,13 @@ export namespace safebrowsing_v4 {
     find(
       params: Params$Resource$Fullhashes$Find,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     find(
       params?: Params$Resource$Fullhashes$Find,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+    >;
     find(
       params: Params$Resource$Fullhashes$Find,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -866,8 +875,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -937,11 +948,11 @@ export namespace safebrowsing_v4 {
     create(
       params: Params$Resource$Threathits$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Threathits$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     create(
       params: Params$Resource$Threathits$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -972,8 +983,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1040,11 +1051,13 @@ export namespace safebrowsing_v4 {
     list(
       params: Params$Resource$Threatlists$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Threatlists$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+    >;
     list(
       params: Params$Resource$Threatlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1079,8 +1092,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1143,11 +1158,13 @@ export namespace safebrowsing_v4 {
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetch(
       params?: Params$Resource$Threatlistupdates$Fetch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+    >;
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1182,8 +1199,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1255,11 +1274,13 @@ export namespace safebrowsing_v4 {
     find(
       params: Params$Resource$Threatmatches$Find,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     find(
       params?: Params$Resource$Threatmatches$Find,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+    >;
     find(
       params: Params$Resource$Threatmatches$Find,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1294,8 +1315,10 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;

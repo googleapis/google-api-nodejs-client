@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -396,11 +396,11 @@ export namespace appsactivity_v1 {
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListActivitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListActivitiesResponse>>;
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -433,8 +433,8 @@ export namespace appsactivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListActivitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListActivitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

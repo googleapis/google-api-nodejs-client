@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -2968,11 +2967,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3003,8 +3002,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3056,11 +3055,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3093,8 +3092,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3192,11 +3191,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3227,8 +3226,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3284,11 +3283,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3319,8 +3318,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3375,11 +3374,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3412,8 +3411,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3466,11 +3465,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3501,8 +3500,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3558,11 +3557,13 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3597,8 +3598,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3656,11 +3659,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3691,8 +3694,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3745,11 +3748,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3784,8 +3789,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3843,11 +3850,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3878,8 +3885,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3935,11 +3942,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3974,8 +3981,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4031,11 +4038,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4066,8 +4073,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4294,11 +4301,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4329,8 +4336,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4383,11 +4390,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4420,8 +4427,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4521,11 +4528,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4556,8 +4563,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4613,11 +4620,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4648,8 +4655,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4702,11 +4709,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4737,8 +4744,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4794,11 +4801,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BareMetalCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4829,8 +4836,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BareMetalCluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4882,11 +4889,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4917,8 +4924,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4974,11 +4981,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5013,8 +5020,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5072,11 +5079,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5107,8 +5114,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5161,11 +5168,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5200,8 +5209,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5258,11 +5269,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5293,8 +5304,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5350,11 +5361,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5389,8 +5400,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5446,11 +5457,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5481,8 +5492,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5757,11 +5768,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5792,8 +5803,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5849,11 +5860,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5884,8 +5895,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5938,11 +5949,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5973,8 +5984,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6030,11 +6041,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6065,8 +6076,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6119,11 +6130,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6154,8 +6165,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6211,11 +6222,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6250,8 +6261,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6309,11 +6320,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6344,8 +6355,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6398,11 +6409,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6433,8 +6444,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6490,11 +6501,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6529,8 +6540,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6586,11 +6597,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6621,8 +6632,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6849,11 +6860,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6884,8 +6895,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6938,11 +6949,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6975,8 +6986,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7066,11 +7077,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7101,8 +7112,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7155,11 +7166,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7192,8 +7203,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7283,11 +7294,11 @@ export namespace gkeonprem_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7318,8 +7329,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7371,11 +7382,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7406,8 +7417,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7459,11 +7470,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7494,8 +7505,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7547,11 +7558,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7584,8 +7595,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7698,11 +7709,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7733,8 +7744,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7790,11 +7801,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7825,8 +7836,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7882,11 +7893,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7917,8 +7928,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7971,11 +7982,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8006,8 +8017,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8063,11 +8074,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8102,8 +8113,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8161,11 +8172,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8196,8 +8207,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8250,11 +8261,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8285,8 +8296,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8342,11 +8353,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8381,8 +8392,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8438,11 +8449,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8473,8 +8484,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8686,11 +8697,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8721,8 +8732,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8775,11 +8786,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8812,8 +8823,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8911,11 +8922,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8946,8 +8957,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9002,11 +9013,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9037,8 +9048,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9090,11 +9101,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9125,8 +9136,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9181,11 +9192,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VmwareCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9216,8 +9227,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VmwareCluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9269,11 +9280,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9304,8 +9315,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9361,11 +9372,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9400,8 +9411,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9456,11 +9467,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9491,8 +9502,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9544,11 +9555,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9583,8 +9596,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9641,11 +9656,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9676,8 +9691,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9733,11 +9748,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9772,8 +9787,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9829,11 +9844,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9864,8 +9879,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10131,11 +10146,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10166,8 +10181,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10220,11 +10235,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10257,8 +10272,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10353,11 +10368,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10388,8 +10403,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10445,11 +10460,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10480,8 +10495,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10534,11 +10549,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10569,8 +10584,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10626,11 +10641,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VmwareNodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareNodePool>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10661,8 +10676,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VmwareNodePool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareNodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10715,11 +10730,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10750,8 +10765,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10807,11 +10822,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10846,8 +10861,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10903,11 +10918,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10938,8 +10953,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10992,11 +11007,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11027,8 +11042,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11084,11 +11099,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11123,8 +11138,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11180,11 +11195,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11215,8 +11230,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11439,11 +11454,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11474,8 +11489,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11528,11 +11543,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11565,8 +11580,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

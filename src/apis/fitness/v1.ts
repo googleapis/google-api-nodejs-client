@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -552,11 +551,11 @@ export namespace fitness_v1 {
     aggregate(
       params: Params$Resource$Users$Dataset$Aggregate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     aggregate(
       params?: Params$Resource$Users$Dataset$Aggregate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AggregateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AggregateResponse>>;
     aggregate(
       params: Params$Resource$Users$Dataset$Aggregate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -587,8 +586,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AggregateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AggregateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Dataset$Aggregate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -668,11 +667,11 @@ export namespace fitness_v1 {
     create(
       params: Params$Resource$Users$Datasources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Datasources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     create(
       params: Params$Resource$Users$Datasources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -703,8 +702,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -759,11 +758,11 @@ export namespace fitness_v1 {
     delete(
       params: Params$Resource$Users$Datasources$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Datasources$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     delete(
       params: Params$Resource$Users$Datasources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -794,8 +793,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -849,11 +848,11 @@ export namespace fitness_v1 {
     get(
       params: Params$Resource$Users$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Users$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -884,8 +883,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -939,11 +938,11 @@ export namespace fitness_v1 {
     list(
       params: Params$Resource$Users$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Datasources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Users$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -976,8 +975,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1032,11 +1031,11 @@ export namespace fitness_v1 {
     update(
       params: Params$Resource$Users$Datasources$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Datasources$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     update(
       params: Params$Resource$Users$Datasources$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1067,8 +1066,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1191,11 +1190,11 @@ export namespace fitness_v1 {
     list(
       params: Params$Resource$Users$Datasources$Datapointchanges$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Datasources$Datapointchanges$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataPointChangesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataPointChangesResponse>>;
     list(
       params: Params$Resource$Users$Datasources$Datapointchanges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1230,8 +1229,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataPointChangesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataPointChangesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datapointchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1315,11 +1314,11 @@ export namespace fitness_v1 {
     delete(
       params: Params$Resource$Users$Datasources$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Datasources$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Datasources$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1348,8 +1347,8 @@ export namespace fitness_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1404,11 +1403,11 @@ export namespace fitness_v1 {
     get(
       params: Params$Resource$Users$Datasources$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Datasources$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     get(
       params: Params$Resource$Users$Datasources$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1439,8 +1438,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Dataset>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1495,11 +1494,11 @@ export namespace fitness_v1 {
     patch(
       params: Params$Resource$Users$Datasources$Datasets$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Datasources$Datasets$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     patch(
       params: Params$Resource$Users$Datasources$Datasets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1530,8 +1529,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Dataset>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1652,11 +1651,11 @@ export namespace fitness_v1 {
     delete(
       params: Params$Resource$Users$Sessions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Sessions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Sessions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1685,8 +1684,8 @@ export namespace fitness_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1740,11 +1739,11 @@ export namespace fitness_v1 {
     list(
       params: Params$Resource$Users$Sessions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Sessions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>>;
     list(
       params: Params$Resource$Users$Sessions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1777,8 +1776,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSessionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1833,11 +1832,11 @@ export namespace fitness_v1 {
     update(
       params: Params$Resource$Users$Sessions$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Sessions$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Session>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Session>>;
     update(
       params: Params$Resource$Users$Sessions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1868,8 +1867,8 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Session>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Session>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

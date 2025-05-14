@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -339,11 +338,13 @@ export namespace fcmdata_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
+    >;
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -378,8 +379,10 @@ export namespace fcmdata_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Deliverydata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

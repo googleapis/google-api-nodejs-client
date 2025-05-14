@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -179,11 +178,11 @@ export namespace publicca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>>;
     create(
       params: Params$Resource$Projects$Locations$Externalaccountkeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -214,8 +213,8 @@ export namespace publicca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Externalaccountkeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

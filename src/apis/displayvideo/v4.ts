@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -6450,11 +6449,11 @@ export namespace displayvideo_v4 {
     audit(
       params: Params$Resource$Advertisers$Audit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     audit(
       params?: Params$Resource$Advertisers$Audit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>>;
     audit(
       params: Params$Resource$Advertisers$Audit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6487,8 +6486,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Audit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6543,11 +6542,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     create(
       params: Params$Resource$Advertisers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6578,8 +6577,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Advertiser>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6631,11 +6630,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6666,8 +6665,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6722,11 +6721,13 @@ export namespace displayvideo_v4 {
     editAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+    >;
     editAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6761,8 +6762,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Editassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6819,11 +6822,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6854,8 +6857,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Advertiser>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6909,11 +6912,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>>;
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6946,8 +6949,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6998,11 +7001,13 @@ export namespace displayvideo_v4 {
     listAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+    >;
     listAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7037,8 +7042,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Listassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7095,11 +7102,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7130,8 +7137,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Advertiser>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7298,11 +7305,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Adgroupads$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Adgroupads$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AdGroupAd>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdGroupAd>>;
     get(
       params: Params$Resource$Advertisers$Adgroupads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7333,8 +7340,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AdGroupAd>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdGroupAd>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroupads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7389,11 +7396,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Adgroupads$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Adgroupads$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAdGroupAdsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdGroupAdsResponse>>;
     list(
       params: Params$Resource$Advertisers$Adgroupads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7426,8 +7433,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAdGroupAdsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdGroupAdsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroupads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7527,11 +7534,13 @@ export namespace displayvideo_v4 {
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Adgroups$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkListAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Adgroups$Bulklistassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    >;
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Adgroups$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7566,8 +7575,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroups$Bulklistassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7625,11 +7636,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Adgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Adgroups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AdGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdGroup>>;
     get(
       params: Params$Resource$Advertisers$Adgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7660,8 +7671,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AdGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7715,11 +7726,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Adgroups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Adgroups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAdGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdGroupsResponse>>;
     list(
       params: Params$Resource$Advertisers$Adgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7752,8 +7763,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAdGroupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7889,11 +7900,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7926,8 +7937,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7993,11 +8004,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAdGroupAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8032,8 +8045,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8149,11 +8164,11 @@ export namespace displayvideo_v4 {
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Advertisers$Assets$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>>;
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8184,8 +8199,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Assets$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8278,11 +8293,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Campaigns$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8313,8 +8328,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Campaign>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8368,11 +8383,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Campaigns$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8403,8 +8418,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8459,11 +8474,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Campaigns$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8494,8 +8509,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Campaign>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8550,11 +8565,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Campaigns$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>>;
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8587,8 +8602,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8642,11 +8657,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Campaigns$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8677,8 +8692,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Campaign>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8820,11 +8835,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Channels$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Channels$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     create(
       params: Params$Resource$Advertisers$Channels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8855,8 +8870,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8911,11 +8926,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Channels$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Channels$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     get(
       params: Params$Resource$Advertisers$Channels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8946,8 +8961,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9001,11 +9016,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Channels$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>;
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9038,8 +9053,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9094,11 +9109,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Channels$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Channels$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     patch(
       params: Params$Resource$Advertisers$Channels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9129,8 +9144,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9274,11 +9289,11 @@ export namespace displayvideo_v4 {
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>;
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9313,8 +9328,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9369,11 +9384,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Channels$Sites$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Channels$Sites$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     create(
       params: Params$Resource$Advertisers$Channels$Sites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9404,8 +9419,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Site>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9460,11 +9475,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Channels$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Channels$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Channels$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9495,8 +9510,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9551,11 +9566,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Channels$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Channels$Sites$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Advertisers$Channels$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9586,8 +9601,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9642,11 +9657,11 @@ export namespace displayvideo_v4 {
     replace(
       params: Params$Resource$Advertisers$Channels$Sites$Replace,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Advertisers$Channels$Sites$Replace,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>;
     replace(
       params: Params$Resource$Advertisers$Channels$Sites$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9679,8 +9694,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9845,11 +9860,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Creatives$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9880,8 +9895,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Creative>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9935,11 +9950,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Creatives$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9970,8 +9985,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10026,11 +10041,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10061,8 +10076,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Creative>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10117,11 +10132,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Creatives$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>;
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10154,8 +10169,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10209,11 +10224,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Creatives$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10244,8 +10259,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Creative>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10385,11 +10400,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Insertionorders$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10420,8 +10435,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InsertionOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10475,11 +10490,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Insertionorders$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10510,8 +10525,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10566,11 +10581,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Insertionorders$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10601,8 +10616,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InsertionOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10657,11 +10672,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Insertionorders$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>>;
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10696,8 +10711,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10751,11 +10766,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Insertionorders$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10786,8 +10801,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InsertionOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10927,11 +10942,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Invoices$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Invoices$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>>;
     list(
       params: Params$Resource$Advertisers$Invoices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10964,8 +10979,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Invoices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11020,11 +11035,11 @@ export namespace displayvideo_v4 {
     lookupInvoiceCurrency(
       params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookupInvoiceCurrency(
       params?: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>>;
     lookupInvoiceCurrency(
       params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11059,8 +11074,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11164,11 +11179,13 @@ export namespace displayvideo_v4 {
     bulkEditAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEditAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>
+    >;
     bulkEditAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11203,8 +11220,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11262,11 +11281,13 @@ export namespace displayvideo_v4 {
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkListAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>
+    >;
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11301,8 +11322,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11360,11 +11383,11 @@ export namespace displayvideo_v4 {
     bulkUpdate(
       params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkUpdate(
       params?: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>>;
     bulkUpdate(
       params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11399,8 +11422,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulkupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11454,11 +11477,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Lineitems$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11489,8 +11512,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LineItem>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11544,11 +11567,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Lineitems$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11579,8 +11602,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11635,11 +11658,11 @@ export namespace displayvideo_v4 {
     duplicate(
       params: Params$Resource$Advertisers$Lineitems$Duplicate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     duplicate(
       params?: Params$Resource$Advertisers$Lineitems$Duplicate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>>;
     duplicate(
       params: Params$Resource$Advertisers$Lineitems$Duplicate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11674,8 +11697,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Duplicate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11730,11 +11753,11 @@ export namespace displayvideo_v4 {
     generateDefault(
       params: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDefault(
       params?: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     generateDefault(
       params: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11765,8 +11788,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LineItem>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Generatedefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11821,11 +11844,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Lineitems$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11856,8 +11879,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LineItem>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11912,11 +11935,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Lineitems$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>>;
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11949,8 +11972,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12004,11 +12027,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Lineitems$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12039,8 +12062,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LineItem>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12271,11 +12294,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12310,8 +12333,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12367,11 +12390,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12402,8 +12425,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12469,11 +12492,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12506,8 +12529,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12573,11 +12596,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12612,8 +12637,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12771,11 +12798,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Locationlists$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Locationlists$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     create(
       params: Params$Resource$Advertisers$Locationlists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12806,8 +12833,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LocationList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12861,11 +12888,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Locationlists$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12896,8 +12923,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LocationList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12952,11 +12979,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Locationlists$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>>;
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12991,8 +13018,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13046,11 +13073,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Locationlists$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Locationlists$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     patch(
       params: Params$Resource$Advertisers$Locationlists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13081,8 +13108,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LocationList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13211,11 +13238,13 @@ export namespace displayvideo_v4 {
     bulkEdit(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13250,8 +13279,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13309,11 +13340,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedLocation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedLocation>>;
     create(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13344,8 +13375,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedLocation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedLocation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13401,11 +13432,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13436,8 +13467,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13497,11 +13528,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>>;
     list(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13536,8 +13567,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13682,11 +13713,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13717,8 +13748,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13772,11 +13803,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13807,8 +13838,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13863,11 +13894,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13898,8 +13929,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13954,11 +13985,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Negativekeywordlists$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13993,8 +14026,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14050,11 +14085,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     patch(
       params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14085,8 +14120,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14218,11 +14253,13 @@ export namespace displayvideo_v4 {
     bulkEdit(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14257,8 +14294,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14316,11 +14355,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NegativeKeyword>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeyword>>;
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14351,8 +14390,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NegativeKeyword>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeyword>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14408,11 +14447,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14443,8 +14482,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14504,11 +14543,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>>;
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14543,8 +14582,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14602,11 +14641,11 @@ export namespace displayvideo_v4 {
     replace(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>>;
     replace(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14641,8 +14680,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14810,11 +14849,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14849,8 +14888,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14906,11 +14945,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14941,8 +14980,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15006,11 +15045,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15043,8 +15082,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15108,11 +15147,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15147,8 +15188,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15287,11 +15330,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Combinedaudiences$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Combinedaudiences$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CombinedAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CombinedAudience>>;
     get(
       params: Params$Resource$Combinedaudiences$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15322,8 +15365,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CombinedAudience>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CombinedAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15377,11 +15420,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Combinedaudiences$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Combinedaudiences$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>>;
     list(
       params: Params$Resource$Combinedaudiences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15416,8 +15459,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15528,11 +15571,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Custombiddingalgorithms$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     create(
       params: Params$Resource$Custombiddingalgorithms$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15565,8 +15608,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15621,11 +15664,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Custombiddingalgorithms$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15658,8 +15701,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15714,11 +15757,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Custombiddingalgorithms$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Custombiddingalgorithms$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>
+    >;
     list(
       params: Params$Resource$Custombiddingalgorithms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15753,8 +15798,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15811,11 +15858,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Custombiddingalgorithms$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Custombiddingalgorithms$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     patch(
       params: Params$Resource$Custombiddingalgorithms$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15848,8 +15895,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15904,11 +15951,11 @@ export namespace displayvideo_v4 {
     uploadRules(
       params: Params$Resource$Custombiddingalgorithms$Uploadrules,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     uploadRules(
       params?: Params$Resource$Custombiddingalgorithms$Uploadrules,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRulesRef>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRulesRef>>;
     uploadRules(
       params: Params$Resource$Custombiddingalgorithms$Uploadrules,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15943,8 +15990,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRulesRef>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRulesRef>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Uploadrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16001,11 +16048,11 @@ export namespace displayvideo_v4 {
     uploadScript(
       params: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     uploadScript(
       params?: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>>;
     uploadScript(
       params: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16040,8 +16087,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Uploadscript;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16199,11 +16246,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Rules$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Custombiddingalgorithms$Rules$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>>;
     create(
       params: Params$Resource$Custombiddingalgorithms$Rules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16238,8 +16285,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Rules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16294,11 +16341,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Rules$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Custombiddingalgorithms$Rules$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>>;
     get(
       params: Params$Resource$Custombiddingalgorithms$Rules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16333,8 +16380,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithmRules>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Rules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16395,11 +16442,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Custombiddingalgorithms$Rules$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Custombiddingalgorithms$Rules$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmRulesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmRulesResponse>
+    >;
     list(
       params: Params$Resource$Custombiddingalgorithms$Rules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16434,8 +16483,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmRulesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmRulesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Rules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16566,11 +16617,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>;
     create(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16601,8 +16652,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16657,11 +16708,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>;
     get(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16692,8 +16743,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16748,11 +16799,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>
+    >;
     list(
       params: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16787,8 +16840,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16919,11 +16974,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Customlists$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customlists$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomList>>;
     get(
       params: Params$Resource$Customlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16954,8 +17009,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17009,11 +17064,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Customlists$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customlists$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>>;
     list(
       params: Params$Resource$Customlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17046,8 +17101,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17138,11 +17193,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Firstpartyandpartneraudiences$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Firstpartyandpartneraudiences$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>;
     create(
       params: Params$Resource$Firstpartyandpartneraudiences$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17177,8 +17232,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstpartyandpartneraudiences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17235,11 +17290,13 @@ export namespace displayvideo_v4 {
     editCustomerMatchMembers(
       params: Params$Resource$Firstpartyandpartneraudiences$Editcustomermatchmembers,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editCustomerMatchMembers(
       params?: Params$Resource$Firstpartyandpartneraudiences$Editcustomermatchmembers,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>
+    >;
     editCustomerMatchMembers(
       params: Params$Resource$Firstpartyandpartneraudiences$Editcustomermatchmembers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17274,8 +17331,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstpartyandpartneraudiences$Editcustomermatchmembers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17333,11 +17392,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Firstpartyandpartneraudiences$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Firstpartyandpartneraudiences$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>;
     get(
       params: Params$Resource$Firstpartyandpartneraudiences$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17372,8 +17431,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstpartyandpartneraudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17430,11 +17489,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Firstpartyandpartneraudiences$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Firstpartyandpartneraudiences$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFirstPartyAndPartnerAudiencesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListFirstPartyAndPartnerAudiencesResponse>
+    >;
     list(
       params: Params$Resource$Firstpartyandpartneraudiences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17469,8 +17530,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFirstPartyAndPartnerAudiencesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListFirstPartyAndPartnerAudiencesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstpartyandpartneraudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17527,11 +17590,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Firstpartyandpartneraudiences$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Firstpartyandpartneraudiences$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>;
     patch(
       params: Params$Resource$Firstpartyandpartneraudiences$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17566,8 +17629,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FirstPartyAndPartnerAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstpartyandpartneraudiences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17721,11 +17784,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Floodlightgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightgroups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FloodlightGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>;
     get(
       params: Params$Resource$Floodlightgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17756,8 +17819,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FloodlightGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17811,11 +17874,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Floodlightgroups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FloodlightGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>;
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17846,8 +17909,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FloodlightGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17941,11 +18004,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     get(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17976,8 +18039,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FloodlightActivity>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18033,11 +18096,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>
+    >;
     list(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18072,8 +18137,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18177,11 +18244,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Googleaudiences$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Googleaudiences$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAudience>>;
     get(
       params: Params$Resource$Googleaudiences$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18212,8 +18279,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleAudience>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18268,11 +18335,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Googleaudiences$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Googleaudiences$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>>;
     list(
       params: Params$Resource$Googleaudiences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18307,8 +18374,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18413,11 +18480,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Guaranteedorders$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Guaranteedorders$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     create(
       params: Params$Resource$Guaranteedorders$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18448,8 +18515,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18504,11 +18571,13 @@ export namespace displayvideo_v4 {
     editGuaranteedOrderReadAccessors(
       params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editGuaranteedOrderReadAccessors(
       params?: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>
+    >;
     editGuaranteedOrderReadAccessors(
       params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18543,8 +18612,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18602,11 +18673,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Guaranteedorders$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Guaranteedorders$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     get(
       params: Params$Resource$Guaranteedorders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18637,8 +18708,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18692,11 +18763,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Guaranteedorders$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Guaranteedorders$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>>;
     list(
       params: Params$Resource$Guaranteedorders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18731,8 +18802,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18789,11 +18860,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Guaranteedorders$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Guaranteedorders$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     patch(
       params: Params$Resource$Guaranteedorders$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18824,8 +18895,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18986,11 +19057,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysourcegroups$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19023,8 +19094,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19079,11 +19150,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Inventorysourcegroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Inventorysourcegroups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Inventorysourcegroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19114,8 +19185,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19169,11 +19240,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inventorysourcegroups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19206,8 +19277,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19261,11 +19332,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Inventorysourcegroups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysourcegroups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>
+    >;
     list(
       params: Params$Resource$Inventorysourcegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19300,8 +19373,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19358,11 +19433,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Inventorysourcegroups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19395,8 +19470,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19555,11 +19630,13 @@ export namespace displayvideo_v4 {
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19594,8 +19671,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19653,11 +19732,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>>;
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19692,8 +19771,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19749,11 +19828,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19784,8 +19863,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19841,11 +19920,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>
+    >;
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19880,8 +19961,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20029,11 +20112,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Inventorysources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     create(
       params: Params$Resource$Inventorysources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20064,8 +20147,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20120,11 +20203,11 @@ export namespace displayvideo_v4 {
     editInventorySourceReadWriteAccessors(
       params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editInventorySourceReadWriteAccessors(
       params?: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>>;
     editInventorySourceReadWriteAccessors(
       params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20159,8 +20242,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20216,11 +20299,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Inventorysources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inventorysources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     get(
       params: Params$Resource$Inventorysources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20251,8 +20334,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20306,11 +20389,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Inventorysources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>>;
     list(
       params: Params$Resource$Inventorysources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20345,8 +20428,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20403,11 +20486,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Inventorysources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Inventorysources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     patch(
       params: Params$Resource$Inventorysources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20438,8 +20521,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InventorySource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20595,11 +20678,11 @@ export namespace displayvideo_v4 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20634,8 +20717,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20689,11 +20772,11 @@ export namespace displayvideo_v4 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20726,8 +20809,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20829,11 +20912,13 @@ export namespace displayvideo_v4 {
     editAssignedTargetingOptions(
       params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editAssignedTargetingOptions(
       params?: Params$Resource$Partners$Editassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+    >;
     editAssignedTargetingOptions(
       params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20868,8 +20953,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Editassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20925,11 +21012,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Partners$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Partner>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Partner>>;
     get(
       params: Params$Resource$Partners$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20960,8 +21047,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Partner>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Partner>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Partners$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21015,11 +21102,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Partners$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>>;
     list(
       params: Params$Resource$Partners$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21052,8 +21139,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Partners$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21150,11 +21237,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Partners$Channels$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Channels$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     create(
       params: Params$Resource$Partners$Channels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21185,8 +21272,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21241,11 +21328,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Partners$Channels$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Channels$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     get(
       params: Params$Resource$Partners$Channels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21276,8 +21363,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21331,11 +21418,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Partners$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Channels$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>;
     list(
       params: Params$Resource$Partners$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21368,8 +21455,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21424,11 +21511,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Partners$Channels$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Partners$Channels$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     patch(
       params: Params$Resource$Partners$Channels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21459,8 +21546,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21604,11 +21691,11 @@ export namespace displayvideo_v4 {
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>;
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21643,8 +21730,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21699,11 +21786,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Partners$Channels$Sites$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Channels$Sites$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     create(
       params: Params$Resource$Partners$Channels$Sites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21734,8 +21821,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Site>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21789,11 +21876,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Partners$Channels$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Partners$Channels$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Partners$Channels$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21824,8 +21911,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21880,11 +21967,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Partners$Channels$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Channels$Sites$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Partners$Channels$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21915,8 +22002,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21970,11 +22057,11 @@ export namespace displayvideo_v4 {
     replace(
       params: Params$Resource$Partners$Channels$Sites$Replace,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Partners$Channels$Sites$Replace,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>;
     replace(
       params: Params$Resource$Partners$Channels$Sites$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22007,8 +22094,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22185,11 +22272,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22224,8 +22311,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22281,11 +22368,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22316,8 +22403,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22377,11 +22464,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22414,8 +22501,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22475,11 +22562,13 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22514,8 +22603,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22656,11 +22747,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Sdfdownloadtasks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22691,8 +22782,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22762,11 +22853,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22797,8 +22888,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22874,11 +22965,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Sdfuploadtasks$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sdfuploadtasks$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Sdfuploadtasks$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22909,8 +23000,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfuploadtasks$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22988,11 +23079,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingOption>>;
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23023,8 +23114,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TargetingOption>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23079,11 +23170,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Targetingtypes$Targetingoptions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>>;
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23118,8 +23209,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23175,11 +23266,11 @@ export namespace displayvideo_v4 {
     search(
       params: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>>;
     search(
       params: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23214,8 +23305,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23334,11 +23425,13 @@ export namespace displayvideo_v4 {
     bulkEditAssignedUserRoles(
       params: Params$Resource$Users$Bulkeditassigneduserroles,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEditAssignedUserRoles(
       params?: Params$Resource$Users$Bulkeditassigneduserroles,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>
+    >;
     bulkEditAssignedUserRoles(
       params: Params$Resource$Users$Bulkeditassigneduserroles,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23373,8 +23466,10 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Bulkeditassigneduserroles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23430,11 +23525,11 @@ export namespace displayvideo_v4 {
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23465,8 +23560,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23517,11 +23612,11 @@ export namespace displayvideo_v4 {
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23552,8 +23647,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23607,11 +23702,11 @@ export namespace displayvideo_v4 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23642,8 +23737,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23697,11 +23792,11 @@ export namespace displayvideo_v4 {
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUsersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>;
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23732,8 +23827,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUsersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23784,11 +23879,11 @@ export namespace displayvideo_v4 {
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23819,8 +23914,8 @@ export namespace displayvideo_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

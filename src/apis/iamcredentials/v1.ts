@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -281,11 +280,11 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>>;
     getAllowedLocations(
       params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -320,8 +319,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -418,11 +417,13 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>
+    >;
     getAllowedLocations(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -457,8 +458,10 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -532,11 +535,11 @@ export namespace iamcredentials_v1 {
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateAccessToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>;
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -571,8 +574,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -629,11 +632,11 @@ export namespace iamcredentials_v1 {
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateIdToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>>;
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -668,8 +671,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -725,11 +728,11 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>>;
     getAllowedLocations(
       params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -764,8 +767,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -824,11 +827,11 @@ export namespace iamcredentials_v1 {
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SignBlobResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -859,8 +862,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SignBlobResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -916,11 +919,11 @@ export namespace iamcredentials_v1 {
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SignJwtResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -951,8 +954,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SignJwtResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;

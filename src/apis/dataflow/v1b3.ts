@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -4304,11 +4303,11 @@ export namespace dataflow_v1b3 {
     deleteSnapshots(
       params: Params$Resource$Projects$Deletesnapshots,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteSnapshots(
       params?: Params$Resource$Projects$Deletesnapshots,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>>;
     deleteSnapshots(
       params: Params$Resource$Projects$Deletesnapshots,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4343,8 +4342,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deletesnapshots;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4399,11 +4398,11 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     workerMessages(
       params?: Params$Resource$Projects$Workermessages,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>>;
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4438,8 +4437,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4534,11 +4533,11 @@ export namespace dataflow_v1b3 {
     aggregated(
       params: Params$Resource$Projects$Jobs$Aggregated,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     aggregated(
       params?: Params$Resource$Projects$Jobs$Aggregated,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>;
     aggregated(
       params: Params$Resource$Projects$Jobs$Aggregated,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4569,8 +4568,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Aggregated;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4624,11 +4623,11 @@ export namespace dataflow_v1b3 {
     create(
       params: Params$Resource$Projects$Jobs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Jobs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Projects$Jobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4659,8 +4658,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4715,11 +4714,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     get(
       params: Params$Resource$Projects$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4750,8 +4749,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4806,11 +4805,11 @@ export namespace dataflow_v1b3 {
     getMetrics(
       params: Params$Resource$Projects$Jobs$Getmetrics,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetrics(
       params?: Params$Resource$Projects$Jobs$Getmetrics,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$JobMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>;
     getMetrics(
       params: Params$Resource$Projects$Jobs$Getmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4841,8 +4840,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$JobMetrics>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4896,11 +4895,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Jobs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>;
     list(
       params: Params$Resource$Projects$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4931,8 +4930,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4987,11 +4986,11 @@ export namespace dataflow_v1b3 {
     snapshot(
       params: Params$Resource$Projects$Jobs$Snapshot,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     snapshot(
       params?: Params$Resource$Projects$Jobs$Snapshot,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>;
     snapshot(
       params: Params$Resource$Projects$Jobs$Snapshot,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5022,8 +5021,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Snapshot>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Snapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5077,11 +5076,11 @@ export namespace dataflow_v1b3 {
     update(
       params: Params$Resource$Projects$Jobs$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Jobs$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     update(
       params: Params$Resource$Projects$Jobs$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5112,8 +5111,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5340,11 +5339,11 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConfig(
       params?: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>>;
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5379,8 +5378,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5435,11 +5434,11 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendCapture(
       params?: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>>;
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5474,8 +5473,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5570,11 +5569,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Jobs$Messages$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>>;
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5607,8 +5606,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5705,11 +5704,11 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lease(
       params?: Params$Resource$Projects$Jobs$Workitems$Lease,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>>;
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5742,8 +5741,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5798,11 +5797,11 @@ export namespace dataflow_v1b3 {
     reportStatus(
       params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reportStatus(
       params?: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>>;
     reportStatus(
       params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5837,8 +5836,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5945,11 +5944,11 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     workerMessages(
       params?: Params$Resource$Projects$Locations$Workermessages,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>>;
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5984,8 +5983,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendWorkerMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6064,11 +6063,11 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Flextemplates$Launch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     launch(
       params?: Params$Resource$Projects$Locations$Flextemplates$Launch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LaunchFlexTemplateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LaunchFlexTemplateResponse>>;
     launch(
       params: Params$Resource$Projects$Locations$Flextemplates$Launch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6103,8 +6102,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LaunchFlexTemplateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LaunchFlexTemplateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Flextemplates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6199,11 +6198,11 @@ export namespace dataflow_v1b3 {
     create(
       params: Params$Resource$Projects$Locations$Jobs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Jobs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Projects$Locations$Jobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6234,8 +6233,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6289,11 +6288,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Locations$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     get(
       params: Params$Resource$Projects$Locations$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6324,8 +6323,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6380,11 +6379,11 @@ export namespace dataflow_v1b3 {
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Getexecutiondetails,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getExecutionDetails(
       params?: Params$Resource$Projects$Locations$Jobs$Getexecutiondetails,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$JobExecutionDetails>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobExecutionDetails>>;
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Getexecutiondetails,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6417,8 +6416,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$JobExecutionDetails>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobExecutionDetails>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Getexecutiondetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6474,11 +6473,11 @@ export namespace dataflow_v1b3 {
     getMetrics(
       params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetrics(
       params?: Params$Resource$Projects$Locations$Jobs$Getmetrics,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$JobMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>;
     getMetrics(
       params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6509,8 +6508,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$JobMetrics>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6565,11 +6564,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Jobs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6600,8 +6599,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6655,11 +6654,11 @@ export namespace dataflow_v1b3 {
     snapshot(
       params: Params$Resource$Projects$Locations$Jobs$Snapshot,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     snapshot(
       params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>;
     snapshot(
       params: Params$Resource$Projects$Locations$Jobs$Snapshot,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6690,8 +6689,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Snapshot>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Snapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6746,11 +6745,11 @@ export namespace dataflow_v1b3 {
     update(
       params: Params$Resource$Projects$Locations$Jobs$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Jobs$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     update(
       params: Params$Resource$Projects$Locations$Jobs$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6781,8 +6780,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7005,11 +7004,11 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConfig(
       params?: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>>;
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7044,8 +7043,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetDebugConfigResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7100,11 +7099,11 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendCapture(
       params?: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>>;
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7139,8 +7138,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendDebugCaptureResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7244,11 +7243,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7281,8 +7280,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7380,11 +7379,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7417,8 +7416,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7496,11 +7495,11 @@ export namespace dataflow_v1b3 {
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getExecutionDetails(
       params?: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$StageExecutionDetails>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StageExecutionDetails>>;
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7535,8 +7534,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$StageExecutionDetails>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StageExecutionDetails>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7635,11 +7634,11 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lease(
       params?: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>>;
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7672,8 +7671,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaseWorkItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7728,11 +7727,11 @@ export namespace dataflow_v1b3 {
     reportStatus(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reportStatus(
       params?: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>>;
     reportStatus(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7767,8 +7766,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportWorkItemStatusResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7874,11 +7873,11 @@ export namespace dataflow_v1b3 {
     delete(
       params: Params$Resource$Projects$Locations$Snapshots$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Snapshots$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>>;
     delete(
       params: Params$Resource$Projects$Locations$Snapshots$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7911,8 +7910,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteSnapshotResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Snapshots$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7967,11 +7966,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Locations$Snapshots$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Snapshots$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>;
     get(
       params: Params$Resource$Projects$Locations$Snapshots$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8002,8 +8001,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Snapshot>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8058,11 +8057,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8095,8 +8094,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8204,11 +8203,11 @@ export namespace dataflow_v1b3 {
     create(
       params: Params$Resource$Projects$Locations$Templates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Templates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Projects$Locations$Templates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8239,8 +8238,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8295,11 +8294,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Locations$Templates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Templates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>>;
     get(
       params: Params$Resource$Projects$Locations$Templates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8330,8 +8329,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8386,11 +8385,11 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     launch(
       params?: Params$Resource$Projects$Locations$Templates$Launch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>>;
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8423,8 +8422,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8554,11 +8553,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Snapshots$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Snapshots$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Snapshot>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>;
     get(
       params: Params$Resource$Projects$Snapshots$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8589,8 +8588,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Snapshot>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8644,11 +8643,11 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>;
     list(
       params: Params$Resource$Projects$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8681,8 +8680,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8775,11 +8774,11 @@ export namespace dataflow_v1b3 {
     create(
       params: Params$Resource$Projects$Templates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Templates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Projects$Templates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8810,8 +8809,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Job>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8866,11 +8865,11 @@ export namespace dataflow_v1b3 {
     get(
       params: Params$Resource$Projects$Templates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Templates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>>;
     get(
       params: Params$Resource$Projects$Templates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8901,8 +8900,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTemplateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8957,11 +8956,11 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Templates$Launch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     launch(
       params?: Params$Resource$Projects$Templates$Launch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>>;
     launch(
       params: Params$Resource$Projects$Templates$Launch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8994,8 +8993,8 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LaunchTemplateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;

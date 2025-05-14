@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1350,11 +1349,11 @@ export namespace datastore_v1beta3 {
     allocateIds(
       params: Params$Resource$Projects$Allocateids,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     allocateIds(
       params?: Params$Resource$Projects$Allocateids,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AllocateIdsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AllocateIdsResponse>>;
     allocateIds(
       params: Params$Resource$Projects$Allocateids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1387,8 +1386,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AllocateIdsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AllocateIdsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1442,11 +1441,11 @@ export namespace datastore_v1beta3 {
     beginTransaction(
       params: Params$Resource$Projects$Begintransaction,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     beginTransaction(
       params?: Params$Resource$Projects$Begintransaction,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>>;
     beginTransaction(
       params: Params$Resource$Projects$Begintransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1481,8 +1480,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1536,11 +1535,11 @@ export namespace datastore_v1beta3 {
     commit(
       params: Params$Resource$Projects$Commit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     commit(
       params?: Params$Resource$Projects$Commit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CommitResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommitResponse>>;
     commit(
       params: Params$Resource$Projects$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1571,8 +1570,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CommitResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommitResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1626,11 +1625,11 @@ export namespace datastore_v1beta3 {
     lookup(
       params: Params$Resource$Projects$Lookup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookup(
       params?: Params$Resource$Projects$Lookup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LookupResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LookupResponse>>;
     lookup(
       params: Params$Resource$Projects$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1661,8 +1660,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LookupResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LookupResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1716,11 +1715,11 @@ export namespace datastore_v1beta3 {
     reserveIds(
       params: Params$Resource$Projects$Reserveids,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reserveIds(
       params?: Params$Resource$Projects$Reserveids,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReserveIdsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReserveIdsResponse>>;
     reserveIds(
       params: Params$Resource$Projects$Reserveids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1751,8 +1750,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReserveIdsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReserveIdsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1807,11 +1806,11 @@ export namespace datastore_v1beta3 {
     rollback(
       params: Params$Resource$Projects$Rollback,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Rollback,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RollbackResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RollbackResponse>>;
     rollback(
       params: Params$Resource$Projects$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1842,8 +1841,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RollbackResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RollbackResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1898,11 +1897,11 @@ export namespace datastore_v1beta3 {
     runAggregationQuery(
       params: Params$Resource$Projects$Runaggregationquery,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runAggregationQuery(
       params?: Params$Resource$Projects$Runaggregationquery,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>>;
     runAggregationQuery(
       params: Params$Resource$Projects$Runaggregationquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1937,8 +1936,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Runaggregationquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1992,11 +1991,11 @@ export namespace datastore_v1beta3 {
     runQuery(
       params: Params$Resource$Projects$Runquery,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runQuery(
       params?: Params$Resource$Projects$Runquery,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RunQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunQueryResponse>>;
     runQuery(
       params: Params$Resource$Projects$Runquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2027,8 +2026,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RunQueryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;

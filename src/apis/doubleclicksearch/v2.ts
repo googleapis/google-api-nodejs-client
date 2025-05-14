@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -587,11 +586,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Conversion$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -622,8 +621,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -686,11 +685,11 @@ export namespace doubleclicksearch_v2 {
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getByCustomerId(
       params?: Params$Resource$Conversion$Getbycustomerid,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -723,8 +722,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Getbycustomerid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -785,11 +784,11 @@ export namespace doubleclicksearch_v2 {
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Conversion$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -820,8 +819,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -877,11 +876,11 @@ export namespace doubleclicksearch_v2 {
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Conversion$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -912,8 +911,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -969,11 +968,11 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAvailability(
       params?: Params$Resource$Conversion$Updateavailability,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>>;
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1008,8 +1007,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1194,11 +1193,11 @@ export namespace doubleclicksearch_v2 {
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1229,8 +1228,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Report>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1285,11 +1284,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Reports$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1320,8 +1319,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Report>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1376,11 +1375,11 @@ export namespace doubleclicksearch_v2 {
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<unknown>;
+    ): Promise<GaxiosResponseWithHTTP2<unknown>>;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1409,8 +1408,8 @@ export namespace doubleclicksearch_v2 {
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<unknown>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<unknown>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1465,11 +1464,11 @@ export namespace doubleclicksearch_v2 {
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIdMappingFile(
       params?: Params$Resource$Reports$Getidmappingfile,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IdMappingFile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IdMappingFile>>;
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1502,8 +1501,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IdMappingFile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IdMappingFile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Getidmappingfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1559,11 +1558,11 @@ export namespace doubleclicksearch_v2 {
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     request(
       params?: Params$Resource$Reports$Request,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1594,8 +1593,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Report>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1697,11 +1696,11 @@ export namespace doubleclicksearch_v2 {
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Savedcolumns$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SavedColumnList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SavedColumnList>>;
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1732,8 +1731,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SavedColumnList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SavedColumnList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

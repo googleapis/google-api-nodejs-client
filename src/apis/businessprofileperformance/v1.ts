@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -301,11 +300,13 @@ export namespace businessprofileperformance_v1 {
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchMultiDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+    >;
     fetchMultiDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -340,8 +341,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Fetchmultidailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -399,11 +402,13 @@ export namespace businessprofileperformance_v1 {
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDailyMetricsTimeSeries(
       params?: Params$Resource$Locations$Getdailymetricstimeseries,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
+    >;
     getDailyMetricsTimeSeries(
       params: Params$Resource$Locations$Getdailymetricstimeseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -438,8 +443,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getdailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -617,11 +624,13 @@ export namespace businessprofileperformance_v1 {
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
+    >;
     list(
       params: Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -656,8 +665,10 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

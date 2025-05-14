@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -461,11 +461,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -500,8 +500,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -626,11 +626,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Folders$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -665,8 +665,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Replays$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -767,11 +767,11 @@ export namespace policysimulator_v1beta {
     list(
       params: Params$Resource$Folders$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>;
     list(
       params: Params$Resource$Folders$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -806,8 +806,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Replays$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -942,11 +942,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -981,8 +981,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1082,11 +1082,11 @@ export namespace policysimulator_v1beta {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1121,8 +1121,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1291,11 +1291,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1330,8 +1330,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1457,11 +1457,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Organizations$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1496,8 +1496,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Replays$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1600,11 +1600,11 @@ export namespace policysimulator_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1639,8 +1639,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Replays$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1813,11 +1813,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1852,8 +1852,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1978,11 +1978,11 @@ export namespace policysimulator_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Replays$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2017,8 +2017,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Replays$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2120,11 +2120,11 @@ export namespace policysimulator_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Replays$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Replays$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Replays$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2159,8 +2159,8 @@ export namespace policysimulator_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Replays$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -2290,11 +2289,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2325,8 +2324,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2378,11 +2377,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2415,8 +2414,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2509,11 +2508,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2544,8 +2543,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplanassociations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2601,11 +2600,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2636,8 +2635,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplanassociations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2690,11 +2689,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BackupPlanAssociation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupPlanAssociation>>;
     get(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2727,8 +2726,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BackupPlanAssociation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupPlanAssociation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplanassociations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2781,11 +2780,13 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupPlanAssociationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBackupPlanAssociationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Backupplanassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2820,8 +2821,10 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupPlanAssociationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBackupPlanAssociationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplanassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2879,11 +2882,11 @@ export namespace backupdr_v1 {
     triggerBackup(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     triggerBackup(
       params?: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     triggerBackup(
       params: Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2914,8 +2917,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3048,11 +3051,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupplans$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupplans$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3083,8 +3086,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3139,11 +3142,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupplans$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupplans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3174,8 +3177,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3227,11 +3230,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupplans$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BackupPlan>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupPlan>>;
     get(
       params: Params$Resource$Projects$Locations$Backupplans$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3262,8 +3265,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BackupPlan>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupPlan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3315,11 +3318,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupplans$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupplans$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3352,8 +3355,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupPlansResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupplans$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3480,11 +3483,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backupvaults$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Backupvaults$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3515,8 +3518,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3571,11 +3574,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3606,8 +3609,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3659,11 +3662,11 @@ export namespace backupdr_v1 {
     fetchUsable(
       params: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchUsable(
       params?: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchUsableBackupVaultsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchUsableBackupVaultsResponse>>;
     fetchUsable(
       params: Params$Resource$Projects$Locations$Backupvaults$Fetchusable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3698,8 +3701,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchUsableBackupVaultsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchUsableBackupVaultsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Fetchusable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3757,11 +3760,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BackupVault>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupVault>>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3792,8 +3795,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BackupVault>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupVault>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3845,11 +3848,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3882,8 +3885,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupVaultsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3938,11 +3941,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3973,8 +3976,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4026,11 +4029,11 @@ export namespace backupdr_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Backupvaults$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4065,8 +4068,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4291,11 +4294,11 @@ export namespace backupdr_v1 {
     abandonBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     abandonBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     abandonBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4326,8 +4329,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Abandonbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4383,11 +4386,11 @@ export namespace backupdr_v1 {
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchAccessToken(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>;
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4422,8 +4425,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Fetchaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4479,11 +4482,11 @@ export namespace backupdr_v1 {
     finalizeBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     finalizeBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     finalizeBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4514,8 +4517,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Finalizebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4571,11 +4574,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4606,8 +4609,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4660,11 +4663,11 @@ export namespace backupdr_v1 {
     initiateBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     initiateBackup(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>>;
     initiateBackup(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4699,8 +4702,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InitiateBackupResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Initiatebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4756,11 +4759,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4793,8 +4796,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4850,11 +4853,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4885,8 +4888,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4939,11 +4942,11 @@ export namespace backupdr_v1 {
     remove(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     remove(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     remove(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4974,8 +4977,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5028,11 +5031,11 @@ export namespace backupdr_v1 {
     setInternalStatus(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setInternalStatus(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setInternalStatus(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5063,8 +5066,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Setinternalstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5254,11 +5257,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5289,8 +5292,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5343,11 +5346,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     get(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5378,8 +5381,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Backup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5432,11 +5435,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5467,8 +5470,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5524,11 +5527,11 @@ export namespace backupdr_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5559,8 +5562,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5613,11 +5616,11 @@ export namespace backupdr_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restore(
       params: Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5648,8 +5651,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5794,11 +5797,11 @@ export namespace backupdr_v1 {
     create(
       params: Params$Resource$Projects$Locations$Managementservers$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Managementservers$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Managementservers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5829,8 +5832,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5886,11 +5889,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Managementservers$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Managementservers$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Managementservers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5921,8 +5924,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5975,11 +5978,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Managementservers$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Managementservers$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ManagementServer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagementServer>>;
     get(
       params: Params$Resource$Projects$Locations$Managementservers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6010,8 +6013,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ManagementServer>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagementServer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6063,11 +6066,11 @@ export namespace backupdr_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6098,8 +6101,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6155,11 +6158,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Managementservers$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Managementservers$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListManagementServersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListManagementServersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Managementservers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6194,8 +6197,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListManagementServersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListManagementServersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6253,11 +6256,11 @@ export namespace backupdr_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Managementservers$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6288,8 +6291,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6345,11 +6348,11 @@ export namespace backupdr_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Managementservers$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6384,8 +6387,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Managementservers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6545,11 +6548,11 @@ export namespace backupdr_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6580,8 +6583,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6633,11 +6636,11 @@ export namespace backupdr_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6668,8 +6671,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6721,11 +6724,11 @@ export namespace backupdr_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6756,8 +6759,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6809,11 +6812,11 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6846,8 +6849,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6955,11 +6958,13 @@ export namespace backupdr_v1 {
     list(
       params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListResourceBackupConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListResourceBackupConfigsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6994,8 +6999,10 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListResourceBackupConfigsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListResourceBackupConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Resourcebackupconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7084,11 +7091,11 @@ export namespace backupdr_v1 {
     initialize(
       params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     initialize(
       params?: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     initialize(
       params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7119,8 +7126,8 @@ export namespace backupdr_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconfig$Initialize;
       let options = (optionsOrCallback || {}) as MethodOptions;

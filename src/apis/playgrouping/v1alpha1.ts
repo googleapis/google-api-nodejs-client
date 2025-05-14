@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -210,11 +209,11 @@ export namespace playgrouping_v1alpha1 {
     verify(
       params: Params$Resource$Apps$Tokens$Verify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Apps$Tokens$Verify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>>;
     verify(
       params: Params$Resource$Apps$Tokens$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -245,8 +244,8 @@ export namespace playgrouping_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Tokens$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -325,11 +324,11 @@ export namespace playgrouping_v1alpha1 {
     createOrUpdate(
       params: Params$Resource$Apps$Tokens$Tags$Createorupdate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createOrUpdate(
       params?: Params$Resource$Apps$Tokens$Tags$Createorupdate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>>;
     createOrUpdate(
       params: Params$Resource$Apps$Tokens$Tags$Createorupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -364,8 +363,8 @@ export namespace playgrouping_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateOrUpdateTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Tokens$Tags$Createorupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;

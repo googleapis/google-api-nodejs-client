@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1286,11 +1285,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1321,8 +1320,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1375,11 +1374,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1412,8 +1411,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1531,11 +1530,11 @@ export namespace managedidentities_v1alpha1 {
     attachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     attachTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     attachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1566,8 +1565,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Attachtrust;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1624,11 +1623,13 @@ export namespace managedidentities_v1alpha1 {
     checkMigrationPermission(
       params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkMigrationPermission(
       params?: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CheckMigrationPermissionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CheckMigrationPermissionResponse>
+    >;
     checkMigrationPermission(
       params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1663,8 +1664,10 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CheckMigrationPermissionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CheckMigrationPermissionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1722,11 +1725,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Domains$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1757,8 +1760,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1814,11 +1817,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1849,8 +1852,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1903,11 +1906,11 @@ export namespace managedidentities_v1alpha1 {
     detachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     detachTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     detachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1938,8 +1941,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Detachtrust;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1996,11 +1999,11 @@ export namespace managedidentities_v1alpha1 {
     disableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disableMigration(
       params?: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     disableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2031,8 +2034,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Disablemigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2089,11 +2092,11 @@ export namespace managedidentities_v1alpha1 {
     domainJoinMachine(
       params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     domainJoinMachine(
       params?: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DomainJoinMachineResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainJoinMachineResponse>>;
     domainJoinMachine(
       params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2128,8 +2131,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DomainJoinMachineResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainJoinMachineResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2186,11 +2189,11 @@ export namespace managedidentities_v1alpha1 {
     enableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enableMigration(
       params?: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enableMigration(
       params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2221,8 +2224,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Enablemigration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2279,11 +2282,11 @@ export namespace managedidentities_v1alpha1 {
     extendSchema(
       params: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     extendSchema(
       params?: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     extendSchema(
       params: Params$Resource$Projects$Locations$Global$Domains$Extendschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2314,8 +2317,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Extendschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2372,11 +2375,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Domain>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Domain>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2407,8 +2410,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Domain>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2461,11 +2464,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2496,8 +2499,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2554,11 +2557,11 @@ export namespace managedidentities_v1alpha1 {
     getLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLdapssettings(
       params?: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LDAPSSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LDAPSSettings>>;
     getLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2591,8 +2594,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LDAPSSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LDAPSSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Getldapssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2649,11 +2652,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2684,8 +2687,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2741,11 +2744,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2776,8 +2779,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2830,11 +2833,11 @@ export namespace managedidentities_v1alpha1 {
     reconfigureTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reconfigureTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     reconfigureTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2865,8 +2868,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2923,11 +2926,11 @@ export namespace managedidentities_v1alpha1 {
     resetAdminPassword(
       params: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAdminPassword(
       params?: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResetAdminPasswordResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResetAdminPasswordResponse>>;
     resetAdminPassword(
       params: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2962,8 +2965,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResetAdminPasswordResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResetAdminPasswordResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3020,11 +3023,11 @@ export namespace managedidentities_v1alpha1 {
     restore(
       params: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restore(
       params: Params$Resource$Projects$Locations$Global$Domains$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3055,8 +3058,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3113,11 +3116,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3148,8 +3151,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3206,11 +3209,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3245,8 +3248,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,11 +3306,11 @@ export namespace managedidentities_v1alpha1 {
     updateLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateLdapssettings(
       params?: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateLdapssettings(
       params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3338,8 +3341,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3396,11 +3399,11 @@ export namespace managedidentities_v1alpha1 {
     validateTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     validateTrust(
       params?: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     validateTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3431,8 +3434,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Validatetrust;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3756,11 +3759,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3791,8 +3794,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3849,11 +3852,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3884,8 +3887,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3939,11 +3942,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3974,8 +3977,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Backup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4029,11 +4032,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4064,8 +4067,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4122,11 +4125,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4157,8 +4160,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4215,11 +4218,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4250,8 +4253,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4305,11 +4308,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4340,8 +4343,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4398,11 +4401,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4437,8 +4440,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4607,11 +4610,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SQLIntegration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SQLIntegration>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4642,8 +4645,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SQLIntegration>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SQLIntegration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4697,11 +4700,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSQLIntegrationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSQLIntegrationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4736,8 +4739,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSQLIntegrationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSQLIntegrationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4832,11 +4835,11 @@ export namespace managedidentities_v1alpha1 {
     cancel(
       params: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4867,8 +4870,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4925,11 +4928,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4960,8 +4963,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5015,11 +5018,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5050,8 +5053,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5104,11 +5107,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5141,8 +5144,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5252,11 +5255,11 @@ export namespace managedidentities_v1alpha1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Global$Peerings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5287,8 +5290,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5345,11 +5348,11 @@ export namespace managedidentities_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Global$Peerings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5380,8 +5383,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5435,11 +5438,11 @@ export namespace managedidentities_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Peering>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Peering>>;
     get(
       params: Params$Resource$Projects$Locations$Global$Peerings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5470,8 +5473,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Peering>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Peering>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5524,11 +5527,11 @@ export namespace managedidentities_v1alpha1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5559,8 +5562,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5617,11 +5620,11 @@ export namespace managedidentities_v1alpha1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Peerings$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Global$Peerings$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPeeringsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPeeringsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Global$Peerings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5654,8 +5657,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPeeringsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPeeringsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5711,11 +5714,11 @@ export namespace managedidentities_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Global$Peerings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5746,8 +5749,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5800,11 +5803,11 @@ export namespace managedidentities_v1alpha1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5835,8 +5838,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5893,11 +5896,11 @@ export namespace managedidentities_v1alpha1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5932,8 +5935,8 @@ export namespace managedidentities_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

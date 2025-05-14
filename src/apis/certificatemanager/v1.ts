@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -840,11 +839,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -875,8 +874,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -929,11 +928,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -966,8 +965,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1061,11 +1060,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1096,8 +1095,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1154,11 +1153,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1189,8 +1188,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1244,11 +1243,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateIssuanceConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateIssuanceConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1281,8 +1280,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateIssuanceConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateIssuanceConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1336,11 +1335,13 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateIssuanceConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCertificateIssuanceConfigsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1375,8 +1376,10 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateIssuanceConfigsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCertificateIssuanceConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1435,11 +1438,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1470,8 +1473,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1607,11 +1610,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Certificatemaps$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Certificatemaps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1642,8 +1645,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1700,11 +1703,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Certificatemaps$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Certificatemaps$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1735,8 +1738,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1790,11 +1793,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificatemaps$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateMap>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateMap>>;
     get(
       params: Params$Resource$Projects$Locations$Certificatemaps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1825,8 +1828,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateMap>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateMap>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1879,11 +1882,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificatemaps$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Certificatemaps$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateMapsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCertificateMapsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Certificatemaps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1918,8 +1921,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateMapsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCertificateMapsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1975,11 +1978,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Certificatemaps$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Certificatemaps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2010,8 +2013,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2141,11 +2144,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2176,8 +2179,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2234,11 +2237,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2269,8 +2272,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2324,11 +2327,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateMapEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateMapEntry>>;
     get(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2359,8 +2362,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateMapEntry>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateMapEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2414,11 +2417,13 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateMapEntriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCertificateMapEntriesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2453,8 +2458,10 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateMapEntriesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCertificateMapEntriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2513,11 +2520,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2548,8 +2555,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2680,11 +2687,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Certificates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Certificates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Certificates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2715,8 +2722,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2772,11 +2779,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Certificates$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Certificates$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Certificates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2807,8 +2814,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2861,11 +2868,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Certificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>;
     get(
       params: Params$Resource$Projects$Locations$Certificates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2896,8 +2903,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Certificate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2950,11 +2957,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificates$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Certificates$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Certificates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2987,8 +2994,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3044,11 +3051,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Certificates$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Certificates$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Certificates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3079,8 +3086,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3210,11 +3217,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Dnsauthorizations$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3245,8 +3252,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsauthorizations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,11 +3310,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Dnsauthorizations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3338,8 +3345,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsauthorizations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3393,11 +3400,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Dnsauthorizations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DnsAuthorization>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DnsAuthorization>>;
     get(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3428,8 +3435,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DnsAuthorization>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DnsAuthorization>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsauthorizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3482,11 +3489,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Dnsauthorizations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDnsAuthorizationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDnsAuthorizationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3521,8 +3528,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDnsAuthorizationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDnsAuthorizationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsauthorizations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3581,11 +3588,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Dnsauthorizations$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Dnsauthorizations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3616,8 +3623,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dnsauthorizations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3748,11 +3755,11 @@ export namespace certificatemanager_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3783,8 +3790,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3837,11 +3844,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3872,8 +3879,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3926,11 +3933,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3961,8 +3968,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4015,11 +4022,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4052,8 +4059,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4162,11 +4169,11 @@ export namespace certificatemanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Trustconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Trustconfigs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Trustconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4197,8 +4204,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Trustconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4254,11 +4261,11 @@ export namespace certificatemanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Trustconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Trustconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Trustconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4289,8 +4296,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Trustconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4343,11 +4350,11 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Trustconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Trustconfigs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TrustConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TrustConfig>>;
     get(
       params: Params$Resource$Projects$Locations$Trustconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4378,8 +4385,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TrustConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TrustConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Trustconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4432,11 +4439,11 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Trustconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Trustconfigs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTrustConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTrustConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Trustconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4469,8 +4476,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTrustConfigsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTrustConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Trustconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4526,11 +4533,11 @@ export namespace certificatemanager_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Trustconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Trustconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Trustconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4561,8 +4568,8 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Trustconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

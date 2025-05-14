@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1481,11 +1480,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1516,8 +1515,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1569,11 +1568,11 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1606,8 +1605,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1709,11 +1708,11 @@ export namespace privateca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Capools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Capools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Capools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1744,8 +1743,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1800,11 +1799,11 @@ export namespace privateca_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Capools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Capools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Capools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1835,8 +1834,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1888,11 +1887,11 @@ export namespace privateca_v1 {
     fetchCaCerts(
       params: Params$Resource$Projects$Locations$Capools$Fetchcacerts,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchCaCerts(
       params?: Params$Resource$Projects$Locations$Capools$Fetchcacerts,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchCaCertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchCaCertsResponse>>;
     fetchCaCerts(
       params: Params$Resource$Projects$Locations$Capools$Fetchcacerts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1927,8 +1926,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchCaCertsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchCaCertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Fetchcacerts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1983,11 +1982,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Capools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Capools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CaPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CaPool>>;
     get(
       params: Params$Resource$Projects$Locations$Capools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2018,8 +2017,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CaPool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CaPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2071,11 +2070,11 @@ export namespace privateca_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2106,8 +2105,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2162,11 +2161,11 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Capools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Capools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCaPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCaPoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Capools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2197,8 +2196,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCaPoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCaPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2253,11 +2252,11 @@ export namespace privateca_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Capools$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Capools$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Capools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2288,8 +2287,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2341,11 +2340,11 @@ export namespace privateca_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2376,8 +2375,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2432,11 +2431,11 @@ export namespace privateca_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2471,8 +2470,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2673,11 +2672,11 @@ export namespace privateca_v1 {
     activate(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     activate(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2708,8 +2707,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2765,11 +2764,11 @@ export namespace privateca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2800,8 +2799,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2857,11 +2856,11 @@ export namespace privateca_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2892,8 +2891,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2946,11 +2945,11 @@ export namespace privateca_v1 {
     disable(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     disable(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2981,8 +2980,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3038,11 +3037,11 @@ export namespace privateca_v1 {
     enable(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enable(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3073,8 +3072,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,11 +3126,13 @@ export namespace privateca_v1 {
     fetch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetch(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchCertificateAuthorityCsrResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchCertificateAuthorityCsrResponse>
+    >;
     fetch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3166,8 +3167,10 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchCertificateAuthorityCsrResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchCertificateAuthorityCsrResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3222,11 +3225,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateAuthority>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateAuthority>>;
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3259,8 +3262,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateAuthority>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateAuthority>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3313,11 +3316,13 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateAuthoritiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCertificateAuthoritiesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3352,8 +3357,10 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateAuthoritiesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCertificateAuthoritiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3411,11 +3418,11 @@ export namespace privateca_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3446,8 +3453,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3500,11 +3507,11 @@ export namespace privateca_v1 {
     undelete(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3535,8 +3542,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3748,11 +3755,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateRevocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateRevocationList>>;
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3785,8 +3792,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateRevocationList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateRevocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3839,11 +3846,11 @@ export namespace privateca_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3874,8 +3881,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3931,11 +3938,13 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateRevocationListsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCertificateRevocationListsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3970,8 +3979,10 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateRevocationListsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCertificateRevocationListsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4029,11 +4040,11 @@ export namespace privateca_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4064,8 +4075,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4118,11 +4129,11 @@ export namespace privateca_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4153,8 +4164,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4210,11 +4221,11 @@ export namespace privateca_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4249,8 +4260,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4399,11 +4410,11 @@ export namespace privateca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Capools$Certificates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Certificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>;
     create(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4434,8 +4445,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Certificate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4491,11 +4502,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Capools$Certificates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Certificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>;
     get(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4526,8 +4537,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Certificate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4580,11 +4591,11 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificates$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Capools$Certificates$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Capools$Certificates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4617,8 +4628,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCertificatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4674,11 +4685,11 @@ export namespace privateca_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Capools$Certificates$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Certificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>;
     patch(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4709,8 +4720,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Certificate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4763,11 +4774,11 @@ export namespace privateca_v1 {
     revoke(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Revoke,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     revoke(
       params?: Params$Resource$Projects$Locations$Capools$Certificates$Revoke,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Certificate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>;
     revoke(
       params: Params$Resource$Projects$Locations$Capools$Certificates$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4798,8 +4809,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Certificate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Certificate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Capools$Certificates$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4950,11 +4961,11 @@ export namespace privateca_v1 {
     create(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4985,8 +4996,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5042,11 +5053,11 @@ export namespace privateca_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5077,8 +5088,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5131,11 +5142,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CertificateTemplate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CertificateTemplate>>;
     get(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5166,8 +5177,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CertificateTemplate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CertificateTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5220,11 +5231,11 @@ export namespace privateca_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5255,8 +5266,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5312,11 +5323,13 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificatetemplates$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCertificateTemplatesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCertificateTemplatesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Certificatetemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5351,8 +5364,10 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCertificateTemplatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCertificateTemplatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5410,11 +5425,11 @@ export namespace privateca_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5445,8 +5460,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5499,11 +5514,11 @@ export namespace privateca_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5534,8 +5549,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5591,11 +5606,11 @@ export namespace privateca_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5630,8 +5645,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5811,11 +5826,11 @@ export namespace privateca_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5846,8 +5861,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5899,11 +5914,11 @@ export namespace privateca_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5934,8 +5949,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5987,11 +6002,11 @@ export namespace privateca_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6022,8 +6037,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6075,11 +6090,11 @@ export namespace privateca_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6112,8 +6127,8 @@ export namespace privateca_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

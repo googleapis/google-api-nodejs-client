@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -195,11 +194,11 @@ export namespace cloudtrace_v2beta1 {
     create(
       params: Params$Resource$Projects$Tracesinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Tracesinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TraceSink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>;
     create(
       params: Params$Resource$Projects$Tracesinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -230,8 +229,8 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TraceSink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tracesinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -286,11 +285,11 @@ export namespace cloudtrace_v2beta1 {
     delete(
       params: Params$Resource$Projects$Tracesinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Tracesinks$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Tracesinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -321,8 +320,8 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tracesinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -374,11 +373,11 @@ export namespace cloudtrace_v2beta1 {
     get(
       params: Params$Resource$Projects$Tracesinks$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Tracesinks$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TraceSink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>;
     get(
       params: Params$Resource$Projects$Tracesinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -409,8 +408,8 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TraceSink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tracesinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -462,11 +461,11 @@ export namespace cloudtrace_v2beta1 {
     list(
       params: Params$Resource$Projects$Tracesinks$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Tracesinks$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTraceSinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTraceSinksResponse>>;
     list(
       params: Params$Resource$Projects$Tracesinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -499,8 +498,8 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTraceSinksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTraceSinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tracesinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -555,11 +554,11 @@ export namespace cloudtrace_v2beta1 {
     patch(
       params: Params$Resource$Projects$Tracesinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Tracesinks$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TraceSink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>;
     patch(
       params: Params$Resource$Projects$Tracesinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -590,8 +589,8 @@ export namespace cloudtrace_v2beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TraceSink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TraceSink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tracesinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

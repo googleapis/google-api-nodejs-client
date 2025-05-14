@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -225,11 +224,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -264,8 +265,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -383,11 +386,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -422,8 +427,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -539,11 +546,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -578,8 +587,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;

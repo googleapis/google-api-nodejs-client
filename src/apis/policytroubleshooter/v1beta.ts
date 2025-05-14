@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -342,11 +341,13 @@ export namespace policytroubleshooter_v1beta {
     troubleshoot(
       params: Params$Resource$Iam$Troubleshoot,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     troubleshoot(
       params?: Params$Resource$Iam$Troubleshoot,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>
+    >;
     troubleshoot(
       params: Params$Resource$Iam$Troubleshoot,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -381,8 +382,10 @@ export namespace policytroubleshooter_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Iam$Troubleshoot;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

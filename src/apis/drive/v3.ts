@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1749,11 +1748,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$About$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$About$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$About>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$About>>;
     get(
       params: Params$Resource$About$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1784,8 +1783,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$About>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$About>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1845,11 +1844,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Accessproposals$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accessproposals$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AccessProposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessProposal>>;
     get(
       params: Params$Resource$Accessproposals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1880,8 +1879,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AccessProposal>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessProposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1935,11 +1934,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Accessproposals$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accessproposals$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>>;
     list(
       params: Params$Resource$Accessproposals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1974,8 +1973,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2030,11 +2029,11 @@ export namespace drive_v3 {
     resolve(
       params: Params$Resource$Accessproposals$Resolve,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Accessproposals$Resolve,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resolve(
       params: Params$Resource$Accessproposals$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2063,8 +2062,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2169,11 +2168,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Apps$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$App>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$App>>;
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2204,8 +2203,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$App>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$App>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2259,11 +2258,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Apps$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Apps$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AppList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AppList>>;
     list(
       params: Params$Resource$Apps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2294,8 +2293,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AppList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AppList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2374,11 +2373,11 @@ export namespace drive_v3 {
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStartPageToken(
       params?: Params$Resource$Changes$Getstartpagetoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$StartPageToken>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StartPageToken>>;
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2411,8 +2410,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$StartPageToken>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$StartPageToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2467,11 +2466,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ChangeList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>;
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2502,8 +2501,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ChangeList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2554,11 +2553,11 @@ export namespace drive_v3 {
     watch(
       params: Params$Resource$Changes$Watch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Changes$Watch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Changes$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2589,8 +2588,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2792,11 +2791,11 @@ export namespace drive_v3 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2825,8 +2824,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2894,11 +2893,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Comments$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Comments$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     create(
       params: Params$Resource$Comments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2929,8 +2928,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Comment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2984,11 +2983,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3017,8 +3016,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3071,11 +3070,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3106,8 +3105,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Comment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3160,11 +3159,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CommentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3195,8 +3194,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CommentList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3250,11 +3249,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3285,8 +3284,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Comment>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3419,11 +3418,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Drives$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Drives$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     create(
       params: Params$Resource$Drives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3454,8 +3453,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Drive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3506,11 +3505,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Drives$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Drives$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Drives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3539,8 +3538,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3594,11 +3593,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Drives$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Drives$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     get(
       params: Params$Resource$Drives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3629,8 +3628,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Drive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3684,11 +3683,11 @@ export namespace drive_v3 {
     hide(
       params: Params$Resource$Drives$Hide,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     hide(
       params?: Params$Resource$Drives$Hide,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     hide(
       params: Params$Resource$Drives$Hide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3719,8 +3718,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Drive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3774,11 +3773,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Drives$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Drives$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DriveList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>;
     list(
       params: Params$Resource$Drives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3809,8 +3808,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DriveList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3861,11 +3860,11 @@ export namespace drive_v3 {
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unhide(
       params?: Params$Resource$Drives$Unhide,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3896,8 +3895,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Drive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3951,11 +3950,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Drives$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Drives$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     update(
       params: Params$Resource$Drives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3986,8 +3985,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Drive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4129,11 +4128,11 @@ export namespace drive_v3 {
     copy(
       params: Params$Resource$Files$Copy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copy(
       params?: Params$Resource$Files$Copy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     copy(
       params: Params$Resource$Files$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4164,8 +4163,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$File>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4219,11 +4218,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Files$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Files$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     create(
       params: Params$Resource$Files$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4254,8 +4253,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$File>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4310,11 +4309,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Files$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Files$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Files$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4343,8 +4342,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4398,11 +4397,11 @@ export namespace drive_v3 {
     download(
       params: Params$Resource$Files$Download,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Files$Download,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     download(
       params: Params$Resource$Files$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4433,8 +4432,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4488,11 +4487,11 @@ export namespace drive_v3 {
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     emptyTrash(
       params?: Params$Resource$Files$Emptytrash,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4521,8 +4520,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4576,11 +4575,11 @@ export namespace drive_v3 {
     export(
       params: Params$Resource$Files$Export,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Files$Export,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<unknown>;
+    ): Promise<GaxiosResponseWithHTTP2<unknown>>;
     export(
       params: Params$Resource$Files$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4609,8 +4608,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<unknown>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<unknown>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4664,11 +4663,11 @@ export namespace drive_v3 {
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateIds(
       params?: Params$Resource$Files$Generateids,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GeneratedIds>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GeneratedIds>>;
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4699,8 +4698,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GeneratedIds>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GeneratedIds>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4755,11 +4754,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Files$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4790,8 +4789,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$File>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4845,11 +4844,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Files$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FileList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileList>>;
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4880,8 +4879,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FileList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4932,11 +4931,11 @@ export namespace drive_v3 {
     listLabels(
       params: Params$Resource$Files$Listlabels,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listLabels(
       params?: Params$Resource$Files$Listlabels,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LabelList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>;
     listLabels(
       params: Params$Resource$Files$Listlabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4967,8 +4966,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LabelList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Listlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5022,11 +5021,11 @@ export namespace drive_v3 {
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyLabels(
       params?: Params$Resource$Files$Modifylabels,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>>;
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5061,8 +5060,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Modifylabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5117,11 +5116,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Files$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Files$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     update(
       params: Params$Resource$Files$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5152,8 +5151,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$File>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5211,11 +5210,11 @@ export namespace drive_v3 {
     watch(
       params: Params$Resource$Files$Watch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Files$Watch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Files$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5246,8 +5245,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5688,11 +5687,11 @@ export namespace drive_v3 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5721,8 +5720,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5777,11 +5776,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5810,8 +5809,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5866,11 +5865,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5901,8 +5900,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5956,11 +5955,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5993,8 +5992,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6094,11 +6093,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Permissions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Permissions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     create(
       params: Params$Resource$Permissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6129,8 +6128,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Permission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6185,11 +6184,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Permissions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Permissions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Permissions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6218,8 +6217,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6273,11 +6272,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6308,8 +6307,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Permission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6362,11 +6361,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Permissions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Permissions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PermissionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PermissionList>>;
     list(
       params: Params$Resource$Permissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6397,8 +6396,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PermissionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PermissionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6452,11 +6451,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6487,8 +6486,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Permission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6538,6 +6537,10 @@ export namespace drive_v3 {
      * A plain text custom message to include in the notification email.
      */
     emailMessage?: string;
+    /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
     /**
      * Deprecated: See `moveToNewOwnersRoot` for details.
      */
@@ -6713,11 +6716,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Replies$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Replies$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     create(
       params: Params$Resource$Replies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6748,8 +6751,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Reply>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6802,11 +6805,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Replies$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Replies$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Replies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6835,8 +6838,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6890,11 +6893,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Replies$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Replies$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     get(
       params: Params$Resource$Replies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6925,8 +6928,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Reply>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6980,11 +6983,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Replies$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Replies$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReplyList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplyList>>;
     list(
       params: Params$Resource$Replies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7015,8 +7018,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReplyList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplyList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7069,11 +7072,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Replies$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Replies$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     update(
       params: Params$Resource$Replies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7104,8 +7107,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Reply>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7255,11 +7258,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Revisions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Revisions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Revisions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7288,8 +7291,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7342,11 +7345,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Revisions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     get(
       params: Params$Resource$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7377,8 +7380,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Revision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7431,11 +7434,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Revisions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Revisions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RevisionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RevisionList>>;
     list(
       params: Params$Resource$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7466,8 +7469,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RevisionList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RevisionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7521,11 +7524,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Revisions$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Revisions$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     update(
       params: Params$Resource$Revisions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7556,8 +7559,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Revision>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7671,11 +7674,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Teamdrives$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Teamdrives$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     create(
       params: Params$Resource$Teamdrives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7706,8 +7709,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TeamDrive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7762,11 +7765,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Teamdrives$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7795,8 +7798,8 @@ export namespace drive_v3 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7851,11 +7854,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Teamdrives$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Teamdrives$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     get(
       params: Params$Resource$Teamdrives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7886,8 +7889,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TeamDrive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7941,11 +7944,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Teamdrives$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Teamdrives$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TeamDriveList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDriveList>>;
     list(
       params: Params$Resource$Teamdrives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7976,8 +7979,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TeamDriveList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDriveList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8031,11 +8034,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Teamdrives$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Teamdrives$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     update(
       params: Params$Resource$Teamdrives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8066,8 +8069,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TeamDrive>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

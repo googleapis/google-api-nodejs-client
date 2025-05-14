@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -568,11 +567,11 @@ export namespace admin_reports_v1 {
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Activities>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Activities>>;
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -603,8 +602,8 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Activities>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Activities>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -658,11 +657,11 @@ export namespace admin_reports_v1 {
     watch(
       params: Params$Resource$Activities$Watch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Activities$Watch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Activities$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -693,8 +692,8 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Channel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -861,11 +860,11 @@ export namespace admin_reports_v1 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -894,8 +893,8 @@ export namespace admin_reports_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -963,11 +962,11 @@ export namespace admin_reports_v1 {
     get(
       params: Params$Resource$Customerusagereports$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customerusagereports$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UsageReports>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>;
     get(
       params: Params$Resource$Customerusagereports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -998,8 +997,8 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UsageReports>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customerusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1081,11 +1080,11 @@ export namespace admin_reports_v1 {
     get(
       params: Params$Resource$Entityusagereports$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Entityusagereports$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UsageReports>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>;
     get(
       params: Params$Resource$Entityusagereports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1116,8 +1115,8 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UsageReports>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Entityusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1215,11 +1214,11 @@ export namespace admin_reports_v1 {
     get(
       params: Params$Resource$Userusagereport$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userusagereport$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UsageReports>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>;
     get(
       params: Params$Resource$Userusagereport$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1250,8 +1249,8 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UsageReports>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UsageReports>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userusagereport$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

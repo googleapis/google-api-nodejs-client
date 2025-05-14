@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -2155,6 +2154,15 @@ export namespace container_v1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * The option enables the Kubernetes NUMA-aware Memory Manager feature. Detailed description about the feature can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/).
+   */
+  export interface Schema$MemoryManager {
+    /**
+     * Controls the memory management policy on the Node. See https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#policies The following values are allowed. * "none" * "static" The default value is 'none' if unspecified.
+     */
+    policy?: string | null;
+  }
+  /**
    * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
    */
   export interface Schema$MeshCertificates {
@@ -2591,9 +2599,17 @@ export namespace container_v1 {
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     */
+    memoryManager?: Schema$MemoryManager;
+    /**
      * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
      */
     podPidsLimit?: string | null;
+    /**
+     * Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     */
+    topologyManager?: Schema$TopologyManager;
   }
   /**
    * Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
@@ -3931,6 +3947,19 @@ export namespace container_v1 {
     startTime?: string | null;
   }
   /**
+   * TopologyManager defines the configuration options for Topology Manager feature. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+   */
+  export interface Schema$TopologyManager {
+    /**
+     * Configures the strategy for resource alignment. Allowed values are: * none: the default policy, and does not perform any topology alignment. * restricted: the topology manager stores the preferred NUMA node affinity for the container, and will reject the pod if the affinity if not preferred. * best-effort: the topology manager stores the preferred NUMA node affinity for the container. If the affinity is not preferred, the topology manager will admit the pod to the node anyway. * single-numa-node: the topology manager determines if the single NUMA node affinity is possible. If it is, Topology Manager will store this and the Hint Providers can then use this information when making the resource allocation decision. If, however, this is not possible then the Topology Manager will reject the pod from the node. This will result in a pod in a Terminated state with a pod admission failure. The default policy value is 'none' if unspecified. Details about each strategy can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-policies).
+     */
+    policy?: string | null;
+    /**
+     * The Topology Manager aligns resources in following scopes: * container * pod The default scope is 'container' if unspecified. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-scopes
+     */
+    scope?: string | null;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -4461,11 +4490,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUsableSubnetworksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsableSubnetworksResponse>>;
     list(
       params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4500,8 +4529,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUsableSubnetworksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsableSubnetworksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Aggregated$Usablesubnetworks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4591,11 +4620,11 @@ export namespace container_v1 {
     getServerConfig(
       params: Params$Resource$Projects$Locations$Getserverconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServerConfig(
       params?: Params$Resource$Projects$Locations$Getserverconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ServerConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServerConfig>>;
     getServerConfig(
       params: Params$Resource$Projects$Locations$Getserverconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4626,8 +4655,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ServerConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServerConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getserverconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4713,11 +4742,13 @@ export namespace container_v1 {
     checkAutopilotCompatibility(
       params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkAutopilotCompatibility(
       params?: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CheckAutopilotCompatibilityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CheckAutopilotCompatibilityResponse>
+    >;
     checkAutopilotCompatibility(
       params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4752,8 +4783,10 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CheckAutopilotCompatibilityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CheckAutopilotCompatibilityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4811,11 +4844,11 @@ export namespace container_v1 {
     completeIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     completeIpRotation(
       params?: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     completeIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4846,8 +4879,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Completeiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4903,11 +4936,11 @@ export namespace container_v1 {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4938,8 +4971,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4994,11 +5027,11 @@ export namespace container_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5029,8 +5062,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5082,11 +5115,11 @@ export namespace container_v1 {
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchClusterUpgradeInfo(
       params?: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>>;
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5119,8 +5152,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5176,11 +5209,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5211,8 +5244,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Cluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5264,11 +5297,11 @@ export namespace container_v1 {
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getJwks(
       params?: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetJSONWebKeysResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetJSONWebKeysResponse>>;
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5303,8 +5336,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetJSONWebKeysResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetJSONWebKeysResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Getjwks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5356,11 +5389,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5393,8 +5426,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5449,11 +5482,11 @@ export namespace container_v1 {
     setAddons(
       params: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setAddons(
       params?: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setAddons(
       params: Params$Resource$Projects$Locations$Clusters$Setaddons,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5484,8 +5517,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setaddons;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5540,11 +5573,11 @@ export namespace container_v1 {
     setLegacyAbac(
       params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setLegacyAbac(
       params?: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setLegacyAbac(
       params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5575,8 +5608,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setlegacyabac;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5632,11 +5665,11 @@ export namespace container_v1 {
     setLocations(
       params: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setLocations(
       params?: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setLocations(
       params: Params$Resource$Projects$Locations$Clusters$Setlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5667,8 +5700,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5723,11 +5756,11 @@ export namespace container_v1 {
     setLogging(
       params: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setLogging(
       params?: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setLogging(
       params: Params$Resource$Projects$Locations$Clusters$Setlogging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5758,8 +5791,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setlogging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5814,11 +5847,11 @@ export namespace container_v1 {
     setMaintenancePolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setMaintenancePolicy(
       params?: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setMaintenancePolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5851,8 +5884,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5908,11 +5941,11 @@ export namespace container_v1 {
     setMasterAuth(
       params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setMasterAuth(
       params?: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setMasterAuth(
       params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5943,8 +5976,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setmasterauth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6000,11 +6033,11 @@ export namespace container_v1 {
     setMonitoring(
       params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setMonitoring(
       params?: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setMonitoring(
       params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6035,8 +6068,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setmonitoring;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6092,11 +6125,11 @@ export namespace container_v1 {
     setNetworkPolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setNetworkPolicy(
       params?: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setNetworkPolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6127,8 +6160,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6184,11 +6217,11 @@ export namespace container_v1 {
     setResourceLabels(
       params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setResourceLabels(
       params?: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setResourceLabels(
       params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6219,8 +6252,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Setresourcelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6276,11 +6309,11 @@ export namespace container_v1 {
     startIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startIpRotation(
       params?: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6311,8 +6344,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Startiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6368,11 +6401,11 @@ export namespace container_v1 {
     update(
       params: Params$Resource$Projects$Locations$Clusters$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Clusters$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Locations$Clusters$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6403,8 +6436,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6456,11 +6489,11 @@ export namespace container_v1 {
     updateMaster(
       params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateMaster(
       params?: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateMaster(
       params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6491,8 +6524,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Updatemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6801,11 +6834,11 @@ export namespace container_v1 {
     completeUpgrade(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     completeUpgrade(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     completeUpgrade(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6836,8 +6869,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6893,11 +6926,11 @@ export namespace container_v1 {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6928,8 +6961,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6985,11 +7018,11 @@ export namespace container_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7020,8 +7053,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7074,11 +7107,11 @@ export namespace container_v1 {
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchNodePoolUpgradeInfo(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>>;
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7111,8 +7144,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7168,11 +7201,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7203,8 +7236,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NodePool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7257,11 +7290,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7294,8 +7327,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7351,11 +7384,11 @@ export namespace container_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rollback(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7386,8 +7419,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7443,11 +7476,11 @@ export namespace container_v1 {
     setAutoscaling(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setAutoscaling(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setAutoscaling(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7478,8 +7511,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7535,11 +7568,11 @@ export namespace container_v1 {
     setManagement(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setManagement(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setManagement(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7570,8 +7603,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7627,11 +7660,11 @@ export namespace container_v1 {
     setSize(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setSize(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setSize(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7662,8 +7695,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7719,11 +7752,11 @@ export namespace container_v1 {
     update(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7754,8 +7787,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7976,11 +8009,11 @@ export namespace container_v1 {
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getOpenidConfiguration(
       params?: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetOpenIDConfigResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetOpenIDConfigResponse>>;
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8015,8 +8048,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetOpenIDConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetOpenIDConfigResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8086,11 +8119,11 @@ export namespace container_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8121,8 +8154,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8174,11 +8207,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8209,8 +8242,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8262,11 +8295,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8299,8 +8332,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8413,11 +8446,11 @@ export namespace container_v1 {
     getServerconfig(
       params: Params$Resource$Projects$Zones$Getserverconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServerconfig(
       params?: Params$Resource$Projects$Zones$Getserverconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ServerConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServerConfig>>;
     getServerconfig(
       params: Params$Resource$Projects$Zones$Getserverconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8448,8 +8481,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ServerConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServerConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Getserverconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8530,11 +8563,11 @@ export namespace container_v1 {
     addons(
       params: Params$Resource$Projects$Zones$Clusters$Addons,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addons(
       params?: Params$Resource$Projects$Zones$Clusters$Addons,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addons(
       params: Params$Resource$Projects$Zones$Clusters$Addons,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8565,8 +8598,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Addons;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8621,11 +8654,11 @@ export namespace container_v1 {
     completeIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     completeIpRotation(
       params?: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     completeIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8656,8 +8689,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Completeiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8713,11 +8746,11 @@ export namespace container_v1 {
     create(
       params: Params$Resource$Projects$Zones$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Zones$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Zones$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8748,8 +8781,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8803,11 +8836,11 @@ export namespace container_v1 {
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Zones$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8838,8 +8871,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8894,11 +8927,11 @@ export namespace container_v1 {
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchClusterUpgradeInfo(
       params?: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>>;
     fetchClusterUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8931,8 +8964,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClusterUpgradeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8988,11 +9021,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Zones$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Zones$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>;
     get(
       params: Params$Resource$Projects$Zones$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9023,8 +9056,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Cluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9079,11 +9112,11 @@ export namespace container_v1 {
     legacyAbac(
       params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     legacyAbac(
       params?: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     legacyAbac(
       params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9114,8 +9147,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Legacyabac;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9170,11 +9203,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Zones$Clusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>;
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9207,8 +9240,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9262,11 +9295,11 @@ export namespace container_v1 {
     locations(
       params: Params$Resource$Projects$Zones$Clusters$Locations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     locations(
       params?: Params$Resource$Projects$Zones$Clusters$Locations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     locations(
       params: Params$Resource$Projects$Zones$Clusters$Locations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9297,8 +9330,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Locations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9353,11 +9386,11 @@ export namespace container_v1 {
     logging(
       params: Params$Resource$Projects$Zones$Clusters$Logging,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     logging(
       params?: Params$Resource$Projects$Zones$Clusters$Logging,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     logging(
       params: Params$Resource$Projects$Zones$Clusters$Logging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9388,8 +9421,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Logging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9444,11 +9477,11 @@ export namespace container_v1 {
     master(
       params: Params$Resource$Projects$Zones$Clusters$Master,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     master(
       params?: Params$Resource$Projects$Zones$Clusters$Master,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     master(
       params: Params$Resource$Projects$Zones$Clusters$Master,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9479,8 +9512,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Master;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9535,11 +9568,11 @@ export namespace container_v1 {
     monitoring(
       params: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     monitoring(
       params?: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     monitoring(
       params: Params$Resource$Projects$Zones$Clusters$Monitoring,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9570,8 +9603,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Monitoring;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9626,11 +9659,11 @@ export namespace container_v1 {
     resourceLabels(
       params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resourceLabels(
       params?: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resourceLabels(
       params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9661,8 +9694,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Resourcelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9717,11 +9750,11 @@ export namespace container_v1 {
     setMaintenancePolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setMaintenancePolicy(
       params?: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setMaintenancePolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9754,8 +9787,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9811,11 +9844,11 @@ export namespace container_v1 {
     setMasterAuth(
       params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setMasterAuth(
       params?: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setMasterAuth(
       params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9846,8 +9879,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Setmasterauth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9902,11 +9935,11 @@ export namespace container_v1 {
     setNetworkPolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setNetworkPolicy(
       params?: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setNetworkPolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9937,8 +9970,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9993,11 +10026,11 @@ export namespace container_v1 {
     startIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startIpRotation(
       params?: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10028,8 +10061,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Startiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10084,11 +10117,11 @@ export namespace container_v1 {
     update(
       params: Params$Resource$Projects$Zones$Clusters$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Zones$Clusters$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Zones$Clusters$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10119,8 +10152,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10523,11 +10556,11 @@ export namespace container_v1 {
     autoscaling(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     autoscaling(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     autoscaling(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10558,8 +10591,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10615,11 +10648,11 @@ export namespace container_v1 {
     create(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10650,8 +10683,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10706,11 +10739,11 @@ export namespace container_v1 {
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10741,8 +10774,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10797,11 +10830,11 @@ export namespace container_v1 {
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchNodePoolUpgradeInfo(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>>;
     fetchNodePoolUpgradeInfo(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10834,8 +10867,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NodePoolUpgradeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10891,11 +10924,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$NodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>;
     get(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10926,8 +10959,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$NodePool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10982,11 +11015,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11019,8 +11052,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11075,11 +11108,11 @@ export namespace container_v1 {
     rollback(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rollback(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11110,8 +11143,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11167,11 +11200,11 @@ export namespace container_v1 {
     setManagement(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setManagement(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setManagement(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11202,8 +11235,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11259,11 +11292,11 @@ export namespace container_v1 {
     setSize(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setSize(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setSize(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11294,8 +11327,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11351,11 +11384,11 @@ export namespace container_v1 {
     update(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11386,8 +11419,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11666,11 +11699,11 @@ export namespace container_v1 {
     cancel(
       params: Params$Resource$Projects$Zones$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Zones$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Zones$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11701,8 +11734,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11757,11 +11790,11 @@ export namespace container_v1 {
     get(
       params: Params$Resource$Projects$Zones$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Zones$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Zones$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11792,8 +11825,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11848,11 +11881,11 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Zones$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Zones$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11885,8 +11918,8 @@ export namespace container_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

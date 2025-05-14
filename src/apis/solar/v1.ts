@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -662,11 +661,11 @@ export namespace solar_v1 {
     findClosest(
       params: Params$Resource$Buildinginsights$Findclosest,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     findClosest(
       params?: Params$Resource$Buildinginsights$Findclosest,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BuildingInsights>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BuildingInsights>>;
     findClosest(
       params: Params$Resource$Buildinginsights$Findclosest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -697,8 +696,8 @@ export namespace solar_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BuildingInsights>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BuildingInsights>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buildinginsights$Findclosest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,11 +779,11 @@ export namespace solar_v1 {
     get(
       params: Params$Resource$Datalayers$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Datalayers$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataLayers>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataLayers>>;
     get(
       params: Params$Resource$Datalayers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -815,8 +814,8 @@ export namespace solar_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataLayers>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataLayers>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datalayers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -909,11 +908,11 @@ export namespace solar_v1 {
     get(
       params: Params$Resource$Geotiff$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Geotiff$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     get(
       params: Params$Resource$Geotiff$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -944,8 +943,8 @@ export namespace solar_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$HttpBody>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Geotiff$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

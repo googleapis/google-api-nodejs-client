@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -5687,11 +5686,11 @@ export namespace securitycenter_v1beta1 {
     getOrganizationSettings(
       params: Params$Resource$Organizations$Getorganizationsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getOrganizationSettings(
       params?: Params$Resource$Organizations$Getorganizationsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OrganizationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OrganizationSettings>>;
     getOrganizationSettings(
       params: Params$Resource$Organizations$Getorganizationsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5726,8 +5725,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OrganizationSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrganizationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getorganizationsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5780,11 +5779,11 @@ export namespace securitycenter_v1beta1 {
     updateOrganizationSettings(
       params: Params$Resource$Organizations$Updateorganizationsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateOrganizationSettings(
       params?: Params$Resource$Organizations$Updateorganizationsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OrganizationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OrganizationSettings>>;
     updateOrganizationSettings(
       params: Params$Resource$Organizations$Updateorganizationsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5819,8 +5818,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OrganizationSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrganizationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updateorganizationsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5904,11 +5903,11 @@ export namespace securitycenter_v1beta1 {
     group(
       params: Params$Resource$Organizations$Assets$Group,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     group(
       params?: Params$Resource$Organizations$Assets$Group,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GroupAssetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GroupAssetsResponse>>;
     group(
       params: Params$Resource$Organizations$Assets$Group,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5939,8 +5938,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GroupAssetsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GroupAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Assets$Group;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5996,11 +5995,11 @@ export namespace securitycenter_v1beta1 {
     list(
       params: Params$Resource$Organizations$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Assets$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>>;
     list(
       params: Params$Resource$Organizations$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6031,8 +6030,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6088,11 +6087,11 @@ export namespace securitycenter_v1beta1 {
     runDiscovery(
       params: Params$Resource$Organizations$Assets$Rundiscovery,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runDiscovery(
       params?: Params$Resource$Organizations$Assets$Rundiscovery,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     runDiscovery(
       params: Params$Resource$Organizations$Assets$Rundiscovery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6123,8 +6122,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Assets$Rundiscovery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6180,11 +6179,13 @@ export namespace securitycenter_v1beta1 {
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSecurityMarks(
       params?: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
+    >;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6219,8 +6220,10 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Assets$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6362,11 +6365,11 @@ export namespace securitycenter_v1beta1 {
     cancel(
       params: Params$Resource$Organizations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Organizations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Organizations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6397,8 +6400,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6454,11 +6457,11 @@ export namespace securitycenter_v1beta1 {
     delete(
       params: Params$Resource$Organizations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Organizations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6489,8 +6492,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6543,11 +6546,11 @@ export namespace securitycenter_v1beta1 {
     get(
       params: Params$Resource$Organizations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Organizations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6578,8 +6581,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6632,11 +6635,11 @@ export namespace securitycenter_v1beta1 {
     list(
       params: Params$Resource$Organizations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Organizations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6669,8 +6672,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6778,11 +6781,11 @@ export namespace securitycenter_v1beta1 {
     create(
       params: Params$Resource$Organizations$Sources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Sources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Source>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Source>>;
     create(
       params: Params$Resource$Organizations$Sources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6813,8 +6816,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Source>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Source>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6870,11 +6873,11 @@ export namespace securitycenter_v1beta1 {
     get(
       params: Params$Resource$Organizations$Sources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Sources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Source>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Source>>;
     get(
       params: Params$Resource$Organizations$Sources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6905,8 +6908,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Source>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Source>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6959,11 +6962,11 @@ export namespace securitycenter_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Organizations$Sources$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Organizations$Sources$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Organizations$Sources$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6994,8 +6997,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7051,11 +7054,11 @@ export namespace securitycenter_v1beta1 {
     list(
       params: Params$Resource$Organizations$Sources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Sources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>>;
     list(
       params: Params$Resource$Organizations$Sources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7086,8 +7089,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7143,11 +7146,11 @@ export namespace securitycenter_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Sources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Sources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Source>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Source>>;
     patch(
       params: Params$Resource$Organizations$Sources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7178,8 +7181,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Source>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Source>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7232,11 +7235,11 @@ export namespace securitycenter_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Organizations$Sources$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Organizations$Sources$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Organizations$Sources$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7267,8 +7270,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7324,11 +7327,11 @@ export namespace securitycenter_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Organizations$Sources$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Organizations$Sources$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Organizations$Sources$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7363,8 +7366,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7514,11 +7517,13 @@ export namespace securitycenter_v1beta1 {
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Sources$Findings$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+    >;
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7553,8 +7558,10 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7612,11 +7619,11 @@ export namespace securitycenter_v1beta1 {
     group(
       params: Params$Resource$Organizations$Sources$Findings$Group,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     group(
       params?: Params$Resource$Organizations$Sources$Findings$Group,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GroupFindingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GroupFindingsResponse>>;
     group(
       params: Params$Resource$Organizations$Sources$Findings$Group,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7649,8 +7656,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GroupFindingsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GroupFindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Group;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7706,11 +7713,11 @@ export namespace securitycenter_v1beta1 {
     list(
       params: Params$Resource$Organizations$Sources$Findings$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Sources$Findings$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>;
     list(
       params: Params$Resource$Organizations$Sources$Findings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7743,8 +7750,8 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7800,11 +7807,13 @@ export namespace securitycenter_v1beta1 {
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Sources$Findings$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+    >;
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7839,8 +7848,10 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7895,11 +7906,13 @@ export namespace securitycenter_v1beta1 {
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setState(
       params?: Params$Resource$Organizations$Sources$Findings$Setstate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+    >;
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7934,8 +7947,10 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1Finding>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Setstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7993,11 +8008,13 @@ export namespace securitycenter_v1beta1 {
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSecurityMarks(
       params?: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
+    >;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8032,8 +8049,10 @@ export namespace securitycenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;

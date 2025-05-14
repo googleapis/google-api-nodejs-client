@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -710,11 +709,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Managedshortlinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>>;
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -749,8 +748,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedshortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -823,11 +822,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Shortlinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>>;
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -862,8 +861,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -933,11 +932,11 @@ export namespace firebasedynamiclinks_v1 {
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLinkStats(
       params?: Params$Resource$V1$Getlinkstats,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>>;
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -968,8 +967,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1024,11 +1023,13 @@ export namespace firebasedynamiclinks_v1 {
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     installAttribution(
       params?: Params$Resource$V1$Installattribution,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>
+    >;
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1063,8 +1064,10 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Installattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1122,11 +1125,11 @@ export namespace firebasedynamiclinks_v1 {
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reopenAttribution(
       params?: Params$Resource$V1$Reopenattribution,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>>;
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1161,8 +1164,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Reopenattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;

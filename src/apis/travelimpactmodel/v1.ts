@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -262,11 +261,11 @@ export namespace travelimpactmodel_v1 {
     computeFlightEmissions(
       params: Params$Resource$Flights$Computeflightemissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     computeFlightEmissions(
       params?: Params$Resource$Flights$Computeflightemissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>>;
     computeFlightEmissions(
       params: Params$Resource$Flights$Computeflightemissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -301,8 +300,8 @@ export namespace travelimpactmodel_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ComputeFlightEmissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flights$Computeflightemissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

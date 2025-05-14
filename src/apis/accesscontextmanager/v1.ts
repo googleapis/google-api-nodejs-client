@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1096,11 +1095,11 @@ export namespace accesscontextmanager_v1 {
     create(
       params: Params$Resource$Accesspolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accesspolicies$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Accesspolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1131,8 +1130,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1185,11 +1184,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Accesspolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accesspolicies$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Accesspolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1220,8 +1219,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1274,11 +1273,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Accesspolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accesspolicies$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AccessPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessPolicy>>;
     get(
       params: Params$Resource$Accesspolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1309,8 +1308,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AccessPolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1363,11 +1362,11 @@ export namespace accesscontextmanager_v1 {
     getIamPolicy(
       params: Params$Resource$Accesspolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Accesspolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Accesspolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1398,8 +1397,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1455,11 +1454,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accesspolicies$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAccessPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccessPoliciesResponse>>;
     list(
       params: Params$Resource$Accesspolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1494,8 +1493,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAccessPoliciesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccessPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1548,11 +1547,11 @@ export namespace accesscontextmanager_v1 {
     patch(
       params: Params$Resource$Accesspolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accesspolicies$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Accesspolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1583,8 +1582,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1637,11 +1636,11 @@ export namespace accesscontextmanager_v1 {
     setIamPolicy(
       params: Params$Resource$Accesspolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Accesspolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Accesspolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1672,8 +1671,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1729,11 +1728,11 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Accesspolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1768,8 +1767,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1921,11 +1920,11 @@ export namespace accesscontextmanager_v1 {
     create(
       params: Params$Resource$Accesspolicies$Accesslevels$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accesspolicies$Accesslevels$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Accesspolicies$Accesslevels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1956,8 +1955,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2013,11 +2012,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Accesspolicies$Accesslevels$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accesspolicies$Accesslevels$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Accesspolicies$Accesslevels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2048,8 +2047,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2102,11 +2101,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Accesspolicies$Accesslevels$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accesspolicies$Accesslevels$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AccessLevel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessLevel>>;
     get(
       params: Params$Resource$Accesspolicies$Accesslevels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2137,8 +2136,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AccessLevel>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessLevel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2191,11 +2190,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$Accesslevels$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accesspolicies$Accesslevels$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAccessLevelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccessLevelsResponse>>;
     list(
       params: Params$Resource$Accesspolicies$Accesslevels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2228,8 +2227,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAccessLevelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccessLevelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2285,11 +2284,11 @@ export namespace accesscontextmanager_v1 {
     patch(
       params: Params$Resource$Accesspolicies$Accesslevels$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accesspolicies$Accesslevels$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Accesspolicies$Accesslevels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2320,8 +2319,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2374,11 +2373,11 @@ export namespace accesscontextmanager_v1 {
     replaceAll(
       params: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceAll(
       params?: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     replaceAll(
       params: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2409,8 +2408,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Replaceall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2466,11 +2465,11 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Accesslevels$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Accesspolicies$Accesslevels$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Accesslevels$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2505,8 +2504,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2660,11 +2659,11 @@ export namespace accesscontextmanager_v1 {
     create(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accesspolicies$Authorizedorgsdescs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2695,8 +2694,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Authorizedorgsdescs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2753,11 +2752,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2788,8 +2787,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2843,11 +2842,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accesspolicies$Authorizedorgsdescs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AuthorizedOrgsDesc>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuthorizedOrgsDesc>>;
     get(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2878,8 +2877,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AuthorizedOrgsDesc>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuthorizedOrgsDesc>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Authorizedorgsdescs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2932,11 +2931,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accesspolicies$Authorizedorgsdescs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAuthorizedOrgsDescsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedOrgsDescsResponse>>;
     list(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2971,8 +2970,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAuthorizedOrgsDescsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedOrgsDescsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Authorizedorgsdescs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3030,11 +3029,11 @@ export namespace accesscontextmanager_v1 {
     patch(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3065,8 +3064,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3184,11 +3183,11 @@ export namespace accesscontextmanager_v1 {
     commit(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     commit(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     commit(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3219,8 +3218,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3276,11 +3275,11 @@ export namespace accesscontextmanager_v1 {
     create(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3311,8 +3310,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3368,11 +3367,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3403,8 +3402,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3457,11 +3456,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ServicePerimeter>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServicePerimeter>>;
     get(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3492,8 +3491,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ServicePerimeter>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServicePerimeter>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3546,11 +3545,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$Serviceperimeters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListServicePerimetersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServicePerimetersResponse>>;
     list(
       params: Params$Resource$Accesspolicies$Serviceperimeters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3585,8 +3584,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListServicePerimetersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServicePerimetersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3644,11 +3643,11 @@ export namespace accesscontextmanager_v1 {
     patch(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3679,8 +3678,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3733,11 +3732,11 @@ export namespace accesscontextmanager_v1 {
     replaceAll(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceAll(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     replaceAll(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3768,8 +3767,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Replaceall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3825,11 +3824,11 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3864,8 +3863,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4023,11 +4022,11 @@ export namespace accesscontextmanager_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4058,8 +4057,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4112,11 +4111,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4147,8 +4146,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4201,11 +4200,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4236,8 +4235,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4289,11 +4288,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4326,8 +4325,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4440,11 +4439,11 @@ export namespace accesscontextmanager_v1 {
     create(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Gcpuseraccessbindings$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4475,8 +4474,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Gcpuseraccessbindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4533,11 +4532,11 @@ export namespace accesscontextmanager_v1 {
     delete(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Gcpuseraccessbindings$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4568,8 +4567,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Gcpuseraccessbindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4623,11 +4622,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Gcpuseraccessbindings$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GcpUserAccessBinding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GcpUserAccessBinding>>;
     get(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4660,8 +4659,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GcpUserAccessBinding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GcpUserAccessBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Gcpuseraccessbindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4714,11 +4713,13 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Gcpuseraccessbindings$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGcpUserAccessBindingsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGcpUserAccessBindingsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4753,8 +4754,10 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGcpUserAccessBindingsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGcpUserAccessBindingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Gcpuseraccessbindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4812,11 +4815,11 @@ export namespace accesscontextmanager_v1 {
     patch(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Gcpuseraccessbindings$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4847,8 +4850,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Gcpuseraccessbindings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4971,11 +4974,11 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Services$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SupportedService>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SupportedService>>;
     get(
       params: Params$Resource$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5006,8 +5009,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SupportedService>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SupportedService>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5062,11 +5065,11 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Services$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSupportedServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSupportedServicesResponse>>;
     list(
       params: Params$Resource$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5101,8 +5104,8 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSupportedServicesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSupportedServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

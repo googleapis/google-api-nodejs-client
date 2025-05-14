@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1013,11 +1012,11 @@ export namespace developerconnect_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1048,8 +1047,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1102,11 +1101,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1139,8 +1138,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1238,11 +1237,11 @@ export namespace developerconnect_v1 {
     create(
       params: Params$Resource$Projects$Locations$Accountconnectors$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Accountconnectors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1273,8 +1272,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1331,11 +1330,11 @@ export namespace developerconnect_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1366,8 +1365,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1421,11 +1420,11 @@ export namespace developerconnect_v1 {
     get(
       params: Params$Resource$Projects$Locations$Accountconnectors$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AccountConnector>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountConnector>>;
     get(
       params: Params$Resource$Projects$Locations$Accountconnectors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1456,8 +1455,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AccountConnector>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountConnector>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1510,11 +1509,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Accountconnectors$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Accountconnectors$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAccountConnectorsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccountConnectorsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Accountconnectors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1549,8 +1548,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAccountConnectorsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccountConnectorsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1609,11 +1608,11 @@ export namespace developerconnect_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1644,8 +1643,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1812,11 +1811,11 @@ export namespace developerconnect_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1847,8 +1846,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1902,11 +1901,11 @@ export namespace developerconnect_v1 {
     deleteSelf(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteSelf(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deleteSelf(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1937,8 +1936,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1995,11 +1994,11 @@ export namespace developerconnect_v1 {
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchAccessToken(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>;
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2034,8 +2033,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2091,11 +2090,11 @@ export namespace developerconnect_v1 {
     fetchSelf(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchSelf(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     fetchSelf(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2126,8 +2125,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2184,11 +2183,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUsersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2219,8 +2218,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUsersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2358,11 +2357,11 @@ export namespace developerconnect_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2393,8 +2392,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2450,11 +2449,11 @@ export namespace developerconnect_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2485,8 +2484,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2539,11 +2538,13 @@ export namespace developerconnect_v1 {
     fetchGitHubInstallations(
       params: Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchGitHubInstallations(
       params?: Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchGitHubInstallationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchGitHubInstallationsResponse>
+    >;
     fetchGitHubInstallations(
       params: Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2578,8 +2579,10 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchGitHubInstallationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchGitHubInstallationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Fetchgithubinstallations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2637,11 +2640,13 @@ export namespace developerconnect_v1 {
     fetchLinkableGitRepositories(
       params: Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchLinkableGitRepositories(
       params?: Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchLinkableGitRepositoriesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchLinkableGitRepositoriesResponse>
+    >;
     fetchLinkableGitRepositories(
       params: Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2676,8 +2681,10 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchLinkableGitRepositoriesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchLinkableGitRepositoriesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Fetchlinkablegitrepositories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2735,11 +2742,11 @@ export namespace developerconnect_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Connection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Connection>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2770,8 +2777,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Connection>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2824,11 +2831,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2861,8 +2868,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2918,11 +2925,11 @@ export namespace developerconnect_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2953,8 +2960,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3007,11 +3014,11 @@ export namespace developerconnect_v1 {
     processGitHubEnterpriseWebhook(
       params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     processGitHubEnterpriseWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     processGitHubEnterpriseWebhook(
       params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3044,8 +3051,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3245,11 +3252,11 @@ export namespace developerconnect_v1 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3280,8 +3287,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3338,11 +3345,11 @@ export namespace developerconnect_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3373,8 +3380,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3428,11 +3435,11 @@ export namespace developerconnect_v1 {
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchGitRefs(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchGitRefsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchGitRefsResponse>>;
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3467,8 +3474,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchGitRefsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchGitRefsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3525,11 +3532,11 @@ export namespace developerconnect_v1 {
     fetchReadToken(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchReadToken(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchReadTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchReadTokenResponse>>;
     fetchReadToken(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3564,8 +3571,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchReadTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchReadTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3622,11 +3629,11 @@ export namespace developerconnect_v1 {
     fetchReadWriteToken(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchReadWriteToken(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FetchReadWriteTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchReadWriteTokenResponse>>;
     fetchReadWriteToken(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3661,8 +3668,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FetchReadWriteTokenResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchReadWriteTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadwritetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3718,11 +3725,11 @@ export namespace developerconnect_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GitRepositoryLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GitRepositoryLink>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3753,8 +3760,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GitRepositoryLink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GitRepositoryLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3808,11 +3815,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListGitRepositoryLinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGitRepositoryLinksResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3847,8 +3854,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListGitRepositoryLinksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGitRepositoryLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3907,11 +3914,11 @@ export namespace developerconnect_v1 {
     processBitbucketCloudWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     processBitbucketCloudWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     processBitbucketCloudWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3944,8 +3951,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4002,11 +4009,11 @@ export namespace developerconnect_v1 {
     processBitbucketDataCenterWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     processBitbucketDataCenterWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     processBitbucketDataCenterWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4039,8 +4046,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4096,11 +4103,11 @@ export namespace developerconnect_v1 {
     processGitLabEnterpriseWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     processGitLabEnterpriseWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     processGitLabEnterpriseWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4133,8 +4140,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4190,11 +4197,11 @@ export namespace developerconnect_v1 {
     processGitLabWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     processGitLabWebhook(
       params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     processGitLabWebhook(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4225,8 +4232,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4455,11 +4462,11 @@ export namespace developerconnect_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4490,8 +4497,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4544,11 +4551,11 @@ export namespace developerconnect_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4579,8 +4586,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4633,11 +4640,11 @@ export namespace developerconnect_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4668,8 +4675,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4722,11 +4729,11 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4759,8 +4766,8 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

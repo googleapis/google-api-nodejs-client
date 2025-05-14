@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -3514,11 +3513,11 @@ export namespace docs_v1 {
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Documents$Batchupdate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>>;
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3553,8 +3552,8 @@ export namespace docs_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3609,11 +3608,11 @@ export namespace docs_v1 {
     create(
       params: Params$Resource$Documents$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Documents$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     create(
       params: Params$Resource$Documents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3644,8 +3643,8 @@ export namespace docs_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Document>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3696,11 +3695,11 @@ export namespace docs_v1 {
     get(
       params: Params$Resource$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Documents$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     get(
       params: Params$Resource$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3731,8 +3730,8 @@ export namespace docs_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Document>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

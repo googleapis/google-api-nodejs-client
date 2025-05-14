@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -238,11 +237,11 @@ export namespace mybusinessplaceactions_v1 {
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Placeactionlinks$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -273,8 +272,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PlaceActionLink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -330,11 +329,11 @@ export namespace mybusinessplaceactions_v1 {
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Placeactionlinks$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -365,8 +364,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -419,11 +418,11 @@ export namespace mybusinessplaceactions_v1 {
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Placeactionlinks$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -454,8 +453,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PlaceActionLink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -508,11 +507,11 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Placeactionlinks$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>>;
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -547,8 +546,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,11 +605,11 @@ export namespace mybusinessplaceactions_v1 {
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Locations$Placeactionlinks$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -641,8 +640,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PlaceActionLink>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -764,11 +763,13 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Placeactiontypemetadata$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>
+    >;
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -803,8 +804,10 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placeactiontypemetadata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

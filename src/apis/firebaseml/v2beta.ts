@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1449,11 +1448,13 @@ export namespace firebaseml_v2beta {
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     countTokens(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
+    >;
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1488,8 +1489,10 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Counttokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1547,11 +1550,13 @@ export namespace firebaseml_v2beta {
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+    >;
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1586,8 +1591,10 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Generatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1645,11 +1652,13 @@ export namespace firebaseml_v2beta {
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     streamGenerateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+    >;
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1684,8 +1693,10 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -4348,11 +4347,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Eventticketclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4387,8 +4388,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4446,11 +4449,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Eventticketclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4481,8 +4484,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4537,11 +4540,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Eventticketclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4572,8 +4575,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4629,11 +4632,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Eventticketclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>>;
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4668,8 +4671,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4727,11 +4730,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Eventticketclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4762,8 +4765,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4818,11 +4821,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Eventticketclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4853,8 +4856,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4982,11 +4985,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Eventticketobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5021,8 +5026,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5080,11 +5087,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Eventticketobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5115,8 +5122,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5171,11 +5178,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Eventticketobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5206,8 +5213,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5263,11 +5270,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Eventticketobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>>;
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5302,8 +5309,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5361,11 +5368,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifylinkedofferobjects(
       params?: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5398,8 +5405,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Modifylinkedofferobjects;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5456,11 +5463,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Eventticketobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5491,8 +5498,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5547,11 +5554,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Eventticketobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5582,8 +5589,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EventTicketObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5723,11 +5730,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Flightclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5762,8 +5769,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5820,11 +5827,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Flightclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5855,8 +5862,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5910,11 +5917,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Flightclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5945,8 +5952,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6002,11 +6009,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flightclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>>;
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6039,8 +6046,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6095,11 +6102,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Flightclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6130,8 +6137,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6186,11 +6193,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Flightclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6221,8 +6228,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6348,11 +6355,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Flightobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6387,8 +6394,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6445,11 +6452,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Flightobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6480,8 +6487,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6535,11 +6542,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Flightobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6570,8 +6577,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6627,11 +6634,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flightobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>>;
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6664,8 +6671,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6721,11 +6728,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Flightobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6756,8 +6763,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6812,11 +6819,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Flightobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6847,8 +6854,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FlightObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6975,11 +6982,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Genericclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7014,8 +7021,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7072,11 +7079,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Genericclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7107,8 +7114,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Genericclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7162,11 +7169,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Genericclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7197,8 +7204,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7254,11 +7261,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Genericclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>>;
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7291,8 +7298,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7348,11 +7355,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Genericclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7383,8 +7390,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7439,11 +7446,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Genericclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7474,8 +7481,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7602,11 +7609,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Genericobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7641,8 +7648,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7700,11 +7707,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Genericobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7735,8 +7742,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7791,11 +7798,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Genericobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7826,8 +7833,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7883,11 +7890,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Genericobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>>;
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7922,8 +7929,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7979,11 +7986,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Genericobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8014,8 +8021,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8070,11 +8077,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Genericobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8105,8 +8112,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenericObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8234,11 +8241,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Giftcardclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8273,8 +8280,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8332,11 +8339,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Giftcardclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8367,8 +8374,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8423,11 +8430,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Giftcardclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8458,8 +8465,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8515,11 +8522,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Giftcardclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>>;
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8554,8 +8561,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8611,11 +8618,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Giftcardclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8646,8 +8653,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8702,11 +8709,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Giftcardclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8737,8 +8744,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8866,11 +8873,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Giftcardobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8905,8 +8914,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8964,11 +8975,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Giftcardobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8999,8 +9010,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9055,11 +9066,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Giftcardobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9090,8 +9101,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9147,11 +9158,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Giftcardobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>>;
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9186,8 +9197,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9243,11 +9254,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Giftcardobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9278,8 +9289,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9334,11 +9345,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Giftcardobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9369,8 +9380,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GiftCardObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9498,11 +9509,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Issuer$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9533,8 +9544,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Issuer>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9589,11 +9600,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Issuer$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9624,8 +9635,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Issuer>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9680,11 +9691,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Issuer$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IssuerListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IssuerListResponse>>;
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9715,8 +9726,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IssuerListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IssuerListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9771,11 +9782,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Issuer$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9806,8 +9817,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Issuer>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9862,11 +9873,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Issuer$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9897,8 +9908,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Issuer>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9996,11 +10007,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Jwt$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>>;
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10031,8 +10042,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jwt$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10101,11 +10112,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Loyaltyclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10140,8 +10151,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10198,11 +10209,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Loyaltyclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10233,8 +10244,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Loyaltyclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10288,11 +10299,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Loyaltyclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10323,8 +10334,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10380,11 +10391,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Loyaltyclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>>;
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10417,8 +10428,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10474,11 +10485,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Loyaltyclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10509,8 +10520,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10565,11 +10576,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Loyaltyclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10600,8 +10611,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10728,11 +10739,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Loyaltyobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10767,8 +10778,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10826,11 +10837,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Loyaltyobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10861,8 +10872,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10917,11 +10928,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Loyaltyobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10952,8 +10963,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11009,11 +11020,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Loyaltyobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>>;
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11048,8 +11059,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11105,11 +11116,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifylinkedofferobjects(
       params?: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11142,8 +11153,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Modifylinkedofferobjects;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11199,11 +11210,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Loyaltyobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11234,8 +11245,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11290,11 +11301,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Loyaltyobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11325,8 +11336,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LoyaltyObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11466,11 +11477,11 @@ export namespace walletobjects_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Media>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Media>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11501,8 +11512,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Media>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11557,11 +11568,13 @@ export namespace walletobjects_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
+    >;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11596,8 +11609,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11698,11 +11713,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Offerclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11737,8 +11752,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11795,11 +11810,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Offerclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11830,8 +11845,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11885,11 +11900,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Offerclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11920,8 +11935,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11977,11 +11992,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Offerclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>>;
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12014,8 +12029,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12070,11 +12085,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Offerclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12105,8 +12120,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12160,11 +12175,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Offerclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12195,8 +12210,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12321,11 +12336,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Offerobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12360,8 +12375,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12418,11 +12433,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Offerobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12453,8 +12468,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12508,11 +12523,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Offerobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12543,8 +12558,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12600,11 +12615,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Offerobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>>;
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12637,8 +12652,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12693,11 +12708,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Offerobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12728,8 +12743,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12784,11 +12799,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Offerobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12819,8 +12834,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$OfferObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12946,11 +12961,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Permissions>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>;
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12981,8 +12996,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Permissions>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13036,11 +13051,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Permissions>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>;
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13071,8 +13086,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Permissions>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13153,11 +13168,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Smarttap$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SmartTap>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmartTap>>;
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13188,8 +13203,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SmartTap>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmartTap>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Smarttap$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13258,11 +13273,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Transitclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13297,8 +13312,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13355,11 +13370,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transitclass$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13390,8 +13405,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transitclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13445,11 +13460,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Transitclass$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13480,8 +13495,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13537,11 +13552,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transitclass$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>>;
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13574,8 +13589,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13631,11 +13646,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Transitclass$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13666,8 +13681,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13722,11 +13737,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Transitclass$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13757,8 +13772,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitClass>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13885,11 +13900,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Transitobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13924,8 +13939,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13983,11 +13998,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transitobject$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14018,8 +14033,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14074,11 +14089,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Transitobject$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14109,8 +14124,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14166,11 +14181,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transitobject$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>>;
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14205,8 +14220,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14262,11 +14277,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Transitobject$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14297,8 +14312,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14353,11 +14368,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Transitobject$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14388,8 +14403,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransitObject>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14537,11 +14552,11 @@ export namespace walletobjects_v1 {
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setPassUpdateNotice(
       params?: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>>;
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14576,8 +14591,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
       let options = (optionsOrCallback || {}) as MethodOptions;

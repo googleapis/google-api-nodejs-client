@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -361,11 +360,11 @@ export namespace bigquerydatapolicy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datapolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datapolicies$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     create(
       params: Params$Resource$Projects$Locations$Datapolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -396,8 +395,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataPolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -453,11 +452,11 @@ export namespace bigquerydatapolicy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -488,8 +487,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -542,11 +541,11 @@ export namespace bigquerydatapolicy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datapolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datapolicies$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Datapolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -577,8 +576,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataPolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -631,11 +630,11 @@ export namespace bigquerydatapolicy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -666,8 +665,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -724,11 +723,11 @@ export namespace bigquerydatapolicy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datapolicies$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datapolicies$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datapolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -761,8 +760,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -818,11 +817,11 @@ export namespace bigquerydatapolicy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     patch(
       params: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -853,8 +852,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataPolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -907,11 +906,11 @@ export namespace bigquerydatapolicy_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     rename(
       params: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -942,8 +941,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataPolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -996,11 +995,11 @@ export namespace bigquerydatapolicy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1031,8 +1030,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1089,11 +1088,11 @@ export namespace bigquerydatapolicy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1128,8 +1127,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -371,11 +370,13 @@ export namespace webrisk_v1 {
     search(
       params: Params$Resource$Hashes$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Hashes$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchHashesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchHashesResponse>
+    >;
     search(
       params: Params$Resource$Hashes$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -410,8 +411,10 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchHashesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchHashesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Hashes$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -493,11 +496,11 @@ export namespace webrisk_v1 {
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -528,8 +531,8 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -581,11 +584,11 @@ export namespace webrisk_v1 {
     delete(
       params: Params$Resource$Projects$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -616,8 +619,8 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -669,11 +672,11 @@ export namespace webrisk_v1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -708,8 +711,8 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -761,11 +764,13 @@ export namespace webrisk_v1 {
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -800,8 +805,10 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -911,11 +918,11 @@ export namespace webrisk_v1 {
     create(
       params: Params$Resource$Projects$Submissions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Submissions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1Submission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1Submission>>;
     create(
       params: Params$Resource$Projects$Submissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -950,8 +957,8 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1Submission>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1Submission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Submissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1028,11 +1035,13 @@ export namespace webrisk_v1 {
     computeDiff(
       params: Params$Resource$Threatlists$Computediff,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     computeDiff(
       params?: Params$Resource$Threatlists$Computediff,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1ComputeThreatListDiffResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1ComputeThreatListDiffResponse>
+    >;
     computeDiff(
       params: Params$Resource$Threatlists$Computediff,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1067,8 +1076,10 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1ComputeThreatListDiffResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1ComputeThreatListDiffResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlists$Computediff;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1156,11 +1167,13 @@ export namespace webrisk_v1 {
     search(
       params: Params$Resource$Uris$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Uris$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchUrisResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchUrisResponse>
+    >;
     search(
       params: Params$Resource$Uris$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1195,8 +1208,10 @@ export namespace webrisk_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchUrisResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudWebriskV1SearchUrisResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Uris$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

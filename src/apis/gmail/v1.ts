@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1020,11 +1019,11 @@ export namespace gmail_v1 {
     getProfile(
       params: Params$Resource$Users$Getprofile,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getProfile(
       params?: Params$Resource$Users$Getprofile,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Profile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Profile>>;
     getProfile(
       params: Params$Resource$Users$Getprofile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1055,8 +1054,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Profile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Getprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1110,11 +1109,11 @@ export namespace gmail_v1 {
     stop(
       params: Params$Resource$Users$Stop,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Users$Stop,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Users$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1143,8 +1142,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1198,11 +1197,11 @@ export namespace gmail_v1 {
     watch(
       params: Params$Resource$Users$Watch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Users$Watch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$WatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WatchResponse>>;
     watch(
       params: Params$Resource$Users$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1233,8 +1232,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$WatchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1319,11 +1318,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Drafts$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Drafts$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     create(
       params: Params$Resource$Users$Drafts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1354,8 +1353,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Draft>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1414,11 +1413,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Drafts$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Drafts$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Drafts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1447,8 +1446,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1503,11 +1502,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Drafts$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Drafts$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     get(
       params: Params$Resource$Users$Drafts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1538,8 +1537,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Draft>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1593,11 +1592,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Drafts$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Drafts$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>>;
     list(
       params: Params$Resource$Users$Drafts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1628,8 +1627,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1684,11 +1683,11 @@ export namespace gmail_v1 {
     send(
       params: Params$Resource$Users$Drafts$Send,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     send(
       params?: Params$Resource$Users$Drafts$Send,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     send(
       params: Params$Resource$Users$Drafts$Send,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1719,8 +1718,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1778,11 +1777,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Drafts$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Drafts$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     update(
       params: Params$Resource$Users$Drafts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1813,8 +1812,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Draft>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2013,11 +2012,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$History$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$History$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>>;
     list(
       params: Params$Resource$Users$History$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2048,8 +2047,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$History$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2139,11 +2138,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Labels$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Labels$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     create(
       params: Params$Resource$Users$Labels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2174,8 +2173,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2230,11 +2229,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Labels$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Labels$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Labels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2263,8 +2262,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2319,11 +2318,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Labels$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Labels$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     get(
       params: Params$Resource$Users$Labels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2354,8 +2353,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2409,11 +2408,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Labels$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Labels$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>>;
     list(
       params: Params$Resource$Users$Labels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2444,8 +2443,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2500,11 +2499,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Labels$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Labels$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     patch(
       params: Params$Resource$Users$Labels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2535,8 +2534,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2591,11 +2590,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Labels$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Labels$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     update(
       params: Params$Resource$Users$Labels$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2626,8 +2625,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Label>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2764,11 +2763,11 @@ export namespace gmail_v1 {
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Users$Messages$Batchdelete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2797,8 +2796,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2852,11 +2851,11 @@ export namespace gmail_v1 {
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Users$Messages$Batchmodify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2885,8 +2884,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2940,11 +2939,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Messages$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Messages$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Messages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2973,8 +2972,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3029,11 +3028,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Messages$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Messages$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     get(
       params: Params$Resource$Users$Messages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3064,8 +3063,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3120,11 +3119,11 @@ export namespace gmail_v1 {
     import(
       params: Params$Resource$Users$Messages$Import,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Users$Messages$Import,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     import(
       params: Params$Resource$Users$Messages$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3155,8 +3154,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3214,11 +3213,11 @@ export namespace gmail_v1 {
     insert(
       params: Params$Resource$Users$Messages$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Messages$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     insert(
       params: Params$Resource$Users$Messages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3249,8 +3248,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3308,11 +3307,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Messages$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>;
     list(
       params: Params$Resource$Users$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3345,8 +3344,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3401,11 +3400,11 @@ export namespace gmail_v1 {
     modify(
       params: Params$Resource$Users$Messages$Modify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modify(
       params?: Params$Resource$Users$Messages$Modify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     modify(
       params: Params$Resource$Users$Messages$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3436,8 +3435,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3491,11 +3490,11 @@ export namespace gmail_v1 {
     send(
       params: Params$Resource$Users$Messages$Send,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     send(
       params?: Params$Resource$Users$Messages$Send,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     send(
       params: Params$Resource$Users$Messages$Send,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3526,8 +3525,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3585,11 +3584,11 @@ export namespace gmail_v1 {
     trash(
       params: Params$Resource$Users$Messages$Trash,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     trash(
       params?: Params$Resource$Users$Messages$Trash,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     trash(
       params: Params$Resource$Users$Messages$Trash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3620,8 +3619,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3675,11 +3674,11 @@ export namespace gmail_v1 {
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     untrash(
       params?: Params$Resource$Users$Messages$Untrash,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3710,8 +3709,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Message>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3997,11 +3996,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Messages$Attachments$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$MessagePartBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MessagePartBody>>;
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4032,8 +4031,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$MessagePartBody>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MessagePartBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4122,11 +4121,11 @@ export namespace gmail_v1 {
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAutoForwarding(
       params?: Params$Resource$Users$Settings$Getautoforwarding,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AutoForwarding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>;
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4159,8 +4158,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AutoForwarding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4214,11 +4213,11 @@ export namespace gmail_v1 {
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getImap(
       params?: Params$Resource$Users$Settings$Getimap,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ImapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>;
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4249,8 +4248,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ImapSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4305,11 +4304,11 @@ export namespace gmail_v1 {
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLanguage(
       params?: Params$Resource$Users$Settings$Getlanguage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LanguageSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>;
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4340,8 +4339,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LanguageSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4395,11 +4394,11 @@ export namespace gmail_v1 {
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getPop(
       params?: Params$Resource$Users$Settings$Getpop,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PopSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>;
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4430,8 +4429,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PopSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getpop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4486,11 +4485,11 @@ export namespace gmail_v1 {
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getVacation(
       params?: Params$Resource$Users$Settings$Getvacation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VacationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>;
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4521,8 +4520,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VacationSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getvacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4576,11 +4575,11 @@ export namespace gmail_v1 {
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAutoForwarding(
       params?: Params$Resource$Users$Settings$Updateautoforwarding,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AutoForwarding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>;
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4613,8 +4612,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AutoForwarding>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4668,11 +4667,11 @@ export namespace gmail_v1 {
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateImap(
       params?: Params$Resource$Users$Settings$Updateimap,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ImapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>;
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4703,8 +4702,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ImapSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4759,11 +4758,11 @@ export namespace gmail_v1 {
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateLanguage(
       params?: Params$Resource$Users$Settings$Updatelanguage,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$LanguageSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>;
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4796,8 +4795,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$LanguageSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatelanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4851,11 +4850,11 @@ export namespace gmail_v1 {
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePop(
       params?: Params$Resource$Users$Settings$Updatepop,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PopSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>;
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4886,8 +4885,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PopSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatepop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4942,11 +4941,11 @@ export namespace gmail_v1 {
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateVacation(
       params?: Params$Resource$Users$Settings$Updatevacation,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VacationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>;
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4979,8 +4978,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VacationSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatevacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5150,11 +5149,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Cse$Identities$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Cse$Identities$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     create(
       params: Params$Resource$Users$Settings$Cse$Identities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5185,8 +5184,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseIdentity>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5240,11 +5239,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5273,8 +5272,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5329,11 +5328,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Cse$Identities$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Cse$Identities$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     get(
       params: Params$Resource$Users$Settings$Cse$Identities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5364,8 +5363,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseIdentity>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5420,11 +5419,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Identities$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Cse$Identities$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Cse$Identities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5459,8 +5458,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5514,11 +5513,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     patch(
       params: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5549,8 +5548,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseIdentity>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5678,11 +5677,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     create(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5713,8 +5712,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseKeyPair>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5768,11 +5767,11 @@ export namespace gmail_v1 {
     disable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     disable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5803,8 +5802,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseKeyPair>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5859,11 +5858,11 @@ export namespace gmail_v1 {
     enable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     enable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5894,8 +5893,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseKeyPair>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5950,11 +5949,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     get(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5985,8 +5984,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CseKeyPair>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6041,11 +6040,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>>;
     list(
       params: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6078,8 +6077,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6133,11 +6132,11 @@ export namespace gmail_v1 {
     obliterate(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     obliterate(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     obliterate(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6166,8 +6165,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Obliterate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6316,11 +6315,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Delegates$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Delegate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>;
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6351,8 +6350,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Delegate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6406,11 +6405,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Delegates$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6439,8 +6438,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6495,11 +6494,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Delegates$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Delegate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>;
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6530,8 +6529,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Delegate>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6586,11 +6585,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Delegates$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6623,8 +6622,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6727,11 +6726,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Filters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Filter>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Filter>>;
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6762,8 +6761,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Filter>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6817,11 +6816,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Filters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6850,8 +6849,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6905,11 +6904,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Filters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Filter>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Filter>>;
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6940,8 +6939,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Filter>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6995,11 +6994,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Filters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Filters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>>;
     list(
       params: Params$Resource$Users$Settings$Filters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7030,8 +7029,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7134,11 +7133,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ForwardingAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>;
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7169,8 +7168,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ForwardingAddress>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7225,11 +7224,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7258,8 +7257,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7315,11 +7314,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ForwardingAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>;
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7350,8 +7349,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ForwardingAddress>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7406,11 +7405,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7445,8 +7444,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7555,11 +7554,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Sendas$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7590,8 +7589,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendAs>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7646,11 +7645,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Sendas$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7679,8 +7678,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7734,11 +7733,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Sendas$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7769,8 +7768,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendAs>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7824,11 +7823,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Sendas$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>>;
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7859,8 +7858,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7915,11 +7914,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Settings$Sendas$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7950,8 +7949,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendAs>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8005,11 +8004,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Settings$Sendas$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8040,8 +8039,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SendAs>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8095,11 +8094,11 @@ export namespace gmail_v1 {
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Users$Settings$Sendas$Verify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8128,8 +8127,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8276,11 +8275,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8309,8 +8308,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8365,11 +8364,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SmimeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>;
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8400,8 +8399,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SmimeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8456,11 +8455,11 @@ export namespace gmail_v1 {
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SmimeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>;
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8491,8 +8490,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SmimeInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8547,11 +8546,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>>;
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8584,8 +8583,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8640,11 +8639,11 @@ export namespace gmail_v1 {
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setDefault(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8673,8 +8672,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8810,11 +8809,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Threads$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Threads$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Threads$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8843,8 +8842,8 @@ export namespace gmail_v1 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8899,11 +8898,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Threads$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Threads$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     get(
       params: Params$Resource$Users$Threads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8934,8 +8933,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Thread>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8990,11 +8989,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Threads$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Threads$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>>;
     list(
       params: Params$Resource$Users$Threads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9025,8 +9024,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9081,11 +9080,11 @@ export namespace gmail_v1 {
     modify(
       params: Params$Resource$Users$Threads$Modify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modify(
       params?: Params$Resource$Users$Threads$Modify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     modify(
       params: Params$Resource$Users$Threads$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9116,8 +9115,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Thread>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9171,11 +9170,11 @@ export namespace gmail_v1 {
     trash(
       params: Params$Resource$Users$Threads$Trash,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     trash(
       params?: Params$Resource$Users$Threads$Trash,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     trash(
       params: Params$Resource$Users$Threads$Trash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9206,8 +9205,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Thread>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9261,11 +9260,11 @@ export namespace gmail_v1 {
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     untrash(
       params?: Params$Resource$Users$Threads$Untrash,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9296,8 +9295,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Thread>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;

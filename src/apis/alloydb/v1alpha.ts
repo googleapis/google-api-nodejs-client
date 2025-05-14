@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -2490,11 +2489,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2529,8 +2528,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2582,11 +2581,13 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2621,8 +2622,10 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2717,11 +2720,11 @@ export namespace alloydb_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Backups$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2752,8 +2755,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2808,11 +2811,11 @@ export namespace alloydb_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2843,8 +2846,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2896,11 +2899,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Backups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     get(
       params: Params$Resource$Projects$Locations$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2931,8 +2934,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Backup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2984,11 +2987,11 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Backups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3019,8 +3022,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3075,11 +3078,11 @@ export namespace alloydb_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3110,8 +3113,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3278,11 +3281,11 @@ export namespace alloydb_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3313,8 +3316,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3369,11 +3372,11 @@ export namespace alloydb_v1alpha {
     createsecondary(
       params: Params$Resource$Projects$Locations$Clusters$Createsecondary,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createsecondary(
       params?: Params$Resource$Projects$Locations$Clusters$Createsecondary,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     createsecondary(
       params: Params$Resource$Projects$Locations$Clusters$Createsecondary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3404,8 +3407,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Createsecondary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3460,11 +3463,11 @@ export namespace alloydb_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3495,8 +3498,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3548,11 +3551,11 @@ export namespace alloydb_v1alpha {
     export(
       params: Params$Resource$Projects$Locations$Clusters$Export,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Clusters$Export,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Projects$Locations$Clusters$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3583,8 +3586,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3639,11 +3642,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Cluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3674,8 +3677,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Cluster>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3727,11 +3730,11 @@ export namespace alloydb_v1alpha {
     import(
       params: Params$Resource$Projects$Locations$Clusters$Import,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Clusters$Import,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Clusters$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3762,8 +3765,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3818,11 +3821,11 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3855,8 +3858,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3911,11 +3914,11 @@ export namespace alloydb_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Clusters$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3946,8 +3949,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3999,11 +4002,11 @@ export namespace alloydb_v1alpha {
     promote(
       params: Params$Resource$Projects$Locations$Clusters$Promote,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     promote(
       params?: Params$Resource$Projects$Locations$Clusters$Promote,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     promote(
       params: Params$Resource$Projects$Locations$Clusters$Promote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4034,8 +4037,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Promote;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4090,11 +4093,11 @@ export namespace alloydb_v1alpha {
     restore(
       params: Params$Resource$Projects$Locations$Clusters$Restore,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Projects$Locations$Clusters$Restore,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restore(
       params: Params$Resource$Projects$Locations$Clusters$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4125,8 +4128,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4181,11 +4184,11 @@ export namespace alloydb_v1alpha {
     restoreFromCloudSQL(
       params: Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restoreFromCloudSQL(
       params?: Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restoreFromCloudSQL(
       params: Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4216,8 +4219,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Restorefromcloudsql;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4272,11 +4275,11 @@ export namespace alloydb_v1alpha {
     switchover(
       params: Params$Resource$Projects$Locations$Clusters$Switchover,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     switchover(
       params?: Params$Resource$Projects$Locations$Clusters$Switchover,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     switchover(
       params: Params$Resource$Projects$Locations$Clusters$Switchover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4307,8 +4310,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Switchover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4363,11 +4366,11 @@ export namespace alloydb_v1alpha {
     upgrade(
       params: Params$Resource$Projects$Locations$Clusters$Upgrade,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upgrade(
       params?: Params$Resource$Projects$Locations$Clusters$Upgrade,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     upgrade(
       params: Params$Resource$Projects$Locations$Clusters$Upgrade,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4398,8 +4401,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Upgrade;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4679,11 +4682,11 @@ export namespace alloydb_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4714,8 +4717,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4771,11 +4774,11 @@ export namespace alloydb_v1alpha {
     createsecondary(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createsecondary(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     createsecondary(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4806,8 +4809,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Createsecondary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4862,11 +4865,11 @@ export namespace alloydb_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4897,8 +4900,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4951,11 +4954,11 @@ export namespace alloydb_v1alpha {
     failover(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Failover,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     failover(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Failover,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     failover(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Failover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4986,8 +4989,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Failover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5043,11 +5046,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Instance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Instance>>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5078,8 +5081,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Instance>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5132,11 +5135,11 @@ export namespace alloydb_v1alpha {
     getConnectionInfo(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConnectionInfo(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConnectionInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectionInfo>>;
     getConnectionInfo(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5169,8 +5172,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConnectionInfo>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectionInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5226,11 +5229,11 @@ export namespace alloydb_v1alpha {
     injectFault(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Injectfault,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     injectFault(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Injectfault,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     injectFault(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Injectfault,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5261,8 +5264,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Injectfault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5318,11 +5321,11 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5355,8 +5358,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5412,11 +5415,11 @@ export namespace alloydb_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5447,8 +5450,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5501,11 +5504,11 @@ export namespace alloydb_v1alpha {
     restart(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Restart,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restart(
       params?: Params$Resource$Projects$Locations$Clusters$Instances$Restart,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restart(
       params: Params$Resource$Projects$Locations$Clusters$Instances$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5536,8 +5539,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Instances$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5777,11 +5780,11 @@ export namespace alloydb_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Clusters$Users$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Clusters$Users$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     create(
       params: Params$Resource$Projects$Locations$Clusters$Users$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5812,8 +5815,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Users$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5868,11 +5871,11 @@ export namespace alloydb_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Clusters$Users$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5903,8 +5906,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5956,11 +5959,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Clusters$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Clusters$Users$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Projects$Locations$Clusters$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5991,8 +5994,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6044,11 +6047,11 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Users$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Clusters$Users$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUsersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Clusters$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6079,8 +6082,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUsersResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6135,11 +6138,11 @@ export namespace alloydb_v1alpha {
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Users$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Clusters$Users$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     patch(
       params: Params$Resource$Projects$Locations$Clusters$Users$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6170,8 +6173,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$User>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6328,11 +6331,11 @@ export namespace alloydb_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6363,8 +6366,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6419,11 +6422,11 @@ export namespace alloydb_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6454,8 +6457,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6507,11 +6510,11 @@ export namespace alloydb_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6542,8 +6545,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6595,11 +6598,11 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6632,8 +6635,8 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6741,11 +6744,13 @@ export namespace alloydb_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Supporteddatabaseflags$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Supporteddatabaseflags$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSupportedDatabaseFlagsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSupportedDatabaseFlagsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Supporteddatabaseflags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6780,8 +6785,10 @@ export namespace alloydb_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSupportedDatabaseFlagsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSupportedDatabaseFlagsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Supporteddatabaseflags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

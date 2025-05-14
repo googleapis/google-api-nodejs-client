@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -241,11 +241,11 @@ export namespace displayvideo_v1beta {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleBytestreamMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -280,8 +280,8 @@ export namespace displayvideo_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleBytestreamMedia>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -406,11 +406,11 @@ export namespace displayvideo_v1beta {
     get(
       params: Params$Resource$Sdfdownloadtask$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sdfdownloadtask$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Sdfdownloadtask$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -439,7 +439,7 @@ export namespace displayvideo_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtask$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -563,11 +563,11 @@ export namespace displayvideo_v1beta {
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -596,7 +596,7 @@ export namespace displayvideo_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

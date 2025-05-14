@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1024,11 +1023,11 @@ export namespace storagetransfer_v1 {
     get(
       params: Params$Resource$Googleserviceaccounts$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Googleserviceaccounts$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleServiceAccount>>;
     get(
       params: Params$Resource$Googleserviceaccounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1061,8 +1060,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleServiceAccount>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleserviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1142,11 +1141,11 @@ export namespace storagetransfer_v1 {
     create(
       params: Params$Resource$Projects$Agentpools$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Agentpools$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AgentPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>;
     create(
       params: Params$Resource$Projects$Agentpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1177,8 +1176,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AgentPool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1234,11 +1233,11 @@ export namespace storagetransfer_v1 {
     delete(
       params: Params$Resource$Projects$Agentpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Agentpools$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Agentpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1269,8 +1268,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,11 +1322,11 @@ export namespace storagetransfer_v1 {
     get(
       params: Params$Resource$Projects$Agentpools$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Agentpools$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AgentPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>;
     get(
       params: Params$Resource$Projects$Agentpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1358,8 +1357,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AgentPool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1412,11 +1411,11 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Projects$Agentpools$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Agentpools$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListAgentPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAgentPoolsResponse>>;
     list(
       params: Params$Resource$Projects$Agentpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1449,8 +1448,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListAgentPoolsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAgentPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1506,11 +1505,11 @@ export namespace storagetransfer_v1 {
     patch(
       params: Params$Resource$Projects$Agentpools$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Agentpools$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AgentPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>;
     patch(
       params: Params$Resource$Projects$Agentpools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1541,8 +1540,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AgentPool>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1668,11 +1667,11 @@ export namespace storagetransfer_v1 {
     create(
       params: Params$Resource$Transferjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Transferjobs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransferJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>;
     create(
       params: Params$Resource$Transferjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1703,8 +1702,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransferJob>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1757,11 +1756,11 @@ export namespace storagetransfer_v1 {
     delete(
       params: Params$Resource$Transferjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Transferjobs$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Transferjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1792,8 +1791,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1846,11 +1845,11 @@ export namespace storagetransfer_v1 {
     get(
       params: Params$Resource$Transferjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transferjobs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransferJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>;
     get(
       params: Params$Resource$Transferjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1881,8 +1880,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransferJob>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1934,11 +1933,11 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Transferjobs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transferjobs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTransferJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferJobsResponse>>;
     list(
       params: Params$Resource$Transferjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1971,8 +1970,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTransferJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2025,11 +2024,11 @@ export namespace storagetransfer_v1 {
     patch(
       params: Params$Resource$Transferjobs$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Transferjobs$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TransferJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>;
     patch(
       params: Params$Resource$Transferjobs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2060,8 +2059,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TransferJob>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2114,11 +2113,11 @@ export namespace storagetransfer_v1 {
     run(
       params: Params$Resource$Transferjobs$Run,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Transferjobs$Run,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     run(
       params: Params$Resource$Transferjobs$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2149,8 +2148,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2276,11 +2275,11 @@ export namespace storagetransfer_v1 {
     cancel(
       params: Params$Resource$Transferoperations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Transferoperations$Cancel,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Transferoperations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2311,8 +2310,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2365,11 +2364,11 @@ export namespace storagetransfer_v1 {
     get(
       params: Params$Resource$Transferoperations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transferoperations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Transferoperations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2400,8 +2399,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2454,11 +2453,11 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Transferoperations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transferoperations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Transferoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2491,8 +2490,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2545,11 +2544,11 @@ export namespace storagetransfer_v1 {
     pause(
       params: Params$Resource$Transferoperations$Pause,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pause(
       params?: Params$Resource$Transferoperations$Pause,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     pause(
       params: Params$Resource$Transferoperations$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2580,8 +2579,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2634,11 +2633,11 @@ export namespace storagetransfer_v1 {
     resume(
       params: Params$Resource$Transferoperations$Resume,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Transferoperations$Resume,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     resume(
       params: Params$Resource$Transferoperations$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2669,8 +2668,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;

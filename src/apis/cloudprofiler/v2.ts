@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -232,11 +231,11 @@ export namespace cloudprofiler_v2 {
     create(
       params: Params$Resource$Projects$Profiles$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Profiles$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Profile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Profile>>;
     create(
       params: Params$Resource$Projects$Profiles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -267,8 +266,8 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Profile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -324,11 +323,11 @@ export namespace cloudprofiler_v2 {
     createOffline(
       params: Params$Resource$Projects$Profiles$Createoffline,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createOffline(
       params?: Params$Resource$Projects$Profiles$Createoffline,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Profile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Profile>>;
     createOffline(
       params: Params$Resource$Projects$Profiles$Createoffline,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -359,8 +358,8 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Profile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -416,11 +415,11 @@ export namespace cloudprofiler_v2 {
     list(
       params: Params$Resource$Projects$Profiles$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Profiles$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListProfilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProfilesResponse>>;
     list(
       params: Params$Resource$Projects$Profiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -453,8 +452,8 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListProfilesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProfilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -510,11 +509,11 @@ export namespace cloudprofiler_v2 {
     patch(
       params: Params$Resource$Projects$Profiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Profiles$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Profile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Profile>>;
     patch(
       params: Params$Resource$Projects$Profiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -545,8 +544,8 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Profile>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

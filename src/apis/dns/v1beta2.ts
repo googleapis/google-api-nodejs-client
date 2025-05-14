@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1212,11 +1211,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Changes$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Changes$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Change>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Change>>;
     create(
       params: Params$Resource$Changes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1247,8 +1246,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Change>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Change>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1302,11 +1301,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Changes$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Changes$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Change>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Change>>;
     get(
       params: Params$Resource$Changes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1337,8 +1336,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Change>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Change>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1392,11 +1391,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ChangesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChangesListResponse>>;
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1427,8 +1426,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ChangesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChangesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1553,11 +1552,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Dnskeys$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Dnskeys$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DnsKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DnsKey>>;
     get(
       params: Params$Resource$Dnskeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1588,8 +1587,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DnsKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DnsKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1643,11 +1642,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Dnskeys$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Dnskeys$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DnsKeysListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DnsKeysListResponse>>;
     list(
       params: Params$Resource$Dnskeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1678,8 +1677,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DnsKeysListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DnsKeysListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1785,11 +1784,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Managedzoneoperations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Managedzoneoperations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Managedzoneoperations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1820,8 +1819,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzoneoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1876,11 +1875,13 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Managedzoneoperations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Managedzoneoperations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ManagedZoneOperationsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ManagedZoneOperationsListResponse>
+    >;
     list(
       params: Params$Resource$Managedzoneoperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1915,8 +1916,10 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ManagedZoneOperationsListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ManagedZoneOperationsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzoneoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2023,11 +2026,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Managedzones$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Managedzones$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ManagedZone>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>;
     create(
       params: Params$Resource$Managedzones$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2058,8 +2061,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ManagedZone>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2113,11 +2116,11 @@ export namespace dns_v1beta2 {
     delete(
       params: Params$Resource$Managedzones$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Managedzones$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Managedzones$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2146,8 +2149,8 @@ export namespace dns_v1beta2 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2202,11 +2205,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Managedzones$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Managedzones$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ManagedZone>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>;
     get(
       params: Params$Resource$Managedzones$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2237,8 +2240,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ManagedZone>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedZone>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Managedzones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2292,11 +2295,11 @@ export namespace dns_v1beta2 {
     getIamPolicy(
       params: Params$Resource$Managedzones$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Managedzones$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     getIamPolicy(
       params: Params$Resource$Managedzones$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2329,8 +2332,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2385,11 +2388,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Managedzones$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Managedzones$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ManagedZonesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedZonesListResponse>>;
     list(
       params: Params$Resource$Managedzones$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2422,8 +2425,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ManagedZonesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedZonesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2477,11 +2480,11 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Managedzones$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Managedzones$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Managedzones$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2512,8 +2515,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2568,11 +2571,11 @@ export namespace dns_v1beta2 {
     setIamPolicy(
       params: Params$Resource$Managedzones$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Managedzones$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
     setIamPolicy(
       params: Params$Resource$Managedzones$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2605,8 +2608,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2661,11 +2664,13 @@ export namespace dns_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Managedzones$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Managedzones$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
     testIamPermissions(
       params: Params$Resource$Managedzones$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2700,8 +2705,10 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2757,11 +2764,11 @@ export namespace dns_v1beta2 {
     update(
       params: Params$Resource$Managedzones$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Managedzones$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Managedzones$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2792,8 +2799,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2996,11 +3003,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Policies$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     create(
       params: Params$Resource$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3031,8 +3038,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3086,11 +3093,11 @@ export namespace dns_v1beta2 {
     delete(
       params: Params$Resource$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3119,8 +3126,8 @@ export namespace dns_v1beta2 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3173,11 +3180,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3208,8 +3215,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3262,11 +3269,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Policies$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PoliciesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PoliciesListResponse>>;
     list(
       params: Params$Resource$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3299,8 +3306,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PoliciesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PoliciesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3354,11 +3361,11 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PoliciesPatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PoliciesPatchResponse>>;
     patch(
       params: Params$Resource$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3391,8 +3398,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PoliciesPatchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PoliciesPatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3445,11 +3452,11 @@ export namespace dns_v1beta2 {
     update(
       params: Params$Resource$Policies$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Policies$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PoliciesUpdateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PoliciesUpdateResponse>>;
     update(
       params: Params$Resource$Policies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3482,8 +3489,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PoliciesUpdateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PoliciesUpdateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3639,11 +3646,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Project>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Project>>;
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3674,8 +3681,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Project>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3747,11 +3754,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Resourcerecordsets$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Resourcerecordsets$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>;
     create(
       params: Params$Resource$Resourcerecordsets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3782,8 +3789,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3838,11 +3845,11 @@ export namespace dns_v1beta2 {
     delete(
       params: Params$Resource$Resourcerecordsets$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Resourcerecordsets$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Resourcerecordsets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3871,8 +3878,8 @@ export namespace dns_v1beta2 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3927,11 +3934,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Resourcerecordsets$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Resourcerecordsets$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>;
     get(
       params: Params$Resource$Resourcerecordsets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3962,8 +3969,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4018,11 +4025,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Resourcerecordsets$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Resourcerecordsets$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResourceRecordSetsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSetsListResponse>>;
     list(
       params: Params$Resource$Resourcerecordsets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4057,8 +4064,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResourceRecordSetsListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSetsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4115,11 +4122,11 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Resourcerecordsets$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Resourcerecordsets$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>;
     patch(
       params: Params$Resource$Resourcerecordsets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4150,8 +4157,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceRecordSet>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4335,11 +4342,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Responsepolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Responsepolicies$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicy>>;
     create(
       params: Params$Resource$Responsepolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4370,8 +4377,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4425,11 +4432,11 @@ export namespace dns_v1beta2 {
     delete(
       params: Params$Resource$Responsepolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Responsepolicies$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Responsepolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4458,8 +4465,8 @@ export namespace dns_v1beta2 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4514,11 +4521,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Responsepolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Responsepolicies$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicy>>;
     get(
       params: Params$Resource$Responsepolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4549,8 +4556,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4605,11 +4612,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Responsepolicies$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Responsepolicies$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePoliciesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesListResponse>>;
     list(
       params: Params$Resource$Responsepolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4644,8 +4651,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePoliciesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4701,11 +4708,11 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Responsepolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Responsepolicies$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePoliciesPatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesPatchResponse>>;
     patch(
       params: Params$Resource$Responsepolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4740,8 +4747,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePoliciesPatchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesPatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4798,11 +4805,11 @@ export namespace dns_v1beta2 {
     update(
       params: Params$Resource$Responsepolicies$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Responsepolicies$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePoliciesUpdateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesUpdateResponse>>;
     update(
       params: Params$Resource$Responsepolicies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4837,8 +4844,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePoliciesUpdateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePoliciesUpdateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5004,11 +5011,11 @@ export namespace dns_v1beta2 {
     create(
       params: Params$Resource$Responsepolicyrules$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Responsepolicyrules$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>>;
     create(
       params: Params$Resource$Responsepolicyrules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5039,8 +5046,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5095,11 +5102,11 @@ export namespace dns_v1beta2 {
     delete(
       params: Params$Resource$Responsepolicyrules$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Responsepolicyrules$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Responsepolicyrules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5128,8 +5135,8 @@ export namespace dns_v1beta2 {
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<void>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5184,11 +5191,11 @@ export namespace dns_v1beta2 {
     get(
       params: Params$Resource$Responsepolicyrules$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Responsepolicyrules$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>>;
     get(
       params: Params$Resource$Responsepolicyrules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5219,8 +5226,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5275,11 +5282,11 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Responsepolicyrules$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Responsepolicyrules$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesListResponse>>;
     list(
       params: Params$Resource$Responsepolicyrules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5314,8 +5321,8 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesListResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5372,11 +5379,13 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Responsepolicyrules$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Responsepolicyrules$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesPatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesPatchResponse>
+    >;
     patch(
       params: Params$Resource$Responsepolicyrules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5411,8 +5420,10 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesPatchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesPatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5469,11 +5480,13 @@ export namespace dns_v1beta2 {
     update(
       params: Params$Resource$Responsepolicyrules$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Responsepolicyrules$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesUpdateResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesUpdateResponse>
+    >;
     update(
       params: Params$Resource$Responsepolicyrules$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5508,8 +5521,10 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesUpdateResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ResponsePolicyRulesUpdateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Responsepolicyrules$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

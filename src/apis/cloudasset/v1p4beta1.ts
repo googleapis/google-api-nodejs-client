@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1175,11 +1175,11 @@ export namespace cloudasset_v1p4beta1 {
     analyzeIamPolicy(
       params: Params$Resource$V1p4beta1$Analyzeiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeIamPolicy(
       params?: Params$Resource$V1p4beta1$Analyzeiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeIamPolicyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeIamPolicyResponse>>;
     analyzeIamPolicy(
       params: Params$Resource$V1p4beta1$Analyzeiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1214,8 +1214,8 @@ export namespace cloudasset_v1p4beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeIamPolicyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeIamPolicyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1p4beta1$Analyzeiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1325,11 +1325,11 @@ export namespace cloudasset_v1p4beta1 {
     exportIamPolicyAnalysis(
       params: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     exportIamPolicyAnalysis(
       params?: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     exportIamPolicyAnalysis(
       params: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1360,7 +1360,7 @@ export namespace cloudasset_v1p4beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1p4beta1$Exportiampolicyanalysis;
       let options = (optionsOrCallback || {}) as MethodOptions;

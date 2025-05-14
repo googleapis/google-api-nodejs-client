@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -334,11 +333,11 @@ export namespace merchantapi_conversions_v1beta {
     create(
       params: Params$Resource$Accounts$Conversionsources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Conversionsources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     create(
       params: Params$Resource$Accounts$Conversionsources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -369,8 +368,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -424,11 +423,11 @@ export namespace merchantapi_conversions_v1beta {
     delete(
       params: Params$Resource$Accounts$Conversionsources$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Conversionsources$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Conversionsources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -459,8 +458,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -515,11 +514,11 @@ export namespace merchantapi_conversions_v1beta {
     get(
       params: Params$Resource$Accounts$Conversionsources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Conversionsources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     get(
       params: Params$Resource$Accounts$Conversionsources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -550,8 +549,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,11 +605,11 @@ export namespace merchantapi_conversions_v1beta {
     list(
       params: Params$Resource$Accounts$Conversionsources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Conversionsources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>;
     list(
       params: Params$Resource$Accounts$Conversionsources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -645,8 +644,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -702,11 +701,11 @@ export namespace merchantapi_conversions_v1beta {
     patch(
       params: Params$Resource$Accounts$Conversionsources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Conversionsources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     patch(
       params: Params$Resource$Accounts$Conversionsources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -737,8 +736,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -793,11 +792,11 @@ export namespace merchantapi_conversions_v1beta {
     undelete(
       params: Params$Resource$Accounts$Conversionsources$Undelete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Accounts$Conversionsources$Undelete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     undelete(
       params: Params$Resource$Accounts$Conversionsources$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -828,8 +827,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ConversionSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;

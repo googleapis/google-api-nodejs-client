@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -2724,11 +2723,11 @@ export namespace mybusinesslodging_v1 {
     getLodging(
       params: Params$Resource$Locations$Getlodging,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLodging(
       params?: Params$Resource$Locations$Getlodging,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Lodging>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>;
     getLodging(
       params: Params$Resource$Locations$Getlodging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2759,8 +2758,8 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Lodging>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getlodging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2813,11 +2812,11 @@ export namespace mybusinesslodging_v1 {
     updateLodging(
       params: Params$Resource$Locations$Updatelodging,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateLodging(
       params?: Params$Resource$Locations$Updatelodging,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Lodging>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>;
     updateLodging(
       params: Params$Resource$Locations$Updatelodging,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2848,8 +2847,8 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Lodging>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Updatelodging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2937,11 +2936,11 @@ export namespace mybusinesslodging_v1 {
     getGoogleUpdated(
       params: Params$Resource$Locations$Lodging$Getgoogleupdated,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getGoogleUpdated(
       params?: Params$Resource$Locations$Lodging$Getgoogleupdated,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetGoogleUpdatedLodgingResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetGoogleUpdatedLodgingResponse>>;
     getGoogleUpdated(
       params: Params$Resource$Locations$Lodging$Getgoogleupdated,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2976,8 +2975,8 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetGoogleUpdatedLodgingResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetGoogleUpdatedLodgingResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Lodging$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;

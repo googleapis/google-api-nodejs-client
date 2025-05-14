@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -187,11 +186,11 @@ export namespace abusiveexperiencereport_v1 {
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>>;
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -222,8 +221,8 @@ export namespace abusiveexperiencereport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -289,11 +288,11 @@ export namespace abusiveexperiencereport_v1 {
     list(
       params: Params$Resource$Violatingsites$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Violatingsites$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>>;
     list(
       params: Params$Resource$Violatingsites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -326,8 +325,8 @@ export namespace abusiveexperiencereport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

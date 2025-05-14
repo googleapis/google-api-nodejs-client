@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -413,11 +412,11 @@ export namespace customsearch_v1 {
     list(
       params: Params$Resource$Cse$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cse$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Search>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Search>>;
     list(
       params: Params$Resource$Cse$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -448,8 +447,8 @@ export namespace customsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Search>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Search>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -642,11 +641,11 @@ export namespace customsearch_v1 {
     list(
       params: Params$Resource$Cse$Siterestrict$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cse$Siterestrict$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Search>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Search>>;
     list(
       params: Params$Resource$Cse$Siterestrict$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -677,8 +676,8 @@ export namespace customsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Search>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Search>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cse$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

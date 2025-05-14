@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -470,11 +469,11 @@ export namespace discovery_v1 {
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getRest(
       params?: Params$Resource$Apis$Getrest,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RestDescription>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RestDescription>>;
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -505,8 +504,8 @@ export namespace discovery_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RestDescription>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RestDescription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$Getrest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -560,11 +559,11 @@ export namespace discovery_v1 {
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Apis$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DirectoryList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectoryList>>;
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -595,8 +594,8 @@ export namespace discovery_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DirectoryList>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DirectoryList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

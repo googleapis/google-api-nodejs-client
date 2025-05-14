@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -309,11 +309,11 @@ export namespace mybusinessbusinesscalls_v1 {
     getBusinesscallssettings(
       params: Params$Resource$Locations$Getbusinesscallssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getBusinesscallssettings(
       params?: Params$Resource$Locations$Getbusinesscallssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessCallsSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessCallsSettings>>;
     getBusinesscallssettings(
       params: Params$Resource$Locations$Getbusinesscallssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -348,8 +348,8 @@ export namespace mybusinessbusinesscalls_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BusinessCallsSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessCallsSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getbusinesscallssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -458,11 +458,11 @@ export namespace mybusinessbusinesscalls_v1 {
     updateBusinesscallssettings(
       params: Params$Resource$Locations$Updatebusinesscallssettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateBusinesscallssettings(
       params?: Params$Resource$Locations$Updatebusinesscallssettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessCallsSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessCallsSettings>>;
     updateBusinesscallssettings(
       params: Params$Resource$Locations$Updatebusinesscallssettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -497,8 +497,8 @@ export namespace mybusinessbusinesscalls_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BusinessCallsSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessCallsSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Updatebusinesscallssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -631,11 +631,11 @@ export namespace mybusinessbusinesscalls_v1 {
     list(
       params: Params$Resource$Locations$Businesscallsinsights$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Businesscallsinsights$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBusinessCallsInsightsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBusinessCallsInsightsResponse>>;
     list(
       params: Params$Resource$Locations$Businesscallsinsights$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -670,8 +670,8 @@ export namespace mybusinessbusinesscalls_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBusinessCallsInsightsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBusinessCallsInsightsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Businesscallsinsights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

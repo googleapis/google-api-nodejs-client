@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1120,11 +1119,11 @@ export namespace analyticsreporting_v4 {
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchGet(
       params?: Params$Resource$Reports$Batchget,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetReportsResponse>>;
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1155,8 +1154,8 @@ export namespace analyticsreporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetReportsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1225,11 +1224,11 @@ export namespace analyticsreporting_v4 {
     search(
       params: Params$Resource$Useractivity$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Useractivity$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>>;
     search(
       params: Params$Resource$Useractivity$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1264,8 +1263,8 @@ export namespace analyticsreporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Useractivity$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

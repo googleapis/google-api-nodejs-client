@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -311,11 +310,11 @@ export namespace areainsights_v1 {
     computeInsights(
       params: Params$Resource$V1$Computeinsights,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     computeInsights(
       params?: Params$Resource$V1$Computeinsights,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ComputeInsightsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ComputeInsightsResponse>>;
     computeInsights(
       params: Params$Resource$V1$Computeinsights,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -350,8 +349,8 @@ export namespace areainsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ComputeInsightsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ComputeInsightsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Computeinsights;
       let options = (optionsOrCallback || {}) as MethodOptions;

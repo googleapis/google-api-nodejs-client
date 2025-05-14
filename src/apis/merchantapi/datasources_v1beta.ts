@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -569,11 +568,11 @@ export namespace merchantapi_datasources_v1beta {
     create(
       params: Params$Resource$Accounts$Datasources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Datasources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     create(
       params: Params$Resource$Accounts$Datasources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -604,8 +603,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -659,11 +658,11 @@ export namespace merchantapi_datasources_v1beta {
     delete(
       params: Params$Resource$Accounts$Datasources$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Datasources$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Datasources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -694,8 +693,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -750,11 +749,11 @@ export namespace merchantapi_datasources_v1beta {
     fetch(
       params: Params$Resource$Accounts$Datasources$Fetch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetch(
       params?: Params$Resource$Accounts$Datasources$Fetch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     fetch(
       params: Params$Resource$Accounts$Datasources$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -785,8 +784,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -841,11 +840,11 @@ export namespace merchantapi_datasources_v1beta {
     get(
       params: Params$Resource$Accounts$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Accounts$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -876,8 +875,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -932,11 +931,11 @@ export namespace merchantapi_datasources_v1beta {
     list(
       params: Params$Resource$Accounts$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Datasources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Accounts$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -969,8 +968,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1024,11 +1023,11 @@ export namespace merchantapi_datasources_v1beta {
     patch(
       params: Params$Resource$Accounts$Datasources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Datasources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     patch(
       params: Params$Resource$Accounts$Datasources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1059,8 +1058,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1192,11 +1191,11 @@ export namespace merchantapi_datasources_v1beta {
     get(
       params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$FileUpload>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileUpload>>;
     get(
       params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1227,8 +1226,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$FileUpload>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileUpload>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Fileuploads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

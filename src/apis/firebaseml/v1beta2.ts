@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -319,11 +318,11 @@ export namespace firebaseml_v1beta2 {
     create(
       params: Params$Resource$Projects$Models$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Models$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Models$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -354,8 +353,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -410,11 +409,11 @@ export namespace firebaseml_v1beta2 {
     delete(
       params: Params$Resource$Projects$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Models$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -445,8 +444,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -498,11 +497,11 @@ export namespace firebaseml_v1beta2 {
     download(
       params: Params$Resource$Projects$Models$Download,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Projects$Models$Download,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DownloadModelResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DownloadModelResponse>>;
     download(
       params: Params$Resource$Projects$Models$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -537,8 +536,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DownloadModelResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DownloadModelResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -593,11 +592,11 @@ export namespace firebaseml_v1beta2 {
     get(
       params: Params$Resource$Projects$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Models$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Model>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Model>>;
     get(
       params: Params$Resource$Projects$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -628,8 +627,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Model>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -681,11 +680,11 @@ export namespace firebaseml_v1beta2 {
     list(
       params: Params$Resource$Projects$Models$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Models$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListModelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListModelsResponse>>;
     list(
       params: Params$Resource$Projects$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -716,8 +715,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListModelsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListModelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -772,11 +771,11 @@ export namespace firebaseml_v1beta2 {
     patch(
       params: Params$Resource$Projects$Models$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Models$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Models$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -807,8 +806,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -936,11 +935,11 @@ export namespace firebaseml_v1beta2 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -971,8 +970,8 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

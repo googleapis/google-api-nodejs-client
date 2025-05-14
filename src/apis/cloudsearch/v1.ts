@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -3798,11 +3797,11 @@ export namespace cloudsearch_v1 {
     checkAccess(
       params: Params$Resource$Debug$Datasources$Items$Checkaccess,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkAccess(
       params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CheckAccessResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckAccessResponse>>;
     checkAccess(
       params: Params$Resource$Debug$Datasources$Items$Checkaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3835,8 +3834,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CheckAccessResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckAccessResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Checkaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3891,11 +3890,11 @@ export namespace cloudsearch_v1 {
     searchByViewUrl(
       params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchByViewUrl(
       params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchItemsByViewUrlResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchItemsByViewUrlResponse>>;
     searchByViewUrl(
       params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3930,8 +3929,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchItemsByViewUrlResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchItemsByViewUrlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4024,11 +4023,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>>;
     list(
       params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4063,8 +4062,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4161,11 +4160,13 @@ export namespace cloudsearch_v1 {
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listForunmappedidentity(
       params?: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListItemNamesForUnmappedIdentityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListItemNamesForUnmappedIdentityResponse>
+    >;
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4200,8 +4201,10 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListItemNamesForUnmappedIdentityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListItemNamesForUnmappedIdentityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4293,11 +4296,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Debug$Identitysources$Unmappedids$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Debug$Identitysources$Unmappedids$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>>;
     list(
       params: Params$Resource$Debug$Identitysources$Unmappedids$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4332,8 +4335,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUnmappedIdentitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Identitysources$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4432,11 +4435,11 @@ export namespace cloudsearch_v1 {
     deleteSchema(
       params: Params$Resource$Indexing$Datasources$Deleteschema,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteSchema(
       params?: Params$Resource$Indexing$Datasources$Deleteschema,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deleteSchema(
       params: Params$Resource$Indexing$Datasources$Deleteschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4467,8 +4470,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Deleteschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4523,11 +4526,11 @@ export namespace cloudsearch_v1 {
     getSchema(
       params: Params$Resource$Indexing$Datasources$Getschema,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSchema(
       params?: Params$Resource$Indexing$Datasources$Getschema,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Schema>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Schema>>;
     getSchema(
       params: Params$Resource$Indexing$Datasources$Getschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4558,8 +4561,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Schema>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Getschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4614,11 +4617,11 @@ export namespace cloudsearch_v1 {
     updateSchema(
       params: Params$Resource$Indexing$Datasources$Updateschema,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSchema(
       params?: Params$Resource$Indexing$Datasources$Updateschema,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateSchema(
       params: Params$Resource$Indexing$Datasources$Updateschema,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4649,8 +4652,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Updateschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4747,11 +4750,11 @@ export namespace cloudsearch_v1 {
     delete(
       params: Params$Resource$Indexing$Datasources$Items$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Indexing$Datasources$Items$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Indexing$Datasources$Items$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4782,8 +4785,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4838,11 +4841,11 @@ export namespace cloudsearch_v1 {
     deleteQueueItems(
       params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteQueueItems(
       params?: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deleteQueueItems(
       params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4873,8 +4876,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4929,11 +4932,11 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Indexing$Datasources$Items$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Indexing$Datasources$Items$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Item>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Item>>;
     get(
       params: Params$Resource$Indexing$Datasources$Items$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4964,8 +4967,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Item>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5020,11 +5023,11 @@ export namespace cloudsearch_v1 {
     index(
       params: Params$Resource$Indexing$Datasources$Items$Index,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     index(
       params?: Params$Resource$Indexing$Datasources$Items$Index,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     index(
       params: Params$Resource$Indexing$Datasources$Items$Index,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5055,8 +5058,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Index;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5111,11 +5114,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Indexing$Datasources$Items$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Indexing$Datasources$Items$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListItemsResponse>>;
     list(
       params: Params$Resource$Indexing$Datasources$Items$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5146,8 +5149,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListItemsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5202,11 +5205,11 @@ export namespace cloudsearch_v1 {
     poll(
       params: Params$Resource$Indexing$Datasources$Items$Poll,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     poll(
       params?: Params$Resource$Indexing$Datasources$Items$Poll,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PollItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PollItemsResponse>>;
     poll(
       params: Params$Resource$Indexing$Datasources$Items$Poll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5237,8 +5240,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PollItemsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PollItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Poll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5293,11 +5296,11 @@ export namespace cloudsearch_v1 {
     push(
       params: Params$Resource$Indexing$Datasources$Items$Push,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     push(
       params?: Params$Resource$Indexing$Datasources$Items$Push,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Item>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Item>>;
     push(
       params: Params$Resource$Indexing$Datasources$Items$Push,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5328,8 +5331,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Item>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Push;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5384,11 +5387,11 @@ export namespace cloudsearch_v1 {
     unreserve(
       params: Params$Resource$Indexing$Datasources$Items$Unreserve,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unreserve(
       params?: Params$Resource$Indexing$Datasources$Items$Unreserve,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unreserve(
       params: Params$Resource$Indexing$Datasources$Items$Unreserve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5419,8 +5422,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Unreserve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5475,11 +5478,11 @@ export namespace cloudsearch_v1 {
     upload(
       params: Params$Resource$Indexing$Datasources$Items$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Indexing$Datasources$Items$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$UploadItemRef>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadItemRef>>;
     upload(
       params: Params$Resource$Indexing$Datasources$Items$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5510,8 +5513,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$UploadItemRef>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadItemRef>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5711,11 +5714,11 @@ export namespace cloudsearch_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Media>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Media>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5746,8 +5749,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Media>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5841,11 +5844,11 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5876,8 +5879,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5942,11 +5945,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Operations$Lro$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$Lro$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$Lro$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5979,8 +5982,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Lro$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6061,11 +6064,11 @@ export namespace cloudsearch_v1 {
     debugSearch(
       params: Params$Resource$Query$Debugsearch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     debugSearch(
       params?: Params$Resource$Query$Debugsearch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DebugResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DebugResponse>>;
     debugSearch(
       params: Params$Resource$Query$Debugsearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6096,8 +6099,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DebugResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DebugResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Query$Debugsearch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6152,11 +6155,11 @@ export namespace cloudsearch_v1 {
     removeActivity(
       params: Params$Resource$Query$Removeactivity,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeActivity(
       params?: Params$Resource$Query$Removeactivity,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RemoveActivityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemoveActivityResponse>>;
     removeActivity(
       params: Params$Resource$Query$Removeactivity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6191,8 +6194,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RemoveActivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemoveActivityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Query$Removeactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6247,11 +6250,11 @@ export namespace cloudsearch_v1 {
     search(
       params: Params$Resource$Query$Search,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Query$Search,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>;
     search(
       params: Params$Resource$Query$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6282,8 +6285,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6334,11 +6337,11 @@ export namespace cloudsearch_v1 {
     suggest(
       params: Params$Resource$Query$Suggest,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     suggest(
       params?: Params$Resource$Query$Suggest,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SuggestResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SuggestResponse>>;
     suggest(
       params: Params$Resource$Query$Suggest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6369,8 +6372,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SuggestResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SuggestResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Suggest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6455,11 +6458,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Query$Sources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Query$Sources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListQuerySourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListQuerySourcesResponse>>;
     list(
       params: Params$Resource$Query$Sources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6492,8 +6495,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListQuerySourcesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListQuerySourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Query$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6582,11 +6585,11 @@ export namespace cloudsearch_v1 {
     getCustomer(
       params: Params$Resource$Settings$Getcustomer,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getCustomer(
       params?: Params$Resource$Settings$Getcustomer,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CustomerSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomerSettings>>;
     getCustomer(
       params: Params$Resource$Settings$Getcustomer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6617,8 +6620,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CustomerSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomerSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Getcustomer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6673,11 +6676,11 @@ export namespace cloudsearch_v1 {
     updateCustomer(
       params: Params$Resource$Settings$Updatecustomer,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateCustomer(
       params?: Params$Resource$Settings$Updatecustomer,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     updateCustomer(
       params: Params$Resource$Settings$Updatecustomer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6708,8 +6711,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Updatecustomer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6786,11 +6789,11 @@ export namespace cloudsearch_v1 {
     create(
       params: Params$Resource$Settings$Datasources$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Settings$Datasources$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Settings$Datasources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6821,8 +6824,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6877,11 +6880,11 @@ export namespace cloudsearch_v1 {
     delete(
       params: Params$Resource$Settings$Datasources$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Settings$Datasources$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Settings$Datasources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6912,8 +6915,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6968,11 +6971,11 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Settings$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Settings$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Settings$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7003,8 +7006,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DataSource>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7059,11 +7062,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Settings$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Settings$Datasources$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListDataSourceResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourceResponse>>;
     list(
       params: Params$Resource$Settings$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7096,8 +7099,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListDataSourceResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7152,11 +7155,11 @@ export namespace cloudsearch_v1 {
     patch(
       params: Params$Resource$Settings$Datasources$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Settings$Datasources$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Settings$Datasources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7187,8 +7190,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7243,11 +7246,11 @@ export namespace cloudsearch_v1 {
     update(
       params: Params$Resource$Settings$Datasources$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Settings$Datasources$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Settings$Datasources$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7278,8 +7281,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7418,11 +7421,11 @@ export namespace cloudsearch_v1 {
     create(
       params: Params$Resource$Settings$Searchapplications$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Settings$Searchapplications$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Settings$Searchapplications$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7453,8 +7456,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7509,11 +7512,11 @@ export namespace cloudsearch_v1 {
     delete(
       params: Params$Resource$Settings$Searchapplications$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Settings$Searchapplications$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Settings$Searchapplications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7544,8 +7547,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7600,11 +7603,11 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Settings$Searchapplications$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Settings$Searchapplications$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$SearchApplication>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchApplication>>;
     get(
       params: Params$Resource$Settings$Searchapplications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7635,8 +7638,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$SearchApplication>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchApplication>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7691,11 +7694,11 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Settings$Searchapplications$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Settings$Searchapplications$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListSearchApplicationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSearchApplicationsResponse>>;
     list(
       params: Params$Resource$Settings$Searchapplications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7730,8 +7733,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListSearchApplicationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSearchApplicationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7788,11 +7791,11 @@ export namespace cloudsearch_v1 {
     patch(
       params: Params$Resource$Settings$Searchapplications$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Settings$Searchapplications$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Settings$Searchapplications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7823,8 +7826,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7879,11 +7882,11 @@ export namespace cloudsearch_v1 {
     reset(
       params: Params$Resource$Settings$Searchapplications$Reset,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Settings$Searchapplications$Reset,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     reset(
       params: Params$Resource$Settings$Searchapplications$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7914,8 +7917,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7970,11 +7973,11 @@ export namespace cloudsearch_v1 {
     update(
       params: Params$Resource$Settings$Searchapplications$Update,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Settings$Searchapplications$Update,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Settings$Searchapplications$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8005,8 +8008,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8165,11 +8168,11 @@ export namespace cloudsearch_v1 {
     getIndex(
       params: Params$Resource$Stats$Getindex,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIndex(
       params?: Params$Resource$Stats$Getindex,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetCustomerIndexStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerIndexStatsResponse>>;
     getIndex(
       params: Params$Resource$Stats$Getindex,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8204,8 +8207,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetCustomerIndexStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerIndexStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getindex;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8258,11 +8261,11 @@ export namespace cloudsearch_v1 {
     getQuery(
       params: Params$Resource$Stats$Getquery,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getQuery(
       params?: Params$Resource$Stats$Getquery,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetCustomerQueryStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerQueryStatsResponse>>;
     getQuery(
       params: Params$Resource$Stats$Getquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8297,8 +8300,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetCustomerQueryStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerQueryStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8351,11 +8354,13 @@ export namespace cloudsearch_v1 {
     getSearchapplication(
       params: Params$Resource$Stats$Getsearchapplication,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSearchapplication(
       params?: Params$Resource$Stats$Getsearchapplication,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetCustomerSearchApplicationStatsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetCustomerSearchApplicationStatsResponse>
+    >;
     getSearchapplication(
       params: Params$Resource$Stats$Getsearchapplication,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8390,8 +8395,10 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetCustomerSearchApplicationStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetCustomerSearchApplicationStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$Getsearchapplication;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8448,11 +8455,11 @@ export namespace cloudsearch_v1 {
     getSession(
       params: Params$Resource$Stats$Getsession,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSession(
       params?: Params$Resource$Stats$Getsession,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetCustomerSessionStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerSessionStatsResponse>>;
     getSession(
       params: Params$Resource$Stats$Getsession,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8487,8 +8494,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetCustomerSessionStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerSessionStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getsession;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8541,11 +8548,11 @@ export namespace cloudsearch_v1 {
     getUser(
       params: Params$Resource$Stats$Getuser,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getUser(
       params?: Params$Resource$Stats$Getuser,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetCustomerUserStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerUserStatsResponse>>;
     getUser(
       params: Params$Resource$Stats$Getuser,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8580,8 +8587,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetCustomerUserStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetCustomerUserStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8782,11 +8789,11 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Stats$Index$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Stats$Index$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetDataSourceIndexStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetDataSourceIndexStatsResponse>>;
     get(
       params: Params$Resource$Stats$Index$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8821,8 +8828,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetDataSourceIndexStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetDataSourceIndexStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$Index$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8929,11 +8936,13 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Stats$Query$Searchapplications$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Stats$Query$Searchapplications$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetSearchApplicationQueryStatsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetSearchApplicationQueryStatsResponse>
+    >;
     get(
       params: Params$Resource$Stats$Query$Searchapplications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8968,8 +8977,10 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetSearchApplicationQueryStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetSearchApplicationQueryStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$Query$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9076,11 +9087,13 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Stats$Session$Searchapplications$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Stats$Session$Searchapplications$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetSearchApplicationSessionStatsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetSearchApplicationSessionStatsResponse>
+    >;
     get(
       params: Params$Resource$Stats$Session$Searchapplications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9115,8 +9128,10 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetSearchApplicationSessionStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetSearchApplicationSessionStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$Session$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9223,11 +9238,13 @@ export namespace cloudsearch_v1 {
     get(
       params: Params$Resource$Stats$User$Searchapplications$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Stats$User$Searchapplications$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GetSearchApplicationUserStatsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetSearchApplicationUserStatsResponse>
+    >;
     get(
       params: Params$Resource$Stats$User$Searchapplications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9262,8 +9279,10 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GetSearchApplicationUserStatsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetSearchApplicationUserStatsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$User$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9359,11 +9378,11 @@ export namespace cloudsearch_v1 {
     initializeCustomer(
       params: Params$Resource$V1$Initializecustomer,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     initializeCustomer(
       params?: Params$Resource$V1$Initializecustomer,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     initializeCustomer(
       params: Params$Resource$V1$Initializecustomer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9394,8 +9413,8 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Initializecustomer;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -290,6 +289,14 @@ export namespace cloudfunctions_v1 {
      * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).
      */
     runtime?: string | null;
+    /**
+     * Output only.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Secret environment variables configuration.
      */
@@ -741,11 +748,11 @@ export namespace cloudfunctions_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -776,8 +783,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -829,11 +836,11 @@ export namespace cloudfunctions_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -866,8 +873,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -962,11 +969,11 @@ export namespace cloudfunctions_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -999,8 +1006,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1087,11 +1094,11 @@ export namespace cloudfunctions_v1 {
     call(
       params: Params$Resource$Projects$Locations$Functions$Call,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     call(
       params?: Params$Resource$Projects$Locations$Functions$Call,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>>;
     call(
       params: Params$Resource$Projects$Locations$Functions$Call,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1124,8 +1131,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Call;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1178,11 +1185,11 @@ export namespace cloudfunctions_v1 {
     create(
       params: Params$Resource$Projects$Locations$Functions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Functions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Functions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1213,8 +1220,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1270,11 +1277,11 @@ export namespace cloudfunctions_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Functions$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Functions$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Functions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1305,8 +1312,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1359,11 +1366,11 @@ export namespace cloudfunctions_v1 {
     generateDownloadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDownloadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>>;
     generateDownloadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1398,8 +1405,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1456,11 +1463,11 @@ export namespace cloudfunctions_v1 {
     generateUploadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateUploadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>>;
     generateUploadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1495,8 +1502,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1552,11 +1559,11 @@ export namespace cloudfunctions_v1 {
     get(
       params: Params$Resource$Projects$Locations$Functions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Functions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CloudFunction>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CloudFunction>>;
     get(
       params: Params$Resource$Projects$Locations$Functions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1587,8 +1594,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CloudFunction>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CloudFunction>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1641,11 +1648,11 @@ export namespace cloudfunctions_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Functions$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Functions$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Functions$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1676,8 +1683,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1734,11 +1741,11 @@ export namespace cloudfunctions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Functions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Functions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Functions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1771,8 +1778,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1828,11 +1835,11 @@ export namespace cloudfunctions_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Functions$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Functions$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Functions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1863,8 +1870,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1917,11 +1924,11 @@ export namespace cloudfunctions_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Functions$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Functions$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Functions$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1952,8 +1959,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2010,11 +2017,11 @@ export namespace cloudfunctions_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Functions$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Functions$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Functions$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2049,8 +2056,8 @@ export namespace cloudfunctions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

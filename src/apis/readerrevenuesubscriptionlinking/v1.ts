@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -203,11 +202,11 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     delete(
       params: Params$Resource$Publications$Readers$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Publications$Readers$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>>;
     delete(
       params: Params$Resource$Publications$Readers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -240,8 +239,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -295,11 +294,11 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     get(
       params: Params$Resource$Publications$Readers$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Publications$Readers$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Reader>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reader>>;
     get(
       params: Params$Resource$Publications$Readers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -330,8 +329,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Reader>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reader>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -385,11 +384,11 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     getEntitlements(
       params: Params$Resource$Publications$Readers$Getentitlements,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEntitlements(
       params?: Params$Resource$Publications$Readers$Getentitlements,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>;
     getEntitlements(
       params: Params$Resource$Publications$Readers$Getentitlements,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -422,8 +421,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Getentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -477,11 +476,11 @@ export namespace readerrevenuesubscriptionlinking_v1 {
     updateEntitlements(
       params: Params$Resource$Publications$Readers$Updateentitlements,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateEntitlements(
       params?: Params$Resource$Publications$Readers$Updateentitlements,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>;
     updateEntitlements(
       params: Params$Resource$Publications$Readers$Updateentitlements,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -514,8 +513,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Updateentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;

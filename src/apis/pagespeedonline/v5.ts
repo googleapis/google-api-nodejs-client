@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -843,11 +842,11 @@ export namespace pagespeedonline_v5 {
     runpagespeed(
       params: Params$Resource$Pagespeedapi$Runpagespeed,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runpagespeed(
       params?: Params$Resource$Pagespeedapi$Runpagespeed,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PagespeedApiPagespeedResponseV5>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PagespeedApiPagespeedResponseV5>>;
     runpagespeed(
       params: Params$Resource$Pagespeedapi$Runpagespeed,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -882,8 +881,8 @@ export namespace pagespeedonline_v5 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PagespeedApiPagespeedResponseV5>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PagespeedApiPagespeedResponseV5>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;

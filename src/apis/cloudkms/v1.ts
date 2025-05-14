@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -831,7 +830,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeys that matched the query.
+     * The total number of CryptoKeys that matched the query. This field is not populated if ListCryptoKeysRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -848,7 +847,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeyVersions that matched the query.
+     * The total number of CryptoKeyVersions that matched the query. This field is not populated if ListCryptoKeyVersionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -865,7 +864,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of EkmConnections that matched the query.
+     * The total number of EkmConnections that matched the query. This field is not populated if ListEkmConnectionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -882,7 +881,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of ImportJobs that matched the query.
+     * The total number of ImportJobs that matched the query. This field is not populated if ListImportJobsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -912,7 +911,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of KeyRings that matched the query.
+     * The total number of KeyRings that matched the query. This field is not populated if ListKeyRingsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -1392,11 +1391,11 @@ export namespace cloudkms_v1 {
     getAutokeyConfig(
       params: Params$Resource$Folders$Getautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAutokeyConfig(
       params?: Params$Resource$Folders$Getautokeyconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AutokeyConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
     getAutokeyConfig(
       params: Params$Resource$Folders$Getautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1429,8 +1428,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AutokeyConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1482,11 +1481,11 @@ export namespace cloudkms_v1 {
     updateAutokeyConfig(
       params: Params$Resource$Folders$Updateautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAutokeyConfig(
       params?: Params$Resource$Folders$Updateautokeyconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AutokeyConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
     updateAutokeyConfig(
       params: Params$Resource$Folders$Updateautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1519,8 +1518,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AutokeyConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1605,11 +1604,13 @@ export namespace cloudkms_v1 {
     showEffectiveAutokeyConfig(
       params: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     showEffectiveAutokeyConfig(
       params?: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
+    >;
     showEffectiveAutokeyConfig(
       params: Params$Resource$Projects$Showeffectiveautokeyconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1644,8 +1645,10 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Showeffectiveautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1733,11 +1736,11 @@ export namespace cloudkms_v1 {
     generateRandomBytes(
       params: Params$Resource$Projects$Locations$Generaterandombytes,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateRandomBytes(
       params?: Params$Resource$Projects$Locations$Generaterandombytes,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>>;
     generateRandomBytes(
       params: Params$Resource$Projects$Locations$Generaterandombytes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1772,8 +1775,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Generaterandombytes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1828,11 +1831,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1863,8 +1866,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Location>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1916,11 +1919,11 @@ export namespace cloudkms_v1 {
     getEkmConfig(
       params: Params$Resource$Projects$Locations$Getekmconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEkmConfig(
       params?: Params$Resource$Projects$Locations$Getekmconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EkmConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>;
     getEkmConfig(
       params: Params$Resource$Projects$Locations$Getekmconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1951,8 +1954,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EkmConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getekmconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2004,11 +2007,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2041,8 +2044,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2097,11 +2100,11 @@ export namespace cloudkms_v1 {
     updateEkmConfig(
       params: Params$Resource$Projects$Locations$Updateekmconfig,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateEkmConfig(
       params?: Params$Resource$Projects$Locations$Updateekmconfig,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EkmConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>;
     updateEkmConfig(
       params: Params$Resource$Projects$Locations$Updateekmconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2132,8 +2135,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EkmConfig>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EkmConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updateekmconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2258,11 +2261,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2293,8 +2296,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2350,11 +2353,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2385,8 +2388,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2442,11 +2445,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,8 +2484,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2581,11 +2584,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>;
     create(
       params: Params$Resource$Projects$Locations$Ekmconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2616,8 +2619,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2672,11 +2675,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>;
     get(
       params: Params$Resource$Projects$Locations$Ekmconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2707,8 +2710,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2760,11 +2763,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2795,8 +2798,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2852,11 +2855,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Ekmconnections$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Ekmconnections$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Ekmconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2891,8 +2894,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2947,11 +2950,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EkmConnection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>;
     patch(
       params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2982,8 +2985,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EkmConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3035,11 +3038,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3070,8 +3073,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,11 +3130,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3166,8 +3169,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3223,11 +3226,11 @@ export namespace cloudkms_v1 {
     verifyConnectivity(
       params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verifyConnectivity(
       params?: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>>;
     verifyConnectivity(
       params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3262,8 +3265,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3431,11 +3434,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyhandles$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Keyhandles$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Keyhandles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3466,8 +3469,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3522,11 +3525,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyhandles$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Keyhandles$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$KeyHandle>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$KeyHandle>>;
     get(
       params: Params$Resource$Projects$Locations$Keyhandles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3557,8 +3560,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$KeyHandle>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$KeyHandle>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3610,11 +3613,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyhandles$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Keyhandles$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Keyhandles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3647,8 +3650,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3761,11 +3764,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$KeyRing>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3796,8 +3799,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$KeyRing>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3852,11 +3855,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$KeyRing>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3887,8 +3890,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$KeyRing>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$KeyRing>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3940,11 +3943,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3975,8 +3978,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4031,11 +4034,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4068,8 +4071,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4124,11 +4127,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4159,8 +4162,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4215,11 +4218,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4254,8 +4257,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4405,11 +4408,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4440,8 +4443,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4497,11 +4500,11 @@ export namespace cloudkms_v1 {
     decrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     decrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$DecryptResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DecryptResponse>>;
     decrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4532,8 +4535,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$DecryptResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DecryptResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4589,11 +4592,11 @@ export namespace cloudkms_v1 {
     encrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     encrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$EncryptResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EncryptResponse>>;
     encrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4624,8 +4627,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$EncryptResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EncryptResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4681,11 +4684,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4716,8 +4719,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4770,11 +4773,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4805,8 +4808,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4862,11 +4865,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4899,8 +4902,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4956,11 +4959,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4991,8 +4994,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5045,11 +5048,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5080,8 +5083,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5137,11 +5140,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5176,8 +5179,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5233,11 +5236,11 @@ export namespace cloudkms_v1 {
     updatePrimaryVersion(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePrimaryVersion(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>;
     updatePrimaryVersion(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5270,8 +5273,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5476,11 +5479,11 @@ export namespace cloudkms_v1 {
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asymmetricDecrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>>;
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5515,8 +5518,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5572,11 +5575,11 @@ export namespace cloudkms_v1 {
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     asymmetricSign(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>>;
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5611,8 +5614,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5668,11 +5671,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5703,8 +5706,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5760,11 +5763,11 @@ export namespace cloudkms_v1 {
     destroy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     destroy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     destroy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5795,8 +5798,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5852,11 +5855,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5887,8 +5890,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5941,11 +5944,11 @@ export namespace cloudkms_v1 {
     getPublicKey(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getPublicKey(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$PublicKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PublicKey>>;
     getPublicKey(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5976,8 +5979,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$PublicKey>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PublicKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6033,11 +6036,11 @@ export namespace cloudkms_v1 {
     import(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     import(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6068,8 +6071,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6125,11 +6128,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6164,8 +6167,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6223,11 +6226,11 @@ export namespace cloudkms_v1 {
     macSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     macSign(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$MacSignResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MacSignResponse>>;
     macSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6258,8 +6261,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$MacSignResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MacSignResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6315,11 +6318,11 @@ export namespace cloudkms_v1 {
     macVerify(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     macVerify(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>>;
     macVerify(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6350,8 +6353,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6407,11 +6410,11 @@ export namespace cloudkms_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6442,8 +6445,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6496,11 +6499,11 @@ export namespace cloudkms_v1 {
     rawDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rawDecrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>>;
     rawDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6531,8 +6534,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6588,11 +6591,11 @@ export namespace cloudkms_v1 {
     rawEncrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rawEncrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>>;
     rawEncrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6623,8 +6626,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6680,11 +6683,11 @@ export namespace cloudkms_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>;
     restore(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6715,8 +6718,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6961,11 +6964,11 @@ export namespace cloudkms_v1 {
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ImportJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6996,8 +6999,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ImportJob>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7053,11 +7056,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ImportJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7088,8 +7091,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ImportJob>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImportJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7142,11 +7145,11 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7177,8 +7180,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7234,11 +7237,11 @@ export namespace cloudkms_v1 {
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7271,8 +7274,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7328,11 +7331,11 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7363,8 +7366,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7420,11 +7423,11 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7459,8 +7462,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7605,11 +7608,11 @@ export namespace cloudkms_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7640,8 +7643,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Operation>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

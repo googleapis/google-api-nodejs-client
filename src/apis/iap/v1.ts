@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -668,11 +667,11 @@ export namespace iap_v1 {
     create(
       params: Params$Resource$Projects$Brands$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Brands$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Brand>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Brand>>;
     create(
       params: Params$Resource$Projects$Brands$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -703,8 +702,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Brand>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Brand>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -759,11 +758,11 @@ export namespace iap_v1 {
     get(
       params: Params$Resource$Projects$Brands$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Brands$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Brand>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Brand>>;
     get(
       params: Params$Resource$Projects$Brands$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -794,8 +793,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Brand>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Brand>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -847,11 +846,11 @@ export namespace iap_v1 {
     list(
       params: Params$Resource$Projects$Brands$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Brands$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListBrandsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBrandsResponse>>;
     list(
       params: Params$Resource$Projects$Brands$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -882,8 +881,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListBrandsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBrandsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -972,11 +971,11 @@ export namespace iap_v1 {
     create(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>;
     create(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1011,8 +1010,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1068,11 +1067,11 @@ export namespace iap_v1 {
     delete(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1103,8 +1102,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1157,11 +1156,11 @@ export namespace iap_v1 {
     get(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>;
     get(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1194,8 +1193,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1248,11 +1247,13 @@ export namespace iap_v1 {
     list(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListIdentityAwareProxyClientsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListIdentityAwareProxyClientsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1287,8 +1288,10 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListIdentityAwareProxyClientsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListIdentityAwareProxyClientsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1346,11 +1349,11 @@ export namespace iap_v1 {
     resetSecret(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetSecret(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>;
     resetSecret(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1385,8 +1388,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IdentityAwareProxyClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1523,11 +1526,11 @@ export namespace iap_v1 {
     create(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>;
     create(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1558,8 +1561,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1615,11 +1618,11 @@ export namespace iap_v1 {
     delete(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1650,8 +1653,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Empty>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1704,11 +1707,11 @@ export namespace iap_v1 {
     get(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>;
     get(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1739,8 +1742,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1793,11 +1796,11 @@ export namespace iap_v1 {
     list(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ListTunnelDestGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTunnelDestGroupsResponse>>;
     list(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1832,8 +1835,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ListTunnelDestGroupsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTunnelDestGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1891,11 +1894,11 @@ export namespace iap_v1 {
     patch(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>;
     patch(
       params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1926,8 +1929,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TunnelDestGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2049,11 +2052,11 @@ export namespace iap_v1 {
     getIamPolicy(
       params: Params$Resource$V1$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$V1$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$V1$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2084,8 +2087,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2139,11 +2142,11 @@ export namespace iap_v1 {
     getIapSettings(
       params: Params$Resource$V1$Getiapsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIapSettings(
       params?: Params$Resource$V1$Getiapsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IapSettings>>;
     getIapSettings(
       params: Params$Resource$V1$Getiapsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2174,8 +2177,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IapSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Getiapsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2230,11 +2233,11 @@ export namespace iap_v1 {
     setIamPolicy(
       params: Params$Resource$V1$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$V1$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$V1$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2265,8 +2268,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$Policy>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2320,11 +2323,11 @@ export namespace iap_v1 {
     testIamPermissions(
       params: Params$Resource$V1$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$V1$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$V1$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2359,8 +2362,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2415,11 +2418,11 @@ export namespace iap_v1 {
     updateIapSettings(
       params: Params$Resource$V1$Updateiapsettings,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateIapSettings(
       params?: Params$Resource$V1$Updateiapsettings,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$IapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IapSettings>>;
     updateIapSettings(
       params: Params$Resource$V1$Updateiapsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2450,8 +2453,8 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$IapSettings>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Updateiapsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2506,11 +2509,13 @@ export namespace iap_v1 {
     validateAttributeExpression(
       params: Params$Resource$V1$Validateattributeexpression,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     validateAttributeExpression(
       params?: Params$Resource$V1$Validateattributeexpression,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$ValidateIapAttributeExpressionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ValidateIapAttributeExpressionResponse>
+    >;
     validateAttributeExpression(
       params: Params$Resource$V1$Validateattributeexpression,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2545,8 +2550,10 @@ export namespace iap_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$ValidateIapAttributeExpressionResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ValidateIapAttributeExpressionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Validateattributeexpression;
       let options = (optionsOrCallback || {}) as MethodOptions;

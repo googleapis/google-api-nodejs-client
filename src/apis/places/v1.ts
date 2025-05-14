@@ -23,7 +23,6 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
   GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
@@ -1734,11 +1733,13 @@ export namespace places_v1 {
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     autocomplete(
       params?: Params$Resource$Places$Autocomplete,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+    >;
     autocomplete(
       params: Params$Resource$Places$Autocomplete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1773,8 +1774,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Autocomplete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1831,11 +1834,11 @@ export namespace places_v1 {
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Places$Get,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>>;
     get(
       params: Params$Resource$Places$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1868,8 +1871,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Places$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1920,11 +1923,13 @@ export namespace places_v1 {
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchNearby(
       params?: Params$Resource$Places$Searchnearby,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+    >;
     searchNearby(
       params: Params$Resource$Places$Searchnearby,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1959,8 +1964,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchnearby;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2017,11 +2024,13 @@ export namespace places_v1 {
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchText(
       params?: Params$Resource$Places$Searchtext,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
+    >;
     searchText(
       params: Params$Resource$Places$Searchtext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2056,8 +2065,10 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchtext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2161,11 +2172,11 @@ export namespace places_v1 {
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions
-    ): GaxiosResponseWithHTTP2<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMedia(
       params?: Params$Resource$Places$Photos$Getmedia,
       options?: MethodOptions
-    ): GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>>;
     getMedia(
       params: Params$Resource$Places$Photos$Getmedia,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2200,8 +2211,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>
-      | GaxiosResponseWithHTTP2<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Photos$Getmedia;
       let options = (optionsOrCallback || {}) as MethodOptions;
