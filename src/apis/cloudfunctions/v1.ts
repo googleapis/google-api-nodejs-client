@@ -290,14 +290,6 @@ export namespace cloudfunctions_v1 {
      */
     runtime?: string | null;
     /**
-     * Output only.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Secret environment variables configuration.
      */
     secretEnvironmentVariables?: Schema$SecretEnvVar[];

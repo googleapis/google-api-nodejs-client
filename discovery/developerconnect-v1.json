@@ -1405,7 +1405,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250414",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2447,8 +2447,7 @@
             "SENTRY",
             "ROVO",
             "NEW_RELIC",
-            "DATASTAX",
-            "DYNATRACE"
+            "DATASTAX"
           ],
           "enumDescriptions": [
             "No system provider specified.",
@@ -2458,8 +2457,7 @@
             "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
             "Rovo provider. Must select the \"rovo\" scope.",
             "New Relic provider. No scopes are allowed.",
-            "Datastax provider. No scopes are allowed.",
-            "Dynatrace provider."
+            "Datastax provider. No scopes are allowed."
           ],
           "type": "string"
         }

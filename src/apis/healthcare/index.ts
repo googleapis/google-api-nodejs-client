@@ -53,7 +53,6 @@ export {
   APIRequestContext,
   GoogleConfigurable,
   StreamMethodOptions,
-  GaxiosResponseWithHTTP2,
   MethodOptions,
   BodyResponseCallback,
 } from 'googleapis-common';

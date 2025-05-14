@@ -834,7 +834,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbProfile {
     /**
-     * Required. List of host addresses for a MongoDB cluster. For SRV connection format, this list must contain exactly one DNS host without a port. For Standard connection format, this list must contain all the required hosts in the cluster with their respective ports.
+     * Required. List of host addresses for a MongoDB cluster.
      */
     hostAddresses?: Schema$HostAddress[];
     /**
@@ -842,7 +842,7 @@ export namespace datastream_v1 {
      */
     password?: string | null;
     /**
-     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster. For SRV connection format, this field must be empty. For Standard connection format, this field must be specified.
+     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster.
      */
     replicaSet?: string | null;
     /**

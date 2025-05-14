@@ -155,15 +155,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$AuthConfig {
     /**
-     * Optional. List containing additional auth configs.
+     * List containing additional auth configs.
      */
     additionalVariables?: Schema$ConfigVariable[];
     /**
-     * Optional. Identifier key for auth config
+     * Identifier key for auth config
      */
     authKey?: string | null;
     /**
-     * Optional. The type of authentication configured.
+     * The type of authentication configured.
      */
     authType?: string | null;
     /**
@@ -388,7 +388,7 @@ export namespace connectors_v1 {
      */
     intValue?: string | null;
     /**
-     * Optional. Key of the config variable.
+     * Key of the config variable.
      */
     key?: string | null;
     /**
@@ -522,10 +522,6 @@ export namespace connectors_v1 {
      */
     envoyImageLocation?: string | null;
     /**
-     * Optional. Additional Oauth2.0 Auth config for EUA. If the connection is configured using non-OAuth authentication but OAuth needs to be used for EUA, this field can be populated with the OAuth config. This should be a OAuth2AuthCodeFlow Auth type only.
-     */
-    euaOauthAuthConfig?: Schema$AuthConfig;
-    /**
      * Optional. Eventing config of a connection
      */
     eventingConfig?: Schema$EventingConfig;
@@ -537,10 +533,6 @@ export namespace connectors_v1 {
      * Output only. Eventing Runtime Data.
      */
     eventingRuntimeData?: Schema$EventingRuntimeData;
-    /**
-     * Optional. Fallback on admin credentials for the connection. If this both auth_override_enabled and fallback_on_admin_credentials are set to true, the connection will use the admin credentials if the dynamic auth header is not present during auth override.
-     */
-    fallbackOnAdminCredentials?: boolean | null;
     /**
      * Output only. The name of the Hostname of the Service Directory service with TLS.
      */
@@ -766,10 +758,6 @@ export namespace connectors_v1 {
      */
     migrateTls?: boolean | null;
     /**
-     * Indicate whether connector is being migrated to use direct VPC egress.
-     */
-    networkEgressMode?: string | null;
-    /**
      * Indicate whether cloud spanner is required for connector job.
      */
     provisionCloudSpanner?: boolean | null;
@@ -799,7 +787,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorsLogConfig {
     /**
-     * Optional. Enabled represents whether logging is enabled or not for a connection.
+     * Enabled represents whether logging is enabled or not for a connection.
      */
     enabled?: boolean | null;
     /**
@@ -867,10 +855,6 @@ export namespace connectors_v1 {
      * Output only. Resource name of the Version. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}/versions/{version\} Only global location is supported for Connector resource.
      */
     name?: string | null;
-    /**
-     * Optional. The priority entity types for the connector version.
-     */
-    priorityEntityTypes?: Schema$PriorityEntityType[];
     /**
      * Output only. ReleaseVersion of the connector, for example: "1.0.1-alpha".
      */
@@ -1258,7 +1242,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$EncryptionKey {
     /**
-     * Optional. The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`. Will be empty string if google managed.
+     * The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`. Will be empty string if google managed.
      */
     kmsKeyName?: string | null;
     /**
@@ -1271,11 +1255,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$EndPoint {
     /**
-     * Optional. The URI of the Endpoint.
+     * The URI of the Endpoint.
      */
     endpointUri?: string | null;
     /**
-     * Optional. List of Header to be added to the Endpoint.
+     * List of Header to be added to the Endpoint.
      */
     headers?: Schema$Header[];
   }
@@ -1321,316 +1305,6 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
-   * AuthConfig defines details of a authentication type.
-   */
-  export interface Schema$EndUserAuthentication {
-    /**
-     * Optional. Config variables for the EndUserAuthentication.
-     */
-    configVariables?: Schema$EndUserAuthenticationConfigVariable[];
-    /**
-     * Output only. Created time.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Destination configs for the EndUserAuthentication.
-     */
-    destinationConfigs?: Schema$DestinationConfig[];
-    /**
-     * Optional. The EndUserAuthenticationConfig for the EndUserAuthentication.
-     */
-    endUserAuthenticationConfig?: Schema$EndUserAuthenticationConfig;
-    /**
-     * Optional. Labels for the EndUserAuthentication.
-     */
-    labels?: string[] | null;
-    /**
-     * Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project\}/locations/{location\}/connections/{connection\}/endUserAuthentications/{end_user_authentication\}
-     */
-    name?: string | null;
-    /**
-     * Optional. The destination to hit when we receive an event
-     */
-    notifyEndpointDestination?: Schema$EndUserAuthenticationNotifyEndpointDestination;
-    /**
-     * Optional. Roles for the EndUserAuthentication.
-     */
-    roles?: string[] | null;
-    /**
-     * Optional. Status of the EndUserAuthentication.
-     */
-    status?: Schema$EndUserAuthenticationEndUserAuthenticationStatus;
-    /**
-     * Output only. Updated time.
-     */
-    updateTime?: string | null;
-    /**
-     * Optional. The user id of the user.
-     */
-    userId?: string | null;
-  }
-  /**
-   * EndUserAuthenticationConfig defines details of a authentication configuration for EUC
-   */
-  export interface Schema$EndUserAuthenticationConfig {
-    /**
-     * Optional. List containing additional auth configs.
-     */
-    additionalVariables?: Schema$EndUserAuthenticationConfigVariable[];
-    /**
-     * Identifier key for auth config
-     */
-    authKey?: string | null;
-    /**
-     * The type of authentication configured.
-     */
-    authType?: string | null;
-    /**
-     * Oauth2AuthCodeFlow.
-     */
-    oauth2AuthCodeFlow?: Schema$EndUserAuthenticationConfigOauth2AuthCodeFlow;
-    /**
-     * Oauth2AuthCodeFlowGoogleManaged.
-     */
-    oauth2AuthCodeFlowGoogleManaged?: Schema$EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged;
-    /**
-     * Oauth2ClientCredentials.
-     */
-    oauth2ClientCredentials?: Schema$EndUserAuthenticationConfigOauth2ClientCredentials;
-    /**
-     * Oauth2JwtBearer.
-     */
-    oauth2JwtBearer?: Schema$EndUserAuthenticationConfigOauth2JwtBearer;
-    /**
-     * SSH Public Key.
-     */
-    sshPublicKey?: Schema$EndUserAuthenticationConfigSshPublicKey;
-    /**
-     * UserPassword.
-     */
-    userPassword?: Schema$EndUserAuthenticationConfigUserPassword;
-  }
-  /**
-   * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
-   */
-  export interface Schema$EndUserAuthenticationConfigOauth2AuthCodeFlow {
-    /**
-     * Optional. Authorization code to be exchanged for access and refresh tokens.
-     */
-    authCode?: string | null;
-    /**
-     * Optional. Auth URL for Authorization Code Flow
-     */
-    authUri?: string | null;
-    /**
-     * Optional. Client ID for user-provided OAuth app.
-     */
-    clientId?: string | null;
-    /**
-     * Optional. Client secret for user-provided OAuth app.
-     */
-    clientSecret?: Schema$EUASecret;
-    /**
-     * Optional. Whether to enable PKCE when the user performs the auth code flow.
-     */
-    enablePkce?: boolean | null;
-    /**
-     * Optional. Auth Code Data
-     */
-    oauthTokenData?: Schema$OAuthTokenData;
-    /**
-     * Optional. PKCE verifier to be used during the auth code exchange.
-     */
-    pkceVerifier?: string | null;
-    /**
-     * Optional. Redirect URI to be provided during the auth code exchange.
-     */
-    redirectUri?: string | null;
-    /**
-     * Optional. Scopes the connection will request when the user performs the auth code flow.
-     */
-    scopes?: string[] | null;
-  }
-  /**
-   * Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.
-   */
-  export interface Schema$EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged {
-    /**
-     * Optional. Authorization code to be exchanged for access and refresh tokens.
-     */
-    authCode?: string | null;
-    /**
-     * Auth Code Data
-     */
-    oauthTokenData?: Schema$OAuthTokenData;
-    /**
-     * Optional. Redirect URI to be provided during the auth code exchange.
-     */
-    redirectUri?: string | null;
-    /**
-     * Required. Scopes the connection will request when the user performs the auth code flow.
-     */
-    scopes?: string[] | null;
-  }
-  /**
-   * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
-   */
-  export interface Schema$EndUserAuthenticationConfigOauth2ClientCredentials {
-    /**
-     * The client identifier.
-     */
-    clientId?: string | null;
-    /**
-     * Required. string value or secret version containing the client secret.
-     */
-    clientSecret?: Schema$EUASecret;
-  }
-  /**
-   * Parameters to support JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication. See https://tools.ietf.org/html/rfc7523 for more details.
-   */
-  export interface Schema$EndUserAuthenticationConfigOauth2JwtBearer {
-    /**
-     * Required. secret version/value reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/strings/x/versions/x`.
-     */
-    clientKey?: Schema$EUASecret;
-    /**
-     * JwtClaims providers fields to generate the token.
-     */
-    jwtClaims?: Schema$EndUserAuthenticationConfigOauth2JwtBearerJwtClaims;
-  }
-  /**
-   * JWT claims used for the jwt-bearer authorization grant.
-   */
-  export interface Schema$EndUserAuthenticationConfigOauth2JwtBearerJwtClaims {
-    /**
-     * Value for the "aud" claim.
-     */
-    audience?: string | null;
-    /**
-     * Value for the "iss" claim.
-     */
-    issuer?: string | null;
-    /**
-     * Value for the "sub" claim.
-     */
-    subject?: string | null;
-  }
-  /**
-   * Parameters to support Ssh public key Authentication.
-   */
-  export interface Schema$EndUserAuthenticationConfigSshPublicKey {
-    /**
-     * Format of SSH Client cert.
-     */
-    certType?: string | null;
-    /**
-     * Required. SSH Client Cert. It should contain both public and private key.
-     */
-    sshClientCert?: Schema$EUASecret;
-    /**
-     * Required. Password (passphrase) for ssh client certificate if it has one.
-     */
-    sshClientCertPass?: Schema$EUASecret;
-    /**
-     * The user account used to authenticate.
-     */
-    username?: string | null;
-  }
-  /**
-   * Parameters to support Username and Password Authentication.
-   */
-  export interface Schema$EndUserAuthenticationConfigUserPassword {
-    /**
-     * Required. string value or secret version reference containing the password.
-     */
-    password?: Schema$EUASecret;
-    /**
-     * Username.
-     */
-    username?: string | null;
-  }
-  /**
-   * EndUserAuthenticationConfigVariable represents a configuration variable present in a EndUserAuthentication.
-   */
-  export interface Schema$EndUserAuthenticationConfigVariable {
-    /**
-     * Value is a bool.
-     */
-    boolValue?: boolean | null;
-    /**
-     * Value is an integer
-     */
-    intValue?: string | null;
-    /**
-     * Required. Key of the config variable.
-     */
-    key?: string | null;
-    /**
-     * Value is a secret
-     */
-    secretValue?: Schema$EUASecret;
-    /**
-     * Value is a string.
-     */
-    stringValue?: string | null;
-  }
-  /**
-   * EndUserAuthentication Status denotes the status of the EndUserAuthentication resource.
-   */
-  export interface Schema$EndUserAuthenticationEndUserAuthenticationStatus {
-    /**
-     * Output only. Description of the state.
-     */
-    description?: string | null;
-    /**
-     * Output only. State of Event Subscription resource.
-     */
-    state?: string | null;
-  }
-  /**
-   * Message for NotifyEndpointDestination Destination to hit when the refresh token is expired.
-   */
-  export interface Schema$EndUserAuthenticationNotifyEndpointDestination {
-    /**
-     * Optional. OPTION 1: Hit an endpoint when the refresh token is expired.
-     */
-    endpoint?: Schema$EndUserAuthenticationNotifyEndpointDestinationEndPoint;
-    /**
-     * Required. Service account needed for runtime plane to notify the backend.
-     */
-    serviceAccount?: string | null;
-    /**
-     * Required. type of the destination
-     */
-    type?: string | null;
-  }
-  /**
-   * Endpoint message includes details of the Destination endpoint.
-   */
-  export interface Schema$EndUserAuthenticationNotifyEndpointDestinationEndPoint {
-    /**
-     * Required. The URI of the Endpoint.
-     */
-    endpointUri?: string | null;
-    /**
-     * Optional. List of Header to be added to the Endpoint.
-     */
-    headers?: Schema$EndUserAuthenticationNotifyEndpointDestinationEndPointHeader[];
-  }
-  /**
-   * Header details for a given header to be added to Endpoint.
-   */
-  export interface Schema$EndUserAuthenticationNotifyEndpointDestinationEndPointHeader {
-    /**
-     * Required. Key of Header.
-     */
-    key?: string | null;
-    /**
-     * Required. Value of Header.
-     */
-    value?: string | null;
-  }
-  /**
    * Data enrichment configuration.
    */
   export interface Schema$EnrichmentConfig {
@@ -1651,19 +1325,6 @@ export namespace connectors_v1 {
      * Optional. Id of the option.
      */
     id?: string | null;
-  }
-  /**
-   * EUASecret provides a reference to entries in Secret Manager.
-   */
-  export interface Schema$EUASecret {
-    /**
-     * Optional. The plain string value of the secret.
-     */
-    secretValue?: string | null;
-    /**
-     * Optional. The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
-     */
-    secretVersion?: string | null;
   }
   /**
    * Eventing Configuration of a connection next: 18
@@ -1867,7 +1528,7 @@ export namespace connectors_v1 {
      */
     jms?: Schema$JMS;
     /**
-     * Required. Identifier. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
      */
     name?: string | null;
     /**
@@ -1904,11 +1565,11 @@ export namespace connectors_v1 {
      */
     pubsub?: Schema$PubSub;
     /**
-     * Optional. Service account needed for runtime plane to trigger IP workflow.
+     * Service account needed for runtime plane to trigger IP workflow.
      */
     serviceAccount?: string | null;
     /**
-     * Optional. type of the destination
+     * type of the destination
      */
     type?: string | null;
   }
@@ -2089,11 +1750,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$Header {
     /**
-     * Optional. Key of Header.
+     * Key of Header.
      */
     key?: string | null;
     /**
-     * Optional. Value of Header.
+     * Value of Header.
      */
     value?: string | null;
   }
@@ -2294,15 +1955,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$JwtClaims {
     /**
-     * Optional. Value for the "aud" claim.
+     * Value for the "aud" claim.
      */
     audience?: string | null;
     /**
-     * Optional. Value for the "iss" claim.
+     * Value for the "iss" claim.
      */
     issuer?: string | null;
     /**
-     * Optional. Value for the "sub" claim.
+     * Value for the "sub" claim.
      */
     subject?: string | null;
   }
@@ -2412,23 +2073,6 @@ export namespace connectors_v1 {
      * EndpointAttachments.
      */
     endpointAttachments?: Schema$EndpointAttachment[];
-    /**
-     * Next page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Locations that could not be reached.
-     */
-    unreachable?: string[] | null;
-  }
-  /**
-   * Response message for ConnectorsService.ListEndUserAuthentications
-   */
-  export interface Schema$ListEndUserAuthenticationsResponse {
-    /**
-     * Subscriptions.
-     */
-    endUserAuthentications?: Schema$EndUserAuthentication[];
     /**
      * Next page token.
      */
@@ -2610,11 +2254,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$LockConfig {
     /**
-     * Optional. Indicates whether or not the connection is locked.
+     * Indicates whether or not the connection is locked.
      */
     locked?: boolean | null;
     /**
-     * Optional. Describes why a connection is locked.
+     * Describes why a connection is locked.
      */
     reason?: string | null;
   }
@@ -2837,11 +2481,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. Maximum number of nodes in the runtime nodes.
+     * Maximum number of nodes in the runtime nodes.
      */
     maxNodeCount?: number | null;
     /**
-     * Optional. Minimum number of nodes in the runtime nodes.
+     * Minimum number of nodes in the runtime nodes.
      */
     minNodeCount?: number | null;
   }
@@ -2876,35 +2520,35 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2AuthCodeFlow {
     /**
-     * Optional. Authorization code to be exchanged for access and refresh tokens.
+     * Authorization code to be exchanged for access and refresh tokens.
      */
     authCode?: string | null;
     /**
-     * Optional. Auth URL for Authorization Code Flow
+     * Auth URL for Authorization Code Flow
      */
     authUri?: string | null;
     /**
-     * Optional. Client ID for user-provided OAuth app.
+     * Client ID for user-provided OAuth app.
      */
     clientId?: string | null;
     /**
-     * Optional. Client secret for user-provided OAuth app.
+     * Client secret for user-provided OAuth app.
      */
     clientSecret?: Schema$Secret;
     /**
-     * Optional. Whether to enable PKCE when the user performs the auth code flow.
+     * Whether to enable PKCE when the user performs the auth code flow.
      */
     enablePkce?: boolean | null;
     /**
-     * Optional. PKCE verifier to be used during the auth code exchange.
+     * PKCE verifier to be used during the auth code exchange.
      */
     pkceVerifier?: string | null;
     /**
-     * Optional. Redirect URI to be provided during the auth code exchange.
+     * Redirect URI to be provided during the auth code exchange.
      */
     redirectUri?: string | null;
     /**
-     * Optional. Scopes the connection will request when the user performs the auth code flow.
+     * Scopes the connection will request when the user performs the auth code flow.
      */
     scopes?: string[] | null;
   }
@@ -2930,11 +2574,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2ClientCredentials {
     /**
-     * Optional. The client identifier.
+     * The client identifier.
      */
     clientId?: string | null;
     /**
-     * Optional. Secret version reference containing the client secret.
+     * Secret version reference containing the client secret.
      */
     clientSecret?: Schema$Secret;
   }
@@ -2943,34 +2587,13 @@ export namespace connectors_v1 {
    */
   export interface Schema$Oauth2JwtBearer {
     /**
-     * Optional. Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/secrets/x/versions/x`.
+     * Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/x/secrets/x/versions/x`.
      */
     clientKey?: Schema$Secret;
     /**
-     * Optional. JwtClaims providers fields to generate the token.
+     * JwtClaims providers fields to generate the token.
      */
     jwtClaims?: Schema$JwtClaims;
-  }
-  /**
-   * pass only at create and not update using updateMask Auth Code Data
-   */
-  export interface Schema$OAuthTokenData {
-    /**
-     * Optional. Access token for the connection.
-     */
-    accessToken?: Schema$EUASecret;
-    /**
-     * Optional. Timestamp when the access token was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Time in seconds when the access token expires.
-     */
-    expiry?: string | null;
-    /**
-     * Optional. Refresh token for the connection.
-     */
-    refreshToken?: Schema$EUASecret;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -3132,27 +2755,6 @@ export namespace connectors_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
-  }
-  /**
-   * PriorityEntityType represents an entity type with its associated priority and order.
-   */
-  export interface Schema$PriorityEntityType {
-    /**
-     * The description of the entity type.
-     */
-    description?: string | null;
-    /**
-     * The entity type.
-     */
-    id?: string | null;
-    /**
-     * The order of the entity type within its priority group.
-     */
-    order?: number | null;
-    /**
-     * The priority of the entity type, such as P0, P1, etc.
-     */
-    priority?: string | null;
   }
   /**
    * Provider indicates the owner who provides the connectors.
@@ -3561,7 +3163,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$Secret {
     /**
-     * Optional. The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
+     * The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
      */
     secretVersion?: string | null;
   }
@@ -3647,19 +3249,19 @@ export namespace connectors_v1 {
    */
   export interface Schema$SshPublicKey {
     /**
-     * Optional. Format of SSH Client cert.
+     * Format of SSH Client cert.
      */
     certType?: string | null;
     /**
-     * Optional. SSH Client Cert. It should contain both public and private key.
+     * SSH Client Cert. It should contain both public and private key.
      */
     sshClientCert?: Schema$Secret;
     /**
-     * Optional. Password (passphrase) for ssh client certificate if it has one.
+     * Password (passphrase) for ssh client certificate if it has one.
      */
     sshClientCertPass?: Schema$Secret;
     /**
-     * Optional. The user account used to authenticate.
+     * The user account used to authenticate.
      */
     username?: string | null;
   }
@@ -3863,11 +3465,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$UserPassword {
     /**
-     * Optional. Secret version reference containing the password.
+     * Secret version reference containing the password.
      */
     password?: Schema$Secret;
     /**
-     * Optional. Username.
+     * Username.
      */
     username?: string | null;
   }
@@ -4500,7 +4102,6 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations$Connections {
     context: APIRequestContext;
     connectionSchemaMetadata: Resource$Projects$Locations$Connections$Connectionschemametadata;
-    endUserAuthentications: Resource$Projects$Locations$Connections$Enduserauthentications;
     eventSubscriptions: Resource$Projects$Locations$Connections$Eventsubscriptions;
     runtimeActionSchemas: Resource$Projects$Locations$Connections$Runtimeactionschemas;
     runtimeEntitySchemas: Resource$Projects$Locations$Connections$Runtimeentityschemas;
@@ -4508,10 +4109,6 @@ export namespace connectors_v1 {
       this.context = context;
       this.connectionSchemaMetadata =
         new Resource$Projects$Locations$Connections$Connectionschemametadata(
-          this.context
-        );
-      this.endUserAuthentications =
-        new Resource$Projects$Locations$Connections$Enduserauthentications(
           this.context
         );
       this.eventSubscriptions =
@@ -5726,7 +5323,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. The list of fields to update. Fields are specified relative to the connection. A field will be overwritten if it is in the mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`
+     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`
      */
     updateMask?: string;
 
@@ -6345,550 +5942,6 @@ export namespace connectors_v1 {
     requestBody?: Schema$RefreshConnectionSchemaMetadataRequest;
   }
 
-  export class Resource$Projects$Locations$Connections$Enduserauthentications {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a new EndUserAuthentication in a given project,location and connection.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/endUserAuthentications').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a single EndUserAuthentication.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Gets details of a single EndUserAuthentication.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$EndUserAuthentication>>;
-    get(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EndUserAuthentication>,
-      callback: BodyResponseCallback<Schema$EndUserAuthentication>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
-      callback: BodyResponseCallback<Schema$EndUserAuthentication>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$EndUserAuthentication>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get
-        | BodyResponseCallback<Schema$EndUserAuthentication>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$EndUserAuthentication>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$EndUserAuthentication>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$EndUserAuthentication>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$EndUserAuthentication>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$EndUserAuthentication>(parameters);
-      }
-    }
-
-    /**
-     * List EndUserAuthentications in a given project,location and connection.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$ListEndUserAuthenticationsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>,
-      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$List,
-      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$List
-        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListEndUserAuthenticationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$ListEndUserAuthenticationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/endUserAuthentications').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListEndUserAuthenticationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListEndUserAuthenticationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates the parameters of a single EndUserAuthentication.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Create
-    extends StandardParameters {
-    /**
-     * Required. Identifier to assign to the EndUserAuthentication. Must be unique within scope of the parent resource.
-     */
-    endUserAuthenticationId?: string;
-    /**
-     * Required. Parent resource of the EndUserAuthentication, of the form: `projects/x/locations/x/connections/x`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EndUserAuthentication;
-  }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Delete
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/x/locations/x/connections/x/endUserAuthentication/x`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/x/locations/x/connections/x/EndUserAuthentications/x`
-     */
-    name?: string;
-    /**
-     * Optional. View of the EndUserAuthentication to return.
-     */
-    view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$List
-    extends StandardParameters {
-    /**
-     * Filter.
-     */
-    filter?: string;
-    /**
-     * Order by parameters.
-     */
-    orderBy?: string;
-    /**
-     * Page size.
-     */
-    pageSize?: number;
-    /**
-     * Page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource of the EndUserAuthentication, of the form: `projects/x/locations/x/connections/x`
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Connections$Enduserauthentications$Patch
-    extends StandardParameters {
-    /**
-     * Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project\}/locations/{location\}/connections/{connection\}/endUserAuthentications/{end_user_authentication\}
-     */
-    name?: string;
-    /**
-     * Required. The list of fields to update. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EndUserAuthentication details: * `notify_endpoint_destination`
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EndUserAuthentication;
-  }
-
   export class Resource$Projects$Locations$Connections$Eventsubscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7498,7 +6551,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch
     extends StandardParameters {
     /**
-     * Required. Identifier. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
      */
     name?: string;
     /**
@@ -11964,10 +11017,6 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
-     */
-    schemaView?: string;
-    /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
      */
     view?: string;
@@ -11986,10 +11035,6 @@ export namespace connectors_v1 {
      * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for ConnectorVersion resource.
      */
     parent?: string;
-    /**
-     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
-     */
-    schemaView?: string;
     /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
      */

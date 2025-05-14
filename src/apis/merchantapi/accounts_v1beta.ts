@@ -231,7 +231,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountIdAlias?: string | null;
     /**
-     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Identifier. The resource name of the account relationship.
      */
     name?: string | null;
     /**
@@ -272,7 +272,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     mutability?: string | null;
     /**
-     * Identifier. The resource name of the account service. Format: `accounts/{account\}/services/{service\}`
+     * Identifier. The resource name of the account service.
      */
     name?: string | null;
     /**
@@ -537,7 +537,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$ClaimHomepageRequest {
     /**
-     * Optional. When set to `true`, this option removes any existing claim on the requested website from any other account to the account making the request, effectively replacing the previous claim.
+     * Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
      */
     overwrite?: boolean | null;
   }
@@ -1275,7 +1275,7 @@ export namespace merchantapi_accounts_v1beta {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1785,7 +1785,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     carrierService?: string | null;
     /**
-     * Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)
+     * Required. Warehouse name. This should match warehouse
      */
     warehouse?: string | null;
   }
@@ -3582,7 +3582,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).
+     * Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message will be returned: * PERMISSION_DENIED: user doesn't have the necessary permissions on this MC account; * FAILED_PRECONDITION: - The account is not a Merchant Center account; - MC account doesn't have a homepage; - claiming failed (in this case the error message will contain more details).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5578,7 +5578,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Relationships$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Required. The resource name of the account relationship to get.
      */
     name?: string;
   }
@@ -5593,14 +5593,14 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent account of the account relationship to filter by. Format: `accounts/{account\}`
+     * Required. The parent account of the account relationship to filter by.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Relationships$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Identifier. The resource name of the account relationship.
      */
     name?: string;
     /**
@@ -6082,7 +6082,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Approve
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to approve. Format: `accounts/{account\}/services/{service\}`
+     * Required. The resource name of the account service to approve.
      */
     name?: string;
 
@@ -6094,7 +6094,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to get. Format: `accounts/{account\}/services/{service\}`
+     * Required. The resource name of the account service to get.
      */
     name?: string;
   }
@@ -6109,14 +6109,14 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent account of the account service to filter by. Format: `accounts/{account\}`
+     * Required. The parent account of the account service to filter by.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Services$Propose
     extends StandardParameters {
     /**
-     * Required. The resource name of the parent account for the service. Format: `accounts/{account\}`
+     * Required. The resource name of the parent account for the service.
      */
     parent?: string;
 
@@ -6128,7 +6128,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Services$Reject
     extends StandardParameters {
     /**
-     * Required. The resource name of the account service to reject. Format: `accounts/{account\}/services/{service\}`
+     * Required. The resource name of the account service to reject.
      */
     name?: string;
 

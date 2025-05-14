@@ -30,7 +30,7 @@ function createNock(path?: string) {
 function createNockRequestHeaders(
   path: string,
   header: string,
-  headerValue: RegExp | string
+  headerValue: RegExp | string,
 ) {
   const p = path || '/drive/v2/files/woot';
   return nock(Utils.baseUrl).matchHeader(header, headerValue).get(p).reply(200);
@@ -87,7 +87,7 @@ describe('Options', () => {
     assert.notStrictEqual(
       query.indexOf('myParam=123'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
     const d = await Utils.loadApi(google, 'drive', 'v2');
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
@@ -100,7 +100,7 @@ describe('Options', () => {
     assert.notStrictEqual(
       query.indexOf('myParam=123'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
   });
 
@@ -153,7 +153,7 @@ describe('Options', () => {
     createNockRequestHeaders(
       '/drive/v2/files/woot?key=apikey3',
       'user-agent',
-      new RegExp(/product\/version google-api-nodejs-client\/.*[\s\S](gzip)/)
+      new RegExp(/product\/version google-api-nodejs-client\/.*[\s\S](gzip)/),
     );
     await drive.files.get({auth: 'apikey3', fileId: 'woot'});
   });
@@ -167,9 +167,9 @@ describe('Options', () => {
     createNockRequestHeaders(
       '/drive/v2/files/woot?key=apikey3',
       'rootUrl',
-      'http.example.com'
+      'http.example.com',
     );
-    assert.rejects(async () => {
+    await assert.rejects(async () => {
       await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     }, /reason: Nock: No match for request/);
   });
@@ -194,20 +194,20 @@ describe('Options', () => {
     nock(host).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get(
       {fileId: 'woot'},
-      {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345}
+      {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345},
     );
 
     const url = new URL(res.config.url!);
     assert.strictEqual(
       url.pathname,
       '/drive/v3/files/woot',
-      'Request used overridden url.'
+      'Request used overridden url.',
     );
     assert.strictEqual(url.host, 'myproxy.com');
     assert.strictEqual(
       res.config.timeout,
       12345,
-      'Axios used overridden timeout.'
+      'Axios used overridden timeout.',
     );
   });
 
@@ -237,7 +237,7 @@ describe('Options', () => {
     assert.strictEqual(
       res.config.url,
       'https://myrooturl.com/drive/v3/files/woot',
-      'Request used overridden rootUrl with trailing slash.'
+      'Request used overridden rootUrl with trailing slash.',
     );
 
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
@@ -245,7 +245,7 @@ describe('Options', () => {
     assert.strictEqual(
       res.config.url,
       'https://myrooturl.com/drive/v3/files/woot',
-      'Request used overridden rootUrl.'
+      'Request used overridden rootUrl.',
     );
   });
 

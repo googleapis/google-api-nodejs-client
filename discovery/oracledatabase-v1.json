@@ -1080,11 +1080,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. Only the shape and gi_version fields are supported in this format: `shape=\"{shape}\"`.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of items to return. If unspecified, a maximum of 50 Oracle Grid Infrastructure (GI) versions will be returned. The maximum value is 1000; values above 1000 will be reset to 1000.",
                       "format": "int32",
@@ -1242,7 +1237,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250428",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -1276,7 +1271,7 @@
           "type": "string"
         },
         "cidr": {
-          "description": "Optional. The subnet CIDR range for the Autonomous Database.",
+          "description": "Optional. The subnet CIDR range for the Autonmous Database.",
           "type": "string"
         },
         "createTime": {
@@ -3902,7 +3897,7 @@
       "type": "object"
     },
     "SourceConfig": {
-      "description": "The source configuration for the standby Autonomous Database.",
+      "description": "The source configuration for the standby Autonomnous Database.",
       "id": "SourceConfig",
       "properties": {
         "automaticBackupsReplicationEnabled": {

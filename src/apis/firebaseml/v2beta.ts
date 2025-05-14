@@ -686,10 +686,6 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig {
     /**
-     * Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.
-     */
-    includeThoughts?: boolean | null;
-    /**
      * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
      */
     thinkingBudget?: number | null;

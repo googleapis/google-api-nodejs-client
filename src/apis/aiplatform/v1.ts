@@ -1354,10 +1354,6 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
-     * Input only. Immutable. Customer-managed encryption key spec for a `CachedContent`. If set, this `CachedContent` and all its sub-resources will be secured by this key.
-     */
-    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
-    /**
      * Timestamp of when this resource is considered expired. This is *always* provided on output, regardless of what was sent on input.
      */
     expireTime?: string | null;
@@ -1491,23 +1487,6 @@ export namespace aiplatform_v1 {
      * Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.
      */
     safetyRatings?: Schema$GoogleCloudAiplatformV1SafetyRating[];
-  }
-  /**
-   * Describes the machine learning model version checkpoint.
-   */
-  export interface Schema$GoogleCloudAiplatformV1Checkpoint {
-    /**
-     * The ID of the checkpoint.
-     */
-    checkpointId?: string | null;
-    /**
-     * The epoch of the checkpoint.
-     */
-    epoch?: string | null;
-    /**
-     * The step of the checkpoint.
-     */
-    step?: string | null;
   }
   /**
    * This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.
@@ -2968,10 +2947,6 @@ export namespace aiplatform_v1 {
      */
     automaticResources?: Schema$GoogleCloudAiplatformV1AutomaticResources;
     /**
-     * The checkpoint id of the model.
-     */
-    checkpointId?: string | null;
-    /**
      * Output only. Timestamp when the DeployedModel was created.
      */
     createTime?: string | null;
@@ -3044,10 +3019,6 @@ export namespace aiplatform_v1 {
    * Points to a DeployedModel.
    */
   export interface Schema$GoogleCloudAiplatformV1DeployedModelRef {
-    /**
-     * Immutable. The ID of the Checkpoint deployed in the DeployedModel.
-     */
-    checkpointId?: string | null;
     /**
      * Immutable. An ID of a DeployedModel in the above Endpoint.
      */
@@ -6088,10 +6059,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GenerationConfigThinkingConfig {
     /**
-     * Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.
-     */
-    includeThoughts?: boolean | null;
-    /**
      * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
      */
     thinkingBudget?: number | null;
@@ -8204,10 +8171,6 @@ export namespace aiplatform_v1 {
      */
     baseModelSource?: Schema$GoogleCloudAiplatformV1ModelBaseModelSource;
     /**
-     * Optional. Output only. The checkpoints of the model.
-     */
-    checkpoints?: Schema$GoogleCloudAiplatformV1Checkpoint[];
-    /**
      * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1ModelContainerSpec;
@@ -9720,7 +9683,7 @@ export namespace aiplatform_v1 {
     values?: string[] | null;
   }
   /**
-   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.
+   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookRuntime {
     /**
@@ -9931,7 +9894,7 @@ export namespace aiplatform_v1 {
     notebookRuntimeTemplate?: string | null;
   }
   /**
-   * Notebook Software Config. This is passed to the backend when user makes software configurations in UI.
+   * Notebook Software Config.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookSoftwareConfig {
     /**
@@ -11873,10 +11836,6 @@ export namespace aiplatform_v1 {
      * The Layout Parser to use for RagFiles.
      */
     layoutParser?: Schema$GoogleCloudAiplatformV1RagFileParsingConfigLayoutParser;
-    /**
-     * The LLM Parser to use for RagFiles.
-     */
-    llmParser?: Schema$GoogleCloudAiplatformV1RagFileParsingConfigLlmParser;
   }
   /**
    * Document AI Layout Parser config.
@@ -11890,23 +11849,6 @@ export namespace aiplatform_v1 {
      * The full resource name of a Document AI processor or processor version. The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the `additional_config.parse_as_scanned_pdf` field must be false. Format: * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}` * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}/processorVersions/{processor_version_id\}`
      */
     processorName?: string | null;
-  }
-  /**
-   * Specifies the advanced parsing for RagFiles.
-   */
-  export interface Schema$GoogleCloudAiplatformV1RagFileParsingConfigLlmParser {
-    /**
-     * The prompt to use for parsing. If not specified, a default prompt will be used.
-     */
-    customParsingPrompt?: string | null;
-    /**
-     * The maximum number of requests the job is allowed to make to the LLM model per minute. Consult https://cloud.google.com/vertex-ai/generative-ai/docs/quotas and your document size to set an appropriate value here. If unspecified, a default value of 5000 QPM would be used.
-     */
-    maxParsingRequestsPerMin?: number | null;
-    /**
-     * The name of a LLM model used for parsing. Format: * `projects/{project_id\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
-     */
-    modelName?: string | null;
   }
   /**
    * Specifies the transformation config for RagFiles.
@@ -12286,7 +12228,7 @@ export namespace aiplatform_v1 {
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the ReasoningEngine. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     * Identifier. The resource name of the ReasoningEngine.
      */
     name?: string | null;
     /**
@@ -13045,10 +12987,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Schema {
     /**
-     * Optional. Can either be a boolean or an object; controls the presence of additional properties.
-     */
-    additionalProperties?: any | null;
-    /**
      * Optional. The value should be validated against any (one or more) of the subschemas in the list.
      */
     anyOf?: Schema$GoogleCloudAiplatformV1Schema[];
@@ -13056,10 +12994,6 @@ export namespace aiplatform_v1 {
      * Optional. Default value of the data.
      */
     default?: any | null;
-    /**
-     * Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.
-     */
-    defs?: {[key: string]: Schema$GoogleCloudAiplatformV1Schema} | null;
     /**
      * Optional. The description of the data.
      */
@@ -13128,10 +13062,6 @@ export namespace aiplatform_v1 {
      * Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.
      */
     propertyOrdering?: string[] | null;
-    /**
-     * Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named "Pet": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the "pet" property is a reference to the schema node named "Pet". See details in https://json-schema.org/understanding-json-schema/structuring
-     */
-    ref?: string | null;
     /**
      * Optional. Required properties of Type.OBJECT.
      */
@@ -17194,7 +17124,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDataStats {
     /**
-     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped.
+     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.
      */
     droppedExampleReasons?: string[] | null;
     /**
@@ -17246,10 +17176,6 @@ export namespace aiplatform_v1 {
    * Tuning Spec for Supervised Tuning for first party models.
    */
   export interface Schema$GoogleCloudAiplatformV1SupervisedTuningSpec {
-    /**
-     * Optional. If set to true, disable intermediate checkpoints for SFT and only the last checkpoint will be exported. Otherwise, enable intermediate checkpoints for SFT. Default is false.
-     */
-    exportLastCheckpointOnly?: boolean | null;
     /**
      * Optional. Hyperparameters for SFT.
      */
@@ -18380,10 +18306,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1TunedModel {
     /**
-     * Output only. The checkpoints associated with this TunedModel. This field is only populated for tuning jobs that enable intermediate checkpoints.
-     */
-    checkpoints?: Schema$GoogleCloudAiplatformV1TunedModelCheckpoint[];
-    /**
      * Output only. A resource name of an Endpoint. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
      */
     endpoint?: string | null;
@@ -18391,27 +18313,6 @@ export namespace aiplatform_v1 {
      * Output only. The resource name of the TunedModel. Format: `projects/{project\}/locations/{location\}/models/{model\}`.
      */
     model?: string | null;
-  }
-  /**
-   * TunedModelCheckpoint for the Tuned Model of a Tuning Job.
-   */
-  export interface Schema$GoogleCloudAiplatformV1TunedModelCheckpoint {
-    /**
-     * The ID of the checkpoint.
-     */
-    checkpointId?: string | null;
-    /**
-     * The Endpoint resource name that the checkpoint is deployed to. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
-     */
-    endpoint?: string | null;
-    /**
-     * The epoch of the checkpoint.
-     */
-    epoch?: string | null;
-    /**
-     * The step of the checkpoint.
-     */
-    step?: string | null;
   }
   /**
    * TunedModel Reference for legacy model migration.
@@ -18877,14 +18778,6 @@ export namespace aiplatform_v1 {
      * Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
     engine?: string | null;
-    /**
-     * Optional. Filter strings to be passed to the search API.
-     */
-    filter?: string | null;
-    /**
-     * Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10.
-     */
-    maxResults?: number | null;
   }
   /**
    * Config for the Vertex AI Search.
@@ -73153,7 +73046,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Reasoningengines$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the ReasoningEngine. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     * Identifier. The resource name of the ReasoningEngine.
      */
     name?: string;
     /**
