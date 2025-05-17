@@ -208,7 +208,7 @@
       }
     }
   },
-  "revision": "20250420",
+  "revision": "20250511",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -3041,6 +3041,7 @@
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
             "NVIDIA_B200",
+            "NVIDIA_GB200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -3060,6 +3061,7 @@
             "Nvidia H100 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
             "Nvidia B200 GPU.",
+            "Nvidia GB200 GPU.",
             "TPU v2 (JellyFish).",
             "TPU v3 (DragonFish).",
             "TPU_v4 (PufferFish).",

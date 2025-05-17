@@ -4810,7 +4810,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250506",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -9461,18 +9461,18 @@
       "id": "GoogleCloudConnectorsV1AuthConfig",
       "properties": {
         "additionalVariables": {
-          "description": "List containing additional auth configs.",
+          "description": "Optional. List containing additional auth configs.",
           "items": {
             "$ref": "GoogleCloudConnectorsV1ConfigVariable"
           },
           "type": "array"
         },
         "authKey": {
-          "description": "Identifier key for auth config",
+          "description": "Optional. Identifier key for auth config",
           "type": "string"
         },
         "authType": {
-          "description": "The type of authentication configured.",
+          "description": "Optional. The type of authentication configured.",
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
             "USER_PASSWORD",
@@ -9527,35 +9527,35 @@
       "id": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow",
       "properties": {
         "authCode": {
-          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "description": "Optional. Authorization code to be exchanged for access and refresh tokens.",
           "type": "string"
         },
         "authUri": {
-          "description": "Auth URL for Authorization Code Flow",
+          "description": "Optional. Auth URL for Authorization Code Flow",
           "type": "string"
         },
         "clientId": {
-          "description": "Client ID for user-provided OAuth app.",
+          "description": "Optional. Client ID for user-provided OAuth app.",
           "type": "string"
         },
         "clientSecret": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Client secret for user-provided OAuth app."
+          "description": "Optional. Client secret for user-provided OAuth app."
         },
         "enablePkce": {
-          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "description": "Optional. Whether to enable PKCE when the user performs the auth code flow.",
           "type": "boolean"
         },
         "pkceVerifier": {
-          "description": "PKCE verifier to be used during the auth code exchange.",
+          "description": "Optional. PKCE verifier to be used during the auth code exchange.",
           "type": "string"
         },
         "redirectUri": {
-          "description": "Redirect URI to be provided during the auth code exchange.",
+          "description": "Optional. Redirect URI to be provided during the auth code exchange.",
           "type": "string"
         },
         "scopes": {
-          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "description": "Optional. Scopes the connection will request when the user performs the auth code flow.",
           "items": {
             "type": "string"
           },
@@ -9591,12 +9591,12 @@
       "id": "GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials",
       "properties": {
         "clientId": {
-          "description": "The client identifier.",
+          "description": "Optional. The client identifier.",
           "type": "string"
         },
         "clientSecret": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Secret version reference containing the client secret."
+          "description": "Optional. Secret version reference containing the client secret."
         }
       },
       "type": "object"
@@ -9607,11 +9607,11 @@
       "properties": {
         "clientKey": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/*/secrets/*/versions/*`."
+          "description": "Optional. Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/*/secrets/*/versions/*`."
         },
         "jwtClaims": {
           "$ref": "GoogleCloudConnectorsV1AuthConfigOauth2JwtBearerJwtClaims",
-          "description": "JwtClaims providers fields to generate the token."
+          "description": "Optional. JwtClaims providers fields to generate the token."
         }
       },
       "type": "object"
@@ -9621,15 +9621,15 @@
       "id": "GoogleCloudConnectorsV1AuthConfigOauth2JwtBearerJwtClaims",
       "properties": {
         "audience": {
-          "description": "Value for the \"aud\" claim.",
+          "description": "Optional. Value for the \"aud\" claim.",
           "type": "string"
         },
         "issuer": {
-          "description": "Value for the \"iss\" claim.",
+          "description": "Optional. Value for the \"iss\" claim.",
           "type": "string"
         },
         "subject": {
-          "description": "Value for the \"sub\" claim.",
+          "description": "Optional. Value for the \"sub\" claim.",
           "type": "string"
         }
       },
@@ -9640,19 +9640,19 @@
       "id": "GoogleCloudConnectorsV1AuthConfigSshPublicKey",
       "properties": {
         "certType": {
-          "description": "Format of SSH Client cert.",
+          "description": "Optional. Format of SSH Client cert.",
           "type": "string"
         },
         "sshClientCert": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "SSH Client Cert. It should contain both public and private key."
+          "description": "Optional. SSH Client Cert. It should contain both public and private key."
         },
         "sshClientCertPass": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Password (passphrase) for ssh client certificate if it has one."
+          "description": "Optional. Password (passphrase) for ssh client certificate if it has one."
         },
         "username": {
-          "description": "The user account used to authenticate.",
+          "description": "Optional. The user account used to authenticate.",
           "type": "string"
         }
       },
@@ -9664,10 +9664,10 @@
       "properties": {
         "password": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Secret version reference containing the password."
+          "description": "Optional. Secret version reference containing the password."
         },
         "username": {
-          "description": "Username.",
+          "description": "Optional. Username.",
           "type": "string"
         }
       },
@@ -9713,7 +9713,7 @@
           "type": "string"
         },
         "key": {
-          "description": "Key of the config variable.",
+          "description": "Optional. Key of the config variable.",
           "type": "string"
         },
         "secretValue": {
@@ -9813,6 +9813,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "euaOauthAuthConfig": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfig",
+          "description": "Optional. Additional Oauth2.0 Auth config for EUA. If the connection is configured using non-OAuth authentication but OAuth needs to be used for EUA, this field can be populated with the OAuth config. This should be a OAuth2AuthCodeFlow Auth type only."
+        },
         "eventingConfig": {
           "$ref": "GoogleCloudConnectorsV1EventingConfig",
           "description": "Optional. Eventing config of a connection"
@@ -9835,6 +9839,10 @@
           "$ref": "GoogleCloudConnectorsV1EventingRuntimeData",
           "description": "Output only. Eventing Runtime Data.",
           "readOnly": true
+        },
+        "fallbackOnAdminCredentials": {
+          "description": "Optional. Fallback on admin credentials for the connection. If this both auth_override_enabled and fallback_on_admin_credentials are set to true, the connection will use the admin credentials if the dynamic auth header is not present during auth override.",
+          "type": "boolean"
         },
         "host": {
           "description": "Output only. The name of the Hostname of the Service Directory service with TLS.",
@@ -10115,7 +10123,7 @@
       "id": "GoogleCloudConnectorsV1EncryptionKey",
       "properties": {
         "kmsKeyName": {
-          "description": "The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
+          "description": "Optional. The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
           "type": "string"
         },
         "type": {
@@ -10358,11 +10366,11 @@
       "id": "GoogleCloudConnectorsV1LockConfig",
       "properties": {
         "locked": {
-          "description": "Indicates whether or not the connection is locked.",
+          "description": "Optional. Indicates whether or not the connection is locked.",
           "type": "boolean"
         },
         "reason": {
-          "description": "Describes why a connection is locked.",
+          "description": "Optional. Describes why a connection is locked.",
           "type": "string"
         }
       },
@@ -10373,7 +10381,7 @@
       "id": "GoogleCloudConnectorsV1LogConfig",
       "properties": {
         "enabled": {
-          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "description": "Optional. Enabled represents whether logging is enabled or not for a connection.",
           "type": "boolean"
         },
         "level": {
@@ -10400,12 +10408,12 @@
       "id": "GoogleCloudConnectorsV1NodeConfig",
       "properties": {
         "maxNodeCount": {
-          "description": "Maximum number of nodes in the runtime nodes.",
+          "description": "Optional. Maximum number of nodes in the runtime nodes.",
           "format": "int32",
           "type": "integer"
         },
         "minNodeCount": {
-          "description": "Minimum number of nodes in the runtime nodes.",
+          "description": "Optional. Minimum number of nodes in the runtime nodes.",
           "format": "int32",
           "type": "integer"
         }
@@ -10451,7 +10459,7 @@
       "id": "GoogleCloudConnectorsV1Secret",
       "properties": {
         "secretVersion": {
-          "description": "The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
+          "description": "Optional. The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
           "type": "string"
         }
       },
