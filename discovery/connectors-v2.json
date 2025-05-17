@@ -690,7 +690,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250507",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -769,6 +769,13 @@
         "redirectUri": {
           "description": "OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.",
           "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
