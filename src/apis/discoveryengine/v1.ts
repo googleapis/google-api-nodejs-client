@@ -987,6 +987,40 @@ export namespace discoveryengine_v1 {
     targetSites?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSite[];
   }
   /**
+   * Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of user licenses that failed to be updated.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of user licenses successfully updated.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.BatchUpdateUserLicenses method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * UserLicenses successfully updated.
+     */
+    userLicenses?: Schema$GoogleCloudDiscoveryengineV1alphaUserLicense[];
+  }
+  /**
    * Configurations used to enable CMEK data encryption with Cloud KMS keys.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCmekConfig {
@@ -1227,7 +1261,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Promote certain links based on predefined trigger queries. This now only supports basic site search.
+     * Promote certain links based on predefined trigger queries.
      */
     promoteAction?: Schema$GoogleCloudDiscoveryengineV1alphaControlPromoteAction;
     /**
@@ -1454,7 +1488,7 @@ export namespace discoveryengine_v1 {
      */
     alertPolicyConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyConfig[];
     /**
-     * Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync.
+     * Optional. Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync. Update: with the introduction of incremental_sync_disabled, auto_run_disabled is used to pause/disable only full syncs
      */
     autoRunDisabled?: boolean | null;
     /**
@@ -1470,9 +1504,13 @@ export namespace discoveryengine_v1 {
      */
     connectorModes?: string[] | null;
     /**
-     * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is notmutable once set by system.
+     * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.
      */
     connectorType?: string | null;
+    /**
+     * Optional. Whether the END USER AUTHENTICATION connector is created in SaaS.
+     */
+    createEuaSaas?: boolean | null;
     /**
      * Output only. Timestamp the DataConnector was created at.
      */
@@ -1505,6 +1543,14 @@ export namespace discoveryengine_v1 {
      * The configuration for the identity data synchronization runs. This contains the refresh interval to sync the Access Control List information for the documents ingested by this connector.
      */
     identityScheduleConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig;
+    /**
+     * Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days.
+     */
+    incrementalRefreshInterval?: string | null;
+    /**
+     * Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled.
+     */
+    incrementalSyncDisabled?: boolean | null;
     /**
      * Input only. The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.
      */
@@ -1690,7 +1736,7 @@ export namespace discoveryengine_v1 {
      */
     languageInfo?: Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -1748,7 +1794,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -2077,7 +2123,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -2089,7 +2135,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -2097,7 +2143,7 @@ export namespace discoveryengine_v1 {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -3632,6 +3678,10 @@ export namespace discoveryengine_v1 {
      */
     boostSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec;
     /**
+     * Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     */
+    customSearchOperators?: string | null;
+    /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
     dataStore?: string | null;
@@ -4144,6 +4194,43 @@ export namespace discoveryengine_v1 {
      * Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Don't set for anonymous users. Always use a hashed value for this ID. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userId?: string | null;
+  }
+  /**
+   * User License information assigned by the admin.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUserLicense {
+    /**
+     * Output only. User created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. User last logged in time. If the user has not logged in yet, this field will be empty.
+     */
+    lastLoginTime?: string | null;
+    /**
+     * Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
+     */
+    licenseAssignmentState?: string | null;
+    /**
+     * Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Output only. User update timestamp.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. The full resource name of the User, in the format of `projects/{project\}/locations/{location\}/userStores/{user_store\}/users/{user_id\}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.
+     */
+    user?: string | null;
+    /**
+     * Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.
+     */
+    userPrincipal?: string | null;
+    /**
+     * Optional. The user profile. We user user full name(First name + Last name) as user profile.
+     */
+    userProfile?: string | null;
   }
   /**
    * Config to store data store type configuration for workspace data
@@ -5082,6 +5169,36 @@ export namespace discoveryengine_v1 {
     uri?: string | null;
   }
   /**
+   * Request message for UserLicenseService.BatchUpdateUserLicenses method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest {
+    /**
+     * Optional. If true, if user licenses removed associated license config, the user license will be deleted. By default which is false, the user license will be updated to unassigned state.
+     */
+    deleteUnassignedUserLicenses?: boolean | null;
+    /**
+     * Cloud Storage location for the input content.
+     */
+    gcsSource?: Schema$GoogleCloudDiscoveryengineV1GcsSource;
+    /**
+     * The inline source for the input content for document embeddings.
+     */
+    inlineSource?: Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource;
+  }
+  /**
+   * The inline source for the input config for BatchUpdateUserLicenses method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource {
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string | null;
+    /**
+     * Required. A list of user licenses to update. Each user license must have a valid UserLicense.user_principal.
+     */
+    userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
+  }
+  /**
    * Request message for SiteSearchEngineService.BatchVerifyTargetSites method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchVerifyTargetSitesRequest {}
@@ -5229,7 +5346,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Promote certain links based on predefined trigger queries. This now only supports basic site search.
+     * Promote certain links based on predefined trigger queries.
      */
     promoteAction?: Schema$GoogleCloudDiscoveryengineV1betaControlPromoteAction;
     /**
@@ -5495,7 +5612,7 @@ export namespace discoveryengine_v1 {
      */
     languageInfo?: Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -5553,7 +5670,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -5817,7 +5934,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -5829,7 +5946,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -5837,7 +5954,7 @@ export namespace discoveryengine_v1 {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -6969,6 +7086,10 @@ export namespace discoveryengine_v1 {
      */
     boostSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec;
     /**
+     * Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     */
+    customSearchOperators?: string | null;
+    /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
     dataStore?: string | null;
@@ -7570,7 +7691,7 @@ export namespace discoveryengine_v1 {
      */
     groundingCheckRequired?: boolean | null;
     /**
-     * Confidence score for the claim in the answer candidate, in the range of [0, 1]. This is set only when enable_claim_level_score is true.
+     * Confidence score for the claim in the answer candidate, in the range of [0, 1]. This is set only when `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
      */
     score?: number | null;
     /**
@@ -7889,7 +8010,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Promote certain links based on predefined trigger queries. This now only supports basic site search.
+     * Promote certain links based on predefined trigger queries.
      */
     promoteAction?: Schema$GoogleCloudDiscoveryengineV1ControlPromoteAction;
     /**
@@ -8314,7 +8435,7 @@ export namespace discoveryengine_v1 {
      */
     kmsKeyName?: string | null;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -8368,7 +8489,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -8779,7 +8900,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -8791,7 +8912,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -8799,7 +8920,7 @@ export namespace discoveryengine_v1 {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -9661,6 +9782,19 @@ export namespace discoveryengine_v1 {
      * The total number of items matching the request. This will always be populated in the response.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Response message for UserLicenseService.ListUserLicenses.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * All the customer's UserLicenses.
+     */
+    userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
   }
   /**
    * Media-specific user event information.
@@ -10560,6 +10694,10 @@ export namespace discoveryengine_v1 {
      * Optional. Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      */
     boostSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestBoostSpec;
+    /**
+     * Optional. Custom search operators which if specified will be used to filter results from workspace data stores. For more information on custom search operators, see [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     */
+    customSearchOperators?: string | null;
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
@@ -11542,6 +11680,43 @@ export namespace discoveryengine_v1 {
     userId?: string | null;
   }
   /**
+   * User License information assigned by the admin.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1UserLicense {
+    /**
+     * Output only. User created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. User last logged in time. If the user has not logged in yet, this field will be empty.
+     */
+    lastLoginTime?: string | null;
+    /**
+     * Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
+     */
+    licenseAssignmentState?: string | null;
+    /**
+     * Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Output only. User update timestamp.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. The full resource name of the User, in the format of `projects/{project\}/locations/{location\}/userStores/{user_store\}/users/{user_id\}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.
+     */
+    user?: string | null;
+    /**
+     * Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.
+     */
+    userPrincipal?: string | null;
+    /**
+     * Optional. The user profile. We user user full name(First name + Last name) as user profile.
+     */
+    userProfile?: string | null;
+  }
+  /**
    * Config to store data store type configuration for workspace data
    */
   export interface Schema$GoogleCloudDiscoveryengineV1WorkspaceConfig {
@@ -11916,6 +12091,7 @@ export namespace discoveryengine_v1 {
     podcasts: Resource$Projects$Locations$Podcasts;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     userEvents: Resource$Projects$Locations$Userevents;
+    userStores: Resource$Projects$Locations$Userstores;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.cmekConfigs = new Resource$Projects$Locations$Cmekconfigs(
@@ -11940,6 +12116,9 @@ export namespace discoveryengine_v1 {
         this.context
       );
       this.userEvents = new Resource$Projects$Locations$Userevents(
+        this.context
+      );
+      this.userStores = new Resource$Projects$Locations$Userstores(
         this.context
       );
     }
@@ -13786,7 +13965,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Patch
     extends StandardParameters {
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
     /**
@@ -22444,7 +22623,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Patch
     extends StandardParameters {
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string;
     /**
@@ -26405,7 +26584,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Patch
     extends StandardParameters {
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
     /**
@@ -35384,6 +35563,252 @@ export namespace discoveryengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1UserEvent;
+  }
+
+  export class Resource$Projects$Locations$Userstores {
+    context: APIRequestContext;
+    userLicenses: Resource$Projects$Locations$Userstores$Userlicenses;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.userLicenses =
+        new Resource$Projects$Locations$Userstores$Userlicenses(this.context);
+    }
+
+    /**
+     * Updates the User License. This method is used for batch assign/unassign licenses to users.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateUserLicenses(
+      params: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdateUserLicenses(
+      params?: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdateUserLicenses(
+      params: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateUserLicenses(
+      params: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchUpdateUserLicenses(
+      params: Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchUpdateUserLicenses(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchUpdateUserLicenses(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:batchUpdateUserLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Batchupdateuserlicenses
+    extends StandardParameters {
+    /**
+     * Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest;
+  }
+
+  export class Resource$Projects$Locations$Userstores$Userlicenses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the User Licenses.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Userlicenses$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Userstores$Userlicenses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Userlicenses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Userlicenses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Userlicenses$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Userlicenses$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Userlicenses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Userlicenses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListUserLicensesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Userlicenses$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserLicenses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLicenses` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Operations {
