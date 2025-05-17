@@ -313,6 +313,15 @@ export namespace sheets_v4 {
     table?: Schema$Table;
   }
   /**
+   * The result of adding a table.
+   */
+  export interface Schema$AddTableResponse {
+    /**
+     * Output only. The table that was added.
+     */
+    table?: Schema$Table;
+  }
+  /**
    * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
@@ -3833,6 +3842,10 @@ export namespace sheets_v4 {
      * A reply from adding a slicer.
      */
     addSlicer?: Schema$AddSlicerResponse;
+    /**
+     * A reply from adding a table.
+     */
+    addTable?: Schema$AddTableResponse;
     /**
      * A reply from cancelling data source object refreshes.
      */

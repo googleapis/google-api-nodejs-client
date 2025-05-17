@@ -875,7 +875,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250509",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1106,6 +1106,18 @@
         "table": {
           "$ref": "Table",
           "description": "Required. The table to add."
+        }
+      },
+      "type": "object"
+    },
+    "AddTableResponse": {
+      "description": "The result of adding a table.",
+      "id": "AddTableResponse",
+      "properties": {
+        "table": {
+          "$ref": "Table",
+          "description": "Output only. The table that was added.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -6408,6 +6420,10 @@
         "addSlicer": {
           "$ref": "AddSlicerResponse",
           "description": "A reply from adding a slicer."
+        },
+        "addTable": {
+          "$ref": "AddTableResponse",
+          "description": "A reply from adding a table."
         },
         "cancelDataSourceRefresh": {
           "$ref": "CancelDataSourceRefreshResponse",
