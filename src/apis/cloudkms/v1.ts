@@ -830,7 +830,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeys that matched the query.
+     * The total number of CryptoKeys that matched the query. This field is not populated if ListCryptoKeysRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -847,7 +847,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeyVersions that matched the query.
+     * The total number of CryptoKeyVersions that matched the query. This field is not populated if ListCryptoKeyVersionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -864,7 +864,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of EkmConnections that matched the query.
+     * The total number of EkmConnections that matched the query. This field is not populated if ListEkmConnectionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -881,7 +881,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of ImportJobs that matched the query.
+     * The total number of ImportJobs that matched the query. This field is not populated if ListImportJobsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -911,7 +911,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of KeyRings that matched the query.
+     * The total number of KeyRings that matched the query. This field is not populated if ListKeyRingsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
