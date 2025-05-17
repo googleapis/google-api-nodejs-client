@@ -685,6 +685,10 @@ export namespace datamigration_v1 {
      */
     destination?: Schema$DatabaseEngineInfo;
     /**
+     * Optional. The provider for the destination database.
+     */
+    destinationProvider?: string | null;
+    /**
      * Optional. The display name for the workspace.
      */
     displayName?: string | null;
@@ -712,6 +716,10 @@ export namespace datamigration_v1 {
      * Required. The source engine details.
      */
     source?: Schema$DatabaseEngineInfo;
+    /**
+     * Optional. The provider for the source database.
+     */
+    sourceProvider?: string | null;
     /**
      * Output only. The timestamp when the workspace resource was last updated.
      */
