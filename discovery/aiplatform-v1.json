@@ -15785,7 +15785,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The resource name of the ReasoningEngine.",
+                      "description": "Identifier. The resource name of the ReasoningEngine. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
                       "required": true,
@@ -19841,7 +19841,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250502",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -21580,6 +21580,10 @@
           "description": "Optional. Immutable. The user-generated meaningful display name of the cached content.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
+          "description": "Input only. Immutable. Customer-managed encryption key spec for a `CachedContent`. If set, this `CachedContent` and all its sub-resources will be secured by this key."
+        },
         "expireTime": {
           "description": "Timestamp of when this resource is considered expired. This is *always* provided on output, regardless of what was sent on input.",
           "format": "google-datetime",
@@ -21820,6 +21824,27 @@
         "shouldStop": {
           "description": "True if the Trial should stop.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1Checkpoint": {
+      "description": "Describes the machine learning model version checkpoint.",
+      "id": "GoogleCloudAiplatformV1Checkpoint",
+      "properties": {
+        "checkpointId": {
+          "description": "The ID of the checkpoint.",
+          "type": "string"
+        },
+        "epoch": {
+          "description": "The epoch of the checkpoint.",
+          "format": "int64",
+          "type": "string"
+        },
+        "step": {
+          "description": "The step of the checkpoint.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -23805,6 +23830,10 @@
           "$ref": "GoogleCloudAiplatformV1AutomaticResources",
           "description": "A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration."
         },
+        "checkpointId": {
+          "description": "The checkpoint id of the model.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Timestamp when the DeployedModel was created.",
           "format": "google-datetime",
@@ -23888,6 +23917,10 @@
       "description": "Points to a DeployedModel.",
       "id": "GoogleCloudAiplatformV1DeployedModelRef",
       "properties": {
+        "checkpointId": {
+          "description": "Immutable. The ID of the Checkpoint deployed in the DeployedModel.",
+          "type": "string"
+        },
         "deployedModelId": {
           "description": "Immutable. An ID of a DeployedModel in the above Endpoint.",
           "type": "string"
@@ -27973,6 +28006,10 @@
       "description": "Config for thinking features.",
       "id": "GoogleCloudAiplatformV1GenerationConfigThinkingConfig",
       "properties": {
+        "includeThoughts": {
+          "description": "Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.",
+          "type": "boolean"
+        },
         "thinkingBudget": {
           "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
           "format": "int32",
@@ -30276,6 +30313,7 @@
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
+            "NVIDIA_B200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -30284,6 +30322,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -30312,6 +30351,7 @@
             "Nvidia H100 80Gb GPU.",
             "Nvidia H100 Mega 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
+            "Nvidia B200 GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -30941,6 +30981,14 @@
         "baseModelSource": {
           "$ref": "GoogleCloudAiplatformV1ModelBaseModelSource",
           "description": "Optional. User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models."
+        },
+        "checkpoints": {
+          "description": "Optional. Output only. The checkpoints of the model.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Checkpoint"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "containerSpec": {
           "$ref": "GoogleCloudAiplatformV1ModelContainerSpec",
@@ -32747,7 +32795,8 @@
             "INVALID_TOKEN_VALUE",
             "INVALID_SPARSE_EMBEDDING",
             "INVALID_EMBEDDING",
-            "INVALID_EMBEDDING_METADATA"
+            "INVALID_EMBEDDING_METADATA",
+            "EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -32768,7 +32817,8 @@
             "Token restrict value is invalid.",
             "Invalid sparse embedding.",
             "Invalid dense embedding.",
-            "Invalid embedding metadata."
+            "Invalid embedding metadata.",
+            "Embedding metadata exceeds size limit."
           ],
           "type": "string"
         },
@@ -33133,7 +33183,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1NotebookRuntime": {
-      "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.",
+      "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.",
       "id": "GoogleCloudAiplatformV1NotebookRuntime",
       "properties": {
         "createTime": {
@@ -33270,7 +33320,7 @@
           "enumDescriptions": [
             "Unspecified runtime state.",
             "NotebookRuntime is in running state.",
-            "NotebookRuntime is in starting state.",
+            "NotebookRuntime is in starting state. This is when the runtime is being started from a stopped state.",
             "NotebookRuntime is in stopping state.",
             "NotebookRuntime is in stopped state.",
             "NotebookRuntime is in upgrading state. It is in the middle of upgrading process.",
@@ -33445,7 +33495,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1NotebookSoftwareConfig": {
-      "description": "Notebook Software Config.",
+      "description": "Notebook Software Config. This is passed to the backend when user makes software configurations in UI.",
       "id": "GoogleCloudAiplatformV1NotebookSoftwareConfig",
       "properties": {
         "env": {
@@ -36068,6 +36118,10 @@
         "layoutParser": {
           "$ref": "GoogleCloudAiplatformV1RagFileParsingConfigLayoutParser",
           "description": "The Layout Parser to use for RagFiles."
+        },
+        "llmParser": {
+          "$ref": "GoogleCloudAiplatformV1RagFileParsingConfigLlmParser",
+          "description": "The LLM Parser to use for RagFiles."
         }
       },
       "type": "object"
@@ -36083,6 +36137,26 @@
         },
         "processorName": {
           "description": "The full resource name of a Document AI processor or processor version. The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the `additional_config.parse_as_scanned_pdf` field must be false. Format: * `projects/{project_id}/locations/{location}/processors/{processor_id}` * `projects/{project_id}/locations/{location}/processors/{processor_id}/processorVersions/{processor_version_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RagFileParsingConfigLlmParser": {
+      "description": "Specifies the advanced parsing for RagFiles.",
+      "id": "GoogleCloudAiplatformV1RagFileParsingConfigLlmParser",
+      "properties": {
+        "customParsingPrompt": {
+          "description": "The prompt to use for parsing. If not specified, a default prompt will be used.",
+          "type": "string"
+        },
+        "maxParsingRequestsPerMin": {
+          "description": "The maximum number of requests the job is allowed to make to the LLM model per minute. Consult https://cloud.google.com/vertex-ai/generative-ai/docs/quotas and your document size to set an appropriate value here. If unspecified, a default value of 5000 QPM would be used.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "modelName": {
+          "description": "The name of a LLM model used for parsing. Format: * `projects/{project_id}/locations/{location}/publishers/{publisher}/models/{model}`",
           "type": "string"
         }
       },
@@ -36557,7 +36631,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the ReasoningEngine.",
+          "description": "Identifier. The resource name of the ReasoningEngine. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
           "type": "string"
         },
         "spec": {
@@ -37689,6 +37763,10 @@
       "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.",
       "id": "GoogleCloudAiplatformV1Schema",
       "properties": {
+        "additionalProperties": {
+          "description": "Optional. Can either be a boolean or an object; controls the presence of additional properties.",
+          "type": "any"
+        },
         "anyOf": {
           "description": "Optional. The value should be validated against any (one or more) of the subschemas in the list.",
           "items": {
@@ -37699,6 +37777,13 @@
         "default": {
           "description": "Optional. Default value of the data.",
           "type": "any"
+        },
+        "defs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1Schema"
+          },
+          "description": "Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.",
+          "type": "object"
         },
         "description": {
           "description": "Optional. The description of the data.",
@@ -37784,6 +37869,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "ref": {
+          "description": "Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named \"Pet\": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the \"pet\" property is a reference to the schema node named \"Pet\". See details in https://json-schema.org/understanding-json-schema/structuring",
+          "type": "string"
         },
         "required": {
           "description": "Optional. Required properties of Type.OBJECT.",
@@ -43471,7 +43560,7 @@
       "id": "GoogleCloudAiplatformV1SupervisedTuningDataStats",
       "properties": {
         "droppedExampleReasons": {
-          "description": "Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.",
+          "description": "Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped.",
           "items": {
             "type": "string"
           },
@@ -43642,6 +43731,10 @@
       "description": "Tuning Spec for Supervised Tuning for first party models.",
       "id": "GoogleCloudAiplatformV1SupervisedTuningSpec",
       "properties": {
+        "exportLastCheckpointOnly": {
+          "description": "Optional. If set to true, disable intermediate checkpoints for SFT and only the last checkpoint will be exported. Otherwise, enable intermediate checkpoints for SFT. Default is false.",
+          "type": "boolean"
+        },
         "hyperParameters": {
           "$ref": "GoogleCloudAiplatformV1SupervisedHyperParameters",
           "description": "Optional. Hyperparameters for SFT."
@@ -45274,6 +45367,14 @@
       "description": "The Model Registry Model and Online Prediction Endpoint associated with this TuningJob.",
       "id": "GoogleCloudAiplatformV1TunedModel",
       "properties": {
+        "checkpoints": {
+          "description": "Output only. The checkpoints associated with this TunedModel. This field is only populated for tuning jobs that enable intermediate checkpoints.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1TunedModelCheckpoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "endpoint": {
           "description": "Output only. A resource name of an Endpoint. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
           "readOnly": true,
@@ -45282,6 +45383,31 @@
         "model": {
           "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}`.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1TunedModelCheckpoint": {
+      "description": "TunedModelCheckpoint for the Tuned Model of a Tuning Job.",
+      "id": "GoogleCloudAiplatformV1TunedModelCheckpoint",
+      "properties": {
+        "checkpointId": {
+          "description": "The ID of the checkpoint.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "The Endpoint resource name that the checkpoint is deployed to. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "type": "string"
+        },
+        "epoch": {
+          "description": "The epoch of the checkpoint.",
+          "format": "int64",
+          "type": "string"
+        },
+        "step": {
+          "description": "The step of the checkpoint.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -45881,6 +46007,15 @@
         "engine": {
           "description": "Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
           "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter strings to be passed to the search API.",
+          "type": "string"
+        },
+        "maxResults": {
+          "description": "Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
