@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20250406",
+  "revision": "20250504",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -556,7 +556,7 @@
       "id": "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyRequest",
       "properties": {
         "appEngineInstance": {
-          "description": "The App Engine instance to sign the SSH public key for. Expected format: services/{service}/versions/{version}/instances/{instance}",
+          "description": "The App Engine instance to sign the SSH public key for. Expected format: apps/{app}/services/{service}/versions/{version}/instances/{instance}",
           "type": "string"
         },
         "computeInstance": {

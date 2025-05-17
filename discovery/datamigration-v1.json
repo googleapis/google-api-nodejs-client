@@ -2340,7 +2340,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250507",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -3212,6 +3212,26 @@
           "$ref": "DatabaseEngineInfo",
           "description": "Required. The destination engine details."
         },
+        "destinationProvider": {
+          "description": "Optional. The provider for the destination database.",
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Use this value for on-premise source database instances and ORACLE.",
+            "Cloud SQL is the source instance provider.",
+            "Amazon RDS is the source instance provider.",
+            "Amazon Aurora is the source instance provider.",
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "Optional. The display name for the workspace.",
           "type": "string"
@@ -3246,6 +3266,26 @@
         "source": {
           "$ref": "DatabaseEngineInfo",
           "description": "Required. The source engine details."
+        },
+        "sourceProvider": {
+          "description": "Optional. The provider for the source database.",
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Use this value for on-premise source database instances and ORACLE.",
+            "Cloud SQL is the source instance provider.",
+            "Amazon RDS is the source instance provider.",
+            "Amazon Aurora is the source instance provider.",
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
+          ],
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the workspace resource was last updated.",

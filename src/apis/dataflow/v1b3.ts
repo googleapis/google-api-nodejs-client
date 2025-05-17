@@ -924,6 +924,10 @@ export namespace dataflow_v1b3 {
      */
     tempStoragePrefix?: string | null;
     /**
+     * Optional. True when any worker pool that uses public IPs is present.
+     */
+    usePublicIps?: boolean | null;
+    /**
      * A description of the process that generated the request.
      */
     userAgent?: {[key: string]: any} | null;

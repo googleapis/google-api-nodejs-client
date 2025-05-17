@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250506",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -467,7 +467,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.",
+          "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
           "type": "object"
         }
       },

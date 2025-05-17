@@ -2943,7 +2943,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6414,6 +6414,10 @@ export namespace drive_v3 {
      * A plain text custom message to include in the notification email.
      */
     emailMessage?: string;
+    /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
     /**
      * Deprecated: See `moveToNewOwnersRoot` for details.
      */

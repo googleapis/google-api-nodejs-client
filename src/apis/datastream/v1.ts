@@ -834,7 +834,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbProfile {
     /**
-     * Required. List of host addresses for a MongoDB cluster.
+     * Required. List of host addresses for a MongoDB cluster. For SRV connection format, this list must contain exactly one DNS host without a port. For Standard connection format, this list must contain all the required hosts in the cluster with their respective ports.
      */
     hostAddresses?: Schema$HostAddress[];
     /**
@@ -842,7 +842,7 @@ export namespace datastream_v1 {
      */
     password?: string | null;
     /**
-     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster.
+     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster. For SRV connection format, this field must be empty. For Standard connection format, this field must be specified.
      */
     replicaSet?: string | null;
     /**
@@ -874,6 +874,10 @@ export namespace datastream_v1 {
      * MongoDB collections to include in the stream.
      */
     includeObjects?: Schema$MongodbCluster;
+    /**
+     * Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system's default value is used
+     */
+    maxConcurrentBackfillTasks?: number | null;
   }
   /**
    * CDC strategy to start replicating from the most recent position in the source.
@@ -2035,7 +2039,12 @@ export namespace datastream_v1 {
   /**
    * Standard connection format.
    */
-  export interface Schema$StandardConnectionFormat {}
+  export interface Schema$StandardConnectionFormat {
+    /**
+     * Optional. Specifies whether the client connects directly to the host[:port] in the connection URI.
+     */
+    directConnection?: boolean | null;
+  }
   /**
    * Request for manually initiating a backfill job for a specific stream object.
    */

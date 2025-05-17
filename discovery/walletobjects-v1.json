@@ -2711,7 +2711,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250506",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3610,7 +3610,7 @@
       "id": "DiscoverableProgramMerchantSignupInfo",
       "properties": {
         "signupSharedDatas": {
-          "description": " User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.",
+          "description": "User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.",
           "items": {
             "enum": [
               "SHARED_DATA_TYPE_UNSPECIFIED",
@@ -4369,14 +4369,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -5175,14 +5175,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -5573,14 +5573,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -6112,14 +6112,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -7005,14 +7005,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -8019,14 +8019,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
@@ -9551,14 +9551,14 @@
             true
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Object is active and displayed to with other active objects.",
             "Legacy alias for `ACTIVE`. Deprecated.",
-            "",
+            "Object has completed it's lifecycle.",
             "Legacy alias for `COMPLETED`. Deprecated.",
             "Object is no longer valid (`validTimeInterval` passed).",
             "Legacy alias for `EXPIRED`. Deprecated.",
-            "",
+            "Object is no longer valid",
             "Legacy alias for `INACTIVE`. Deprecated."
           ],
           "type": "string"
