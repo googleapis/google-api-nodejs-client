@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "googleapis": "^149.0.0",
     "googleapis-common": "^7.0.0",
-    "nconf": "^0.12.0",
+    "nconf": "^0.13.0",
     "open": "^8.0.0",
     "server-destroy": "^1.0.1",
     "uuid": "^10.0.0"
