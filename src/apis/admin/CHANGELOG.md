@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.4.0...admin-v23.5.0) (2025-05-05)
+
+
+### Features
+
+* **admin:** update the API ([f68c70c](https://github.com/googleapis/google-api-nodejs-client/commit/f68c70c43a367b8f9dc2d7c81d717c6d723663fc))
+
 ## [23.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.3.0...admin-v23.4.0) (2025-04-18)
 
 

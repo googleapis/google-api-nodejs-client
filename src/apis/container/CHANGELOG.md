@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v14.0.0...container-v14.1.0) (2025-05-05)
+
+
+### Features
+
+* **container:** update the API ([7970340](https://github.com/googleapis/google-api-nodejs-client/commit/7970340eb1cb2cfac5ed8138ad5982f8f736e128))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v13.0.0...container-v14.0.0) (2025-03-18)
 
 

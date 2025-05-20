@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v9.8.0...places-v10.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **places:** This release has breaking changes.
+
+### Features
+
+* **places:** update the API ([ce19938](https://github.com/googleapis/google-api-nodejs-client/commit/ce199384fb60be0f859cf78fd2877c60b55e4a5c))
+
 ## [9.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v9.7.0...places-v9.8.0) (2025-03-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v12.0.0...firestore-v12.1.0) (2025-05-05)
+
+
+### Features
+
+* **firestore:** update the API ([f71c04a](https://github.com/googleapis/google-api-nodejs-client/commit/f71c04af24a3244f970f4ce2cec6b2328b7d5dc8))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v11.2.0...firestore-v12.0.0) (2025-03-18)
 
 

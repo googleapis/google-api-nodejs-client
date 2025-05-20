@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v12.0.0...alloydb-v12.1.0) (2025-05-05)
+
+
+### Features
+
+* **alloydb:** update the API ([fe65184](https://github.com/googleapis/google-api-nodejs-client/commit/fe65184a522d2a4b86dd03e0c004bb405cbb2c97))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v11.3.0...alloydb-v12.0.0) (2025-03-18)
 
 

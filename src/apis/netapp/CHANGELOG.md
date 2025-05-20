@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v0.2.0...netapp-v0.3.0) (2025-05-05)
+
+
+### Features
+
+* **netapp:** update the API ([ddba54e](https://github.com/googleapis/google-api-nodejs-client/commit/ddba54e7ea6593954cbcdfe8cb2e5b9f825b891f))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v0.1.0...netapp-v0.2.0) (2025-03-18)
 
 

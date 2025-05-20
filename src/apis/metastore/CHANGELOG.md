@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v8.1.0...metastore-v8.2.0) (2025-05-05)
+
+
+### Features
+
+* **metastore:** update the API ([f0050d7](https://github.com/googleapis/google-api-nodejs-client/commit/f0050d7dd5300dca021075c18dced4a2275e67f5))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v8.0.1...metastore-v8.1.0) (2025-03-18)
 
 
