@@ -47,10 +47,10 @@ describe('Query params', () => {
   it('should not append ? with no query parameters', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res = await localDrive.files.get({fileId: 'ID'});
-    assert.strictEqual(-1, res.config.url.indexOf('?'));
+    assert.strictEqual(-1, res.config.url.toString().indexOf('?'));
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res2 = await remoteDrive.files.get({fileId: 'ID'});
-    assert.strictEqual(-1, res2.config.url.indexOf('?'));
+    assert.strictEqual(-1, res2.config.url.toString().indexOf('?'));
   });
 
   it('should be null if no object passed', async () => {

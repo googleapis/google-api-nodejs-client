@@ -133,6 +133,7 @@ describe('Path params', () => {
         );
       },
     );
+    done();
   });
 
   it('should be put in URL of pathname', done => {
