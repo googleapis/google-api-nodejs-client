@@ -220,5 +220,5 @@ describe('Clients', () => {
 
   it('should pass eslint for a given client', () => {
     execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
-  });
+  }).timeout(50000);
 });

@@ -257,12 +257,9 @@ describe('Options', () => {
     );
     const google = new GoogleApis();
     const drive = google.drive('v3');
-    try {
-      await drive.files.list({}, {validateStatus: () => true});
-    } catch (err) {
-      assert.strictEqual((err as any).status, 500);
-      scope.done();
-    }
+    const res = await drive.files.list({}, {validateStatus: () => true});
+    assert.strictEqual(res.status, 500);
+    scope.done();
   });
 
   it('should provide properly typed responses', async () => {
@@ -333,13 +330,9 @@ describe('Options', () => {
       },
     });
     const drive = google.drive('v2');
-    try {
-      await drive.files.list({}, {validateStatus: () => true});
-    } catch (err) {
-      console.log(err);
-      assert.strictEqual((err as any).status, 500);
-      assert.strictEqual(count, 2);
-      scope.done();
-    }
+    const res = await drive.files.list({}, {validateStatus: () => true});
+    assert.strictEqual(res.status, 500);
+    assert.strictEqual(count, 2);
+    scope.done();
   });
 });
