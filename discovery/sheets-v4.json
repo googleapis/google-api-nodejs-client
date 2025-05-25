@@ -875,7 +875,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250513",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1110,6 +1110,18 @@
       },
       "type": "object"
     },
+    "AddTableResponse": {
+      "description": "The result of adding a table.",
+      "id": "AddTableResponse",
+      "properties": {
+        "table": {
+          "$ref": "Table",
+          "description": "Output only. The table that was added.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "AppendCellsRequest": {
       "description": "Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.",
       "id": "AppendCellsRequest",
@@ -1227,9 +1239,14 @@
       "id": "BandedRange",
       "properties": {
         "bandedRangeId": {
-          "description": "The ID of the banded range.",
+          "description": "The ID of the banded range. If unset, refer to banded_range_reference.",
           "format": "int32",
           "type": "integer"
+        },
+        "bandedRangeReference": {
+          "description": "Output only. The reference of the banded range, used to identify the ID that is not supported by the banded_range_id.",
+          "readOnly": true,
+          "type": "string"
         },
         "columnProperties": {
           "$ref": "BandingProperties",
@@ -6408,6 +6425,10 @@
         "addSlicer": {
           "$ref": "AddSlicerResponse",
           "description": "A reply from adding a slicer."
+        },
+        "addTable": {
+          "$ref": "AddTableResponse",
+          "description": "A reply from adding a table."
         },
         "cancelDataSourceRefresh": {
           "$ref": "CancelDataSourceRefreshResponse",
