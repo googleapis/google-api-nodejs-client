@@ -1122,7 +1122,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250502",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AllocationOptions": {
@@ -1130,7 +1130,7 @@
       "id": "AllocationOptions",
       "properties": {
         "allocationStrategy": {
-          "description": "Optional. Allocation strategy Not setting this field when the allocation is requested means an implementation defined strategy is used.",
+          "description": "Optional. Allocation strategy. Not setting this field when the allocation is requested means an implementation defined strategy is used.",
           "enum": [
             "ALLOCATION_STRATEGY_UNSPECIFIED",
             "RANDOM",
