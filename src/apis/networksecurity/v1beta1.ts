@@ -306,7 +306,7 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
     /**
-     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the forwarding rule or Gateway. For Application Load Balancers, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or SPIFFE ID, or the subject field in the client's certificate. For Cloud Service Mesh, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or the subject field in the client's certificate. The match can be exact, prefix, suffix, or a substring match. One of exact, prefix, suffix, or contains must be specified. Limited to 5 principals.
+     * Optional. A list of identities derived from the client's certificate. This field is under development and we don't recommend using it at this time. Limited to 5 principals.
      */
     principals?: Schema$AuthzPolicyAuthzRuleStringMatch[];
     /**
