@@ -1078,6 +1078,10 @@ export namespace securitycenter_v1beta1 {
      */
     hashedSize?: string | null;
     /**
+     * Operation(s) performed on a file.
+     */
+    operations?: Schema$FileOperation[];
+    /**
      * True when the hash covers only a prefix of the file.
      */
     partiallyHashed?: boolean | null;
@@ -1093,6 +1097,15 @@ export namespace securitycenter_v1beta1 {
      * Size of the file in bytes.
      */
     size?: string | null;
+  }
+  /**
+   * Operation(s) performed on a file.
+   */
+  export interface Schema$FileOperation {
+    /**
+     * The type of the operation
+     */
+    type?: string | null;
   }
   /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
@@ -3005,6 +3018,10 @@ export namespace securitycenter_v1beta1 {
      */
     hashedSize?: string | null;
     /**
+     * Operation(s) performed on a file.
+     */
+    operations?: Schema$GoogleCloudSecuritycenterV2FileOperation[];
+    /**
      * True when the hash covers only a prefix of the file.
      */
     partiallyHashed?: boolean | null;
@@ -3020,6 +3037,15 @@ export namespace securitycenter_v1beta1 {
      * Size of the file in bytes.
      */
     size?: string | null;
+  }
+  /**
+   * Operation(s) performed on a file.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2FileOperation {
+    /**
+     * The type of the operation
+     */
+    type?: string | null;
   }
   /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
