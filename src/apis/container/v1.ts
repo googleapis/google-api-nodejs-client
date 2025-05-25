@@ -229,6 +229,10 @@ export namespace container_v1 {
      */
     gkeBackupAgentConfig?: Schema$GkeBackupAgentConfig;
     /**
+     * Configuration for the High Scale Checkpointing add-on.
+     */
+    highScaleCheckpointingConfig?: Schema$HighScaleCheckpointingConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -283,10 +287,18 @@ export namespace container_v1 {
      */
     enableNestedVirtualization?: boolean | null;
     /**
+     * Type of Performance Monitoring Unit (PMU) requested on node pool instances. If unset, PMU will not be available to the node.
+     */
+    performanceMonitoringUnit?: string | null;
+    /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      */
     threadsPerCore?: string | null;
   }
+  /**
+   * AnonymousAuthenticationConfig defines the settings needed to limit endpoints that allow anonymous authentication.
+   */
+  export interface Schema$AnonymousAuthenticationConfig {}
   /**
    * Configuration for returning group information from authenticators.
    */
@@ -585,6 +597,14 @@ export namespace container_v1 {
      * Configurations for the various addons available to run in the cluster.
      */
     addonsConfig?: Schema$AddonsConfig;
+    /**
+     * The list of user specified Kubernetes feature gates. Each string represents the activation status of a feature gate (e.g. "featureX=true" or "featureX=false")
+     */
+    alphaClusterFeatureGates?: string[] | null;
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the health checks.
+     */
+    anonymousAuthenticationConfig?: Schema$AnonymousAuthenticationConfig;
     /**
      * Configuration controlling RBAC group membership information.
      */
@@ -932,6 +952,10 @@ export namespace container_v1 {
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the health checks.
+     */
+    desiredAnonymousAuthenticationConfig?: Schema$AnonymousAuthenticationConfig;
     /**
      * The desired authenticator groups config for the cluster.
      */
@@ -1681,6 +1705,15 @@ export namespace container_v1 {
     maxSharedClientsPerGpu?: string | null;
   }
   /**
+   * Configuration for the High Scale Checkpointing.
+   */
+  export interface Schema$HighScaleCheckpointingConfig {
+    /**
+     * Whether the High Scale Checkpointing is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
    */
   export interface Schema$HorizontalPodAutoscaling {
@@ -2154,6 +2187,15 @@ export namespace container_v1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * The option enables the Kubernetes NUMA-aware Memory Manager feature. Detailed description about the feature can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/).
+   */
+  export interface Schema$MemoryManager {
+    /**
+     * Controls the memory management policy on the Node. See https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#policies The following values are allowed. * "none" * "static" The default value is 'none' if unspecified.
+     */
+    policy?: string | null;
+  }
+  /**
    * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
    */
   export interface Schema$MeshCertificates {
@@ -2590,9 +2632,17 @@ export namespace container_v1 {
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     */
+    memoryManager?: Schema$MemoryManager;
+    /**
      * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
      */
     podPidsLimit?: string | null;
+    /**
+     * Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     */
+    topologyManager?: Schema$TopologyManager;
   }
   /**
    * Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
@@ -3928,6 +3978,19 @@ export namespace container_v1 {
      * The time that the window first starts.
      */
     startTime?: string | null;
+  }
+  /**
+   * TopologyManager defines the configuration options for Topology Manager feature. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+   */
+  export interface Schema$TopologyManager {
+    /**
+     * Configures the strategy for resource alignment. Allowed values are: * none: the default policy, and does not perform any topology alignment. * restricted: the topology manager stores the preferred NUMA node affinity for the container, and will reject the pod if the affinity if not preferred. * best-effort: the topology manager stores the preferred NUMA node affinity for the container. If the affinity is not preferred, the topology manager will admit the pod to the node anyway. * single-numa-node: the topology manager determines if the single NUMA node affinity is possible. If it is, Topology Manager will store this and the Hint Providers can then use this information when making the resource allocation decision. If, however, this is not possible then the Topology Manager will reject the pod from the node. This will result in a pod in a Terminated state with a pod admission failure. The default policy value is 'none' if unspecified. Details about each strategy can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-policies).
+     */
+    policy?: string | null;
+    /**
+     * The Topology Manager aligns resources in following scopes: * container * pod The default scope is 'container' if unspecified. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-scopes
+     */
+    scope?: string | null;
   }
   /**
    * UpdateClusterRequest updates the settings of a cluster.
