@@ -1469,7 +1469,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     totalFreeBytes?: string | null;
     /**
-     * VMware disk details.
+     * VMware disk details. Deprecated
      */
     vmwareConfig?: Schema$VmwareDiskConfig;
   }
