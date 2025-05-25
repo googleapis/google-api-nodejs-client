@@ -242,6 +242,10 @@ export namespace netapp_v1beta1 {
      */
     description?: string | null;
     /**
+     * Output only. The time until which the backup is not deletable.
+     */
+    enforcedRetentionEndTime?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -345,6 +349,31 @@ export namespace netapp_v1beta1 {
     weeklyBackupLimit?: number | null;
   }
   /**
+   * Retention policy for backups in the backup vault
+   */
+  export interface Schema$BackupRetentionPolicy {
+    /**
+     * Required. Minimum retention duration in days for backups in the backup vault.
+     */
+    backupMinimumEnforcedRetentionDays?: number | null;
+    /**
+     * Optional. Indicates if the daily backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    dailyBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the manual backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    manualBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the monthly backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    monthlyBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the weekly backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    weeklyBackupImmutable?: boolean | null;
+  }
+  /**
    * A NetApp BackupVault.
    */
   export interface Schema$BackupVault {
@@ -352,6 +381,10 @@ export namespace netapp_v1beta1 {
      * Optional. Region where the backups are stored. Format: `projects/{project_id\}/locations/{location\}`
      */
     backupRegion?: string | null;
+    /**
+     * Optional. Backup retention policy defining the retenton of backups.
+     */
+    backupRetentionPolicy?: Schema$BackupRetentionPolicy;
     /**
      * Optional. Type of backup vault to be created. Default is IN_REGION.
      */
@@ -491,31 +524,31 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$HybridPeeringDetails {
     /**
-     * Optional. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.
      */
     command?: string | null;
     /**
-     * Optional. Expiration time for the peering command to be executed on user's ONTAP.
+     * Output only. Expiration time for the peering command to be executed on user's ONTAP.
      */
     commandExpiryTime?: string | null;
     /**
-     * Optional. Temporary passphrase generated to accept cluster peering command.
+     * Output only. Temporary passphrase generated to accept cluster peering command.
      */
     passphrase?: string | null;
     /**
-     * Optional. Name of the user's local source cluster to be peered with the destination cluster.
+     * Output only. Name of the user's local source cluster to be peered with the destination cluster.
      */
     peerClusterName?: string | null;
     /**
-     * Optional. Name of the user's local source vserver svm to be peered with the destination vserver svm.
+     * Output only. Name of the user's local source vserver svm to be peered with the destination vserver svm.
      */
     peerSvmName?: string | null;
     /**
-     * Optional. Name of the user's local source volume to be peered with the destination volume.
+     * Output only. Name of the user's local source volume to be peered with the destination volume.
      */
     peerVolumeName?: string | null;
     /**
-     * Optional. IP address of the subnet.
+     * Output only. IP address of the subnet.
      */
     subnetIp?: string | null;
   }
@@ -532,9 +565,17 @@ export namespace netapp_v1beta1 {
      */
     description?: string | null;
     /**
+     * Optional. Type of the hybrid replication.
+     */
+    hybridReplicationType?: string | null;
+    /**
      * Optional. Labels to be added to the replication as the key value pairs.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Constituent volume count for large volume.
+     */
+    largeVolumeConstituentCount?: number | null;
     /**
      * Required. Name of the user's local source cluster to be peered with the destination cluster.
      */
@@ -555,6 +596,10 @@ export namespace netapp_v1beta1 {
      * Required. Desired name for the replication of this volume.
      */
     replication?: string | null;
+    /**
+     * Optional. Replication Schedule for the replication created.
+     */
+    replicationSchedule?: string | null;
   }
   /**
    * KmsConfig is the customer managed encryption key(CMEK) configuration.
@@ -1013,6 +1058,10 @@ export namespace netapp_v1beta1 {
      */
     hybridReplicationType?: string | null;
     /**
+     * Output only. Copy pastable snapmirror commands to be executed on onprem cluster by the customer.
+     */
+    hybridReplicationUserCommands?: Schema$UserCommands;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -1241,6 +1290,10 @@ export namespace netapp_v1beta1 {
      */
     description?: string | null;
     /**
+     * Optional. Flag indicating that the hot-tier threshold will be auto-increased by 10% of the hot-tier when it hits 100%. Default is true. The increment will kick in only if the new size after increment is still less than or equal to storage pool size.
+     */
+    enableHotTierAutoResize?: boolean | null;
+    /**
      * Output only. Specifies the current pool encryption key source.
      */
     encryptionType?: string | null;
@@ -1248,6 +1301,10 @@ export namespace netapp_v1beta1 {
      * Deprecated. Used to allow SO pool to access AD or DNS server from other regions.
      */
     globalAccessAllowed?: boolean | null;
+    /**
+     * Optional. Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.
+     */
+    hotTierSizeGib?: string | null;
     /**
      * Optional. Specifies the KMS config to be used for volume encryption.
      */
@@ -1334,6 +1391,10 @@ export namespace netapp_v1beta1 {
      */
     coolingThresholdDays?: number | null;
     /**
+     * Optional. Flag indicating that the hot tier bypass mode is enabled. Default is false. This is only applicable to Flex service level.
+     */
+    hotTierBypassModeEnabled?: boolean | null;
+    /**
      * Optional. Flag indicating if the volume has tiering policy enable/pause. Default is PAUSED.
      */
     tierAction?: string | null;
@@ -1367,13 +1428,22 @@ export namespace netapp_v1beta1 {
      */
     totalTransferDuration?: string | null;
     /**
-     * Cumulative bytes trasferred so far for the replication relatinonship.
+     * Cumulative bytes transferred so far for the replication relationship.
      */
     transferBytes?: string | null;
     /**
      * Time when progress was updated last.
      */
     updateTime?: string | null;
+  }
+  /**
+   * UserCommands contains the commands to be executed by the customer.
+   */
+  export interface Schema$UserCommands {
+    /**
+     * Output only. List of commands to be executed by the customer.
+     */
+    commands?: string[] | null;
   }
   /**
    * ValidateDirectoryServiceRequest validates the directory service policy attached to the storage pool.
