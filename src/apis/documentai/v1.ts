@@ -2565,9 +2565,9 @@ export namespace documentai_v1 {
      */
     displayName?: string | null;
     /**
-     * Grounding config of the entity type.
+     * Specifies how the entity's value is obtained.
      */
-    groundingConfig?: string | null;
+    method?: string | null;
     /**
      * The name of the property. Follows the same guidelines as the EntityType name.
      */
