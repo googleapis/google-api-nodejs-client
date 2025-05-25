@@ -1070,10 +1070,6 @@ export namespace retail_v2alpha {
      * The proposed refined search queries. They can be used to fetch the relevant search results. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.
      */
     refinedSearch?: Schema$GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch[];
-    /**
-     * This field is deprecated. Please find the refinded_query from search response when using CONVERSATIONAL_FILTER_ONLY mode in ConversationalSearchResponse.refined_search instead. The rephrased query based on the user's query and the conversation history. It can be used to fetch the relevant search results.
-     */
-    rephrasedQuery?: string | null;
   }
   /**
    * This field specifies all related information that is needed on client side for UI rendering of conversational filtering search.
@@ -1170,6 +1166,15 @@ export namespace retail_v2alpha {
      * The textual values of this custom attribute. For example, `["yellow", "green"]` when the key is "color". Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     text?: string[] | null;
+  }
+  /**
+   * A message with a list of double values.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaDoubleList {
+    /**
+     * The list of double values.
+     */
+    values?: number[] | null;
   }
   /**
    * Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.
@@ -1836,7 +1841,11 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed ID.
+     * AFM data source ID.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
      */
     primaryFeedId?: string | null;
     /**
@@ -1849,7 +1858,11 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed ID.
+     * AFM data source ID.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
      */
     primaryFeedId?: string | null;
     /**
@@ -3371,6 +3384,12 @@ export namespace retail_v2alpha {
      * If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key "sku1" with field mask "products.color_info" indicates there is a match between "sku1" ColorInfo and the query.
      */
     matchingVariantFields?: {[key: string]: string} | null;
+    /**
+     * Google provided available scores.
+     */
+    modelScores?: {
+      [key: string]: Schema$GoogleCloudRetailV2alphaDoubleList;
+    } | null;
     /**
      * Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.
      */
