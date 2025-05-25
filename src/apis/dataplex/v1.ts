@@ -1030,6 +1030,10 @@ export namespace dataplex_v1 {
      */
     location?: string | null;
     /**
+     * Optional. The project of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. If not specified, the project of the Cloud Storage bucket will be used. The format is "projects/{project_id_or_number\}".
+     */
+    project?: string | null;
+    /**
      * Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.
      */
     tableType?: string | null;
@@ -1340,6 +1344,14 @@ export namespace dataplex_v1 {
      */
     column?: string | null;
     /**
+     * Output only. The dimension-level results for this column.
+     */
+    dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
+    /**
+     * Output only. Whether the column passed or failed.
+     */
+    passed?: boolean | null;
+    /**
      * Output only. The column-level data quality score for this data scan job if and only if the 'column' field is set.The score ranges between between 0, 100 (up to two decimal points).
      */
     score?: number | null;
@@ -1374,6 +1386,10 @@ export namespace dataplex_v1 {
    * The output of a DataQualityScan.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
+    /**
+     * Output only. The status of publishing the data scan to Catalog.
+     */
+    catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
      * Output only. A list of results at the column level.A column will have a corresponding DataQualityColumnResult if and only if there is at least one rule with the 'column' field set to it.
      */
@@ -1696,6 +1712,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpec {
     /**
+     * Optional. If set, the latest DataScan job result will be published to Dataplex Catalog.
+     */
+    catalogPublishingEnabled?: boolean | null;
+    /**
      * Optional. Actions to take upon job completion.
      */
     postScanActions?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActions;
@@ -1859,9 +1879,22 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * The status of publishing the data scan result to Catalog.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus {
+    /**
+     * Output only. Execution state for catalog publishing.
+     */
+    state?: string | null;
+  }
+  /**
    * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEvent {
+    /**
+     * The status of publishing the data scan to Catalog.
+     */
+    catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
      * The time when the data scan job was created.
      */
@@ -2516,7 +2549,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * EntryLink represents a link between two entries.
+   * EntryLink represents a link between two Entries.
    */
   export interface Schema$GoogleCloudDataplexV1EntryLink {
     /**
@@ -2524,15 +2557,15 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: projects/{project\}/locations/{location\}/entryLinkTypes/{entry_link_type\}.
+     * Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: `projects/{project_id_or_number\}/locations/{location_id\}/entryLinkTypes/{entry_link_type_id\}.
      */
     entryLinkType?: string | null;
     /**
-     * Required. Specifies the entries referenced in the entry link. There should be exactly two entry references.
+     * Required. Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.
      */
     entryReferences?: Schema$GoogleCloudDataplexV1EntryLinkEntryReference[];
     /**
-     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}
      */
     name?: string | null;
     /**
@@ -2541,19 +2574,19 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Reference to the Entry that is linked through the entry link.
+   * Reference to the Entry that is linked through the Entry Link.
    */
   export interface Schema$GoogleCloudDataplexV1EntryLinkEntryReference {
     /**
-     * Required. Immutable. The relative resource name of the referenced entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entryGroup\}/entries/{entry\}.
+     * Required. Immutable. The relative resource name of the referenced Entry, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
      */
     name?: string | null;
     /**
-     * Immutable. The path in the entry that is referenced in the entry link. Empty path denotes that the entry itself is referenced in the entry link.
+     * Immutable. The path in the Entry that is referenced in the Entry Link. Empty path denotes that the Entry itself is referenced in the Entry Link.
      */
     path?: string | null;
     /**
-     * Required. Immutable. The reference type of the entry.
+     * Required. Immutable. The reference type of the Entry.
      */
     type?: string | null;
   }
@@ -2857,23 +2890,23 @@ export namespace dataplex_v1 {
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
   /**
-   * A Glossary represents a collection of categories and terms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the categories and terms within it.
+   * A Glossary represents a collection of GlossaryCategories and GlossaryTerms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the GlossaryCategories and GlossaryTerms within it.
    */
   export interface Schema$GoogleCloudDataplexV1Glossary {
     /**
-     * Output only. The number of categories in the glossary.
+     * Output only. The number of GlossaryCategories in the Glossary.
      */
     categoryCount?: number | null;
     /**
-     * Output only. The time at which the glossary was created.
+     * Output only. The time at which the Glossary was created.
      */
     createTime?: string | null;
     /**
-     * Optional. The user-mutable description of the glossary.
+     * Optional. The user-mutable description of the Glossary.
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the glossary. This is user-mutable. This will be same as the glossaryId, if not specified.
+     * Optional. User friendly display name of the Glossary. This is user-mutable. This will be same as the GlossaryId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2885,11 +2918,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string | null;
     /**
-     * Output only. The number of terms in the glossary.
+     * Output only. The number of GlossaryTerms in the Glossary.
      */
     termCount?: number | null;
     /**
@@ -2897,12 +2930,12 @@ export namespace dataplex_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. The time at which the glossary was last updated.
+     * Output only. The time at which the Glossary was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * A GlossaryCategory represents a collection of categories and terms within a Glossary that are related to each other.
+   * A GlossaryCategory represents a collection of GlossaryCategories and GlossaryTerms within a Glossary that are related to each other.
    */
   export interface Schema$GoogleCloudDataplexV1GlossaryCategory {
     /**
@@ -2914,7 +2947,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the categoryId, if not specified.
+     * Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the GlossaryCategoryId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2922,11 +2955,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string | null;
     /**
-     * Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} OR projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     parent?: string | null;
     /**
@@ -2939,7 +2972,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * GlossaryTerms are the core of glossary. A GlossaryTerm holds a rich text description that can be attached to entries or specific columns to enrich them.
+   * GlossaryTerms are the core of Glossary. A GlossaryTerm holds a rich text description that can be attached to Entries or specific columns to enrich them.
    */
   export interface Schema$GoogleCloudDataplexV1GlossaryTerm {
     /**
@@ -2951,7 +2984,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the termId, if not specified.
+     * Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the GlossaryTermId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2959,11 +2992,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string | null;
     /**
-     * Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} OR projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     parent?: string | null;
     /**
@@ -3435,7 +3468,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ListGlossariesResponse {
     /**
-     * Lists the glossaries in the specified parent.
+     * Lists the Glossaries in the specified parent.
      */
     glossaries?: Schema$GoogleCloudDataplexV1Glossary[];
     /**
@@ -3452,7 +3485,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse {
     /**
-     * Lists the glossaryCategories in the specified parent.
+     * Lists the GlossaryCategories in the specified parent.
      */
     categories?: Schema$GoogleCloudDataplexV1GlossaryCategory[];
     /**
@@ -3473,7 +3506,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Lists the terms in the specified parent.
+     * Lists the GlossaryTerms in the specified parent.
      */
     terms?: Schema$GoogleCloudDataplexV1GlossaryTerm[];
     /**
@@ -6589,7 +6622,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Searchentries
     extends StandardParameters {
     /**
-     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      */
     name?: string;
     /**
@@ -13247,7 +13280,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an entry link.
+     * Gets an Entry Link.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13349,7 +13382,7 @@ export namespace dataplex_v1 {
      */
     entryLinkId?: string;
     /**
-     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     * Required. The resource name of the parent Entry Group: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     parent?: string;
 
@@ -13361,14 +13394,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
   }
@@ -14692,7 +14725,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a Glossary resource. All the categories and terms within the glossary must be deleted before a glossary can be deleted.
+     * Deletes a Glossary resource. All the categories and terms within the Glossary must be deleted before the Glossary can be deleted.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14784,7 +14817,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified Glossary resource.
+     * Gets a Glossary resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15360,11 +15393,11 @@ export namespace dataplex_v1 {
      */
     glossaryId?: string;
     /**
-     * Required. The parent resource where this Glossary will be created. Format: projects/{projectId\}/locations/{locationId\} where locationId refers to a GCP region.
+     * Required. The parent resource where this Glossary will be created. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Optional. Validates the request without actually creating the glossary. Default: false.
+     * Optional. Validates the request without actually creating the Glossary. Default: false.
      */
     validateOnly?: boolean;
 
@@ -15380,14 +15413,14 @@ export namespace dataplex_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the Glossary to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}
+     * Required. The name of the Glossary to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Glossary to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}
+     * Required. The name of the Glossary to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
   }
@@ -15405,15 +15438,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters glossaries listed in the response. Initially, no filter is supported.
+     * Optional. Filter expression that filters Glossaries listed in the response. Filters on proto fields of Glossary are supported. Examples of using a filter are: - display_name="my-glossary" - categoryCount=1 - termCount=0
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders Glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of glossaries to return. The service may return fewer than this value. If unspecified, at most 50 glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of Glossaries to return. The service may return fewer than this value. If unspecified, at most 50 Glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -15421,14 +15454,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of glossaries. Format: projects/{project\}/locations/{location\} Location is the GCP region.
+     * Required. The parent, which has this collection of Glossaries. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
     /**
@@ -15436,7 +15469,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. Validates the request without actually updating the glossary. Default: false.
+     * Optional. Validates the request without actually updating the Glossary. Default: false.
      */
     validateOnly?: boolean;
 
@@ -15477,7 +15510,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * GlossaryCategory APIs are CCFE passthrough APIs. Creates a new GlossaryCategory resource.
+     * Creates a new GlossaryCategory resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15575,7 +15608,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a GlossaryCategory resource. All the categories and terms nested directly under the category will be moved one level up to the parent in the hierarchy.
+     * Deletes a GlossaryCategory resource. All the GlossaryCategories and GlossaryTerms nested directly under the specified GlossaryCategory will be moved one level up to the parent in the hierarchy.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15661,7 +15694,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified GlossaryCategory resource.
+     * Gets a GlossaryCategory resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15850,7 +15883,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists GlossaryCategory resources in a glossary.
+     * Lists GlossaryCategory resources in a Glossary.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16238,11 +16271,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Create
     extends StandardParameters {
     /**
-     * Required. Category ID: GlossaryCategory identifier.
+     * Required. GlossaryCategory identifier.
      */
     categoryId?: string;
     /**
-     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where locationId refers to a GCP region.
      */
     parent?: string;
 
@@ -16254,14 +16287,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryCategory to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/categories/{glossary_category\}
+     * Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Get
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/categories/{glossary_category\}
+     * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
@@ -16279,15 +16312,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters categories listed in the response. Filters supported: List GlossaryCategories based on immediate parent in the resource hierarchy. This will only return the GlossaryCategories nested directly under the parent and no other subsequent nested categories will be returned.
+     * Optional. Filter expression that filters GlossaryCategories listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryCategories that are directly nested under the specified parent.
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders categories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders GlossaryCategories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of categories to return. The service may return fewer than this value. If unspecified, at most 50 categories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of GlossaryCategories to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryCategories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -16295,14 +16328,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of categories. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     * Required. The parent, which has this collection of GlossaryCategories. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} Location is the GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
     /**
@@ -16347,7 +16380,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * GlossaryTerm APIs are CCFE passthrough APIs. Creates a new GlossaryTerm resource.
+     * Creates a new GlossaryTerm resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16531,7 +16564,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified GlossaryTerm resource.
+     * Gets a GlossaryTerm resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16719,7 +16752,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists GlossaryTerm resources in a glossary.
+     * Lists GlossaryTerm resources in a Glossary.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17106,11 +17139,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this GlossaryTerm will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     * Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Required. Term ID: GlossaryTerm identifier.
+     * Required. GlossaryTerm identifier.
      */
     termId?: string;
 
@@ -17122,14 +17155,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryTerm to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/terms/{glossary_term\}
+     * Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Get
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/terms/{glossary_term\}
+     * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
@@ -17147,15 +17180,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters terms listed in the response. Filters supported: List GlossaryTerms based on immediate parent in the resource hierarchy. This will only return the terms nested directly under the parent and no other subsequent nested terms will be returned.
+     * Optional. Filter expression that filters GlossaryTerms listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryTerms that are directly nested under the specified parent.
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders terms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders GlossaryTerms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of terms to return. The service may return fewer than this value. If unspecified, at most 50 terms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of GlossaryTerms to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryTerms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -17163,14 +17196,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of terms. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     * Required. The parent, which has this collection of GlossaryTerms. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
     /**
