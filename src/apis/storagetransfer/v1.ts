@@ -241,6 +241,10 @@ export namespace storagetransfer_v1 {
      */
     credentialsSecret?: string | null;
     /**
+     * Optional. Federated identity config of a user registered Azure application. If `federated_identity_config` is specified, do not specify azure_credentials or credentials_secret.
+     */
+    federatedIdentityConfig?: Schema$FederatedIdentityConfig;
+    /**
      * Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
      */
     path?: string | null;
@@ -340,6 +344,19 @@ export namespace storagetransfer_v1 {
     name?: string | null;
   }
   /**
+   * Identities of a user registered Azure application that enables identity federation to trust tokens issued by the user's Google service account. For more information about Azure application and identity federation, see [Register an application with the Microsoft identity platform] (https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) Azure RBAC roles then need be assigned to the Azure application to authorize access to the user's Azure data source. For more information about Azure RBAC roles for blobs, see [Manage Access Rights with RBAC] (https://learn.microsoft.com/en-us/rest/api/storageservices/authorize-with-azure-active-directory#manage-access-rights-with-rbac)
+   */
+  export interface Schema$FederatedIdentityConfig {
+    /**
+     * Required. Client (application) ID of the application with federated credentials.
+     */
+    clientId?: string | null;
+    /**
+     * Required. Tenant (directory) ID of the application with federated credentials.
+     */
+    tenantId?: string | null;
+  }
+  /**
    * In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
@@ -383,7 +400,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$HttpData {
     /**
-     * Required. The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.
+     * Required. The URL that points to the file that stores the object list entries. This file must allow public access. The URL is either an HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud Storage path (e.g. `gs://my-bucket/urllist.tsv`).
      */
     listUrl?: string | null;
   }
@@ -502,7 +519,7 @@ export namespace storagetransfer_v1 {
     pubsubTopic?: string | null;
   }
   /**
-   * Conditions that determine which objects are transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The "last modification time" refers to the time of the last change to the object's content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs. Transfers with a PosixFilesystem source or destination don't support `ObjectConditions`.
+   * Conditions that determine which objects are transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The "last modification time" refers to the time of the last change to the object's content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs. For S3 objects, the `LastModified` value is the time the object begins uploading. If the object meets your "last modification time" criteria, but has not finished uploading, the object is not transferred. See [Transfer from Amazon S3 to Cloud Storage](https://cloud.google.com/storage-transfer/docs/create-transfers/agentless/s3#transfer_options) for more information. Transfers with a PosixFilesystem source or destination don't support `ObjectConditions`.
    */
   export interface Schema$ObjectConditions {
     /**
@@ -827,6 +844,10 @@ export namespace storagetransfer_v1 {
      * Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule.
      */
     schedule?: Schema$Schedule;
+    /**
+     * Optional. The service account to be used to access resources in the consumer project in the transfer job. We accept `email` or `uniqueId` for the service account. Service account format is projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\} See https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken#path-parameters for details. Caller requires the following IAM permission on the specified service account: `iam.serviceAccounts.actAs`. project-PROJECT_NUMBER@storage-transfer-service.iam.gserviceaccount.com requires the following IAM permission on the specified service account: `iam.serviceAccounts.getAccessToken`
+     */
+    serviceAccount?: string | null;
     /**
      * Status of the job. This value MUST be specified for `CreateTransferJobRequests`. **Note:** The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation.
      */

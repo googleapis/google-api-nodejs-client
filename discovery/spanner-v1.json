@@ -59,11 +59,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://spanner.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -91,6 +86,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3406,7 +3406,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250516",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AdaptMessageRequest": {

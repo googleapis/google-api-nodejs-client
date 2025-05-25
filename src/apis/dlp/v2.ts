@@ -1359,9 +1359,17 @@ export namespace dlp_v2 {
      */
     dataProfileResourceName?: string | null;
     /**
+     * The type of the resource that was profiled.
+     */
+    dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
+    /**
      * A unique identifier for the finding.
      */
     findingId?: string | null;
+    /**
+     * The [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) of the resource profiled for this finding.
+     */
+    fullResourceName?: string | null;
     /**
      * The [type of content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference) that might have been found.
      */
@@ -1556,7 +1564,7 @@ export namespace dlp_v2 {
     timeZone?: Schema$GooglePrivacyDlpV2TimeZone;
   }
   /**
-   * Create a de-identified copy of the requested table or files. A TransformationDetail will be created for each transformation. If any rows in BigQuery are skipped during de-identification (transformation errors or row size exceeds BigQuery insert API limits) they are placed in the failure output table. If the original row exceeds the BigQuery insert API limit it will be truncated when written to the failure output table. The failure output table can be set in the action.deidentify.output.big_query_output.deidentified_failure_output_table field, if no table is set, a table will be automatically created in the same project and dataset as the original table. Compatible with: Inspect
+   * Create a de-identified copy of a storage bucket. Only compatible with Cloud Storage buckets. A TransformationDetail will be created for each transformation. Compatible with: Inspection of Cloud Storage
    */
   export interface Schema$GooglePrivacyDlpV2Deidentify {
     /**
@@ -1572,7 +1580,7 @@ export namespace dlp_v2 {
      */
     transformationConfig?: Schema$GooglePrivacyDlpV2TransformationConfig;
     /**
-     * Config for storing transformation details. This is separate from the de-identified content, and contains metadata about the successful transformations and/or failures that occurred while de-identifying. This needs to be set in order for users to access information about the status of each transformation (see TransformationDetails message for more information about what is noted).
+     * Config for storing transformation details. This field specifies the configuration for storing detailed metadata about each transformation performed during a de-identification process. The metadata is stored separately from the de-identified content itself and provides a granular record of both successful transformations and any failures that occurred. Enabling this configuration is essential for users who need to access comprehensive information about the status, outcome, and specifics of each transformation. The details are captured in the TransformationDetails message for each operation. Key use cases: * **Auditing and compliance** * Provides a verifiable audit trail of de-identification activities, which is crucial for meeting regulatory requirements and internal data governance policies. * Logs what data was transformed, what transformations were applied, when they occurred, and their success status. This helps demonstrate accountability and due diligence in protecting sensitive data. * **Troubleshooting and debugging** * Offers detailed error messages and context if a transformation fails. This information is useful for diagnosing and resolving issues in the de-identification pipeline. * Helps pinpoint the exact location and nature of failures, speeding up the debugging process. * **Process verification and quality assurance** * Allows users to confirm that de-identification rules and transformations were applied correctly and consistently across the dataset as intended. * Helps in verifying the effectiveness of the chosen de-identification strategies. * **Data lineage and impact analysis** * Creates a record of how data elements were modified, contributing to data lineage. This is useful for understanding the provenance of de-identified data. * Aids in assessing the potential impact of de-identification choices on downstream analytical processes or data usability. * **Reporting and operational insights** * You can analyze the metadata stored in a queryable BigQuery table to generate reports on transformation success rates, common error types, processing volumes (e.g., transformedBytes), and the types of transformations applied. * These insights can inform optimization of de-identification configurations and resource planning. To take advantage of these benefits, set this configuration. The stored details include a description of the transformation, success or error codes, error messages, the number of bytes transformed, the location of the transformed content, and identifiers for the job and source data.
      */
     transformationDetailsStorageConfig?: Schema$GooglePrivacyDlpV2TransformationDetailsStorageConfig;
   }
@@ -2475,7 +2483,7 @@ export namespace dlp_v2 {
      */
     fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
     /**
-     * The file store does not have any files. If the profiling failed, this will be false.
+     * The file store does not have any files. If the profiling operation failed, this is false.
      */
     fileStoreIsEmpty?: boolean | null;
     /**

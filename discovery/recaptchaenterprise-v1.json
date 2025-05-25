@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250518",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1412,6 +1412,14 @@
           "description": "Output only. Assessment of this transaction for risk of being part of a card testing attack.",
           "readOnly": true
         },
+        "riskReasons": {
+          "description": "Output only. Reasons why the transaction is probably fraudulent and received a high transaction risk score.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "stolenInstrumentVerdict": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
           "description": "Output only. Assessment of this transaction for risk of a stolen instrument.",
@@ -1448,6 +1456,34 @@
           "format": "float",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason": {
+      "description": "Risk reasons applicable to the Fraud Prevention assessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason",
+      "properties": {
+        "reason": {
+          "description": "Output only. Risk reasons applicable to the Fraud Prevention assessment.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "HIGH_TRANSACTION_VELOCITY",
+            "EXCESSIVE_ENUMERATION_PATTERN",
+            "SHORT_IDENTITY_HISTORY",
+            "GEOLOCATION_DISCREPANCY",
+            "ASSOCIATED_WITH_FRAUD_CLUSTER"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "A suspiciously high number of recent transactions have used identifiers present in this transaction.",
+            "User is cycling through a suspiciously large number of identifiers, suggesting enumeration or validation attacks within a potential fraud network.",
+            "User has a short history or no history in the reCAPTCHA network, suggesting the possibility of synthetic identity generation.",
+            "Identifiers used in this transaction originate from an unusual or conflicting set of geolocations.",
+            "This transaction is linked to a cluster of known fraudulent activity."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2451,12 +2487,19 @@
             "ACTION_TOKEN",
             "EXPRESS"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Undefined feature.",
             "Redirects suspicious traffic to reCAPTCHA.",
             "Use reCAPTCHA session-tokens to protect the whole user session on the site's domain.",
             "Use reCAPTCHA action-tokens to protect user actions.",
-            "Use reCAPTCHA WAF express protection to protect any content other than web pages, like APIs and IoT devices."
+            "Deprecated: Use `express_settings` instead."
           ],
           "type": "string"
         },

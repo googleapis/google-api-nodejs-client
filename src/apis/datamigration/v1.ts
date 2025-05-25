@@ -157,6 +157,9 @@ export namespace datamigration_v1 {
      * Labels for the AlloyDB cluster created by DMS. An object containing a list of 'key', 'value' pairs.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Settings for the cluster's primary instance
+     */
     primaryInstanceSettings?: Schema$PrimaryInstanceSettings;
     /**
      * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
@@ -685,6 +688,10 @@ export namespace datamigration_v1 {
      */
     destination?: Schema$DatabaseEngineInfo;
     /**
+     * Optional. The provider for the destination database.
+     */
+    destinationProvider?: string | null;
+    /**
      * Optional. The display name for the workspace.
      */
     displayName?: string | null;
@@ -712,6 +719,10 @@ export namespace datamigration_v1 {
      * Required. The source engine details.
      */
     source?: Schema$DatabaseEngineInfo;
+    /**
+     * Optional. The provider for the source database.
+     */
+    sourceProvider?: string | null;
     /**
      * Output only. The timestamp when the workspace resource was last updated.
      */
@@ -2883,6 +2894,10 @@ export namespace datamigration_v1 {
      * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' field is mandatory.
      */
     clientKey?: string | null;
+    /**
+     * Optional. SSL flags used for establishing SSL connection to the source database. Only source specific flags are supported. An object containing a list of "key": "value" pairs. Example: { "server_certificate_hostname": "server.com"\}.
+     */
+    sslFlags?: {[key: string]: string} | null;
     /**
      * Optional. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.
      */

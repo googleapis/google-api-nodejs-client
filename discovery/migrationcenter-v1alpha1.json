@@ -2554,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250515",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -4647,7 +4647,7 @@
         "vmwareConfig": {
           "$ref": "VmwareDiskConfig",
           "deprecated": true,
-          "description": "VMware disk details."
+          "description": "VMware disk details. Deprecated"
         }
       },
       "type": "object"

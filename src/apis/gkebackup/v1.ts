@@ -288,7 +288,7 @@ export namespace gkebackup_v1 {
      */
     description?: string | null;
     /**
-     * Required. Immutable. The project where Backups are allowed to be stored. The format is `projects/{project\}`. Currently, {project\} can only be the project number. Support for project IDs will be added in the future.
+     * Required. Immutable. The project where Backups are allowed to be stored. The format is `projects/{projectId\}` or `projects/{projectNumber\}`.
      */
     destinationProject?: string | null;
     /**
@@ -350,9 +350,42 @@ export namespace gkebackup_v1 {
     selectedNamespaces?: Schema$Namespaces;
   }
   /**
+   * BackupConfigDetails defines the configuration of Backups created via this BackupPlan.
+   */
+  export interface Schema$BackupConfigDetails {
+    /**
+     * Output only. If True, include all namespaced resources
+     */
+    allNamespaces?: boolean | null;
+    /**
+     * Output only. This defines a customer managed encryption key that will be used to encrypt the "config" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted.
+     */
+    encryptionKey?: Schema$EncryptionKey;
+    /**
+     * Output only. This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False
+     */
+    includeSecrets?: boolean | null;
+    /**
+     * Output only. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False
+     */
+    includeVolumeData?: boolean | null;
+    /**
+     * Output only. If set, include just the resources referenced by the listed ProtectedApplications.
+     */
+    selectedApplications?: Schema$NamespacedNames;
+    /**
+     * Output only. If set, include just the resources in the listed namespaces.
+     */
+    selectedNamespaces?: Schema$Namespaces;
+  }
+  /**
    * Defines the configuration and scheduling for a "line" of Backups.
    */
   export interface Schema$BackupPlan {
+    /**
+     * Output only. The fully qualified name of the BackupChannel to be used to create a backup. This field is set only if the cluster being backed up is in a different project. `projects/x/locations/x/backupChannels/x`
+     */
+    backupChannel?: string | null;
     /**
      * Optional. Defines the configuration of Backups created via this BackupPlan.
      */
@@ -468,6 +501,10 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$BackupPlanDetails {
     /**
+     * Output only. Contains details about the BackupConfig of Backups created via this BackupPlan.
+     */
+    backupConfigDetails?: Schema$BackupConfigDetails;
+    /**
      * Output only. The fully qualified name of the last successful Backup created under this BackupPlan. `projects/x/locations/x/backupPlans/x/backups/x`
      */
     lastSuccessfulBackup?: string | null;
@@ -483,6 +520,10 @@ export namespace gkebackup_v1 {
      * Output only. The number of Kubernetes Pods backed up in the last successful Backup created via this BackupPlan.
      */
     protectedPodCount?: number | null;
+    /**
+     * Output only. Contains details about the RetentionPolicy of Backups created via this BackupPlan.
+     */
+    retentionPolicyDetails?: Schema$RetentionPolicyDetails;
     /**
      * Output only. A number that represents the current risk level of this BackupPlan from RPO perspective with 1 being no risk and 5 being highest risk.
      */
@@ -1164,7 +1205,7 @@ export namespace gkebackup_v1 {
      */
     description?: string | null;
     /**
-     * Required. Immutable. The project into which the backups will be restored. The format is `projects/{project\}`. Currently, {project\} can only be the project number. Support for project IDs will be added in the future.
+     * Required. Immutable. The project into which the backups will be restored. The format is `projects/{projectId\}` or `projects/{projectNumber\}`.
      */
     destinationProject?: string | null;
     /**
@@ -1291,6 +1332,10 @@ export namespace gkebackup_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The fully qualified name of the RestoreChannel to be used to create a RestorePlan. This field is set only if the `backup_plan` is in a different project than the RestorePlan. Format: `projects/x/locations/x/restoreChannels/x`
+     */
+    restoreChannel?: string | null;
+    /**
      * Required. Configuration of Restores created via this RestorePlan.
      */
     restoreConfig?: Schema$RestoreConfig;
@@ -1360,6 +1405,19 @@ export namespace gkebackup_v1 {
      * Optional. This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False
      */
     locked?: boolean | null;
+  }
+  /**
+   * RetentionPolicyDetails defines a Backup retention policy for a BackupPlan.
+   */
+  export interface Schema$RetentionPolicyDetails {
+    /**
+     * Optional. Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)
+     */
+    backupDeleteLockDays?: number | null;
+    /**
+     * Optional. The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value \>= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Default: 0 (no automatic deletion)
+     */
+    backupRetainDays?: number | null;
   }
   /**
    * Defines RPO scheduling configuration for automatically creating Backups via this BackupPlan.

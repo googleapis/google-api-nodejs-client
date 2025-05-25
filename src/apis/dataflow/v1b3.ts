@@ -924,6 +924,10 @@ export namespace dataflow_v1b3 {
      */
     tempStoragePrefix?: string | null;
     /**
+     * Optional. True when any worker pool that uses public IPs is present.
+     */
+    usePublicIps?: boolean | null;
+    /**
      * A description of the process that generated the request.
      */
     userAgent?: {[key: string]: any} | null;
@@ -1206,6 +1210,24 @@ export namespace dataflow_v1b3 {
      * Template Type.
      */
     templateType?: string | null;
+  }
+  /**
+   * Request to get worker stacktraces from debug capture.
+   */
+  export interface Schema$GetWorkerStacktracesRequest {
+    /**
+     * The worker for which to get stacktraces. The returned stacktraces will be for the SDK harness running on this worker.
+     */
+    workerId?: string | null;
+  }
+  /**
+   * Response to get worker stacktraces from debug capture.
+   */
+  export interface Schema$GetWorkerStacktracesResponse {
+    /**
+     * Repeated as unified worker may have multiple SDK processes.
+     */
+    sdks?: Schema$Sdk[];
   }
   /**
    * Information about the GPU usage on the worker.
@@ -2601,6 +2623,19 @@ export namespace dataflow_v1b3 {
     workerUtilizationHint?: number | null;
   }
   /**
+   * A structured representation of an SDK.
+   */
+  export interface Schema$Sdk {
+    /**
+     * The SDK harness id.
+     */
+    sdkId?: string | null;
+    /**
+     * The stacktraces for the processes running on the SDK harness.
+     */
+    stacks?: Schema$Stack[];
+  }
+  /**
    * A bug found in the Dataflow SDK.
    */
   export interface Schema$SdkBug {
@@ -3091,6 +3126,31 @@ export namespace dataflow_v1b3 {
      * The low order bits: n & 0xffffffff.
      */
     lowBits?: number | null;
+  }
+  /**
+   * A structuredstacktrace for a process running on the worker.
+   */
+  export interface Schema$Stack {
+    /**
+     * The raw stack trace.
+     */
+    stackContent?: string | null;
+    /**
+     * With java thread dumps we may get collapsed stacks e.g., N threads in stack "". Instead of having to copy over the same stack trace N times, this int field captures this.
+     */
+    threadCount?: number | null;
+    /**
+     * Thread name. For example, "CommitThread-0,10,main"
+     */
+    threadName?: string | null;
+    /**
+     * The state of the thread. For example, "WAITING".
+     */
+    threadState?: string | null;
+    /**
+     * Timestamp at which the stack was captured.
+     */
+    timestamp?: string | null;
   }
   /**
    * Information about the workers and work items within a stage.
@@ -5399,6 +5459,103 @@ export namespace dataflow_v1b3 {
     }
 
     /**
+     * Get worker stacktraces from debug capture.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getWorkerStacktraces(
+      params?: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetWorkerStacktracesResponse>;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>,
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetWorkerStacktracesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetWorkerStacktracesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetWorkerStacktracesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Send encoded debug capture data for component.
      *
      * @param params - Parameters for request
@@ -5509,6 +5666,22 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$GetDebugConfigRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces
+    extends StandardParameters {
+    /**
+     * The job for which to get stacktraces.
+     */
+    jobId?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetWorkerStacktracesRequest;
   }
   export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
     extends StandardParameters {

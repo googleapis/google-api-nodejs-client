@@ -596,7 +596,11 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed ID.
+     * AFM data source ID.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
      */
     primaryFeedId?: string | null;
     /**
@@ -1792,6 +1796,15 @@ export namespace retail_v2 {
     text?: string[] | null;
   }
   /**
+   * A message with a list of double values.
+   */
+  export interface Schema$GoogleCloudRetailV2DoubleList {
+    /**
+     * The list of double values.
+     */
+    values?: number[] | null;
+  }
+  /**
    * Metadata for active A/B testing experiment.
    */
   export interface Schema$GoogleCloudRetailV2ExperimentInfo {
@@ -2225,10 +2238,6 @@ export namespace retail_v2 {
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2CustomAttribute;
     } | null;
-    /**
-     * Optional. The availability of the Product at this place_id. Default to Availability.IN_STOCK. For primary products with variants set the availability of the primary as Availability.OUT_OF_STOCK and set the true availability at the variant level. This way the primary product will be considered "in stock" as long as it has at least one variant in stock. For primary products with no variants set the true availability at the primary level. Corresponding properties: Google Merchant Center property [availability](https://support.google.com/merchants/answer/6324448). Schema.org property [Offer.availability](https://schema.org/availability). This field is currently only used by the Recommendations API. For Search, please make use of fulfillment_types or custom attributes for similar behaviour. See [here]( https://cloud.google.com/retail/docs/local-inventory-updates#local-inventory-update-methods) for more details.
-     */
-    availability?: string | null;
     /**
      * Optional. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -3650,6 +3659,10 @@ export namespace retail_v2 {
      * If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key "sku1" with field mask "products.color_info" indicates there is a match between "sku1" ColorInfo and the query.
      */
     matchingVariantFields?: {[key: string]: string} | null;
+    /**
+     * Google provided available scores.
+     */
+    modelScores?: {[key: string]: Schema$GoogleCloudRetailV2DoubleList} | null;
     /**
      * Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.
      */

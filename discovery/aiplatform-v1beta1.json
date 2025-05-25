@@ -18845,7 +18845,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The resource name of the ReasoningEngine.",
+                      "description": "Identifier. The resource name of the ReasoningEngine. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
                       "required": true,
@@ -19075,6 +19075,161 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  }
+                },
+                "sandboxEnvironments": {
+                  "resources": {
+                    "operations": {
+                      "methods": {
+                        "cancel": {
+                          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}/operations/{operationsId}:cancel",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.operations.cancel",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be cancelled.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:cancel",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}/operations/{operationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.operations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be deleted.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}/operations",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "wait": {
+                          "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}/operations/{operationsId}:wait",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.operations.wait",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to wait on.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                              "format": "google-duration",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:wait",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -23270,7 +23425,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250519",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -23922,6 +24077,10 @@
       "properties": {
         "apiKeySecretVersion": {
           "description": "Required. The SecretManager secret version resource name storing API key. e.g. projects/{project}/secrets/{secret}/versions/{version}",
+          "type": "string"
+        },
+        "apiKeyString": {
+          "description": "The API key string. Either this or `api_key_secret_version` must be set.",
           "type": "string"
         }
       },
@@ -25346,6 +25505,10 @@
           "description": "Optional. Immutable. The user-generated meaningful display name of the cached content.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Input only. Immutable. Customer-managed encryption key spec for a `CachedContent`. If set, this `CachedContent` and all its sub-resources will be secured by this key."
+        },
         "expireTime": {
           "description": "Timestamp of when this resource is considered expired. This is *always* provided on output, regardless of what was sent on input.",
           "format": "google-datetime",
@@ -25597,6 +25760,27 @@
         "shouldStop": {
           "description": "True if the Trial should stop.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1Checkpoint": {
+      "description": "Describes the machine learning model version checkpoint.",
+      "id": "GoogleCloudAiplatformV1beta1Checkpoint",
+      "properties": {
+        "checkpointId": {
+          "description": "The ID of the checkpoint.",
+          "type": "string"
+        },
+        "epoch": {
+          "description": "The epoch of the checkpoint.",
+          "format": "int64",
+          "type": "string"
+        },
+        "step": {
+          "description": "The step of the checkpoint.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -27940,6 +28124,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1AutomaticResources",
           "description": "A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration."
         },
+        "checkpointId": {
+          "description": "The checkpoint id of the model.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Timestamp when the DeployedModel was created.",
           "format": "google-datetime",
@@ -28027,6 +28215,10 @@
       "description": "Points to a DeployedModel.",
       "id": "GoogleCloudAiplatformV1beta1DeployedModelRef",
       "properties": {
+        "checkpointId": {
+          "description": "Immutable. The ID of the Checkpoint deployed in the DeployedModel.",
+          "type": "string"
+        },
         "deployedModelId": {
           "description": "Immutable. An ID of a DeployedModel in the above Endpoint.",
           "type": "string"
@@ -29192,7 +29384,6 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1Example": {
-      "description": "A single example to upload or read from the Example Store.",
       "id": "GoogleCloudAiplatformV1beta1Example",
       "properties": {
         "createTime": {
@@ -30436,6 +30627,74 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ExternalApi": {
+      "description": "Retrieve from data source powered by external API for grounding. The external API is not owned by Google, but need to follow the pre-defined API spec.",
+      "id": "GoogleCloudAiplatformV1beta1ExternalApi",
+      "properties": {
+        "apiAuth": {
+          "$ref": "GoogleCloudAiplatformV1beta1ApiAuth",
+          "deprecated": true,
+          "description": "The authentication config to access the API. Deprecated. Please use auth_config instead."
+        },
+        "apiSpec": {
+          "description": "The API spec that the external API implements.",
+          "enum": [
+            "API_SPEC_UNSPECIFIED",
+            "SIMPLE_SEARCH",
+            "ELASTIC_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified API spec. This value should not be used.",
+            "Simple search API spec.",
+            "Elastic search API spec."
+          ],
+          "type": "string"
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AuthConfig",
+          "description": "The authentication config to access the API."
+        },
+        "elasticSearchParams": {
+          "$ref": "GoogleCloudAiplatformV1beta1ExternalApiElasticSearchParams",
+          "description": "Parameters for the elastic search API."
+        },
+        "endpoint": {
+          "description": "The endpoint of the external API. The system will call the API at this endpoint to retrieve the data for grounding. Example: https://acme.com:443/search",
+          "type": "string"
+        },
+        "simpleSearchParams": {
+          "$ref": "GoogleCloudAiplatformV1beta1ExternalApiSimpleSearchParams",
+          "description": "Parameters for the simple search API."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ExternalApiElasticSearchParams": {
+      "description": "The search parameters to use for the ELASTIC_SEARCH spec.",
+      "id": "GoogleCloudAiplatformV1beta1ExternalApiElasticSearchParams",
+      "properties": {
+        "index": {
+          "description": "The ElasticSearch index to use.",
+          "type": "string"
+        },
+        "numHits": {
+          "description": "Optional. Number of hits (chunks) to request. When specified, it is passed to Elasticsearch as the `num_hits` param.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "searchTemplate": {
+          "description": "The ElasticSearch search template to use.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ExternalApiSimpleSearchParams": {
+      "description": "The search parameters to use for SIMPLE_SEARCH spec.",
+      "id": "GoogleCloudAiplatformV1beta1ExternalApiSimpleSearchParams",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1Fact": {
       "description": "The fact used in grounding.",
       "id": "GoogleCloudAiplatformV1beta1Fact",
@@ -31058,7 +31317,7 @@
       "id": "GoogleCloudAiplatformV1beta1FeatureSelectionConfigFeatureConfig",
       "properties": {
         "driftThreshold": {
-          "description": "Optional. Drift threshold. If calculated difference with baseline data larger than threshold, it will be considered as the feature has drift. If not present, the threshold will be default to 0.3.",
+          "description": "Optional. Drift threshold. If calculated difference with baseline data larger than threshold, it will be considered as the feature has drift. If not present, the threshold will be default to 0.3. Must be in range [0, 1).",
           "format": "double",
           "type": "number"
         },
@@ -33222,6 +33481,10 @@
       "description": "Config for thinking features.",
       "id": "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig",
       "properties": {
+        "includeThoughts": {
+          "description": "Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.",
+          "type": "boolean"
+        },
         "thinkingBudget": {
           "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
           "format": "int32",
@@ -33931,6 +34194,10 @@
         "ragFileTransformationConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RagFileTransformationConfig",
           "description": "Specifies the transformation config for RagFiles."
+        },
+        "rebuildAnnIndex": {
+          "description": "Rebuilds the ANN index to optimize for recall on the imported data. Only applicable for RagCorpora running on RagManagedDb with `retrieval_strategy` set to `ANN`. The rebuild will be performed using the existing ANN config set on the RagCorpus. To change the ANN config, please use the UpdateRagCorpus API. Default is false, i.e., index is not rebuilt.",
+          "type": "boolean"
         },
         "sharePointSources": {
           "$ref": "GoogleCloudAiplatformV1beta1SharePointSources",
@@ -35768,6 +36035,7 @@
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
+            "NVIDIA_B200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -35776,6 +36044,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -35804,6 +36073,7 @@
             "Nvidia H100 80Gb GPU.",
             "Nvidia H100 Mega 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
+            "Nvidia B200 GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -36438,6 +36708,14 @@
         "baseModelSource": {
           "$ref": "GoogleCloudAiplatformV1beta1ModelBaseModelSource",
           "description": "Optional. User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models."
+        },
+        "checkpoints": {
+          "description": "Optional. Output only. The checkpoints of the model.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Checkpoint"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "containerSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ModelContainerSpec",
@@ -37260,6 +37538,10 @@
         "displayName": {
           "description": "The display name of the ModelMonitor. The name can be up to 128 characters long and can consist of any UTF-8.",
           "type": "string"
+        },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Customer-managed encryption key spec for a ModelMonitor. If set, this ModelMonitor and all sub-resources of this ModelMonitor will be secured by this key."
         },
         "explanationSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ExplanationSpec",
@@ -39011,7 +39293,8 @@
             "INVALID_TOKEN_VALUE",
             "INVALID_SPARSE_EMBEDDING",
             "INVALID_EMBEDDING",
-            "INVALID_EMBEDDING_METADATA"
+            "INVALID_EMBEDDING_METADATA",
+            "EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -39032,7 +39315,8 @@
             "Token restrict value is invalid.",
             "Invalid sparse embedding.",
             "Invalid dense embedding.",
-            "Invalid embedding metadata."
+            "Invalid embedding metadata.",
+            "Embedding metadata exceeds size limit."
           ],
           "type": "string"
         },
@@ -39397,7 +39681,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1NotebookRuntime": {
-      "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.",
+      "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.",
       "id": "GoogleCloudAiplatformV1beta1NotebookRuntime",
       "properties": {
         "createTime": {
@@ -39534,7 +39818,7 @@
           "enumDescriptions": [
             "Unspecified runtime state.",
             "NotebookRuntime is in running state.",
-            "NotebookRuntime is in starting state.",
+            "NotebookRuntime is in starting state. This is when the runtime is being started from a stopped state.",
             "NotebookRuntime is in stopping state.",
             "NotebookRuntime is in stopped state.",
             "NotebookRuntime is in upgrading state. It is in the middle of upgrading process.",
@@ -39709,7 +39993,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1NotebookSoftwareConfig": {
-      "description": "Notebook Software Config.",
+      "description": "Notebook Software Config. This is passed to the backend when user makes software configurations in UI.",
       "id": "GoogleCloudAiplatformV1beta1NotebookSoftwareConfig",
       "properties": {
         "env": {
@@ -42479,6 +42763,10 @@
           "description": "Required. The display name of the RagCorpus. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Optional. Immutable. The CMEK key name used to encrypt at-rest data related to this Corpus. Only applicable to RagManagedDb option for Vector DB. This field can only be set at corpus creation time, and cannot be updated or deleted."
+        },
         "name": {
           "description": "Output only. The resource name of the RagCorpus.",
           "readOnly": true,
@@ -42797,7 +43085,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1RagFileParsingConfigLlmParser": {
-      "description": "Specifies the advanced parsing for RagFiles.",
+      "description": "Specifies the LLM parsing for RagFiles.",
       "id": "GoogleCloudAiplatformV1beta1RagFileParsingConfigLlmParser",
       "properties": {
         "customParsingPrompt": {
@@ -43040,6 +43328,38 @@
     "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDb": {
       "description": "The config for the default RAG-managed Vector DB.",
       "id": "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDb",
+      "properties": {
+        "ann": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbANN",
+          "description": "Performs an ANN search on RagCorpus. Use this if you have a lot of files (> 10K) in your RagCorpus and want to reduce the search latency."
+        },
+        "knn": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbKNN",
+          "description": "Performs a KNN search on RagCorpus. Default choice if not specified."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbANN": {
+      "description": "Config for ANN search. RagManagedDb uses a tree-based structure to partition data and facilitate faster searches. As a tradeoff, it requires longer indexing time and manual triggering of index rebuild via the ImportRagFiles and UpdateRagCorpus API.",
+      "id": "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbANN",
+      "properties": {
+        "leafCount": {
+          "description": "Number of leaf nodes in the tree-based structure. Each leaf node contains groups of closely related vectors along with their corresponding centroid. Recommended value is 10 * sqrt(num of RagFiles in your RagCorpus). Default value is 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "treeDepth": {
+          "description": "The depth of the tree-based structure. Only depth values of 2 and 3 are supported. Recommended value is 2 if you have if you have O(10K) files in the RagCorpus and set this to 3 if more than that. Default value is 2.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbKNN": {
+      "description": "Config for KNN search.",
+      "id": "GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDbKNN",
       "properties": {},
       "type": "object"
     },
@@ -43397,7 +43717,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the ReasoningEngine.",
+          "description": "Identifier. The resource name of the ReasoningEngine. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
           "type": "string"
         },
         "spec": {
@@ -43868,6 +44188,10 @@
           "deprecated": true,
           "description": "Optional. Deprecated. This option is no longer supported.",
           "type": "boolean"
+        },
+        "externalApi": {
+          "$ref": "GoogleCloudAiplatformV1beta1ExternalApi",
+          "description": "Use data source powered by external API for grounding."
         },
         "vertexAiSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1VertexAISearch",
@@ -44816,6 +45140,10 @@
       "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.",
       "id": "GoogleCloudAiplatformV1beta1Schema",
       "properties": {
+        "additionalProperties": {
+          "description": "Optional. Can either be a boolean or an object; controls the presence of additional properties.",
+          "type": "any"
+        },
         "anyOf": {
           "description": "Optional. The value should be validated against any (one or more) of the subschemas in the list.",
           "items": {
@@ -44826,6 +45154,13 @@
         "default": {
           "description": "Optional. Default value of the data.",
           "type": "any"
+        },
+        "defs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1Schema"
+          },
+          "description": "Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.",
+          "type": "object"
         },
         "description": {
           "description": "Optional. The description of the data.",
@@ -44911,6 +45246,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "ref": {
+          "description": "Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named \"Pet\": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the \"pet\" property is a reference to the schema node named \"Pet\". See details in https://json-schema.org/understanding-json-schema/structuring",
+          "type": "string"
         },
         "required": {
           "description": "Optional. Required properties of Type.OBJECT.",
@@ -51073,7 +51412,7 @@
       "id": "GoogleCloudAiplatformV1beta1SupervisedTuningDataStats",
       "properties": {
         "droppedExampleReasons": {
-          "description": "Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.",
+          "description": "Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped.",
           "items": {
             "type": "string"
           },
@@ -51244,6 +51583,10 @@
       "description": "Tuning Spec for Supervised Tuning for first party models.",
       "id": "GoogleCloudAiplatformV1beta1SupervisedTuningSpec",
       "properties": {
+        "exportLastCheckpointOnly": {
+          "description": "Optional. If set to true, disable intermediate checkpoints for SFT and only the last checkpoint will be exported. Otherwise, enable intermediate checkpoints for SFT. Default is false.",
+          "type": "boolean"
+        },
         "hyperParameters": {
           "$ref": "GoogleCloudAiplatformV1beta1SupervisedHyperParameters",
           "description": "Optional. Hyperparameters for SFT."
@@ -52934,6 +53277,14 @@
       "description": "The Model Registry Model and Online Prediction Endpoint associated with this TuningJob.",
       "id": "GoogleCloudAiplatformV1beta1TunedModel",
       "properties": {
+        "checkpoints": {
+          "description": "Output only. The checkpoints associated with this TunedModel. This field is only populated for tuning jobs that enable intermediate checkpoints.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1TunedModelCheckpoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "endpoint": {
           "description": "Output only. A resource name of an Endpoint. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
           "readOnly": true,
@@ -52942,6 +53293,31 @@
         "model": {
           "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}`.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1TunedModelCheckpoint": {
+      "description": "TunedModelCheckpoint for the Tuned Model of a Tuning Job.",
+      "id": "GoogleCloudAiplatformV1beta1TunedModelCheckpoint",
+      "properties": {
+        "checkpointId": {
+          "description": "The ID of the checkpoint.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "The Endpoint resource name that the checkpoint is deployed to. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "type": "string"
+        },
+        "epoch": {
+          "description": "The epoch of the checkpoint.",
+          "format": "int64",
+          "type": "string"
+        },
+        "step": {
+          "description": "The step of the checkpoint.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -53627,12 +54003,43 @@
       "description": "Retrieve from Vertex AI Search datastore or engine for grounding. datastore and engine are mutually exclusive. See https://cloud.google.com/products/agent-builder",
       "id": "GoogleCloudAiplatformV1beta1VertexAISearch",
       "properties": {
+        "dataStoreSpecs": {
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. It should only be set if engine is used.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1VertexAISearchDataStoreSpec"
+          },
+          "type": "array"
+        },
         "datastore": {
           "description": "Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
           "type": "string"
         },
         "engine": {
           "description": "Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter strings to be passed to the search API.",
+          "type": "string"
+        },
+        "maxResults": {
+          "description": "Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VertexAISearchDataStoreSpec": {
+      "description": "Define data stores within engine to filter on in a search call and configurations for those data stores. For more information, see https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec",
+      "id": "GoogleCloudAiplatformV1beta1VertexAISearchDataStoreSpec",
+      "properties": {
+        "dataStore": {
+          "description": "Full resource name of DataStore, such as Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
         }
       },

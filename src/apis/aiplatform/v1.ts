@@ -550,6 +550,10 @@ export namespace aiplatform_v1 {
      * Required. The SecretManager secret version resource name storing API key. e.g. projects/{project\}/secrets/{secret\}/versions/{version\}
      */
     apiKeySecretVersion?: string | null;
+    /**
+     * The API key string. Either this or `api_key_secret_version` must be set.
+     */
+    apiKeyString?: string | null;
   }
   /**
    * Instance of a general artifact.
@@ -709,6 +713,100 @@ export namespace aiplatform_v1 {
      * Retrieved facts from RAG data sources.
      */
     facts?: Schema$GoogleCloudAiplatformV1Fact[];
+  }
+  /**
+   * Auth configuration to run the extension.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfig {
+    /**
+     * Config for API key auth.
+     */
+    apiKeyConfig?: Schema$GoogleCloudAiplatformV1AuthConfigApiKeyConfig;
+    /**
+     * Type of auth scheme.
+     */
+    authType?: string | null;
+    /**
+     * Config for Google Service Account auth.
+     */
+    googleServiceAccountConfig?: Schema$GoogleCloudAiplatformV1AuthConfigGoogleServiceAccountConfig;
+    /**
+     * Config for HTTP Basic auth.
+     */
+    httpBasicAuthConfig?: Schema$GoogleCloudAiplatformV1AuthConfigHttpBasicAuthConfig;
+    /**
+     * Config for user oauth.
+     */
+    oauthConfig?: Schema$GoogleCloudAiplatformV1AuthConfigOauthConfig;
+    /**
+     * Config for user OIDC auth.
+     */
+    oidcConfig?: Schema$GoogleCloudAiplatformV1AuthConfigOidcConfig;
+  }
+  /**
+   * Config for authentication with API key.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfigApiKeyConfig {
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the API key. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If both `api_key_secret` and `api_key_string` are specified, this field takes precedence over `api_key_string`. - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
+     */
+    apiKeySecret?: string | null;
+    /**
+     * Optional. The API key to be used in the request directly.
+     */
+    apiKeyString?: string | null;
+    /**
+     * Optional. The location of the API key.
+     */
+    httpElementLocation?: string | null;
+    /**
+     * Optional. The parameter name of the API key. E.g. If the API request is "https://example.com/act?api_key=", "api_key" would be the parameter name.
+     */
+    name?: string | null;
+  }
+  /**
+   * Config for Google Service Account Authentication.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfigGoogleServiceAccountConfig {
+    /**
+     * Optional. The service account that the extension execution service runs as. - If the service account is specified, the `iam.serviceAccounts.getAccessToken` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified service account. - If not specified, the Vertex AI Extension Service Agent will be used to execute the Extension.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
+   * Config for HTTP Basic Authentication.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfigHttpBasicAuthConfig {
+    /**
+     * Required. The name of the SecretManager secret version resource storing the base64 encoded credentials. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
+     */
+    credentialSecret?: string | null;
+  }
+  /**
+   * Config for user oauth.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfigOauthConfig {
+    /**
+     * Access token for extension endpoint. Only used to propagate token from [[ExecuteExtensionRequest.runtime_auth_config]] at request time.
+     */
+    accessToken?: string | null;
+    /**
+     * The service account used to generate access tokens for executing the Extension. - If the service account is specified, the `iam.serviceAccounts.getAccessToken` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the provided service account.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
+   * Config for user OIDC auth.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AuthConfigOidcConfig {
+    /**
+     * OpenID Connect formatted ID token for extension endpoint. Only used to propagate token from [[ExecuteExtensionRequest.runtime_auth_config]] at request time.
+     */
+    idToken?: string | null;
+    /**
+     * The service account used to generate an OpenID Connect (OIDC)-compatible JWT token signed by the Google OIDC Provider (accounts.google.com) for extension endpoint (https://cloud.google.com/iam/docs/create-short-lived-credentials-direct#sa-credentials-oidc). - The audience for the token will be set to the URL in the server url defined in the OpenApi spec. - If the service account is provided, the service account should grant `iam.serviceAccounts.getOpenIdToken` permission to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents).
+     */
+    serviceAccount?: string | null;
   }
   /**
    * A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.
@@ -1354,6 +1452,10 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
+     * Input only. Immutable. Customer-managed encryption key spec for a `CachedContent`. If set, this `CachedContent` and all its sub-resources will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Timestamp of when this resource is considered expired. This is *always* provided on output, regardless of what was sent on input.
      */
     expireTime?: string | null;
@@ -1487,6 +1589,23 @@ export namespace aiplatform_v1 {
      * Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.
      */
     safetyRatings?: Schema$GoogleCloudAiplatformV1SafetyRating[];
+  }
+  /**
+   * Describes the machine learning model version checkpoint.
+   */
+  export interface Schema$GoogleCloudAiplatformV1Checkpoint {
+    /**
+     * The ID of the checkpoint.
+     */
+    checkpointId?: string | null;
+    /**
+     * The epoch of the checkpoint.
+     */
+    epoch?: string | null;
+    /**
+     * The step of the checkpoint.
+     */
+    step?: string | null;
   }
   /**
    * This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.
@@ -2947,6 +3066,10 @@ export namespace aiplatform_v1 {
      */
     automaticResources?: Schema$GoogleCloudAiplatformV1AutomaticResources;
     /**
+     * The checkpoint id of the model.
+     */
+    checkpointId?: string | null;
+    /**
      * Output only. Timestamp when the DeployedModel was created.
      */
     createTime?: string | null;
@@ -3019,6 +3142,10 @@ export namespace aiplatform_v1 {
    * Points to a DeployedModel.
    */
   export interface Schema$GoogleCloudAiplatformV1DeployedModelRef {
+    /**
+     * Immutable. The ID of the Checkpoint deployed in the DeployedModel.
+     */
+    checkpointId?: string | null;
     /**
      * Immutable. An ID of a DeployedModel in the above Endpoint.
      */
@@ -4547,6 +4674,56 @@ export namespace aiplatform_v1 {
     timeSeriesDataPoints?: Schema$GoogleCloudAiplatformV1TimeSeriesDataPoint[];
   }
   /**
+   * Retrieve from data source powered by external API for grounding. The external API is not owned by Google, but need to follow the pre-defined API spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ExternalApi {
+    /**
+     * The authentication config to access the API. Deprecated. Please use auth_config instead.
+     */
+    apiAuth?: Schema$GoogleCloudAiplatformV1ApiAuth;
+    /**
+     * The API spec that the external API implements.
+     */
+    apiSpec?: string | null;
+    /**
+     * The authentication config to access the API.
+     */
+    authConfig?: Schema$GoogleCloudAiplatformV1AuthConfig;
+    /**
+     * Parameters for the elastic search API.
+     */
+    elasticSearchParams?: Schema$GoogleCloudAiplatformV1ExternalApiElasticSearchParams;
+    /**
+     * The endpoint of the external API. The system will call the API at this endpoint to retrieve the data for grounding. Example: https://acme.com:443/search
+     */
+    endpoint?: string | null;
+    /**
+     * Parameters for the simple search API.
+     */
+    simpleSearchParams?: Schema$GoogleCloudAiplatformV1ExternalApiSimpleSearchParams;
+  }
+  /**
+   * The search parameters to use for the ELASTIC_SEARCH spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ExternalApiElasticSearchParams {
+    /**
+     * The ElasticSearch index to use.
+     */
+    index?: string | null;
+    /**
+     * Optional. Number of hits (chunks) to request. When specified, it is passed to Elasticsearch as the `num_hits` param.
+     */
+    numHits?: number | null;
+    /**
+     * The ElasticSearch search template to use.
+     */
+    searchTemplate?: string | null;
+  }
+  /**
+   * The search parameters to use for SIMPLE_SEARCH spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ExternalApiSimpleSearchParams {}
+  /**
    * The fact used in grounding.
    */
   export interface Schema$GoogleCloudAiplatformV1Fact {
@@ -6059,6 +6236,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GenerationConfigThinkingConfig {
     /**
+     * Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.
+     */
+    includeThoughts?: boolean | null;
+    /**
      * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
      */
     thinkingBudget?: number | null;
@@ -6550,6 +6731,10 @@ export namespace aiplatform_v1 {
      * Specifies the transformation config for RagFiles.
      */
     ragFileTransformationConfig?: Schema$GoogleCloudAiplatformV1RagFileTransformationConfig;
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data. Only applicable for RagCorpora running on RagManagedDb with `retrieval_strategy` set to `ANN`. The rebuild will be performed using the existing ANN config set on the RagCorpus. To change the ANN config, please use the UpdateRagCorpus API. Default is false, i.e., index is not rebuilt.
+     */
+    rebuildAnnIndex?: boolean | null;
     /**
      * SharePoint sources.
      */
@@ -8171,6 +8356,10 @@ export namespace aiplatform_v1 {
      */
     baseModelSource?: Schema$GoogleCloudAiplatformV1ModelBaseModelSource;
     /**
+     * Optional. Output only. The checkpoints of the model.
+     */
+    checkpoints?: Schema$GoogleCloudAiplatformV1Checkpoint[];
+    /**
      * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1ModelContainerSpec;
@@ -9683,7 +9872,7 @@ export namespace aiplatform_v1 {
     values?: string[] | null;
   }
   /**
-   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
+   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime. Default runtimes have a lifetime of 18 hours, while custom runtimes last for 6 months from their creation or last upgrade.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookRuntime {
     /**
@@ -9894,7 +10083,7 @@ export namespace aiplatform_v1 {
     notebookRuntimeTemplate?: string | null;
   }
   /**
-   * Notebook Software Config.
+   * Notebook Software Config. This is passed to the backend when user makes software configurations in UI.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookSoftwareConfig {
     /**
@@ -10151,6 +10340,10 @@ export namespace aiplatform_v1 {
      * Optional. Text part (can be code).
      */
     text?: string | null;
+    /**
+     * Output only. Indicates if the part is thought from the model.
+     */
+    thought?: boolean | null;
     /**
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
@@ -11836,6 +12029,10 @@ export namespace aiplatform_v1 {
      * The Layout Parser to use for RagFiles.
      */
     layoutParser?: Schema$GoogleCloudAiplatformV1RagFileParsingConfigLayoutParser;
+    /**
+     * The LLM Parser to use for RagFiles.
+     */
+    llmParser?: Schema$GoogleCloudAiplatformV1RagFileParsingConfigLlmParser;
   }
   /**
    * Document AI Layout Parser config.
@@ -11849,6 +12046,23 @@ export namespace aiplatform_v1 {
      * The full resource name of a Document AI processor or processor version. The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the `additional_config.parse_as_scanned_pdf` field must be false. Format: * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}` * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}/processorVersions/{processor_version_id\}`
      */
     processorName?: string | null;
+  }
+  /**
+   * Specifies the LLM parsing for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagFileParsingConfigLlmParser {
+    /**
+     * The prompt to use for parsing. If not specified, a default prompt will be used.
+     */
+    customParsingPrompt?: string | null;
+    /**
+     * The maximum number of requests the job is allowed to make to the LLM model per minute. Consult https://cloud.google.com/vertex-ai/generative-ai/docs/quotas and your document size to set an appropriate value here. If unspecified, a default value of 5000 QPM would be used.
+     */
+    maxParsingRequestsPerMin?: number | null;
+    /**
+     * The name of a LLM model used for parsing. Format: * `projects/{project_id\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
+     */
+    modelName?: string | null;
   }
   /**
    * Specifies the transformation config for RagFiles.
@@ -11974,7 +12188,33 @@ export namespace aiplatform_v1 {
   /**
    * The config for the default RAG-managed Vector DB.
    */
-  export interface Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDb {}
+  export interface Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDb {
+    /**
+     * Performs an ANN search on RagCorpus. Use this if you have a lot of files (\> 10K) in your RagCorpus and want to reduce the search latency.
+     */
+    ann?: Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDbANN;
+    /**
+     * Performs a KNN search on RagCorpus. Default choice if not specified.
+     */
+    knn?: Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDbKNN;
+  }
+  /**
+   * Config for ANN search. RagManagedDb uses a tree-based structure to partition data and facilitate faster searches. As a tradeoff, it requires longer indexing time and manual triggering of index rebuild via the ImportRagFiles and UpdateRagCorpus API.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDbANN {
+    /**
+     * Number of leaf nodes in the tree-based structure. Each leaf node contains groups of closely related vectors along with their corresponding centroid. Recommended value is 10 * sqrt(num of RagFiles in your RagCorpus). Default value is 500.
+     */
+    leafCount?: number | null;
+    /**
+     * The depth of the tree-based structure. Only depth values of 2 and 3 are supported. Recommended value is 2 if you have if you have O(10K) files in the RagCorpus and set this to 3 if more than that. Default value is 2.
+     */
+    treeDepth?: number | null;
+  }
+  /**
+   * Config for KNN search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagVectorDbConfigRagManagedDbKNN {}
   /**
    * The config for the Vertex Vector Search.
    */
@@ -12228,7 +12468,7 @@ export namespace aiplatform_v1 {
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the ReasoningEngine.
+     * Identifier. The resource name of the ReasoningEngine. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     name?: string | null;
     /**
@@ -12479,6 +12719,10 @@ export namespace aiplatform_v1 {
      * Optional. Deprecated. This option is no longer supported.
      */
     disableAttribution?: boolean | null;
+    /**
+     * Use data source powered by external API for grounding.
+     */
+    externalApi?: Schema$GoogleCloudAiplatformV1ExternalApi;
     /**
      * Set to use data source powered by Vertex AI Search.
      */
@@ -12987,6 +13231,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Schema {
     /**
+     * Optional. Can either be a boolean or an object; controls the presence of additional properties.
+     */
+    additionalProperties?: any | null;
+    /**
      * Optional. The value should be validated against any (one or more) of the subschemas in the list.
      */
     anyOf?: Schema$GoogleCloudAiplatformV1Schema[];
@@ -12994,6 +13242,10 @@ export namespace aiplatform_v1 {
      * Optional. Default value of the data.
      */
     default?: any | null;
+    /**
+     * Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.
+     */
+    defs?: {[key: string]: Schema$GoogleCloudAiplatformV1Schema} | null;
     /**
      * Optional. The description of the data.
      */
@@ -13062,6 +13314,10 @@ export namespace aiplatform_v1 {
      * Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.
      */
     propertyOrdering?: string[] | null;
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named "Pet": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the "pet" property is a reference to the schema node named "Pet". See details in https://json-schema.org/understanding-json-schema/structuring
+     */
+    ref?: string | null;
     /**
      * Optional. Required properties of Type.OBJECT.
      */
@@ -17124,7 +17380,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDataStats {
     /**
-     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.
+     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped.
      */
     droppedExampleReasons?: string[] | null;
     /**
@@ -17176,6 +17432,10 @@ export namespace aiplatform_v1 {
    * Tuning Spec for Supervised Tuning for first party models.
    */
   export interface Schema$GoogleCloudAiplatformV1SupervisedTuningSpec {
+    /**
+     * Optional. If set to true, disable intermediate checkpoints for SFT and only the last checkpoint will be exported. Otherwise, enable intermediate checkpoints for SFT. Default is false.
+     */
+    exportLastCheckpointOnly?: boolean | null;
     /**
      * Optional. Hyperparameters for SFT.
      */
@@ -18306,6 +18566,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1TunedModel {
     /**
+     * Output only. The checkpoints associated with this TunedModel. This field is only populated for tuning jobs that enable intermediate checkpoints.
+     */
+    checkpoints?: Schema$GoogleCloudAiplatformV1TunedModelCheckpoint[];
+    /**
      * Output only. A resource name of an Endpoint. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
      */
     endpoint?: string | null;
@@ -18313,6 +18577,27 @@ export namespace aiplatform_v1 {
      * Output only. The resource name of the TunedModel. Format: `projects/{project\}/locations/{location\}/models/{model\}`.
      */
     model?: string | null;
+  }
+  /**
+   * TunedModelCheckpoint for the Tuned Model of a Tuning Job.
+   */
+  export interface Schema$GoogleCloudAiplatformV1TunedModelCheckpoint {
+    /**
+     * The ID of the checkpoint.
+     */
+    checkpointId?: string | null;
+    /**
+     * The Endpoint resource name that the checkpoint is deployed to. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
+     */
+    endpoint?: string | null;
+    /**
+     * The epoch of the checkpoint.
+     */
+    epoch?: string | null;
+    /**
+     * The step of the checkpoint.
+     */
+    step?: string | null;
   }
   /**
    * TunedModel Reference for legacy model migration.
@@ -18775,9 +19060,21 @@ export namespace aiplatform_v1 {
      */
     datastore?: string | null;
     /**
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. It should only be set if engine is used.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudAiplatformV1VertexAISearchDataStoreSpec[];
+    /**
      * Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
     engine?: string | null;
+    /**
+     * Optional. Filter strings to be passed to the search API.
+     */
+    filter?: string | null;
+    /**
+     * Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10.
+     */
+    maxResults?: number | null;
   }
   /**
    * Config for the Vertex AI Search.
@@ -18787,6 +19084,19 @@ export namespace aiplatform_v1 {
      * Vertex AI Search Serving Config resource full name. For example, `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config\}` or `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config\}`.
      */
     servingConfig?: string | null;
+  }
+  /**
+   * Define data stores within engine to filter on in a search call and configurations for those data stores. For more information, see https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexAISearchDataStoreSpec {
+    /**
+     * Full resource name of DataStore, such as Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
+     */
+    dataStore?: string | null;
+    /**
+     * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
   }
   /**
    * Retrieve from Vertex RAG Store for grounding.
@@ -72290,7 +72600,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Reasoningengines$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the ReasoningEngine.
+     * Identifier. The resource name of the ReasoningEngine. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     name?: string;
     /**

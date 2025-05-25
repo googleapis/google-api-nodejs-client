@@ -1445,7 +1445,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/billingAccounts/{billingAccountsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.billingAccounts.logs.delete",
@@ -3534,7 +3534,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/folders/{foldersId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.folders.logs.delete",
@@ -4685,7 +4685,7 @@
     "logs": {
       "methods": {
         "delete": {
-          "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+          "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
           "flatPath": "v2/{v2Id}/{v2Id1}/logs/{logsId}",
           "httpMethod": "DELETE",
           "id": "logging.logs.delete",
@@ -6364,7 +6364,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/organizations/{organizationsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.organizations.logs.delete",
@@ -8172,7 +8172,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/projects/{projectsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.projects.logs.delete",
@@ -8952,7 +8952,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250516",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {

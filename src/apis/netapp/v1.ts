@@ -242,6 +242,10 @@ export namespace netapp_v1 {
      */
     description?: string | null;
     /**
+     * Output only. The time until which the backup is not deletable.
+     */
+    enforcedRetentionEndTime?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -345,6 +349,31 @@ export namespace netapp_v1 {
     weeklyBackupLimit?: number | null;
   }
   /**
+   * Retention policy for backups in the backup vault
+   */
+  export interface Schema$BackupRetentionPolicy {
+    /**
+     * Required. Minimum retention duration in days for backups in the backup vault.
+     */
+    backupMinimumEnforcedRetentionDays?: number | null;
+    /**
+     * Optional. Indicates if the daily backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    dailyBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the manual backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    manualBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the monthly backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    monthlyBackupImmutable?: boolean | null;
+    /**
+     * Optional. Indicates if the weekly backups are immutable. Atleast one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
+     */
+    weeklyBackupImmutable?: boolean | null;
+  }
+  /**
    * A NetApp BackupVault.
    */
   export interface Schema$BackupVault {
@@ -352,6 +381,10 @@ export namespace netapp_v1 {
      * Optional. Region where the backups are stored. Format: `projects/{project_id\}/locations/{location\}`
      */
     backupRegion?: string | null;
+    /**
+     * Optional. Backup retention policy defining the retenton of backups.
+     */
+    backupRetentionPolicy?: Schema$BackupRetentionPolicy;
     /**
      * Optional. Type of backup vault to be created. Default is IN_REGION.
      */
@@ -491,31 +524,31 @@ export namespace netapp_v1 {
    */
   export interface Schema$HybridPeeringDetails {
     /**
-     * Optional. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.
      */
     command?: string | null;
     /**
-     * Optional. Expiration time for the peering command to be executed on user's ONTAP.
+     * Output only. Expiration time for the peering command to be executed on user's ONTAP.
      */
     commandExpiryTime?: string | null;
     /**
-     * Optional. Temporary passphrase generated to accept cluster peering command.
+     * Output only. Temporary passphrase generated to accept cluster peering command.
      */
     passphrase?: string | null;
     /**
-     * Optional. Name of the user's local source cluster to be peered with the destination cluster.
+     * Output only. Name of the user's local source cluster to be peered with the destination cluster.
      */
     peerClusterName?: string | null;
     /**
-     * Optional. Name of the user's local source vserver svm to be peered with the destination vserver svm.
+     * Output only. Name of the user's local source vserver svm to be peered with the destination vserver svm.
      */
     peerSvmName?: string | null;
     /**
-     * Optional. Name of the user's local source volume to be peered with the destination volume.
+     * Output only. Name of the user's local source volume to be peered with the destination volume.
      */
     peerVolumeName?: string | null;
     /**
-     * Optional. IP address of the subnet.
+     * Output only. IP address of the subnet.
      */
     subnetIp?: string | null;
   }
@@ -1233,6 +1266,10 @@ export namespace netapp_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. True if using Independent Scaling of capacity and performance (Hyperdisk) By default set to false
+     */
+    customPerformanceEnabled?: boolean | null;
+    /**
      * Optional. Description of the storage pool
      */
     description?: string | null;
@@ -1292,6 +1329,14 @@ export namespace netapp_v1 {
      * Output only. State details of the storage pool
      */
     stateDetails?: string | null;
+    /**
+     * Optional. Custom Performance Total IOPS of the pool If not provided, it will be calculated based on the total_throughput_mibps
+     */
+    totalIops?: string | null;
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     */
+    totalThroughputMibps?: string | null;
     /**
      * Output only. Allocated size of all volumes in GIB in the storage pool
      */
@@ -1355,7 +1400,7 @@ export namespace netapp_v1 {
      */
     totalTransferDuration?: string | null;
     /**
-     * Cumulative bytes trasferred so far for the replication relatinonship.
+     * Cumulative bytes transferred so far for the replication relationship.
      */
     transferBytes?: string | null;
     /**

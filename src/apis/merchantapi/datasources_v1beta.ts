@@ -558,7 +558,7 @@ export namespace merchantapi_datasources_v1beta {
     }
 
     /**
-     * Creates the new data source configuration for the given account.
+     * Creates the new data source configuration for the given account. This method always creates a new data source.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

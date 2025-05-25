@@ -234,7 +234,7 @@
           ]
         },
         "UpdateBackup": {
-          "description": "This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.",
+          "description": "Updates the retention period and description of the backup. You can use this API to update final backups only.",
           "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
           "httpMethod": "PATCH",
           "id": "sql.Backups.UpdateBackup",
@@ -250,7 +250,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.",
+              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -2594,7 +2594,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250516",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3820,7 +3820,7 @@
           "type": "boolean"
         },
         "flags": {
-          "description": "Optional. List of connection pool configuration flags",
+          "description": "Optional. List of connection pool configuration flags.",
           "items": {
             "$ref": "ConnectionPoolFlags"
           },
@@ -3945,6 +3945,10 @@
             "On premises instance."
           ],
           "type": "string"
+        },
+        "clearNetwork": {
+          "description": "Clears private network settings when the instance is restored.",
+          "type": "boolean"
         },
         "connectionName": {
           "description": "Connection name of the Cloud SQL instance used in connection strings.",
@@ -5364,7 +5368,7 @@
           "type": "integer"
         },
         "queryStringLength": {
-          "description": "Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.",
+          "description": "Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.",
           "format": "int32",
           "type": "integer"
         },
@@ -6529,7 +6533,7 @@
       "id": "PscAutoConnectionConfig",
       "properties": {
         "consumerNetwork": {
-          "description": "The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
+          "description": "Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
           "type": "string"
         },
         "consumerNetworkStatus": {
@@ -6537,7 +6541,7 @@
           "type": "string"
         },
         "consumerProject": {
-          "description": "This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
+          "description": "Optional. This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
           "type": "string"
         },
         "ipAddress": {
@@ -6561,6 +6565,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "networkAttachmentUri": {
+          "description": "Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID",
+          "type": "string"
         },
         "pscAutoConnections": {
           "description": "Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.",
@@ -7068,7 +7076,8 @@
             "USERS_NOT_CREATED_IN_REPLICA",
             "UNSUPPORTED_SYSTEM_OBJECTS",
             "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
-            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE"
+            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE",
+            "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI"
           ],
           "enumDescriptions": [
             "",
@@ -7124,7 +7133,8 @@
             "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
             "The selected objects include system objects that aren't supported for migration.",
             "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration.",
-            "The selected objects don't exist on the source instance."
+            "The selected objects don't exist on the source instance.",
+            "PSC only destination instance does not have a network attachment URI."
           ],
           "type": "string"
         }

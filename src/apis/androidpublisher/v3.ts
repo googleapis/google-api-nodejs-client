@@ -604,6 +604,15 @@ export namespace androidpublisher_v3 {
     state?: string | null;
   }
   /**
+   * Response for the orders.batchGet API.
+   */
+  export interface Schema$BatchGetOrdersResponse {
+    /**
+     * Details for the requested order IDs.
+     */
+    orders?: Schema$Order[];
+  }
+  /**
    * Request message for BatchGetSubscriptionOffers endpoint.
    */
   export interface Schema$BatchGetSubscriptionOffersRequest {
@@ -748,6 +757,23 @@ export namespace androidpublisher_v3 {
     kind?: string | null;
   }
   /**
+   * Address information for the customer, for use in tax computation.
+   */
+  export interface Schema$BuyerAddress {
+    /**
+     * Two letter country code based on ISO-3166-1 Alpha-2 (UN country codes).
+     */
+    buyerCountry?: string | null;
+    /**
+     * Postal code of an address. When Google is the Merchant of Record for the order, this information is not included.
+     */
+    buyerPostcode?: string | null;
+    /**
+     * Top-level administrative subdivision of the buyer address country. When Google is the Merchant of Record for the order, this information is not included.
+     */
+    buyerState?: string | null;
+  }
+  /**
    * Request message for CancelAppRecovery.
    */
   export interface Schema$CancelAppRecoveryRequest {}
@@ -775,6 +801,15 @@ export namespace androidpublisher_v3 {
      * Subscription was canceled by user.
      */
     userInitiatedCancellation?: Schema$UserInitiatedCancellation;
+  }
+  /**
+   * Details of when the order was canceled.
+   */
+  export interface Schema$CancellationEvent {
+    /**
+     * The time when the order was canceled.
+     */
+    eventTime?: string | null;
   }
   /**
    * Result of the cancel survey when the subscription was canceled by the user.
@@ -1872,6 +1907,43 @@ export namespace androidpublisher_v3 {
     value?: string[] | null;
   }
   /**
+   * Details of a line item.
+   */
+  export interface Schema$LineItem {
+    /**
+     * Item's listed price on Play Store, this may or may not include tax. Excludes any discounts or promotions.
+     */
+    listingPrice?: Schema$Money;
+    /**
+     * Details of a one-time purchase.
+     */
+    oneTimePurchaseDetails?: Schema$OneTimePurchaseDetails;
+    /**
+     * Details of a paid app purchase.
+     */
+    paidAppDetails?: Schema$PaidAppDetails;
+    /**
+     * The purchased product ID or in-app SKU (for example, 'monthly001' or 'com.some.thing.inapp1').
+     */
+    productId?: string | null;
+    /**
+     * Developer-specified name of the product. Displayed in buyer's locale. Example: coins, monthly subscription, etc.
+     */
+    productTitle?: string | null;
+    /**
+     * Details of a subscription purchase.
+     */
+    subscriptionDetails?: Schema$SubscriptionDetails;
+    /**
+     * The tax paid for this line item.
+     */
+    tax?: Schema$Money;
+    /**
+     * The total amount paid by the user for this line item, taking into account discounts and tax.
+     */
+    total?: Schema$Money;
+  }
+  /**
    * Response message for ListAppRecoveries. -- api-linter: core::0158::response-next-page-token-field=disabled
    */
   export interface Schema$ListAppRecoveriesResponse {
@@ -2156,6 +2228,106 @@ export namespace androidpublisher_v3 {
     externalTransactionToken?: string | null;
   }
   /**
+   * Details of a one-time purchase.
+   */
+  export interface Schema$OneTimePurchaseDetails {
+    /**
+     * The offer ID of the one-time purchase offer.
+     */
+    offerId?: string | null;
+    /**
+     * The number of items purchased (for multi-quantity item purchases).
+     */
+    quantity?: number | null;
+  }
+  /**
+   * The Order resource encapsulates comprehensive information about a transaction made on Google Play. It includes a variety of attributes that provide details about the order itself, the products purchased, and the history of events related to the order. The Orders APIs provide real-time access to your order data within the Google Play ecosystem. You can retrieve detailed information and metadata for both one-time and recurring orders, including transaction details like charges, taxes, and refunds, as well as metadata such as pricing phases for subscriptions. The Orders APIs let you automate tasks related to order management, reducing the need for manual checks via the Play Developer Console. The following are some of the use cases for this API: + Real-time order data retrieval - Get order details and metadata immediately after a purchase using an order ID. + Order update synchronization - Periodically sync order updates to maintain an up-to-date record of order information. Note: + The Orders API calls count towards your Play Developer API quota, which defaults to 200K daily, and may be insufficient to sync extensive order histories. + A maximum of 1000 orders can be retrieved per call. Using larger page sizes is recommended to minimize quota usage. Check your quota in the Cloud Console and request more if required.
+   */
+  export interface Schema$Order {
+    /**
+     * Address information for the customer, for use in tax computation. When Google is the Merchant of Record for the order, only country is shown.
+     */
+    buyerAddress?: Schema$BuyerAddress;
+    /**
+     * The time when the order was created.
+     */
+    createTime?: string | null;
+    /**
+     * Your revenue for this order in the buyer's currency, including deductions of partial refunds, taxes and fees. Google deducts standard transaction and third party fees from each sale, including VAT in some regions.
+     */
+    developerRevenueInBuyerCurrency?: Schema$Money;
+    /**
+     * The time of the last event that occurred on the order.
+     */
+    lastEventTime?: string | null;
+    /**
+     * The individual line items making up this order.
+     */
+    lineItems?: Schema$LineItem[];
+    /**
+     * Detailed information about the order at creation time.
+     */
+    orderDetails?: Schema$OrderDetails;
+    /**
+     * Details about events which modified the order.
+     */
+    orderHistory?: Schema$OrderHistory;
+    /**
+     * The order ID.
+     */
+    orderId?: string | null;
+    /**
+     * Play points applied to the order, including offer information, discount rate and point values.
+     */
+    pointsDetails?: Schema$PointsDetails;
+    /**
+     * The token provided to the user's device when the subscription or item was purchased.
+     */
+    purchaseToken?: string | null;
+    /**
+     * The state of the order.
+     */
+    state?: string | null;
+    /**
+     * The total tax paid as a part of this order.
+     */
+    tax?: Schema$Money;
+    /**
+     * The final amount paid by the customer, taking into account discounts and taxes.
+     */
+    total?: Schema$Money;
+  }
+  /**
+   * Detailed information about the order at creation time.
+   */
+  export interface Schema$OrderDetails {
+    /**
+     * Indicates whether the listed price was tax inclusive or not.
+     */
+    taxInclusive?: boolean | null;
+  }
+  /**
+   * Details about events which modified the order.
+   */
+  export interface Schema$OrderHistory {
+    /**
+     * Details of when the order was canceled.
+     */
+    cancellationEvent?: Schema$CancellationEvent;
+    /**
+     * Details of the partial refund events for this order.
+     */
+    partialRefundEvents?: Schema$PartialRefundEvent[];
+    /**
+     * Details of when the order was processed.
+     */
+    processedEvent?: Schema$ProcessedEvent;
+    /**
+     * Details of when the order was fully refunded.
+     */
+    refundEvent?: Schema$RefundEvent;
+  }
+  /**
    * Details of a recurring external transaction product which doesn't belong to any other more specific category.
    */
   export interface Schema$OtherRecurringProduct {}
@@ -2241,6 +2413,10 @@ export namespace androidpublisher_v3 {
     totalResults?: number | null;
   }
   /**
+   * Details of a paid app purchase.
+   */
+  export interface Schema$PaidAppDetails {}
+  /**
    * A partial refund of a transaction.
    */
   export interface Schema$PartialRefund {
@@ -2252,6 +2428,27 @@ export namespace androidpublisher_v3 {
      * Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction.
      */
     refundPreTaxAmount?: Schema$Price;
+  }
+  /**
+   * Details of the partial refund events for this order.
+   */
+  export interface Schema$PartialRefundEvent {
+    /**
+     * The time when the partial refund was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time when the partial refund was processed.
+     */
+    processTime?: string | null;
+    /**
+     * Details for the partial refund.
+     */
+    refundDetails?: Schema$RefundDetails;
+    /**
+     * The state of the partial refund.
+     */
+    state?: string | null;
   }
   /**
    * Information specific to a subscription in paused state.
@@ -2266,6 +2463,27 @@ export namespace androidpublisher_v3 {
    * This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments.
    */
   export interface Schema$PendingCancellation {}
+  /**
+   * Details relating to any Play Points applied to an order.
+   */
+  export interface Schema$PointsDetails {
+    /**
+     * The monetary value of a Play Points coupon. This is the discount the coupon provides, which may not be the total amount. Only set when Play Points coupons have been used. E.g. for a 100 points for $2 coupon, this is $2.
+     */
+    pointsCouponValue?: Schema$Money;
+    /**
+     * The percentage rate which the Play Points promotion reduces the cost by. E.g. for a 100 points for $2 coupon, this is 500,000. Since $2 has an estimate of 200 points, but the actual Points required, 100, is 50% of this, and 50% in micros is 500,000. Between 0 and 1,000,000.
+     */
+    pointsDiscountRateMicros?: string | null;
+    /**
+     * ID unique to the play points offer in use for this order.
+     */
+    pointsOfferId?: string | null;
+    /**
+     * The number of Play Points applied in this order. E.g. for a 100 points for $2 coupon, this is 100. For coupon stacked with base offer, this is the total points spent across both.
+     */
+    pointsSpent?: string | null;
+  }
   /**
    * Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.
    */
@@ -2300,6 +2518,15 @@ export namespace androidpublisher_v3 {
      * Price in 1/million of the currency base unit, represented as a string.
      */
     priceMicros?: string | null;
+  }
+  /**
+   * Details of when the order was processed.
+   */
+  export interface Schema$ProcessedEvent {
+    /**
+     * The time when the order was processed.
+     */
+    eventTime?: string | null;
   }
   /**
    * A ProductPurchase resource indicates the status of a user's inapp product purchase.
@@ -2399,6 +2626,36 @@ export namespace androidpublisher_v3 {
      * Details of a recurring external transaction product which doesn't belong to any other specific category.
      */
     otherRecurringProduct?: Schema$OtherRecurringProduct;
+  }
+  /**
+   * Details for a partial or full refund.
+   */
+  export interface Schema$RefundDetails {
+    /**
+     * The amount of tax refunded.
+     */
+    tax?: Schema$Money;
+    /**
+     * The total amount refunded, including tax.
+     */
+    total?: Schema$Money;
+  }
+  /**
+   * Details of when the order was fully refunded.
+   */
+  export interface Schema$RefundEvent {
+    /**
+     * The time when the order was fully refunded.
+     */
+    eventTime?: string | null;
+    /**
+     * Details for the full refund.
+     */
+    refundDetails?: Schema$RefundDetails;
+    /**
+     * The reason the order was refunded.
+     */
+    refundReason?: string | null;
   }
   /**
    * A request to refund an existing external transaction.
@@ -2524,7 +2781,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RegionsVersion {
     /**
-     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. The latest supported version is available in this article. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     version?: string | null;
   }
@@ -2650,6 +2907,10 @@ export namespace androidpublisher_v3 {
      */
     fullRefund?: Schema$RevocationContextFullRefund;
     /**
+     * Optional. Used when a specific item should be refunded in a subscription with multiple items.
+     */
+    itemBasedRefund?: Schema$RevocationContextItemBasedRefund;
+    /**
      * Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription.
      */
     proratedRefund?: Schema$RevocationContextProratedRefund;
@@ -2658,6 +2919,15 @@ export namespace androidpublisher_v3 {
    * Used to determine if the refund type in the RevocationContext is a full refund.
    */
   export interface Schema$RevocationContextFullRefund {}
+  /**
+   * Used to determine what specific item to revoke in a subscription with multiple items.
+   */
+  export interface Schema$RevocationContextItemBasedRefund {
+    /**
+     * Required. If the subscription is a subscription bundle, the product id of the subscription to revoke.
+     */
+    productId?: string | null;
+  }
   /**
    * Used to determine if the refund type in the RevocationContext is a prorated refund.
    */
@@ -2871,6 +3141,31 @@ export namespace androidpublisher_v3 {
      * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
+  }
+  /**
+   * Details of a subscription purchase.
+   */
+  export interface Schema$SubscriptionDetails {
+    /**
+     * The base plan ID of the subscription.
+     */
+    basePlanId?: string | null;
+    /**
+     * The offer ID for the current subscription offer.
+     */
+    offerId?: string | null;
+    /**
+     * The pricing phase for the billing period funded by this order.
+     */
+    offerPhase?: string | null;
+    /**
+     * The end of the billing period funded by this order. This is a snapshot of the billing/service period end time at the moment the order was processed, and should be used only for accounting. To get the current end time of the subscription service period, use purchases.subscriptionsv2.get.
+     */
+    servicePeriodEndTime?: string | null;
+    /**
+     * The start of the billing period funded by this order. This is a snapshot of the billing/service period start time at the moment the order was processed, and should be used only for accounting.
+     */
+    servicePeriodStartTime?: string | null;
   }
   /**
    * Price change related information of a subscription item.
@@ -3208,7 +3503,7 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.
+     * Deprecated: Use line_items.latest_successful_order_id instead. The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.
      */
     latestOrderId?: string | null;
     /**
@@ -12116,7 +12411,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. The latest supported version is available in this article. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     'regionsVersion.version'?: string;
 
@@ -12185,7 +12480,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. The latest supported version is available in this article. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     'regionsVersion.version'?: string;
     /**
@@ -13942,7 +14237,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. The latest supported version is available in this article. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     'regionsVersion.version'?: string;
 
@@ -14063,7 +14358,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. The latest supported version is available in this article. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     'regionsVersion.version'?: string;
     /**
@@ -14081,6 +14376,189 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Get order details for a list of orders.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchget(
+      params: Params$Resource$Orders$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchget(
+      params?: Params$Resource$Orders$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetOrdersResponse>;
+    batchget(
+      params: Params$Resource$Orders$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchget(
+      params: Params$Resource$Orders$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetOrdersResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetOrdersResponse>
+    ): void;
+    batchget(
+      params: Params$Resource$Orders$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetOrdersResponse>
+    ): void;
+    batchget(
+      callback: BodyResponseCallback<Schema$BatchGetOrdersResponse>
+    ): void;
+    batchget(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Batchget
+        | BodyResponseCallback<Schema$BatchGetOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetOrdersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetOrdersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Orders$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/orders:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetOrdersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetOrdersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Get order details for a single order.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Orders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Orders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Order>;
+    get(
+      params: Params$Resource$Orders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Orders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Order>,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
+    get(
+      params: Params$Resource$Orders$Get,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Order>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Get
+        | BodyResponseCallback<Schema$Order>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Order>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Order>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Order> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/orders/{orderId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'orderId'],
+        pathParams: ['orderId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Order>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Order>(parameters);
+      }
     }
 
     /**
@@ -14170,6 +14648,26 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  export interface Params$Resource$Orders$Batchget extends StandardParameters {
+    /**
+     * Required. The list of order IDs to retrieve order details for. There must be between 1 and 1000 (inclusive) order IDs per request. If any order ID is not found or does not match the provided package, the entire request will fail with an error. The order IDs must be distinct.
+     */
+    orderIds?: string[];
+    /**
+     * Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+  }
+  export interface Params$Resource$Orders$Get extends StandardParameters {
+    /**
+     * Required. The order ID provided to the user when the subscription or in-app order was purchased.
+     */
+    orderId?: string;
+    /**
+     * Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+  }
   export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
      * The order ID provided to the user when the subscription or in-app order was purchased.
@@ -14804,7 +15302,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Checks whether a user's subscription purchase is valid and returns its expiry time.
+     * Deprecated: Use purchases.subscriptionsv2.get instead. Checks whether a user's subscription purchase is valid and returns its expiry time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14898,7 +15396,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
+     * Deprecated: Use orders.refund instead. Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14985,7 +15483,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
+     * Deprecated: Use purchases.subscriptionsv2.revoke instead. Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
