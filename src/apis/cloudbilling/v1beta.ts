@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1628,11 +1628,13 @@ export namespace cloudbilling_v1beta {
     estimateCostScenario(
       params: Params$Resource$Billingaccounts$Estimatecostscenario,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     estimateCostScenario(
       params?: Params$Resource$Billingaccounts$Estimatecostscenario,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EstimateCostScenarioForBillingAccountResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EstimateCostScenarioForBillingAccountResponse>
+    >;
     estimateCostScenario(
       params: Params$Resource$Billingaccounts$Estimatecostscenario,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1667,8 +1669,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EstimateCostScenarioForBillingAccountResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EstimateCostScenarioForBillingAccountResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Estimatecostscenario;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1744,11 +1748,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Billingaccounts$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1783,8 +1789,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1838,11 +1846,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Billingaccounts$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1877,8 +1887,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1967,11 +1979,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Billingaccounts$Skugroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Skugroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Skugroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2006,8 +2020,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skugroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2061,11 +2077,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Billingaccounts$Skugroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Skugroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Skugroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2100,8 +2118,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skugroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2188,11 +2208,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Billingaccounts$Skugroups$Skus$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Skugroups$Skus$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Skugroups$Skus$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2227,8 +2249,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skugroups$Skus$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2282,11 +2306,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Billingaccounts$Skugroups$Skus$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Skugroups$Skus$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Skugroups$Skus$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2321,8 +2347,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skugroups$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2413,11 +2441,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Billingaccounts$Skus$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Skus$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Skus$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2452,8 +2482,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skus$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2507,11 +2539,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Billingaccounts$Skus$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Skus$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Skus$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2546,8 +2580,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2638,11 +2674,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Billingaccounts$Skus$Price$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Skus$Price$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Skus$Price$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2677,8 +2715,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skus$Price$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2751,11 +2791,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Billingaccounts$Skus$Prices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Skus$Prices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Skus$Prices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2790,8 +2832,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Skus$Prices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2877,11 +2921,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Skugroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Skugroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingSkugroupsV1betaSkuGroup>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupsV1betaSkuGroup>
+    >;
     get(
       params: Params$Resource$Skugroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2916,8 +2962,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingSkugroupsV1betaSkuGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupsV1betaSkuGroup>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Skugroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2970,11 +3018,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Skugroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Skugroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse>
+    >;
     list(
       params: Params$Resource$Skugroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3009,8 +3059,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Skugroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3087,11 +3139,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Skugroups$Skus$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Skugroups$Skus$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingSkugroupskusV1betaSkuGroupSku>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupskusV1betaSkuGroupSku>
+    >;
     get(
       params: Params$Resource$Skugroups$Skus$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3126,8 +3180,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingSkugroupskusV1betaSkuGroupSku>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupskusV1betaSkuGroupSku>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Skugroups$Skus$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3181,11 +3237,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Skugroups$Skus$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Skugroups$Skus$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse>
+    >;
     list(
       params: Params$Resource$Skugroups$Skus$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3220,8 +3278,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Skugroups$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3319,11 +3379,13 @@ export namespace cloudbilling_v1beta {
     get(
       params: Params$Resource$Skus$Price$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Skus$Price$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaPrice>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingPricesV1betaPrice>
+    >;
     get(
       params: Params$Resource$Skus$Price$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3358,8 +3420,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaPrice>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingPricesV1betaPrice>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Skus$Price$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3430,11 +3494,13 @@ export namespace cloudbilling_v1beta {
     list(
       params: Params$Resource$Skus$Prices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Skus$Prices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+    >;
     list(
       params: Params$Resource$Skus$Prices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3469,8 +3535,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Skus$Prices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3552,11 +3620,13 @@ export namespace cloudbilling_v1beta {
     estimateCostScenario(
       params: Params$Resource$V1beta$Estimatecostscenario,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     estimateCostScenario(
       params?: Params$Resource$V1beta$Estimatecostscenario,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EstimateCostScenarioWithListPriceResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EstimateCostScenarioWithListPriceResponse>
+    >;
     estimateCostScenario(
       params: Params$Resource$V1beta$Estimatecostscenario,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3591,8 +3661,10 @@ export namespace cloudbilling_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EstimateCostScenarioWithListPriceResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EstimateCostScenarioWithListPriceResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta$Estimatecostscenario;
       let options = (optionsOrCallback || {}) as MethodOptions;

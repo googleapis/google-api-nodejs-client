@@ -177,7 +177,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20230824",
   "rootUrl": "https://playgrouping.googleapis.com/",
   "schemas": {
     "CreateOrUpdateTagsRequest": {

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -401,11 +401,13 @@ export namespace localservices_v1 {
     search(
       params: Params$Resource$Accountreports$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Accountreports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
+    >;
     search(
       params: Params$Resource$Accountreports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -440,8 +442,10 @@ export namespace localservices_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountreports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -546,11 +550,13 @@ export namespace localservices_v1 {
     search(
       params: Params$Resource$Detailedleadreports$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Detailedleadreports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
+    >;
     search(
       params: Params$Resource$Detailedleadreports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -585,8 +591,10 @@ export namespace localservices_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Detailedleadreports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

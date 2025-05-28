@@ -35,7 +35,7 @@ async function runSample() {
   const dest = fs.createWriteStream(destPath);
   const res = await drive.files.export(
     {fileId, mimeType: 'application/pdf'},
-    {responseType: 'stream'}
+    {responseType: 'stream'},
   );
   await new Promise((resolve, reject) => {
     res.data

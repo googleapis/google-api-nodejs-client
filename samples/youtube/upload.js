@@ -65,7 +65,7 @@ async function runSample(fileName) {
         readline.cursorTo(process.stdout, 0, null);
         process.stdout.write(`${Math.round(progress)}% complete`);
       },
-    }
+    },
   );
   console.log('\n\n');
   console.log(res.data);

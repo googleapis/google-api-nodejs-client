@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -319,11 +319,11 @@ export namespace tasks_v1 {
     delete(
       params: Params$Resource$Tasklists$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Tasklists$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Tasklists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -350,7 +350,10 @@ export namespace tasks_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -404,11 +407,11 @@ export namespace tasks_v1 {
     get(
       params: Params$Resource$Tasklists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tasklists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TaskList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>;
     get(
       params: Params$Resource$Tasklists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -437,7 +440,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -491,11 +497,11 @@ export namespace tasks_v1 {
     insert(
       params: Params$Resource$Tasklists$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Tasklists$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TaskList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>;
     insert(
       params: Params$Resource$Tasklists$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -524,7 +530,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -578,11 +587,11 @@ export namespace tasks_v1 {
     list(
       params: Params$Resource$Tasklists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tasklists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TaskLists>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskLists>>;
     list(
       params: Params$Resource$Tasklists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -611,7 +620,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$TaskLists>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TaskLists> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskLists>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -665,11 +677,11 @@ export namespace tasks_v1 {
     patch(
       params: Params$Resource$Tasklists$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Tasklists$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TaskList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>;
     patch(
       params: Params$Resource$Tasklists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -698,7 +710,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -752,11 +767,11 @@ export namespace tasks_v1 {
     update(
       params: Params$Resource$Tasklists$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Tasklists$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TaskList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>;
     update(
       params: Params$Resource$Tasklists$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -785,7 +800,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$TaskList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -897,11 +915,11 @@ export namespace tasks_v1 {
     clear(
       params: Params$Resource$Tasks$Clear,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     clear(
       params?: Params$Resource$Tasks$Clear,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     clear(
       params: Params$Resource$Tasks$Clear,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -928,7 +946,10 @@ export namespace tasks_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -982,11 +1003,11 @@ export namespace tasks_v1 {
     delete(
       params: Params$Resource$Tasks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Tasks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Tasks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1013,7 +1034,10 @@ export namespace tasks_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1067,11 +1091,11 @@ export namespace tasks_v1 {
     get(
       params: Params$Resource$Tasks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tasks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     get(
       params: Params$Resource$Tasks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1100,7 +1124,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1154,11 +1181,11 @@ export namespace tasks_v1 {
     insert(
       params: Params$Resource$Tasks$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Tasks$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     insert(
       params: Params$Resource$Tasks$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1187,7 +1214,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1241,11 +1271,11 @@ export namespace tasks_v1 {
     list(
       params: Params$Resource$Tasks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tasks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tasks>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tasks>>;
     list(
       params: Params$Resource$Tasks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1274,7 +1304,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tasks>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tasks> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tasks>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1328,11 +1361,11 @@ export namespace tasks_v1 {
     move(
       params: Params$Resource$Tasks$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Tasks$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     move(
       params: Params$Resource$Tasks$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1361,7 +1394,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1414,11 +1450,11 @@ export namespace tasks_v1 {
     patch(
       params: Params$Resource$Tasks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Tasks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     patch(
       params: Params$Resource$Tasks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1447,7 +1483,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1501,11 +1540,11 @@ export namespace tasks_v1 {
     update(
       params: Params$Resource$Tasks$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Tasks$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     update(
       params: Params$Resource$Tasks$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1534,7 +1573,10 @@ export namespace tasks_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

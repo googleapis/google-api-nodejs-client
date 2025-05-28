@@ -107,7 +107,7 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query.indexOf('myParam=123'),
       -1,
-      'Default param in query'
+      'Default param in query',
     );
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
@@ -123,7 +123,7 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query2.indexOf('myParam=123'),
       -1,
-      'Default param in query'
+      'Default param in query',
     );
   });
 
@@ -137,7 +137,7 @@ describe('Clients', () => {
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      {projectId: 'test-project-id', myParam: '456'} as any
+      {projectId: 'test-project-id', myParam: '456'} as any,
     );
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
@@ -146,7 +146,7 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query.indexOf('myParam=456'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
@@ -166,7 +166,7 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query2.indexOf('myParam=456'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
   });
 
@@ -191,7 +191,7 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query.indexOf('myParam=123'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {
@@ -214,11 +214,11 @@ describe('Clients', () => {
     assert.notStrictEqual(
       query2.indexOf('myParam=123'),
       -1,
-      'Default param not found in query'
+      'Default param not found in query',
     );
   });
 
   it('should pass eslint for a given client', () => {
     execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
-  });
+  }).timeout(100000);
 });

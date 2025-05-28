@@ -9,6 +9,8 @@
     "baremetalsolution:v2",
     "policysimulator:v1alpha",
     "policysimulator:v1beta",
-    "datalineage:v1"
+    "datalineage:v1",
+    "healthcare:v1",
+    "healthcare:v1beta1"
   ]
 }

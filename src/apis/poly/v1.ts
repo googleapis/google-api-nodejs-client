@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -447,11 +447,11 @@ export namespace poly_v1 {
     get(
       params: Params$Resource$Assets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Assets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Asset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Asset>>;
     get(
       params: Params$Resource$Assets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -480,7 +480,10 @@ export namespace poly_v1 {
       callback?:
         | BodyResponseCallback<Schema$Asset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Asset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -531,11 +534,11 @@ export namespace poly_v1 {
     list(
       params: Params$Resource$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Assets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>>;
     list(
       params: Params$Resource$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -566,8 +569,8 @@ export namespace poly_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -677,11 +680,11 @@ export namespace poly_v1 {
     list(
       params: Params$Resource$Users$Assets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Assets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUserAssetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUserAssetsResponse>>;
     list(
       params: Params$Resource$Users$Assets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -714,8 +717,8 @@ export namespace poly_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUserAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUserAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -802,11 +805,11 @@ export namespace poly_v1 {
     list(
       params: Params$Resource$Users$Likedassets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Likedassets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLikedAssetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLikedAssetsResponse>>;
     list(
       params: Params$Resource$Users$Likedassets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -839,8 +842,8 @@ export namespace poly_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLikedAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLikedAssetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Likedassets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

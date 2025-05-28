@@ -23,7 +23,7 @@ import {describe, it, afterEach} from 'mocha';
 const delay = async (
   test: Mocha.Runnable | undefined,
   addMs: number,
-  currentRetry: number
+  currentRetry: number,
 ) => {
   if (!test) {
     return;
@@ -65,7 +65,7 @@ describe('kitchen sink', async () => {
     await new Promise(resolve => setTimeout(resolve, 100));
     const tarball = path.join(
       __dirname,
-      `../../${pkg.name}-${pkg.version}.tgz`
+      `../../${pkg.name}-${pkg.version}.tgz`,
     );
     console.log(`mv ${tarball} ${stagingPath}/googleapis.tgz`);
     await mvp(tarball, `${stagingPath}/googleapis.tgz`);
@@ -73,7 +73,7 @@ describe('kitchen sink', async () => {
     cp.spawnSync(
       'npm',
       ['install'],
-      Object.assign({cwd: `${stagingPath}/`}, spawnOpts)
+      Object.assign({cwd: `${stagingPath}/`}, spawnOpts),
     );
   });
 

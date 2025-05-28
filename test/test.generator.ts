@@ -60,7 +60,7 @@ describe(__filename, () => {
       'src/apis/',
       'bigquery',
       'look I am bigquery',
-      '1.2.3'
+      '1.2.3',
     );
     assert.ok(pkgPath.endsWith('package.json'));
     assert.strictEqual(pkgData.name, 'bigquery');
@@ -72,7 +72,7 @@ describe(__filename, () => {
     const [pkgPath, pkgData] = await generator.getPkgPathAndData(
       'src/apis/',
       'fake-api',
-      'look I am fake'
+      'look I am fake',
     );
     assert.ok(pkgPath.endsWith('package.json'));
     assert.strictEqual(pkgData.version, '0.1.0');

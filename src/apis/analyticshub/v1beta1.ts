@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -682,11 +682,11 @@ export namespace analyticshub_v1beta1 {
     list(
       params: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOrgDataExchangesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOrgDataExchangesResponse>>;
     list(
       params: Params$Resource$Organizations$Locations$Dataexchanges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -721,8 +721,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOrgDataExchangesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOrgDataExchangesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Dataexchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -827,11 +827,11 @@ export namespace analyticshub_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>;
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -860,7 +860,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$DataExchange>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataExchange> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -915,11 +918,11 @@ export namespace analyticshub_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -948,7 +951,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1000,11 +1006,11 @@ export namespace analyticshub_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>;
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1033,7 +1039,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$DataExchange>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataExchange> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1085,11 +1094,11 @@ export namespace analyticshub_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1118,7 +1127,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1174,11 +1186,11 @@ export namespace analyticshub_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Dataexchanges$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataExchangesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataExchangesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1213,8 +1225,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataExchangesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataExchangesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1269,11 +1281,11 @@ export namespace analyticshub_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataExchange>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>;
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1302,7 +1314,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$DataExchange>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataExchange> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataExchange>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1354,11 +1369,11 @@ export namespace analyticshub_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1387,7 +1402,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1443,11 +1461,11 @@ export namespace analyticshub_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1482,8 +1500,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1644,11 +1662,11 @@ export namespace analyticshub_v1beta1 {
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Listing>>;
     create(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1677,7 +1695,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1733,11 +1754,11 @@ export namespace analyticshub_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1766,7 +1787,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1819,11 +1843,11 @@ export namespace analyticshub_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Listing>>;
     get(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1852,7 +1876,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1905,11 +1932,11 @@ export namespace analyticshub_v1beta1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1938,7 +1965,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1994,11 +2024,11 @@ export namespace analyticshub_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListListingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListListingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2031,8 +2061,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListListingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListListingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2088,11 +2118,11 @@ export namespace analyticshub_v1beta1 {
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Listing>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Listing>>;
     patch(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2121,7 +2151,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2174,11 +2207,11 @@ export namespace analyticshub_v1beta1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2207,7 +2240,10 @@ export namespace analyticshub_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2263,11 +2299,11 @@ export namespace analyticshub_v1beta1 {
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     subscribe(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscribeListingResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SubscribeListingResponse>>;
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2302,8 +2338,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscribeListingResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SubscribeListingResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2359,11 +2395,11 @@ export namespace analyticshub_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2398,8 +2434,8 @@ export namespace analyticshub_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

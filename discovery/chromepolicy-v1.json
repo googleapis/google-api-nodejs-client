@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250504",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -1789,7 +1789,7 @@
       "properties": {
         "editionDeprecated": {
           "deprecated": true,
-          "description": "BEGIN GOOGLE-INTERNAL TODO(b/297898292) Deprecate and remove this field in favor of enums. END GOOGLE-INTERNAL",
+          "description": "copybara:strip_begin TODO(b/297898292) Deprecate and remove this field in favor of enums. copybara:strip_end",
           "type": "string"
         },
         "enumType": {

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2791,11 +2791,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2824,7 +2824,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Location>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2876,11 +2876,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2913,8 +2913,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3031,11 +3031,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3064,7 +3064,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3119,11 +3119,11 @@ export namespace healthcare_v1 {
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Deidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deidentify(
       params?: Params$Resource$Projects$Locations$Datasets$Deidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Deidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3152,7 +3152,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3207,11 +3207,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3240,7 +3240,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3292,11 +3292,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3325,7 +3325,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3377,11 +3377,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3410,7 +3410,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3465,11 +3465,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatasetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatasetsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3502,8 +3502,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDatasetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatasetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3558,11 +3558,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3591,7 +3591,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3643,11 +3643,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3676,7 +3676,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3731,11 +3731,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3770,8 +3770,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3963,11 +3963,11 @@ export namespace healthcare_v1 {
     checkDataAccess(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkDataAccess(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckDataAccessResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckDataAccessResponse>>;
     checkDataAccess(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4002,8 +4002,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckDataAccessResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckDataAccessResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4059,11 +4059,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConsentStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4092,7 +4092,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsentStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4148,11 +4148,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4181,7 +4181,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4234,11 +4234,11 @@ export namespace healthcare_v1 {
     evaluateUserConsents(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     evaluateUserConsents(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EvaluateUserConsentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EvaluateUserConsentsResponse>>;
     evaluateUserConsents(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4273,8 +4273,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EvaluateUserConsentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EvaluateUserConsentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4332,11 +4332,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConsentStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4365,7 +4365,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsentStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4418,11 +4418,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4451,7 +4451,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4507,11 +4507,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConsentStoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConsentStoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4546,8 +4546,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConsentStoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConsentStoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4603,11 +4603,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConsentStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4636,7 +4636,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsentStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ConsentStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4689,11 +4689,11 @@ export namespace healthcare_v1 {
     queryAccessibleData(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryAccessibleData(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     queryAccessibleData(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4722,7 +4722,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4778,11 +4778,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4811,7 +4811,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4867,11 +4867,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4906,8 +4906,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5107,11 +5107,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AttributeDefinition>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5142,8 +5142,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AttributeDefinition>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5199,11 +5199,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5232,7 +5232,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5285,11 +5285,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AttributeDefinition>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5320,8 +5320,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AttributeDefinition>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5374,11 +5374,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttributeDefinitionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttributeDefinitionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5413,8 +5413,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttributeDefinitionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttributeDefinitionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5472,11 +5472,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AttributeDefinition>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5507,8 +5507,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AttributeDefinition>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AttributeDefinition>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5634,11 +5634,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConsentArtifact>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConsentArtifact>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5667,7 +5667,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsentArtifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsentArtifact> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ConsentArtifact>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5723,11 +5723,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5756,7 +5756,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5809,11 +5809,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConsentArtifact>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConsentArtifact>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5842,7 +5842,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsentArtifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsentArtifact> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ConsentArtifact>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5895,11 +5895,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConsentArtifactsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConsentArtifactsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5934,8 +5934,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConsentArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConsentArtifactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6046,11 +6046,11 @@ export namespace healthcare_v1 {
     activate(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     activate(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6079,7 +6079,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6135,11 +6135,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6168,7 +6168,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6224,11 +6224,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6257,7 +6257,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6310,11 +6310,11 @@ export namespace healthcare_v1 {
     deleteRevision(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteRevision(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteRevision(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6343,7 +6343,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6399,11 +6399,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6432,7 +6432,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6485,11 +6485,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConsentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConsentsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6522,8 +6522,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConsentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConsentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6579,11 +6579,11 @@ export namespace healthcare_v1 {
     listRevisions(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listRevisions(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConsentRevisionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConsentRevisionsResponse>>;
     listRevisions(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6618,8 +6618,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConsentRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConsentRevisionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6677,11 +6677,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6710,7 +6710,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6763,11 +6763,11 @@ export namespace healthcare_v1 {
     reject(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reject(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     reject(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6796,7 +6796,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6849,11 +6849,11 @@ export namespace healthcare_v1 {
     revoke(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     revoke(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Consent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Consent>>;
     revoke(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6882,7 +6882,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Consent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Consent>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7066,11 +7066,11 @@ export namespace healthcare_v1 {
     archive(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     archive(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ArchiveUserDataMappingResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ArchiveUserDataMappingResponse>>;
     archive(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7105,8 +7105,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ArchiveUserDataMappingResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ArchiveUserDataMappingResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7164,11 +7164,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserDataMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7197,7 +7197,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserDataMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7253,11 +7253,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7286,7 +7286,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7339,11 +7339,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserDataMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7372,7 +7372,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserDataMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7425,11 +7425,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUserDataMappingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUserDataMappingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7464,8 +7464,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUserDataMappingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUserDataMappingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7523,11 +7523,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserDataMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7556,7 +7556,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserDataMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$UserDataMapping>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7690,11 +7690,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7723,7 +7723,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7779,11 +7779,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7812,7 +7812,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7868,11 +7868,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7907,8 +7907,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Datamapperworkspaces$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8017,11 +8017,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DicomStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8050,7 +8050,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$DicomStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DicomStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8106,11 +8106,11 @@ export namespace healthcare_v1 {
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deidentify(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8139,7 +8139,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8195,11 +8195,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8228,7 +8228,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8281,11 +8281,11 @@ export namespace healthcare_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8314,7 +8314,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8367,11 +8367,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DicomStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8400,7 +8400,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$DicomStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DicomStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8453,11 +8453,11 @@ export namespace healthcare_v1 {
     getDICOMStoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDICOMStoreMetrics(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DicomStoreMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DicomStoreMetrics>>;
     getDICOMStoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8490,8 +8490,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DicomStoreMetrics>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DicomStoreMetrics>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8547,11 +8547,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8580,7 +8580,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8636,11 +8636,11 @@ export namespace healthcare_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8669,7 +8669,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8722,11 +8722,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDicomStoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDicomStoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8759,8 +8759,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDicomStoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDicomStoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8816,11 +8816,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DicomStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8849,7 +8849,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$DicomStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DicomStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$DicomStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8902,11 +8902,11 @@ export namespace healthcare_v1 {
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForInstances(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8935,7 +8935,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8991,11 +8991,11 @@ export namespace healthcare_v1 {
     searchForSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForSeries(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9024,7 +9024,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9080,11 +9080,11 @@ export namespace healthcare_v1 {
     searchForStudies(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForStudies(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForStudies(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9113,7 +9113,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9169,11 +9169,11 @@ export namespace healthcare_v1 {
     setBlobStorageSettings(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setBlobStorageSettings(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setBlobStorageSettings(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9204,7 +9204,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9260,11 +9260,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9293,7 +9293,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9349,11 +9349,11 @@ export namespace healthcare_v1 {
     storeInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     storeInstances(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     storeInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9382,7 +9382,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9438,11 +9438,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9477,8 +9477,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9763,11 +9763,11 @@ export namespace healthcare_v1 {
     getStudyMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStudyMetrics(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StudyMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudyMetrics>>;
     getStudyMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9796,7 +9796,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$StudyMetrics>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StudyMetrics> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$StudyMetrics>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9852,11 +9852,11 @@ export namespace healthcare_v1 {
     setBlobStorageSettings(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setBlobStorageSettings(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     setBlobStorageSettings(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9887,7 +9887,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9975,11 +9975,11 @@ export namespace healthcare_v1 {
     getSeriesMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSeriesMetrics(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SeriesMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SeriesMetrics>>;
     getSeriesMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10010,7 +10010,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$SeriesMetrics>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SeriesMetrics> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$SeriesMetrics>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10081,11 +10081,11 @@ export namespace healthcare_v1 {
     getStorageInfo(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStorageInfo(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StorageInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StorageInfo>>;
     getStorageInfo(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10114,7 +10114,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$StorageInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StorageInfo> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$StorageInfo>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10190,11 +10190,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10223,7 +10223,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10279,11 +10279,11 @@ export namespace healthcare_v1 {
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveMetadata(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10312,7 +10312,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10368,11 +10368,11 @@ export namespace healthcare_v1 {
     retrieveStudy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveStudy(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveStudy(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10401,7 +10401,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10457,11 +10457,11 @@ export namespace healthcare_v1 {
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForInstances(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10490,7 +10490,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10546,11 +10546,11 @@ export namespace healthcare_v1 {
     searchForSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForSeries(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10579,7 +10579,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10635,11 +10635,11 @@ export namespace healthcare_v1 {
     storeInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     storeInstances(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     storeInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10668,7 +10668,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10808,11 +10808,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10841,7 +10841,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10897,11 +10897,11 @@ export namespace healthcare_v1 {
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveMetadata(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10930,7 +10930,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10986,11 +10986,11 @@ export namespace healthcare_v1 {
     retrieveSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveSeries(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveSeries(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11019,7 +11019,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11075,11 +11075,11 @@ export namespace healthcare_v1 {
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchForInstances(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchForInstances(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11108,7 +11108,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11221,11 +11221,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11254,7 +11254,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11310,11 +11310,11 @@ export namespace healthcare_v1 {
     retrieveInstance(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveInstance(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveInstance(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11343,7 +11343,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11399,11 +11399,11 @@ export namespace healthcare_v1 {
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveMetadata(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveMetadata(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11432,7 +11432,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11488,11 +11488,11 @@ export namespace healthcare_v1 {
     retrieveRendered(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveRendered(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveRendered(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11521,7 +11521,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11633,11 +11633,11 @@ export namespace healthcare_v1 {
     retrieveFrames(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveFrames(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveFrames(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11666,7 +11666,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11722,11 +11722,11 @@ export namespace healthcare_v1 {
     retrieveRendered(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveRendered(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     retrieveRendered(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11755,7 +11755,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11854,11 +11854,11 @@ export namespace healthcare_v1 {
     applyAdminConsents(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     applyAdminConsents(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     applyAdminConsents(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11887,7 +11887,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11943,11 +11943,11 @@ export namespace healthcare_v1 {
     applyConsents(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     applyConsents(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     applyConsents(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11976,7 +11976,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12032,11 +12032,11 @@ export namespace healthcare_v1 {
     bulkExportGroup(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkExportGroup(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     bulkExportGroup(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12065,7 +12065,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12121,11 +12121,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FhirStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12154,7 +12154,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$FhirStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FhirStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12210,11 +12210,11 @@ export namespace healthcare_v1 {
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deidentify(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     deidentify(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12243,7 +12243,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12299,11 +12299,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12332,7 +12332,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12385,11 +12385,11 @@ export namespace healthcare_v1 {
     explainDataAccess(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     explainDataAccess(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExplainDataAccessResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExplainDataAccessResponse>>;
     explainDataAccess(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12424,8 +12424,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExplainDataAccessResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExplainDataAccessResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12481,11 +12481,11 @@ export namespace healthcare_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12514,7 +12514,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12567,11 +12567,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FhirStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12600,7 +12600,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$FhirStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FhirStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12653,11 +12653,11 @@ export namespace healthcare_v1 {
     getFHIRStoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getFHIRStoreMetrics(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FhirStoreMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FhirStoreMetrics>>;
     getFHIRStoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12688,7 +12688,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$FhirStoreMetrics>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FhirStoreMetrics> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$FhirStoreMetrics>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12744,11 +12744,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12777,7 +12777,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12833,11 +12833,11 @@ export namespace healthcare_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12866,7 +12866,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12919,11 +12919,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFhirStoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFhirStoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12956,8 +12956,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFhirStoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFhirStoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13013,11 +13013,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FhirStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13046,7 +13046,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$FhirStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FhirStore> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$FhirStore>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13099,11 +13099,11 @@ export namespace healthcare_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rollback(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13132,7 +13132,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13188,11 +13188,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13221,7 +13221,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13277,11 +13277,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13316,8 +13316,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13594,11 +13594,11 @@ export namespace healthcare_v1 {
     BinaryCreate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binarycreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     BinaryCreate(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binarycreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     BinaryCreate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binarycreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13627,7 +13627,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binarycreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13683,11 +13683,11 @@ export namespace healthcare_v1 {
     BinaryRead(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     BinaryRead(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     BinaryRead(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13716,7 +13716,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13769,11 +13769,11 @@ export namespace healthcare_v1 {
     BinaryUpdate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     BinaryUpdate(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     BinaryUpdate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13802,7 +13802,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13855,11 +13855,11 @@ export namespace healthcare_v1 {
     BinaryVread(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryvread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     BinaryVread(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryvread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     BinaryVread(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryvread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13888,7 +13888,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Binaryvread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13941,11 +13941,11 @@ export namespace healthcare_v1 {
     bulkExport(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkExport(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     bulkExport(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13974,7 +13974,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14030,11 +14030,11 @@ export namespace healthcare_v1 {
     capabilities(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     capabilities(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     capabilities(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14063,7 +14063,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14119,11 +14119,11 @@ export namespace healthcare_v1 {
     conditionalDelete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     conditionalDelete(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     conditionalDelete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14152,7 +14152,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14208,11 +14208,11 @@ export namespace healthcare_v1 {
     conditionalPatch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     conditionalPatch(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     conditionalPatch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14241,7 +14241,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14297,11 +14297,11 @@ export namespace healthcare_v1 {
     conditionalUpdate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     conditionalUpdate(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     conditionalUpdate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14330,7 +14330,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14386,11 +14386,11 @@ export namespace healthcare_v1 {
     ConsentEnforcementStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ConsentEnforcementStatus(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     ConsentEnforcementStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14421,7 +14421,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14477,11 +14477,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14510,7 +14510,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14566,11 +14566,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14599,7 +14599,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14652,11 +14652,11 @@ export namespace healthcare_v1 {
     executeBundle(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     executeBundle(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     executeBundle(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14685,7 +14685,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14738,11 +14738,11 @@ export namespace healthcare_v1 {
     history(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     history(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     history(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14771,7 +14771,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14827,11 +14827,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14860,7 +14860,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14913,11 +14913,11 @@ export namespace healthcare_v1 {
     PatientConsentEnforcementStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     PatientConsentEnforcementStatus(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     PatientConsentEnforcementStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14948,7 +14948,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15004,11 +15004,11 @@ export namespace healthcare_v1 {
     PatientEverything(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     PatientEverything(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     PatientEverything(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15037,7 +15037,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15093,11 +15093,11 @@ export namespace healthcare_v1 {
     read(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     read(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     read(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15126,7 +15126,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15179,11 +15179,11 @@ export namespace healthcare_v1 {
     ResourcePurge(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ResourcePurge(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     ResourcePurge(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15212,7 +15212,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15265,11 +15265,11 @@ export namespace healthcare_v1 {
     ResourceValidate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ResourceValidate(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     ResourceValidate(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15298,7 +15298,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15354,11 +15354,11 @@ export namespace healthcare_v1 {
     search(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     search(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15387,7 +15387,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15443,11 +15443,11 @@ export namespace healthcare_v1 {
     searchType(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchType(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     searchType(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15476,7 +15476,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15531,11 +15531,11 @@ export namespace healthcare_v1 {
     update(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     update(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15564,7 +15564,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15617,11 +15617,11 @@ export namespace healthcare_v1 {
     vread(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     vread(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     vread(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15650,7 +15650,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16022,11 +16022,11 @@ export namespace healthcare_v1 {
     deleteFhirOperation(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteFhirOperation(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     deleteFhirOperation(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16055,7 +16055,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16108,11 +16108,11 @@ export namespace healthcare_v1 {
     getFhirOperationStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getFhirOperationStatus(
       params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     getFhirOperationStatus(
       params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16143,7 +16143,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16223,11 +16223,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Hl7V2Store>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16256,7 +16256,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Hl7V2Store>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Hl7V2Store> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16312,11 +16312,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16345,7 +16345,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16398,11 +16398,11 @@ export namespace healthcare_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16431,7 +16431,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16484,11 +16484,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Hl7V2Store>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16517,7 +16517,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Hl7V2Store>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Hl7V2Store> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16570,11 +16570,11 @@ export namespace healthcare_v1 {
     getHL7v2StoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getHL7v2StoreMetrics(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Hl7V2StoreMetrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2StoreMetrics>>;
     getHL7v2StoreMetrics(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16607,8 +16607,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$Hl7V2StoreMetrics>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2StoreMetrics>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16664,11 +16664,11 @@ export namespace healthcare_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16697,7 +16697,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16753,11 +16753,11 @@ export namespace healthcare_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16786,7 +16786,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16839,11 +16839,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHl7V2StoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListHl7V2StoresResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16876,8 +16876,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHl7V2StoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListHl7V2StoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16933,11 +16933,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Hl7V2Store>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16966,7 +16966,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Hl7V2Store>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Hl7V2Store> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Hl7V2Store>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17019,11 +17019,11 @@ export namespace healthcare_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rollback(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17052,7 +17052,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17108,11 +17108,11 @@ export namespace healthcare_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17141,7 +17141,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Policy>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17197,11 +17197,11 @@ export namespace healthcare_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17236,8 +17236,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17444,11 +17444,11 @@ export namespace healthcare_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     create(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17477,7 +17477,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Message>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17533,11 +17533,11 @@ export namespace healthcare_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17566,7 +17566,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17619,11 +17619,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17652,7 +17652,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Message>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17705,11 +17705,11 @@ export namespace healthcare_v1 {
     ingest(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ingest(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IngestMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IngestMessageResponse>>;
     ingest(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17742,8 +17742,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IngestMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IngestMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17799,11 +17799,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17836,8 +17836,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMessagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17893,11 +17893,11 @@ export namespace healthcare_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     patch(
       params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17926,7 +17926,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Message>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18072,11 +18072,11 @@ export namespace healthcare_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18105,7 +18105,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18158,11 +18158,11 @@ export namespace healthcare_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18191,7 +18191,7 @@ export namespace healthcare_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18244,11 +18244,11 @@ export namespace healthcare_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datasets$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18281,8 +18281,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18393,11 +18393,11 @@ export namespace healthcare_v1 {
     analyzeEntities(
       params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeEntities(
       params?: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>>;
     analyzeEntities(
       params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18432,8 +18432,8 @@ export namespace healthcare_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;

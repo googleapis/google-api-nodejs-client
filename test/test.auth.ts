@@ -37,13 +37,13 @@ describe(__filename, () => {
     });
 
     it('should create a jwt through googleapis', () => {
-      const jwt = new googleapis.auth.JWT(
-        'someone@somewhere.com',
-        'file1',
-        'key1',
-        'scope1',
-        'subject1'
-      );
+      const jwt = new googleapis.auth.JWT({
+        email: 'someone@somewhere.com',
+        keyFile: 'file1',
+        key: 'key1',
+        scopes: 'scope1',
+        subject: 'subject1',
+      });
       assert.strictEqual(jwt.email, 'someone@somewhere.com');
       assert.strictEqual(jwt.keyFile, 'file1');
       assert.strictEqual(jwt.key, 'key1');
@@ -78,13 +78,13 @@ describe(__filename, () => {
   async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
     await assert.rejects(
       blogger.pages.get({blogId: '123', pageId: '123', auth: client}),
-      /No access, refresh token/
+      /No access, refresh token/,
     );
   }
 
   async function testNoBearer(
     blogger: APIEndpoint,
-    oauth2client: OAuth2Client
+    oauth2client: OAuth2Client,
   ) {
     await blogger.pages.list({blogId: 'abc123', auth: oauth2client});
     assert.strictEqual(oauth2client.credentials.token_type, 'Bearer');
@@ -93,7 +93,7 @@ describe(__filename, () => {
   async function testExpired(
     drive: APIEndpoint,
     oauth2client: OAuth2Client,
-    now: number
+    now: number,
   ) {
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await drive.files.get({fileId: 'wat', auth: oauth2client});
@@ -109,7 +109,7 @@ describe(__filename, () => {
   async function testNoAccessToken(
     drive: APIEndpoint,
     oauth2client: OAuth2Client,
-    now: number
+    now: number,
   ) {
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await drive.files.get({fileId: 'wat', auth: oauth2client});
@@ -153,12 +153,12 @@ describe(__filename, () => {
       const oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       await testNoTokens(localBlogger, oauth2client as unknown as OAuth2Client);
       await testNoTokens(
         remoteBlogger,
-        oauth2client as unknown as OAuth2Client
+        oauth2client as unknown as OAuth2Client,
       );
     });
 
@@ -166,7 +166,7 @@ describe(__filename, () => {
       const oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       oauth2client.credentials = {refresh_token: 'refresh_token'};
       assert.doesNotThrow(() => {
@@ -180,7 +180,7 @@ describe(__filename, () => {
       const oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       oauth2client.credentials = {access_token: 'foo', refresh_token: ''};
       const scope = nock('https://blogger.googleapis.com')
@@ -190,7 +190,7 @@ describe(__filename, () => {
       await testNoBearer(localBlogger, oauth2client as unknown as OAuth2Client);
       await testNoBearer(
         remoteBlogger,
-        oauth2client as unknown as OAuth2Client
+        oauth2client as unknown as OAuth2Client,
       );
       scope.done();
     });
@@ -203,7 +203,7 @@ describe(__filename, () => {
       let oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       let now = new Date().getTime();
       let twoSecondsAgo = now - 2000;
@@ -214,12 +214,12 @@ describe(__filename, () => {
       await testExpired(
         localDrive,
         oauth2client as unknown as OAuth2Client,
-        now
+        now,
       );
       oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       now = new Date().getTime();
       twoSecondsAgo = now - 2000;
@@ -230,7 +230,7 @@ describe(__filename, () => {
       await testExpired(
         remoteDrive,
         oauth2client as unknown as OAuth2Client,
-        now
+        now,
       );
       scope.done();
     });
@@ -243,7 +243,7 @@ describe(__filename, () => {
       let oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       let now = new Date().getTime();
       let tenMinutesFromNow = now + 1000 * 60 * 10;
@@ -262,7 +262,7 @@ describe(__filename, () => {
           refresh_token: 'abc',
           expiry_date: tenMinutesFromNow,
           token_type: 'Bearer',
-        })
+        }),
       );
 
       assert.throws(() => {
@@ -271,7 +271,7 @@ describe(__filename, () => {
       oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       now = new Date().getTime();
       tenMinutesFromNow = now + 1000 * 60 * 10;
@@ -290,7 +290,7 @@ describe(__filename, () => {
           refresh_token: 'abc',
           expiry_date: tenMinutesFromNow,
           token_type: 'Bearer',
-        })
+        }),
       );
 
       assert.throws(() => {
@@ -306,21 +306,21 @@ describe(__filename, () => {
       const oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
-        REDIRECT_URI
+        REDIRECT_URI,
       );
       let now = new Date().getTime();
       oauth2client.credentials = {refresh_token: 'abc'};
       await testNoAccessToken(
         localDrive,
         oauth2client as unknown as OAuth2Client,
-        now
+        now,
       );
       now = new Date().getTime();
       oauth2client.credentials = {refresh_token: 'abc'};
       await testNoAccessToken(
         remoteDrive,
         oauth2client as unknown as OAuth2Client,
-        now
+        now,
       );
       scope.done();
     });
@@ -333,7 +333,7 @@ describe(__filename, () => {
         const oauth2client = new googleapis.auth.OAuth2(
           CLIENT_ID,
           CLIENT_SECRET,
-          REDIRECT_URI
+          REDIRECT_URI,
         );
         oauth2client.credentials = {access_token: 'abc', refresh_token: 'abc'};
         const res = await oauth2client.revokeCredentials();
@@ -346,12 +346,12 @@ describe(__filename, () => {
         const oauth2client = new googleapis.auth.OAuth2(
           CLIENT_ID,
           CLIENT_SECRET,
-          REDIRECT_URI
+          REDIRECT_URI,
         );
         oauth2client.credentials = {refresh_token: 'abc'};
         await assert.rejects(
           oauth2client.revokeCredentials(),
-          /Error: No access token to revoke./
+          /Error: No access token to revoke./,
         );
         assert.deepStrictEqual(oauth2client.credentials, {});
       });
@@ -370,7 +370,7 @@ describe(__filename, () => {
         const oauth2client = new googleapis.auth.OAuth2(
           CLIENT_ID,
           CLIENT_SECRET,
-          REDIRECT_URI
+          REDIRECT_URI,
         );
         const res = await oauth2client.getToken('code here');
         assert(res.tokens.expiry_date! >= now + 10 * 1000);

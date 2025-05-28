@@ -61,7 +61,7 @@ describe(__filename, () => {
         assert.ok(path);
         assert.strictEqual(
           JSON.stringify(JSON.parse(content as string)),
-          JSON.stringify(expected)
+          JSON.stringify(expected),
         );
       });
     await disclaimer.main();

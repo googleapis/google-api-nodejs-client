@@ -44,7 +44,7 @@ describe('webmaster samples', () => {
   it('should query analytics', async () => {
     const siteUrl = 'http://jbeckwith.com';
     const path = `/webmasters/v3/sites/${encodeURIComponent(
-      siteUrl
+      siteUrl,
     )}/searchAnalytics/query`;
     const scope = nock('https://www.googleapis.com').post(path).reply(200, {});
     const data = await samples.query.runSample();

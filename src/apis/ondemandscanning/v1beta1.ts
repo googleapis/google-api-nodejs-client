@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -690,6 +690,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     baseImages?: Schema$GrafeasV1BaseImage[];
     /**
+     * The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid
+     */
+    chainId?: string | null;
+    /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
     command?: string | null;
@@ -885,6 +889,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     baseImages?: Schema$BaseImage[];
     /**
+     * The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid
+     */
+    chainId?: string | null;
+    /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
     command?: string | null;
@@ -1073,6 +1081,10 @@ export namespace ondemandscanning_v1beta1 {
      * Describes a specific SBOM reference occurrences.
      */
     sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
+     * Describes a secret.
+     */
+    secret?: Schema$SecretOccurrence;
     /**
      * Output only. The time this occurrence was last updated.
      */
@@ -1436,6 +1448,49 @@ export namespace ondemandscanning_v1beta1 {
      * The progress of the SBOM generation.
      */
     sbomState?: string | null;
+  }
+  /**
+   * The location of the secret.
+   */
+  export interface Schema$SecretLocation {
+    /**
+     * The secret is found from a file.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation;
+  }
+  /**
+   * The occurrence provides details of a secret.
+   */
+  export interface Schema$SecretOccurrence {
+    /**
+     * Required. Type of secret.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Locations where the secret is detected.
+     */
+    locations?: Schema$SecretLocation[];
+    /**
+     * Optional. Status of the secret.
+     */
+    statuses?: Schema$SecretStatus[];
+  }
+  /**
+   * The status of the secret with a timestamp.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Optional. Optional message about the status code.
+     */
+    message?: string | null;
+    /**
+     * Optional. The status of the secret.
+     */
+    status?: string | null;
+    /**
+     * Optional. The time the secret status was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
@@ -1858,11 +1913,11 @@ export namespace ondemandscanning_v1beta1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1891,7 +1946,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1947,11 +2005,11 @@ export namespace ondemandscanning_v1beta1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1980,7 +2038,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2033,11 +2094,11 @@ export namespace ondemandscanning_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2066,7 +2127,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2119,11 +2183,11 @@ export namespace ondemandscanning_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2156,8 +2220,8 @@ export namespace ondemandscanning_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2213,11 +2277,11 @@ export namespace ondemandscanning_v1beta1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2246,7 +2310,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2364,11 +2431,11 @@ export namespace ondemandscanning_v1beta1 {
     analyzePackages(
       params: Params$Resource$Projects$Locations$Scans$Analyzepackages,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzePackages(
       params?: Params$Resource$Projects$Locations$Scans$Analyzepackages,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     analyzePackages(
       params: Params$Resource$Projects$Locations$Scans$Analyzepackages,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2397,7 +2464,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Scans$Analyzepackages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2473,11 +2543,11 @@ export namespace ondemandscanning_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVulnerabilitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVulnerabilitiesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2512,8 +2582,8 @@ export namespace ondemandscanning_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVulnerabilitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVulnerabilitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Scans$Vulnerabilities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

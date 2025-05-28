@@ -21,7 +21,7 @@ import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
 import * as minimist from 'yargs-parser';
-import {GaxiosError, request} from 'gaxios';
+import {request} from 'gaxios';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
@@ -63,7 +63,7 @@ export class Generator {
     this.options = options;
     this.env = new nunjucks.Environment(
       new nunjucks.FileSystemLoader(TEMPLATES_DIR),
-      {trimBlocks: true}
+      {trimBlocks: true},
     );
     this.env.addFilter('buildurl', filters.buildurl);
     this.env.addFilter('getType', filters.getType);
@@ -101,7 +101,7 @@ export class Generator {
    */
   async generateAllAPIs(
     discoveryUrl: string,
-    useCache: boolean
+    useCache: boolean,
   ): Promise<ChangeSet[]> {
     const ignore = require('../../../ignore.json').ignore as string[];
     const discoveryPath = path.join(__dirname, '../../../discovery');
@@ -131,19 +131,19 @@ export class Generator {
         this.log(`Generating API for ${api.id}...`);
         this.logResult(
           api.discoveryRestUrl,
-          'Attempting first generateAPI call...'
+          'Attempting first generateAPI call...',
         );
         try {
           const apiPath = path.join(
             discoveryPath,
-            api.id.replace(':', '-') + '.json'
+            api.id.replace(':', '-') + '.json',
           );
           await this.generateAPI(apiPath);
           this.logResult(api.discoveryRestUrl, 'GenerateAPI call success!');
         } catch (e) {
           this.logResult(
             api.discoveryRestUrl,
-            `GenerateAPI call failed with error: ${e}, moving on.`
+            `GenerateAPI call failed with error: ${e}, moving on.`,
           );
           console.error(`Failed to generate API: ${api.id}`);
           console.error(e);
@@ -153,10 +153,10 @@ export class Generator {
               util.inspect(this.state.get(api.discoveryRestUrl), {
                 maxArrayLength: null,
               }) +
-              '\n'
+              '\n',
           );
         }
-      })
+      }),
     );
     await this.generateIndex(apis);
     return changes;
@@ -197,7 +197,7 @@ export class Generator {
           const [pkgPath, pkgData] = await this.getPkgPathAndData(
             apisPath,
             file,
-            desc || ''
+            desc || '',
           );
           await this.render('package.json', pkgData, pkgPath);
           // generate the README.md
@@ -208,7 +208,7 @@ export class Generator {
           await this.render(
             'README.md.njk',
             {name: file, desc, disclaimer},
-            rdPath
+            rdPath,
           );
           // generate the tsconfig.json
           const tsPath = path.join(apisPath, file, 'tsconfig.json');
@@ -230,7 +230,7 @@ export class Generator {
     apisPath: string,
     file: string,
     desc: string,
-    defaultVersion = '0.1.0'
+    defaultVersion = '0.1.0',
   ): Promise<[string, PkgData]> {
     const pkgPath = path.join(apisPath, file, 'package.json');
     const packageData = {name: file, desc, version: defaultVersion};
@@ -274,7 +274,7 @@ export class Generator {
     const exportFilename = path.join(apiPath, schema.version + '.ts');
     await mkdir(path.dirname(exportFilename), {recursive: true});
     // populate the `method.fragment` property with samples
-    addFragments(schema);
+    await addFragments(schema);
     // generate the API (ex: src/apis/youtube/v3.ts)
     await this.render(API_TEMPLATE, {api: schema}, exportFilename);
     // generate samples on disk at:
@@ -338,7 +338,7 @@ export class Generator {
     for (const api of releasableAPIs) {
       releasePleaseConfig.packages[`src/apis/${api}`] = {};
       releasePleaseManifest[`src/apis/${api}`] = require(
-        `../../../src/apis/${api}/package.json`
+        `../../../src/apis/${api}/package.json`,
       ).version;
     }
 
@@ -349,13 +349,13 @@ export class Generator {
     fs.writeFileSync(
       path.resolve(rootPath, './release-please-config.json'),
       JSON.stringify(releasePleaseConfig, null, 2),
-      'utf8'
+      'utf8',
     );
 
     fs.writeFileSync(
       path.resolve(rootPath, './.release-please-manifest.json'),
       JSON.stringify(releasePleaseManifest, null, 2),
-      'utf8'
+      'utf8',
     );
   }
 }
@@ -383,9 +383,9 @@ async function main() {
     await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
     // Re-generates release-please manifest and config files
     console.log(
-      'Generating .release-please-manifest.json and release-please-config.json'
+      'Generating .release-please-manifest.json and release-please-config.json',
     );
-    gen.generateReleasePleaseConfig();
+    await gen.generateReleasePleaseConfig();
     console.log('Finished generating APIs!');
   }
 }

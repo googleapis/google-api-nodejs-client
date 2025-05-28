@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -218,11 +218,11 @@ export namespace androidpublisher_v1_1 {
     get(
       params: Params$Resource$Inapppurchases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inapppurchases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InappPurchase>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InappPurchase>>;
     get(
       params: Params$Resource$Inapppurchases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -251,7 +251,7 @@ export namespace androidpublisher_v1_1 {
       callback?:
         | BodyResponseCallback<Schema$InappPurchase>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InappPurchase> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$InappPurchase>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inapppurchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

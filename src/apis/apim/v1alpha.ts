@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -661,11 +661,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -694,7 +694,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -746,11 +749,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -783,8 +786,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -839,11 +842,11 @@ export namespace apim_v1alpha {
     listApiObservationTags(
       params: Params$Resource$Projects$Locations$Listapiobservationtags,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listApiObservationTags(
       params?: Params$Resource$Projects$Locations$Listapiobservationtags,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiObservationTagsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApiObservationTagsResponse>>;
     listApiObservationTags(
       params: Params$Resource$Projects$Locations$Listapiobservationtags,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -878,8 +881,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiObservationTagsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApiObservationTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Listapiobservationtags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -990,11 +993,11 @@ export namespace apim_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Observationjobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Observationjobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Observationjobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1023,7 +1026,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1079,11 +1085,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Observationjobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1112,7 +1118,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1165,11 +1174,11 @@ export namespace apim_v1alpha {
     disable(
       params: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     disable(
       params: Params$Resource$Projects$Locations$Observationjobs$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1198,7 +1207,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1254,11 +1266,11 @@ export namespace apim_v1alpha {
     enable(
       params: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enable(
       params: Params$Resource$Projects$Locations$Observationjobs$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1287,7 +1299,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1343,11 +1358,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObservationJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObservationJob>>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1376,7 +1391,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ObservationJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ObservationJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObservationJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1428,11 +1446,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListObservationJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListObservationJobsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1467,8 +1485,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListObservationJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListObservationJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1609,11 +1627,13 @@ export namespace apim_v1alpha {
     batchEditTags(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchEditTags(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchEditTagsApiObservationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchEditTagsApiObservationsResponse>
+    >;
     batchEditTags(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1648,8 +1668,10 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchEditTagsApiObservationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchEditTagsApiObservationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1706,11 +1728,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiObservation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApiObservation>>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1739,7 +1761,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ApiObservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiObservation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApiObservation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1792,11 +1817,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiObservationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApiObservationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1831,8 +1856,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiObservationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApiObservationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1930,11 +1955,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApiOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApiOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1963,7 +1988,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$ApiOperation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApiOperation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApiOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2016,11 +2044,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApiOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApiOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2055,8 +2083,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApiOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApiOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2142,11 +2170,11 @@ export namespace apim_v1alpha {
     create(
       params: Params$Resource$Projects$Locations$Observationsources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Observationsources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Observationsources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2175,7 +2203,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationsources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2231,11 +2262,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Observationsources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Observationsources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Observationsources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2264,7 +2295,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationsources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2317,11 +2351,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Observationsources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Observationsources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObservationSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObservationSource>>;
     get(
       params: Params$Resource$Projects$Locations$Observationsources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2352,8 +2386,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObservationSource>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObservationSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationsources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2406,11 +2440,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Observationsources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Observationsources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListObservationSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListObservationSourcesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Observationsources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2445,8 +2479,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListObservationSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListObservationSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Observationsources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2561,11 +2595,11 @@ export namespace apim_v1alpha {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2594,7 +2628,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2649,11 +2686,11 @@ export namespace apim_v1alpha {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2682,7 +2719,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2734,11 +2774,11 @@ export namespace apim_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2767,7 +2807,10 @@ export namespace apim_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2819,11 +2862,11 @@ export namespace apim_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2856,8 +2899,8 @@ export namespace apim_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

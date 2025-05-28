@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -883,11 +883,13 @@ export namespace apphub_v1 {
     detachServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     detachServiceProjectAttachment(
       params?: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DetachServiceProjectAttachmentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DetachServiceProjectAttachmentResponse>
+    >;
     detachServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -922,8 +924,10 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DetachServiceProjectAttachmentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DetachServiceProjectAttachmentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Detachserviceprojectattachment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -980,11 +984,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1013,7 +1017,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1065,11 +1072,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1102,8 +1109,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1158,11 +1165,13 @@ export namespace apphub_v1 {
     lookupServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookupServiceProjectAttachment(
       params?: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupServiceProjectAttachmentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LookupServiceProjectAttachmentResponse>
+    >;
     lookupServiceProjectAttachment(
       params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1197,8 +1206,10 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupServiceProjectAttachmentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LookupServiceProjectAttachmentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Lookupserviceprojectattachment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,11 +1331,11 @@ export namespace apphub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Applications$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1353,7 +1364,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1408,11 +1422,11 @@ export namespace apphub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1441,7 +1455,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1493,11 +1510,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Application>>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1526,7 +1543,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Application>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1578,11 +1598,11 @@ export namespace apphub_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1611,7 +1631,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1667,11 +1690,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Applications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApplicationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApplicationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Applications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1704,8 +1727,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApplicationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApplicationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1760,11 +1783,11 @@ export namespace apphub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1793,7 +1816,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1845,11 +1871,11 @@ export namespace apphub_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Applications$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1878,7 +1904,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1934,11 +1963,11 @@ export namespace apphub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Applications$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1973,8 +2002,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2154,11 +2183,11 @@ export namespace apphub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Applications$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2187,7 +2216,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2243,11 +2275,11 @@ export namespace apphub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2276,7 +2308,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2329,11 +2364,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Applications$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2362,7 +2397,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2415,11 +2453,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Applications$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Applications$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2452,8 +2490,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2509,11 +2547,11 @@ export namespace apphub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Services$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2542,7 +2580,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2684,11 +2725,11 @@ export namespace apphub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2717,7 +2758,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Workloads$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2773,11 +2817,11 @@ export namespace apphub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2806,7 +2850,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Workloads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2859,11 +2906,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Workload>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Workload>>;
     get(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2892,7 +2939,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Workload>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workload> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Workload>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Workloads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2945,11 +2995,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWorkloadsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Applications$Workloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2982,8 +3032,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkloadsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWorkloadsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Workloads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3039,11 +3089,11 @@ export namespace apphub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3072,7 +3122,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Workloads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3214,11 +3267,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DiscoveredService>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DiscoveredService>>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredservices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3249,8 +3302,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DiscoveredService>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DiscoveredService>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredservices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,11 +3356,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Discoveredservices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveredservices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveredServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredServicesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Discoveredservices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3342,8 +3395,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDiscoveredServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredservices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3401,11 +3454,11 @@ export namespace apphub_v1 {
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookup(
       params?: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupDiscoveredServiceResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LookupDiscoveredServiceResponse>>;
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3440,8 +3493,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupDiscoveredServiceResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LookupDiscoveredServiceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredservices$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3548,11 +3601,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DiscoveredWorkload>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DiscoveredWorkload>>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3583,8 +3636,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DiscoveredWorkload>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DiscoveredWorkload>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredworkloads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3637,11 +3690,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveredWorkloadsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredWorkloadsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3676,8 +3729,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDiscoveredWorkloadsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredWorkloadsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredworkloads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3735,11 +3788,13 @@ export namespace apphub_v1 {
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookup(
       params?: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupDiscoveredWorkloadResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LookupDiscoveredWorkloadResponse>
+    >;
     lookup(
       params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3774,8 +3829,10 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupDiscoveredWorkloadResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LookupDiscoveredWorkloadResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredworkloads$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3882,11 +3939,11 @@ export namespace apphub_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3915,7 +3972,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3967,11 +4027,11 @@ export namespace apphub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4000,7 +4060,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4052,11 +4115,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4085,7 +4148,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4137,11 +4203,11 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4174,8 +4240,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4283,11 +4349,11 @@ export namespace apphub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4316,7 +4382,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4372,11 +4441,11 @@ export namespace apphub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4405,7 +4474,10 @@ export namespace apphub_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4458,11 +4530,11 @@ export namespace apphub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceProjectAttachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceProjectAttachment>>;
     get(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4495,8 +4567,8 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceProjectAttachment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceProjectAttachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4549,11 +4621,13 @@ export namespace apphub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServiceProjectAttachmentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListServiceProjectAttachmentsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4588,8 +4662,10 @@ export namespace apphub_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceProjectAttachmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListServiceProjectAttachmentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

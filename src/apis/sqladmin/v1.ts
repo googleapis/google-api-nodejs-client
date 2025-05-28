@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2967,11 +2967,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Backupruns$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Backupruns$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Backupruns$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3000,7 +3000,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backupruns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3055,11 +3058,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Backupruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Backupruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupRun>>;
     get(
       params: Params$Resource$Backupruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3088,7 +3091,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$BackupRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BackupRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3142,11 +3148,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Backupruns$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Backupruns$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Backupruns$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3175,7 +3181,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backupruns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3229,11 +3238,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Backupruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Backupruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupRunsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupRunsListResponse>>;
     list(
       params: Params$Resource$Backupruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3266,8 +3275,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BackupRunsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupRunsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3391,11 +3400,11 @@ export namespace sqladmin_v1 {
     CreateBackup(
       params: Params$Resource$Backups$Createbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     CreateBackup(
       params?: Params$Resource$Backups$Createbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     CreateBackup(
       params: Params$Resource$Backups$Createbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3424,7 +3433,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Createbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3479,11 +3491,11 @@ export namespace sqladmin_v1 {
     DeleteBackup(
       params: Params$Resource$Backups$Deletebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     DeleteBackup(
       params?: Params$Resource$Backups$Deletebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     DeleteBackup(
       params: Params$Resource$Backups$Deletebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3512,7 +3524,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Deletebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3564,11 +3579,11 @@ export namespace sqladmin_v1 {
     GetBackup(
       params: Params$Resource$Backups$Getbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     GetBackup(
       params?: Params$Resource$Backups$Getbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     GetBackup(
       params: Params$Resource$Backups$Getbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3597,7 +3612,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Getbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3649,11 +3667,11 @@ export namespace sqladmin_v1 {
     ListBackups(
       params: Params$Resource$Backups$Listbackups,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ListBackups(
       params?: Params$Resource$Backups$Listbackups,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     ListBackups(
       params: Params$Resource$Backups$Listbackups,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3686,8 +3704,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Listbackups;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3732,7 +3750,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
+     * Updates the retention period and description of the backup. You can use this API to update final backups only.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3742,11 +3760,11 @@ export namespace sqladmin_v1 {
     UpdateBackup(
       params: Params$Resource$Backups$Updatebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     UpdateBackup(
       params?: Params$Resource$Backups$Updatebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     UpdateBackup(
       params: Params$Resource$Backups$Updatebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3775,7 +3793,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Updatebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3869,7 +3890,7 @@ export namespace sqladmin_v1 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
+     * The list of fields that you can update. You can update only the description and retention period of the final backup.
      */
     updateMask?: string;
 
@@ -3896,11 +3917,11 @@ export namespace sqladmin_v1 {
     generateEphemeralCert(
       params: Params$Resource$Connect$Generateephemeralcert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateEphemeralCert(
       params?: Params$Resource$Connect$Generateephemeralcert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateEphemeralCertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateEphemeralCertResponse>>;
     generateEphemeralCert(
       params: Params$Resource$Connect$Generateephemeralcert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3935,8 +3956,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateEphemeralCertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateEphemeralCertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connect$Generateephemeralcert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3993,11 +4014,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Connect$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Connect$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>;
     get(
       params: Params$Resource$Connect$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4026,7 +4047,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConnectSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Connect$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4118,11 +4142,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Databases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Databases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Databases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4151,7 +4175,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4205,11 +4232,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     get(
       params: Params$Resource$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4238,7 +4265,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4292,11 +4322,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Databases$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Databases$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Databases$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4325,7 +4355,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4378,11 +4411,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabasesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabasesListResponse>>;
     list(
       params: Params$Resource$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4415,8 +4448,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatabasesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabasesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4469,11 +4502,11 @@ export namespace sqladmin_v1 {
     patch(
       params: Params$Resource$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4502,7 +4535,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4556,11 +4592,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Databases$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Databases$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Databases$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4589,7 +4625,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4742,11 +4781,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Flags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlagsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlagsListResponse>>;
     list(
       params: Params$Resource$Flags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4777,8 +4816,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlagsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlagsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4847,11 +4886,13 @@ export namespace sqladmin_v1 {
     acquireSsrsLease(
       params: Params$Resource$Instances$Acquiressrslease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     acquireSsrsLease(
       params?: Params$Resource$Instances$Acquiressrslease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+    >;
     acquireSsrsLease(
       params: Params$Resource$Instances$Acquiressrslease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4886,8 +4927,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Acquiressrslease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4944,11 +4987,11 @@ export namespace sqladmin_v1 {
     addServerCa(
       params: Params$Resource$Instances$Addserverca,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addServerCa(
       params?: Params$Resource$Instances$Addserverca,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addServerCa(
       params: Params$Resource$Instances$Addserverca,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4977,7 +5020,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Addserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5032,11 +5078,11 @@ export namespace sqladmin_v1 {
     addServerCertificate(
       params: Params$Resource$Instances$Addservercertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addServerCertificate(
       params?: Params$Resource$Instances$Addservercertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addServerCertificate(
       params: Params$Resource$Instances$Addservercertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5067,7 +5113,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Addservercertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5122,11 +5171,11 @@ export namespace sqladmin_v1 {
     clone(
       params: Params$Resource$Instances$Clone,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     clone(
       params?: Params$Resource$Instances$Clone,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     clone(
       params: Params$Resource$Instances$Clone,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5155,7 +5204,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5208,11 +5260,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5241,7 +5293,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5294,11 +5349,11 @@ export namespace sqladmin_v1 {
     demote(
       params: Params$Resource$Instances$Demote,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     demote(
       params?: Params$Resource$Instances$Demote,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     demote(
       params: Params$Resource$Instances$Demote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5327,7 +5382,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Demote;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5380,11 +5438,11 @@ export namespace sqladmin_v1 {
     demoteMaster(
       params: Params$Resource$Instances$Demotemaster,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     demoteMaster(
       params?: Params$Resource$Instances$Demotemaster,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     demoteMaster(
       params: Params$Resource$Instances$Demotemaster,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5413,7 +5471,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Demotemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5468,11 +5529,11 @@ export namespace sqladmin_v1 {
     export(
       params: Params$Resource$Instances$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Instances$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Instances$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5501,7 +5562,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5554,11 +5618,11 @@ export namespace sqladmin_v1 {
     failover(
       params: Params$Resource$Instances$Failover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     failover(
       params?: Params$Resource$Instances$Failover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     failover(
       params: Params$Resource$Instances$Failover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5587,7 +5651,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Failover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5641,11 +5708,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     get(
       params: Params$Resource$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5674,7 +5741,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5727,11 +5797,11 @@ export namespace sqladmin_v1 {
     import(
       params: Params$Resource$Instances$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Instances$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Instances$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5760,7 +5830,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5813,11 +5886,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Instances$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Instances$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Instances$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5846,7 +5919,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5900,11 +5976,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstancesListResponse>>;
     list(
       params: Params$Resource$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5937,8 +6013,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstancesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5992,11 +6068,11 @@ export namespace sqladmin_v1 {
     listServerCas(
       params: Params$Resource$Instances$Listservercas,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listServerCas(
       params?: Params$Resource$Instances$Listservercas,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListServerCasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstancesListServerCasResponse>>;
     listServerCas(
       params: Params$Resource$Instances$Listservercas,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6031,8 +6107,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListServerCasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstancesListServerCasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Listservercas;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6089,11 +6165,13 @@ export namespace sqladmin_v1 {
     ListServerCertificates(
       params: Params$Resource$Instances$Listservercertificates,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ListServerCertificates(
       params?: Params$Resource$Instances$Listservercertificates,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListServerCertificatesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$InstancesListServerCertificatesResponse>
+    >;
     ListServerCertificates(
       params: Params$Resource$Instances$Listservercertificates,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6128,8 +6206,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListServerCertificatesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$InstancesListServerCertificatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Listservercertificates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6186,11 +6266,11 @@ export namespace sqladmin_v1 {
     patch(
       params: Params$Resource$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6219,7 +6299,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6272,11 +6355,11 @@ export namespace sqladmin_v1 {
     pointInTimeRestore(
       params: Params$Resource$Instances$Pointintimerestore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pointInTimeRestore(
       params?: Params$Resource$Instances$Pointintimerestore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     pointInTimeRestore(
       params: Params$Resource$Instances$Pointintimerestore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6305,7 +6388,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Pointintimerestore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6360,11 +6446,11 @@ export namespace sqladmin_v1 {
     promoteReplica(
       params: Params$Resource$Instances$Promotereplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     promoteReplica(
       params?: Params$Resource$Instances$Promotereplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     promoteReplica(
       params: Params$Resource$Instances$Promotereplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6393,7 +6479,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Promotereplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6448,11 +6537,11 @@ export namespace sqladmin_v1 {
     reencrypt(
       params: Params$Resource$Instances$Reencrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reencrypt(
       params?: Params$Resource$Instances$Reencrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     reencrypt(
       params: Params$Resource$Instances$Reencrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6481,7 +6570,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Reencrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6535,11 +6627,13 @@ export namespace sqladmin_v1 {
     releaseSsrsLease(
       params: Params$Resource$Instances$Releasessrslease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     releaseSsrsLease(
       params?: Params$Resource$Instances$Releasessrslease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+    >;
     releaseSsrsLease(
       params: Params$Resource$Instances$Releasessrslease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6574,8 +6668,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Releasessrslease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6632,11 +6728,11 @@ export namespace sqladmin_v1 {
     resetSslConfig(
       params: Params$Resource$Instances$Resetsslconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetSslConfig(
       params?: Params$Resource$Instances$Resetsslconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetSslConfig(
       params: Params$Resource$Instances$Resetsslconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6665,7 +6761,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Resetsslconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6720,11 +6819,11 @@ export namespace sqladmin_v1 {
     restart(
       params: Params$Resource$Instances$Restart,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restart(
       params?: Params$Resource$Instances$Restart,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restart(
       params: Params$Resource$Instances$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6753,7 +6852,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6807,11 +6909,11 @@ export namespace sqladmin_v1 {
     restoreBackup(
       params: Params$Resource$Instances$Restorebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restoreBackup(
       params?: Params$Resource$Instances$Restorebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restoreBackup(
       params: Params$Resource$Instances$Restorebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6840,7 +6942,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Restorebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6895,11 +7000,11 @@ export namespace sqladmin_v1 {
     rotateServerCa(
       params: Params$Resource$Instances$Rotateserverca,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rotateServerCa(
       params?: Params$Resource$Instances$Rotateserverca,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rotateServerCa(
       params: Params$Resource$Instances$Rotateserverca,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6928,7 +7033,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Rotateserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6983,11 +7091,11 @@ export namespace sqladmin_v1 {
     RotateServerCertificate(
       params: Params$Resource$Instances$Rotateservercertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     RotateServerCertificate(
       params?: Params$Resource$Instances$Rotateservercertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     RotateServerCertificate(
       params: Params$Resource$Instances$Rotateservercertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7018,7 +7126,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Rotateservercertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7073,11 +7184,11 @@ export namespace sqladmin_v1 {
     startReplica(
       params: Params$Resource$Instances$Startreplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startReplica(
       params?: Params$Resource$Instances$Startreplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startReplica(
       params: Params$Resource$Instances$Startreplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7106,7 +7217,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Startreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7161,11 +7275,11 @@ export namespace sqladmin_v1 {
     stopReplica(
       params: Params$Resource$Instances$Stopreplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stopReplica(
       params?: Params$Resource$Instances$Stopreplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     stopReplica(
       params: Params$Resource$Instances$Stopreplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7194,7 +7308,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Stopreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7249,11 +7366,11 @@ export namespace sqladmin_v1 {
     switchover(
       params: Params$Resource$Instances$Switchover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     switchover(
       params?: Params$Resource$Instances$Switchover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     switchover(
       params: Params$Resource$Instances$Switchover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7282,7 +7399,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Switchover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7336,11 +7456,11 @@ export namespace sqladmin_v1 {
     truncateLog(
       params: Params$Resource$Instances$Truncatelog,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     truncateLog(
       params?: Params$Resource$Instances$Truncatelog,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     truncateLog(
       params: Params$Resource$Instances$Truncatelog,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7369,7 +7489,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Truncatelog;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7424,11 +7547,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Instances$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Instances$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Instances$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7457,7 +7580,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7942,11 +8068,11 @@ export namespace sqladmin_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7975,7 +8101,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8029,11 +8158,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8062,7 +8191,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8115,11 +8247,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperationsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OperationsListResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8152,8 +8284,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OperationsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8263,11 +8395,13 @@ export namespace sqladmin_v1 {
     getDiskShrinkConfig(
       params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDiskShrinkConfig(
       params?: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+    >;
     getDiskShrinkConfig(
       params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8302,8 +8436,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getdiskshrinkconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8360,11 +8496,13 @@ export namespace sqladmin_v1 {
     getLatestRecoveryTime(
       params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLatestRecoveryTime(
       params?: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+    >;
     getLatestRecoveryTime(
       params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8399,8 +8537,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getlatestrecoverytime;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8457,11 +8597,11 @@ export namespace sqladmin_v1 {
     performDiskShrink(
       params: Params$Resource$Projects$Instances$Performdiskshrink,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     performDiskShrink(
       params?: Params$Resource$Projects$Instances$Performdiskshrink,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     performDiskShrink(
       params: Params$Resource$Projects$Instances$Performdiskshrink,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8490,7 +8630,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Performdiskshrink;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8545,11 +8688,11 @@ export namespace sqladmin_v1 {
     rescheduleMaintenance(
       params: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rescheduleMaintenance(
       params?: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rescheduleMaintenance(
       params: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8580,7 +8723,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Reschedulemaintenance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8635,11 +8781,11 @@ export namespace sqladmin_v1 {
     resetReplicaSize(
       params: Params$Resource$Projects$Instances$Resetreplicasize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetReplicaSize(
       params?: Params$Resource$Projects$Instances$Resetreplicasize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetReplicaSize(
       params: Params$Resource$Projects$Instances$Resetreplicasize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8668,7 +8814,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Resetreplicasize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8723,11 +8872,11 @@ export namespace sqladmin_v1 {
     startExternalSync(
       params: Params$Resource$Projects$Instances$Startexternalsync,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startExternalSync(
       params?: Params$Resource$Projects$Instances$Startexternalsync,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startExternalSync(
       params: Params$Resource$Projects$Instances$Startexternalsync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8756,7 +8905,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Startexternalsync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8811,11 +8963,13 @@ export namespace sqladmin_v1 {
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verifyExternalSyncSettings(
       params?: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+    >;
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8850,8 +9004,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9019,11 +9175,11 @@ export namespace sqladmin_v1 {
     createEphemeral(
       params: Params$Resource$Sslcerts$Createephemeral,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createEphemeral(
       params?: Params$Resource$Sslcerts$Createephemeral,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>;
     createEphemeral(
       params: Params$Resource$Sslcerts$Createephemeral,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9052,7 +9208,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SslCert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sslcerts$Createephemeral;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9107,11 +9266,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Sslcerts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Sslcerts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Sslcerts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9140,7 +9299,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9194,11 +9356,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Sslcerts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sslcerts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>;
     get(
       params: Params$Resource$Sslcerts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9227,7 +9389,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SslCert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9281,11 +9446,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Sslcerts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Sslcerts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCertsInsertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCertsInsertResponse>>;
     insert(
       params: Params$Resource$Sslcerts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9318,8 +9483,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SslCertsInsertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCertsInsertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9372,11 +9537,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Sslcerts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sslcerts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCertsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCertsListResponse>>;
     list(
       params: Params$Resource$Sslcerts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9409,8 +9574,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SslCertsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCertsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9540,11 +9705,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Tiers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tiers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TiersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TiersListResponse>>;
     list(
       params: Params$Resource$Tiers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9575,8 +9740,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TiersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TiersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tiers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9644,11 +9809,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9677,7 +9842,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9730,11 +9898,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9763,7 +9931,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9817,11 +9988,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Users$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Users$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9850,7 +10021,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9903,11 +10077,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UsersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UsersListResponse>>;
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9938,8 +10112,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UsersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UsersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9992,11 +10166,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Users$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Users$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10025,7 +10199,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

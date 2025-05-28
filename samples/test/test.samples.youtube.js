@@ -47,7 +47,7 @@ describe('YouTube samples', () => {
   it('should upload a video', async () => {
     const scope = nock('https://youtube.googleapis.com')
       .post(
-        '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+        '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
       )
       .reply(200, {kind: 'youtube#video'});
     const data = await samples.upload.runSample(someFile);

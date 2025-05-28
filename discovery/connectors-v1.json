@@ -529,7 +529,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`",
+                      "description": "Required. The list of fields to update. Fields are specified relative to the connection. A field will be overwritten if it is in the mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -873,6 +873,188 @@
                     }
                   }
                 },
+                "endUserAuthentications": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new EndUserAuthentication in a given project,location and connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/endUserAuthentications",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.connections.endUserAuthentications.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "endUserAuthenticationId": {
+                          "description": "Required. Identifier to assign to the EndUserAuthentication. Must be unique within scope of the parent resource.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the EndUserAuthentication, of the form: `projects/*/locations/*/connections/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/endUserAuthentications",
+                      "request": {
+                        "$ref": "EndUserAuthentication"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single EndUserAuthentication.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/endUserAuthentications/{endUserAuthenticationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "connectors.projects.locations.connections.endUserAuthentications.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*/endUserAuthentication/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/endUserAuthentications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single EndUserAuthentication.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/endUserAuthentications/{endUserAuthenticationsId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.endUserAuthentications.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*/EndUserAuthentications/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/endUserAuthentications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. View of the EndUserAuthentication to return.",
+                          "enum": [
+                            "END_USER_AUTHENTICATION_VIEW_UNSPECIFIED",
+                            "BASIC_VIEW",
+                            "FULL_VIEW"
+                          ],
+                          "enumDescriptions": [
+                            "END_USER_AUTHENTICATION_UNSPECIFIED.",
+                            "Do not include secret fields.",
+                            "Include secret fields."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "EndUserAuthentication"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List EndUserAuthentications in a given project,location and connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/endUserAuthentications",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.endUserAuthentications.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Order by parameters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the EndUserAuthentication, of the form: `projects/*/locations/*/connections/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/endUserAuthentications",
+                      "response": {
+                        "$ref": "ListEndUserAuthenticationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single EndUserAuthentication.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/endUserAuthentications/{endUserAuthenticationsId}",
+                      "httpMethod": "PATCH",
+                      "id": "connectors.projects.locations.connections.endUserAuthentications.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project}/locations/{location}/connections/{connection}/endUserAuthentications/{end_user_authentication}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/endUserAuthentications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The list of fields to update. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EndUserAuthentication details: * `notify_endpoint_destination`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "EndUserAuthentication"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "eventSubscriptions": {
                   "methods": {
                     "create": {
@@ -1014,7 +1196,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
+                          "description": "Required. Identifier. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/eventSubscriptions/[^/]+$",
                           "required": true,
@@ -2418,6 +2600,21 @@
                               "required": true,
                               "type": "string"
                             },
+                            "schemaView": {
+                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
+                              "enum": [
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
+                              ],
+                              "enumDescriptions": [
+                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                                "Return basic connector version schema.",
+                                "Return enriched connector version schema."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
                             "view": {
                               "description": "Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.",
                               "enum": [
@@ -2467,6 +2664,21 @@
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+/connectors/[^/]+$",
                               "required": true,
+                              "type": "string"
+                            },
+                            "schemaView": {
+                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
+                              "enum": [
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
+                              ],
+                              "enumDescriptions": [
+                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                                "Return basic connector version schema.",
+                                "Return enriched connector version schema."
+                              ],
+                              "location": "query",
                               "type": "string"
                             },
                             "view": {
@@ -2571,7 +2783,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250507",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2627,18 +2839,18 @@
       "id": "AuthConfig",
       "properties": {
         "additionalVariables": {
-          "description": "List containing additional auth configs.",
+          "description": "Optional. List containing additional auth configs.",
           "items": {
             "$ref": "ConfigVariable"
           },
           "type": "array"
         },
         "authKey": {
-          "description": "Identifier key for auth config",
+          "description": "Optional. Identifier key for auth config",
           "type": "string"
         },
         "authType": {
-          "description": "The type of authentication configured.",
+          "description": "Optional. The type of authentication configured.",
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
             "USER_PASSWORD",
@@ -2970,7 +3182,7 @@
           "type": "string"
         },
         "key": {
-          "description": "Key of the config variable.",
+          "description": "Optional. Key of the config variable.",
           "type": "string"
         },
         "secretValue": {
@@ -3195,6 +3407,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "euaOauthAuthConfig": {
+          "$ref": "AuthConfig",
+          "description": "Optional. Additional Oauth2.0 Auth config for EUA. If the connection is configured using non-OAuth authentication but OAuth needs to be used for EUA, this field can be populated with the OAuth config. This should be a OAuth2AuthCodeFlow Auth type only."
+        },
         "eventingConfig": {
           "$ref": "EventingConfig",
           "description": "Optional. Eventing config of a connection"
@@ -3217,6 +3433,10 @@
           "$ref": "EventingRuntimeData",
           "description": "Output only. Eventing Runtime Data.",
           "readOnly": true
+        },
+        "fallbackOnAdminCredentials": {
+          "description": "Optional. Fallback on admin credentials for the connection. If this both auth_override_enabled and fallback_on_admin_credentials are set to true, the connection will use the admin credentials if the dynamic auth header is not present during auth override.",
+          "type": "boolean"
         },
         "host": {
           "description": "Output only. The name of the Hostname of the Service Directory service with TLS.",
@@ -3594,6 +3814,20 @@
           "description": "Indicate whether connector is being migrated to TLS.",
           "type": "boolean"
         },
+        "networkEgressMode": {
+          "description": "Indicate whether connector is being migrated to use direct VPC egress.",
+          "enum": [
+            "NETWORK_EGRESS_MODE_UNSPECIFIED",
+            "SERVERLESS_VPC_ACCESS_CONNECTOR",
+            "DIRECT_VPC_EGRESS"
+          ],
+          "enumDescriptions": [
+            "Network egress mode is not specified.",
+            "Default model VPC Access Connector.",
+            "Direct VPC Egress."
+          ],
+          "type": "string"
+        },
         "provisionCloudSpanner": {
           "description": "Indicate whether cloud spanner is required for connector job.",
           "type": "boolean"
@@ -3724,6 +3958,13 @@
           "description": "Output only. Resource name of the Version. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "priorityEntityTypes": {
+          "description": "Optional. The priority entity types for the connector version.",
+          "items": {
+            "$ref": "PriorityEntityType"
+          },
+          "type": "array"
         },
         "releaseVersion": {
           "description": "Output only. ReleaseVersion of the connector, for example: \"1.0.1-alpha\".",
@@ -3907,7 +4148,7 @@
       "id": "ConnectorsLogConfig",
       "properties": {
         "enabled": {
-          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "description": "Optional. Enabled represents whether logging is enabled or not for a connection.",
           "type": "boolean"
         },
         "level": {
@@ -4308,6 +4549,21 @@
       },
       "type": "object"
     },
+    "EUASecret": {
+      "description": "EUASecret provides a reference to entries in Secret Manager.",
+      "id": "EUASecret",
+      "properties": {
+        "secretValue": {
+          "description": "Optional. The plain string value of the secret.",
+          "type": "string"
+        },
+        "secretVersion": {
+          "description": "Optional. The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EgressControlConfig": {
       "description": "Egress control config for connector runtime. These configurations define the rules to identify which outbound domains/hosts needs to be whitelisted. It may be a static information for a particular connector version or it is derived from the configurations provided by the customer in Connection resource.",
       "id": "EgressControlConfig",
@@ -4359,7 +4615,7 @@
       "id": "EncryptionKey",
       "properties": {
         "kmsKeyName": {
-          "description": "The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
+          "description": "Optional. The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
           "type": "string"
         },
         "type": {
@@ -4384,15 +4640,432 @@
       "id": "EndPoint",
       "properties": {
         "endpointUri": {
-          "description": "The URI of the Endpoint.",
+          "description": "Optional. The URI of the Endpoint.",
           "type": "string"
         },
         "headers": {
-          "description": "List of Header to be added to the Endpoint.",
+          "description": "Optional. List of Header to be added to the Endpoint.",
           "items": {
             "$ref": "Header"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthentication": {
+      "description": "AuthConfig defines details of a authentication type.",
+      "id": "EndUserAuthentication",
+      "properties": {
+        "configVariables": {
+          "description": "Optional. Config variables for the EndUserAuthentication.",
+          "items": {
+            "$ref": "EndUserAuthenticationConfigVariable"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "destinationConfigs": {
+          "description": "Optional. Destination configs for the EndUserAuthentication.",
+          "items": {
+            "$ref": "DestinationConfig"
+          },
+          "type": "array"
+        },
+        "endUserAuthenticationConfig": {
+          "$ref": "EndUserAuthenticationConfig",
+          "description": "Optional. The EndUserAuthenticationConfig for the EndUserAuthentication."
+        },
+        "labels": {
+          "description": "Optional. Labels for the EndUserAuthentication.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Identifier. Resource name of the EndUserAuthentication. Format: projects/{project}/locations/{location}/connections/{connection}/endUserAuthentications/{end_user_authentication}",
+          "type": "string"
+        },
+        "notifyEndpointDestination": {
+          "$ref": "EndUserAuthenticationNotifyEndpointDestination",
+          "description": "Optional. The destination to hit when we receive an event"
+        },
+        "roles": {
+          "description": "Optional. Roles for the EndUserAuthentication.",
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "READER",
+              "READER_DOMAIN_WIDE_ACCESSIBLE"
+            ],
+            "enumDescriptions": [
+              "Default state.",
+              "READER.",
+              "READER_DOMAIN_WIDE_ACCESSIBLE which has access to only public data."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "$ref": "EndUserAuthenticationEndUserAuthenticationStatus",
+          "description": "Optional. Status of the EndUserAuthentication."
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userId": {
+          "description": "Optional. The user id of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfig": {
+      "description": "EndUserAuthenticationConfig defines details of a authentication configuration for EUC",
+      "id": "EndUserAuthenticationConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Optional. List containing additional auth configs.",
+          "items": {
+            "$ref": "EndUserAuthenticationConfigVariable"
+          },
+          "type": "array"
+        },
+        "authKey": {
+          "description": "Identifier key for auth config",
+          "type": "string"
+        },
+        "authType": {
+          "description": "The type of authentication configured.",
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            "USER_PASSWORD",
+            "OAUTH2_JWT_BEARER",
+            "OAUTH2_CLIENT_CREDENTIALS",
+            "SSH_PUBLIC_KEY",
+            "OAUTH2_AUTH_CODE_FLOW",
+            "GOOGLE_AUTHENTICATION",
+            "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "Username and Password Authentication.",
+            "JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication",
+            "Oauth 2.0 Client Credentials Grant Authentication",
+            "SSH Public Key Authentication",
+            "Oauth 2.0 Authorization Code Flow",
+            "Google authentication",
+            "Oauth 2.0 Authorization Code Flow with Google Provided OAuth Client"
+          ],
+          "type": "string"
+        },
+        "oauth2AuthCodeFlow": {
+          "$ref": "EndUserAuthenticationConfigOauth2AuthCodeFlow",
+          "description": "Oauth2AuthCodeFlow."
+        },
+        "oauth2AuthCodeFlowGoogleManaged": {
+          "$ref": "EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged",
+          "description": "Oauth2AuthCodeFlowGoogleManaged."
+        },
+        "oauth2ClientCredentials": {
+          "$ref": "EndUserAuthenticationConfigOauth2ClientCredentials",
+          "description": "Oauth2ClientCredentials."
+        },
+        "oauth2JwtBearer": {
+          "$ref": "EndUserAuthenticationConfigOauth2JwtBearer",
+          "description": "Oauth2JwtBearer."
+        },
+        "sshPublicKey": {
+          "$ref": "EndUserAuthenticationConfigSshPublicKey",
+          "description": "SSH Public Key."
+        },
+        "userPassword": {
+          "$ref": "EndUserAuthenticationConfigUserPassword",
+          "description": "UserPassword."
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigOauth2AuthCodeFlow": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
+      "id": "EndUserAuthenticationConfigOauth2AuthCodeFlow",
+      "properties": {
+        "authCode": {
+          "description": "Optional. Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "authUri": {
+          "description": "Optional. Auth URL for Authorization Code Flow",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Optional. Client ID for user-provided OAuth app.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "EUASecret",
+          "description": "Optional. Client secret for user-provided OAuth app."
+        },
+        "enablePkce": {
+          "description": "Optional. Whether to enable PKCE when the user performs the auth code flow.",
+          "type": "boolean"
+        },
+        "oauthTokenData": {
+          "$ref": "OAuthTokenData",
+          "description": "Optional. Auth Code Data"
+        },
+        "pkceVerifier": {
+          "description": "Optional. PKCE verifier to be used during the auth code exchange.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Optional. Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.",
+      "id": "EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged",
+      "properties": {
+        "authCode": {
+          "description": "Optional. Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "oauthTokenData": {
+          "$ref": "OAuthTokenData",
+          "description": "Auth Code Data"
+        },
+        "redirectUri": {
+          "description": "Optional. Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Required. Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigOauth2ClientCredentials": {
+      "description": "Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.",
+      "id": "EndUserAuthenticationConfigOauth2ClientCredentials",
+      "properties": {
+        "clientId": {
+          "description": "The client identifier.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "EUASecret",
+          "description": "Required. string value or secret version containing the client secret."
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigOauth2JwtBearer": {
+      "description": "Parameters to support JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication. See https://tools.ietf.org/html/rfc7523 for more details.",
+      "id": "EndUserAuthenticationConfigOauth2JwtBearer",
+      "properties": {
+        "clientKey": {
+          "$ref": "EUASecret",
+          "description": "Required. secret version/value reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/*/strings/*/versions/*`."
+        },
+        "jwtClaims": {
+          "$ref": "EndUserAuthenticationConfigOauth2JwtBearerJwtClaims",
+          "description": "JwtClaims providers fields to generate the token."
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigOauth2JwtBearerJwtClaims": {
+      "description": "JWT claims used for the jwt-bearer authorization grant.",
+      "id": "EndUserAuthenticationConfigOauth2JwtBearerJwtClaims",
+      "properties": {
+        "audience": {
+          "description": "Value for the \"aud\" claim.",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "Value for the \"iss\" claim.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Value for the \"sub\" claim.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigSshPublicKey": {
+      "description": "Parameters to support Ssh public key Authentication.",
+      "id": "EndUserAuthenticationConfigSshPublicKey",
+      "properties": {
+        "certType": {
+          "description": "Format of SSH Client cert.",
+          "type": "string"
+        },
+        "sshClientCert": {
+          "$ref": "EUASecret",
+          "description": "Required. SSH Client Cert. It should contain both public and private key."
+        },
+        "sshClientCertPass": {
+          "$ref": "EUASecret",
+          "description": "Required. Password (passphrase) for ssh client certificate if it has one."
+        },
+        "username": {
+          "description": "The user account used to authenticate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigUserPassword": {
+      "description": "Parameters to support Username and Password Authentication.",
+      "id": "EndUserAuthenticationConfigUserPassword",
+      "properties": {
+        "password": {
+          "$ref": "EUASecret",
+          "description": "Required. string value or secret version reference containing the password."
+        },
+        "username": {
+          "description": "Username.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfigVariable": {
+      "description": "EndUserAuthenticationConfigVariable represents a configuration variable present in a EndUserAuthentication.",
+      "id": "EndUserAuthenticationConfigVariable",
+      "properties": {
+        "boolValue": {
+          "description": "Value is a bool.",
+          "type": "boolean"
+        },
+        "intValue": {
+          "description": "Value is an integer",
+          "format": "int64",
+          "type": "string"
+        },
+        "key": {
+          "description": "Required. Key of the config variable.",
+          "type": "string"
+        },
+        "secretValue": {
+          "$ref": "EUASecret",
+          "description": "Value is a secret"
+        },
+        "stringValue": {
+          "description": "Value is a string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationEndUserAuthenticationStatus": {
+      "description": "EndUserAuthentication Status denotes the status of the EndUserAuthentication resource.",
+      "id": "EndUserAuthenticationEndUserAuthenticationStatus",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of Event Subscription resource.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "EndUserAuthentication is in Active state.",
+            "EndUserAuthentication is in Error state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationNotifyEndpointDestination": {
+      "description": "Message for NotifyEndpointDestination Destination to hit when the refresh token is expired.",
+      "id": "EndUserAuthenticationNotifyEndpointDestination",
+      "properties": {
+        "endpoint": {
+          "$ref": "EndUserAuthenticationNotifyEndpointDestinationEndPoint",
+          "description": "Optional. OPTION 1: Hit an endpoint when the refresh token is expired."
+        },
+        "serviceAccount": {
+          "description": "Required. Service account needed for runtime plane to notify the backend.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. type of the destination",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ENDPOINT"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Endpoint - Hit the value of endpoint when event is received"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationNotifyEndpointDestinationEndPoint": {
+      "description": "Endpoint message includes details of the Destination endpoint.",
+      "id": "EndUserAuthenticationNotifyEndpointDestinationEndPoint",
+      "properties": {
+        "endpointUri": {
+          "description": "Required. The URI of the Endpoint.",
+          "type": "string"
+        },
+        "headers": {
+          "description": "Optional. List of Header to be added to the Endpoint.",
+          "items": {
+            "$ref": "EndUserAuthenticationNotifyEndpointDestinationEndPointHeader"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationNotifyEndpointDestinationEndPointHeader": {
+      "description": "Header details for a given header to be added to Endpoint.",
+      "id": "EndUserAuthenticationNotifyEndpointDestinationEndPointHeader",
+      "properties": {
+        "key": {
+          "description": "Required. Key of Header.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Value of Header.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4519,7 +5192,7 @@
           "description": "Optional. JMS is the source for the event listener."
         },
         "name": {
-          "description": "Required. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
+          "description": "Required. Identifier. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
           "type": "string"
         },
         "status": {
@@ -4563,11 +5236,11 @@
           "description": "OPTION 3: Write the event to Pub/Sub topic."
         },
         "serviceAccount": {
-          "description": "Service account needed for runtime plane to trigger IP workflow.",
+          "description": "Optional. Service account needed for runtime plane to trigger IP workflow.",
           "type": "string"
         },
         "type": {
-          "description": "type of the destination",
+          "description": "Optional. type of the destination",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ENDPOINT",
@@ -5259,11 +5932,11 @@
       "id": "Header",
       "properties": {
         "key": {
-          "description": "Key of Header.",
+          "description": "Optional. Key of Header.",
           "type": "string"
         },
         "value": {
-          "description": "Value of Header.",
+          "description": "Optional. Value of Header.",
           "type": "string"
         }
       },
@@ -5820,15 +6493,15 @@
       "id": "JwtClaims",
       "properties": {
         "audience": {
-          "description": "Value for the \"aud\" claim.",
+          "description": "Optional. Value for the \"aud\" claim.",
           "type": "string"
         },
         "issuer": {
-          "description": "Value for the \"iss\" claim.",
+          "description": "Optional. Value for the \"iss\" claim.",
           "type": "string"
         },
         "subject": {
-          "description": "Value for the \"sub\" claim.",
+          "description": "Optional. Value for the \"sub\" claim.",
           "type": "string"
         }
       },
@@ -5960,6 +6633,31 @@
           "description": "A list of customConnectors.",
           "items": {
             "$ref": "CustomConnector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListEndUserAuthenticationsResponse": {
+      "description": "Response message for ConnectorsService.ListEndUserAuthentications",
+      "id": "ListEndUserAuthenticationsResponse",
+      "properties": {
+        "endUserAuthentications": {
+          "description": "Subscriptions.",
+          "items": {
+            "$ref": "EndUserAuthentication"
           },
           "type": "array"
         },
@@ -6245,11 +6943,11 @@
       "id": "LockConfig",
       "properties": {
         "locked": {
-          "description": "Indicates whether or not the connection is locked.",
+          "description": "Optional. Indicates whether or not the connection is locked.",
           "type": "boolean"
         },
         "reason": {
-          "description": "Describes why a connection is locked.",
+          "description": "Optional. Describes why a connection is locked.",
           "type": "string"
         }
       },
@@ -6557,12 +7255,12 @@
       "id": "NodeConfig",
       "properties": {
         "maxNodeCount": {
-          "description": "Maximum number of nodes in the runtime nodes.",
+          "description": "Optional. Maximum number of nodes in the runtime nodes.",
           "format": "int32",
           "type": "integer"
         },
         "minNodeCount": {
-          "description": "Minimum number of nodes in the runtime nodes.",
+          "description": "Optional. Minimum number of nodes in the runtime nodes.",
           "format": "int32",
           "type": "integer"
         }
@@ -6602,40 +7300,65 @@
       },
       "type": "object"
     },
+    "OAuthTokenData": {
+      "description": "pass only at create and not update using updateMask Auth Code Data",
+      "id": "OAuthTokenData",
+      "properties": {
+        "accessToken": {
+          "$ref": "EUASecret",
+          "description": "Optional. Access token for the connection."
+        },
+        "createTime": {
+          "description": "Optional. Timestamp when the access token was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "expiry": {
+          "description": "Optional. Time in seconds when the access token expires.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "refreshToken": {
+          "$ref": "EUASecret",
+          "description": "Optional. Refresh token for the connection."
+        }
+      },
+      "type": "object"
+    },
     "Oauth2AuthCodeFlow": {
       "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
       "id": "Oauth2AuthCodeFlow",
       "properties": {
         "authCode": {
-          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "description": "Optional. Authorization code to be exchanged for access and refresh tokens.",
           "type": "string"
         },
         "authUri": {
-          "description": "Auth URL for Authorization Code Flow",
+          "description": "Optional. Auth URL for Authorization Code Flow",
           "type": "string"
         },
         "clientId": {
-          "description": "Client ID for user-provided OAuth app.",
+          "description": "Optional. Client ID for user-provided OAuth app.",
           "type": "string"
         },
         "clientSecret": {
           "$ref": "Secret",
-          "description": "Client secret for user-provided OAuth app."
+          "description": "Optional. Client secret for user-provided OAuth app."
         },
         "enablePkce": {
-          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "description": "Optional. Whether to enable PKCE when the user performs the auth code flow.",
           "type": "boolean"
         },
         "pkceVerifier": {
-          "description": "PKCE verifier to be used during the auth code exchange.",
+          "description": "Optional. PKCE verifier to be used during the auth code exchange.",
           "type": "string"
         },
         "redirectUri": {
-          "description": "Redirect URI to be provided during the auth code exchange.",
+          "description": "Optional. Redirect URI to be provided during the auth code exchange.",
           "type": "string"
         },
         "scopes": {
-          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "description": "Optional. Scopes the connection will request when the user performs the auth code flow.",
           "items": {
             "type": "string"
           },
@@ -6671,12 +7394,12 @@
       "id": "Oauth2ClientCredentials",
       "properties": {
         "clientId": {
-          "description": "The client identifier.",
+          "description": "Optional. The client identifier.",
           "type": "string"
         },
         "clientSecret": {
           "$ref": "Secret",
-          "description": "Secret version reference containing the client secret."
+          "description": "Optional. Secret version reference containing the client secret."
         }
       },
       "type": "object"
@@ -6687,11 +7410,11 @@
       "properties": {
         "clientKey": {
           "$ref": "Secret",
-          "description": "Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/*/secrets/*/versions/*`."
+          "description": "Optional. Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: `projects/*/secrets/*/versions/*`."
         },
         "jwtClaims": {
           "$ref": "JwtClaims",
-          "description": "JwtClaims providers fields to generate the token."
+          "description": "Optional. JwtClaims providers fields to generate the token."
         }
       },
       "type": "object"
@@ -6895,6 +7618,30 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PriorityEntityType": {
+      "description": "PriorityEntityType represents an entity type with its associated priority and order.",
+      "id": "PriorityEntityType",
+      "properties": {
+        "description": {
+          "description": "The description of the entity type.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The entity type.",
+          "type": "string"
+        },
+        "order": {
+          "description": "The order of the entity type within its priority group.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priority": {
+          "description": "The priority of the entity type, such as P0, P1, etc.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7681,7 +8428,7 @@
       "id": "Secret",
       "properties": {
         "secretVersion": {
-          "description": "The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
+          "description": "Optional. The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
           "type": "string"
         }
       },
@@ -7794,19 +8541,19 @@
       "id": "SshPublicKey",
       "properties": {
         "certType": {
-          "description": "Format of SSH Client cert.",
+          "description": "Optional. Format of SSH Client cert.",
           "type": "string"
         },
         "sshClientCert": {
           "$ref": "Secret",
-          "description": "SSH Client Cert. It should contain both public and private key."
+          "description": "Optional. SSH Client Cert. It should contain both public and private key."
         },
         "sshClientCertPass": {
           "$ref": "Secret",
-          "description": "Password (passphrase) for ssh client certificate if it has one."
+          "description": "Optional. Password (passphrase) for ssh client certificate if it has one."
         },
         "username": {
-          "description": "The user account used to authenticate.",
+          "description": "Optional. The user account used to authenticate.",
           "type": "string"
         }
       },
@@ -8148,10 +8895,10 @@
       "properties": {
         "password": {
           "$ref": "Secret",
-          "description": "Secret version reference containing the password."
+          "description": "Optional. Secret version reference containing the password."
         },
         "username": {
-          "description": "Username.",
+          "description": "Optional. Username.",
           "type": "string"
         }
       },

@@ -2208,7 +2208,7 @@
       }
     }
   },
-  "revision": "20250428",
+  "revision": "20250505",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3305,6 +3305,10 @@
         "tempStoragePrefix": {
           "description": "The prefix of the resources the system should use for temporary storage. The system will append the suffix \"/temp-{JOBNAME} to this resource prefix, where {JOBNAME} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}",
           "type": "string"
+        },
+        "usePublicIps": {
+          "description": "Optional. True when any worker pool that uses public IPs is present.",
+          "type": "boolean"
         },
         "useStreamingEngineResourceBasedBilling": {
           "description": "Output only. Whether the job uses the Streaming Engine resource-based billing model.",

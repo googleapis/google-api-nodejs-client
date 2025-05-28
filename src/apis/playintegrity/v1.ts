@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -393,11 +393,11 @@ export namespace playintegrity_v1 {
     write(
       params: Params$Resource$Devicerecall$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     write(
       params?: Params$Resource$Devicerecall$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteDeviceRecallResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WriteDeviceRecallResponse>>;
     write(
       params: Params$Resource$Devicerecall$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -432,8 +432,8 @@ export namespace playintegrity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteDeviceRecallResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WriteDeviceRecallResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devicerecall$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -509,11 +509,11 @@ export namespace playintegrity_v1 {
     decodeIntegrityToken(
       params: Params$Resource$V1$Decodeintegritytoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     decodeIntegrityToken(
       params?: Params$Resource$V1$Decodeintegritytoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DecodeIntegrityTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DecodeIntegrityTokenResponse>>;
     decodeIntegrityToken(
       params: Params$Resource$V1$Decodeintegritytoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -548,8 +548,8 @@ export namespace playintegrity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DecodeIntegrityTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DecodeIntegrityTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Decodeintegritytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;

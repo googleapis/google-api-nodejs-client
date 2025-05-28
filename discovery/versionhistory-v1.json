@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240528",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
