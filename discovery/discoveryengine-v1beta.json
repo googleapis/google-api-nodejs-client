@@ -24538,24 +24538,9 @@
           "description": "Rewritten input query minus the extracted filters.",
           "type": "string"
         },
-        "sqlRequest": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest",
-          "description": "Optional. The SQL request that was generated from the natural language query understanding phase."
-        },
         "structuredExtractedFilter": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter",
           "description": "The filters that were extracted from the input query represented in a structured form."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest": {
-      "description": "The SQL request that was generated from the natural language query understanding phase.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest",
-      "properties": {
-        "sqlQuery": {
-          "description": "Optional. The SQL query in text format.",
-          "type": "string"
         }
       },
       "type": "object"

@@ -4584,7 +4584,7 @@ export namespace sqladmin_v1 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
+     * The list of fields that you can update. You can update only the description and retention period of the final backup.
      */
     updateMask?: string;
 

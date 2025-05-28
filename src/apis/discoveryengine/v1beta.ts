@@ -9878,22 +9878,9 @@ export namespace discoveryengine_v1beta {
      */
     rewrittenQuery?: string | null;
     /**
-     * Optional. The SQL request that was generated from the natural language query understanding phase.
-     */
-    sqlRequest?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest;
-    /**
      * The filters that were extracted from the input query represented in a structured form.
      */
     structuredExtractedFilter?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter;
-  }
-  /**
-   * The SQL request that was generated from the natural language query understanding phase.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest {
-    /**
-     * Optional. The SQL query in text format.
-     */
-    sqlQuery?: string | null;
   }
   /**
    * The filters that were extracted from the input query represented in a structured form.
@@ -13352,11 +13339,13 @@ export namespace discoveryengine_v1beta {
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getCmekConfig(
       params?: Params$Resource$Projects$Locations$Getcmekconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    >;
     getCmekConfig(
       params: Params$Resource$Projects$Locations$Getcmekconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13391,8 +13380,10 @@ export namespace discoveryengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getcmekconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;

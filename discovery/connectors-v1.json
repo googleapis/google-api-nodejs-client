@@ -2600,6 +2600,21 @@
                               "required": true,
                               "type": "string"
                             },
+                            "schemaView": {
+                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
+                              "enum": [
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
+                              ],
+                              "enumDescriptions": [
+                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                                "Return basic connector version schema.",
+                                "Return enriched connector version schema."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
                             "view": {
                               "description": "Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.",
                               "enum": [
@@ -2648,6 +2663,21 @@
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+/connectors/[^/]+$",
                               "required": true,
+                              "type": "string"
+                            },
+                            "schemaView": {
+                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
+                              "enum": [
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
+                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
+                              ],
+                              "enumDescriptions": [
+                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                                "Return basic connector version schema.",
+                                "Return enriched connector version schema."
+                              ],
+                              "location": "query",
                               "type": "string"
                             },
                             "view": {
@@ -3927,6 +3957,13 @@
           "description": "Output only. Resource name of the Version. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "priorityEntityTypes": {
+          "description": "Optional. The priority entity types for the connector version.",
+          "items": {
+            "$ref": "PriorityEntityType"
+          },
+          "type": "array"
         },
         "releaseVersion": {
           "description": "Output only. ReleaseVersion of the connector, for example: \"1.0.1-alpha\".",
@@ -7626,6 +7663,30 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PriorityEntityType": {
+      "description": "PriorityEntityType represents an entity type with its associated priority and order.",
+      "id": "PriorityEntityType",
+      "properties": {
+        "description": {
+          "description": "The description of the entity type.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The entity type.",
+          "type": "string"
+        },
+        "order": {
+          "description": "The order of the entity type within its priority group.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priority": {
+          "description": "The priority of the entity type, such as P0, P1, etc.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -7502,22 +7502,9 @@ export namespace discoveryengine_v1alpha {
      */
     rewrittenQuery?: string | null;
     /**
-     * Optional. The SQL request that was generated from the natural language query understanding phase.
-     */
-    sqlRequest?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest;
-    /**
      * The filters that were extracted from the input query represented in a structured form.
      */
     structuredExtractedFilter?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter;
-  }
-  /**
-   * The SQL request that was generated from the natural language query understanding phase.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest {
-    /**
-     * Optional. The SQL query in text format.
-     */
-    sqlQuery?: string | null;
   }
   /**
    * The filters that were extracted from the input query represented in a structured form.

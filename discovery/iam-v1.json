@@ -4507,11 +4507,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. A required mapping of a cloud region to the CA pool resource located in that region used for certificate issuance, adhering to these constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: \"projects/{project}/locations/{location}/caPools/{ca_pool}\" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).",
+          "description": "Optional. A required mapping of a Google Cloud region to the CA pool resource located in that region. The CA pool is used for certificate issuance, adhering to the following constraints: * Key format: A supported cloud region name equivalent to the location identifier in the corresponding map entry's value. * Value format: A valid CA pool resource path format like: \"projects/{project}/locations/{location}/caPools/{ca_pool}\" * Region Matching: Workloads are ONLY issued certificates from CA pools within the same region. Also the CA pool region (in value) must match the workload's region (key).",
           "type": "object"
         },
         "keyAlgorithm": {
-          "description": "Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If unspecified, this will default to ECDSA_P256.",
+          "description": "Optional. Key algorithm to use when generating the key pair. This key pair will be used to create the certificate. If not specified, this will default to ECDSA_P256.",
           "enum": [
             "KEY_ALGORITHM_UNSPECIFIED",
             "RSA_2048",
@@ -4531,12 +4531,12 @@
           "type": "string"
         },
         "lifetime": {
-          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours - 30 days. If unspecified, this will be defaulted to 24 hours.",
+          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours and 30 days. If not specified, this will be defaulted to 24 hours.",
           "format": "google-duration",
           "type": "string"
         },
         "rotationWindowPercentage": {
-          "description": "Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 - 80. If unspecified, this will be defaulted to 50.",
+          "description": "Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 and 80. If not specified, this will be defaulted to 50.",
           "format": "int32",
           "type": "integer"
         }
@@ -4551,7 +4551,7 @@
           "additionalProperties": {
             "$ref": "TrustStore"
           },
-          "description": "Optional. Maps specific trust domains (e.g., \"example.com\") to their corresponding TrustStore objects, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the Trust Bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.",
+          "description": "Optional. Maps specific trust domains (e.g., \"example.com\") to their corresponding TrustStore, which contain the trusted root certificates for that domain. There can be a maximum of 10 trust domain entries in this map. Note that a trust domain automatically trusts itself and don't need to be specified here. If however, this WorkloadIdentityPool's trust domain contains any trust anchors in the additional_trust_bundles map, those trust anchors will be *appended to* the trust bundle automatically derived from your InlineCertificateIssuanceConfig's ca_pools.",
           "type": "object"
         }
       },

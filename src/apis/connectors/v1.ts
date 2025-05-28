@@ -868,6 +868,10 @@ export namespace connectors_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The priority entity types for the connector version.
+     */
+    priorityEntityTypes?: Schema$PriorityEntityType[];
+    /**
      * Output only. ReleaseVersion of the connector, for example: "1.0.1-alpha".
      */
     releaseVersion?: string | null;
@@ -3149,6 +3153,27 @@ export namespace connectors_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * PriorityEntityType represents an entity type with its associated priority and order.
+   */
+  export interface Schema$PriorityEntityType {
+    /**
+     * The description of the entity type.
+     */
+    description?: string | null;
+    /**
+     * The entity type.
+     */
+    id?: string | null;
+    /**
+     * The order of the entity type within its priority group.
+     */
+    order?: number | null;
+    /**
+     * The priority of the entity type, such as P0, P1, etc.
+     */
+    priority?: string | null;
   }
   /**
    * Provider indicates the owner who provides the connectors.
@@ -16343,6 +16368,10 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
+     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
+     */
+    schemaView?: string;
+    /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
      */
     view?: string;
@@ -16361,6 +16390,10 @@ export namespace connectors_v1 {
      *
      */
     parent?: string;
+    /**
+     * Optional. Enum to control whether schema enrichment related fields should be included in the response.
+     */
+    schemaView?: string;
     /**
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
      */

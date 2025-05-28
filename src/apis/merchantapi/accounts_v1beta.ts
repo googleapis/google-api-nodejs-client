@@ -5115,11 +5115,11 @@ export namespace merchantapi_accounts_v1beta {
     getBusinessIdentity(
       params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getBusinessIdentity(
       params?: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessIdentity>>;
     getBusinessIdentity(
       params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5150,7 +5150,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$BusinessIdentity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Businessidentity$Getbusinessidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5206,11 +5209,11 @@ export namespace merchantapi_accounts_v1beta {
     updateBusinessIdentity(
       params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateBusinessIdentity(
       params?: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessIdentity>>;
     updateBusinessIdentity(
       params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5241,7 +5244,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$BusinessIdentity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Businessidentity$Updatebusinessidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5328,11 +5334,11 @@ export namespace merchantapi_accounts_v1beta {
     getBusinessInfo(
       params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getBusinessInfo(
       params?: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessInfo>>;
     getBusinessInfo(
       params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5361,7 +5367,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$BusinessInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Businessinfo$Getbusinessinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5416,11 +5425,11 @@ export namespace merchantapi_accounts_v1beta {
     updateBusinessInfo(
       params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateBusinessInfo(
       params?: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BusinessInfo>>;
     updateBusinessInfo(
       params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5451,7 +5460,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$BusinessInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BusinessInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Businessinfo$Updatebusinessinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5537,11 +5549,11 @@ export namespace merchantapi_accounts_v1beta {
     getEmailPreferences(
       params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEmailPreferences(
       params?: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EmailPreferences>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EmailPreferences>>;
     getEmailPreferences(
       params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5572,7 +5584,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$EmailPreferences>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EmailPreferences>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Emailpreferences$Getemailpreferences;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5628,11 +5643,11 @@ export namespace merchantapi_accounts_v1beta {
     updateEmailPreferences(
       params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateEmailPreferences(
       params?: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EmailPreferences>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EmailPreferences>>;
     updateEmailPreferences(
       params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5663,7 +5678,10 @@ export namespace merchantapi_accounts_v1beta {
       callback?:
         | BodyResponseCallback<Schema$EmailPreferences>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EmailPreferences>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Emailpreferences$Updateemailpreferences;
       let options = (optionsOrCallback || {}) as MethodOptions;
