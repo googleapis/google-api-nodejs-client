@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,

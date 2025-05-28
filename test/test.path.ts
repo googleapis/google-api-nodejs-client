@@ -14,7 +14,7 @@
 import * as assert from 'assert';
 import {describe, it, before, beforeEach, after} from 'mocha';
 import {GaxiosResponse} from 'gaxios';
-import {APIEndpoint} from 'googleapis-common';
+import {APIEndpoint, GaxiosResponseWithHTTP2} from 'googleapis-common';
 import * as nock from 'nock';
 import {GoogleApis} from '../src';
 import {Utils} from './utils';
@@ -60,13 +60,13 @@ describe('Path params', () => {
       assert.notStrictEqual(
         err.message.indexOf('fileId'),
         -1,
-        'Missing param not mentioned in error'
+        'Missing param not mentioned in error',
       );
       remoteDrive.files.get({}, (e: Error) => {
         assert.notStrictEqual(
           e.message.indexOf('fileId'),
           -1,
-          'Missing param not mentioned in error'
+          'Missing param not mentioned in error',
         );
         done();
       });
@@ -129,10 +129,11 @@ describe('Path params', () => {
             }
             assert.strictEqual(res2.config.url, Utils.baseUrl + p);
             done();
-          }
+          },
         );
-      }
+      },
     );
+    done();
   });
 
   it('should be put in URL of pathname', done => {
@@ -153,7 +154,7 @@ describe('Path params', () => {
           assert.strictEqual(Utils.getPath(res), p);
           done();
         });
-      }
+      },
     );
   });
 
@@ -177,7 +178,7 @@ describe('Path params', () => {
           assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
           done();
         });
-      }
+      },
     );
   });
 
@@ -186,7 +187,7 @@ describe('Path params', () => {
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: '123abc'},
-      (err: Error, res: GaxiosResponse) => {
+      (err: Error, res: GaxiosResponseWithHTTP2) => {
         if (err) {
           return done(err);
         }
@@ -194,15 +195,15 @@ describe('Path params', () => {
         nock(Utils.baseUrl).get(p).reply(200);
         remoteDrive.files.get(
           {fileId: '123abc'},
-          (err2: Error, res2: GaxiosResponse) => {
+          (err2: Error, res2: GaxiosResponseWithHTTP2) => {
             if (err2) {
               return done(err2);
             }
             assert.strictEqual(Utils.getQs(res2), null);
             done();
-          }
+          },
         );
-      }
+      },
     );
   });
 
@@ -211,7 +212,7 @@ describe('Path params', () => {
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: '123abc', hello: 'world'},
-      (err: Error, res: GaxiosResponse) => {
+      (err: Error, res: GaxiosResponseWithHTTP2) => {
         if (err) {
           return done(err);
         }
@@ -225,9 +226,9 @@ describe('Path params', () => {
             }
             assert.strictEqual(Utils.getQs(res), 'hello=world');
             done();
-          }
+          },
         );
-      }
+      },
     );
   });
 

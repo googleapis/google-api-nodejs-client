@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1407,11 +1407,11 @@ export namespace remotebuildexecution_v1alpha {
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1446,8 +1446,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1548,11 +1548,11 @@ export namespace remotebuildexecution_v1alpha {
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1587,8 +1587,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1686,11 +1686,11 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>>;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1725,8 +1725,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1822,11 +1822,11 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1861,8 +1861,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1983,11 +1983,11 @@ export namespace remotebuildexecution_v1alpha {
     patch(
       params: Params$Resource$Projects$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2022,8 +2022,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2196,11 +2196,11 @@ export namespace remotebuildexecution_v1alpha {
     create(
       params: Params$Resource$Projects$Instances$Workerpools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Workerpools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Instances$Workerpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2235,8 +2235,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2337,11 +2337,11 @@ export namespace remotebuildexecution_v1alpha {
     delete(
       params: Params$Resource$Projects$Instances$Workerpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Workerpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Instances$Workerpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2376,8 +2376,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2476,11 +2476,11 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Workerpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>>;
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2515,8 +2515,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2614,11 +2614,11 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Workerpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2653,8 +2653,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2766,11 +2766,11 @@ export namespace remotebuildexecution_v1alpha {
     patch(
       params: Params$Resource$Projects$Instances$Workerpools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Workerpools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Instances$Workerpools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2805,8 +2805,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2961,11 +2961,11 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3000,8 +3000,8 @@ export namespace remotebuildexecution_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

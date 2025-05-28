@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1330,11 +1330,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1363,7 +1363,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1415,11 +1418,11 @@ export namespace eventarc_v1 {
     getGoogleChannelConfig(
       params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getGoogleChannelConfig(
       params?: Params$Resource$Projects$Locations$Getgooglechannelconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChannelConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleChannelConfig>>;
     getGoogleChannelConfig(
       params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1452,8 +1455,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChannelConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleChannelConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getgooglechannelconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1506,11 +1509,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1543,8 +1546,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1599,11 +1602,11 @@ export namespace eventarc_v1 {
     updateGoogleChannelConfig(
       params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGoogleChannelConfig(
       params?: Params$Resource$Projects$Locations$Updategooglechannelconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChannelConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleChannelConfig>>;
     updateGoogleChannelConfig(
       params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1636,8 +1639,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChannelConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleChannelConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updategooglechannelconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1751,11 +1754,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Channelconnections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Channelconnections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Channelconnections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1790,8 +1793,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1847,11 +1850,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Channelconnections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Channelconnections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Channelconnections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1886,8 +1889,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1940,11 +1943,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Channelconnections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Channelconnections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelConnection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelConnection>>;
     get(
       params: Params$Resource$Projects$Locations$Channelconnections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1975,8 +1978,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChannelConnection>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2029,11 +2032,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Channelconnections$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Channelconnections$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Channelconnections$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2062,7 +2065,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2118,11 +2124,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Channelconnections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Channelconnections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChannelConnectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelConnectionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Channelconnections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2157,8 +2163,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2216,11 +2222,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Channelconnections$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Channelconnections$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Channelconnections$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2249,7 +2255,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2305,11 +2314,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channelconnections$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Channelconnections$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channelconnections$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2344,8 +2353,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channelconnections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2489,11 +2498,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Channels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Channels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Channels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2528,8 +2537,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2584,11 +2593,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Channels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Channels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Channels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2623,8 +2632,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2676,11 +2685,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Channels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Channels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     get(
       params: Params$Resource$Projects$Locations$Channels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2709,7 +2718,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2761,11 +2773,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Channels$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Channels$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Channels$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2794,7 +2806,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2849,11 +2864,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2886,8 +2901,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2942,11 +2957,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Channels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Channels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Channels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2981,8 +2996,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3034,11 +3049,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Channels$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Channels$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Channels$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3067,7 +3082,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3122,11 +3140,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channels$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Channels$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channels$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3161,8 +3179,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Channels$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3338,11 +3356,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Enrollments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Enrollments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Enrollments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3377,8 +3395,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3433,11 +3451,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Enrollments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Enrollments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Enrollments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3472,8 +3490,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3525,11 +3543,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Enrollments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Enrollments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Enrollment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Enrollment>>;
     get(
       params: Params$Resource$Projects$Locations$Enrollments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3558,7 +3576,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Enrollment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Enrollment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Enrollment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3610,11 +3631,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Enrollments$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Enrollments$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Enrollments$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3643,7 +3664,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3699,11 +3723,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Enrollments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Enrollments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEnrollmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEnrollmentsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Enrollments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3736,8 +3760,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEnrollmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEnrollmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3792,11 +3816,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Enrollments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Enrollments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Enrollments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3831,8 +3855,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3884,11 +3908,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Enrollments$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Enrollments$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Enrollments$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3917,7 +3941,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3973,11 +4000,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Enrollments$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Enrollments$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Enrollments$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4012,8 +4039,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Enrollments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4205,11 +4232,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Googleapisources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Googleapisources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Googleapisources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4244,8 +4271,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4301,11 +4328,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Googleapisources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Googleapisources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Googleapisources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4340,8 +4367,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4394,11 +4421,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Googleapisources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Googleapisources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiSource>>;
     get(
       params: Params$Resource$Projects$Locations$Googleapisources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4427,7 +4454,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$GoogleApiSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GoogleApiSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4479,11 +4509,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Googleapisources$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Googleapisources$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Googleapisources$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4512,7 +4542,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4568,11 +4601,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Googleapisources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Googleapisources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGoogleApiSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleApiSourcesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Googleapisources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4607,8 +4640,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGoogleApiSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleApiSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4665,11 +4698,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Googleapisources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Googleapisources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Googleapisources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4704,8 +4737,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4758,11 +4791,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Googleapisources$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Googleapisources$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Googleapisources$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4791,7 +4824,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4847,11 +4883,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Googleapisources$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Googleapisources$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Googleapisources$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4886,8 +4922,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Googleapisources$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5079,11 +5115,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Kafkasources$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Kafkasources$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Kafkasources$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5112,7 +5148,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Kafkasources$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5168,11 +5207,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Kafkasources$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Kafkasources$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Kafkasources$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5201,7 +5240,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Kafkasources$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5257,11 +5299,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Kafkasources$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Kafkasources$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Kafkasources$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5296,8 +5338,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Kafkasources$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5396,11 +5438,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Messagebuses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Messagebuses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Messagebuses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5435,8 +5477,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5491,11 +5533,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Messagebuses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Messagebuses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Messagebuses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5530,8 +5572,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5583,11 +5625,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Messagebuses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Messagebuses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MessageBus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MessageBus>>;
     get(
       params: Params$Resource$Projects$Locations$Messagebuses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5616,7 +5658,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$MessageBus>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MessageBus> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MessageBus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5668,11 +5713,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Messagebuses$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Messagebuses$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Messagebuses$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5701,7 +5746,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5757,11 +5805,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Messagebuses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Messagebuses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMessageBusesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMessageBusesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Messagebuses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5794,8 +5842,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMessageBusesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMessageBusesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5850,11 +5898,13 @@ export namespace eventarc_v1 {
     listEnrollments(
       params: Params$Resource$Projects$Locations$Messagebuses$Listenrollments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listEnrollments(
       params?: Params$Resource$Projects$Locations$Messagebuses$Listenrollments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMessageBusEnrollmentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListMessageBusEnrollmentsResponse>
+    >;
     listEnrollments(
       params: Params$Resource$Projects$Locations$Messagebuses$Listenrollments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5889,8 +5939,10 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMessageBusEnrollmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListMessageBusEnrollmentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Listenrollments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5948,11 +6000,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Messagebuses$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Messagebuses$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Messagebuses$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5987,8 +6039,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6040,11 +6092,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Messagebuses$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Messagebuses$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Messagebuses$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6073,7 +6125,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6129,11 +6184,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Messagebuses$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Messagebuses$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Messagebuses$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6168,8 +6223,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Messagebuses$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6376,11 +6431,11 @@ export namespace eventarc_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6409,7 +6464,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6461,11 +6519,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6494,7 +6552,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6546,11 +6607,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6585,8 +6646,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6638,11 +6699,13 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6677,8 +6740,10 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6788,11 +6853,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Pipelines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Pipelines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Pipelines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6827,8 +6892,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6883,11 +6948,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Pipelines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Pipelines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6922,8 +6987,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6975,11 +7040,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Pipelines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Pipelines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Pipeline>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Pipeline>>;
     get(
       params: Params$Resource$Projects$Locations$Pipelines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7008,7 +7073,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Pipeline>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Pipeline> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Pipeline>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7060,11 +7128,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Pipelines$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Pipelines$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Pipelines$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7093,7 +7161,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7149,11 +7220,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Pipelines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPipelinesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPipelinesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Pipelines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7186,8 +7257,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPipelinesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPipelinesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7242,11 +7313,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Pipelines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Pipelines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Pipelines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7281,8 +7352,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7334,11 +7405,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Pipelines$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Pipelines$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Pipelines$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7367,7 +7438,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7423,11 +7497,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Pipelines$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Pipelines$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Pipelines$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7462,8 +7536,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7655,11 +7729,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Providers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Providers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Provider>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Provider>>;
     get(
       params: Params$Resource$Projects$Locations$Providers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7688,7 +7762,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Provider>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Provider> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Provider>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7740,11 +7817,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Providers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProvidersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProvidersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7777,8 +7854,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProvidersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProvidersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Providers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7871,11 +7948,11 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Triggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7910,8 +7987,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7966,11 +8043,11 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Triggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8005,8 +8082,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8058,11 +8135,11 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Triggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Triggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Trigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>;
     get(
       params: Params$Resource$Projects$Locations$Triggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8091,7 +8168,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8143,11 +8223,11 @@ export namespace eventarc_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Triggers$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Triggers$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Triggers$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8176,7 +8256,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8231,11 +8314,11 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Triggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Triggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTriggersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTriggersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Triggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8268,8 +8351,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTriggersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTriggersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8324,11 +8407,11 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Triggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8363,8 +8446,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8416,11 +8499,11 @@ export namespace eventarc_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Triggers$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Triggers$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Triggers$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8449,7 +8532,10 @@ export namespace eventarc_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8504,11 +8590,11 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Triggers$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Triggers$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Triggers$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8543,8 +8629,8 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -28,7 +28,7 @@ async function testMultpart(drive: drive_v2.Drive) {
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
     path.join(__dirname, '../../test/fixtures/media-response.txt'),
-    {encoding: 'utf8'}
+    {encoding: 'utf8'},
   );
   const res = await drive.files.insert({requestBody, media});
   assert.strictEqual(res.config.method!.toLowerCase(), 'post');
@@ -36,13 +36,12 @@ async function testMultpart(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['content-type'].indexOf('multipart/related;'),
-    0
+    res.config.headers.get('content-type')!.indexOf('multipart/related;'),
+    0,
   );
-  const boundary = res.config.headers!['content-type'].replace(
-    boundaryPrefix,
-    ''
-  );
+  const boundary = res.config.headers
+    .get('content-type')!
+    .replace(boundaryPrefix, '');
   expectedResp = expectedResp
     .replace(/\r?\n/g, '\r\n')
     .replace(/\$boundary/g, boundary)
@@ -58,7 +57,7 @@ async function testMediaBody(drive: drive_v2.Drive) {
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
     path.join(__dirname, '../../test/fixtures/media-response.txt'),
-    {encoding: 'utf8'}
+    {encoding: 'utf8'},
   );
   const res = await drive.files.insert({requestBody, media});
   const url = new URL(res.config.url!);
@@ -66,13 +65,12 @@ async function testMediaBody(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['content-type'].indexOf('multipart/related;'),
-    0
+    res.config.headers.get('content-type')!.indexOf('multipart/related;'),
+    0,
   );
-  const boundary = res.config.headers!['content-type'].replace(
-    boundaryPrefix,
-    ''
-  );
+  const boundary = res.config.headers
+    .get('content-type')!
+    .replace(boundaryPrefix, '');
   expectedResp = expectedResp
     .replace(/\r?\n/g, '\r\n')
     .replace(/\$boundary/g, boundary)
@@ -108,7 +106,7 @@ describe('Media', () => {
   it('should post progress for uploads', async () => {
     const scope = nock('https://youtube.googleapis.com')
       .post(
-        '/upload/youtube/v3/videos?part=id&part=snippet&notifySubscribers=false&uploadType=multipart'
+        '/upload/youtube/v3/videos?part=id&part=snippet&notifySubscribers=false&uploadType=multipart',
       )
       .reply(200);
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
@@ -133,7 +131,7 @@ describe('Media', () => {
         onUploadProgress: (evt: {bytesRead: number}) => {
           progressEvents.push(evt.bytesRead);
         },
-      }
+      },
     );
     assert(progressEvents.length > 0);
     assert.strictEqual(progressEvents[0], fileSize);
@@ -144,7 +142,7 @@ describe('Media', () => {
   it('should post progress for uploads, for APIs with empty requestBody', async () => {
     const scope = nock('https://youtube.googleapis.com')
       .post(
-        '/upload/youtube/v3/thumbnails/set?videoId=abc123&uploadType=multipart'
+        '/upload/youtube/v3/thumbnails/set?videoId=abc123&uploadType=multipart',
       )
       .reply(200);
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
@@ -165,7 +163,7 @@ describe('Media', () => {
         onUploadProgress: (evt: {bytesRead: number}) => {
           progressEvents.push(evt.bytesRead);
         },
-      }
+      },
     );
     assert(progressEvents.length > 0);
     assert.strictEqual(progressEvents[0], fileSize);
@@ -184,7 +182,7 @@ describe('Media', () => {
     });
     assert.strictEqual(
       JSON.stringify(res.data),
-      JSON.stringify({fileId: 'abc123'})
+      JSON.stringify({fileId: 'abc123'}),
     );
     const res2 = await remoteDrive.files.insert({
       requestBody: {},
@@ -192,7 +190,7 @@ describe('Media', () => {
     });
     assert.strictEqual(
       JSON.stringify(res2.data),
-      JSON.stringify({fileId: 'abc123'})
+      JSON.stringify({fileId: 'abc123'}),
     );
   });
 
@@ -204,12 +202,12 @@ describe('Media', () => {
     const res = await localDrive.files.insert({media: {body: 'hello'}});
     assert.strictEqual(
       JSON.stringify(res.data),
-      JSON.stringify({fileId: 'abc123'})
+      JSON.stringify({fileId: 'abc123'}),
     );
     const res2 = await remoteDrive.files.insert({media: {body: 'hello'}});
     assert.strictEqual(
       JSON.stringify(res2.data),
-      JSON.stringify({fileId: 'abc123'})
+      JSON.stringify({fileId: 'abc123'}),
     );
   });
 
@@ -259,7 +257,7 @@ describe('Media', () => {
     });
     assert.strictEqual(
       Utils.getQs(res),
-      'visibility=someValue&uploadType=media'
+      'visibility=someValue&uploadType=media',
     );
     const res2 = await remoteDrive.files.insert({
       visibility: 'someValue',
@@ -267,7 +265,7 @@ describe('Media', () => {
     });
     assert.strictEqual(
       Utils.getQs(res2),
-      'visibility=someValue&uploadType=media'
+      'visibility=someValue&uploadType=media',
     );
   });
 
@@ -312,8 +310,8 @@ describe('Media', () => {
       media: {mimeType: 'message/rfc822'},
     } as gmail_v1.Params$Resource$Users$Drafts$Create);
     assert.strictEqual(
-      res.config.headers!['Content-Type'].indexOf('application/json'),
-      0
+      res.config.headers.get('content-type')!.indexOf('application/json'),
+      0,
     );
     assert.strictEqual(JSON.stringify(res.data), JSON.stringify(requestBody));
     const res2 = await remoteGmail.users.drafts.create({
@@ -322,8 +320,8 @@ describe('Media', () => {
       media: {mimeType: 'message/rfc822'},
     } as gmail_v1.Params$Resource$Users$Drafts$Create);
     assert.strictEqual(
-      res2.config.headers!['Content-Type'].indexOf('application/json'),
-      0
+      res.config.headers.get('content-type')!.indexOf('application/json'),
+      0,
     );
     assert.deepStrictEqual(res2.data, requestBody);
   });
@@ -337,11 +335,11 @@ describe('Media', () => {
         // testing purposes
       });
     let body = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     let expectedBody = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/mediabody.txt'),
-      'utf8'
+      'utf8',
     );
     const res = await localGmail.users.drafts.create({
       userId: 'me',
@@ -349,11 +347,11 @@ describe('Media', () => {
     } as gmail_v1.Params$Resource$Users$Drafts$Create);
     assert.strictEqual(res.data, expectedBody);
     body = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     expectedBody = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/mediabody.txt'),
-      'utf8'
+      'utf8',
     );
     const res2 = await remoteGmail.users.drafts.create({
       userId: 'me',
@@ -375,26 +373,25 @@ describe('Media', () => {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
     };
     let body = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     let bodyString = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/mediabody.txt'),
-      {encoding: 'utf8'}
+      {encoding: 'utf8'},
     );
     let media = {mimeType: 'message/rfc822', body};
     let expectedBody = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
-      {encoding: 'utf8'}
+      {encoding: 'utf8'},
     );
     const res = await localGmail.users.drafts.create({
       userId: 'me',
       requestBody,
       media,
     });
-    const boundary = res.config.headers!['content-type'].replace(
-      boundaryPrefix,
-      ''
-    );
+    const boundary = res.config.headers
+      .get('content-type')!
+      .replace(boundaryPrefix, '');
     expectedBody = expectedBody
       .replace(/\r?\n/g, '\r\n')
       .replace(/\$boundary/g, boundary)
@@ -407,26 +404,25 @@ describe('Media', () => {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
     };
     body = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     bodyString = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/mediabody.txt'),
-      {encoding: 'utf8'}
+      {encoding: 'utf8'},
     );
     media = {mimeType: 'message/rfc822', body};
     expectedBody = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
-      {encoding: 'utf8'}
+      {encoding: 'utf8'},
     );
     const res2 = await remoteGmail.users.drafts.create({
       userId: 'me',
       requestBody,
       media,
     });
-    const boundary2 = res2.config.headers!['content-type'].replace(
-      boundaryPrefix,
-      ''
-    );
+    const boundary2 = res2.config.headers
+      .get('content-type')!
+      .replace(boundaryPrefix, '');
     expectedBody = expectedBody
       .replace(/\r?\n/g, '\r\n')
       .replace(/\$boundary/g, boundary2)
@@ -434,6 +430,10 @@ describe('Media', () => {
       .replace('$resource', JSON.stringify(requestBody))
       .replace('$mimeType', 'message/rfc822')
       .trim();
+    console.log('EXPECTED BODY');
+    console.log(expectedBody);
+    console.log('RES2DATA');
+    console.log(res2.data);
     assert.strictEqual(expectedBody, res2.data);
   });
 
@@ -448,14 +448,14 @@ describe('Media', () => {
         },
         {
           'Content-Type': 'application/json',
-        }
+        },
       );
 
     let requestBody = {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
     };
     const body = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     let media = {mimeType: 'message/rfc822', body};
     const res = await localGmail.users.drafts.create({
@@ -471,7 +471,7 @@ describe('Media', () => {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
     };
     const body2 = fs.createReadStream(
-      path.join(__dirname, '../../test/fixtures/mediabody.txt')
+      path.join(__dirname, '../../test/fixtures/mediabody.txt'),
     );
     media = {mimeType: 'message/rfc822', body: body2};
     const res2 = await remoteGmail.users.drafts.create({

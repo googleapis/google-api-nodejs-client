@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1601,11 +1601,11 @@ export namespace firestore_v1beta1 {
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     exportDocuments(
       params?: Params$Resource$Projects$Databases$Exportdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1640,8 +1640,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1696,11 +1696,11 @@ export namespace firestore_v1beta1 {
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     importDocuments(
       params?: Params$Resource$Projects$Databases$Importdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1735,8 +1735,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1823,11 +1823,11 @@ export namespace firestore_v1beta1 {
     batchGet(
       params: Params$Resource$Projects$Databases$Documents$Batchget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchGet(
       params?: Params$Resource$Projects$Databases$Documents$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchGetDocumentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetDocumentsResponse>>;
     batchGet(
       params: Params$Resource$Projects$Databases$Documents$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1862,8 +1862,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetDocumentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1918,11 +1918,11 @@ export namespace firestore_v1beta1 {
     batchWrite(
       params: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchWrite(
       params?: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchWriteResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchWriteResponse>>;
     batchWrite(
       params: Params$Resource$Projects$Databases$Documents$Batchwrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1953,8 +1953,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchWriteResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchWriteResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2008,11 +2008,11 @@ export namespace firestore_v1beta1 {
     beginTransaction(
       params: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     beginTransaction(
       params?: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BeginTransactionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>>;
     beginTransaction(
       params: Params$Resource$Projects$Databases$Documents$Begintransaction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2047,8 +2047,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BeginTransactionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2103,11 +2103,11 @@ export namespace firestore_v1beta1 {
     commit(
       params: Params$Resource$Projects$Databases$Documents$Commit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     commit(
       params?: Params$Resource$Projects$Databases$Documents$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommitResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommitResponse>>;
     commit(
       params: Params$Resource$Projects$Databases$Documents$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2136,7 +2136,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$CommitResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommitResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommitResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2191,11 +2194,11 @@ export namespace firestore_v1beta1 {
     createDocument(
       params: Params$Resource$Projects$Databases$Documents$Createdocument,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createDocument(
       params?: Params$Resource$Projects$Databases$Documents$Createdocument,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     createDocument(
       params: Params$Resource$Projects$Databases$Documents$Createdocument,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2224,7 +2227,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Createdocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2280,11 +2286,11 @@ export namespace firestore_v1beta1 {
     delete(
       params: Params$Resource$Projects$Databases$Documents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Databases$Documents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Databases$Documents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2313,7 +2319,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2365,11 +2374,11 @@ export namespace firestore_v1beta1 {
     get(
       params: Params$Resource$Projects$Databases$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Databases$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     get(
       params: Params$Resource$Projects$Databases$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2398,7 +2407,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2450,11 +2462,11 @@ export namespace firestore_v1beta1 {
     list(
       params: Params$Resource$Projects$Databases$Documents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Databases$Documents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>>;
     list(
       params: Params$Resource$Projects$Databases$Documents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2487,8 +2499,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2543,11 +2555,11 @@ export namespace firestore_v1beta1 {
     listCollectionIds(
       params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listCollectionIds(
       params?: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCollectionIdsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionIdsResponse>>;
     listCollectionIds(
       params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2582,8 +2594,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCollectionIdsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionIdsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listcollectionids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2639,11 +2651,11 @@ export namespace firestore_v1beta1 {
     listDocuments(
       params: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listDocuments(
       params?: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>>;
     listDocuments(
       params: Params$Resource$Projects$Databases$Documents$Listdocuments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2678,8 +2690,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2735,11 +2747,11 @@ export namespace firestore_v1beta1 {
     listen(
       params: Params$Resource$Projects$Databases$Documents$Listen,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listen(
       params?: Params$Resource$Projects$Databases$Documents$Listen,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListenResponse>>;
     listen(
       params: Params$Resource$Projects$Databases$Documents$Listen,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2768,7 +2780,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ListenResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListenResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listen;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2823,11 +2838,11 @@ export namespace firestore_v1beta1 {
     partitionQuery(
       params: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     partitionQuery(
       params?: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PartitionQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PartitionQueryResponse>>;
     partitionQuery(
       params: Params$Resource$Projects$Databases$Documents$Partitionquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2862,8 +2877,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PartitionQueryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PartitionQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Partitionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2919,11 +2934,11 @@ export namespace firestore_v1beta1 {
     patch(
       params: Params$Resource$Projects$Databases$Documents$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Databases$Documents$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     patch(
       params: Params$Resource$Projects$Databases$Documents$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2952,7 +2967,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3004,11 +3022,11 @@ export namespace firestore_v1beta1 {
     rollback(
       params: Params$Resource$Projects$Databases$Documents$Rollback,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollback(
       params?: Params$Resource$Projects$Databases$Documents$Rollback,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     rollback(
       params: Params$Resource$Projects$Databases$Documents$Rollback,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3037,7 +3055,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3092,11 +3113,11 @@ export namespace firestore_v1beta1 {
     runAggregationQuery(
       params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runAggregationQuery(
       params?: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunAggregationQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>>;
     runAggregationQuery(
       params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3131,8 +3152,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunAggregationQueryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3188,11 +3209,11 @@ export namespace firestore_v1beta1 {
     runQuery(
       params: Params$Resource$Projects$Databases$Documents$Runquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runQuery(
       params?: Params$Resource$Projects$Databases$Documents$Runquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunQueryResponse>>;
     runQuery(
       params: Params$Resource$Projects$Databases$Documents$Runquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3221,7 +3242,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$RunQueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RunQueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3276,11 +3300,11 @@ export namespace firestore_v1beta1 {
     write(
       params: Params$Resource$Projects$Databases$Documents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     write(
       params?: Params$Resource$Projects$Databases$Documents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WriteResponse>>;
     write(
       params: Params$Resource$Projects$Databases$Documents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3309,7 +3333,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$WriteResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WriteResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WriteResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3668,11 +3695,11 @@ export namespace firestore_v1beta1 {
     create(
       params: Params$Resource$Projects$Databases$Indexes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Databases$Indexes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Databases$Indexes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3707,8 +3734,8 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3763,11 +3790,11 @@ export namespace firestore_v1beta1 {
     delete(
       params: Params$Resource$Projects$Databases$Indexes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Databases$Indexes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Databases$Indexes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3796,7 +3823,10 @@ export namespace firestore_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3848,11 +3878,13 @@ export namespace firestore_v1beta1 {
     get(
       params: Params$Resource$Projects$Databases$Indexes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Databases$Indexes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta1Index>
+    >;
     get(
       params: Params$Resource$Projects$Databases$Indexes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3887,8 +3919,10 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta1Index>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3942,11 +3976,13 @@ export namespace firestore_v1beta1 {
     list(
       params: Params$Resource$Projects$Databases$Indexes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Databases$Indexes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Databases$Indexes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3981,8 +4017,10 @@ export namespace firestore_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

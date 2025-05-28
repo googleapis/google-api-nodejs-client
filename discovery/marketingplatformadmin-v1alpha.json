@@ -263,7 +263,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240529",
   "rootUrl": "https://marketingplatformadmin.googleapis.com/",
   "schemas": {
     "AnalyticsAccountLink": {

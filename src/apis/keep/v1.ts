@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -358,11 +358,11 @@ export namespace keep_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -391,7 +391,10 @@ export namespace keep_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -462,11 +465,11 @@ export namespace keep_v1 {
     create(
       params: Params$Resource$Notes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Notes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Note>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Note>>;
     create(
       params: Params$Resource$Notes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -495,7 +498,10 @@ export namespace keep_v1 {
       callback?:
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -546,11 +552,11 @@ export namespace keep_v1 {
     delete(
       params: Params$Resource$Notes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Notes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Notes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -579,7 +585,10 @@ export namespace keep_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -630,11 +639,11 @@ export namespace keep_v1 {
     get(
       params: Params$Resource$Notes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Notes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Note>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Note>>;
     get(
       params: Params$Resource$Notes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -663,7 +672,10 @@ export namespace keep_v1 {
       callback?:
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -714,11 +726,11 @@ export namespace keep_v1 {
     list(
       params: Params$Resource$Notes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Notes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNotesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNotesResponse>>;
     list(
       params: Params$Resource$Notes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -749,8 +761,8 @@ export namespace keep_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNotesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNotesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -841,11 +853,11 @@ export namespace keep_v1 {
     batchCreate(
       params: Params$Resource$Notes$Permissions$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchCreate(
       params?: Params$Resource$Notes$Permissions$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreatePermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchCreatePermissionsResponse>>;
     batchCreate(
       params: Params$Resource$Notes$Permissions$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -880,8 +892,8 @@ export namespace keep_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreatePermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchCreatePermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notes$Permissions$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -938,11 +950,11 @@ export namespace keep_v1 {
     batchDelete(
       params: Params$Resource$Notes$Permissions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Notes$Permissions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     batchDelete(
       params: Params$Resource$Notes$Permissions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -971,7 +983,10 @@ export namespace keep_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notes$Permissions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;

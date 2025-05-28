@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -437,11 +437,11 @@ export namespace accessapproval_v1 {
     deleteAccessApprovalSettings(
       params: Params$Resource$Folders$Deleteaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteAccessApprovalSettings(
       params?: Params$Resource$Folders$Deleteaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteAccessApprovalSettings(
       params: Params$Resource$Folders$Deleteaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -472,7 +472,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -525,11 +528,11 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAccessApprovalSettings(
       params?: Params$Resource$Folders$Getaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -564,8 +567,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -618,11 +621,11 @@ export namespace accessapproval_v1 {
     getServiceAccount(
       params: Params$Resource$Folders$Getserviceaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServiceAccount(
       params?: Params$Resource$Folders$Getserviceaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>;
     getServiceAccount(
       params: Params$Resource$Folders$Getserviceaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -657,8 +660,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -713,11 +716,11 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAccessApprovalSettings(
       params?: Params$Resource$Folders$Updateaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -752,8 +755,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -851,11 +854,11 @@ export namespace accessapproval_v1 {
     approve(
       params: Params$Resource$Folders$Approvalrequests$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     approve(
       params?: Params$Resource$Folders$Approvalrequests$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     approve(
       params: Params$Resource$Folders$Approvalrequests$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -884,7 +887,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -940,11 +946,11 @@ export namespace accessapproval_v1 {
     dismiss(
       params: Params$Resource$Folders$Approvalrequests$Dismiss,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     dismiss(
       params?: Params$Resource$Folders$Approvalrequests$Dismiss,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     dismiss(
       params: Params$Resource$Folders$Approvalrequests$Dismiss,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -973,7 +979,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1029,11 +1038,11 @@ export namespace accessapproval_v1 {
     get(
       params: Params$Resource$Folders$Approvalrequests$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Approvalrequests$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     get(
       params: Params$Resource$Folders$Approvalrequests$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1062,7 +1071,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1115,11 +1127,11 @@ export namespace accessapproval_v1 {
     invalidate(
       params: Params$Resource$Folders$Approvalrequests$Invalidate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     invalidate(
       params?: Params$Resource$Folders$Approvalrequests$Invalidate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     invalidate(
       params: Params$Resource$Folders$Approvalrequests$Invalidate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1148,7 +1160,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Invalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1204,11 +1219,11 @@ export namespace accessapproval_v1 {
     list(
       params: Params$Resource$Folders$Approvalrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Approvalrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>;
     list(
       params: Params$Resource$Folders$Approvalrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1243,8 +1258,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1376,11 +1391,11 @@ export namespace accessapproval_v1 {
     deleteAccessApprovalSettings(
       params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteAccessApprovalSettings(
       params?: Params$Resource$Organizations$Deleteaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteAccessApprovalSettings(
       params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1411,7 +1426,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1465,11 +1483,11 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAccessApprovalSettings(
       params?: Params$Resource$Organizations$Getaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1504,8 +1522,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1558,11 +1576,11 @@ export namespace accessapproval_v1 {
     getServiceAccount(
       params: Params$Resource$Organizations$Getserviceaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServiceAccount(
       params?: Params$Resource$Organizations$Getserviceaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>;
     getServiceAccount(
       params: Params$Resource$Organizations$Getserviceaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1597,8 +1615,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1653,11 +1671,11 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAccessApprovalSettings(
       params?: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1692,8 +1710,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1792,11 +1810,11 @@ export namespace accessapproval_v1 {
     approve(
       params: Params$Resource$Organizations$Approvalrequests$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     approve(
       params?: Params$Resource$Organizations$Approvalrequests$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     approve(
       params: Params$Resource$Organizations$Approvalrequests$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1825,7 +1843,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1881,11 +1902,11 @@ export namespace accessapproval_v1 {
     dismiss(
       params: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     dismiss(
       params?: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     dismiss(
       params: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1914,7 +1935,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1970,11 +1994,11 @@ export namespace accessapproval_v1 {
     get(
       params: Params$Resource$Organizations$Approvalrequests$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Approvalrequests$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     get(
       params: Params$Resource$Organizations$Approvalrequests$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2003,7 +2027,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2056,11 +2083,11 @@ export namespace accessapproval_v1 {
     invalidate(
       params: Params$Resource$Organizations$Approvalrequests$Invalidate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     invalidate(
       params?: Params$Resource$Organizations$Approvalrequests$Invalidate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     invalidate(
       params: Params$Resource$Organizations$Approvalrequests$Invalidate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2089,7 +2116,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Invalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2146,11 +2176,11 @@ export namespace accessapproval_v1 {
     list(
       params: Params$Resource$Organizations$Approvalrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Approvalrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>;
     list(
       params: Params$Resource$Organizations$Approvalrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2185,8 +2215,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,11 +2348,11 @@ export namespace accessapproval_v1 {
     deleteAccessApprovalSettings(
       params: Params$Resource$Projects$Deleteaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteAccessApprovalSettings(
       params?: Params$Resource$Projects$Deleteaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteAccessApprovalSettings(
       params: Params$Resource$Projects$Deleteaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2353,7 +2383,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2406,11 +2439,11 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAccessApprovalSettings(
       params?: Params$Resource$Projects$Getaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2445,8 +2478,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2499,11 +2532,11 @@ export namespace accessapproval_v1 {
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServiceAccount(
       params?: Params$Resource$Projects$Getserviceaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>;
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2538,8 +2571,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2594,11 +2627,11 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAccessApprovalSettings(
       params?: Params$Resource$Projects$Updateaccessapprovalsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>;
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2633,8 +2666,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessApprovalSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessApprovalSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2732,11 +2765,11 @@ export namespace accessapproval_v1 {
     approve(
       params: Params$Resource$Projects$Approvalrequests$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     approve(
       params?: Params$Resource$Projects$Approvalrequests$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     approve(
       params: Params$Resource$Projects$Approvalrequests$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2765,7 +2798,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2821,11 +2857,11 @@ export namespace accessapproval_v1 {
     dismiss(
       params: Params$Resource$Projects$Approvalrequests$Dismiss,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     dismiss(
       params?: Params$Resource$Projects$Approvalrequests$Dismiss,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     dismiss(
       params: Params$Resource$Projects$Approvalrequests$Dismiss,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2854,7 +2890,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2910,11 +2949,11 @@ export namespace accessapproval_v1 {
     get(
       params: Params$Resource$Projects$Approvalrequests$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Approvalrequests$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     get(
       params: Params$Resource$Projects$Approvalrequests$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2943,7 +2982,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2996,11 +3038,11 @@ export namespace accessapproval_v1 {
     invalidate(
       params: Params$Resource$Projects$Approvalrequests$Invalidate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     invalidate(
       params?: Params$Resource$Projects$Approvalrequests$Invalidate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApprovalRequest>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>;
     invalidate(
       params: Params$Resource$Projects$Approvalrequests$Invalidate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3029,7 +3071,10 @@ export namespace accessapproval_v1 {
       callback?:
         | BodyResponseCallback<Schema$ApprovalRequest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Invalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3085,11 +3130,11 @@ export namespace accessapproval_v1 {
     list(
       params: Params$Resource$Projects$Approvalrequests$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Approvalrequests$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>;
     list(
       params: Params$Resource$Projects$Approvalrequests$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3124,8 +3169,8 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListApprovalRequestsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

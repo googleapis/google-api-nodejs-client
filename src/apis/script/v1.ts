@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -745,11 +745,11 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Processes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Processes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUserProcessesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUserProcessesResponse>>;
     list(
       params: Params$Resource$Processes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -784,8 +784,8 @@ export namespace script_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUserProcessesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUserProcessesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Processes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -836,11 +836,11 @@ export namespace script_v1 {
     listScriptProcesses(
       params: Params$Resource$Processes$Listscriptprocesses,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listScriptProcesses(
       params?: Params$Resource$Processes$Listscriptprocesses,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScriptProcessesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListScriptProcessesResponse>>;
     listScriptProcesses(
       params: Params$Resource$Processes$Listscriptprocesses,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -875,8 +875,8 @@ export namespace script_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListScriptProcessesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListScriptProcessesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Processes$Listscriptprocesses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1032,11 +1032,11 @@ export namespace script_v1 {
     create(
       params: Params$Resource$Projects$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Project>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Project>>;
     create(
       params: Params$Resource$Projects$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1065,7 +1065,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1116,11 +1119,11 @@ export namespace script_v1 {
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Project>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Project>>;
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1149,7 +1152,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1203,11 +1209,11 @@ export namespace script_v1 {
     getContent(
       params: Params$Resource$Projects$Getcontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getContent(
       params?: Params$Resource$Projects$Getcontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Content>>;
     getContent(
       params: Params$Resource$Projects$Getcontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1236,7 +1242,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Content>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Content> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getcontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1291,11 +1300,11 @@ export namespace script_v1 {
     getMetrics(
       params: Params$Resource$Projects$Getmetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetrics(
       params?: Params$Resource$Projects$Getmetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Metrics>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Metrics>>;
     getMetrics(
       params: Params$Resource$Projects$Getmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1324,7 +1333,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Metrics>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Metrics> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Metrics>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1379,11 +1391,11 @@ export namespace script_v1 {
     updateContent(
       params: Params$Resource$Projects$Updatecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateContent(
       params?: Params$Resource$Projects$Updatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Content>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Content>>;
     updateContent(
       params: Params$Resource$Projects$Updatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1412,7 +1424,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Content>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Content> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Content>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1525,11 +1540,11 @@ export namespace script_v1 {
     create(
       params: Params$Resource$Projects$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>;
     create(
       params: Params$Resource$Projects$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1558,7 +1573,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1613,11 +1631,11 @@ export namespace script_v1 {
     delete(
       params: Params$Resource$Projects$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1646,7 +1664,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1700,11 +1721,11 @@ export namespace script_v1 {
     get(
       params: Params$Resource$Projects$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>;
     get(
       params: Params$Resource$Projects$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1733,7 +1754,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1787,11 +1811,11 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Projects$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeploymentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentsResponse>>;
     list(
       params: Params$Resource$Projects$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1824,8 +1848,8 @@ export namespace script_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1880,11 +1904,11 @@ export namespace script_v1 {
     update(
       params: Params$Resource$Projects$Deployments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Deployments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Deployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>;
     update(
       params: Params$Resource$Projects$Deployments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1913,7 +1937,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2040,11 +2067,11 @@ export namespace script_v1 {
     create(
       params: Params$Resource$Projects$Versions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Versions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Version>>;
     create(
       params: Params$Resource$Projects$Versions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2073,7 +2100,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2128,11 +2158,11 @@ export namespace script_v1 {
     get(
       params: Params$Resource$Projects$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Version>>;
     get(
       params: Params$Resource$Projects$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2161,7 +2191,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2215,11 +2248,11 @@ export namespace script_v1 {
     list(
       params: Params$Resource$Projects$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2252,8 +2285,8 @@ export namespace script_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2353,11 +2386,11 @@ export namespace script_v1 {
     run(
       params: Params$Resource$Scripts$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Scripts$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     run(
       params: Params$Resource$Scripts$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2386,7 +2419,10 @@ export namespace script_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scripts$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

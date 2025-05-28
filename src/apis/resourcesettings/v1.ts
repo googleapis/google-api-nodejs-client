@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -274,11 +274,11 @@ export namespace resourcesettings_v1 {
     get(
       params: Params$Resource$Folders$Settings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Settings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     get(
       params: Params$Resource$Folders$Settings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -313,8 +313,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -369,11 +369,11 @@ export namespace resourcesettings_v1 {
     list(
       params: Params$Resource$Folders$Settings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Settings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>;
     list(
       params: Params$Resource$Folders$Settings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -408,8 +408,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -467,11 +467,11 @@ export namespace resourcesettings_v1 {
     patch(
       params: Params$Resource$Folders$Settings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Folders$Settings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     patch(
       params: Params$Resource$Folders$Settings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -506,8 +506,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Settings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -621,11 +621,11 @@ export namespace resourcesettings_v1 {
     get(
       params: Params$Resource$Organizations$Settings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Settings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     get(
       params: Params$Resource$Organizations$Settings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -660,8 +660,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -716,11 +716,11 @@ export namespace resourcesettings_v1 {
     list(
       params: Params$Resource$Organizations$Settings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Settings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>;
     list(
       params: Params$Resource$Organizations$Settings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -755,8 +755,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -814,11 +814,11 @@ export namespace resourcesettings_v1 {
     patch(
       params: Params$Resource$Organizations$Settings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Settings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     patch(
       params: Params$Resource$Organizations$Settings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -853,8 +853,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Settings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -968,11 +968,11 @@ export namespace resourcesettings_v1 {
     get(
       params: Params$Resource$Projects$Settings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Settings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     get(
       params: Params$Resource$Projects$Settings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1007,8 +1007,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1063,11 +1063,11 @@ export namespace resourcesettings_v1 {
     list(
       params: Params$Resource$Projects$Settings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Settings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>;
     list(
       params: Params$Resource$Projects$Settings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1102,8 +1102,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1ListSettingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1161,11 +1161,11 @@ export namespace resourcesettings_v1 {
     patch(
       params: Params$Resource$Projects$Settings$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Settings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>;
     patch(
       params: Params$Resource$Projects$Settings$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1200,8 +1200,8 @@ export namespace resourcesettings_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudResourcesettingsV1Setting>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudResourcesettingsV1Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Settings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

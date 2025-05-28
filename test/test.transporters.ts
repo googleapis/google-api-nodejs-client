@@ -24,27 +24,30 @@ async function testHeaders(drive: APIEndpoint) {
   const req = nock(Utils.baseUrl)
     .post('/drive/v2/files/a/comments')
     .reply(200, function () {
-      const headers = this.req.headers;
+      const headers = new Headers(this.req.headers);
       // ensure that the x-goog-user-project is loaded from default credentials:
-      assert.strictEqual(headers['x-goog-user-project'][0], 'my-quota-project');
+      assert.strictEqual(
+        headers.get('x-goog-user-project'),
+        'my-quota-project',
+      );
 
       // ensure that the x-goog-api-client header is populated by
       // googleapis-common:
       assert.ok(
         /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+/.test(
-          headers['x-goog-api-client'][0]
-        )
+          headers.get('x-goog-api-client')!,
+        ),
       );
     });
   const auth = getAuthClientMock();
   const res = await drive.comments.insert({
     fileId: 'a',
-    headers: {'If-None-Match': '12345'},
+    headers: new Headers({'If-None-Match': '12345'}),
     auth: await auth.getClient(),
   });
   req.done();
   auth.done();
-  assert.strictEqual(res.config.headers['If-None-Match'], '12345');
+  assert.strictEqual(res.config.headers.get('If-None-Match'), '12345');
 }
 
 // Returns an auth client that fakes loading application default credentials
@@ -85,7 +88,12 @@ async function testContentType(drive: APIEndpoint) {
     fileId: 'a',
     resource: {content: 'hello '},
   });
-  assert(res.config.headers['Content-Type'].indexOf('application/json') === 0);
+  assert(
+    res.config.headers
+      .get('Content-Type')
+      .toString()
+      .indexOf('application/json') === 0,
+  );
 }
 
 async function testGzip(drive: APIEndpoint) {
@@ -124,7 +132,7 @@ async function testResponseError(drive: APIEndpoint) {
       assert.strictEqual(err.message, 'Error!');
       assert.strictEqual(err.code, 400);
       return true;
-    }
+    },
   );
 }
 
@@ -136,7 +144,7 @@ async function testNotObjectError(oauth2: APIEndpoint) {
       assert.strictEqual(err.message, 'invalid_grant');
       assert.strictEqual((err as any).status, 400);
       return true;
-    }
+    },
   );
 }
 
@@ -154,7 +162,7 @@ async function testBackendError(blogger: APIEndpoint) {
       assert.strictEqual(Number((err as any).status), 500);
       assert.strictEqual(err.message, 'There was an error!');
       return true;
-    }
+    },
   );
 }
 

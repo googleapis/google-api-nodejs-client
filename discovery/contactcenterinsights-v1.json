@@ -501,9 +501,342 @@
               }
             },
             "authorizedViewSets": {
+              "methods": {
+                "create": {
+                  "description": "Create AuthorizedViewSet",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "authorizedViewSetId": {
+                      "description": "Optional. A unique ID for the new AuthorizedViewSet. This ID will become the final component of the AuthorizedViewSet's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See go/aip/122#resource-id-segments",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AuthorizedViewSet.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/authorizedViewSets",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an AuthorizedViewSet.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, all of this AuthorizedViewSet's child resources will also be deleted. Otherwise, the request will only succeed if it has none.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the AuthorizedViewSet to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get AuthorizedViewSet",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the AuthorizedViewSet to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List AuthorizedViewSets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filter expression to filter authorized view sets listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The order by expression to order authorized view sets listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of view sets to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListAuthorizedViewSetsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViewSets` call and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AuthorizedViewSets.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/authorizedViewSets",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an AuthorizedViewSet.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "authorizedViews": {
                   "methods": {
+                    "create": {
+                      "description": "Create AuthorizedView",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "authorizedViewId": {
+                          "description": "Optional. A unique ID for the new AuthorizedView. This ID will become the final component of the AuthorizedView's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See go/aip/122#resource-id-segments",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the AuthorizedView.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/authorizedViews",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an AuthorizedView.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "DELETE",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the AuthorizedView to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get AuthorizedView",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the AuthorizedView to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List AuthorizedViewSets",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter expression to filter authorized views listed in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. The order by expression to order authorized views listed in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of view to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The value returned by the last `ListAuthorizedViewsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViews` call and that the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the AuthorizedViews. If the parent is set to `-`, all AuthorizedViews under the location will be returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/authorizedViews",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates an AuthorizedView.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "PATCH",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the AuthorizedView. Format: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `conversation_filter` * `display_name`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "queryMetrics": {
                       "description": "Query metrics.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}:queryMetrics",
@@ -527,6 +860,52 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "search": {
+                      "description": "SearchAuthorizedViewSets",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews:search",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.search",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "orderBy": {
+                          "description": "Optional. The order by expression to order authorized views listed in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of view to return in the response. If the value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The value returned by the last `ListAuthorizedViewsResponse`. This value indicates that this is a continuation of a prior `ListAuthorizedViews` call and that the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the AuthorizedViews. If the parent is set to `-`, all AuthorizedViews under the location will be returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "query": {
+                          "description": "Optional. The query expression to search authorized views.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/authorizedViews:search",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1745,9 +2124,220 @@
               }
             },
             "datasets": {
+              "methods": {
+                "bulkDeleteFeedbackLabels": {
+                  "description": "Delete feedback labels in bulk using a filter.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:bulkDeleteFeedbackLabels",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.datasets.bulkDeleteFeedbackLabels",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource for new feedback labels.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:bulkDeleteFeedbackLabels",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "bulkDownloadFeedbackLabels": {
+                  "description": "Download feedback labels in bulk from an external source. Currently supports exporting Quality AI example conversations with transcripts and question bodies.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:bulkDownloadFeedbackLabels",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.datasets.bulkDownloadFeedbackLabels",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource for new feedback labels.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:bulkDownloadFeedbackLabels",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "bulkUploadFeedbackLabels": {
+                  "description": "Upload feedback labels from an external source in bulk. Currently supports labeling Quality AI example conversations.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:bulkUploadFeedbackLabels",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.datasets.bulkUploadFeedbackLabels",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource for new feedback labels.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:bulkUploadFeedbackLabels",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listAllFeedbackLabels": {
+                  "description": "List all feedback labels by project number.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:listAllFeedbackLabels",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.datasets.listAllFeedbackLabels",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter to reduce results to a specific subset in the entire project. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of feedback labels to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListAllFeedbackLabelsResponse`. This value indicates that this is a continuation of a prior `ListAllFeedbackLabels` call and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of all feedback labels per project.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:listAllFeedbackLabels",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "conversations": {
                   "methods": {
+                    "bulkAnalyze": {
+                      "description": "Analyzes multiple conversations in a single request.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:bulkAnalyze",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.bulkAnalyze",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource to create analyses in.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/conversations:bulkAnalyze",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "bulkDelete": {
+                      "description": "Deletes multiple conversations in a single request.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:bulkDelete",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.bulkDelete",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource to delete conversations from. Format: projects/{project}/locations/{location}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/conversations:bulkDelete",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "calculateStats": {
+                      "description": "Gets conversation statistics.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:calculateStats",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.calculateStats",
+                      "parameterOrder": [
+                        "location"
+                      ],
+                      "parameters": {
+                        "location": {
+                          "description": "Required. The location of the conversations.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+location}/conversations:calculateStats",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1CalculateStatsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1CalculateStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "delete": {
                       "description": "Deletes a conversation.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}",
@@ -1906,6 +2496,293 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "analyses": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates an analysis. The long running operation is done when the analysis has completed.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses",
+                          "httpMethod": "POST",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource of the analysis.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/analyses",
+                          "request": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes an analysis.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses/{analysesId}",
+                          "httpMethod": "DELETE",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the analysis to delete.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/analyses/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets an analysis.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses/{analysesId}",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the analysis to get.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/analyses/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Analysis"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists analyses.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/analyses",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.analyses.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of analyses to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The value returned by the last `ListAnalysesResponse`; indicates that this is a continuation of a prior `ListAnalyses` call and the system should return the next page of data.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource of the analyses.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/analyses",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1ListAnalysesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "feedbackLabels": {
+                      "methods": {
+                        "create": {
+                          "description": "Create feedback label.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/feedbackLabels",
+                          "httpMethod": "POST",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.feedbackLabels.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "feedbackLabelId": {
+                              "description": "Optional. The ID of the feedback label to create. If one is not specified it will be generated by the server.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource of the feedback label.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/feedbackLabels",
+                          "request": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Delete feedback label.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/feedbackLabels/{feedbackLabelsId}",
+                          "httpMethod": "DELETE",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.feedbackLabels.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the feedback label to delete.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/feedbackLabels/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Get feedback label.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/feedbackLabels/{feedbackLabelsId}",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.feedbackLabels.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the feedback label to get.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/feedbackLabels/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List feedback labels.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/feedbackLabels",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.feedbackLabels.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Automatically sorts by conversation ID. To sort by all feedback labels in a project see ListAllFeedbackLabels. Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of feedback labels to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The value returned by the last `ListFeedbackLabelsResponse`. This value indicates that this is a continuation of a prior `ListFeedbackLabels` call and that the system should return the next page of data.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource of the feedback labels.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/feedbackLabels",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Update feedback label.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}/feedbackLabels/{feedbackLabelsId}",
+                          "httpMethod": "PATCH",
+                          "id": "contactcenterinsights.projects.locations.datasets.conversations.feedbackLabels.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Resource name of the FeedbackLabel. Format: projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+/feedbackLabels/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Required. The list of fields to be updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -3377,7 +4254,7 @@
       }
     }
   },
-  "revision": "20250428",
+  "revision": "20250512",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -3726,6 +4603,64 @@
         },
         "uri": {
           "description": "Article URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AuthorizedView": {
+      "description": "An AuthorizedView represents a view of accessible Insights resources (for example, Conversation and Scorecard). Who have read access to the AuthorizedView resource will have access to these Insight resources as well.",
+      "id": "GoogleCloudContactcenterinsightsV1AuthorizedView",
+      "properties": {
+        "conversationFilter": {
+          "description": "A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations liked to the conversation) that this AuthorizedView has.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time at which the authorized view was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name. Limit 64 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the AuthorizedView. Format: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the authorized view was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AuthorizedViewSet": {
+      "description": "An AuthorizedViewSet contains a set of AuthorizedView resources.",
+      "id": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name. Limit 64 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4156,6 +5091,17 @@
         "currentStats": {
           "$ref": "GoogleCloudContactcenterinsightsV1IssueModelLabelStats",
           "description": "The latest label statistics for the queried issue model. Includes results on both training data and data labeled after deployment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1CalculateStatsRequest": {
+      "description": "The request for calculating conversation statistics.",
+      "id": "GoogleCloudContactcenterinsightsV1CalculateStatsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4862,6 +5808,56 @@
         },
         "parent": {
           "description": "Required. The parent resource of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Dataset": {
+      "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
+      "id": "GoogleCloudContactcenterinsightsV1Dataset",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dataset create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Dataset description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name for the dataaset",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. Option TTL for the dataset.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "type": {
+          "description": "Dataset usage type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EVAL",
+            "LIVE"
+          ],
+          "enumDescriptions": [
+            "Default value for unspecified.",
+            "For evals only.",
+            "Dataset with new conversations coming in regularly (Insights legacy conversations and AI trainer)"
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Dataset update time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -6140,6 +7136,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse": {
+      "description": "The response from a ListAuthorizedViewSet request.",
+      "id": "GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse",
+      "properties": {
+        "authorizedViewSets": {
+          "description": "The AuthorizedViewSets under the parent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedViewSet"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse": {
+      "description": "The response from a ListAuthorizedViews request.",
+      "id": "GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse",
+      "properties": {
+        "authorizedViews": {
+          "description": "The AuthorizedViews under the parent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ListConversationsResponse": {
       "description": "The response of listing conversations.",
       "id": "GoogleCloudContactcenterinsightsV1ListConversationsResponse",
@@ -6603,7 +7635,7 @@
           "type": "string"
         },
         "tags": {
-          "description": "User-defined list of arbitrary tags for the question. Used for grouping/organization and for weighting the score of each question.",
+          "description": "Questions are tagged for categorization and scoring. Tags can either be: - Default Tags: These are predefined categories. They are identified by their string value (e.g., \"BUSINESS\", \"COMPLIANCE\", and \"CUSTOMER\"). - Custom Tags: These are user-defined categories. They are identified by their full resource name (e.g., projects/{project}/locations/{location}/qaQuestionTags/{qa_question_tag}). Both default and custom tags are used to group questions and to influence the scoring of each question.",
           "items": {
             "type": "string"
           },
@@ -7243,6 +8275,130 @@
             "The query is from agents.",
             "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsMetadata": {
+      "description": "The metadata for an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsRequest",
+          "description": "Output only. The original request for sample conversations to dataset.",
+          "readOnly": true
+        },
+        "sampleConversationsStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats",
+          "description": "Output only. Statistics for SampleConversations operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats": {
+      "description": "Statistics for SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats",
+      "properties": {
+        "failedSampleCount": {
+          "description": "Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulSampleCount": {
+          "description": "Output only. The number of new conversations added during this sample operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsRequest": {
+      "description": "The request to sample conversations to a dataset.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsRequest",
+      "properties": {
+        "destinationDataset": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Dataset",
+          "description": "The dataset resource to copy the sampled conversations to."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the dataset.",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleRule",
+          "description": "Optional. The sample rule used for sampling conversations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleConversationsResponse": {
+      "description": "The response to an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleConversationsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SampleRule": {
+      "description": "Message for sampling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1SampleRule",
+      "properties": {
+        "conversationFilter": {
+          "description": "To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.",
+          "type": "string"
+        },
+        "samplePercentage": {
+          "description": "Percentage of conversations that we should sample based on the dimension between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "sampleRow": {
+          "description": "Number of the conversations that we should sample based on the dimension.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse": {
+      "description": "The response from a ListAuthorizedViews request.",
+      "id": "GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse",
+      "properties": {
+        "authorizedViews": {
+          "description": "The AuthorizedViews under the parent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -8659,6 +9815,56 @@
         },
         "parent": {
           "description": "Required. The parent resource of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1Dataset": {
+      "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1Dataset",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dataset create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Dataset description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name for the dataaset",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. Option TTL for the dataset.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "type": {
+          "description": "Dataset usage type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EVAL",
+            "LIVE"
+          ],
+          "enumDescriptions": [
+            "Default value for unspecified.",
+            "For evals only.",
+            "Dataset with new conversations coming in regularly (Insights legacy conversations and AI trainer)"
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Dataset update time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -10435,6 +11641,112 @@
             "The query is from agents.",
             "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadata": {
+      "description": "The metadata for an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest",
+          "description": "Output only. The original request for sample conversations to dataset.",
+          "readOnly": true
+        },
+        "sampleConversationsStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats",
+          "description": "Output only. Statistics for SampleConversations operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats": {
+      "description": "Statistics for SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats",
+      "properties": {
+        "failedSampleCount": {
+          "description": "Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulSampleCount": {
+          "description": "Output only. The number of new conversations added during this sample operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest": {
+      "description": "The request to sample conversations to a dataset.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest",
+      "properties": {
+        "destinationDataset": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1Dataset",
+          "description": "The dataset resource to copy the sampled conversations to."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the dataset.",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SampleRule",
+          "description": "Optional. The sample rule used for sampling conversations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsResponse": {
+      "description": "The response to an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleConversationsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SampleRule": {
+      "description": "Message for sampling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SampleRule",
+      "properties": {
+        "conversationFilter": {
+          "description": "To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.",
+          "type": "string"
+        },
+        "samplePercentage": {
+          "description": "Percentage of conversations that we should sample based on the dimension between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "sampleRow": {
+          "description": "Number of the conversations that we should sample based on the dimension.",
+          "format": "int64",
           "type": "string"
         }
       },

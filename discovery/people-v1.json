@@ -1190,7 +1190,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240313",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {

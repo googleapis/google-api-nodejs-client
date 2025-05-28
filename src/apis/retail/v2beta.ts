@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -536,7 +536,11 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed ID.
+     * AFM data source ID.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
      */
     primaryFeedId?: string | null;
     /**
@@ -1963,10 +1967,6 @@ export namespace retail_v2beta {
       [key: string]: Schema$GoogleCloudRetailV2betaCustomAttribute;
     } | null;
     /**
-     * Optional. The availability of the Product at this place_id. Default to Availability.IN_STOCK. For primary products with variants set the availability of the primary as Availability.OUT_OF_STOCK and set the true availability at the variant level. This way the primary product will be considered "in stock" as long as it has at least one variant in stock. For primary products with no variants set the true availability at the primary level. Corresponding properties: Google Merchant Center property [availability](https://support.google.com/merchants/answer/6324448). Schema.org property [Offer.availability](https://schema.org/availability). This field is currently only used by the Recommendations API. For Search, please make use of fulfillment_types or custom attributes for similar behaviour. See [here]( https://cloud.google.com/retail/docs/local-inventory-updates#local-inventory-update-methods) for more details.
-     */
-    availability?: string | null;
-    /**
      * Optional. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     fulfillmentTypes?: string[] | null;
@@ -1984,7 +1984,11 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed ID.
+     * AFM data source ID.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
      */
     primaryFeedId?: string | null;
     /**
@@ -4253,11 +4257,13 @@ export namespace retail_v2beta {
     getAlertConfig(
       params: Params$Resource$Projects$Getalertconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAlertConfig(
       params?: Params$Resource$Projects$Getalertconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAlertConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAlertConfig>
+    >;
     getAlertConfig(
       params: Params$Resource$Projects$Getalertconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4292,8 +4298,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAlertConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAlertConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getalertconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4347,11 +4355,13 @@ export namespace retail_v2beta {
     updateAlertConfig(
       params: Params$Resource$Projects$Updatealertconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAlertConfig(
       params?: Params$Resource$Projects$Updatealertconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAlertConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAlertConfig>
+    >;
     updateAlertConfig(
       params: Params$Resource$Projects$Updatealertconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4386,8 +4396,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAlertConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAlertConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatealertconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4528,11 +4540,13 @@ export namespace retail_v2beta {
     completeQuery(
       params: Params$Resource$Projects$Locations$Catalogs$Completequery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     completeQuery(
       params?: Params$Resource$Projects$Locations$Catalogs$Completequery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaCompleteQueryResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompleteQueryResponse>
+    >;
     completeQuery(
       params: Params$Resource$Projects$Locations$Catalogs$Completequery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4567,8 +4581,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaCompleteQueryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompleteQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Completequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4626,11 +4642,11 @@ export namespace retail_v2beta {
     exportAnalyticsMetrics(
       params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     exportAnalyticsMetrics(
       params?: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     exportAnalyticsMetrics(
       params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4665,8 +4681,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4721,11 +4737,13 @@ export namespace retail_v2beta {
     getAttributesConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Getattributesconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAttributesConfig(
       params?: Params$Resource$Projects$Locations$Catalogs$Getattributesconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+    >;
     getAttributesConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Getattributesconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4760,8 +4778,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Getattributesconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4816,11 +4836,13 @@ export namespace retail_v2beta {
     getCompletionConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getCompletionConfig(
       params?: Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaCompletionConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompletionConfig>
+    >;
     getCompletionConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4855,8 +4877,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaCompletionConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompletionConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4911,11 +4935,13 @@ export namespace retail_v2beta {
     getDefaultBranch(
       params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDefaultBranch(
       params?: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaGetDefaultBranchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGetDefaultBranchResponse>
+    >;
     getDefaultBranch(
       params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4950,8 +4976,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaGetDefaultBranchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGetDefaultBranchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5009,11 +5037,13 @@ export namespace retail_v2beta {
     getGenerativeQuestionFeature(
       params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getGenerativeQuestionFeature(
       params?: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
+    >;
     getGenerativeQuestionFeature(
       params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5048,8 +5078,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5106,11 +5138,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListCatalogsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListCatalogsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5145,8 +5179,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListCatalogsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListCatalogsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5203,11 +5239,11 @@ export namespace retail_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaCatalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCatalog>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5242,8 +5278,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaCatalog>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCatalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5297,11 +5333,11 @@ export namespace retail_v2beta {
     setDefaultBranch(
       params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setDefaultBranch(
       params?: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     setDefaultBranch(
       params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5334,8 +5370,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5391,11 +5427,13 @@ export namespace retail_v2beta {
     updateAttributesConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAttributesConfig(
       params?: Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+    >;
     updateAttributesConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5430,8 +5468,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5486,11 +5526,13 @@ export namespace retail_v2beta {
     updateCompletionConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateCompletionConfig(
       params?: Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaCompletionConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompletionConfig>
+    >;
     updateCompletionConfig(
       params: Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5525,8 +5567,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaCompletionConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaCompletionConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5581,11 +5625,13 @@ export namespace retail_v2beta {
     updateGenerativeQuestion(
       params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGenerativeQuestion(
       params?: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionConfig>
+    >;
     updateGenerativeQuestion(
       params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5620,8 +5666,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5679,11 +5727,13 @@ export namespace retail_v2beta {
     updateGenerativeQuestionFeature(
       params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGenerativeQuestionFeature(
       params?: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
+    >;
     updateGenerativeQuestionFeature(
       params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5718,8 +5768,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5970,11 +6022,13 @@ export namespace retail_v2beta {
     addCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addCatalogAttribute(
       params?: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+    >;
     addCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6009,8 +6063,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6067,11 +6123,13 @@ export namespace retail_v2beta {
     batchRemoveCatalogAttributes(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Batchremovecatalogattributes,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchRemoveCatalogAttributes(
       params?: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Batchremovecatalogattributes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponse>
+    >;
     batchRemoveCatalogAttributes(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Batchremovecatalogattributes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6106,8 +6164,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Batchremovecatalogattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6165,11 +6225,13 @@ export namespace retail_v2beta {
     removeCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeCatalogAttribute(
       params?: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+    >;
     removeCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6204,8 +6266,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6262,11 +6326,13 @@ export namespace retail_v2beta {
     replaceCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceCatalogAttribute(
       params?: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+    >;
     replaceCatalogAttribute(
       params: Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6301,8 +6367,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaAttributesConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaAttributesConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6432,11 +6500,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6471,8 +6539,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6540,11 +6608,11 @@ export namespace retail_v2beta {
     addFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addFulfillmentPlaces(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     addFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6579,8 +6647,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6636,11 +6704,11 @@ export namespace retail_v2beta {
     addLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addLocalInventories(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     addLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6675,8 +6743,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6732,11 +6800,11 @@ export namespace retail_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6771,8 +6839,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6830,11 +6898,11 @@ export namespace retail_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6865,8 +6933,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6919,11 +6987,11 @@ export namespace retail_v2beta {
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6958,8 +7026,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7015,11 +7083,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7054,8 +7122,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7110,11 +7178,11 @@ export namespace retail_v2beta {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7149,8 +7217,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7206,11 +7274,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListProductsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListProductsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7245,8 +7315,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListProductsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7304,11 +7376,11 @@ export namespace retail_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7343,8 +7415,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaProduct>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaProduct>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7399,11 +7471,11 @@ export namespace retail_v2beta {
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     purge(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7438,8 +7510,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7495,11 +7567,11 @@ export namespace retail_v2beta {
     removeFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeFulfillmentPlaces(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     removeFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7534,8 +7606,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7590,11 +7662,11 @@ export namespace retail_v2beta {
     removeLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeLocalInventories(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     removeLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7629,8 +7701,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7685,11 +7757,11 @@ export namespace retail_v2beta {
     setInventory(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setInventory(
       params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     setInventory(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7724,8 +7796,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7958,11 +8030,11 @@ export namespace retail_v2beta {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7997,8 +8069,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Completiondata$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8074,11 +8146,11 @@ export namespace retail_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8113,8 +8185,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8172,11 +8244,11 @@ export namespace retail_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8207,8 +8279,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8261,11 +8333,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8300,8 +8372,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8355,11 +8427,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Controls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListControlsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListControlsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8394,8 +8468,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListControlsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListControlsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Controls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8453,11 +8529,11 @@ export namespace retail_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8492,8 +8568,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8621,11 +8697,13 @@ export namespace retail_v2beta {
     batchUpdate(
       params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponse>
+    >;
     batchUpdate(
       params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8660,8 +8738,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8738,11 +8818,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8777,8 +8859,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Generativequestions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8851,11 +8935,11 @@ export namespace retail_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8890,8 +8974,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8947,11 +9031,11 @@ export namespace retail_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8982,8 +9066,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9036,11 +9120,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9075,8 +9159,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9130,11 +9214,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Models$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListModelsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListModelsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9169,8 +9255,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListModelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListModelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9227,11 +9315,11 @@ export namespace retail_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9266,8 +9354,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9321,11 +9409,11 @@ export namespace retail_v2beta {
     pause(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pause(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>;
     pause(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9360,8 +9448,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9418,11 +9506,11 @@ export namespace retail_v2beta {
     resume(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>;
     resume(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9457,8 +9545,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaModel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9516,11 +9604,11 @@ export namespace retail_v2beta {
     tune(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Tune,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     tune(
       params?: Params$Resource$Projects$Locations$Catalogs$Models$Tune,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     tune(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Tune,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9555,8 +9643,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Models$Tune;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9716,11 +9804,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9755,8 +9843,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9809,11 +9897,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9848,8 +9938,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9941,11 +10033,13 @@ export namespace retail_v2beta {
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Placements$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     predict(
       params?: Params$Resource$Projects$Locations$Catalogs$Placements$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaPredictResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaPredictResponse>
+    >;
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Placements$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9980,8 +10074,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaPredictResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaPredictResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Placements$Predict;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10039,11 +10135,13 @@ export namespace retail_v2beta {
     search(
       params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaSearchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaSearchResponse>
+    >;
     search(
       params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10078,8 +10176,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaSearchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Placements$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10169,11 +10269,13 @@ export namespace retail_v2beta {
     addControl(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addControl(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+    >;
     addControl(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10208,8 +10310,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10267,11 +10371,13 @@ export namespace retail_v2beta {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10306,8 +10412,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10365,11 +10473,11 @@ export namespace retail_v2beta {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10400,8 +10508,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10454,11 +10562,13 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10493,8 +10603,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10549,11 +10661,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListServingConfigsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListServingConfigsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10588,8 +10702,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListServingConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaListServingConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10647,11 +10763,13 @@ export namespace retail_v2beta {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10686,8 +10804,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10742,11 +10862,13 @@ export namespace retail_v2beta {
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     predict(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaPredictResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaPredictResponse>
+    >;
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10781,8 +10903,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaPredictResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaPredictResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10840,11 +10964,13 @@ export namespace retail_v2beta {
     removeControl(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeControl(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+    >;
     removeControl(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10879,8 +11005,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaServingConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10938,11 +11066,13 @@ export namespace retail_v2beta {
     search(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaSearchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaSearchResponse>
+    >;
     search(
       params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10977,8 +11107,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaSearchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11153,11 +11285,11 @@ export namespace retail_v2beta {
     collect(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Collect,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     collect(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Collect,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>>;
     collect(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Collect,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11188,8 +11320,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleApiHttpBody>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Collect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11245,11 +11377,11 @@ export namespace retail_v2beta {
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11284,8 +11416,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11341,11 +11473,11 @@ export namespace retail_v2beta {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11380,8 +11512,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11437,11 +11569,11 @@ export namespace retail_v2beta {
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Purge,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     purge(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Purge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Purge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11476,8 +11608,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11533,11 +11665,11 @@ export namespace retail_v2beta {
     rejoin(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rejoin(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     rejoin(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11572,8 +11704,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11629,11 +11761,13 @@ export namespace retail_v2beta {
     write(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Write,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     write(
       params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Write,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaUserEvent>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaUserEvent>
+    >;
     write(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Write,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11668,8 +11802,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRetailV2betaUserEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2betaUserEvent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11811,11 +11947,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11850,8 +11986,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11903,11 +12039,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11942,8 +12080,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12034,11 +12174,11 @@ export namespace retail_v2beta {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12073,8 +12213,8 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12126,11 +12266,13 @@ export namespace retail_v2beta {
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12165,8 +12307,10 @@ export namespace retail_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -210,11 +210,11 @@ export namespace firebasedatabase_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -243,7 +243,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -299,11 +302,11 @@ export namespace firebasedatabase_v1beta {
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -332,7 +335,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -385,11 +391,11 @@ export namespace firebasedatabase_v1beta {
     disable(
       params: Params$Resource$Projects$Locations$Instances$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Locations$Instances$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     disable(
       params: Params$Resource$Projects$Locations$Instances$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -418,7 +424,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -474,11 +483,11 @@ export namespace firebasedatabase_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -507,7 +516,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -560,11 +572,11 @@ export namespace firebasedatabase_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabaseInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatabaseInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -599,8 +611,8 @@ export namespace firebasedatabase_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDatabaseInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatabaseInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -658,11 +670,11 @@ export namespace firebasedatabase_v1beta {
     reenable(
       params: Params$Resource$Projects$Locations$Instances$Reenable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reenable(
       params?: Params$Resource$Projects$Locations$Instances$Reenable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     reenable(
       params: Params$Resource$Projects$Locations$Instances$Reenable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -691,7 +703,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Reenable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -747,11 +762,11 @@ export namespace firebasedatabase_v1beta {
     undelete(
       params: Params$Resource$Projects$Locations$Instances$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Locations$Instances$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     undelete(
       params: Params$Resource$Projects$Locations$Instances$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -780,7 +795,10 @@ export namespace firebasedatabase_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Instances$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;

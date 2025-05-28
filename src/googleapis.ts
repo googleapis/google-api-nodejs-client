@@ -101,7 +101,7 @@ export class GoogleApis extends GeneratedAPIs {
   discover(url: string, callback: (err?: Error) => void): void;
   discover(
     url: string,
-    callback?: (err?: Error) => void
+    callback?: (err?: Error) => void,
   ): void | Promise<void> {
     if (callback) {
       this.discoverAsync(url)
@@ -126,7 +126,7 @@ export class GoogleApis extends GeneratedAPIs {
    */
   async discoverAPI<T = Endpoint>(
     apiPath: string,
-    options: {} = {}
+    options: {} = {},
   ): Promise<Readonly<T>> {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
     const ep = endpointCreator(options, this);

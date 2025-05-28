@@ -17,12 +17,13 @@ import {GoogleApis} from '../src';
 import {readFileSync} from 'fs';
 import * as path from 'path';
 import * as nock from 'nock';
+import {GaxiosResponseWithHTTP2} from 'googleapis-common';
 
 export const rootHost = 'https://www.googleapis.com';
 export const rootPrefix = '/discovery/v1/apis';
 
 export abstract class Utils {
-  static getQs(res: GaxiosResponse) {
+  static getQs(res: GaxiosResponseWithHTTP2) {
     let query = new URL(res.config.url!).search;
     if (query.startsWith('?')) {
       query = query.slice(1);
@@ -42,8 +43,8 @@ export abstract class Utils {
     return JSON.parse(
       readFileSync(
         path.resolve(process.cwd(), `./test/fixtures/discovery/${name}.json`),
-        'utf8'
-      )
+        'utf8',
+      ),
     );
   }
 
@@ -51,7 +52,7 @@ export abstract class Utils {
     google: GoogleApis,
     name: string,
     version: string,
-    options = {}
+    options = {},
   ) {
     const url = Utils.getDiscoveryUrl(name, version);
     const filePath = `./discovery/${name}-${version}.json`;

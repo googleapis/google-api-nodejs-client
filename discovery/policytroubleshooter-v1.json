@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240121",
   "rootUrl": "https://policytroubleshooter.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicytroubleshooterV1AccessTuple": {

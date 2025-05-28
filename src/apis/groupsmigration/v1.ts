@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -155,11 +155,11 @@ export namespace groupsmigration_v1 {
     insert(
       params: Params$Resource$Archive$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Archive$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     insert(
       params: Params$Resource$Archive$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -188,7 +188,10 @@ export namespace groupsmigration_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Archive$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

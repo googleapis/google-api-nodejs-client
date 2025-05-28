@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -572,11 +572,11 @@ export namespace workflowexecutions_v1 {
     triggerPubsubExecution(
       params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     triggerPubsubExecution(
       params?: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     triggerPubsubExecution(
       params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -607,7 +607,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -694,11 +697,11 @@ export namespace workflowexecutions_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     cancel(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -727,7 +730,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -781,11 +787,11 @@ export namespace workflowexecutions_v1 {
     create(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     create(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -814,7 +820,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -871,11 +880,11 @@ export namespace workflowexecutions_v1 {
     deleteExecutionHistory(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteExecutionHistory(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteExecutionHistory(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -904,7 +913,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -961,11 +973,11 @@ export namespace workflowexecutions_v1 {
     exportData(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     exportData(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExportDataResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExportDataResponse>>;
     exportData(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -996,8 +1008,8 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExportDataResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExportDataResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Exportdata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1054,11 +1066,11 @@ export namespace workflowexecutions_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1087,7 +1099,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1141,11 +1156,11 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1178,8 +1193,8 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1325,11 +1340,11 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCallbacksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCallbacksResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1362,8 +1377,8 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCallbacksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCallbacksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1443,11 +1458,11 @@ export namespace workflowexecutions_v1 {
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StepEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StepEntry>>;
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1476,7 +1491,10 @@ export namespace workflowexecutions_v1 {
       callback?:
         | BodyResponseCallback<Schema$StepEntry>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StepEntry> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StepEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1530,11 +1548,11 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListStepEntriesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListStepEntriesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1567,8 +1585,8 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListStepEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListStepEntriesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

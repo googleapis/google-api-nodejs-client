@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -480,11 +480,11 @@ export namespace baremetalsolution_v1alpha1 {
     submitProvisioningConfig(
       params: Params$Resource$Projects$Locations$Submitprovisioningconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     submitProvisioningConfig(
       params?: Params$Resource$Projects$Locations$Submitprovisioningconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProvisioningConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProvisioningConfig>>;
     submitProvisioningConfig(
       params: Params$Resource$Projects$Locations$Submitprovisioningconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -517,8 +517,8 @@ export namespace baremetalsolution_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProvisioningConfig>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProvisioningConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Submitprovisioningconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -645,11 +645,11 @@ export namespace baremetalsolution_v1alpha1 {
     list(
       params: Params$Resource$Projects$Provisioningquotas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Provisioningquotas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProvisioningQuotasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProvisioningQuotasResponse>>;
     list(
       params: Params$Resource$Projects$Provisioningquotas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -684,8 +684,8 @@ export namespace baremetalsolution_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProvisioningQuotasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProvisioningQuotasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Provisioningquotas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -31,4 +31,4 @@ export {auth}
 {% for versionName, version in api %}
 export { {{ name }}_{{ version|replace('.','_') }} };
 {% endfor %}
-export {AuthPlus, GlobalOptions, APIRequestContext, GoogleConfigurable, StreamMethodOptions, GaxiosPromise, MethodOptions, BodyResponseCallback} from 'googleapis-common';
+export {AuthPlus, GlobalOptions, APIRequestContext, GoogleConfigurable, StreamMethodOptions, MethodOptions, BodyResponseCallback} from 'googleapis-common';

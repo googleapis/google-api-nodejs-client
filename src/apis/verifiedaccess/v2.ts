@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -384,11 +384,11 @@ export namespace verifiedaccess_v2 {
     generate(
       params: Params$Resource$Challenge$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Challenge$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Challenge>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Challenge>>;
     generate(
       params: Params$Resource$Challenge$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -417,7 +417,10 @@ export namespace verifiedaccess_v2 {
       callback?:
         | BodyResponseCallback<Schema$Challenge>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Challenge> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Challenge>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Challenge$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -473,11 +476,11 @@ export namespace verifiedaccess_v2 {
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Challenge$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyChallengeResponseResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>>;
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -512,8 +515,8 @@ export namespace verifiedaccess_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyChallengeResponseResult>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

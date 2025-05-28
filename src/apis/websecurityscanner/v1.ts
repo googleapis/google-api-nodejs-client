@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -673,11 +673,11 @@ export namespace websecurityscanner_v1 {
     create(
       params: Params$Resource$Projects$Scanconfigs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Scanconfigs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>;
     create(
       params: Params$Resource$Projects$Scanconfigs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -706,7 +706,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -762,11 +765,11 @@ export namespace websecurityscanner_v1 {
     delete(
       params: Params$Resource$Projects$Scanconfigs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Scanconfigs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Scanconfigs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -795,7 +798,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -848,11 +854,11 @@ export namespace websecurityscanner_v1 {
     get(
       params: Params$Resource$Projects$Scanconfigs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Scanconfigs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>;
     get(
       params: Params$Resource$Projects$Scanconfigs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -881,7 +887,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -934,11 +943,11 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Scanconfigs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScanConfigsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListScanConfigsResponse>>;
     list(
       params: Params$Resource$Projects$Scanconfigs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -971,8 +980,8 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListScanConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListScanConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1028,11 +1037,11 @@ export namespace websecurityscanner_v1 {
     patch(
       params: Params$Resource$Projects$Scanconfigs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Scanconfigs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>;
     patch(
       params: Params$Resource$Projects$Scanconfigs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1061,7 +1070,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1114,11 +1126,11 @@ export namespace websecurityscanner_v1 {
     start(
       params: Params$Resource$Projects$Scanconfigs$Start,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     start(
       params?: Params$Resource$Projects$Scanconfigs$Start,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>;
     start(
       params: Params$Resource$Projects$Scanconfigs$Start,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1147,7 +1159,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1290,11 +1305,11 @@ export namespace websecurityscanner_v1 {
     get(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>;
     get(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1323,7 +1338,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1376,11 +1394,11 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScanRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListScanRunsResponse>>;
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1413,8 +1431,8 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListScanRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListScanRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1470,11 +1488,11 @@ export namespace websecurityscanner_v1 {
     stop(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScanRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>;
     stop(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1503,7 +1521,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScanRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScanRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScanRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1598,11 +1619,11 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCrawledUrlsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCrawledUrlsResponse>>;
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1635,8 +1656,8 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCrawledUrlsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCrawledUrlsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1716,11 +1737,11 @@ export namespace websecurityscanner_v1 {
     get(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Finding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Finding>>;
     get(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1749,7 +1770,10 @@ export namespace websecurityscanner_v1 {
       callback?:
         | BodyResponseCallback<Schema$Finding>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Finding> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Finding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1803,11 +1827,11 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFindingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>;
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1840,8 +1864,8 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFindingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1932,11 +1956,11 @@ export namespace websecurityscanner_v1 {
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFindingTypeStatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFindingTypeStatsResponse>>;
     list(
       params: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1971,8 +1995,8 @@ export namespace websecurityscanner_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFindingTypeStatsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFindingTypeStatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

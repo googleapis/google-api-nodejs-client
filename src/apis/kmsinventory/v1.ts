@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -446,11 +446,13 @@ export namespace kmsinventory_v1 {
     search(
       params: Params$Resource$Organizations$Protectedresources$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Organizations$Protectedresources$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+    >;
     search(
       params: Params$Resource$Organizations$Protectedresources$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -485,8 +487,10 @@ export namespace kmsinventory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Protectedresources$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -585,11 +589,13 @@ export namespace kmsinventory_v1 {
     list(
       params: Params$Resource$Projects$Cryptokeys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Cryptokeys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudKmsInventoryV1ListCryptoKeysResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1ListCryptoKeysResponse>
+    >;
     list(
       params: Params$Resource$Projects$Cryptokeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -624,8 +630,10 @@ export namespace kmsinventory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudKmsInventoryV1ListCryptoKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1ListCryptoKeysResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Cryptokeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -725,11 +733,13 @@ export namespace kmsinventory_v1 {
     getProtectedResourcesSummary(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getProtectedResourcesSummary(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudKmsInventoryV1ProtectedResourcesSummary>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1ProtectedResourcesSummary>
+    >;
     getProtectedResourcesSummary(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -764,8 +774,10 @@ export namespace kmsinventory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudKmsInventoryV1ProtectedResourcesSummary>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1ProtectedResourcesSummary>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary;
       let options = (optionsOrCallback || {}) as MethodOptions;

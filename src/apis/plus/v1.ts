@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -683,11 +683,11 @@ export namespace plus_v1 {
     get(
       params: Params$Resource$Activities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Activities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Activity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Activity>>;
     get(
       params: Params$Resource$Activities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -716,7 +716,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$Activity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Activity> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Activity>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -833,11 +833,11 @@ export namespace plus_v1 {
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ActivityFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ActivityFeed>>;
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -866,7 +866,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$ActivityFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ActivityFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ActivityFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -985,11 +985,11 @@ export namespace plus_v1 {
     search(
       params: Params$Resource$Activities$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Activities$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ActivityFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ActivityFeed>>;
     search(
       params: Params$Resource$Activities$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1018,7 +1018,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$ActivityFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ActivityFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$ActivityFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Activities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1184,11 +1184,11 @@ export namespace plus_v1 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1217,7 +1217,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Comment>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1333,11 +1333,11 @@ export namespace plus_v1 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentFeed>>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1366,7 +1366,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$CommentFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$CommentFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1528,11 +1528,11 @@ export namespace plus_v1 {
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$People$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Person>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Person>>;
     get(
       params: Params$Resource$People$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1561,7 +1561,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Person>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1679,11 +1679,11 @@ export namespace plus_v1 {
     list(
       params: Params$Resource$People$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$People$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PeopleFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>>;
     list(
       params: Params$Resource$People$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1712,7 +1712,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$PeopleFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1826,11 +1826,11 @@ export namespace plus_v1 {
     listByActivity(
       params: Params$Resource$People$Listbyactivity,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listByActivity(
       params?: Params$Resource$People$Listbyactivity,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PeopleFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>>;
     listByActivity(
       params: Params$Resource$People$Listbyactivity,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1859,7 +1859,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$PeopleFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1974,11 +1974,11 @@ export namespace plus_v1 {
     search(
       params: Params$Resource$People$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$People$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PeopleFeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>>;
     search(
       params: Params$Resource$People$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2007,7 +2007,7 @@ export namespace plus_v1 {
       callback?:
         | BodyResponseCallback<Schema$PeopleFeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$PeopleFeed>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

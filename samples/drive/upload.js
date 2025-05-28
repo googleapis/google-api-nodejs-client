@@ -48,7 +48,7 @@ async function runSample(fileName) {
         readline.cursorTo(process.stdout, 0);
         process.stdout.write(`${Math.round(progress)}% complete`);
       },
-    }
+    },
   );
   console.log(res.data);
   return res.data;

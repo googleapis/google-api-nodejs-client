@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -581,11 +581,11 @@ export namespace groupssettings_v1 {
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -614,7 +614,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -668,11 +671,11 @@ export namespace groupssettings_v1 {
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -701,7 +704,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -755,11 +761,11 @@ export namespace groupssettings_v1 {
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -788,7 +794,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

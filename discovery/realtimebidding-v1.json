@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250508",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2293,6 +2293,12 @@
             "GOOGLE_RTB",
             "OPENRTB_JSON",
             "OPENRTB_PROTOBUF"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Placeholder for undefined bid protocol. This value should not be used.",

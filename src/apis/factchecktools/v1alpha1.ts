@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -388,11 +388,13 @@ export namespace factchecktools_v1alpha1 {
     imageSearch(
       params: Params$Resource$Claims$Imagesearch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     imageSearch(
       params?: Params$Resource$Claims$Imagesearch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+    >;
     imageSearch(
       params: Params$Resource$Claims$Imagesearch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -427,8 +429,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Claims$Imagesearch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -486,11 +490,13 @@ export namespace factchecktools_v1alpha1 {
     search(
       params: Params$Resource$Claims$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Claims$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse>
+    >;
     search(
       params: Params$Resource$Claims$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -525,8 +531,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Claims$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -644,11 +652,13 @@ export namespace factchecktools_v1alpha1 {
     create(
       params: Params$Resource$Pages$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Pages$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+    >;
     create(
       params: Params$Resource$Pages$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -683,8 +693,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -738,11 +750,11 @@ export namespace factchecktools_v1alpha1 {
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Pages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -773,8 +785,8 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -826,11 +838,13 @@ export namespace factchecktools_v1alpha1 {
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+    >;
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -865,8 +879,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -920,11 +936,13 @@ export namespace factchecktools_v1alpha1 {
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse>
+    >;
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -959,8 +977,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1014,11 +1034,13 @@ export namespace factchecktools_v1alpha1 {
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Pages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+    >;
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1053,8 +1075,10 @@ export namespace factchecktools_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

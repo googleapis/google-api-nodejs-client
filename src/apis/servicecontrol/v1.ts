@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1572,11 +1572,11 @@ export namespace servicecontrol_v1 {
     allocateQuota(
       params: Params$Resource$Services$Allocatequota,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     allocateQuota(
       params?: Params$Resource$Services$Allocatequota,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AllocateQuotaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AllocateQuotaResponse>>;
     allocateQuota(
       params: Params$Resource$Services$Allocatequota,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1611,8 +1611,8 @@ export namespace servicecontrol_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AllocateQuotaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AllocateQuotaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Allocatequota;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1668,11 +1668,11 @@ export namespace servicecontrol_v1 {
     check(
       params: Params$Resource$Services$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     check(
       params?: Params$Resource$Services$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckResponse>>;
     check(
       params: Params$Resource$Services$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1701,7 +1701,10 @@ export namespace servicecontrol_v1 {
       callback?:
         | BodyResponseCallback<Schema$CheckResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1756,11 +1759,11 @@ export namespace servicecontrol_v1 {
     report(
       params: Params$Resource$Services$Report,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     report(
       params?: Params$Resource$Services$Report,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportResponse>>;
     report(
       params: Params$Resource$Services$Report,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1789,7 +1792,10 @@ export namespace servicecontrol_v1 {
       callback?:
         | BodyResponseCallback<Schema$ReportResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

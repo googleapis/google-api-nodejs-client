@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250505",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1086,6 +1086,10 @@
       "description": "Config for thinking features.",
       "id": "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig",
       "properties": {
+        "includeThoughts": {
+          "description": "Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.",
+          "type": "boolean"
+        },
         "thinkingBudget": {
           "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
           "format": "int32",

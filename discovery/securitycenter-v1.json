@@ -5938,7 +5938,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250505",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6967,7 +6967,7 @@
         },
         "end": {
           "$ref": "Position",
-          "description": "The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed.."
+          "description": "The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed."
         },
         "fieldPath": {
           "description": "The path, in RFC 8901 JSON Pointer format, to the field that failed validation. This may be left empty if no specific field is affected.",
@@ -6985,6 +6985,7 @@
       "id": "CustomModuleValidationErrors",
       "properties": {
         "errors": {
+          "description": "The list of errors.",
           "items": {
             "$ref": "CustomModuleValidationError"
           },
@@ -14717,10 +14718,12 @@
       "id": "Position",
       "properties": {
         "columnNumber": {
+          "description": "The column number.",
           "format": "int32",
           "type": "integer"
         },
         "lineNumber": {
+          "description": "The line number.",
           "format": "int32",
           "type": "integer"
         }

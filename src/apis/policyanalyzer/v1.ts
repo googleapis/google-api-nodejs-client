@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -224,11 +224,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -263,8 +265,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -382,11 +386,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -421,8 +427,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -538,11 +546,13 @@ export namespace policyanalyzer_v1 {
     query(
       params: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    >;
     query(
       params: Params$Resource$Projects$Locations$Activitytypes$Activities$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -577,8 +587,10 @@ export namespace policyanalyzer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Activitytypes$Activities$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;

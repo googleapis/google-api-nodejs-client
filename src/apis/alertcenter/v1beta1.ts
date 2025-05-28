@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1456,11 +1456,11 @@ export namespace alertcenter_v1beta1 {
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Alerts$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchDeleteAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchDeleteAlertsResponse>>;
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1495,8 +1495,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchDeleteAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchDeleteAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1551,11 +1551,11 @@ export namespace alertcenter_v1beta1 {
     batchUndelete(
       params: Params$Resource$Alerts$Batchundelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUndelete(
       params?: Params$Resource$Alerts$Batchundelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUndeleteAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUndeleteAlertsResponse>>;
     batchUndelete(
       params: Params$Resource$Alerts$Batchundelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1590,8 +1590,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUndeleteAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUndeleteAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Batchundelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1646,11 +1646,11 @@ export namespace alertcenter_v1beta1 {
     delete(
       params: Params$Resource$Alerts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Alerts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Alerts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1679,7 +1679,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1733,11 +1736,11 @@ export namespace alertcenter_v1beta1 {
     get(
       params: Params$Resource$Alerts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Alerts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Alert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
     get(
       params: Params$Resource$Alerts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1766,7 +1769,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1820,11 +1826,11 @@ export namespace alertcenter_v1beta1 {
     getMetadata(
       params: Params$Resource$Alerts$Getmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetadata(
       params?: Params$Resource$Alerts$Getmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AlertMetadata>>;
     getMetadata(
       params: Params$Resource$Alerts$Getmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1853,7 +1859,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AlertMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AlertMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AlertMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1908,11 +1917,11 @@ export namespace alertcenter_v1beta1 {
     list(
       params: Params$Resource$Alerts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Alerts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>;
     list(
       params: Params$Resource$Alerts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1943,8 +1952,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1995,11 +2004,11 @@ export namespace alertcenter_v1beta1 {
     undelete(
       params: Params$Resource$Alerts$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Alerts$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Alert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
     undelete(
       params: Params$Resource$Alerts$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2028,7 +2037,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2168,11 +2180,11 @@ export namespace alertcenter_v1beta1 {
     create(
       params: Params$Resource$Alerts$Feedback$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Alerts$Feedback$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertFeedback>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AlertFeedback>>;
     create(
       params: Params$Resource$Alerts$Feedback$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2201,7 +2213,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AlertFeedback>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AlertFeedback> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AlertFeedback>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Feedback$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2256,11 +2271,11 @@ export namespace alertcenter_v1beta1 {
     list(
       params: Params$Resource$Alerts$Feedback$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Alerts$Feedback$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertFeedbackResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAlertFeedbackResponse>>;
     list(
       params: Params$Resource$Alerts$Feedback$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2295,8 +2310,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAlertFeedbackResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAlertFeedbackResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Feedback$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2390,11 +2405,11 @@ export namespace alertcenter_v1beta1 {
     getSettings(
       params: Params$Resource$V1beta1$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSettings(
       params?: Params$Resource$V1beta1$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     getSettings(
       params: Params$Resource$V1beta1$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2423,7 +2438,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2475,11 +2493,11 @@ export namespace alertcenter_v1beta1 {
     updateSettings(
       params: Params$Resource$V1beta1$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSettings(
       params?: Params$Resource$V1beta1$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     updateSettings(
       params: Params$Resource$V1beta1$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2508,7 +2526,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
