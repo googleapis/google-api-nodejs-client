@@ -792,6 +792,10 @@ export namespace cloudbuild_v1 {
      */
     description?: string | null;
     /**
+     * Optional. The configuration of a trigger that creates a build whenever an event from the DeveloperConnect API is received.
+     */
+    developerConnectEventConfig?: Schema$DeveloperConnectEventConfig;
+    /**
      * If true, the trigger will never automatically execute a build.
      */
     disabled?: boolean | null;
@@ -1135,6 +1139,27 @@ export namespace cloudbuild_v1 {
      * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
      */
     revision?: string | null;
+  }
+  /**
+   * The configuration of a trigger that creates a build whenever an event from the DeveloperConnect API is received.
+   */
+  export interface Schema$DeveloperConnectEventConfig {
+    /**
+     * Required. The Developer Connect Git repository link, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`.
+     */
+    gitRepositoryLink?: string | null;
+    /**
+     * Output only. The type of DeveloperConnect GitRepositoryLink.
+     */
+    gitRepositoryLinkType?: string | null;
+    /**
+     * Filter to match changes in pull requests.
+     */
+    pullRequest?: Schema$PullRequestFilter;
+    /**
+     * Filter to match changes in refs like branches and tags.
+     */
+    push?: Schema$PushFilter;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1740,7 +1765,7 @@ export namespace cloudbuild_v1 {
      */
     groupId?: string | null;
     /**
-     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     * Optional. Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
      */
     path?: string | null;
     /**
@@ -2518,7 +2543,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
-     * Legacy Private Pool configuration.
+     * Private Pool configuration.
      */
     privatePoolV1Config?: Schema$PrivatePoolV1Config;
     /**
