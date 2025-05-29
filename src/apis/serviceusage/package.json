@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/serviceusage",
-  "version": "15.0.2",
+  "version": "16.0.0",
   "description": "serviceusage",
   "main": "build/index.js",
   "types": "build/index.d.ts",
