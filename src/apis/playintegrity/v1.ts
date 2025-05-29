@@ -197,6 +197,24 @@ export namespace playintegrity_v1 {
     tokenPayloadExternal?: Schema$TokenPayloadExternal;
   }
   /**
+   * Request to decode the PC integrity token.
+   */
+  export interface Schema$DecodePcIntegrityTokenRequest {
+    /**
+     * Encoded integrity token.
+     */
+    integrityToken?: string | null;
+  }
+  /**
+   * Response containing the decoded PC integrity payload.
+   */
+  export interface Schema$DecodePcIntegrityTokenResponse {
+    /**
+     * Plain token payload generated from the decoded integrity token.
+     */
+    tokenPayloadExternal?: Schema$PcTokenPayloadExternal;
+  }
+  /**
    * Contains information about the device for which the integrity token was generated, e.g. Android SDK version.
    */
   export interface Schema$DeviceAttributes {
@@ -255,6 +273,45 @@ export namespace playintegrity_v1 {
      * The evaluation of Play Protect verdict.
      */
     playProtectVerdict?: string | null;
+  }
+  /**
+   * Contains the device attestation information.
+   */
+  export interface Schema$PcDeviceIntegrity {
+    /**
+     * Details about the integrity of the device the app is running on.
+     */
+    deviceRecognitionVerdict?: string[] | null;
+  }
+  /**
+   * Contains the integrity request information.
+   */
+  export interface Schema$PcRequestDetails {
+    /**
+     * Request hash that was provided in the request.
+     */
+    requestHash?: string | null;
+    /**
+     * Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity.
+     */
+    requestPackageName?: string | null;
+    /**
+     * Required. Timestamp, of the integrity application request.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * Contains PC device attestation details.
+   */
+  export interface Schema$PcTokenPayloadExternal {
+    /**
+     * Required. Details about the device integrity.
+     */
+    deviceIntegrity?: Schema$PcDeviceIntegrity;
+    /**
+     * Required. Details about the integrity request.
+     */
+    requestDetails?: Schema$PcRequestDetails;
   }
   /**
    * Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming.
@@ -595,6 +652,103 @@ export namespace playintegrity_v1 {
         );
       }
     }
+
+    /**
+     * Decodes the PC integrity token and returns the PC token payload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decodePcIntegrityToken(
+      params?: Params$Resource$V1$Decodepcintegritytoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DecodePcIntegrityTokenResponse>;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>,
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      paramsOrCallback?:
+        | Params$Resource$V1$Decodepcintegritytoken
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DecodePcIntegrityTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Decodepcintegritytoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Decodepcintegritytoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://playintegrity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+packageName}:decodePcIntegrityToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DecodePcIntegrityTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DecodePcIntegrityTokenResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$V1$Decodeintegritytoken
@@ -608,5 +762,17 @@ export namespace playintegrity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DecodeIntegrityTokenRequest;
+  }
+  export interface Params$Resource$V1$Decodepcintegritytoken
+    extends StandardParameters {
+    /**
+     * Package name of the app the attached integrity token belongs to.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DecodePcIntegrityTokenRequest;
   }
 }
