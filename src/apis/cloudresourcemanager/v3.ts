@@ -115,6 +115,7 @@ export namespace cloudresourcemanager_v3 {
     effectiveTags: Resource$Effectivetags;
     folders: Resource$Folders;
     liens: Resource$Liens;
+    locations: Resource$Locations;
     operations: Resource$Operations;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
@@ -131,6 +132,7 @@ export namespace cloudresourcemanager_v3 {
       this.effectiveTags = new Resource$Effectivetags(this.context);
       this.folders = new Resource$Folders(this.context);
       this.liens = new Resource$Liens(this.context);
+      this.locations = new Resource$Locations(this.context);
       this.operations = new Resource$Operations(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
@@ -334,6 +336,23 @@ export namespace cloudresourcemanager_v3 {
     tagValue?: string | null;
   }
   /**
+   * Represents a collection of effective tag bindings for a GCP resource.
+   */
+  export interface Schema$EffectiveTagBindingCollection {
+    /**
+     * Tag keys/values effectively bound to this resource, specified in namespaced format. For example: "123/environment": "production"
+     */
+    effectiveTags?: {[key: string]: string} | null;
+    /**
+     * The full resource name of the resource the TagBindings are bound to. E.g. `//cloudresourcemanager.googleapis.com/projects/123`
+     */
+    fullResourceName?: string | null;
+    /**
+     * Identifier. The name of the EffectiveTagBindingCollection, following the convention: `locations/{location\}/effectiveTagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. E.g. "locations/global/effectiveTagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     */
+    name?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -387,7 +406,7 @@ export namespace cloudresourcemanager_v3 {
      */
     managementProject?: string | null;
     /**
-     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Identifier. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string | null;
     /**
@@ -867,6 +886,27 @@ export namespace cloudresourcemanager_v3 {
     tagValueNamespacedName?: string | null;
   }
   /**
+   * Represents a collection of tags directly bound to a GCP resource.
+   */
+  export interface Schema$TagBindingCollection {
+    /**
+     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * The full resource name of the resource the TagBindings are bound to. E.g. `//cloudresourcemanager.googleapis.com/projects/123`
+     */
+    fullResourceName?: string | null;
+    /**
+     * Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     */
+    name?: string | null;
+    /**
+     * Tag keys/values directly bound to this resource, specified in namespaced format. For example: "123/environment": "production"
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * A TagHold represents the use of a TagValue that is not captured by TagBindings. If a TagValue has any TagHolds, deletion will be blocked. This resource is intended to be created in the same cloud location as the `holder`.
    */
   export interface Schema$TagHold {
@@ -928,7 +968,7 @@ export namespace cloudresourcemanager_v3 {
      */
     purposeData?: {[key: string]: string} | null;
     /**
-     * Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-63 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
+     * Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-256 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
      */
     shortName?: string | null;
     /**
@@ -965,7 +1005,7 @@ export namespace cloudresourcemanager_v3 {
      */
     parent?: string | null;
     /**
-     * Required. Immutable. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
+     * Required. Immutable. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 256 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
      */
     shortName?: string | null;
     /**
@@ -2179,7 +2219,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Identifier. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string;
     /**
@@ -2826,6 +2866,339 @@ export namespace cloudresourcemanager_v3 {
      * Required. The name of the resource to list all attached Liens. For example, `projects/1234`. (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
      */
     parent?: string;
+  }
+
+  export class Resource$Locations {
+    context: APIRequestContext;
+    effectiveTagBindingCollections: Resource$Locations$Effectivetagbindingcollections;
+    tagBindingCollections: Resource$Locations$Tagbindingcollections;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.effectiveTagBindingCollections =
+        new Resource$Locations$Effectivetagbindingcollections(this.context);
+      this.tagBindingCollections = new Resource$Locations$Tagbindingcollections(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Locations$Effectivetagbindingcollections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns effective tag bindings on a GCP resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Effectivetagbindingcollections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Locations$Effectivetagbindingcollections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EffectiveTagBindingCollection>;
+    get(
+      params: Params$Resource$Locations$Effectivetagbindingcollections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Effectivetagbindingcollections$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EffectiveTagBindingCollection>,
+      callback: BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Effectivetagbindingcollections$Get,
+      callback: BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Effectivetagbindingcollections$Get
+        | BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EffectiveTagBindingCollection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EffectiveTagBindingCollection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Effectivetagbindingcollections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Effectivetagbindingcollections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EffectiveTagBindingCollection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EffectiveTagBindingCollection>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Effectivetagbindingcollections$Get
+    extends StandardParameters {
+    /**
+     * Required. The full name of the EffectiveTagBindingCollection in format: `locations/{location\}/effectiveTagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. "locations/global/effectiveTagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     */
+    name?: string;
+  }
+
+  export class Resource$Locations$Tagbindingcollections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns tag bindings directly attached to a GCP resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Tagbindingcollections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Locations$Tagbindingcollections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TagBindingCollection>;
+    get(
+      params: Params$Resource$Locations$Tagbindingcollections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Tagbindingcollections$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TagBindingCollection>,
+      callback: BodyResponseCallback<Schema$TagBindingCollection>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Tagbindingcollections$Get,
+      callback: BodyResponseCallback<Schema$TagBindingCollection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TagBindingCollection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Tagbindingcollections$Get
+        | BodyResponseCallback<Schema$TagBindingCollection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TagBindingCollection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TagBindingCollection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TagBindingCollection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Tagbindingcollections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Tagbindingcollections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TagBindingCollection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TagBindingCollection>(parameters);
+      }
+    }
+
+    /**
+     * Updates tag bindings directly attached to a GCP resource. Update_mask can be kept empty or "*".
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Locations$Tagbindingcollections$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Tagbindingcollections$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Tagbindingcollections$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Tagbindingcollections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Tagbindingcollections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Tagbindingcollections$Get
+    extends StandardParameters {
+    /**
+     * Required. The full name of the TagBindingCollection in format: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the enoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Tagbindingcollections$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the TagBindingCollection, following the convention: `locations/{location\}/tagBindingCollections/{encoded-full-resource-name\}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. "locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123"
+     */
+    name?: string;
+    /**
+     * Optional. An update mask to selectively update fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TagBindingCollection;
   }
 
   export class Resource$Operations {
