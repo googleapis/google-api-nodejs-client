@@ -261,7 +261,7 @@ export namespace serviceusage_v1 {
      */
     kind?: string | null;
     /**
-     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
   }
@@ -444,6 +444,73 @@ export namespace serviceusage_v1 {
      * The requested Service states.
      */
     services?: Schema$GoogleApiServiceusageV1Service[];
+  }
+  /**
+   * `BatchingConfigProto` defines the batching configuration for an API method.
+   */
+  export interface Schema$BatchingConfigProto {
+    /**
+     * The request and response fields used in batching.
+     */
+    batchDescriptor?: Schema$BatchingDescriptorProto;
+    /**
+     * The thresholds which trigger a batched request to be sent.
+     */
+    thresholds?: Schema$BatchingSettingsProto;
+  }
+  /**
+   * `BatchingDescriptorProto` specifies the fields of the request message to be used for batching, and, optionally, the fields of the response message to be used for demultiplexing.
+   */
+  export interface Schema$BatchingDescriptorProto {
+    /**
+     * The repeated field in the request message to be aggregated by batching.
+     */
+    batchedField?: string | null;
+    /**
+     * A list of the fields in the request message. Two requests will be batched together only if the values of every field specified in `request_discriminator_fields` is equal between the two requests.
+     */
+    discriminatorFields?: string[] | null;
+    /**
+     * Optional. When present, indicates the field in the response message to be used to demultiplex the response into multiple response messages, in correspondence with the multiple request messages originally batched together.
+     */
+    subresponseField?: string | null;
+  }
+  /**
+   * `BatchingSettingsProto` specifies a set of batching thresholds, each of which acts as a trigger to send a batch of messages as a request. At least one threshold must be positive nonzero.
+   */
+  export interface Schema$BatchingSettingsProto {
+    /**
+     * The duration after which a batch should be sent, starting from the addition of the first message to that batch.
+     */
+    delayThreshold?: string | null;
+    /**
+     * The maximum number of elements collected in a batch that could be accepted by server.
+     */
+    elementCountLimit?: number | null;
+    /**
+     * The number of elements of a field collected into a batch which, if exceeded, causes the batch to be sent.
+     */
+    elementCountThreshold?: number | null;
+    /**
+     * The maximum size of data allowed by flow control.
+     */
+    flowControlByteLimit?: number | null;
+    /**
+     * The maximum number of elements allowed by flow control.
+     */
+    flowControlElementLimit?: number | null;
+    /**
+     * The behavior to take when the flow control limit is exceeded.
+     */
+    flowControlLimitExceededBehavior?: string | null;
+    /**
+     * The maximum size of the request that could be accepted by server.
+     */
+    requestByteLimit?: number | null;
+    /**
+     * The aggregated size of the batched field which, if exceeded, causes the batch to be sent. This size is computed by aggregating the sizes of the request field to be batched, not of the entire request message.
+     */
+    requestByteThreshold?: string | null;
   }
   /**
    * Billing related configuration of the service. The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently: monitored_resources: - type: library.googleapis.com/billing_branch labels: - key: cloud.googleapis.com/location description: | Predefined label to support billing location restriction. - key: city description: | Custom label to define the city where the library branch is located in. - key: name description: Custom label to define the name of the library branch. metrics: - name: library.googleapis.com/book/borrowed_count metric_kind: DELTA value_type: INT64 unit: "1" billing: consumer_destinations: - monitored_resource: library.googleapis.com/billing_branch metrics: - library.googleapis.com/book/borrowed_count
@@ -1684,6 +1751,10 @@ export namespace serviceusage_v1 {
      * List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id
      */
     autoPopulatedFields?: string[] | null;
+    /**
+     * Batching configuration for an API method in client libraries. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.BatchCreateExample batching: element_count_threshold: 1000 request_byte_threshold: 100000000 delay_threshold_millis: 10
+     */
+    batching?: Schema$BatchingConfigProto;
     /**
      * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes
      */
