@@ -381,6 +381,10 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$DeliverInfo {
     /**
+     * Recognized type of a Google Service the packet is delivered to (if applicable).
+     */
+    googleServiceType?: string | null;
+    /**
      * IP address of the target (if applicable).
      */
     ipAddress?: string | null;
@@ -1057,7 +1061,7 @@ export namespace networkmanagement_v1 {
     type?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Compute Engine network. Next ID: 7
+   * For display only. Metadata associated with a Compute Engine network.
    */
   export interface Schema$NetworkInfo {
     /**

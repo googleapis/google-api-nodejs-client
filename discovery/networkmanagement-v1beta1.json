@@ -973,7 +973,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250521",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1417,6 +1417,26 @@
       "description": "Details of the final state \"deliver\" and associated resource.",
       "id": "DeliverInfo",
       "properties": {
+        "googleServiceType": {
+          "description": "Recognized type of a Google Service the packet is delivered to (if applicable).",
+          "enum": [
+            "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+            "IAP",
+            "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+            "CLOUD_DNS",
+            "PRIVATE_GOOGLE_ACCESS",
+            "SERVERLESS_VPC_ACCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified Google Service.",
+            "Identity aware proxy. https://cloud.google.com/iap/docs/using-tcp-forwarding",
+            "One of two services sharing IP ranges: * Load Balancer proxy * Centralized Health Check prober https://cloud.google.com/load-balancing/docs/firewall-rules",
+            "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules",
+            "private.googleapis.com and restricted.googleapis.com",
+            "Google API via Serverless VPC Access. https://cloud.google.com/vpc/docs/serverless-vpc-access"
+          ],
+          "type": "string"
+        },
         "ipAddress": {
           "description": "IP address of the target (if applicable).",
           "type": "string"
@@ -1529,6 +1549,7 @@
             "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
             "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
             "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+            "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS",
             "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
             "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
             "PRIVATE_TRAFFIC_TO_INTERNET",
@@ -1604,7 +1625,8 @@
             "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
             "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
             "NO_MATCHING_NAT64_GATEWAY",
-            "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH"
+            "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
+            "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1621,7 +1643,8 @@
             "Route's next hop forwarding rule doesn't match next hop IP address.",
             "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
             "Route's next hop forwarding rule type is invalid (it's not a forwarding rule of the internal passthrough load balancer).",
-            "Packet is sent from the Internet to the private IPv6 address.",
+            "Packet is sent from the Internet or Google service to the private IPv6 address.",
+            "Packet is sent from the external IPv6 source address of an instance to the private IPv6 address of an instance.",
             "The packet does not match a policy-based VPN tunnel local selector.",
             "The packet does not match a policy-based VPN tunnel remote selector.",
             "Packet with internal destination address sent to the internet gateway.",
@@ -1697,7 +1720,8 @@
             "Packet with destination IP address within the reserved NAT64 range is dropped due to matching a route of an unsupported type.",
             "Packet could be dropped because hybrid endpoint like a VPN gateway or Interconnect is not allowed to send traffic to the Internet.",
             "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet.",
-            "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend."
+            "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend.",
+            "Packet from the unknown NCC network is dropped due to no known route from the source network to the destination IP address."
           ],
           "type": "string"
         },
@@ -2632,7 +2656,7 @@
       "type": "object"
     },
     "NetworkInfo": {
-      "description": "For display only. Metadata associated with a Compute Engine network. Next ID: 7",
+      "description": "For display only. Metadata associated with a Compute Engine network.",
       "id": "NetworkInfo",
       "properties": {
         "displayName": {
