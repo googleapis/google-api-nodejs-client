@@ -953,6 +953,10 @@ export namespace composer_v1 {
     scheduledSnapshotsConfig?: Schema$ScheduledSnapshotsConfig;
   }
   /**
+   * Restart Airflow web server.
+   */
+  export interface Schema$RestartWebServerRequest {}
+  /**
    * Request to create a snapshot of a Cloud Composer environment.
    */
   export interface Schema$SaveSnapshotRequest {
@@ -2290,6 +2294,95 @@ export namespace composer_v1 {
     }
 
     /**
+     * Restart Airflow web server.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restartWebServer(
+      params?: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restartWebServer(callback: BodyResponseCallback<Schema$Operation>): void;
+    restartWebServer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Restartwebserver
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Restartwebserver;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Restartwebserver;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restartWebServer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.
      *
      * @param params - Parameters for request
@@ -2598,6 +2691,18 @@ export namespace composer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$PollAirflowCommandRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Restartwebserver
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestartWebServerRequest;
   }
   export interface Params$Resource$Projects$Locations$Environments$Savesnapshot
     extends StandardParameters {

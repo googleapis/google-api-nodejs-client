@@ -2700,7 +2700,7 @@ export namespace composer_v1beta1 {
   export interface Params$Resource$Projects$Locations$Environments$Restartwebserver
     extends StandardParameters {
     /**
-     * The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     * Required. The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
     name?: string;
 
