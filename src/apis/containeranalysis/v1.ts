@@ -2253,6 +2253,10 @@ export namespace containeranalysis_v1 {
      */
     baseImages?: Schema$BaseImage[];
     /**
+     * The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid
+     */
+    chainId?: string | null;
+    /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
     command?: string | null;
@@ -2449,6 +2453,10 @@ export namespace containeranalysis_v1 {
      */
     sbomReference?: Schema$SBOMReferenceNote;
     /**
+     * A note describing a secret.
+     */
+    secret?: Schema$SecretNote;
+    /**
      * A one sentence description of this note.
      */
     shortDescription?: string | null;
@@ -2537,6 +2545,10 @@ export namespace containeranalysis_v1 {
      * Describes a specific SBOM reference occurrences.
      */
     sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
+     * Describes a secret.
+     */
+    secret?: Schema$SecretOccurrence;
     /**
      * Output only. The time this occurrence was last updated.
      */
@@ -2912,6 +2924,53 @@ export namespace containeranalysis_v1 {
      * The progress of the SBOM generation.
      */
     sbomState?: string | null;
+  }
+  /**
+   * The location of the secret.
+   */
+  export interface Schema$SecretLocation {
+    /**
+     * The secret is found from a file.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation;
+  }
+  /**
+   * The note representing a secret.
+   */
+  export interface Schema$SecretNote {}
+  /**
+   * The occurrence provides details of a secret.
+   */
+  export interface Schema$SecretOccurrence {
+    /**
+     * Required. Type of secret.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Locations where the secret is detected.
+     */
+    locations?: Schema$SecretLocation[];
+    /**
+     * Optional. Status of the secret.
+     */
+    statuses?: Schema$SecretStatus[];
+  }
+  /**
+   * The status of the secret with a timestamp.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Optional. Optional message about the status code.
+     */
+    message?: string | null;
+    /**
+     * Optional. The status of the secret.
+     */
+    status?: string | null;
+    /**
+     * Optional. The time the secret status was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.

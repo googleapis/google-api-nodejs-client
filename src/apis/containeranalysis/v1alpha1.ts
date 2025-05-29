@@ -2720,6 +2720,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     sbomReference?: Schema$SBOMReferenceNote;
     /**
+     * A note describing a secret.
+     */
+    secret?: Schema$SecretNote;
+    /**
      * A one sentence description of this `Note`.
      */
     shortDescription?: string | null;
@@ -2828,6 +2832,10 @@ export namespace containeranalysis_v1alpha1 {
      * This represents an SBOM reference occurrence
      */
     sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
+     * This represents a secret occurrence
+     */
+    secret?: Schema$SecretOccurrence;
     /**
      * Describes a specific SPDX File.
      */
@@ -3388,6 +3396,53 @@ export namespace containeranalysis_v1alpha1 {
     name?: string | null;
     /**
      * Output only. The time this scan config was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The location of the secret.
+   */
+  export interface Schema$SecretLocation {
+    /**
+     * The secret is found from a file.
+     */
+    fileLocation?: Schema$FileLocation;
+  }
+  /**
+   * The note representing a secret.
+   */
+  export interface Schema$SecretNote {}
+  /**
+   * The occurrence provides details of a secret.
+   */
+  export interface Schema$SecretOccurrence {
+    /**
+     * Required. Type of secret.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Locations where the secret is detected.
+     */
+    locations?: Schema$SecretLocation[];
+    /**
+     * Optional. Status of the secret.
+     */
+    statuses?: Schema$SecretStatus[];
+  }
+  /**
+   * The status of the secret with a timestamp.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Optional. Optional message about the status code.
+     */
+    message?: string | null;
+    /**
+     * Optional. The status of the secret.
+     */
+    status?: string | null;
+    /**
+     * Optional. The time the secret status was last updated.
      */
     updateTime?: string | null;
   }
