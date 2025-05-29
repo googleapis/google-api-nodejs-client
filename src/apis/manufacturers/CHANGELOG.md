@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.6.0...manufacturers-v6.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
 ## [5.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.5.0...manufacturers-v5.6.0) (2024-08-16)
 
 
