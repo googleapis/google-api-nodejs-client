@@ -894,7 +894,7 @@ export namespace securitycenter_v1 {
      */
     description?: string | null;
     /**
-     * The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed..
+     * The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed.
      */
     end?: Schema$Position;
     /**
@@ -910,6 +910,9 @@ export namespace securitycenter_v1 {
    * A list of zero or more errors encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.
    */
   export interface Schema$CustomModuleValidationErrors {
+    /**
+     * The list of errors.
+     */
     errors?: Schema$CustomModuleValidationError[];
   }
   /**
@@ -1327,6 +1330,10 @@ export namespace securitycenter_v1 {
      */
     hashedSize?: string | null;
     /**
+     * Operation(s) performed on a file.
+     */
+    operations?: Schema$FileOperation[];
+    /**
      * True when the hash covers only a prefix of the file.
      */
     partiallyHashed?: boolean | null;
@@ -1342,6 +1349,15 @@ export namespace securitycenter_v1 {
      * Size of the file in bytes.
      */
     size?: string | null;
+  }
+  /**
+   * Operation(s) performed on a file.
+   */
+  export interface Schema$FileOperation {
+    /**
+     * The type of the operation
+     */
+    type?: string | null;
   }
   /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
@@ -3196,6 +3212,10 @@ export namespace securitycenter_v1 {
      */
     hashedSize?: string | null;
     /**
+     * Operation(s) performed on a file.
+     */
+    operations?: Schema$GoogleCloudSecuritycenterV2FileOperation[];
+    /**
      * True when the hash covers only a prefix of the file.
      */
     partiallyHashed?: boolean | null;
@@ -3211,6 +3231,15 @@ export namespace securitycenter_v1 {
      * Size of the file in bytes.
      */
     size?: string | null;
+  }
+  /**
+   * Operation(s) performed on a file.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2FileOperation {
+    /**
+     * The type of the operation
+     */
+    type?: string | null;
   }
   /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
@@ -5606,7 +5635,13 @@ export namespace securitycenter_v1 {
    * A position in the uploaded text version of a module.
    */
   export interface Schema$Position {
+    /**
+     * The column number.
+     */
     columnNumber?: number | null;
+    /**
+     * The line number.
+     */
     lineNumber?: number | null;
   }
   /**
