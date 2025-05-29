@@ -190,6 +190,10 @@ export namespace connectors_v2 {
      * OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.
      */
     redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
   }
   /**
    * Response containing status of the connector for readiness prober.
@@ -2714,6 +2718,10 @@ export namespace connectors_v2 {
      * List of 'sort_by' columns to use when returning the results.
      */
     sortBy?: string[];
+    /**
+     * List of 'sort_order' columns to use when returning the results.
+     */
+    sortOrder?: string[];
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch
     extends StandardParameters {
