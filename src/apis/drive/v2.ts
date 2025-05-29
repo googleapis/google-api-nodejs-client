@@ -7710,6 +7710,10 @@ export namespace drive_v2 {
      */
     emailMessage?: string;
     /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
+    /**
      * Deprecated: See `moveToNewOwnersRoot` for details.
      */
     enforceSingleParent?: boolean;
