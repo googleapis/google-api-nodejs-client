@@ -113,6 +113,7 @@ export namespace cloudkms_v1 {
   export class Cloudkms {
     context: APIRequestContext;
     folders: Resource$Folders;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace cloudkms_v1 {
       };
 
       this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -240,6 +242,10 @@ export namespace cloudkms_v1 {
    * Cloud KMS Autokey configuration for a folder.
    */
   export interface Schema$AutokeyConfig {
+    /**
+     * Optional. A checksum computed by the server based on the value of other fields. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The request will be rejected with an ABORTED error on a mismatched etag.
+     */
+    etag?: string | null;
     /**
      * Optional. Name of the key project, e.g. `projects/{PROJECT_ID\}` or `projects/{PROJECT_NUMBER\}`, where Cloud KMS Autokey will provision a new CryptoKey when a KeyHandle is created. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions). A request with an empty key project field will clear the configuration.
      */
@@ -762,6 +768,19 @@ export namespace cloudkms_v1 {
     state?: string | null;
   }
   /**
+   * The configuration of a protection level for a project's Key Access Justifications enrollment.
+   */
+  export interface Schema$KeyAccessJustificationsEnrollmentConfig {
+    /**
+     * Whether the project has KAJ logging enabled.
+     */
+    auditLogging?: boolean | null;
+    /**
+     * Whether the project is enrolled in KAJ policy enforcement.
+     */
+    policyEnforcement?: boolean | null;
+  }
+  /**
    * A KeyAccessJustificationsPolicy specifies zero or more allowed AccessReason values for encrypt, decrypt, and sign operations on a CryptoKey.
    */
   export interface Schema$KeyAccessJustificationsPolicy {
@@ -769,6 +788,19 @@ export namespace cloudkms_v1 {
      * The list of allowed reasons for access to a CryptoKey. Zero allowed access reasons means all encrypt, decrypt, and sign operations for the CryptoKey associated with this policy will fail.
      */
     allowedAccessReasons?: string[] | null;
+  }
+  /**
+   * A singleton configuration for Key Access Justifications policies.
+   */
+  export interface Schema$KeyAccessJustificationsPolicyConfig {
+    /**
+     * Optional. The default key access justification policy used when a CryptoKey is created in this folder. This is only used when a Key Access Justifications policy is not provided in the CreateCryptoKeyRequest. This overrides any default policies in its ancestry.
+     */
+    defaultKeyAccessJustificationPolicy?: Schema$KeyAccessJustificationsPolicy;
+    /**
+     * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
+     */
+    name?: string | null;
   }
   /**
    * Resource-oriented representation of a request to Cloud KMS Autokey and the resulting provisioning of a CryptoKey.
@@ -830,7 +862,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeys that matched the query.
+     * The total number of CryptoKeys that matched the query. This field is not populated if ListCryptoKeysRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -847,7 +879,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of CryptoKeyVersions that matched the query.
+     * The total number of CryptoKeyVersions that matched the query. This field is not populated if ListCryptoKeyVersionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -864,7 +896,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of EkmConnections that matched the query.
+     * The total number of EkmConnections that matched the query. This field is not populated if ListEkmConnectionsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -881,7 +913,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of ImportJobs that matched the query.
+     * The total number of ImportJobs that matched the query. This field is not populated if ListImportJobsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -911,7 +943,7 @@ export namespace cloudkms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The total number of KeyRings that matched the query.
+     * The total number of KeyRings that matched the query. This field is not populated if ListKeyRingsRequest.filter is applied.
      */
     totalSize?: number | null;
   }
@@ -1317,6 +1349,32 @@ export namespace cloudkms_v1 {
     keyProject?: string | null;
   }
   /**
+   * Response message for KeyAccessJustificationsConfig.ShowEffectiveKeyAccessJustificationsEnrollmentConfig
+   */
+  export interface Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse {
+    /**
+     * The effective KeyAccessJustificationsEnrollmentConfig for external keys.
+     */
+    externalConfig?: Schema$KeyAccessJustificationsEnrollmentConfig;
+    /**
+     * The effective KeyAccessJustificationsEnrollmentConfig for hardware keys.
+     */
+    hardwareConfig?: Schema$KeyAccessJustificationsEnrollmentConfig;
+    /**
+     * The effective KeyAccessJustificationsEnrollmentConfig for software keys.
+     */
+    softwareConfig?: Schema$KeyAccessJustificationsEnrollmentConfig;
+  }
+  /**
+   * Response message for KeyAccessJustificationsConfig.ShowEffectiveKeyAccessJustificationsPolicyConfig.
+   */
+  export interface Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse {
+    /**
+     * The effective KeyAccessJustificationsPolicyConfig.
+     */
+    effectiveKajPolicy?: Schema$KeyAccessJustificationsPolicyConfig;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1468,6 +1526,100 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getKajPolicyConfig(
+      params: Params$Resource$Folders$Getkajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getKajPolicyConfig(
+      params?: Params$Resource$Folders$Getkajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    getKajPolicyConfig(
+      params: Params$Resource$Folders$Getkajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Folders$Getkajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Folders$Getkajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getkajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getkajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getkajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
      *
      * @param params - Parameters for request
@@ -1553,12 +1705,113 @@ export namespace cloudkms_v1 {
         return createAPIRequest<Schema$AutokeyConfig>(parameters);
       }
     }
+
+    /**
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateKajPolicyConfig(
+      params: Params$Resource$Folders$Updatekajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateKajPolicyConfig(
+      params?: Params$Resource$Folders$Updatekajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    updateKajPolicyConfig(
+      params: Params$Resource$Folders$Updatekajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Folders$Updatekajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Folders$Updatekajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updatekajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updatekajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Updatekajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Folders$Getautokeyconfig
     extends StandardParameters {
     /**
      * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getkajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
      */
     name?: string;
   }
@@ -1578,6 +1831,241 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AutokeyConfig;
   }
+  export interface Params$Resource$Folders$Updatekajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$KeyAccessJustificationsPolicyConfig;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getKajPolicyConfig(
+      params: Params$Resource$Organizations$Getkajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getKajPolicyConfig(
+      params?: Params$Resource$Organizations$Getkajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    getKajPolicyConfig(
+      params: Params$Resource$Organizations$Getkajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Organizations$Getkajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Organizations$Getkajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getkajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getkajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getkajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateKajPolicyConfig(
+      params: Params$Resource$Organizations$Updatekajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateKajPolicyConfig(
+      params?: Params$Resource$Organizations$Updatekajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    updateKajPolicyConfig(
+      params: Params$Resource$Organizations$Updatekajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Organizations$Updatekajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Organizations$Updatekajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updatekajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updatekajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Updatekajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Getkajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Updatekajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$KeyAccessJustificationsPolicyConfig;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1585,6 +2073,100 @@ export namespace cloudkms_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
+    }
+
+    /**
+     * Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getKajPolicyConfig(
+      params: Params$Resource$Projects$Getkajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getKajPolicyConfig(
+      params?: Params$Resource$Projects$Getkajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    getKajPolicyConfig(
+      params: Params$Resource$Projects$Getkajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Projects$Getkajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      params: Params$Resource$Projects$Getkajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    getKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getkajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getkajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getkajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -1683,14 +2265,341 @@ export namespace cloudkms_v1 {
         );
       }
     }
+
+    /**
+     * Returns the KeyAccessJustificationsEnrollmentConfig of the resource closest to the given project in hierarchy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      params?: Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig,
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsEnrollmentConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+project}:showEffectiveKeyAccessJustificationsEnrollmentConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the KeyAccessJustificationsPolicyConfig of the resource closest to the given project in hierarchy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      params?: Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      params: Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig,
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      callback: BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+    ): void;
+    showEffectiveKeyAccessJustificationsPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+project}:showEffectiveKeyAccessJustificationsPolicyConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveKeyAccessJustificationsPolicyConfigResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateKajPolicyConfig(
+      params: Params$Resource$Projects$Updatekajpolicyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateKajPolicyConfig(
+      params?: Params$Resource$Projects$Updatekajpolicyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>;
+    updateKajPolicyConfig(
+      params: Params$Resource$Projects$Updatekajpolicyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Projects$Updatekajpolicyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      params: Params$Resource$Projects$Updatekajpolicyconfig,
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      callback: BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+    ): void;
+    updateKajPolicyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatekajpolicyconfig
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyAccessJustificationsPolicyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$KeyAccessJustificationsPolicyConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatekajpolicyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updatekajpolicyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyAccessJustificationsPolicyConfig>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Getkajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Showeffectiveautokeyconfig
     extends StandardParameters {
     /**
      * Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationsenrollmentconfig
+    extends StandardParameters {
+    /**
+     * Required. The number or id of the project to get the effective KeyAccessJustificationsEnrollmentConfig for.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Showeffectivekeyaccessjustificationspolicyconfig
+    extends StandardParameters {
+    /**
+     * Required. The number or id of the project to get the effective KeyAccessJustificationsPolicyConfig. In the format of "projects/{|\}"
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Updatekajpolicyconfig
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$KeyAccessJustificationsPolicyConfig;
   }
 
   export class Resource$Projects$Locations {
