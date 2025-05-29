@@ -222,15 +222,6 @@ export namespace script_v1 {
     webApp?: Schema$GoogleAppsScriptTypeWebAppEntryPoint;
   }
   /**
-   * The response for executing or debugging a function in an Apps Script project.
-   */
-  export interface Schema$ExecuteStreamResponse {
-    /**
-     * The result of the execution.
-     */
-    result?: Schema$ScriptExecutionResult;
-  }
-  /**
    * An object that provides information about the nature of an error resulting from an attempted execution of a script function using the Apps Script API. If a run call succeeds but the script function (or Apps Script itself) throws an exception, the response body's error field contains a Status object. The `Status` object's `details` field contains an array with a single one of these `ExecutionError` objects.
    */
   export interface Schema$ExecutionError {
@@ -503,15 +494,6 @@ export namespace script_v1 {
     processes?: Schema$GoogleAppsScriptTypeProcess[];
   }
   /**
-   * `ListValue` is a wrapper around a repeated field of values.
-   */
-  export interface Schema$ListValue {
-    /**
-     * Repeated field of dynamically typed values.
-     */
-    values?: Schema$Value[];
-  }
-  /**
    * Response with the list of the versions for the specified script project.
    */
   export interface Schema$ListVersionsResponse {
@@ -609,15 +591,6 @@ export namespace script_v1 {
     updateTime?: string | null;
   }
   /**
-   * The result of an execution.
-   */
-  export interface Schema$ScriptExecutionResult {
-    /**
-     * The returned value of the execution.
-     */
-    returnValue?: Schema$Value;
-  }
-  /**
    * A stack trace through the script that shows where the execution failed.
    */
   export interface Schema$ScriptStackTraceElement {
@@ -648,15 +621,6 @@ export namespace script_v1 {
     message?: string | null;
   }
   /**
-   * `Struct` represents a structured data value, consisting of fields which map to dynamically typed values.
-   */
-  export interface Schema$Struct {
-    /**
-     * Unordered map of dynamically typed values.
-     */
-    fields?: {[key: string]: Schema$Value} | null;
-  }
-  /**
    * Request with deployment information to update an existing deployment.
    */
   export interface Schema$UpdateDeploymentRequest {
@@ -664,47 +628,6 @@ export namespace script_v1 {
      * The deployment configuration.
      */
     deploymentConfig?: Schema$DeploymentConfig;
-  }
-  /**
-   * `Value` represents a dynamically typed value which is the outcome of an executed script.
-   */
-  export interface Schema$Value {
-    /**
-     * Represents a boolean value.
-     */
-    boolValue?: boolean | null;
-    /**
-     * Represents raw byte values.
-     */
-    bytesValue?: string | null;
-    /**
-     * Represents a date in ms since the epoch.
-     */
-    dateValue?: string | null;
-    /**
-     * Represents a repeated `Value`.
-     */
-    listValue?: Schema$ListValue;
-    /**
-     * Represents a null value.
-     */
-    nullValue?: string | null;
-    /**
-     * Represents a double value.
-     */
-    numberValue?: number | null;
-    /**
-     * Represents a structured proto value.
-     */
-    protoValue?: {[key: string]: any} | null;
-    /**
-     * Represents a string value.
-     */
-    stringValue?: string | null;
-    /**
-     * Represents a structured value.
-     */
-    structValue?: Schema$Struct;
   }
   /**
    * A resource representing a script project version. A version is a "snapshot" of a script project and is similar to a read-only branched release. When creating deployments, the version to use must be specified.
