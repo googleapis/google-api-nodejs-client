@@ -547,6 +547,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     cpe?: string | null;
     /**
+     * Files that make up the resource described by the occurrence.
+     */
+    files?: Schema$File[];
+    /**
      * The last time this resource was scanned.
      */
     lastScanTime?: string | null;
@@ -580,6 +584,10 @@ export namespace ondemandscanning_v1beta1 {
   export interface Schema$EnvelopeSignature {
     keyid?: string | null;
     sig?: string | null;
+  }
+  export interface Schema$File {
+    digest?: {[key: string]: string} | null;
+    name?: string | null;
   }
   /**
    * Container message for hashes of byte content of files, used in source messages to verify integrity of source input to the build.
@@ -689,6 +697,10 @@ export namespace ondemandscanning_v1beta1 {
      * The base images the layer is found within.
      */
     baseImages?: Schema$GrafeasV1BaseImage[];
+    /**
+     * The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid
+     */
+    chainId?: string | null;
     /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
@@ -885,6 +897,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     baseImages?: Schema$BaseImage[];
     /**
+     * The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid
+     */
+    chainId?: string | null;
+    /**
      * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
      */
     command?: string | null;
@@ -1073,6 +1089,10 @@ export namespace ondemandscanning_v1beta1 {
      * Describes a specific SBOM reference occurrences.
      */
     sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
+     * Describes a secret.
+     */
+    secret?: Schema$SecretOccurrence;
     /**
      * Output only. The time this occurrence was last updated.
      */
@@ -1436,6 +1456,49 @@ export namespace ondemandscanning_v1beta1 {
      * The progress of the SBOM generation.
      */
     sbomState?: string | null;
+  }
+  /**
+   * The location of the secret.
+   */
+  export interface Schema$SecretLocation {
+    /**
+     * The secret is found from a file.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation;
+  }
+  /**
+   * The occurrence provides details of a secret.
+   */
+  export interface Schema$SecretOccurrence {
+    /**
+     * Required. Type of secret.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Locations where the secret is detected.
+     */
+    locations?: Schema$SecretLocation[];
+    /**
+     * Optional. Status of the secret.
+     */
+    statuses?: Schema$SecretStatus[];
+  }
+  /**
+   * The status of the secret with a timestamp.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Optional. Optional message about the status code.
+     */
+    message?: string | null;
+    /**
+     * Optional. The status of the secret.
+     */
+    status?: string | null;
+    /**
+     * Optional. The time the secret status was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
