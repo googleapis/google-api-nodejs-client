@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250521",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -4813,19 +4813,17 @@
           "description": "User defined name for the property.",
           "type": "string"
         },
-        "groundingConfig": {
-          "description": "Grounding config of the entity type.",
+        "method": {
+          "description": "Specifies how the entity's value is obtained.",
           "enum": [
-            "GROUNDING_CONFIG_UNSPECIFIED",
-            "STRICT",
-            "RELAXED",
-            "NO_GROUNDING"
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
           ],
           "enumDescriptions": [
-            "Unspecified grounding config. It defaults to `STRICT` grounding.",
-            "Strict grounding.",
-            "Relaxed grounding.",
-            "Allow no grounding."
+            "Unspecified method. It defaults to `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
           ],
           "type": "string"
         },
