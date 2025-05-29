@@ -1253,6 +1253,27 @@ export namespace vmmigration_v1 {
     kmsKey?: string | null;
   }
   /**
+   * Expiration holds information about the expiration of a MigratingVm.
+   */
+  export interface Schema$Expiration {
+    /**
+     * Output only. Timestamp of when this resource is considered expired.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Describes whether the expiration can be extended.
+     */
+    extendable?: boolean | null;
+    /**
+     * Output only. The number of times expiration was extended.
+     */
+    extensionCount?: number | null;
+  }
+  /**
+   * Request message for 'ExtendMigrationRequest' request.
+   */
+  export interface Schema$ExtendMigrationRequest {}
+  /**
    * Response message for fetchInventory.
    */
   export interface Schema$FetchInventoryResponse {
@@ -1832,6 +1853,10 @@ export namespace vmmigration_v1 {
      * Output only. Provides details on the state of the Migrating VM in case of an error in replication.
      */
     error?: Schema$Status;
+    /**
+     * Output only. Provides details about the expiration state of the migrating VM.
+     */
+    expiration?: Schema$Expiration;
     /**
      * Output only. The group this migrating vm is included in, if any. The group is represented by the full path of the appropriate Group resource.
      */
@@ -6147,6 +6172,95 @@ export namespace vmmigration_v1 {
     }
 
     /**
+     * Extend the migrating VM time to live.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    extendMigration(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    extendMigration(
+      params?: Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    extendMigration(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    extendMigration(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    extendMigration(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    extendMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    extendMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+migratingVm}:extendMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['migratingVm'],
+        pathParams: ['migratingVm'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Marks a migration as completed, deleting migration resources that are no longer being used. Only applicable after cutover is done.
      *
      * @param params - Parameters for request
@@ -6795,6 +6909,18 @@ export namespace vmmigration_v1 {
      * Required. The name of the MigratingVm.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration
+    extends StandardParameters {
+    /**
+     * Required. The name of the MigratingVm.
+     */
+    migratingVm?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExtendMigrationRequest;
   }
   export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Finalizemigration
     extends StandardParameters {
