@@ -2800,7 +2800,7 @@
       }
     }
   },
-  "revision": "20250417",
+  "revision": "20250522",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4694,11 +4694,6 @@
             "$ref": "GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch"
           },
           "type": "array"
-        },
-        "rephrasedQuery": {
-          "deprecated": true,
-          "description": "This field is deprecated. Please find the refinded_query from search response when using CONVERSATIONAL_FILTER_ONLY mode in ConversationalSearchResponse.refined_search instead. The rephrased query based on the user's query and the conversation history. It can be used to fetch the relevant search results.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -4748,7 +4743,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer": {
-      "description": "Suggested answers to the follow-up question.",
+      "description": "Suggested answers to the follow-up question. If it's numerical attribute, only ProductAttributeInterval will be set. If it's textual attribute, only productAttributeValue will be set.",
       "id": "GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer",
       "properties": {
         "productAttributeValue": {
@@ -4823,6 +4818,21 @@
           "description": "The textual values of this custom attribute. For example, `[\"yellow\", \"green\"]` when the key is \"color\". Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaDoubleList": {
+      "description": "A message with a list of double values.",
+      "id": "GoogleCloudRetailV2alphaDoubleList",
+      "properties": {
+        "values": {
+          "description": "The list of double values.",
+          "items": {
+            "format": "double",
+            "type": "number"
           },
           "type": "array"
         }
@@ -5751,8 +5761,14 @@
       "description": "Merchant Center Feed filter criterion.",
       "id": "GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter",
       "properties": {
+        "dataSourceId": {
+          "description": "AFM data source ID.",
+          "format": "int64",
+          "type": "string"
+        },
         "primaryFeedId": {
-          "description": "Merchant Center primary feed ID.",
+          "deprecated": true,
+          "description": "Merchant Center primary feed ID. Deprecated: use data_source_id instead.",
           "format": "int64",
           "type": "string"
         },
@@ -5767,8 +5783,14 @@
       "description": "Merchant Center Feed filter criterion.",
       "id": "GoogleCloudRetailV2alphaMerchantCenterFeedFilter",
       "properties": {
+        "dataSourceId": {
+          "description": "AFM data source ID.",
+          "format": "int64",
+          "type": "string"
+        },
         "primaryFeedId": {
-          "description": "Merchant Center primary feed ID.",
+          "deprecated": true,
+          "description": "Merchant Center primary feed ID. Deprecated: use data_source_id instead.",
           "format": "int64",
           "type": "string"
         },
@@ -7391,6 +7413,13 @@
           "$ref": "GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec",
           "description": "Optional. This field specifies tile navigation related parameters."
         },
+        "userAttributes": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2alphaStringList"
+          },
+          "description": "Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplcate keys are not allowed within a single query. Example: user_attributes: [ { key: \"pets\" value { values: \"dog\" values: \"cat\" } }, { key: \"state\" value { values: \"CA\" } } ]",
+          "type": "object"
+        },
         "userInfo": {
           "$ref": "GoogleCloudRetailV2alphaUserInfo",
           "description": "User information."
@@ -7912,6 +7941,13 @@
           "description": "If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key \"sku1\" with field mask \"products.color_info\" indicates there is a match between \"sku1\" ColorInfo and the query.",
           "type": "object"
         },
+        "modelScores": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2alphaDoubleList"
+          },
+          "description": "Google provided available scores.",
+          "type": "object"
+        },
         "personalLabels": {
           "description": "Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.",
           "items": {
@@ -8138,6 +8174,20 @@
       "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2alphaSetInventoryResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaStringList": {
+      "description": "A list of string values.",
+      "id": "GoogleCloudRetailV2alphaStringList",
+      "properties": {
+        "values": {
+          "description": "String values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRetailV2alphaTile": {
