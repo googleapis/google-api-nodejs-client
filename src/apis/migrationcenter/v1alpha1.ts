@@ -1468,10 +1468,6 @@ export namespace migrationcenter_v1alpha1 {
      * Disk free space.
      */
     totalFreeBytes?: string | null;
-    /**
-     * VMware disk details.
-     */
-    vmwareConfig?: Schema$VmwareDiskConfig;
   }
   /**
    * VM disks.
@@ -4401,27 +4397,6 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. Desired increase factor of storage, relative to currently used storage. Must be in the interval [1.0, 2.0] (or 0 for default value).
      */
     storageMultiplier?: number | null;
-  }
-  /**
-   * VMware disk config details.
-   */
-  export interface Schema$VmwareDiskConfig {
-    /**
-     * VMDK backing type.
-     */
-    backingType?: string | null;
-    /**
-     * RDM compatibility mode.
-     */
-    rdmCompatibilityMode?: string | null;
-    /**
-     * Is VMDK shared with other VMs.
-     */
-    shared?: boolean | null;
-    /**
-     * VMDK disk mode.
-     */
-    vmdkDiskMode?: string | null;
   }
   /**
    * The type of machines to consider when calculating virtual machine migration insights and recommendations for VMware Engine. Not all machine types are available in all zones and regions.
