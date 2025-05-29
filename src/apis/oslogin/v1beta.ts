@@ -135,7 +135,7 @@ export namespace oslogin_v1beta {
    */
   export interface Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyRequest {
     /**
-     * The App Engine instance to sign the SSH public key for. Expected format: services/{service\}/versions/{version\}/instances/{instance\}
+     * The App Engine instance to sign the SSH public key for. Expected format: apps/{app\}/services/{service\}/versions/{version\}/instances/{instance\}
      */
     appEngineInstance?: string | null;
     /**
@@ -279,7 +279,7 @@ export namespace oslogin_v1beta {
   }
   export interface Schema$SignSshPublicKeyRequest {
     /**
-     * The SSH public key to sign.
+     * Required. The SSH public key to sign.
      */
     sshPublicKey?: string | null;
   }
@@ -656,11 +656,11 @@ export namespace oslogin_v1beta {
      */
     name?: string;
     /**
-     * The project ID of the Google Cloud Platform project.
+     * Required. The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
     /**
-     * A system ID for filtering the results of the request.
+     * Optional. A system ID for filtering the results of the request.
      */
     systemId?: string;
     /**
@@ -1002,7 +1002,7 @@ export namespace oslogin_v1beta {
   export interface Params$Resource$Users$Projects$Locations$Signsshpublickey
     extends StandardParameters {
     /**
-     * The parent project and region for the signing request.
+     * Required. The parent project and region for the signing request.
      */
     parent?: string;
 
@@ -1117,7 +1117,7 @@ export namespace oslogin_v1beta {
   export interface Params$Resource$Users$Projects$Zones$Signsshpublickey
     extends StandardParameters {
     /**
-     * The parent project and region for the signing request.
+     * Required. The parent project and region for the signing request.
      */
     parent?: string;
 

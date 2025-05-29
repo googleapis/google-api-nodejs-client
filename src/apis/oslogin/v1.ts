@@ -430,11 +430,11 @@ export namespace oslogin_v1 {
      */
     name?: string;
     /**
-     * The project ID of the Google Cloud Platform project.
+     * Required. The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
     /**
-     * A system ID for filtering the results of the request.
+     * Optional. A system ID for filtering the results of the request.
      */
     systemId?: string;
   }
@@ -942,7 +942,7 @@ export namespace oslogin_v1 {
      */
     name?: string;
     /**
-     * Mask to control which fields get updated. Updates all if not present.
+     * Optional. Mask to control which fields get updated. Updates all if not present.
      */
     updateMask?: string;
 
