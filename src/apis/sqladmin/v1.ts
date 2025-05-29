@@ -583,7 +583,7 @@ export namespace sqladmin_v1 {
      */
     connectionPoolingEnabled?: boolean | null;
     /**
-     * Optional. List of connection pool configuration flags
+     * Optional. List of connection pool configuration flags.
      */
     flags?: Schema$ConnectionPoolFlags[];
   }
@@ -741,6 +741,10 @@ export namespace sqladmin_v1 {
      * The backend type. `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type.
      */
     backendType?: string | null;
+    /**
+     * Clears private network settings when the instance is restored.
+     */
+    clearNetwork?: boolean | null;
     /**
      * Connection name of the Cloud SQL instance used in connection strings.
      */
@@ -1402,7 +1406,7 @@ export namespace sqladmin_v1 {
      */
     queryPlansPerMinute?: number | null;
     /**
-     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.
+     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.
      */
     queryStringLength?: number | null;
     /**
@@ -2132,7 +2136,7 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$PscAutoConnectionConfig {
     /**
-     * The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
+     * Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
      */
     consumerNetwork?: string | null;
     /**
@@ -2140,7 +2144,7 @@ export namespace sqladmin_v1 {
      */
     consumerNetworkStatus?: string | null;
     /**
-     * This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
+     * Optional. This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
      */
     consumerProject?: string | null;
     /**
@@ -2160,6 +2164,10 @@ export namespace sqladmin_v1 {
      * Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
      */
     allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     */
+    networkAttachmentUri?: string | null;
     /**
      * Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.
      */
@@ -3732,7 +3740,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
+     * Updates the retention period and description of the backup. You can use this API to update final backups only.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3869,7 +3877,7 @@ export namespace sqladmin_v1 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
+     * The list of fields that you can update. You can update only the description and retention period of the final backup.
      */
     updateMask?: string;
 
