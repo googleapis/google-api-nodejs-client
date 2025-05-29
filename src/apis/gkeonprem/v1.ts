@@ -1230,6 +1230,10 @@ export namespace gkeonprem_v1 {
      * Optional. The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.
      */
     localName?: string | null;
+    /**
+     * Optional. The namespace of the cluster.
+     */
+    localNamespace?: string | null;
   }
   /**
    * Message for enrolling an existing bare metal node pool to the GKE on-prem API.
@@ -1977,6 +1981,10 @@ export namespace gkeonprem_v1 {
      */
     preparedSecrets?: Schema$VmwareAdminPreparedSecretsConfig;
     /**
+     * Configuration for registry.
+     */
+    privateRegistryConfig?: Schema$VmwareAdminPrivateRegistryConfig;
+    /**
      * Output only. If set, there are currently changes in flight to the VMware admin cluster.
      */
     reconciling?: boolean | null;
@@ -2145,6 +2153,19 @@ export namespace gkeonprem_v1 {
      * Whether prepared secrets is enabled.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * VmwareAdminPrivateRegistryConfig represents configuration for admin cluster registry.
+   */
+  export interface Schema$VmwareAdminPrivateRegistryConfig {
+    /**
+     * The registry address.
+     */
+    address?: string | null;
+    /**
+     * When the container runtime pulls an image from private registry, the registry must prove its identity by presenting a certificate. The registry's certificate is signed by a certificate authority (CA). The container runtime uses the CA's certificate to validate the registry's certificate.
+     */
+    caCert?: string | null;
   }
   /**
    * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
