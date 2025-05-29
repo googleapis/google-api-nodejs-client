@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250429",
+  "revision": "20250506",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1497,7 +1497,7 @@
           "type": "string"
         },
         "photosUri": {
-          "description": "A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "description": "A link to show reviews of this place on Google Maps.",
           "type": "string"
         },
         "placeUri": {
@@ -1505,11 +1505,11 @@
           "type": "string"
         },
         "reviewsUri": {
-          "description": "A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "description": "A link to show reviews of this place on Google Maps.",
           "type": "string"
         },
         "writeAReviewUri": {
-          "description": "A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "description": "A link to write a review for this place on Google Maps.",
           "type": "string"
         }
       },
@@ -1757,6 +1757,10 @@
           "description": "A link where users can flag a problem with the summary.",
           "type": "string"
         },
+        "reviewsUri": {
+          "description": "A link to show reviews of this place on Google Maps.",
+          "type": "string"
+        },
         "text": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "The summary of user reviews."
@@ -1846,27 +1850,6 @@
         "text": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "The localized text of the review."
-        },
-        "visitDate": {
-          "$ref": "GoogleMapsPlacesV1ReviewVisitDate",
-          "description": "The date when the author visited the place. This is trucated to month."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleMapsPlacesV1ReviewVisitDate": {
-      "description": "The date when the author visited the place. This is trucated to month.",
-      "id": "GoogleMapsPlacesV1ReviewVisitDate",
-      "properties": {
-        "month": {
-          "description": "The month the author visited the place, e.g. 4. The value is between 1 and 12.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "year": {
-          "description": "The year the author visited the place, e.g. 2025.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
