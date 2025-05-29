@@ -2147,7 +2147,7 @@
       }
     }
   },
-  "revision": "20250420",
+  "revision": "20250518",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3428,6 +3428,10 @@
       "description": "Configures various aspects of Dataform notebook runtime.",
       "id": "NotebookRuntimeOptions",
       "properties": {
+        "aiPlatformNotebookRuntimeTemplate": {
+          "description": "Optional. The resource name of the [Colab runtime template] (https://cloud.google.com/colab/docs/runtimes), from which a runtime is created for notebook executions. If not specified, a runtime is created with Colab's default specifications.",
+          "type": "string"
+        },
         "gcsOutputBucket": {
           "description": "Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.",
           "type": "string"

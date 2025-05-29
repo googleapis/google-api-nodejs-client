@@ -1111,6 +1111,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$NotebookRuntimeOptions {
     /**
+     * Optional. The resource name of the [Colab runtime template] (https://cloud.google.com/colab/docs/runtimes), from which a runtime is created for notebook executions. If not specified, a runtime is created with Colab's default specifications.
+     */
+    aiPlatformNotebookRuntimeTemplate?: string | null;
+    /**
      * Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.
      */
     gcsOutputBucket?: string | null;
