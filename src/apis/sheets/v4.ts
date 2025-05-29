@@ -313,6 +313,15 @@ export namespace sheets_v4 {
     table?: Schema$Table;
   }
   /**
+   * The result of adding a table.
+   */
+  export interface Schema$AddTableResponse {
+    /**
+     * Output only. The table that was added.
+     */
+    table?: Schema$Table;
+  }
+  /**
    * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
@@ -402,9 +411,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$BandedRange {
     /**
-     * The ID of the banded range.
+     * The ID of the banded range. If unset, refer to banded_range_reference.
      */
     bandedRangeId?: number | null;
+    /**
+     * Output only. The reference of the banded range, used to identify the ID that is not supported by the banded_range_id.
+     */
+    bandedRangeReference?: string | null;
     /**
      * Properties for column bands. These properties are applied on a column- by-column basis throughout all the columns in the range. At least one of row_properties or column_properties must be specified.
      */
@@ -3833,6 +3846,10 @@ export namespace sheets_v4 {
      * A reply from adding a slicer.
      */
     addSlicer?: Schema$AddSlicerResponse;
+    /**
+     * A reply from adding a table.
+     */
+    addTable?: Schema$AddTableResponse;
     /**
      * A reply from cancelling data source object refreshes.
      */
