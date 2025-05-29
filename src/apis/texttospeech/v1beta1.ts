@@ -304,6 +304,10 @@ export namespace texttospeech_v1beta1 {
      */
     customPronunciations?: Schema$CustomPronunciations;
     /**
+     * Markup for HD voices specifically. This field may not be used with any other voices.
+     */
+    markup?: string | null;
+    /**
      * The multi-speaker input to be synthesized. Only applicable for multi-speaker synthesis.
      */
     multiSpeakerMarkup?: Schema$MultiSpeakerMarkup;
