@@ -1893,6 +1893,10 @@ export namespace chromemanagement_v1 {
      */
     networkStateChangeEvent?: Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent;
     /**
+     * Output only. Payload for OS crash event. Present only when `event_type` is `OS_CRASH`.
+     */
+    osCrashEvent?: Schema$GoogleChromeManagementV1TelemetryOsCrashEvent;
+    /**
      * Timestamp that represents when the event was reported.
      */
     reportTime?: string | null;
@@ -2006,6 +2010,23 @@ export namespace chromemanagement_v1 {
      * If set, only sends notifications for telemetry data coming from devices owned by users in this org unit.
      */
     userOrgUnitId?: string | null;
+  }
+  /**
+   * OS crash data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryOsCrashEvent {
+    /**
+     * Crash id.
+     */
+    crashId?: string | null;
+    /**
+     * Crash type.
+     */
+    crashType?: string | null;
+    /**
+     * Session type.
+     */
+    sessionType?: string | null;
   }
   /**
    * `TelemetryUsbPeripheralsEvent` is triggered USB devices are either added or removed. * Granular permission needed: TELEMETRY_API_PERIPHERALS_REPORT
