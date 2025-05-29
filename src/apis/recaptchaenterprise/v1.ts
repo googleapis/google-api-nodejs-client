@@ -542,6 +542,10 @@ export namespace recaptchaenterprise_v1 {
      */
     cardTestingVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict;
     /**
+     * Output only. Reasons why the transaction is probably fraudulent and received a high transaction risk score.
+     */
+    riskReasons?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason[];
+    /**
      * Output only. Assessment of this transaction for risk of a stolen instrument.
      */
     stolenInstrumentVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict;
@@ -567,6 +571,15 @@ export namespace recaptchaenterprise_v1 {
      * Output only. Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     risk?: number | null;
+  }
+  /**
+   * Risk reasons applicable to the Fraud Prevention assessment.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason {
+    /**
+     * Output only. Risk reasons applicable to the Fraud Prevention assessment.
+     */
+    reason?: string | null;
   }
   /**
    * Information about stolen instrument fraud, where the user is not the legitimate owner of the instrument being used for the purchase.
