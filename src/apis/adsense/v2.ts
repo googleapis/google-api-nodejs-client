@@ -597,7 +597,7 @@ export namespace adsense_v2 {
    */
   export interface Schema$PolicyTopic {
     /**
-     * Required. Deprecated. Policy topics no longer have a "must-fix" classification.
+     * Required. Deprecated. Always set to false.
      */
     mustFix?: boolean | null;
     /**
