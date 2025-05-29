@@ -366,6 +366,10 @@ export namespace backupdr_v1 {
      */
     description?: string | null;
     /**
+     * Output only. Disk specific backup properties.
+     */
+    diskBackupProperties?: Schema$DiskBackupProperties;
+    /**
      * Optional. The backup can not be deleted before this time.
      */
     enforcedRetentionEndTime?: string | null;
@@ -685,6 +689,10 @@ export namespace backupdr_v1 {
      */
     state?: string | null;
     /**
+     * Output only. All resource types to which backupPlan can be applied.
+     */
+    supportedResourceTypes?: string[] | null;
+    /**
      * Output only. When the `BackupPlan` was last updated.
      */
     updateTime?: string | null;
@@ -735,7 +743,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupRule {
     /**
-     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
      */
     backupRetentionDays?: number | null;
     /**
@@ -743,7 +751,7 @@ export namespace backupdr_v1 {
      */
     ruleId?: string | null;
     /**
-     * Required. Defines a schedule that runs within the confines of a defined window of time.
+     * Optional. Defines a schedule that runs within the confines of a defined window of time.
      */
     standardSchedule?: Schema$StandardSchedule;
   }
@@ -1089,6 +1097,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$DataSource {
     /**
+     * Output only. This field is set to true if the backup is blocked by vault access restriction.
+     */
+    backupBlockedByVaultAccessRestriction?: boolean | null;
+    /**
      * Output only. Details of how the resource is configured for backup.
      */
     backupConfigInfo?: Schema$BackupConfigInfo;
@@ -1179,6 +1191,10 @@ export namespace backupdr_v1 {
      */
     computeInstanceDatasourceProperties?: Schema$ComputeInstanceDataSourceProperties;
     /**
+     * DiskDataSourceProperties has a subset of Disk properties that are useful at the Datasource level.
+     */
+    diskDatasourceProperties?: Schema$DiskDataSourceProperties;
+    /**
      * Output only. Full resource pathname URL of the source Google Cloud resource.
      */
     gcpResourcename?: string | null;
@@ -1190,6 +1206,158 @@ export namespace backupdr_v1 {
      * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
      */
     type?: string | null;
+  }
+  /**
+   * DiskBackupProperties represents the properties of a Disk backup.
+   */
+  export interface Schema$DiskBackupProperties {
+    /**
+     * The architecture of the source disk. Valid values are ARM64 or X86_64.
+     */
+    architecture?: string | null;
+    /**
+     * A description of the source disk.
+     */
+    description?: string | null;
+    /**
+     * A list of guest OS features that are applicable to this backup.
+     */
+    guestOsFeature?: Schema$GuestOsFeature[];
+    /**
+     * A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image.
+     */
+    licenses?: string[] | null;
+    /**
+     * Region and zone are mutually exclusive fields. The URL of the region of the source disk.
+     */
+    region?: string | null;
+    /**
+     * The URL of the Zones where the source disk should be replicated.
+     */
+    replicaZones?: string[] | null;
+    /**
+     * Size(in GB) of the source disk.
+     */
+    sizeGb?: string | null;
+    /**
+     * The source disk used to create this backup.
+     */
+    sourceDisk?: string | null;
+    /**
+     * The URL of the type of the disk.
+     */
+    type?: string | null;
+    /**
+     * The URL of the Zone where the source disk.
+     */
+    zone?: string | null;
+  }
+  /**
+   * DiskDataSourceProperties represents the properties of a Disk resource that are stored in the DataSource. .
+   */
+  export interface Schema$DiskDataSourceProperties {
+    /**
+     * The description of the disk.
+     */
+    description?: string | null;
+    /**
+     * Name of the disk backed up by the datasource.
+     */
+    name?: string | null;
+    /**
+     * The size of the disk in GB.
+     */
+    sizeGb?: string | null;
+    /**
+     * The type of the disk.
+     */
+    type?: string | null;
+  }
+  /**
+   * DiskRestoreProperties represents the properties of a Disk restore.
+   */
+  export interface Schema$DiskRestoreProperties {
+    /**
+     * Optional. The access mode of the disk.
+     */
+    accessMode?: string | null;
+    /**
+     * Optional. The architecture of the source disk. Valid values are ARM64 or X86_64.
+     */
+    architecture?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key.
+     */
+    diskEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Optional. Indicates whether this disk is using confidential compute mode. Encryption with a Cloud KMS key is required to enable this option.
+     */
+    enableConfidentialCompute?: boolean | null;
+    /**
+     * Optional. A list of features to enable in the guest operating system. This is applicable only for bootable images.
+     */
+    guestOsFeature?: Schema$GuestOsFeature[];
+    /**
+     * Optional. Labels to apply to this disk. These can be modified later using setLabels method. Label values can be empty.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image
+     */
+    licenses?: string[] | null;
+    /**
+     * Required. Name of the disk..
+     */
+    name?: string | null;
+    /**
+     * Optional. Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently, the supported size is 4096.
+     */
+    physicalBlockSizeBytes?: string | null;
+    /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle.
+     */
+    provisionedIops?: string | null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle.
+     */
+    provisionedThroughput?: string | null;
+    /**
+     * Optional. Resource manager tags to be bound to the disk.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
+    /**
+     * Optional. Resource policies applied to this disk.
+     */
+    resourcePolicy?: string[] | null;
+    /**
+     * Required. The size of the disk in GB.
+     */
+    sizeGb?: string | null;
+    /**
+     * Optional. The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource.
+     */
+    storagePool?: string | null;
+    /**
+     * Required. URL of the disk type resource describing which disk type to use to create the disk.
+     */
+    type?: string | null;
+  }
+  /**
+   * DiskTargetEnvironment represents the target environment for the disk.
+   */
+  export interface Schema$DiskTargetEnvironment {
+    /**
+     * Required. Target project for the disk.
+     */
+    project?: string | null;
+    /**
+     * Required. Target zone for the disk.
+     */
+    zone?: string | null;
   }
   /**
    * A set of Display Device options
@@ -1893,6 +2061,23 @@ export namespace backupdr_v1 {
     version?: number | null;
   }
   /**
+   * RegionDiskTargetEnvironment represents the target environment for the disk.
+   */
+  export interface Schema$RegionDiskTargetEnvironment {
+    /**
+     * Required. Target project for the disk.
+     */
+    project?: string | null;
+    /**
+     * Required. Target region for the disk.
+     */
+    region?: string | null;
+    /**
+     * Required. Target URLs of the replica zones for the disk.
+     */
+    replicaZones?: string[] | null;
+  }
+  /**
    * Message for deleting a DataSource.
    */
   export interface Schema$RemoveDataSourceRequest {
@@ -1954,6 +2139,18 @@ export namespace backupdr_v1 {
      * Compute Engine target environment to be used during restore.
      */
     computeInstanceTargetEnvironment?: Schema$ComputeInstanceTargetEnvironment;
+    /**
+     * Disk properties to be overridden during restore.
+     */
+    diskRestoreProperties?: Schema$DiskRestoreProperties;
+    /**
+     * Disk target environment to be used during restore.
+     */
+    diskTargetEnvironment?: Schema$DiskTargetEnvironment;
+    /**
+     * Region disk target environment to be used during restore.
+     */
+    regionDiskTargetEnvironment?: Schema$RegionDiskTargetEnvironment;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -2859,6 +3056,92 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * Update a BackupPlanAssociation
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Backupplanassociations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplanassociations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplanassociations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupplanassociations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Triggers a new Backup.
      *
      * @param params - Parameters for request
@@ -3004,6 +3287,26 @@ export namespace backupdr_v1 {
      * Required. The project and location for which to retrieve backup Plan Associations information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud BackupDR, locations map to GCP regions, for example **us-central1**. To retrieve backup plan associations for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. The list of fields to update. Field mask is used to specify the fields to be overwritten in the BackupPlanAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the request will fail. Currently backup_plan_association.backup_plan is the only supported field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BackupPlanAssociation;
   }
   export interface Params$Resource$Projects$Locations$Backupplanassociations$Triggerbackup
     extends StandardParameters {
@@ -4200,6 +4503,10 @@ export namespace backupdr_v1 {
      * Optional. If set to true, will not check plan duration against backup vault enforcement duration.
      */
     force?: boolean;
+    /**
+     * Optional. If set to true, we will force update access restriction even if some non compliant data sources are present. The default is 'false'.
+     */
+    forceUpdateAccessRestriction?: boolean;
     /**
      * Output only. Identifier. Name of the backup vault to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}"`. `{backupvault\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.
      */
