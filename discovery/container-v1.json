@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250408",
+  "revision": "20250513",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2783,6 +2783,10 @@
           "$ref": "GkeBackupAgentConfig",
           "description": "Configuration for the Backup for GKE agent addon."
         },
+        "highScaleCheckpointingConfig": {
+          "$ref": "HighScaleCheckpointingConfig",
+          "description": "Configuration for the High Scale Checkpointing add-on."
+        },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
           "description": "Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods."
@@ -2854,12 +2858,34 @@
           "description": "Whether or not to enable nested virtualization (defaults to false).",
           "type": "boolean"
         },
+        "performanceMonitoringUnit": {
+          "description": "Type of Performance Monitoring Unit (PMU) requested on node pool instances. If unset, PMU will not be available to the node.",
+          "enum": [
+            "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED",
+            "ARCHITECTURAL",
+            "STANDARD",
+            "ENHANCED"
+          ],
+          "enumDescriptions": [
+            "PMU not enabled.",
+            "Architecturally defined non-LLC events.",
+            "Most documented core/L2 events.",
+            "Most documented core/L2 and LLC events."
+          ],
+          "type": "string"
+        },
         "threadsPerCore": {
           "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
           "format": "int64",
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AnonymousAuthenticationConfig": {
+      "description": "AnonymousAuthenticationConfig defines the settings needed to limit endpoints that allow anonymous authentication.",
+      "id": "AnonymousAuthenticationConfig",
+      "properties": {},
       "type": "object"
     },
     "AuthenticatorGroupsConfig": {
@@ -3286,6 +3312,17 @@
         "addonsConfig": {
           "$ref": "AddonsConfig",
           "description": "Configurations for the various addons available to run in the cluster."
+        },
+        "alphaClusterFeatureGates": {
+          "description": "The list of user specified Kubernetes feature gates. Each string represents the activation status of a feature gate (e.g. \"featureX=true\" or \"featureX=false\")",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "anonymousAuthenticationConfig": {
+          "$ref": "AnonymousAuthenticationConfig",
+          "description": "Configuration for limiting anonymous access to all endpoints except the health checks."
         },
         "authenticatorGroupsConfig": {
           "$ref": "AuthenticatorGroupsConfig",
@@ -3727,6 +3764,10 @@
         "desiredAddonsConfig": {
           "$ref": "AddonsConfig",
           "description": "Configurations for the various addons available to run in the cluster."
+        },
+        "desiredAnonymousAuthenticationConfig": {
+          "$ref": "AnonymousAuthenticationConfig",
+          "description": "Configuration for limiting anonymous access to all endpoints except the health checks."
         },
         "desiredAuthenticatorGroupsConfig": {
           "$ref": "AuthenticatorGroupsConfig",
@@ -4844,6 +4885,17 @@
       },
       "type": "object"
     },
+    "HighScaleCheckpointingConfig": {
+      "description": "Configuration for the High Scale Checkpointing.",
+      "id": "HighScaleCheckpointingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the High Scale Checkpointing is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "HorizontalPodAutoscaling": {
       "description": "Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.",
       "id": "HorizontalPodAutoscaling",
@@ -5501,6 +5553,17 @@
       },
       "type": "object"
     },
+    "MemoryManager": {
+      "description": "The option enables the Kubernetes NUMA-aware Memory Manager feature. Detailed description about the feature can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/).",
+      "id": "MemoryManager",
+      "properties": {
+        "policy": {
+          "description": "Controls the memory management policy on the Node. See https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#policies The following values are allowed. * \"none\" * \"static\" The default value is 'none' if unspecified.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MeshCertificates": {
       "description": "Configuration for issuance of mTLS keys and certificates to Kubernetes pods.",
       "id": "MeshCertificates",
@@ -6123,10 +6186,18 @@
           "description": "Enable or disable Kubelet read only port.",
           "type": "boolean"
         },
+        "memoryManager": {
+          "$ref": "MemoryManager",
+          "description": "Optional. Controls NUMA-aware Memory Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/"
+        },
         "podPidsLimit": {
           "description": "Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.",
           "format": "int64",
           "type": "string"
+        },
+        "topologyManager": {
+          "$ref": "TopologyManager",
+          "description": "Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/"
         }
       },
       "type": "object"
@@ -8120,6 +8191,21 @@
         "startTime": {
           "description": "The time that the window first starts.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TopologyManager": {
+      "description": "TopologyManager defines the configuration options for Topology Manager feature. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/",
+      "id": "TopologyManager",
+      "properties": {
+        "policy": {
+          "description": "Configures the strategy for resource alignment. Allowed values are: * none: the default policy, and does not perform any topology alignment. * restricted: the topology manager stores the preferred NUMA node affinity for the container, and will reject the pod if the affinity if not preferred. * best-effort: the topology manager stores the preferred NUMA node affinity for the container. If the affinity is not preferred, the topology manager will admit the pod to the node anyway. * single-numa-node: the topology manager determines if the single NUMA node affinity is possible. If it is, Topology Manager will store this and the Hint Providers can then use this information when making the resource allocation decision. If, however, this is not possible then the Topology Manager will reject the pod from the node. This will result in a pod in a Terminated state with a pod admission failure. The default policy value is 'none' if unspecified. Details about each strategy can be found [here](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-policies).",
+          "type": "string"
+        },
+        "scope": {
+          "description": "The Topology Manager aligns resources in following scopes: * container * pod The default scope is 'container' if unspecified. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-scopes",
           "type": "string"
         }
       },
