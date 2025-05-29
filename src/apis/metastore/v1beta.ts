@@ -854,6 +854,10 @@ export namespace metastore_v1beta {
     hourOfDay?: number | null;
   }
   /**
+   * This is proto2's version of MessageSet.DEPRECATED: DO NOT USE FOR NEW FIELDS.If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use Any instead.MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a "bridge" solution to migrate MessageSet-bearing messages from proto1 to proto2.This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.
+   */
+  export interface Schema$MessageSet {}
+  /**
    * The details of a metadata export operation.
    */
   export interface Schema$MetadataExport {
@@ -1415,6 +1419,31 @@ export namespace metastore_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Wire-format for a Status object
+   */
+  export interface Schema$StatusProto {
+    /**
+     * copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;
+     */
+    canonicalCode?: number | null;
+    /**
+     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;
+     */
+    code?: number | null;
+    /**
+     * Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;
+     */
+    message?: string | null;
+    /**
+     * message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;
+     */
+    messageSet?: Schema$MessageSet;
+    /**
+     * copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs
+     */
+    space?: string | null;
   }
   /**
    * Telemetry Configuration for the Dataproc Metastore service.
