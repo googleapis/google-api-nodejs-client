@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/mybusinessqanda",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "mybusinessqanda",
   "main": "build/index.js",
   "types": "build/index.d.ts",

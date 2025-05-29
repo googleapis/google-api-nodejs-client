@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/remotebuildexecution",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "remotebuildexecution",
   "main": "build/index.js",
   "types": "build/index.d.ts",
