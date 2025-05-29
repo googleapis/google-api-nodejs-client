@@ -197,6 +197,104 @@ export namespace androidmanagement_v1 {
     minApiLevel?: number | null;
   }
   /**
+   * Access Point Name (APN) policy. Configuration for Access Point Names (APNs) which may override any other APNs on the device. See OVERRIDE_APNS_ENABLED and overrideApns for details.
+   */
+  export interface Schema$ApnPolicy {
+    /**
+     * Optional. APN settings for override APNs. There must not be any conflict between any of APN settings provided, otherwise the policy will be rejected. Two ApnSettings are considered to conflict when all of the following fields match on both: numericOperatorId, apn, proxyAddress, proxyPort, mmsProxyAddress, mmsProxyPort, mmsc, mvnoType, protocol, roamingProtocol. If some of the APN settings result in non-compliance of INVALID_VALUE , they will be ignored. This can be set on fully managed devices on Android 10 and above. This can also be set on work profiles on Android 13 and above and only with ApnSetting's with ENTERPRISE APN type. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles on Android versions less than 13.
+     */
+    apnSettings?: Schema$ApnSetting[];
+    /**
+     * Optional. Whether override APNs are disabled or enabled. See DevicePolicyManager.setOverrideApnsEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setOverrideApnsEnabled) for more details.
+     */
+    overrideApns?: string | null;
+  }
+  /**
+   * An Access Point Name (APN) configuration for a carrier data connection. The APN provides configuration to connect a cellular network device to an IP data network. A carrier uses this setting to decide which IP address to assign, any security methods to apply, and how the device might be connected to private networks.
+   */
+  export interface Schema$ApnSetting {
+    /**
+     * Optional. Whether User Plane resources have to be activated during every transition from CM-IDLE mode to CM-CONNECTED state for this APN. See 3GPP TS 23.501 section 5.6.13.
+     */
+    alwaysOnSetting?: string | null;
+    /**
+     * Required. Name of the APN. Policy will be rejected if this field is empty.
+     */
+    apn?: string | null;
+    /**
+     * Required. Usage categories for the APN. Policy will be rejected if this field is empty or contains APN_TYPE_UNSPECIFIED or duplicates. Multiple APN types can be set on fully managed devices. ENTERPRISE is the only allowed APN type on work profiles. A nonComplianceDetail with MANAGEMENT_MODE is reported for any other value on work profiles. APN types that are not supported on the device or management mode will be ignored. If this results in the empty list, the APN setting will be ignored, because apnTypes is a required field. A nonComplianceDetail with INVALID_VALUE is reported if none of the APN types are supported on the device or management mode.
+     */
+    apnTypes?: string[] | null;
+    /**
+     * Optional. Authentication type of the APN.
+     */
+    authType?: string | null;
+    /**
+     * Optional. Carrier ID for the APN. A value of 0 (default) means not set and negative values are rejected.
+     */
+    carrierId?: number | null;
+    /**
+     * Required. Human-readable name that describes the APN. Policy will be rejected if this field is empty.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. MMSC (Multimedia Messaging Service Center) URI of the APN.
+     */
+    mmsc?: string | null;
+    /**
+     * Optional. MMS (Multimedia Messaging Service) proxy address of the APN which can be an IP address or hostname (not a URL).
+     */
+    mmsProxyAddress?: string | null;
+    /**
+     * Optional. MMS (Multimedia Messaging Service) proxy port of the APN. A value of 0 (default) means not set and negative values are rejected.
+     */
+    mmsProxyPort?: number | null;
+    /**
+     * Optional. The default MTU (Maximum Transmission Unit) size in bytes of the IPv4 routes brought up by this APN setting. A value of 0 (default) means not set and negative values are rejected. Supported on Android 13 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.
+     */
+    mtuV4?: number | null;
+    /**
+     * Optional. The MTU (Maximum Transmission Unit) size of the IPv6 mobile interface to which the APN connected. A value of 0 (default) means not set and negative values are rejected. Supported on Android 13 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.
+     */
+    mtuV6?: number | null;
+    /**
+     * Optional. MVNO match type for the APN.
+     */
+    mvnoType?: string | null;
+    /**
+     * Optional. Radio technologies (network types) the APN may use. Policy will be rejected if this field contains NETWORK_TYPE_UNSPECIFIED or duplicates.
+     */
+    networkTypes?: string[] | null;
+    /**
+     * Optional. The numeric operator ID of the APN. Numeric operator ID is defined as MCC (Mobile Country Code) + MNC (Mobile Network Code).
+     */
+    numericOperatorId?: string | null;
+    /**
+     * Optional. APN password of the APN.
+     */
+    password?: string | null;
+    /**
+     * Optional. The protocol to use to connect to this APN.
+     */
+    protocol?: string | null;
+    /**
+     * Optional. The proxy address of the APN.
+     */
+    proxyAddress?: string | null;
+    /**
+     * Optional. The proxy port of the APN. A value of 0 (default) means not set and negative values are rejected.
+     */
+    proxyPort?: number | null;
+    /**
+     * Optional. The protocol to use to connect to this APN while the device is roaming.
+     */
+    roamingProtocol?: string | null;
+    /**
+     * Optional. APN username of the APN.
+     */
+    username?: string | null;
+  }
+  /**
    * Information about an app.
    */
   export interface Schema$Application {
@@ -395,6 +493,10 @@ export namespace androidmanagement_v1 {
      * Explicit permission grants or denials for the app. These values override the default_permission_policy and permission_grants which apply to all apps.
      */
     permissionGrants?: Schema$PermissionGrant[];
+    /**
+     * Optional. ID of the preferential network the application uses. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the application will use the default network ID specified in defaultPreferentialNetworkId. See the documentation of defaultPreferentialNetworkId for the list of apps excluded from this defaulting. This applies on both work profiles and fully managed devices on Android 13 and above.
+     */
+    preferentialNetworkId?: string | null;
     /**
      * Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Supported on Android 11 and above.
      */
@@ -1042,6 +1144,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceConnectivityManagement {
     /**
+     * Optional. Access Point Name (APN) policy. Configuration for Access Point Names (APNs) which may override any other APNs on the device. See OVERRIDE_APNS_ENABLED and overrideApns for details.
+     */
+    apnPolicy?: Schema$ApnPolicy;
+    /**
      * Optional. Controls whether Bluetooth sharing is allowed.
      */
     bluetoothSharing?: string | null;
@@ -1049,6 +1155,10 @@ export namespace androidmanagement_v1 {
      * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
      */
     configureWifi?: string | null;
+    /**
+     * Optional. Preferential network service configuration. Setting this field will override preferentialNetworkService. This can be set on both work profiles and fully managed devices on Android 13 and above.
+     */
+    preferentialNetworkServiceSettings?: Schema$PreferentialNetworkServiceSettings;
     /**
      * Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
      */
@@ -2466,6 +2576,10 @@ export namespace androidmanagement_v1 {
      */
     ensureVerifyAppsEnabled?: boolean | null;
     /**
+     * Optional. Controls whether the enterpriseDisplayName is visible on the device (e.g. lock screen message on company-owned devices).
+     */
+    enterpriseDisplayNameVisibility?: string | null;
+    /**
      * Whether factory resetting from settings is disabled.
      */
     factoryResetDisabled?: boolean | null;
@@ -2598,7 +2712,7 @@ export namespace androidmanagement_v1 {
      */
     policyEnforcementRules?: Schema$PolicyEnforcementRule[];
     /**
-     * Controls whether preferential network service is enabled on the work profile. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This has no effect on fully managed devices.
+     * Controls whether preferential network service is enabled on the work profile or on fully managed devices. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This policy has no effect if preferentialNetworkServiceSettings or ApplicationPolicy.preferentialNetworkId is set on devices running Android 13 or above.
      */
     preferentialNetworkService?: string | null;
     /**
@@ -2709,6 +2823,10 @@ export namespace androidmanagement_v1 {
      * This is deprecated.
      */
     wifiConfigsLockdownEnabled?: boolean | null;
+    /**
+     * Optional. Controls the work account setup configuration, such as details of whether a Google authenticated account is required.
+     */
+    workAccountSetupConfig?: Schema$WorkAccountSetupConfig;
   }
   /**
    * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName. In the case of multiple matching or multiple triggered enforcement rules, a merge will occur with the most severe action being taken. However, all triggered rules are still kept track of: this includes initial trigger time and all associated non-compliance details. In the situation where the most severe enforcement rule is satisfied, the next most appropriate action is applied.
@@ -2756,6 +2874,36 @@ export namespace androidmanagement_v1 {
      * Event type.
      */
     eventType?: string | null;
+  }
+  /**
+   * Individual preferential network service configuration.
+   */
+  export interface Schema$PreferentialNetworkServiceConfig {
+    /**
+     * Optional. Whether fallback to the device-wide default network is allowed. If this is set to FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED, then nonMatchingNetworks must not be set to NON_MATCHING_NETWORKS_DISALLOWED, the policy will be rejected otherwise. Note: If this is set to FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED, applications are not able to access the internet if the 5G slice is not available.
+     */
+    fallbackToDefaultConnection?: string | null;
+    /**
+     * Optional. Whether apps this configuration applies to are blocked from using networks other than the preferential service. If this is set to NON_MATCHING_NETWORKS_DISALLOWED, then fallbackToDefaultConnection must be set to FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED.
+     */
+    nonMatchingNetworks?: string | null;
+    /**
+     * Required. Preferential network identifier. This must not be set to NO_PREFERENTIAL_NETWORK or PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the policy will be rejected otherwise.
+     */
+    preferentialNetworkId?: string | null;
+  }
+  /**
+   * Preferential network service settings.
+   */
+  export interface Schema$PreferentialNetworkServiceSettings {
+    /**
+     * Required. Default preferential network ID for the applications that are not in applications or if ApplicationPolicy.preferentialNetworkId is set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs, unless this is set to NO_PREFERENTIAL_NETWORK. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED or unset, this defaults to NO_PREFERENTIAL_NETWORK. Note: If the default preferential network is misconfigured, applications with no ApplicationPolicy.preferentialNetworkId set are not able to access the internet. This setting does not apply to the following critical apps: com.google.android.apps.work.clouddpc com.google.android.gmsApplicationPolicy.preferentialNetworkId can still be used to configure the preferential network for them.
+     */
+    defaultPreferentialNetworkId?: string | null;
+    /**
+     * Required. Preferential network service configurations which enables having multiple enterprise slices. There must not be multiple configurations with the same preferentialNetworkId. If a configuration is not referenced by any application by setting ApplicationPolicy.preferentialNetworkId or by setting defaultPreferentialNetworkId, it will be ignored. For devices on 4G networks, enterprise APN needs to be configured additionally to set up data call for preferential network service. These APNs can be added using apnPolicy.
+     */
+    preferentialNetworkServiceConfigs?: Schema$PreferentialNetworkServiceConfig[];
   }
   /**
    * Information about a device that is available during setup.
@@ -3516,6 +3664,19 @@ export namespace androidmanagement_v1 {
    * The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.
    */
   export interface Schema$WipeFailureEvent {}
+  /**
+   * Controls the work account setup configuration, such as details of whether a Google authenticated account is required.
+   */
+  export interface Schema$WorkAccountSetupConfig {
+    /**
+     * Optional. The authentication type of the user on the device.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. The specific google work account email address to be added. This field is only relevant if authenticationType is GOOGLE_AUTHENTICATED. This must be an enterprise account and not a consumer account. Once set and a Google authenticated account is added to the device, changing this field will have no effect, and thus recommended to be set only once.
+     */
+    requiredAccountEmail?: string | null;
+  }
 
   export class Resource$Enterprises {
     context: APIRequestContext;
@@ -4273,7 +4434,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.
+     * Deletes a device. This operation attempts to wipe the device but this is not guaranteed to succeed if the device is offline for an extended period. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
