@@ -1,5 +1,16 @@
 # Changelog
 
+## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v30.0.0...displayvideo-v31.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
 ## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v29.0.0...displayvideo-v30.0.0) (2025-05-05)
 
 

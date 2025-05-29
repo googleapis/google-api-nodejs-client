@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/domainsrdap-v1.0.10...domainsrdap-v2.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
 ## [1.0.10](https://github.com/googleapis/google-api-nodejs-client/compare/domainsrdap-v1.0.9...domainsrdap-v1.0.10) (2024-08-16)
 
 
