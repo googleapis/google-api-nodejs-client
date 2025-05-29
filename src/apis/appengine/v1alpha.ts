@@ -2582,10 +2582,15 @@ export namespace appengine_v1alpha {
   export class Resource$Projects$Locations$Applications {
     context: APIRequestContext;
     authorizedDomains: Resource$Projects$Locations$Applications$Authorizeddomains;
+    domainMappings: Resource$Projects$Locations$Applications$Domainmappings;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.authorizedDomains =
         new Resource$Projects$Locations$Applications$Authorizeddomains(
+          this.context
+        );
+      this.domainMappings =
+        new Resource$Projects$Locations$Applications$Domainmappings(
           this.context
         );
     }
@@ -2716,6 +2721,132 @@ export namespace appengine_v1alpha {
     pageToken?: string;
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     */
+    projectsId?: string;
+  }
+
+  export class Resource$Projects$Locations$Applications$Domainmappings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the specified domain mapping.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Domainmappings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Domainmappings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Domainmappings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Domainmappings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Domainmappings$Get,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Domainmappings$Get
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Domainmappings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Domainmappings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'domainMappingsId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'domainMappingsId',
+          'locationsId',
+          'projectsId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DomainMapping>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DomainMapping>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Domainmappings$Get
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    domainMappingsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     projectsId?: string;
   }

@@ -1766,6 +1766,57 @@
                     }
                   }
                 },
+                "domainMappings": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the specified domain mapping.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.domainMappings.get",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "domainMappingsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "domainMappingsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "response": {
+                        "$ref": "DomainMapping"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
+                },
                 "services": {
                   "methods": {
                     "delete": {
@@ -1806,6 +1857,65 @@
                         }
                       },
                       "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the configuration of the specified service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "httpMethod": "PATCH",
+                      "id": "appengine.projects.locations.applications.services.patch",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "servicesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "migrateTraffic": {
+                          "description": "Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "servicesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Standard field mask for the set of fields to be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "request": {
+                        "$ref": "Service"
+                      },
                       "response": {
                         "$ref": "Operation"
                       },
@@ -1941,7 +2051,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250512",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
