@@ -236,9 +236,14 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://storage.northamerica-northeast1.rep.googleapis.com/",
       "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://storage.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
     }
   ],
-  "etag": "\"38353737343034333936303735343633323432\"",
+  "etag": "\"3137363332393730373232373731313039383638\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/cloud_storage-16.png",
     "x32": "https://www.google.com/images/icons/product/cloud_storage-32.png"
@@ -4524,7 +4529,7 @@
       }
     }
   },
-  "revision": "20250424",
+  "revision": "20250521",
   "rootUrl": "https://storage.googleapis.com/",
   "schemas": {
     "AdvanceRelocateBucketOperationRequest": {
@@ -4816,6 +4821,10 @@
         "ipFilter": {
           "description": "The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.",
           "properties": {
+            "allowCrossOrgVpcs": {
+              "description": "Whether to allow cross-org VPCs in the bucket's IP filter configuration.",
+              "type": "boolean"
+            },
             "mode": {
               "description": "The mode of the IP filter. Valid values are 'Enabled' and 'Disabled'.",
               "type": "string"

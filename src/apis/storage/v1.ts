@@ -300,6 +300,7 @@ export namespace storage_v1 {
      * The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.
      */
     ipFilter?: {
+      allowCrossOrgVpcs?: boolean;
       mode?: string;
       publicNetworkSource?: {allowedIpCidrRanges?: string[]};
       vpcNetworkSources?: Array<{
