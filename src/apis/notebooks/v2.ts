@@ -217,10 +217,6 @@ export namespace notebooks_v2 {
      * Optional. Defines the type of technology used by the confidential instance.
      */
     confidentialInstanceType?: string | null;
-    /**
-     * Optional. Defines whether the instance should have confidential compute enabled.
-     */
-    enableConfidentialCompute?: boolean | null;
   }
   /**
    * Response for getting WbI configurations in a location
@@ -419,6 +415,10 @@ export namespace notebooks_v2 {
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
+     * Optional. Specifies the reservations that this instance can consume from.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
+    /**
      * Optional. The service account that serves as an identity for the VM instance. Currently supports only one service account.
      */
     serviceAccounts?: Schema$ServiceAccount[];
@@ -478,6 +478,10 @@ export namespace notebooks_v2 {
      */
     disableProxyAccess?: boolean | null;
     /**
+     * Optional. If true, deletion protection will be enabled for this Workbench Instance. If false, deletion protection will be disabled for this Workbench Instance.
+     */
+    enableDeletionProtection?: boolean | null;
+    /**
      * Optional. Flag that specifies that a notebook can be accessed with third party identity provider.
      */
     enableThirdPartyIdentity?: boolean | null;
@@ -498,7 +502,7 @@ export namespace notebooks_v2 {
      */
     id?: string | null;
     /**
-     * Optional. Input only. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.
+     * Optional. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.
      */
     instanceOwners?: string[] | null;
     /**
@@ -720,6 +724,23 @@ export namespace notebooks_v2 {
     vmId?: string | null;
   }
   /**
+   * A reservation that an instance can consume from.
+   */
+  export interface Schema$ReservationAffinity {
+    /**
+     * Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples.
+     */
+    consumeReservationType?: string | null;
+    /**
+     * Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
+     */
+    key?: string | null;
+    /**
+     * Optional. Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
+     */
+    values?: string[] | null;
+  }
+  /**
    * Request for resetting a notebook instance
    */
   export interface Schema$ResetInstanceRequest {}
@@ -785,7 +806,7 @@ export namespace notebooks_v2 {
    */
   export interface Schema$ShieldedInstanceConfig {
     /**
-     * Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created. Enabled by default.
+     * Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created.
      */
     enableIntegrityMonitoring?: boolean | null;
     /**
@@ -793,7 +814,7 @@ export namespace notebooks_v2 {
      */
     enableSecureBoot?: boolean | null;
     /**
-     * Optional. Defines whether the VM instance has the vTPM enabled. Enabled by default.
+     * Optional. Defines whether the VM instance has the vTPM enabled.
      */
     enableVtpm?: boolean | null;
   }
@@ -1147,6 +1168,10 @@ export namespace notebooks_v2 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
