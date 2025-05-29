@@ -1,5 +1,16 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v27.0.0...androidpublisher-v28.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v26.0.0...androidpublisher-v27.0.0) (2025-04-18)
 
 
