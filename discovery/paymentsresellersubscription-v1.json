@@ -523,7 +523,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250526",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1582,12 +1582,14 @@
           "enum": [
             "BILLING_CYCLE_SPEC_UNSPECIFIED",
             "BILLING_CYCLE_SPEC_ALIGN_WITH_PREVIOUS_SUBSCRIPTION",
-            "BILLING_CYCLE_SPEC_START_IMMEDIATELY"
+            "BILLING_CYCLE_SPEC_START_IMMEDIATELY",
+            "BILLING_CYCLE_SPEC_DEFERRED_TO_NEXT_RECURRENCE"
           ],
           "enumDescriptions": [
             "Billing cycle spec is not specified.",
-            "The billing cycle of the new subscription aligns with the previous subscription it upgrades or downgrades from.",
-            "The billing cycle of the new subscription starts immediately."
+            "The billing cycle of the new subscription starts immediately but aligns with the previous subscription it upgrades or downgrades from. First cycle of the new subscription will be prorated.",
+            "The billing cycle of the new subscription starts immediately.",
+            "The billing cycle starts at the end of the previous subscription's billing cycle and aligns with the previous subscription's billing cycle."
           ],
           "type": "string"
         },

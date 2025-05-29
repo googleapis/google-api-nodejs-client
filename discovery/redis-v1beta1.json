@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250418",
+  "revision": "20250512",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1562,6 +1562,7 @@
           "type": "string"
         },
         "ondemandMaintenance": {
+          "deprecated": true,
           "description": "Optional. Input only. Ondemand maintenance for the cluster. This field can be used to trigger ondemand critical update on the cluster.",
           "type": "boolean"
         },

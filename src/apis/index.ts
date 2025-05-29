@@ -96,6 +96,7 @@ import {
   VERSIONS as apigeeregistryVersions,
   apigeeregistry,
 } from './apigeeregistry';
+import {VERSIONS as apihubVersions, apihub} from './apihub';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
@@ -334,6 +335,10 @@ import {
   VERSIONS as firebaseappdistributionVersions,
   firebaseappdistribution,
 } from './firebaseappdistribution';
+import {
+  VERSIONS as firebaseapphostingVersions,
+  firebaseapphosting,
+} from './firebaseapphosting';
 import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
@@ -775,6 +780,7 @@ export const APIS: APIList = {
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
   apigeeregistry: apigeeregistryVersions,
+  apihub: apihubVersions,
   apikeys: apikeysVersions,
   apim: apimVersions,
   appengine: appengineVersions,
@@ -884,6 +890,7 @@ export const APIS: APIList = {
   firebase: firebaseVersions,
   firebaseappcheck: firebaseappcheckVersions,
   firebaseappdistribution: firebaseappdistributionVersions,
+  firebaseapphosting: firebaseapphostingVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedataconnect: firebasedataconnectVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
@@ -1087,6 +1094,7 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher;
   apigateway = apigateway;
   apigeeregistry = apigeeregistry;
+  apihub = apihub;
   apikeys = apikeys;
   apim = apim;
   appengine = appengine;
@@ -1196,6 +1204,7 @@ export class GeneratedAPIs {
   firebase = firebase;
   firebaseappcheck = firebaseappcheck;
   firebaseappdistribution = firebaseappdistribution;
+  firebaseapphosting = firebaseapphosting;
   firebasedatabase = firebasedatabase;
   firebasedataconnect = firebasedataconnect;
   firebasedynamiclinks = firebasedynamiclinks;

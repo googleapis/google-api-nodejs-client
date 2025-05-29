@@ -91,6 +91,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-southwest1.rep.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -158,6 +163,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.northamerica-northeast2.rep.googleapis.com/",
       "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
     },
     {
       "description": "Regional Endpoint",
@@ -1172,7 +1182,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250502",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {

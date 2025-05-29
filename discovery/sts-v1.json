@@ -19,6 +19,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://sts.asia-northeast1.rep.googleapis.com/",
       "location": "asia-northeast1"
     },
@@ -333,7 +338,7 @@
       }
     }
   },
-  "revision": "20250331",
+  "revision": "20250507",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
