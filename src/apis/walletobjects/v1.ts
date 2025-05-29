@@ -675,7 +675,7 @@ export namespace walletobjects_v1 {
    */
   export interface Schema$DiscoverableProgramMerchantSignupInfo {
     /**
-     *  User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.
+     * User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.
      */
     signupSharedDatas?: string[] | null;
     /**
