@@ -1619,7 +1619,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250508",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2408,7 +2408,7 @@
       "id": "ContinuousBackupInfo",
       "properties": {
         "earliestRestorableTime": {
-          "description": "Output only. The earliest restorable time that can be restored to. Output only field.",
+          "description": "Output only. The earliest restorable time that can be restored to. If continuous backups and recovery was recently enabled, the earliest restorable time is the creation time of the earliest eligible backup within this cluster's continuous backup recovery window. After a cluster has had continuous backups enabled for the duration of its recovery window, the earliest restorable time becomes \"now minus the recovery window\". For example, assuming a point in time recovery is attempted at 04/16/2025 3:23:00PM with a 14d recovery window, the earliest restorable time would be 04/02/2025 3:23:00PM. This field is only visible if the CLUSTER_VIEW_CONTINUOUS_BACKUP cluster view is provided.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2425,7 +2425,7 @@
           "readOnly": true
         },
         "schedule": {
-          "description": "Output only. Days of the week on which a continuous backup is taken. Output only field. Ignored if passed into the request.",
+          "description": "Output only. Days of the week on which a continuous backup is taken.",
           "items": {
             "enum": [
               "DAY_OF_WEEK_UNSPECIFIED",
@@ -2844,6 +2844,20 @@
       "description": "An Instance is a computing unit that an end customer can connect to. It's the main unit of computing resources in AlloyDB.",
       "id": "Instance",
       "properties": {
+        "activationPolicy": {
+          "description": "Optional. Specifies whether an instance needs to spin up. Once the instance is active, the activation policy can be updated to the `NEVER` to stop the instance. Likewise, the activation policy can be updated to `ALWAYS` to start the instance. There are restrictions around when an instance can/cannot be activated (for example, a read pool instance should be stopped before stopping primary etc.). Please refer to the API documentation for more details.",
+          "enum": [
+            "ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ],
+          "enumDescriptions": [
+            "The policy is not specified.",
+            "The instance is running.",
+            "The instance is not running."
+          ],
+          "type": "string"
+        },
         "annotations": {
           "additionalProperties": {
             "type": "string"
@@ -3056,6 +3070,10 @@
       "description": "Metadata related to instance-level network configuration.",
       "id": "InstanceNetworkConfig",
       "properties": {
+        "allocatedIpRangeOverride": {
+          "description": "Optional. Name of the allocated IP range for the private IP AlloyDB instance, for example: \"google-managed-services-default\". If set, the instance IPs will be created from this allocated range and will override the IP range used by the parent cluster. The range name must comply with [RFC 1035](http://go/rfc/1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?.",
+          "type": "string"
+        },
         "authorizedExternalNetworks": {
           "description": "Optional. A list of external network authorized to access this instance.",
           "items": {
@@ -4481,7 +4499,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -4489,6 +4513,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4665,7 +4695,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         },
@@ -5076,7 +5112,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -5084,6 +5126,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -5260,7 +5308,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         }
@@ -5622,8 +5676,9 @@
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
             "PRODUCT_TYPE_BIGTABLE",
-            "PRODUCT_TYPE_OTHER",
-            "PRODUCT_TYPE_FIRESTORE"
+            "PRODUCT_TYPE_FIRESTORE",
+            "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
             false,
@@ -5634,6 +5689,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -5650,8 +5706,9 @@
             "On premises database product.",
             "Memorystore product area in GCP",
             "Bigtable product area in GCP",
-            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum.",
-            "Firestore product area in GCP."
+            "Firestore product area in GCP.",
+            "Compute Engine self managed databases",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
         },

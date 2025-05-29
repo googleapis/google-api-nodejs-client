@@ -453,6 +453,10 @@ export namespace alloydb_v1alpha {
      */
     secondaryConfig?: Schema$SecondaryConfig;
     /**
+     * Output only. AlloyDB per-cluster service agent email. This service account is created per-cluster per-project, and is different from that of the primary service agent which is created per-project. The service account naming format is subject to change.
+     */
+    serviceAccountEmail?: string | null;
+    /**
      * SSL configuration for this AlloyDB cluster.
      */
     sslConfig?: Schema$SslConfig;
@@ -614,7 +618,7 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$ContinuousBackupInfo {
     /**
-     * Output only. The earliest restorable time that can be restored to. Output only field.
+     * Output only. The earliest restorable time that can be restored to. If continuous backups and recovery was recently enabled, the earliest restorable time is the creation time of the earliest eligible backup within this cluster's continuous backup recovery window. After a cluster has had continuous backups enabled for the duration of its recovery window, the earliest restorable time becomes "now minus the recovery window". For example, assuming a point in time recovery is attempted at 04/16/2025 3:23:00PM with a 14d recovery window, the earliest restorable time would be 04/02/2025 3:23:00PM. This field is only visible if the CLUSTER_VIEW_CONTINUOUS_BACKUP cluster view is provided.
      */
     earliestRestorableTime?: string | null;
     /**
@@ -626,7 +630,7 @@ export namespace alloydb_v1alpha {
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
-     * Output only. Days of the week on which a continuous backup is taken. Output only field. Ignored if passed into the request.
+     * Output only. Days of the week on which a continuous backup is taken.
      */
     schedule?: string[] | null;
   }
@@ -925,6 +929,10 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$Instance {
     /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance is active, the activation policy can be updated to the `NEVER` to stop the instance. Likewise, the activation policy can be updated to `ALWAYS` to start the instance. There are restrictions around when an instance can/cannot be activated (for example, a read pool instance should be stopped before stopping primary etc.). Please refer to the API documentation for more details.
+     */
+    activationPolicy?: string | null;
+    /**
      * Annotations to allow client tools to store small amount of arbitrary data. This is distinct from labels. https://google.aip.dev/128
      */
     annotations?: {[key: string]: string} | null;
@@ -1062,6 +1070,10 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$InstanceNetworkConfig {
     /**
+     * Optional. Name of the allocated IP range for the private IP AlloyDB instance, for example: "google-managed-services-default". If set, the instance IPs will be created from this allocated range and will override the IP range used by the parent cluster. The range name must comply with [RFC 1035](http://go/rfc/1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?.
+     */
+    allocatedIpRangeOverride?: string | null;
+    /**
      * Optional. A list of external network authorized to access this instance.
      */
     authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
@@ -1079,7 +1091,7 @@ export namespace alloydb_v1alpha {
     network?: string | null;
   }
   /**
-   * Details regarding the upgrade of instaces associated with a cluster.
+   * Details regarding the upgrade of instances associated with a cluster.
    */
   export interface Schema$InstanceUpgradeDetails {
     /**
