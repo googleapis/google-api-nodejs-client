@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250527",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5646,7 +5646,23 @@
             "enterpriseUpgrade",
             "educationUpgrade",
             "education",
-            "kioskUpgrade"
+            "kioskUpgrade",
+            "enterpriseUpgradePerpetual",
+            "enterpriseUpgradeFixedTerm",
+            "educationUpgradePerpetual",
+            "educationUpgradeFixedTerm"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The license type is unknown.",
@@ -5654,7 +5670,11 @@
             "The device has an annual standalone Chrome Enterprise Upgrade.",
             "The device has a perpetual standalone Chrome Education Upgrade.",
             "The device is bundled with a perpetual Chrome Education Upgrade.",
-            "The device has an annual Kiosk Upgrade."
+            "The device has an annual Kiosk Upgrade.",
+            "Indicates that the device is consuming a standalone, perpetual Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicates that the device is consuming a standalone, fixed-term Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicates that the device is consuming a standalone, perpetual Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
+            "Indicates that the device is consuming a standalone, fixed-term Chrome Education Upgrade(AKA Chrome EDU fixed-term license)."
           ],
           "readOnly": true,
           "type": "string"
@@ -6184,6 +6204,7 @@
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
             "CAPTURE_LOGS",
+            "FETCH_CRD_AVAILABILITY_INFO",
             "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
@@ -6195,6 +6216,7 @@
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
             "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
             "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
@@ -6207,7 +6229,7 @@
       "id": "DirectoryChromeosdevicesCommandResult",
       "properties": {
         "commandResultPayload": {
-          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session.",
+          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The provided URL links to the Chrome Remote Desktop session and requires authentication using only the `email` associated with the command's issuance. * `FETCH_CRD_AVAILABILITY_INFO`: Payload is a stringified JSON object in the form: { \"deviceIdleTimeInSeconds\": number, \"userSessionType\": string, \"remoteSupportAvailability\": string, \"remoteAccessAvailability\": string }. The \"remoteSupportAvailability\" field is set to \"AVAILABLE\" if `shared` CRD session to the device is available. The \"remoteAccessAvailability\" field is set to \"AVAILABLE\" if `private` CRD session to the device is available.",
           "type": "string"
         },
         "errorMessage": {
@@ -6253,6 +6275,7 @@
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
             "CAPTURE_LOGS",
+            "FETCH_CRD_AVAILABILITY_INFO",
             "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
@@ -6264,12 +6287,13 @@
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
             "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
             "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true, \"crdSessionType\": string }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`. `crdSessionType` can only select from values `private` (which grants the remote admin exclusive control of the ChromeOS device) or `shared` (which allows the admin and the local user to share control of the ChromeOS device). If not set, `crdSessionType` defaults to `shared`. * `REBOOT`: Payload is a stringified JSON object in the form: { \"user_session_delay_seconds\": 300 }. The `user_session_delay_seconds` is the amount of seconds to wait before rebooting the device if a user is logged in. It has to be an integer in the range [0,300]. When payload is not present for reboot, 0 delay is the default. Note: This only applies if an actual user is logged in, including a Guest. If the device is in the login screen or in Kiosk mode the value is not respected and the device immediately reboots. * `FETCH_SUPPORT_PACKET`: Payload is optionally a stringified JSON object in the form: {\"supportPacketDetails\":{ \"issueCaseId\": optional_support_case_id_string, \"issueDescription\": optional_issue_description_string, \"requestedDataCollectors\": []}} The list of available `data_collector_enums` are as following: Chrome System Information (1), Crash IDs (2), Memory Details (3), UI Hierarchy (4), Additional ChromeOS Platform Logs (5), Device Event (6), Intel WiFi NICs Debug Dump (7), Touch Events (8), Lacros (9), Lacros System Information (10), ChromeOS Flex Logs (11), DBus Details (12), ChromeOS Network Routes (13), ChromeOS Shill (Connection Manager) Logs (14), Policies (15), ChromeOS System State and Logs (16), ChromeOS System Logs (17), ChromeOS Chrome User Logs (18), ChromeOS Bluetooth (19), ChromeOS Connected Input Devices (20), ChromeOS Traffic Counters (21), ChromeOS Virtual Keyboard (22), ChromeOS Network Health (23). See more details in [help article](https://support.google.com/chrome/a?p=remote-log).",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true, \"crdSessionType\": string }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`. `crdSessionType` can only select from values `private` (which grants the remote admin exclusive control of the ChromeOS device) or `shared` (which allows the admin and the local user to share control of the ChromeOS device). If not set, `crdSessionType` defaults to `shared`. The `FETCH_CRD_AVAILABILITY_INFO` command can be used to determine available session types on the device. * `REBOOT`: Payload is a stringified JSON object in the form: { \"user_session_delay_seconds\": 300 }. The `user_session_delay_seconds` is the amount of seconds to wait before rebooting the device if a user is logged in. It has to be an integer in the range [0,300]. When payload is not present for reboot, 0 delay is the default. Note: This only applies if an actual user is logged in, including a Guest. If the device is in the login screen or in Kiosk mode the value is not respected and the device immediately reboots. * `FETCH_SUPPORT_PACKET`: Payload is optionally a stringified JSON object in the form: {\"supportPacketDetails\":{ \"issueCaseId\": optional_support_case_id_string, \"issueDescription\": optional_issue_description_string, \"requestedDataCollectors\": []}} The list of available `data_collector_enums` are as following: Chrome System Information (1), Crash IDs (2), Memory Details (3), UI Hierarchy (4), Additional ChromeOS Platform Logs (5), Device Event (6), Intel WiFi NICs Debug Dump (7), Touch Events (8), Lacros (9), Lacros System Information (10), ChromeOS Flex Logs (11), DBus Details (12), ChromeOS Network Routes (13), ChromeOS Shill (Connection Manager) Logs (14), Policies (15), ChromeOS System State and Logs (16), ChromeOS System Logs (17), ChromeOS Chrome User Logs (18), ChromeOS Bluetooth (19), ChromeOS Connected Input Devices (20), ChromeOS Traffic Counters (21), ChromeOS Virtual Keyboard (22), ChromeOS Network Health (23). See more details in [help article](https://support.google.com/chrome/a?p=remote-log).",
           "type": "string"
         }
       },
