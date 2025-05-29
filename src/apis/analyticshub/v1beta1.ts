@@ -212,7 +212,7 @@ export namespace analyticshub_v1beta1 {
      */
     listingCount?: number | null;
     /**
-     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string | null;
     /**
@@ -232,6 +232,41 @@ export namespace analyticshub_v1beta1 {
      * Optional. Email or URL of the data provider. Max Length: 1000 bytes.
      */
     primaryContact?: string | null;
+  }
+  /**
+   * Defines the destination bigquery dataset.
+   */
+  export interface Schema$DestinationDataset {
+    /**
+     * Required. A reference that identifies the destination dataset.
+     */
+    datasetReference?: Schema$DestinationDatasetReference;
+    /**
+     * Optional. A user-friendly description of the dataset.
+     */
+    description?: string | null;
+    /**
+     * Optional. A descriptive name for the dataset.
+     */
+    friendlyName?: string | null;
+    /**
+     * Optional. The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See https://cloud.google.com/resource-manager/docs/creating-managing-labels for more information.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    location?: string | null;
+  }
+  export interface Schema$DestinationDatasetReference {
+    /**
+     * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The ID of the project containing this dataset.
+     */
+    projectId?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -387,7 +422,7 @@ export namespace analyticshub_v1beta1 {
      */
     icon?: string | null;
     /**
-     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      */
     name?: string | null;
     /**
@@ -578,15 +613,19 @@ export namespace analyticshub_v1beta1 {
      */
     creationTime?: string | null;
     /**
-     * Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/US/dataExchanges/456
+     * Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/us/dataExchanges/456
      */
     dataExchange?: string | null;
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     */
+    destinationDataset?: Schema$DestinationDataset;
     /**
      * Output only. Timestamp when the subscription was last modified.
      */
     lastModifyTime?: string | null;
     /**
-     * Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -\> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.
+     * Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/us/dataExchanges/456/listings/789 -\> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.
      */
     linkedDatasetMap?: {[key: string]: Schema$LinkedResource} | null;
     /**
@@ -594,7 +633,7 @@ export namespace analyticshub_v1beta1 {
      */
     linkedResources?: Schema$LinkedResource[];
     /**
-     * Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * Output only. Resource name of the source Listing. e.g. projects/123/locations/us/dataExchanges/456/listings/789
      */
     listing?: string | null;
     /**
@@ -602,7 +641,7 @@ export namespace analyticshub_v1beta1 {
      */
     logLinkedDatasetQueryUserEmail?: boolean | null;
     /**
-     * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.
+     * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/us/subscriptions/123`.
      */
     name?: string | null;
     /**
@@ -773,7 +812,7 @@ export namespace analyticshub_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Dataexchanges$List
     extends StandardParameters {
     /**
-     * Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/US`.
+     * Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/us`.
      */
     organization?: string;
     /**
@@ -1536,7 +1575,7 @@ export namespace analyticshub_v1beta1 {
      */
     dataExchangeId?: string;
     /**
-     * Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/US`.
+     * Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/us`.
      */
     parent?: string;
 
@@ -1548,14 +1587,14 @@ export namespace analyticshub_v1beta1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Delete
     extends StandardParameters {
     /**
-     * Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
@@ -1582,14 +1621,14 @@ export namespace analyticshub_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/US`.
+     * Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/us`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
     /**
@@ -2452,7 +2491,7 @@ export namespace analyticshub_v1beta1 {
      */
     listingId?: string;
     /**
-     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     parent?: string;
 
@@ -2464,14 +2503,14 @@ export namespace analyticshub_v1beta1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
@@ -2498,14 +2537,14 @@ export namespace analyticshub_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      */
     name?: string;
     /**
@@ -2533,7 +2572,7 @@ export namespace analyticshub_v1beta1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe
     extends StandardParameters {
     /**
-     * Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
 
