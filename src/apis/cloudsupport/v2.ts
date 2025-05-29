@@ -137,7 +137,7 @@ export namespace cloudsupport_v2 {
      */
     displayName?: string | null;
     /**
-     * The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use **username** field instead.
+     * The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use `username` instead.
      */
     email?: string | null;
     /**
@@ -170,7 +170,7 @@ export namespace cloudsupport_v2 {
      */
     mimeType?: string | null;
     /**
-     * Output only. The resource name of the attachment.
+     * Output only. Identifier. The resource name of the attachment.
      */
     name?: string | null;
     /**
@@ -240,7 +240,7 @@ export namespace cloudsupport_v2 {
      */
     languageCode?: string | null;
     /**
-     * The resource name for the case.
+     * Identifier. The resource name for the case.
      */
     name?: string | null;
     /**
@@ -1526,7 +1526,7 @@ export namespace cloudsupport_v2 {
   }
   export interface Params$Resource$Cases$Patch extends StandardParameters {
     /**
-     * The resource name for the case.
+     * Identifier. The resource name for the case.
      */
     name?: string;
     /**

@@ -333,7 +333,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name for the case.",
+              "description": "Identifier. The resource name for the case.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+/cases/[^/]+$",
               "required": true,
@@ -619,7 +619,7 @@
       }
     }
   },
-  "revision": "20241231",
+  "revision": "20250521",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -632,7 +632,7 @@
         },
         "email": {
           "deprecated": true,
-          "description": "The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use **username** field instead.",
+          "description": "The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use `username` instead.",
           "type": "string"
         },
         "googleSupport": {
@@ -673,7 +673,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the attachment.",
+          "description": "Output only. Identifier. The resource name of the attachment.",
           "readOnly": true,
           "type": "string"
         },
@@ -755,7 +755,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name for the case.",
+          "description": "Identifier. The resource name for the case.",
           "type": "string"
         },
         "priority": {
