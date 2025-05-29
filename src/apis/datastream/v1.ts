@@ -834,7 +834,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbProfile {
     /**
-     * Required. List of host addresses for a MongoDB cluster.
+     * Required. List of host addresses for a MongoDB cluster. For SRV connection format, this list must contain exactly one DNS host without a port. For Standard connection format, this list must contain all the required hosts in the cluster with their respective ports.
      */
     hostAddresses?: Schema$HostAddress[];
     /**
@@ -842,7 +842,7 @@ export namespace datastream_v1 {
      */
     password?: string | null;
     /**
-     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster.
+     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster. For SRV connection format, this field must be empty. For Standard connection format, this field must be specified.
      */
     replicaSet?: string | null;
     /**
@@ -853,6 +853,10 @@ export namespace datastream_v1 {
      * Srv connection format.
      */
     srvConnectionFormat?: Schema$SrvConnectionFormat;
+    /**
+     * Optional. SSL configuration for the MongoDB connection.
+     */
+    sslConfig?: Schema$MongodbSslConfig;
     /**
      * Standard connection format.
      */
@@ -874,6 +878,43 @@ export namespace datastream_v1 {
      * MongoDB collections to include in the stream.
      */
     includeObjects?: Schema$MongodbCluster;
+    /**
+     * Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system's default value is used
+     */
+    maxConcurrentBackfillTasks?: number | null;
+  }
+  /**
+   * MongoDB SSL configuration information.
+   */
+  export interface Schema$MongodbSslConfig {
+    /**
+     * Optional. Input only. PEM-encoded certificate of the CA that signed the source database server's certificate.
+     */
+    caCertificate?: string | null;
+    /**
+     * Output only. Indicates whether the ca_certificate field is set.
+     */
+    caCertificateSet?: boolean | null;
+    /**
+     * Optional. Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     */
+    clientCertificate?: string | null;
+    /**
+     * Output only. Indicates whether the client_certificate field is set.
+     */
+    clientCertificateSet?: boolean | null;
+    /**
+     * Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.
+     */
+    clientKey?: string | null;
+    /**
+     * Output only. Indicates whether the client_key field is set.
+     */
+    clientKeySet?: boolean | null;
+    /**
+     * Optional. Input only. A reference to a Secret Manager resource name storing the PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `client_key` field.
+     */
+    secretManagerStoredClientKey?: string | null;
   }
   /**
    * CDC strategy to start replicating from the most recent position in the source.
@@ -1609,7 +1650,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$PscInterfaceConfig {
     /**
-     * Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project\}\}/regions/{{region\}\}/networkAttachments/{{name\}\}`
+     * Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{project\}/regions/{region\}/networkAttachments/{name\}`
      */
     networkAttachment?: string | null;
   }
@@ -2035,7 +2076,12 @@ export namespace datastream_v1 {
   /**
    * Standard connection format.
    */
-  export interface Schema$StandardConnectionFormat {}
+  export interface Schema$StandardConnectionFormat {
+    /**
+     * Optional. Specifies whether the client connects directly to the host[:port] in the connection URI.
+     */
+    directConnection?: boolean | null;
+  }
   /**
    * Request for manually initiating a backfill job for a specific stream object.
    */
