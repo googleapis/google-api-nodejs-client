@@ -13,8 +13,8 @@
     "googleapis": "file:./googleapis.tgz"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4",
-    "gts": "^5.0.0",
+    "@types/node": "^22.15.29",
+    "gts": "^6.0.2",
     "typescript": "^5.1.6"
   }
 }
