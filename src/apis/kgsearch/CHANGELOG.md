@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v2.0.0...kgsearch-v2.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v1.0.7...kgsearch-v2.0.0) (2025-05-29)
 
 
