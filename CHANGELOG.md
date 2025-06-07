@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [150.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v150.0.1...googleapis-v150.0.2) (2025-06-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency express to v5 ([45b6309](https://github.com/googleapis/google-api-nodejs-client/commit/45b6309ef1dc5b414eec00d9fedd361b87b4d109))
+* **deps:** update dependency nconf to ^0.13.0 ([e22fe57](https://github.com/googleapis/google-api-nodejs-client/commit/e22fe57d79a49b9bff426309f2fa5035eb5d8767))
+
 ## [150.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v150.0.0...googleapis-v150.0.1) (2025-06-04)
 
 
