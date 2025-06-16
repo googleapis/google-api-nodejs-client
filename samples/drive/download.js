@@ -46,7 +46,7 @@ async function runSample(fileId) {
     .get({fileId, alt: 'media'}, {responseType: 'stream'})
     .then(res => {
       return new Promise((resolve, reject) => {
-        const filePath = path.join(os.tmpdir(), uuid.randomUUID());
+        const filePath = path.join(os.tmpdir(), uuid);
         console.log(`writing to ${filePath}`);
         const dest = fs.createWriteStream(filePath);
         let progress = 0;
