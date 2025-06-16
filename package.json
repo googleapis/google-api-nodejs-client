@@ -55,8 +55,8 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "^10.0.0-rc.1",
-    "googleapis-common": "^8.0.2-rc.0"
+    "google-auth-library": "^10.1.0",
+    "googleapis-common": "^8.0.0"
   },
   "devDependencies": {
     "@types/execa": "^2.0.2",
@@ -73,11 +73,10 @@
     "@types/url-template": "^2.0.28",
     "@types/yargs-parser": "^21.0.3",
     "c8": "^10.1.3",
-    "cheerio": "^1.0.0",
     "codecov": "^3.8.3",
     "cross-env": "^7.0.3",
     "execa": "^5.0.0",
-    "gaxios": "^7.0.0-rc.5",
+    "gaxios": "^7.1.0",
     "gts": "^6.0.2",
     "js-green-licenses": "^4.0.0",
     "jsdoc": "^4.0.4",
