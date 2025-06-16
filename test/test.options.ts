@@ -17,7 +17,7 @@ import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {Utils} from './utils';
-import {GoogleAuth} from 'google-auth-library';
+import {AuthClient, GoogleAuth} from 'google-auth-library';
 import * as sinon from 'sinon';
 import {GaxiosResponse} from 'gaxios';
 import {JSONClient} from 'google-auth-library/build/src/auth/googleauth';
@@ -309,7 +309,7 @@ describe('Options', () => {
     const auth = new GoogleAuth();
     const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
     // global options
-    google.options({auth: auth as GoogleAuth<JSONClient>});
+    google.options({auth: auth as GoogleAuth<AuthClient>});
     // per-API options
     const drive = google.drive({version: 'v3', auth});
     // per-call options
