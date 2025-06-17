@@ -52,12 +52,15 @@ export const gfs = {
  */
 export async function main() {
   const res = await request<LibraryMetadata[]>({url: libraryListUrl});
-  const disclaimers = res.data.map(lib => {
-    return {
-      api: lib.api_id.split('.')[0],
-      package: lib.distribution_name,
-    };
-  });
+  // console.log(typeof res.data)
+  const disclaimers = JSON.parse(res.data as unknown as string).map(
+    (lib: LibraryMetadata) => {
+      return {
+        api: lib.api_id.split('.')[0],
+        package: lib.distribution_name,
+      };
+    },
+  );
   gfs.writeFileSync('./disclaimers.json', JSON.stringify(disclaimers, null, 2));
 }
 
