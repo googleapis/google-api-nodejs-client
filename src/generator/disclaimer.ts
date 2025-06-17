@@ -52,7 +52,6 @@ export const gfs = {
  */
 export async function main() {
   const res = await request<LibraryMetadata[]>({url: libraryListUrl});
-  // console.log(typeof res.data)
   const disclaimers = JSON.parse(res.data as unknown as string).map(
     (lib: LibraryMetadata) => {
       return {
