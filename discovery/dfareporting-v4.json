@@ -10152,7 +10152,7 @@
       }
     }
   },
-  "revision": "20250218",
+  "revision": "20250602",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11749,7 +11749,7 @@
       "type": "object"
     },
     "CartData": {
-      "description": "Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
+      "description": " *Beta:* This feature is currently in beta. Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)",
       "id": "CartData",
       "properties": {
         "items": {
@@ -12262,6 +12262,11 @@
         "quantity": {
           "description": "The quantity of the conversion. This is a required field.",
           "format": "int64",
+          "type": "string"
+        },
+        "sessionAttributesEncoded": {
+          "description": "Session attributes for the conversion, encoded as based64 bytes. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
+          "format": "byte",
           "type": "string"
         },
         "timestampMicros": {
@@ -14422,7 +14427,7 @@
       "type": "object"
     },
     "CustomFloodlightVariable": {
-      "description": "A custom floodlight variable. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
+      "description": "A custom floodlight variable. Can be used in both batchinsert and batchupdate. Adding this in batchupdate will update or append the variable to the existing list.",
       "id": "CustomFloodlightVariable",
       "properties": {
         "kind": {
