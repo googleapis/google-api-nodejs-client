@@ -469,7 +469,7 @@
           ]
         },
         "generateEnterpriseUpgradeUrl": {
-          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.",
+          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. See the guide to upgrading an enterprise for more details.",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/generateEnterpriseUpgradeUrl",
           "httpMethod": "POST",
           "id": "androidenterprise.enterprises.generateEnterpriseUpgradeUrl",
@@ -2691,7 +2691,7 @@
       }
     }
   },
-  "revision": "20250330",
+  "revision": "20250610",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3515,7 +3515,7 @@
       "type": "object"
     },
     "GenerateEnterpriseUpgradeUrlResponse": {
-      "description": "Response message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.",
+      "description": "Response message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain.",
       "id": "GenerateEnterpriseUpgradeUrlResponse",
       "properties": {
         "url": {
