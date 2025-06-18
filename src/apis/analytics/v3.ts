@@ -2619,6 +2619,95 @@ export namespace analytics_v3 {
 
     /**
      * Returns Analytics data for a view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.ga.get({
+     *     // A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
+     *     dimensions: '(ga:.+)?',
+     *     // End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to Analytics data.
+     *     filters: 'ga:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The response will include empty rows if this parameter is set to true, the default is true
+     *     'include-empty-rows': 'placeholder-value',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     *     metrics: 'ga:.+',
+     *     // The selected format for the response. Default format is JSON.
+     *     output: 'placeholder-value',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // An Analytics segment to be applied to data.
+     *     segment: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+     *     sort: '(-)?ga:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "dataLastRefreshed": "my_dataLastRefreshed",
+     *   //   "dataTable": {},
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2771,6 +2860,87 @@ export namespace analytics_v3 {
 
     /**
      * Returns Analytics Multi-Channel Funnels data for a view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.mcf.get({
+     *     // A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
+     *     dimensions: '(mcf:.+)?',
+     *     // End date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to the Analytics data.
+     *     filters: 'mcf:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Multi-Channel Funnels metrics. E.g., 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must be specified.
+     *     metrics: 'mcf:.+',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
+     *     sort: '(-)?mcf:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2911,6 +3081,73 @@ export namespace analytics_v3 {
 
     /**
      * Returns real time data for a view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.realtime.get({
+     *     // A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
+     *     dimensions: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimension or metric filters to be applied to real time data.
+     *     filters: '(ga:.+)|(rt:.+)',
+     *     // Unique table ID for retrieving real time data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
+     *     metrics: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for real time data.
+     *     sort: '(-)?((ga:.+)|(rt:.+))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3103,6 +3340,65 @@ export namespace analytics_v3 {
 
     /**
      * Lists all accounts to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accounts.list({
+     *     // The maximum number of accounts to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3213,6 +3509,64 @@ export namespace analytics_v3 {
 
     /**
      * Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountSummaries.list({
+     *     // The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3322,6 +3676,49 @@ export namespace analytics_v3 {
 
     /**
      * Removes a user from the given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3411,6 +3808,70 @@ export namespace analytics_v3 {
 
     /**
      * Adds a new user to the given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3502,6 +3963,65 @@ export namespace analytics_v3 {
 
     /**
      * Lists account-user links for a given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.list({
+     *     // Account ID to retrieve the user links for.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of account-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3593,6 +4113,72 @@ export namespace analytics_v3 {
 
     /**
      * Updates permissions for an existing user on the given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3746,6 +4332,65 @@ export namespace analytics_v3 {
 
     /**
      * Hashes the given Client ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.clientId.hashClientId({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientId": "my_clientId",
+     *       //   "kind": "my_kind",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientId": "my_clientId",
+     *   //   "hashedClientId": "my_hashedClientId",
+     *   //   "kind": "my_kind",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3855,6 +4500,69 @@ export namespace analytics_v3 {
 
     /**
      * List custom data sources to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDataSources.list({
+     *     // Account Id for the custom data sources to retrieve.
+     *     accountId: '&#92;d+',
+     *     // The maximum number of custom data sources to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the custom data sources to retrieve.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3973,6 +4681,70 @@ export namespace analytics_v3 {
 
     /**
      * Get a custom dimension to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.get({
+     *     // Account ID for the custom dimension to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom dimension to retrieve.
+     *     customDimensionId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4064,6 +4836,84 @@ export namespace analytics_v3 {
 
     /**
      * Create a new custom dimension.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.insert({
+     *     // Account ID for the custom dimension to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4155,6 +5005,68 @@ export namespace analytics_v3 {
 
     /**
      * Lists custom dimensions to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.list({
+     *     // Account ID for the custom dimensions to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom dimensions to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom dimensions to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4246,6 +5158,88 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing custom dimension. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.patch({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4337,6 +5331,88 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing custom dimension.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.update({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4534,6 +5610,73 @@ export namespace analytics_v3 {
 
     /**
      * Get a custom metric to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.get({
+     *     // Account ID for the custom metric to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom metric to retrieve.
+     *     customMetricId: 'placeholder-value',
+     *     // Web property ID for the custom metric to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4625,6 +5768,90 @@ export namespace analytics_v3 {
 
     /**
      * Create a new custom metric.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.insert({
+     *     // Account ID for the custom metric to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4716,6 +5943,68 @@ export namespace analytics_v3 {
 
     /**
      * Lists custom metrics to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.list({
+     *     // Account ID for the custom metrics to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom metrics to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom metrics to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4807,6 +6096,94 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing custom metric. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.patch({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4898,6 +6275,94 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing custom metric.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.update({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5095,6 +6560,56 @@ export namespace analytics_v3 {
 
     /**
      * Delete an experiment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.delete({
+     *     // Account ID to which the experiment belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the experiment to delete
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to which the experiment belongs
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the experiment belongs
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5189,6 +6704,89 @@ export namespace analytics_v3 {
 
     /**
      * Returns an experiment to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.get({
+     *     // Account ID to retrieve the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID to retrieve the experiment for.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5285,6 +6883,121 @@ export namespace analytics_v3 {
 
     /**
      * Create a new experiment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.insert({
+     *     // Account ID to create the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5376,6 +7089,71 @@ export namespace analytics_v3 {
 
     /**
      * Lists experiments to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.list({
+     *     // Account ID to retrieve experiments for.
+     *     accountId: '&#92;d+',
+     *     // The maximum number of experiments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve experiments for.
+     *     profileId: '&#92;d+',
+     *     // An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve experiments for.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5467,6 +7245,123 @@ export namespace analytics_v3 {
 
     /**
      * Update an existing experiment. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.patch({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5563,6 +7458,123 @@ export namespace analytics_v3 {
 
     /**
      * Update an existing experiment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.update({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5796,6 +7808,68 @@ export namespace analytics_v3 {
 
     /**
      * Delete a filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.delete({
+     *     // Account ID to delete the filter for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be deleted.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5887,6 +7961,71 @@ export namespace analytics_v3 {
 
     /**
      * Returns filters to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.get({
+     *     // Account ID to retrieve filters for.
+     *     accountId: 'placeholder-value',
+     *     // Filter ID to retrieve filters for.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5978,6 +8117,88 @@ export namespace analytics_v3 {
 
     /**
      * Create a new filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.insert({
+     *     // Account ID to create filter for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6068,6 +8289,66 @@ export namespace analytics_v3 {
 
     /**
      * Lists all filters for an account
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.list({
+     *     // Account ID to retrieve filters for.
+     *     accountId: '&#92;d+',
+     *     // The maximum number of filters to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6158,6 +8439,90 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing filter. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.patch({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6249,6 +8614,90 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.update({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6429,6 +8878,78 @@ export namespace analytics_v3 {
 
     /**
      * Gets a goal to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.get({
+     *     // Account ID to retrieve the goal for.
+     *     accountId: 'placeholder-value',
+     *     // Goal ID to retrieve the goal for.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6520,6 +9041,98 @@ export namespace analytics_v3 {
 
     /**
      * Create a new goal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.insert({
+     *     // Account ID to create the goal for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6611,6 +9224,71 @@ export namespace analytics_v3 {
 
     /**
      * Lists goals to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.list({
+     *     // Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of goals to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6702,6 +9380,100 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing goal. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.patch({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6793,6 +9565,100 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing goal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.update({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7002,6 +9868,53 @@ export namespace analytics_v3 {
 
     /**
      * Delete a profile filter link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.delete({
+     *     // Account ID to which the profile filter link belongs.
+     *     accountId: '&#92;d+',
+     *     // ID of the profile filter link to delete.
+     *     linkId: '&#92;d+:&#92;d+',
+     *     // Profile ID to which the filter link belongs.
+     *     profileId: '&#92;d+',
+     *     // Web property Id to which the profile filter link belongs.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7091,6 +10004,66 @@ export namespace analytics_v3 {
 
     /**
      * Returns a single profile filter link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.get({
+     *     // Account ID to retrieve profile filter link for.
+     *     accountId: '&#92;d+',
+     *     // ID of the profile filter link.
+     *     linkId: '&#92;d+:&#92;d+',
+     *     // Profile ID to retrieve filter link for.
+     *     profileId: '&#92;d+',
+     *     // Web property Id to retrieve profile filter link for.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7182,6 +10155,74 @@ export namespace analytics_v3 {
 
     /**
      * Create a new profile filter link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.insert({
+     *     // Account ID to create profile filter link for.
+     *     accountId: '&#92;d+',
+     *     // Profile ID to create filter link for.
+     *     profileId: '&#92;d+',
+     *     // Web property Id to create profile filter link for.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7273,6 +10314,70 @@ export namespace analytics_v3 {
 
     /**
      * Lists all profile filter links for a profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.list({
+     *     // Account ID to retrieve profile filter links for.
+     *     accountId: '&#92;d+',
+     *     // The maximum number of profile filter links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7364,6 +10469,76 @@ export namespace analytics_v3 {
 
     /**
      * Update an existing profile filter link. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.patch({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: '&#92;d+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: '&#92;d+:&#92;d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: '&#92;d+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7455,6 +10630,76 @@ export namespace analytics_v3 {
 
     /**
      * Update an existing profile filter link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.update({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: '&#92;d+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: '&#92;d+:&#92;d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: '&#92;d+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7683,6 +10928,51 @@ export namespace analytics_v3 {
 
     /**
      * Deletes a view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.delete({
+     *     // Account ID to delete the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be deleted.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to delete the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7772,6 +11062,84 @@ export namespace analytics_v3 {
 
     /**
      * Gets a view (profile) to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.get({
+     *     // Account ID to retrieve the view (profile) for.
+     *     accountId: '[0-9]+',
+     *     // View (Profile) ID to retrieve the view (profile) for.
+     *     profileId: '[0-9]+',
+     *     // Web property ID to retrieve the view (profile) for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7863,6 +11231,112 @@ export namespace analytics_v3 {
 
     /**
      * Create a new view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.insert({
+     *     // Account ID to create the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7954,6 +11428,69 @@ export namespace analytics_v3 {
 
     /**
      * Lists views (profiles) to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.list({
+     *     // Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of views (profiles) to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8045,6 +11582,114 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing view (profile). This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.patch({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8136,6 +11781,114 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.update({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8340,6 +12093,53 @@ export namespace analytics_v3 {
 
     /**
      * Removes a user from the given view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile) ID to delete the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8429,6 +12229,74 @@ export namespace analytics_v3 {
 
     /**
      * Adds a new user to the given view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8520,6 +12388,69 @@ export namespace analytics_v3 {
 
     /**
      * Lists profile-user links for a given view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.list({
+     *     // Account ID which the given view (profile) belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of profile-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8611,6 +12542,76 @@ export namespace analytics_v3 {
 
     /**
      * Updates permissions for an existing user on the given view (profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.update({
+     *     // Account ID to update the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile ID) to update the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to update the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8796,6 +12797,51 @@ export namespace analytics_v3 {
 
     /**
      * Delete a remarketing audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.delete({
+     *     // Account ID to which the remarketing audience belongs.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to delete.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // Web property ID to which the remarketing audience belongs.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8885,6 +12931,72 @@ export namespace analytics_v3 {
 
     /**
      * Gets a remarketing audience to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.get({
+     *     // The account ID of the remarketing audience to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to retrieve.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8976,6 +13088,88 @@ export namespace analytics_v3 {
 
     /**
      * Creates a new remarketing audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.insert({
+     *     // The account ID for which to create the remarketing audience.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for which to create the remarketing audience.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9067,6 +13261,70 @@ export namespace analytics_v3 {
 
     /**
      * Lists remarketing audiences to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.list({
+     *     // The account ID of the remarketing audiences to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of remarketing audiences to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *
+     *     type: 'placeholder-value',
+     *     // The web property ID of the remarketing audiences to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9160,6 +13418,90 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing remarketing audience. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.patch({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9251,6 +13593,90 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing remarketing audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.update({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9459,6 +13885,65 @@ export namespace analytics_v3 {
 
     /**
      * Lists segments to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.segments.list({
+     *     // The maximum number of segments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9569,6 +14054,53 @@ export namespace analytics_v3 {
 
     /**
      * Deletes an unsampled report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.delete({
+     *     // Account ID to delete the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to delete the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to be deleted.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to delete the unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9668,6 +14200,80 @@ export namespace analytics_v3 {
 
     /**
      * Returns a single unsampled report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.get({
+     *     // Account ID to retrieve unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to retrieve.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9769,6 +14375,103 @@ export namespace analytics_v3 {
 
     /**
      * Create a new unsampled report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.insert({
+     *     // Account ID to create the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the unsampled report for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "cloudStorageDownloadDetails": {},
+     *       //   "created": "my_created",
+     *       //   "dimensions": "my_dimensions",
+     *       //   "downloadType": "my_downloadType",
+     *       //   "driveDownloadDetails": {},
+     *       //   "end-date": "my_end-date",
+     *       //   "filters": "my_filters",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metrics": "my_metrics",
+     *       //   "profileId": "my_profileId",
+     *       //   "segment": "my_segment",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "start-date": "my_start-date",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9860,6 +14563,71 @@ export namespace analytics_v3 {
 
     /**
      * Lists unsampled reports to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.list({
+     *     // Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of unsampled reports to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10040,6 +14808,62 @@ export namespace analytics_v3 {
 
     /**
      * Delete data associated with a previous upload.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.deleteUploadData({
+     *     // Account Id for the uploads to be deleted.
+     *     accountId: '&#92;d+',
+     *     // Custom data source Id for the uploads to be deleted.
+     *     customDataSourceId: '.{22}',
+     *     // Web property Id for the uploads to be deleted.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customDataImportUids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10129,6 +14953,68 @@ export namespace analytics_v3 {
 
     /**
      * List uploads to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.get({
+     *     // Account Id for the upload to retrieve.
+     *     accountId: '&#92;d+',
+     *     // Custom data source Id for upload to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // Upload Id to retrieve.
+     *     uploadId: '.{22}',
+     *     // Web property Id for the upload to retrieve.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10230,6 +15116,70 @@ export namespace analytics_v3 {
 
     /**
      * List uploads to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.list({
+     *     // Account Id for the uploads to retrieve.
+     *     accountId: '&#92;d+',
+     *     // Custom data source Id for uploads to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // The maximum number of uploads to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the uploads to retrieve.
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10321,6 +15271,73 @@ export namespace analytics_v3 {
 
     /**
      * Upload data for a custom data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.uploadData({
+     *     // Account Id associated with the upload.
+     *     accountId: '&#92;d+',
+     *     // Custom data source Id to which the data being uploaded belongs.
+     *     customDataSourceId: 'placeholder-value',
+     *     // Web property UA-string associated with the upload.
+     *     webPropertyId: 'UA-&#92;d+-&#92;d+',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10521,6 +15538,75 @@ export namespace analytics_v3 {
 
     /**
      * Gets a web property to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.get({
+     *     // Account ID to retrieve the web property for.
+     *     accountId: '[0-9]+',
+     *     // ID to retrieve the web property for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10612,6 +15698,96 @@ export namespace analytics_v3 {
 
     /**
      * Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.insert({
+     *     // Account ID to create the web property for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10703,6 +15879,67 @@ export namespace analytics_v3 {
 
     /**
      * Lists web properties to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.list({
+     *     // Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of web properties to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10794,6 +16031,98 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing web property. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.patch({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10885,6 +16214,98 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.update({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11054,6 +16475,51 @@ export namespace analytics_v3 {
 
     /**
      * Deletes a web property-Google Ads link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.delete({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to delete the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11148,6 +16614,65 @@ export namespace analytics_v3 {
 
     /**
      * Returns a web property-Google Ads link to which the user has access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.get({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11243,6 +16768,74 @@ export namespace analytics_v3 {
 
     /**
      * Creates a webProperty-Google Ads link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.insert({
+     *     // ID of the Google Analytics account to create the link for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11335,6 +16928,67 @@ export namespace analytics_v3 {
 
     /**
      * Lists webProperty-Google Ads links for a given web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.list({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: '&#92;d+',
+     *     // The maximum number of webProperty-Google Ads links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads links for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11426,6 +17080,76 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing webProperty-Google Ads link. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.patch({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11521,6 +17245,76 @@ export namespace analytics_v3 {
 
     /**
      * Updates an existing webProperty-Google Ads link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.update({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11730,6 +17524,51 @@ export namespace analytics_v3 {
 
     /**
      * Removes a user from the given web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11819,6 +17658,72 @@ export namespace analytics_v3 {
 
     /**
      * Adds a new user to the given web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11910,6 +17815,67 @@ export namespace analytics_v3 {
 
     /**
      * Lists webProperty-user links for a given web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.list({
+     *     // Account ID which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of webProperty-user Links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12001,6 +17967,74 @@ export namespace analytics_v3 {
 
     /**
      * Updates permissions for an existing user on the given web property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web property ID to update the account-user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12179,6 +18213,60 @@ export namespace analytics_v3 {
 
     /**
      * Lists all columns for a report type
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.metadata.columns.list({
+     *     // Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
+     *     reportType: 'ga',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeNames": [],
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12284,6 +18372,67 @@ export namespace analytics_v3 {
 
     /**
      * Creates an account ticket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTicket({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profile": {},
+     *       //   "redirectUri": "my_redirectUri",
+     *       //   "webproperty": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12376,6 +18525,65 @@ export namespace analytics_v3 {
 
     /**
      * Provision account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTree({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountName": "my_accountName",
+     *       //   "kind": "my_kind",
+     *       //   "profileName": "my_profileName",
+     *       //   "timezone": "my_timezone",
+     *       //   "webpropertyName": "my_webpropertyName",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12501,6 +18709,67 @@ export namespace analytics_v3 {
 
     /**
      * Insert or update a user deletion requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.user.deletion'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.userDeletion.userDeletionRequest.upsert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionRequestTime": "my_deletionRequestTime",
+     *       //   "firebaseProjectId": "my_firebaseProjectId",
+     *       //   "id": {},
+     *       //   "kind": "my_kind",
+     *       //   "propertyId": "my_propertyId",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionRequestTime": "my_deletionRequestTime",
+     *   //   "firebaseProjectId": "my_firebaseProjectId",
+     *   //   "id": {},
+     *   //   "kind": "my_kind",
+     *   //   "propertyId": "my_propertyId",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
