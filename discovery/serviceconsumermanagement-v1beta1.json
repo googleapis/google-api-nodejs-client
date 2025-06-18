@@ -343,16 +343,19 @@
                       ],
                       "parameters": {
                         "force": {
+                          "deprecated": true,
                           "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "forceJustification": {
+                          "deprecated": true,
                           "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
                           "location": "query",
                           "type": "string"
                         },
                         "forceOnly": {
+                          "deprecated": true,
                           "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -397,16 +400,19 @@
                       ],
                       "parameters": {
                         "force": {
+                          "deprecated": true,
                           "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "forceJustification": {
+                          "deprecated": true,
                           "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
                           "location": "query",
                           "type": "string"
                         },
                         "forceOnly": {
+                          "deprecated": true,
                           "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -484,16 +490,19 @@
                       ],
                       "parameters": {
                         "force": {
+                          "deprecated": true,
                           "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "forceJustification": {
+                          "deprecated": true,
                           "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
                           "location": "query",
                           "type": "string"
                         },
                         "forceOnly": {
+                          "deprecated": true,
                           "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -715,7 +724,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20250515",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -785,7 +794,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.",
+          "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
           "type": "object"
         }
       },
@@ -963,6 +972,101 @@
         },
         "selector": {
           "description": "Selects the methods to which this rule applies. Refer to selector for syntax details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchingConfigProto": {
+      "description": "`BatchingConfigProto` defines the batching configuration for an API method.",
+      "id": "BatchingConfigProto",
+      "properties": {
+        "batchDescriptor": {
+          "$ref": "BatchingDescriptorProto",
+          "description": "The request and response fields used in batching."
+        },
+        "thresholds": {
+          "$ref": "BatchingSettingsProto",
+          "description": "The thresholds which trigger a batched request to be sent."
+        }
+      },
+      "type": "object"
+    },
+    "BatchingDescriptorProto": {
+      "description": "`BatchingDescriptorProto` specifies the fields of the request message to be used for batching, and, optionally, the fields of the response message to be used for demultiplexing.",
+      "id": "BatchingDescriptorProto",
+      "properties": {
+        "batchedField": {
+          "description": "The repeated field in the request message to be aggregated by batching.",
+          "type": "string"
+        },
+        "discriminatorFields": {
+          "description": "A list of the fields in the request message. Two requests will be batched together only if the values of every field specified in `request_discriminator_fields` is equal between the two requests.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subresponseField": {
+          "description": "Optional. When present, indicates the field in the response message to be used to demultiplex the response into multiple response messages, in correspondence with the multiple request messages originally batched together.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchingSettingsProto": {
+      "description": "`BatchingSettingsProto` specifies a set of batching thresholds, each of which acts as a trigger to send a batch of messages as a request. At least one threshold must be positive nonzero.",
+      "id": "BatchingSettingsProto",
+      "properties": {
+        "delayThreshold": {
+          "description": "The duration after which a batch should be sent, starting from the addition of the first message to that batch.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "elementCountLimit": {
+          "description": "The maximum number of elements collected in a batch that could be accepted by server.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "elementCountThreshold": {
+          "description": "The number of elements of a field collected into a batch which, if exceeded, causes the batch to be sent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlByteLimit": {
+          "description": "The maximum size of data allowed by flow control.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlElementLimit": {
+          "description": "The maximum number of elements allowed by flow control.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlLimitExceededBehavior": {
+          "description": "The behavior to take when the flow control limit is exceeded.",
+          "enum": [
+            "UNSET_BEHAVIOR",
+            "THROW_EXCEPTION",
+            "BLOCK",
+            "IGNORE"
+          ],
+          "enumDescriptions": [
+            "Default behavior, system-defined.",
+            "Stop operation, raise error.",
+            "Pause operation until limit clears.",
+            "Continue operation, disregard limit."
+          ],
+          "type": "string"
+        },
+        "requestByteLimit": {
+          "description": "The maximum size of the request that could be accepted by server.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestByteThreshold": {
+          "description": "The aggregated size of the batched field which, if exceeded, causes the batch to be sent. This size is computed by aggregating the sizes of the request field to be batched, not of the entire request message.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1928,6 +2032,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "batching": {
+          "$ref": "BatchingConfigProto",
+          "description": "Batching configuration for an API method in client libraries. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.BatchCreateExample batching: element_count_threshold: 1000 request_byte_threshold: 100000000 delay_threshold_millis: 10"
         },
         "longRunning": {
           "$ref": "LongRunning",
@@ -3015,14 +3123,17 @@
       "id": "V1Beta1ImportProducerOverridesRequest",
       "properties": {
         "force": {
+          "deprecated": true,
           "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
           "type": "boolean"
         },
         "forceJustification": {
+          "deprecated": true,
           "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
           "type": "string"
         },
         "forceOnly": {
+          "deprecated": true,
           "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
           "items": {
             "enum": [
