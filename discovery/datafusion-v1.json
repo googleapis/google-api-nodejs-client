@@ -227,6 +227,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any nested resources from this instance will also be deleted.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The instance resource name in the format projects/{project}/locations/{location}/instances/{instance}",
                       "location": "path",
@@ -738,7 +743,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250610",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
