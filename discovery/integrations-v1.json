@@ -741,6 +741,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "provisionClientPostProcessor": {
+                  "description": "Perform post provisioning steps after client is provisioned.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:provisionClientPostProcessor",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.provisionClientPostProcessor",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: The ID of the GCP Project to be provisioned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:provisionClientPostProcessor",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "replace": {
                   "description": "Update run-as service account for provisioned client",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:replace",
@@ -4648,6 +4676,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "enableNaturalLanguageQueryUnderstanding": {
+                      "description": "Optional. Whether to enable natural language query understanding.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "filter": {
                       "description": "Optional. Standard filter field to filter templates. client_id filter won't be supported and will restrict to templates belonging to the current client only. Return all templates of the current client if the filter is empty. Also supports operators like AND, OR, NOT For example, \"status=\\\"ACTIVE\\\"",
                       "location": "query",
@@ -4674,6 +4707,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "query": {
+                      "description": "Optional. The search query that will be passed to Vertex search service.",
+                      "location": "query",
                       "type": "string"
                     },
                     "readMask": {
@@ -4810,7 +4848,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250610",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -10155,7 +10193,7 @@
       "type": "object"
     },
     "GoogleCloudConnectorsV1EventingConfig": {
-      "description": "Eventing Configuration of a connection next: 18",
+      "description": "Eventing Configuration of a connection next: 19",
       "id": "GoogleCloudConnectorsV1EventingConfig",
       "properties": {
         "additionalVariables": {
@@ -10188,6 +10226,13 @@
         "listenerAuthConfig": {
           "$ref": "GoogleCloudConnectorsV1AuthConfig",
           "description": "Optional. Auth details for the event listener."
+        },
+        "privateConnectivityAllowlistedProjects": {
+          "description": "Optional. List of projects to be allowlisted for the service attachment created in the tenant project for eventing ingress.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
@@ -11082,6 +11127,10 @@
         },
         "enableInternalIp": {
           "description": "Optional. Indicates the client enables internal IP feature, this is applicable for internal clients only.",
+          "type": "boolean"
+        },
+        "enableManagedAiFeatures": {
+          "description": "Optional. Indicates if the Cloud Companion APIs will be used in the tenant project, i.e. if customer can use the managed AI features for free.",
           "type": "boolean"
         },
         "enableVariableMasking": {
@@ -13521,6 +13570,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorRequest": {
+      "description": "Request for PostProvisioning rpc call.",
+      "id": "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorRequest",
+      "properties": {
+        "workflows": {
+          "description": "Optional. Indicate which workflows to create",
+          "items": {
+            "enum": [
+              "SAMPLE_INTEGRATIONS_UNSPECIFIED",
+              "SAMPLE_WORKFLOW_ECOM_PROCESSING",
+              "EXECUTE_CONNECTOR_TOOL_WORKFLOW"
+            ],
+            "enumDescriptions": [
+              "Default value, should not be used.",
+              "Ecom processing workflow",
+              "Connector tool workflow"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorResponse": {
+      "description": "Response for PostProvisioning rpc call.",
+      "id": "GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaProvisionClientRequest": {
       "description": "Request for the Provision rpc",
       "id": "GoogleCloudIntegrationsV1alphaProvisionClientRequest",
@@ -13535,6 +13614,10 @@
         },
         "enableHttpCall": {
           "description": "Optional. Indicates if the client should be allowed to make HTTP calls.",
+          "type": "boolean"
+        },
+        "enableManagedAiFeatures": {
+          "description": "Optional. Indicates if the client should be allowed to use managed AI features, i.e. using Cloud Companion APIs of the tenant project. This will allow the customers to use features like Troubleshooting, OpenAPI spec enrichment, etc. for free.",
           "type": "boolean"
         },
         "provisionGmek": {
