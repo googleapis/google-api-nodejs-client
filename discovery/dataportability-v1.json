@@ -68,6 +68,9 @@
         "https://www.googleapis.com/auth/dataportability.maps.starred_places": {
           "description": "Move a copy of your Starred places list on Maps"
         },
+        "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile": {
+          "description": "Move a copy of your vehicle profile on Maps"
+        },
         "https://www.googleapis.com/auth/dataportability.myactivity.maps": {
           "description": "Move a copy of your Maps activity"
         },
@@ -339,6 +342,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -436,6 +440,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -526,6 +531,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -619,6 +625,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -706,6 +713,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -793,6 +801,7 @@
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.maps.vehicle_profile",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
             "https://www.googleapis.com/auth/dataportability.myactivity.play",
@@ -842,7 +851,7 @@
       }
     }
   },
-  "revision": "20250305",
+  "revision": "20250605",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "CancelPortabilityArchiveRequest": {
