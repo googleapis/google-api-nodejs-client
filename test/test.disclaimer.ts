@@ -49,7 +49,7 @@ describe(__filename, () => {
     nock.cleanAll();
     sandbox.restore();
   });
-  it.only('should update disclaimers', async () => {
+  it('should update disclaimers', async () => {
     const url = new URL(disclaimer.libraryListUrl);
     const scope = nock(url.origin).get(url.pathname).reply(200, mockResponse);
     const expected = [
