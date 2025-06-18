@@ -197,6 +197,24 @@ export namespace playintegrity_v1 {
     tokenPayloadExternal?: Schema$TokenPayloadExternal;
   }
   /**
+   * Request to decode the PC integrity token.
+   */
+  export interface Schema$DecodePcIntegrityTokenRequest {
+    /**
+     * Encoded integrity token.
+     */
+    integrityToken?: string | null;
+  }
+  /**
+   * Response containing the decoded PC integrity payload.
+   */
+  export interface Schema$DecodePcIntegrityTokenResponse {
+    /**
+     * Plain token payload generated from the decoded integrity token.
+     */
+    tokenPayloadExternal?: Schema$PcTokenPayloadExternal;
+  }
+  /**
    * Contains information about the device for which the integrity token was generated, e.g. Android SDK version.
    */
   export interface Schema$DeviceAttributes {
@@ -255,6 +273,45 @@ export namespace playintegrity_v1 {
      * The evaluation of Play Protect verdict.
      */
     playProtectVerdict?: string | null;
+  }
+  /**
+   * Contains the device attestation information.
+   */
+  export interface Schema$PcDeviceIntegrity {
+    /**
+     * Details about the integrity of the device the app is running on.
+     */
+    deviceRecognitionVerdict?: string[] | null;
+  }
+  /**
+   * Contains the integrity request information.
+   */
+  export interface Schema$PcRequestDetails {
+    /**
+     * Request hash that was provided in the request.
+     */
+    requestHash?: string | null;
+    /**
+     * Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity.
+     */
+    requestPackageName?: string | null;
+    /**
+     * Required. Timestamp, of the integrity application request.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * Contains PC device attestation details.
+   */
+  export interface Schema$PcTokenPayloadExternal {
+    /**
+     * Required. Details about the device integrity.
+     */
+    deviceIntegrity?: Schema$PcDeviceIntegrity;
+    /**
+     * Required. Details about the integrity request.
+     */
+    requestDetails?: Schema$PcRequestDetails;
   }
   /**
    * Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming.
@@ -384,6 +441,59 @@ export namespace playintegrity_v1 {
 
     /**
      * Writes recall bits for the device where Play Integrity API token is obtained. The endpoint is available to select Play partners in an early access program (EAP).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/playintegrity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const playintegrity = google.playintegrity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/playintegrity'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await playintegrity.deviceRecall.write({
+     *     // Required. Package name of the app the attached integrity token belongs to.
+     *     packageName: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "integrityToken": "my_integrityToken",
+     *       //   "newValues": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -500,6 +610,60 @@ export namespace playintegrity_v1 {
 
     /**
      * Decodes the integrity token and returns the token payload.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/playintegrity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const playintegrity = google.playintegrity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/playintegrity'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await playintegrity.decodeIntegrityToken({
+     *     //  Package name of the app the attached integrity token belongs to.
+     *     packageName: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "integrityToken": "my_integrityToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tokenPayloadExternal": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -595,6 +759,157 @@ export namespace playintegrity_v1 {
         );
       }
     }
+
+    /**
+     * Decodes the PC integrity token and returns the PC token payload.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/playintegrity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const playintegrity = google.playintegrity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/playintegrity'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await playintegrity.decodePcIntegrityToken({
+     *     // Package name of the app the attached integrity token belongs to.
+     *     packageName: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "integrityToken": "my_integrityToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tokenPayloadExternal": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    decodePcIntegrityToken(
+      params?: Params$Resource$V1$Decodepcintegritytoken,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DecodePcIntegrityTokenResponse>>;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>,
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      params: Params$Resource$V1$Decodepcintegritytoken,
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      callback: BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+    ): void;
+    decodePcIntegrityToken(
+      paramsOrCallback?:
+        | Params$Resource$V1$Decodepcintegritytoken
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DecodePcIntegrityTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DecodePcIntegrityTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Decodepcintegritytoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Decodepcintegritytoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://playintegrity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+packageName}:decodePcIntegrityToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DecodePcIntegrityTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DecodePcIntegrityTokenResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$V1$Decodeintegritytoken
@@ -608,5 +923,17 @@ export namespace playintegrity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DecodeIntegrityTokenRequest;
+  }
+  export interface Params$Resource$V1$Decodepcintegritytoken
+    extends StandardParameters {
+    /**
+     * Package name of the app the attached integrity token belongs to.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DecodePcIntegrityTokenRequest;
   }
 }
