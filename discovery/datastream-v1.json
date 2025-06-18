@@ -1261,7 +1261,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250518",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2231,6 +2231,10 @@
           "$ref": "SrvConnectionFormat",
           "description": "Srv connection format."
         },
+        "sslConfig": {
+          "$ref": "MongodbSslConfig",
+          "description": "Optional. SSL configuration for the MongoDB connection."
+        },
         "standardConnectionFormat": {
           "$ref": "StandardConnectionFormat",
           "description": "Standard connection format."
@@ -2253,6 +2257,49 @@
         "includeObjects": {
           "$ref": "MongodbCluster",
           "description": "MongoDB collections to include in the stream."
+        },
+        "maxConcurrentBackfillTasks": {
+          "description": "Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system's default value is used",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbSslConfig": {
+      "description": "MongoDB SSL configuration information.",
+      "id": "MongodbSslConfig",
+      "properties": {
+        "caCertificate": {
+          "description": "Optional. Input only. PEM-encoded certificate of the CA that signed the source database server's certificate.",
+          "type": "string"
+        },
+        "caCertificateSet": {
+          "description": "Output only. Indicates whether the ca_certificate field is set.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "clientCertificate": {
+          "description": "Optional. Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.",
+          "type": "string"
+        },
+        "clientCertificateSet": {
+          "description": "Output only. Indicates whether the client_certificate field is set.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "clientKey": {
+          "description": "Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.",
+          "type": "string"
+        },
+        "clientKeySet": {
+          "description": "Output only. Indicates whether the client_key field is set.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "secretManagerStoredClientKey": {
+          "description": "Optional. Input only. A reference to a Secret Manager resource name storing the PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `client_key` field.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3169,7 +3216,7 @@
       "id": "PscInterfaceConfig",
       "properties": {
         "networkAttachment": {
-          "description": "Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project}}/regions/{{region}}/networkAttachments/{{name}}`",
+          "description": "Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{project}/regions/{region}/networkAttachments/{name}`",
           "type": "string"
         }
       },
@@ -3681,7 +3728,12 @@
     "StandardConnectionFormat": {
       "description": "Standard connection format.",
       "id": "StandardConnectionFormat",
-      "properties": {},
+      "properties": {
+        "directConnection": {
+          "description": "Optional. Specifies whether the client connects directly to the host[:port] in the connection URI.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "StartBackfillJobRequest": {
