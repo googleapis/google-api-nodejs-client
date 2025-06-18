@@ -151,7 +151,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the state to retrieve. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+                  "description": "Required. The name of the state to retrieve. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`. For example, `accounts/123456/lfpMerchantStates/567890`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/lfpMerchantStates/[^/]+$",
                   "required": true,
@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250603",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -538,7 +538,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+          "description": "Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`. For example, `accounts/123456/lfpMerchantStates/567890`.",
           "type": "string"
         },
         "storeStates": {
