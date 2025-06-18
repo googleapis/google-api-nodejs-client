@@ -5041,11 +5041,112 @@
               ]
             }
           }
+        },
+        "subpropertySyncConfigs": {
+          "methods": {
+            "get": {
+              "description": "Lookup for a single `SubpropertySyncConfig`.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertySyncConfigs/{subpropertySyncConfigsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.subpropertySyncConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the SubpropertySyncConfig to lookup. Format: properties/{ordinary_property_id}/subpropertySyncConfigs/{subproperty_id} Example: properties/1234/subpropertySyncConfigs/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/subpropertySyncConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "List all `SubpropertySyncConfig` resources for a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertySyncConfigs",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.subpropertySyncConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListSubpropertySyncConfig` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubpropertySyncConfig` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the property. Format: properties/property_id Example: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/subpropertySyncConfigs",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a `SubpropertySyncConfig`.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertySyncConfigs/{subpropertySyncConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.subpropertySyncConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Identifier. Format: properties/{ordinary_property_id}/subpropertySyncConfigs/{subproperty_id} Example: properties/1234/subpropertySyncConfigs/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/subpropertySyncConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20250329",
+  "revision": "20250615",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -6440,6 +6541,10 @@
         "skadnetworkConversionValueSchema": {
           "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema",
           "description": "A snapshot of SKAdNetworkConversionValueSchema resource in change history."
+        },
+        "subpropertySyncConfig": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig",
+          "description": "A snapshot of a SubpropertySyncConfig resource in change history."
         }
       },
       "type": "object"
@@ -8370,6 +8475,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse": {
+      "description": "Response message for ListSubpropertySyncConfigs RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "subpropertySyncConfigs": {
+          "description": "List of `SubpropertySyncConfig` resources.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaMatchingCondition": {
       "description": "Defines a condition for when an Event Edit or Event Creation rule applies to an event.",
       "id": "GoogleAnalyticsAdminV1alphaMatchingCondition",
@@ -8712,6 +8835,20 @@
       "description": "Request message for CreateSubproperty RPC.",
       "id": "GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest",
       "properties": {
+        "customDimensionAndMetricSynchronizationMode": {
+          "description": "Optional. The subproperty feature synchronization mode for Custom Dimensions and Metrics",
+          "enum": [
+            "SYNCHRONIZATION_MODE_UNSPECIFIED",
+            "NONE",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Synchronization mode unknown or not specified.",
+            "Entities are not synchronized. Local edits are allowed on the subproperty.",
+            "Entities are synchronized from parent property. Local mutations are not allowed on the subproperty (Create / Update / Delete)"
+          ],
+          "type": "string"
+        },
         "subproperty": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "Required. The subproperty to create."
@@ -9094,7 +9231,8 @@
               "EVENT_CREATE_RULE",
               "KEY_EVENT",
               "CALCULATED_METRIC",
-              "REPORTING_DATA_ANNOTATION"
+              "REPORTING_DATA_ANNOTATION",
+              "SUBPROPERTY_SYNC_CONFIG"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -9124,7 +9262,8 @@
               "EventCreateRule resource",
               "KeyEvent resource",
               "CalculatedMetric resource",
-              "ReportingDataAnnotation resource"
+              "ReportingDataAnnotation resource",
+              "SubpropertySyncConfig resource"
             ],
             "type": "string"
           },
@@ -9305,6 +9444,37 @@
             "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig": {
+      "description": "Subproperty synchronization configuration controls how ordinary property configurations are synchronized to subproperties. This resource is provisioned automatically for each subproperty.",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertySyncConfig",
+      "properties": {
+        "applyToProperty": {
+          "description": "Output only. Immutable. Resource name of the subproperty that these settings apply to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customDimensionAndMetricSyncMode": {
+          "description": "Required. Specifies the Custom Dimension / Metric synchronization mode for the subproperty. If set to ALL, Custom Dimension / Metric synchronization will be immediately enabled. Local configuration of Custom Dimensions / Metrics will not be allowed on the subproperty so long as the synchronization mode is set to ALL. If set to NONE, Custom Dimensions / Metric synchronization is disabled. Custom Dimensions / Metrics must be configured explicitly on the Subproperty.",
+          "enum": [
+            "SYNCHRONIZATION_MODE_UNSPECIFIED",
+            "NONE",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Synchronization mode unknown or not specified.",
+            "Entities are not synchronized. Local edits are allowed on the subproperty.",
+            "Entities are synchronized from parent property. Local mutations are not allowed on the subproperty (Create / Update / Delete)"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. Format: properties/{ordinary_property_id}/subpropertySyncConfigs/{subproperty_id} Example: properties/1234/subpropertySyncConfigs/5678",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
