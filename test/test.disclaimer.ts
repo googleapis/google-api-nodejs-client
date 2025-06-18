@@ -19,24 +19,27 @@ import * as nock from 'nock';
 import {URL} from 'url';
 import * as disclaimer from '../src/generator/disclaimer';
 
-const mockResponse = [
+const mockResponse = `[
   {
-    name: 'asset',
-    name_pretty: 'Asset Inventory',
-    product_documentation:
-      'https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview',
-    client_documentation: 'https://googleapis.dev/nodejs/asset/latest',
-    issue_tracker: 'https://issuetracker.google.com/savedsearches/559757',
-    release_level: 'ga',
-    language: 'nodejs',
-    repo: 'googleapis/nodejs-asset',
-    distribution_name: '@google-cloud/asset',
-    api_id: 'cloudasset.googleapis.com',
-    requires_billing: true,
-    support_documentation:
-      'https://cloud.google.com/resource-manager/docs/getting-support',
-  },
-];
+    "name": "cloudasset",
+    "name_pretty": "Asset Inventory",
+    "product_documentation": "https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview",
+    "client_documentation": "https://cloud.google.com/nodejs/docs/reference/asset/latest",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559757",
+    "release_level": "stable",
+    "language": "nodejs",
+    "repo": "googleapis/google-cloud-node",
+    "distribution_name": "@google-cloud/asset",
+    "api_id": "cloudasset.googleapis.com",
+    "requires_billing": true,
+    "default_version": "v1",
+    "codeowner_team": "@googleapis/cloud-asset-team",
+    "api_shortname": "cloudasset",
+    "library_type": "GAPIC_AUTO",
+    "linkToRepoHomepage": "https://github.com/googleapis/google-cloud-node/tree/main/packages/google-cloud-asset",
+    "support_documentation": "https://cloud.google.com/resource-manager/docs/getting-support"
+  }
+]`;
 
 nock.disableNetConnect();
 
