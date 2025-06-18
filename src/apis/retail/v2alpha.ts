@@ -958,6 +958,23 @@ export namespace retail_v2alpha {
     solutionTypes?: string[] | null;
   }
   /**
+   * The public proto to represent the conversational search customization config. It will be converted to the internal proto in the backend.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig {
+    /**
+     * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string | null;
+    /**
+     * Optional. The configs for intent classification.
+     */
+    intentClassificationConfig?: Schema$GoogleCloudRetailV2alphaIntentClassificationConfig;
+    /**
+     * Optional. The retailer's display name that could be used in our LLM answers. Example - "Google"
+     */
+    retailerDisplayName?: string | null;
+  }
+  /**
    * Request message for ConversationalSearchService.ConversationalSearch method.
    */
   export interface Schema$GoogleCloudRetailV2alphaConversationalSearchRequest {
@@ -989,6 +1006,10 @@ export namespace retail_v2alpha {
      * Optional. User information.
      */
     userInfo?: Schema$GoogleCloudRetailV2alphaUserInfo;
+    /**
+     * Optional. The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
     /**
      * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This should be the same identifier as UserEvent.visitor_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -1107,7 +1128,7 @@ export namespace retail_v2alpha {
     suggestedAnswers?: Schema$GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer[];
   }
   /**
-   * Suggested answers to the follow-up question.
+   * Suggested answers to the follow-up question. If it's numerical attribute, only ProductAttributeInterval will be set. If it's textual attribute, only productAttributeValue will be set.
    */
   export interface Schema$GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer {
     /**
@@ -1166,6 +1187,15 @@ export namespace retail_v2alpha {
      * The textual values of this custom attribute. For example, `["yellow", "green"]` when the key is "color". Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     text?: string[] | null;
+  }
+  /**
+   * A message with a list of double values.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaDoubleList {
+    /**
+     * The list of double values.
+     */
+    values?: number[] | null;
   }
   /**
    * Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.
@@ -1585,6 +1615,44 @@ export namespace retail_v2alpha {
      * Aggregated statistics of user event import status.
      */
     importSummary?: Schema$GoogleCloudRetailV2alphaUserEventImportSummary;
+  }
+  /**
+   * The public proto to represent the intent classification config. It will be converted to the internal proto in the backend.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaIntentClassificationConfig {
+    /**
+     * Optional. A list of keywords that will be used to classify the query to the "BLOCKLISTED" intent type. The keywords are case insensitive.
+     */
+    blocklistKeywords?: string[] | null;
+    /**
+     * Optional. A list of intent types that will be disabled for this customer. The intent types must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype
+     */
+    disabledIntentTypes?: string[] | null;
+    /**
+     * Optional. A list of examples for intent classification.
+     */
+    example?: Schema$GoogleCloudRetailV2alphaIntentClassificationConfigExample[];
+    /**
+     * Optional. Customers can use the preamble to specify any requirements for blocklisting intent classification. This preamble will be added to the blocklisting intent classification model prompt.
+     */
+    modelPreamble?: string | null;
+  }
+  /**
+   * An example for intent classification.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaIntentClassificationConfigExample {
+    /**
+     * Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype
+     */
+    intentType?: string | null;
+    /**
+     * Required. Example query.
+     */
+    query?: string | null;
+    /**
+     * Optional. The reason for the intent classification. This is used to explain the intent classification decision.
+     */
+    reason?: string | null;
   }
   /**
    * A floating point interval.
@@ -2928,6 +2996,10 @@ export namespace retail_v2alpha {
      */
     entity?: string | null;
     /**
+     * Optional. An ID for the experiment group this search belongs to.
+     */
+    experimentId?: string | null;
+    /**
      * Facet specifications for faceted search. If empty, no facets are returned. A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     facetSpecs?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec[];
@@ -2999,6 +3071,12 @@ export namespace retail_v2alpha {
      * Optional. This field specifies tile navigation related parameters.
      */
     tileNavigationSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec;
+    /**
+     * Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplcate keys are not allowed within a single query. Example: user_attributes: [ { key: "pets" value { values: "dog" values: "cat" \} \}, { key: "state" value { values: "CA" \} \} ]
+     */
+    userAttributes?: {
+      [key: string]: Schema$GoogleCloudRetailV2alphaStringList;
+    } | null;
     /**
      * User information.
      */
@@ -3170,7 +3248,7 @@ export namespace retail_v2alpha {
      */
     condition?: string | null;
     /**
-     * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
+     * Whether to pin unexpanded results. The default value is false. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
      */
     pinUnexpandedResults?: boolean | null;
   }
@@ -3376,6 +3454,12 @@ export namespace retail_v2alpha {
      */
     matchingVariantFields?: {[key: string]: string} | null;
     /**
+     * Google provided available scores.
+     */
+    modelScores?: {
+      [key: string]: Schema$GoogleCloudRetailV2alphaDoubleList;
+    } | null;
+    /**
      * Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.
      */
     personalLabels?: string[] | null;
@@ -3529,6 +3613,15 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSetInventoryResponse {}
   /**
+   * A list of string values.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaStringList {
+    /**
+     * String values.
+     */
+    values?: string[] | null;
+  }
+  /**
    * This field specifies the tile information including an attribute key, attribute value. More fields will be added in the future, eg: product id or product counts, etc.
    */
   export interface Schema$GoogleCloudRetailV2alphaTile {
@@ -3663,7 +3756,7 @@ export namespace retail_v2alpha {
      */
     searchQuery?: string | null;
     /**
-     * A unique identifier for tracking a visitor session with a length limit of 128 bytes. A session is an aggregation of an end user behavior in a time span. A general guideline to populate the sesion_id: 1. If user has no activity for 30 min, a new session_id should be assigned. 2. The session_id should be unique across users, suggest use uuid or add visitor_id as prefix.
+     * A unique identifier for tracking a visitor session with a length limit of 128 bytes. A session is an aggregation of an end user behavior in a time span. A general guideline to populate the session_id: 1. If user has no activity for 30 min, a new session_id should be assigned. 2. The session_id should be unique across users, suggest use uuid or add visitor_id as prefix.
      */
     sessionId?: string | null;
     /**
@@ -4604,6 +4697,64 @@ export namespace retail_v2alpha {
 
     /**
      * The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution method for recommendations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.enrollSolution({
+     *     // Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "solution": "my_solution"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4699,6 +4850,53 @@ export namespace retail_v2alpha {
 
     /**
      * Get the AlertConfig of the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.getAlertConfig({
+     *     // Required. Full AlertConfig resource name. Format: projects/{project_number\}/alertConfig
+     *     name: 'projects/my-project/alertConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicies": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4797,6 +4995,54 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the LoggingConfig of the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.getLoggingConfig({
+     *     // Required. Full LoggingConfig resource name. Format: projects/{project_number\}/loggingConfig
+     *     name: 'projects/my-project/loggingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLogGenerationRule": {},
+     *   //   "name": "my_name",
+     *   //   "serviceLogGenerationRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4895,6 +5141,53 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.getRetailProject({
+     *     // Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     *     name: 'projects/my-project/retailProject',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4989,6 +5282,52 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all the retail API solutions the project has enrolled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.listEnrolledSolutions({
+     *     // Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5090,6 +5429,64 @@ export namespace retail_v2alpha {
 
     /**
      * Update the alert config of the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.updateAlertConfig({
+     *     // Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/x/alertConfig
+     *     name: 'projects/my-project/alertConfig',
+     *     // Indicates which fields in the provided AlertConfig to update. If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertPolicies": [],
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicies": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5188,6 +5585,66 @@ export namespace retail_v2alpha {
 
     /**
      * Updates the LoggingConfig of the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.updateLoggingConfig({
+     *     // Required. Immutable. The name of the LoggingConfig singleton resource. Format: projects/x/loggingConfig
+     *     name: 'projects/my-project/loggingConfig',
+     *     // Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * LoggingConfig.default_log_generation_rule * LoggingConfig.service_log_generation_rules If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultLogGenerationRule": {},
+     *       //   "name": "my_name",
+     *       //   "serviceLogGenerationRules": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultLogGenerationRule": {},
+     *   //   "name": "my_name",
+     *   //   "serviceLogGenerationRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5427,6 +5884,71 @@ export namespace retail_v2alpha {
 
     /**
      * Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.completeQuery({
+     *     // Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // Determines which dataset to use for fetching completion. "user-data" will use the dataset imported through CompletionService.ImportCompletionData. `cloud-retail` will use the dataset generated by Cloud Retail based on user events. If left empty, completions will be fetched from the `user-data` dataset. Current supported values: * user-data * cloud-retail: This option requires enabling auto-learning function first. See [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
+     *     dataset: 'placeholder-value',
+     *     // The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
+     *     deviceType: 'placeholder-value',
+     *     // If true, attribute suggestions are enabled and provided in the response. This field is only available for the `cloud-retail` dataset.
+     *     enableAttributeSuggestions: 'placeholder-value',
+     *     // The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results. This field will be applied to `completion_results` only. It has no effect on the `attribute_results`. Also, this entity should be limited to 256 characters, if too long, it will be truncated to 256 characters in both generation and serving time, and may lead to mis-match. To ensure it works, please set the entity with string within 256 characters.
+     *     entity: 'placeholder-value',
+     *     // Note that this field applies for `user-data` dataset only. For requests with `cloud-retail` dataset, setting this field has no effect. The language filters applied to the output suggestions. If set, it should contain the language of the query. If not set, suggestions are returned without considering language restrictions. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of language codes is 3.
+     *     languageCodes: 'placeholder-value',
+     *     // Completion max suggestions. If left unset or set to 0, then will fallback to the configured value CompletionConfig.max_suggestions. The maximum allowed max suggestions is 20. If it is set higher, it will be capped by 20.
+     *     maxSuggestions: 'placeholder-value',
+     *     // Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
+     *     query: 'placeholder-value',
+     *     // Recommended field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     visitorId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeResults": {},
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "completionResults": [],
+     *   //   "recentSearchResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5529,6 +6051,65 @@ export namespace retail_v2alpha {
 
     /**
      * Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.exportAnalyticsMetrics({
+     *     // Required. Full resource name of the parent catalog. Expected format: `projects/x/locations/x/catalogs/x`
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "outputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5624,6 +6205,54 @@ export namespace retail_v2alpha {
 
     /**
      * Gets an AttributesConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.getAttributesConfig({
+     *     // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *   //   "catalogAttributes": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5723,6 +6352,62 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a CompletionConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.getCompletionConfig({
+     *     // Required. Full CompletionConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/completionConfig`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/completionConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowlistInputConfig": {},
+     *   //   "autoLearning": false,
+     *   //   "denylistInputConfig": {},
+     *   //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
+     *   //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
+     *   //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",
+     *   //   "matchingOrder": "my_matchingOrder",
+     *   //   "maxSuggestions": 0,
+     *   //   "minPrefixLength": 0,
+     *   //   "name": "my_name",
+     *   //   "suggestionsInputConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5821,7 +6506,208 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Returns the conversational search customization config for a given catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.getConversationalSearchCustomizationConfig(
+     *       {
+     *         // Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalog": "my_catalog",
+     *   //   "intentClassificationConfig": {},
+     *   //   "retailerDisplayName": "my_retailerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getConversationalSearchCustomizationConfig(
+      params?: Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    >;
+    getConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    getConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    getConversationalSearchCustomizationConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    getConversationalSearchCustomizationConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2alpha/{+name}/conversationalSearchCustomizationConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get which branch is currently default branch set by CatalogService.SetDefaultBranch method under a specified parent catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.getDefaultBranch({
+     *     // The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branch": "my_branch",
+     *   //   "note": "my_note",
+     *   //   "setTime": "my_setTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5924,6 +6810,55 @@ export namespace retail_v2alpha {
 
     /**
      * Manages overal generative question feature state -- enables toggling feature on and off.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.getGenerativeQuestionFeature({
+     *       // Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *       catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalog": "my_catalog",
+     *   //   "featureEnabled": false,
+     *   //   "minimumProducts": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6025,6 +6960,57 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all the Catalogs associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.list({
+     *     // Maximum number of Catalogs to return. If unspecified, defaults to 50. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListCatalogsResponse.next_page_token, received from a previous CatalogService.ListCatalogs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CatalogService.ListCatalogs must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account resource name with an associated location. If the caller does not have permission to list Catalogs under this location, regardless of whether or not this location exists, a PERMISSION_DENIED error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalogs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6126,6 +7112,68 @@ export namespace retail_v2alpha {
 
     /**
      * Updates the Catalogs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.patch({
+     *     // Required. Immutable. The fully qualified resource name of the catalog.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // Indicates which fields in the provided Catalog to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "merchantCenterLinkingConfig": {},
+     *       //   "name": "my_name",
+     *       //   "productLevelConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "merchantCenterLinkingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "productLevelConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6220,6 +7268,60 @@ export namespace retail_v2alpha {
 
     /**
      * Set a specified branch id as default branch. API methods such as SearchService.Search, ProductService.GetProduct, ProductService.ListProducts will treat requests using "default_branch" to the actual branch id set as default. For example, if `projects/x/locations/x/catalogs/x/branches/1` is set as default, setting SearchRequest.branch to `projects/x/locations/x/catalogs/x/branches/default_branch` is equivalent to setting SearchRequest.branch to `projects/x/locations/x/catalogs/x/branches/1`. Using multiple branches can be useful when developers would like to have a staging branch to test and verify for future usage. When it becomes ready, developers switch on the staging branch using this API while keeping using `projects/x/locations/x/catalogs/x/branches/default_branch` as SearchRequest.branch to route the traffic to this staging branch. CAUTION: If you have live predict/search traffic, switching the default branch could potentially cause outages if the ID space of the new branch is very different from the old one. More specifically: * PredictionService will only return product IDs from branch {newBranch\}. * SearchService will only return product IDs from branch {newBranch\} (if branch is not explicitly set). * UserEventService will only join events with products from branch {newBranch\}.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.setDefaultBranch({
+     *     // Full resource name of the catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "branchId": "my_branchId",
+     *       //   "force": false,
+     *       //   "note": "my_note"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6314,6 +7416,66 @@ export namespace retail_v2alpha {
 
     /**
      * Updates the AttributesConfig. The catalog attributes in the request will be updated in the catalog, or inserted if they do not exist. Existing catalog attributes not included in the request will remain unchanged. Attributes that are assigned to products, but do not exist at the catalog level, are always included in the response. The product attribute is assigned default values for missing catalog attribute fields, e.g., searchable and dynamic facetable options.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.updateAttributesConfig({
+     *     // Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *     // Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *       //   "catalogAttributes": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *   //   "catalogAttributes": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6413,6 +7575,82 @@ export namespace retail_v2alpha {
 
     /**
      * Updates the CompletionConfigs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.updateCompletionConfig({
+     *     // Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/completionConfig',
+     *     // Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowlistInputConfig": {},
+     *       //   "autoLearning": false,
+     *       //   "denylistInputConfig": {},
+     *       //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
+     *       //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
+     *       //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",
+     *       //   "matchingOrder": "my_matchingOrder",
+     *       //   "maxSuggestions": 0,
+     *       //   "minPrefixLength": 0,
+     *       //   "name": "my_name",
+     *       //   "suggestionsInputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowlistInputConfig": {},
+     *   //   "autoLearning": false,
+     *   //   "denylistInputConfig": {},
+     *   //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
+     *   //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
+     *   //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",
+     *   //   "matchingOrder": "my_matchingOrder",
+     *   //   "maxSuggestions": 0,
+     *   //   "minPrefixLength": 0,
+     *   //   "name": "my_name",
+     *   //   "suggestionsInputConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6511,7 +7749,243 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Updates the conversational search customization config for a given catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.updateConversationalSearchCustomizationConfig(
+     *       {
+     *         // Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *         catalog:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *         // Optional. Indicates which fields in the provided ConversationalSearchCustomizationConfig to update. If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "catalog": "my_catalog",
+     *           //   "intentClassificationConfig": {},
+     *           //   "retailerDisplayName": "my_retailerDisplayName"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalog": "my_catalog",
+     *   //   "intentClassificationConfig": {},
+     *   //   "retailerDisplayName": "my_retailerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateConversationalSearchCustomizationConfig(
+      params?: Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    >;
+    updateConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    updateConversationalSearchCustomizationConfig(
+      params: Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    updateConversationalSearchCustomizationConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+    ): void;
+    updateConversationalSearchCustomizationConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2alpha/{+catalog}/conversationalSearchCustomizationConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Allows management of individual questions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.updateGenerativeQuestion(
+     *     {
+     *       // Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *       catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *       // Optional. Indicates which fields in the provided GenerativeQuestionConfig to update. The following are NOT supported: * GenerativeQuestionConfig.frequency If not set or empty, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowedInConversation": false,
+     *         //   "catalog": "my_catalog",
+     *         //   "exampleValues": [],
+     *         //   "facet": "my_facet",
+     *         //   "finalQuestion": "my_finalQuestion",
+     *         //   "frequency": {},
+     *         //   "generatedQuestion": "my_generatedQuestion"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedInConversation": false,
+     *   //   "catalog": "my_catalog",
+     *   //   "exampleValues": [],
+     *   //   "facet": "my_facet",
+     *   //   "finalQuestion": "my_finalQuestion",
+     *   //   "frequency": {},
+     *   //   "generatedQuestion": "my_generatedQuestion"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6614,6 +8088,67 @@ export namespace retail_v2alpha {
 
     /**
      * Manages overal generative question feature state -- enables toggling feature on and off.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.updateGenerativeQuestionFeature({
+     *       // Required. Resource name of the affected catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *       catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *       // Optional. Indicates which fields in the provided GenerativeQuestionsFeatureConfig to update. If not set or empty, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "catalog": "my_catalog",
+     *         //   "featureEnabled": false,
+     *         //   "minimumProducts": 0
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalog": "my_catalog",
+     *   //   "featureEnabled": false,
+     *   //   "minimumProducts": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6779,6 +8314,13 @@ export namespace retail_v2alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch
     extends StandardParameters {
     /**
@@ -6868,6 +8410,22 @@ export namespace retail_v2alpha {
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaCompletionConfig;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string;
+    /**
+     * Optional. Indicates which fields in the provided ConversationalSearchCustomizationConfig to update. If not set or empty, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion
     extends StandardParameters {
     /**
@@ -6909,6 +8467,66 @@ export namespace retail_v2alpha {
 
     /**
      * Adds the specified CatalogAttribute to the AttributesConfig. If the CatalogAttribute to add already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.attributesConfig.addCatalogAttribute(
+     *       {
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
+     *         attributesConfig:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "catalogAttribute": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *   //   "catalogAttributes": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7010,6 +8628,65 @@ export namespace retail_v2alpha {
 
     /**
      * Removes all specified CatalogAttributes from the AttributesConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.attributesConfig.batchRemoveCatalogAttributes(
+     *       {
+     *         // Required. The attributes config resource shared by all catalog attributes being deleted. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
+     *         attributesConfig:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "attributeKeys": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletedCatalogAttributes": [],
+     *   //   "resetCatalogAttributes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7112,6 +8789,66 @@ export namespace retail_v2alpha {
 
     /**
      * Removes the specified CatalogAttribute from the AttributesConfig. If the CatalogAttribute to remove does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.attributesConfig.removeCatalogAttribute(
+     *       {
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
+     *         attributesConfig:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "key": "my_key"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *   //   "catalogAttributes": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7213,6 +8950,67 @@ export namespace retail_v2alpha {
 
     /**
      * Replaces the specified CatalogAttribute in the AttributesConfig by updating the catalog attribute with the same CatalogAttribute.key. If the CatalogAttribute to replace does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.attributesConfig.replaceCatalogAttribute(
+     *       {
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
+     *         attributesConfig:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "catalogAttribute": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeConfigLevel": "my_attributeConfigLevel",
+     *   //   "catalogAttributes": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7384,6 +9182,59 @@ export namespace retail_v2alpha {
 
     /**
      * Retrieves a Branch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.get({
+     *     // Required. The name of the branch to retrieve. Format: `projects/x/locations/global/catalogs/default_catalog/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the catalog.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *     // The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "lastProductImportTime": "my_lastProductImportTime",
+     *   //   "name": "my_name",
+     *   //   "productCountStats": [],
+     *   //   "qualityMetrics": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7478,6 +9329,54 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all instances of Branch under the specified parent Catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.list({
+     *     // Required. The parent catalog resource name.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branches": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7610,6 +9509,56 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7730,6 +9679,57 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.places.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/places/my-place/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7838,6 +9838,71 @@ export namespace retail_v2alpha {
 
     /**
      * We recommend that you use the ProductService.AddLocalInventories method instead of the ProductService.AddFulfillmentPlaces method. ProductService.AddLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.addFulfillmentPlaces(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "addTime": "my_addTime",
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7934,6 +9999,71 @@ export namespace retail_v2alpha {
 
     /**
      * Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.addLocalInventories(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "addMask": "my_addMask",
+     *           //   "addTime": "my_addTime",
+     *           //   "allowMissing": false,
+     *           //   "localInventories": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8030,6 +10160,131 @@ export namespace retail_v2alpha {
 
     /**
      * Creates a Product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.create(
+     *     {
+     *       // Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *       // Required. The ID to use for the Product, which will become the final component of the Product.name. If the caller does not have permission to create the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. This field must be unique among all Products with the same parent. Otherwise, an ALREADY_EXISTS error is returned. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *       productId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributes": {},
+     *         //   "audience": {},
+     *         //   "availability": "my_availability",
+     *         //   "availableQuantity": 0,
+     *         //   "availableTime": "my_availableTime",
+     *         //   "brands": [],
+     *         //   "categories": [],
+     *         //   "collectionMemberIds": [],
+     *         //   "colorInfo": {},
+     *         //   "conditions": [],
+     *         //   "description": "my_description",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "fulfillmentInfo": [],
+     *         //   "gtin": "my_gtin",
+     *         //   "id": "my_id",
+     *         //   "images": [],
+     *         //   "languageCode": "my_languageCode",
+     *         //   "localInventories": [],
+     *         //   "materials": [],
+     *         //   "name": "my_name",
+     *         //   "patterns": [],
+     *         //   "priceInfo": {},
+     *         //   "primaryProductId": "my_primaryProductId",
+     *         //   "promotions": [],
+     *         //   "publishTime": "my_publishTime",
+     *         //   "rating": {},
+     *         //   "retrievableFields": "my_retrievableFields",
+     *         //   "sizes": [],
+     *         //   "tags": [],
+     *         //   "title": "my_title",
+     *         //   "ttl": "my_ttl",
+     *         //   "type": "my_type",
+     *         //   "uri": "my_uri",
+     *         //   "variants": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "audience": {},
+     *   //   "availability": "my_availability",
+     *   //   "availableQuantity": 0,
+     *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
+     *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
+     *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "localInventories": [],
+     *   //   "materials": [],
+     *   //   "name": "my_name",
+     *   //   "patterns": [],
+     *   //   "priceInfo": {},
+     *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
+     *   //   "tags": [],
+     *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
+     *   //   "type": "my_type",
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8128,6 +10383,54 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes a Product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.delete(
+     *     {
+     *       // This value only applies to the case when the target product is of type PRIMARY. When deleting a product of VARIANT/COLLECTION type, this value will be ignored. When set to true, the subsequent variant products will be deleted. When set to false, if the primary product has active variant products, an error will be returned.
+     *       force: 'placeholder-value',
+     *       // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8217,6 +10520,68 @@ export namespace retail_v2alpha {
 
     /**
      * Exports multiple Products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.export(
+     *     {
+     *       // Required. Resource name of a Branch, and `default_branch` for branch_id component is supported. For example `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch`
+     *       parent:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "filter": "my_filter",
+     *         //   "outputConfig": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8313,6 +10678,85 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a Product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.get({
+     *     // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Product does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "audience": {},
+     *   //   "availability": "my_availability",
+     *   //   "availableQuantity": 0,
+     *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
+     *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
+     *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "localInventories": [],
+     *   //   "materials": [],
+     *   //   "name": "my_name",
+     *   //   "patterns": [],
+     *   //   "priceInfo": {},
+     *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
+     *   //   "tags": [],
+     *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
+     *   //   "type": "my_type",
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8408,6 +10852,73 @@ export namespace retail_v2alpha {
 
     /**
      * Bulk import of multiple Products. Request processing may be synchronous. Non-existing items are created. Note that it is possible for a subset of the Products to be successfully updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.import(
+     *     {
+     *       // Required. `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch` If no updateMask is specified, requires products.create permission. If updateMask is specified, requires products.update permission.
+     *       parent:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "errorsConfig": {},
+     *         //   "inputConfig": {},
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "reconciliationMode": "my_reconciliationMode",
+     *         //   "requestId": "my_requestId",
+     *         //   "skipDefaultBranchProtection": false,
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8504,6 +11015,65 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a list of Products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.list({
+     *     // A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List Product.Type.VARIANT Products sharing the same Product.Type.PRIMARY Product. For example: `primary_product_id = "some_product_id"` * List Products bundled in a Product.Type.COLLECTION Product. For example: `collection_product_id = "some_product_id"` * List Products with a partibular type. For example: `type = "PRIMARY"` `type = "VARIANT"` `type = "COLLECTION"` If the field is unrecognizable, an INVALID_ARGUMENT error is returned. If the specified Product.Type.PRIMARY Product or Product.Type.COLLECTION Product does not exist, a NOT_FOUND error is returned.
+     *     filter: 'placeholder-value',
+     *     // Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListProductsResponse.next_page_token, received from a previous ProductService.ListProducts call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ProductService.ListProducts must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use `default_branch` as the branch ID, to list products under the default branch. If the caller does not have permission to list Products under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
+     *     parent:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *     // The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info * Product.brands If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     readMask: 'placeholder-value',
+     *     // If true and page_token is empty, ListProductsResponse.total_size is set to the total count of matched items irrespective of pagination. Notice that setting this field to true affects the performance.
+     *     requireTotalSize: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8606,6 +11176,130 @@ export namespace retail_v2alpha {
 
     /**
      * Updates a Product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.patch({
+     *     // If set to true, and the Product is not found, a new Product will be created. In this situation, `update_mask` is ignored.
+     *     allowMissing: 'placeholder-value',
+     *     // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *     // Indicates which fields in the provided Product to update. The immutable and output only fields are NOT supported. If not set, all supported fields (the fields that are neither immutable nor output only) are updated. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned. The attribute key can be updated by setting the mask path as "attributes.${key_name\}". If a key name is present in the mask but not in the patching product from the request, this key will be deleted after the update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "audience": {},
+     *       //   "availability": "my_availability",
+     *       //   "availableQuantity": 0,
+     *       //   "availableTime": "my_availableTime",
+     *       //   "brands": [],
+     *       //   "categories": [],
+     *       //   "collectionMemberIds": [],
+     *       //   "colorInfo": {},
+     *       //   "conditions": [],
+     *       //   "description": "my_description",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "fulfillmentInfo": [],
+     *       //   "gtin": "my_gtin",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "localInventories": [],
+     *       //   "materials": [],
+     *       //   "name": "my_name",
+     *       //   "patterns": [],
+     *       //   "priceInfo": {},
+     *       //   "primaryProductId": "my_primaryProductId",
+     *       //   "promotions": [],
+     *       //   "publishTime": "my_publishTime",
+     *       //   "rating": {},
+     *       //   "retrievableFields": "my_retrievableFields",
+     *       //   "sizes": [],
+     *       //   "tags": [],
+     *       //   "title": "my_title",
+     *       //   "ttl": "my_ttl",
+     *       //   "type": "my_type",
+     *       //   "uri": "my_uri",
+     *       //   "variants": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "audience": {},
+     *   //   "availability": "my_availability",
+     *   //   "availableQuantity": 0,
+     *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
+     *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
+     *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "localInventories": [],
+     *   //   "materials": [],
+     *   //   "name": "my_name",
+     *   //   "patterns": [],
+     *   //   "priceInfo": {},
+     *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
+     *   //   "tags": [],
+     *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
+     *   //   "type": "my_type",
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8701,6 +11395,66 @@ export namespace retail_v2alpha {
 
     /**
      * Permanently deletes all selected Products under a branch. This process is asynchronous. If the request is valid, the removal will be enqueued and processed offline. Depending on the number of Products, this operation could take hours to complete. Before the operation completes, some Products may still be returned by ProductService.GetProduct or ProductService.ListProducts. Depending on the number of Products, this operation could take hours to complete. To get a sample of Products that would be deleted, set PurgeProductsRequest.force to false.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.purge({
+     *     // Required. The resource name of the branch under which the products are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/branches/${branchId\}`
+     *     parent:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "force": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8797,6 +11551,71 @@ export namespace retail_v2alpha {
 
     /**
      * We recommend that you use the ProductService.RemoveLocalInventories method instead of the ProductService.RemoveFulfillmentPlaces method. ProductService.RemoveLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.removeFulfillmentPlaces(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "removeTime": "my_removeTime",
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8892,6 +11711,70 @@ export namespace retail_v2alpha {
 
     /**
      * Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.removeLocalInventories(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "removeTime": "my_removeTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8987,6 +11870,68 @@ export namespace retail_v2alpha {
 
     /**
      * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update is enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update times for the specified inventory fields are overwritten by the times of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product is used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information is preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations is obsolete after one day, and the GetOperation API returns `NOT_FOUND` afterwards. If conflicting updates are issued, the Operations associated with the stale updates are not marked as done until they are obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.setInventory({
+     *       // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowMissing": false,
+     *         //   "inventory": {},
+     *         //   "setMask": "my_setMask",
+     *         //   "setTime": "my_setTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9268,6 +12213,65 @@ export namespace retail_v2alpha {
 
     /**
      * Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.completionData.import({
+     *     // Required. The catalog which the suggestions dataset belongs to. Format: `projects/1234/locations/global/catalogs/default_catalog`.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputConfig": {},
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9384,6 +12388,74 @@ export namespace retail_v2alpha {
 
     /**
      * Creates a Control. If the Control to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.create({
+     *     // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     *     controlId: 'placeholder-value',
+     *     // Required. Full resource name of parent catalog. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "associatedServingConfigIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "facetSpec": {},
+     *       //   "name": "my_name",
+     *       //   "rule": {},
+     *       //   "searchSolutionUseCase": [],
+     *       //   "solutionTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "searchSolutionUseCase": [],
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9482,6 +12554,50 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.delete({
+     *     // Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9571,6 +12687,58 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a Control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.get({
+     *     // Required. The resource name of the Control to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "searchSolutionUseCase": [],
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9665,6 +12833,59 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all Controls by their parent Catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.list({
+     *     // Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List controls that are used in a single ServingConfig: 'serving_config = "boosted_home_page_cvr"'
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The catalog resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controls": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9767,6 +12988,74 @@ export namespace retail_v2alpha {
 
     /**
      * Updates a Control. Control cannot be set to a different oneof field, if so an INVALID_ARGUMENT is returned. If the Control to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.patch({
+     *     // Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *     // Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name If not set or empty, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "associatedServingConfigIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "facetSpec": {},
+     *       //   "name": "my_name",
+     *       //   "rule": {},
+     *       //   "searchSolutionUseCase": [],
+     *       //   "solutionTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "searchSolutionUseCase": [],
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9935,6 +13224,61 @@ export namespace retail_v2alpha {
 
     /**
      * Allows management of multiple questions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.generativeQuestion.batchUpdate({
+     *       // Optional. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requests": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generativeQuestionConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10056,6 +13400,54 @@ export namespace retail_v2alpha {
 
     /**
      * Returns all questions for a given catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.generativeQuestions.list(
+     *     {
+     *       // Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generativeQuestionConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10173,6 +13565,74 @@ export namespace retail_v2alpha {
 
     /**
      * Creates a MerchantCenterAccountLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.create({
+     *       // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branchId": "my_branchId",
+     *         //   "feedFilters": [],
+     *         //   "feedLabel": "my_feedLabel",
+     *         //   "id": "my_id",
+     *         //   "languageCode": "my_languageCode",
+     *         //   "merchantCenterAccountId": "my_merchantCenterAccountId",
+     *         //   "name": "my_name",
+     *         //   "projectId": "my_projectId",
+     *         //   "source": "my_source",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10268,6 +13728,51 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes a MerchantCenterAccountLink. If the MerchantCenterAccountLink to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.delete({
+     *       // Required. Full resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}`
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/merchantCenterAccountLinks/my-merchantCenterAccountLink',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10357,6 +13862,53 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all MerchantCenterAccountLinks under the specified parent Catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.list({
+     *       // Required. The parent Catalog of the resource. It must match this format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "merchantCenterAccountLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10492,6 +14044,81 @@ export namespace retail_v2alpha {
 
     /**
      * Creates a new model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.create({
+     *     // Optional. Whether to run a dry run to validate the request (without actually creating the model).
+     *     dryRun: 'placeholder-value',
+     *     // Required. The parent resource under which to create the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataState": "my_dataState",
+     *       //   "displayName": "my_displayName",
+     *       //   "filteringOption": "my_filteringOption",
+     *       //   "lastTuneTime": "my_lastTuneTime",
+     *       //   "modelFeaturesConfig": {},
+     *       //   "name": "my_name",
+     *       //   "optimizationObjective": "my_optimizationObjective",
+     *       //   "pageOptimizationConfig": {},
+     *       //   "periodicTuningState": "my_periodicTuningState",
+     *       //   "servingConfigLists": [],
+     *       //   "servingState": "my_servingState",
+     *       //   "trainingState": "my_trainingState",
+     *       //   "tuningOperation": "my_tuningOperation",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10588,6 +14215,50 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes an existing model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.delete({
+     *     // Required. The resource name of the Model to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10677,6 +14348,67 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.get({
+     *     // Required. The resource name of the Model to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataState": "my_dataState",
+     *   //   "displayName": "my_displayName",
+     *   //   "filteringOption": "my_filteringOption",
+     *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
+     *   //   "name": "my_name",
+     *   //   "optimizationObjective": "my_optimizationObjective",
+     *   //   "pageOptimizationConfig": {},
+     *   //   "periodicTuningState": "my_periodicTuningState",
+     *   //   "servingConfigLists": [],
+     *   //   "servingState": "my_servingState",
+     *   //   "trainingState": "my_trainingState",
+     *   //   "tuningOperation": "my_tuningOperation",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10771,6 +14503,57 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all the models linked to this event store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.list({
+     *     // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListModels` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for which to list models. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "models": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10872,6 +14655,92 @@ export namespace retail_v2alpha {
 
     /**
      * Update of model metadata. Only fields that currently can be updated are: `filtering_option` and `periodic_tuning_state`. If other values are provided, this API method ignores them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.patch({
+     *     // Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *     // Optional. Indicates which fields in the provided 'model' to update. If not set, by default updates all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataState": "my_dataState",
+     *       //   "displayName": "my_displayName",
+     *       //   "filteringOption": "my_filteringOption",
+     *       //   "lastTuneTime": "my_lastTuneTime",
+     *       //   "modelFeaturesConfig": {},
+     *       //   "name": "my_name",
+     *       //   "optimizationObjective": "my_optimizationObjective",
+     *       //   "pageOptimizationConfig": {},
+     *       //   "periodicTuningState": "my_periodicTuningState",
+     *       //   "servingConfigLists": [],
+     *       //   "servingState": "my_servingState",
+     *       //   "trainingState": "my_trainingState",
+     *       //   "tuningOperation": "my_tuningOperation",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataState": "my_dataState",
+     *   //   "displayName": "my_displayName",
+     *   //   "filteringOption": "my_filteringOption",
+     *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
+     *   //   "name": "my_name",
+     *   //   "optimizationObjective": "my_optimizationObjective",
+     *   //   "pageOptimizationConfig": {},
+     *   //   "periodicTuningState": "my_periodicTuningState",
+     *   //   "servingConfigLists": [],
+     *   //   "servingState": "my_servingState",
+     *   //   "trainingState": "my_trainingState",
+     *   //   "tuningOperation": "my_tuningOperation",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10966,6 +14835,73 @@ export namespace retail_v2alpha {
 
     /**
      * Pauses the training of an existing model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.pause({
+     *     // Required. The name of the model to pause. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataState": "my_dataState",
+     *   //   "displayName": "my_displayName",
+     *   //   "filteringOption": "my_filteringOption",
+     *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
+     *   //   "name": "my_name",
+     *   //   "optimizationObjective": "my_optimizationObjective",
+     *   //   "pageOptimizationConfig": {},
+     *   //   "periodicTuningState": "my_periodicTuningState",
+     *   //   "servingConfigLists": [],
+     *   //   "servingState": "my_servingState",
+     *   //   "trainingState": "my_trainingState",
+     *   //   "tuningOperation": "my_tuningOperation",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11063,6 +14999,73 @@ export namespace retail_v2alpha {
 
     /**
      * Resumes the training of an existing model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.resume({
+     *     // Required. The name of the model to resume. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataState": "my_dataState",
+     *   //   "displayName": "my_displayName",
+     *   //   "filteringOption": "my_filteringOption",
+     *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
+     *   //   "name": "my_name",
+     *   //   "optimizationObjective": "my_optimizationObjective",
+     *   //   "pageOptimizationConfig": {},
+     *   //   "periodicTuningState": "my_periodicTuningState",
+     *   //   "servingConfigLists": [],
+     *   //   "servingState": "my_servingState",
+     *   //   "trainingState": "my_trainingState",
+     *   //   "tuningOperation": "my_tuningOperation",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11161,6 +15164,62 @@ export namespace retail_v2alpha {
 
     /**
      * Tunes an existing model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.tune({
+     *     // Required. The resource name of the model to tune. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11361,6 +15420,56 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11454,6 +15563,59 @@ export namespace retail_v2alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11590,6 +15752,72 @@ export namespace retail_v2alpha {
 
     /**
      * Performs a conversational search. This feature is only available for users who have Conversational Search enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.placements.conversationalSearch({
+     *       // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *       placement:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branch": "my_branch",
+     *         //   "conversationId": "my_conversationId",
+     *         //   "conversationalFilteringSpec": {},
+     *         //   "pageCategories": [],
+     *         //   "query": "my_query",
+     *         //   "searchParams": {},
+     *         //   "userInfo": {},
+     *         //   "userLabels": {},
+     *         //   "visitorId": "my_visitorId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationId": "my_conversationId",
+     *   //   "conversationalFilteringResult": {},
+     *   //   "refinedSearch": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11691,6 +15919,70 @@ export namespace retail_v2alpha {
 
     /**
      * Makes a recommendation prediction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.placements.predict({
+     *     // Required. Full resource name of the format: `{placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\}` or `{placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "params": {},
+     *       //   "userEvent": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11793,6 +16085,102 @@ export namespace retail_v2alpha {
 
     /**
      * Performs a search. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.placements.search({
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostSpec": {},
+     *       //   "branch": "my_branch",
+     *       //   "canonicalFilter": "my_canonicalFilter",
+     *       //   "conversationalSearchSpec": {},
+     *       //   "dynamicFacetSpec": {},
+     *       //   "entity": "my_entity",
+     *       //   "experimentId": "my_experimentId",
+     *       //   "facetSpecs": [],
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
+     *       //   "placeId": "my_placeId",
+     *       //   "query": "my_query",
+     *       //   "queryExpansionSpec": {},
+     *       //   "regionCode": "my_regionCode",
+     *       //   "relevanceThreshold": "my_relevanceThreshold",
+     *       //   "searchMode": "my_searchMode",
+     *       //   "spellCorrectionSpec": {},
+     *       //   "tileNavigationSpec": {},
+     *       //   "userAttributes": {},
+     *       //   "userInfo": {},
+     *       //   "variantRollupKeys": [],
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "conversationalSearchResult": {},
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "experimentInfo": [],
+     *   //   "facets": [],
+     *   //   "invalidConditionBoostSpecs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pinControlMetadata": {},
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "tileNavigationResult": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11939,6 +16327,81 @@ export namespace retail_v2alpha {
 
     /**
      * Enables a Control on the specified ServingConfig. The control is added in the last position of the list of controls it belongs to (e.g. if it's a facet spec control it will be applied in the last position of servingConfig.facetSpecIds) Returns a ALREADY_EXISTS error if the control has already been applied. Returns a FAILED_PRECONDITION error if the addition could exceed maximum number of control allowed for that type of control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.addControl({
+     *       // Required. The source ServingConfig resource name . Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "controlId": "my_controlId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "diversityType": "my_diversityType",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "ignoreRecsDenylist": false,
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12041,6 +16504,74 @@ export namespace retail_v2alpha {
 
     /**
      * Performs a conversational search. This feature is only available for users who have Conversational Search enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.conversationalSearch(
+     *       {
+     *         // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *         placement:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "branch": "my_branch",
+     *           //   "conversationId": "my_conversationId",
+     *           //   "conversationalFilteringSpec": {},
+     *           //   "pageCategories": [],
+     *           //   "query": "my_query",
+     *           //   "searchParams": {},
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "visitorId": "my_visitorId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationId": "my_conversationId",
+     *   //   "conversationalFilteringResult": {},
+     *   //   "refinedSearch": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12142,6 +16673,100 @@ export namespace retail_v2alpha {
 
     /**
      * Creates a ServingConfig. A maximum of 100 ServingConfigs are allowed in a Catalog, otherwise a FAILED_PRECONDITION error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.create({
+     *     // Required. Full resource name of parent. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     *     servingConfigId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostControlIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "diversityLevel": "my_diversityLevel",
+     *       //   "diversityType": "my_diversityType",
+     *       //   "doNotAssociateControlIds": [],
+     *       //   "dynamicFacetSpec": {},
+     *       //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *       //   "facetControlIds": [],
+     *       //   "filterControlIds": [],
+     *       //   "ignoreControlIds": [],
+     *       //   "ignoreRecsDenylist": false,
+     *       //   "modelId": "my_modelId",
+     *       //   "name": "my_name",
+     *       //   "onewaySynonymsControlIds": [],
+     *       //   "personalizationSpec": {},
+     *       //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *       //   "redirectControlIds": [],
+     *       //   "replacementControlIds": [],
+     *       //   "solutionTypes": [],
+     *       //   "twowaySynonymsControlIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "diversityType": "my_diversityType",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "ignoreRecsDenylist": false,
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12244,6 +16869,50 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.delete({
+     *     // Required. The resource name of the ServingConfig to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12333,6 +17002,71 @@ export namespace retail_v2alpha {
 
     /**
      * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.get({
+     *     // Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "diversityType": "my_diversityType",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "ignoreRecsDenylist": false,
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12432,6 +17166,57 @@ export namespace retail_v2alpha {
 
     /**
      * Lists all ServingConfigs linked to this catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.list({
+     *     // Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The catalog resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12534,6 +17319,100 @@ export namespace retail_v2alpha {
 
     /**
      * Updates a ServingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.patch({
+     *     // Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/servingConfig/x`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *     // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostControlIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "diversityLevel": "my_diversityLevel",
+     *       //   "diversityType": "my_diversityType",
+     *       //   "doNotAssociateControlIds": [],
+     *       //   "dynamicFacetSpec": {},
+     *       //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *       //   "facetControlIds": [],
+     *       //   "filterControlIds": [],
+     *       //   "ignoreControlIds": [],
+     *       //   "ignoreRecsDenylist": false,
+     *       //   "modelId": "my_modelId",
+     *       //   "name": "my_name",
+     *       //   "onewaySynonymsControlIds": [],
+     *       //   "personalizationSpec": {},
+     *       //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *       //   "redirectControlIds": [],
+     *       //   "replacementControlIds": [],
+     *       //   "solutionTypes": [],
+     *       //   "twowaySynonymsControlIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "diversityType": "my_diversityType",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "ignoreRecsDenylist": false,
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12633,6 +17512,70 @@ export namespace retail_v2alpha {
 
     /**
      * Makes a recommendation prediction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.predict({
+     *     // Required. Full resource name of the format: `{placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\}` or `{placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "params": {},
+     *       //   "userEvent": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12735,6 +17678,81 @@ export namespace retail_v2alpha {
 
     /**
      * Disables a Control on the specified ServingConfig. The control is removed from the ServingConfig. Returns a NOT_FOUND error if the Control is not enabled for the ServingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.removeControl({
+     *       // Required. The source ServingConfig resource name . Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "controlId": "my_controlId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "diversityType": "my_diversityType",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "ignoreRecsDenylist": false,
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12837,6 +17855,102 @@ export namespace retail_v2alpha {
 
     /**
      * Performs a search. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.search({
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostSpec": {},
+     *       //   "branch": "my_branch",
+     *       //   "canonicalFilter": "my_canonicalFilter",
+     *       //   "conversationalSearchSpec": {},
+     *       //   "dynamicFacetSpec": {},
+     *       //   "entity": "my_entity",
+     *       //   "experimentId": "my_experimentId",
+     *       //   "facetSpecs": [],
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
+     *       //   "placeId": "my_placeId",
+     *       //   "query": "my_query",
+     *       //   "queryExpansionSpec": {},
+     *       //   "regionCode": "my_regionCode",
+     *       //   "relevanceThreshold": "my_relevanceThreshold",
+     *       //   "searchMode": "my_searchMode",
+     *       //   "spellCorrectionSpec": {},
+     *       //   "tileNavigationSpec": {},
+     *       //   "userAttributes": {},
+     *       //   "userInfo": {},
+     *       //   "variantRollupKeys": [],
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "conversationalSearchResult": {},
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "experimentInfo": [],
+     *   //   "facets": [],
+     *   //   "invalidConditionBoostSpecs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pinControlMetadata": {},
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "tileNavigationResult": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13068,6 +18182,66 @@ export namespace retail_v2alpha {
 
     /**
      * Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.collect({
+     *     // Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ets": "my_ets",
+     *       //   "prebuiltRule": "my_prebuiltRule",
+     *       //   "rawJson": "my_rawJson",
+     *       //   "uri": "my_uri",
+     *       //   "userEvent": "my_userEvent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13160,6 +18334,65 @@ export namespace retail_v2alpha {
 
     /**
      * Exports user events. `Operation.response` is of type `ExportResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.export({
+     *     // Required. Resource name of a Catalog. For example `projects/1234/locations/global/catalogs/default_catalog`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "outputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13256,6 +18489,65 @@ export namespace retail_v2alpha {
 
     /**
      * Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. `Operation.response` is of type `ImportResponse`. Note that it is possible for a subset of the items to be successfully inserted. `Operation.metadata` is of type `ImportMetadata`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.import({
+     *     // Required. `projects/1234/locations/global/catalogs/default_catalog`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "errorsConfig": {},
+     *       //   "inputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13352,6 +18644,65 @@ export namespace retail_v2alpha {
 
     /**
      * Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.purge({
+     *     // Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}`
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "force": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13448,6 +18799,64 @@ export namespace retail_v2alpha {
 
     /**
      * Starts a user-event rejoin operation with latest product catalog. Events are not annotated with detailed product information for products that are missing from the catalog when the user event is ingested. These events are stored as unjoined events with limited usage on training and serving. You can use this method to start a join operation on specified events with the latest version of product catalog. You can also use this method to correct events joined with the wrong product catalog. A rejoin operation can take hours or days to complete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.rejoin({
+     *     // Required. The parent catalog resource name, such as `projects/1234/locations/global/catalogs/default_catalog`.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "userEventRejoinScope": "my_userEventRejoinScope"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13544,6 +18953,102 @@ export namespace retail_v2alpha {
 
     /**
      * Writes a single user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.userEvents.write({
+     *     // Required. The parent catalog resource name, such as `projects/1234/locations/global/catalogs/default_catalog`.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // If set to true, the user event will be written asynchronously after validation, and the API will respond without waiting for the write. Therefore, silent failures can occur even if the API returns success. In case of silent failures, error messages can be found in Stackdriver logs.
+     *     writeAsync: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "attributionToken": "my_attributionToken",
+     *       //   "cartId": "my_cartId",
+     *       //   "completionDetail": {},
+     *       //   "entity": "my_entity",
+     *       //   "eventTime": "my_eventTime",
+     *       //   "eventType": "my_eventType",
+     *       //   "experimentIds": [],
+     *       //   "filter": "my_filter",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageViewId": "my_pageViewId",
+     *       //   "productDetails": [],
+     *       //   "purchaseTransaction": {},
+     *       //   "referrerUri": "my_referrerUri",
+     *       //   "searchQuery": "my_searchQuery",
+     *       //   "sessionId": "my_sessionId",
+     *       //   "uri": "my_uri",
+     *       //   "userInfo": {},
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "cartId": "my_cartId",
+     *   //   "completionDetail": {},
+     *   //   "entity": "my_entity",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "eventType": "my_eventType",
+     *   //   "experimentIds": [],
+     *   //   "filter": "my_filter",
+     *   //   "offset": 0,
+     *   //   "orderBy": "my_orderBy",
+     *   //   "pageCategories": [],
+     *   //   "pageViewId": "my_pageViewId",
+     *   //   "productDetails": [],
+     *   //   "purchaseTransaction": {},
+     *   //   "referrerUri": "my_referrerUri",
+     *   //   "searchQuery": "my_searchQuery",
+     *   //   "sessionId": "my_sessionId",
+     *   //   "uri": "my_uri",
+     *   //   "userInfo": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13730,6 +19235,56 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13822,6 +19377,59 @@ export namespace retail_v2alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13957,6 +19565,56 @@ export namespace retail_v2alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14049,6 +19707,59 @@ export namespace retail_v2alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14184,6 +19895,59 @@ export namespace retail_v2alpha {
 
     /**
      * Accepts service terms for this project. By making requests to this API, you agree to the terms of service linked below. https://cloud.google.com/retail/data-use-terms
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.retailProject.acceptTerms({
+     *     // Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     *     project: 'projects/my-project/retailProject',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
