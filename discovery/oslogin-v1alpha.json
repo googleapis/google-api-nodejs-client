@@ -169,7 +169,7 @@
               "type": "string"
             },
             "operatingSystemType": {
-              "description": "The type of operating system associated with the account.",
+              "description": "Optional. The type of operating system associated with the account.",
               "enum": [
                 "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
                 "LINUX",
@@ -184,12 +184,12 @@
               "type": "string"
             },
             "projectId": {
-              "description": "The project ID of the Google Cloud Platform project.",
+              "description": "Required. The project ID of the Google Cloud Platform project.",
               "location": "query",
               "type": "string"
             },
             "systemId": {
-              "description": "A system ID for filtering the results of the request.",
+              "description": "Optional. A system ID for filtering the results of the request.",
               "location": "query",
               "type": "string"
             },
@@ -296,7 +296,7 @@
                   "type": "string"
                 },
                 "operatingSystemType": {
-                  "description": "The type of operating system associated with the account.",
+                  "description": "Optional. The type of operating system associated with the account.",
                   "enum": [
                     "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
                     "LINUX",
@@ -363,7 +363,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent project and region for the signing request.",
+                      "description": "Required. The parent project and region for the signing request.",
                       "location": "path",
                       "pattern": "^users/[^/]+/projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -396,7 +396,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent project and region for the signing request.",
+                      "description": "Required. The parent project and region for the signing request.",
                       "location": "path",
                       "pattern": "^users/[^/]+/projects/[^/]+/zones/[^/]+$",
                       "required": true,
@@ -519,7 +519,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Mask to control which fields get updated. Updates all if not present.",
+                  "description": "Optional. Mask to control which fields get updated. Updates all if not present.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20250518",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -742,7 +742,7 @@
       "id": "SignSshPublicKeyRequest",
       "properties": {
         "sshPublicKey": {
-          "description": "The SSH public key to sign.",
+          "description": "Required. The SSH public key to sign.",
           "type": "string"
         }
       },
