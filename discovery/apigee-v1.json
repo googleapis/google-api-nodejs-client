@@ -2251,7 +2251,7 @@
                       ]
                     },
                     "updateAppGroupAppKey": {
-                      "description": "Adds an API product to an AppGroupAppKey, enabling the app that holds the key to access the API resources bundled in the API product. In addition, you can add attributes to the AppGroupAppKey. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. You can use the same key to access all API products associated with the app.",
+                      "description": "Adds an API product to an AppGroupAppKey, enabling the app that holds the key to access the API resources bundled in the API product. In addition, you can add attributes and scopes to the AppGroupAppKey. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. You can use the same key to access all API products associated with the app.",
                       "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.appgroups.apps.keys.updateAppGroupAppKey",
@@ -2435,7 +2435,7 @@
                   "type": "string"
                 },
                 "rows": {
-                  "description": "Optional. Maximum number of app IDs to return. Defaults to 10000.",
+                  "description": "Optional. Maximum number of app IDs to return. Defaults to 1000.",
                   "format": "int64",
                   "location": "query",
                   "type": "string"
@@ -3402,7 +3402,7 @@
                       ]
                     },
                     "updateDeveloperAppKey": {
-                      "description": "Adds an API product to a developer app key, enabling the app that holds the key to access the API resources bundled in the API product. In addition, you can add attributes to a developer app key. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. You can use the same key to access all API products associated with the app.",
+                      "description": "Adds an API product to a developer app key, enabling the app that holds the key to access the API resources bundled in the API product. In addition, you can add attributes and scopes associated with the API product to the developer app key. The status of the key can be updated via \"action\" Query Parameter. None of the other fields can be updated via this API. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. None of the other fields can be updated. You can use the same key to access all API products associated with the app.",
                       "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys/{keysId}",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.developers.apps.keys.updateDeveloperAppKey",
@@ -11063,7 +11063,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250614",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -16466,6 +16466,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "networkEgressRestricted": {
+          "description": "Optional. Flag that specifies if internet egress is restricted for VPC Service Controls. Valid only when runtime_type is `CLOUD` and disable_vpc_peering is `true`.",
+          "type": "boolean"
+        },
         "portalDisabled": {
           "description": "Optional. Configuration for the Portals settings.",
           "type": "boolean"
@@ -19547,7 +19551,7 @@
         },
         "appGroupAppKey": {
           "$ref": "GoogleCloudApigeeV1AppGroupAppKey",
-          "description": "The new AppGroupKey to be amended. Note that the status can be updated only via action."
+          "description": "Note that only Scopes and Attributes of the AppGroupAppKey can be amended."
         }
       },
       "type": "object"
