@@ -8602,7 +8602,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20250612",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9069,7 +9069,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -11486,7 +11486,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -15863,7 +15863,7 @@
       "id": "GoogleCloudDialogflowV2ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -15881,7 +15881,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -15892,7 +15892,7 @@
       "id": "GoogleCloudDialogflowV2ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -15915,7 +15915,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -22982,7 +22982,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -23000,7 +23000,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -23011,7 +23011,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -23034,7 +23034,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
