@@ -117,13 +117,15 @@ describe('Query params', () => {
     assert.strictEqual(Utils.getQs(res2), 'resource=hello');
   });
 
-  it.skip('should be set if params passed are falsy', async () => {
+  it.only('should be set if params passed are falsy', async () => {
     const computeRemoteUrl = 'https://compute.googleapis.com';
     const r1 = nock(computeRemoteUrl)
       .post(
         '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
       )
       .reply(200);
+      console.log('local compute')
+      console.log(localCompute);
     const res = await localCompute.instances.setDiskAutoDelete({
       project: '',
       zone: '',
@@ -137,6 +139,10 @@ describe('Query params', () => {
         '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
       )
       .reply(200);
+      console.log('remote compute')
+      console.log(remoteCompute);
+      console.log('remote drive')
+      console.log(remoteDrive)
     const res2 = await remoteCompute.instances.setDiskAutoDelete({
       project: '',
       zone: '',
