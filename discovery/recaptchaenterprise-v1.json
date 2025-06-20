@@ -350,7 +350,7 @@
         "keys": {
           "methods": {
             "addIpOverride": {
-              "description": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.",
+              "description": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 1000. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:addIpOverride",
               "httpMethod": "POST",
               "id": "recaptchaenterprise.projects.keys.addIpOverride",
@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20250608",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -2487,12 +2487,19 @@
             "ACTION_TOKEN",
             "EXPRESS"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Undefined feature.",
             "Redirects suspicious traffic to reCAPTCHA.",
             "Use reCAPTCHA session-tokens to protect the whole user session on the site's domain.",
             "Use reCAPTCHA action-tokens to protect user actions.",
-            "Use reCAPTCHA WAF express protection to protect any content other than web pages, like APIs and IoT devices."
+            "Deprecated: Use `express_settings` instead."
           ],
           "type": "string"
         },
