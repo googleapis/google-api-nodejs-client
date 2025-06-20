@@ -2554,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250529",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -4643,11 +4643,6 @@
           "description": "Disk free space.",
           "format": "int64",
           "type": "string"
-        },
-        "vmwareConfig": {
-          "$ref": "VmwareDiskConfig",
-          "deprecated": true,
-          "description": "VMware disk details."
         }
       },
       "type": "object"
@@ -6244,7 +6239,7 @@
       "type": "object"
     },
     "MachinePreferences": {
-      "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.",
+      "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations for Compute Engine. Not all machine types are available in all zones and regions.",
       "id": "MachinePreferences",
       "properties": {
         "allowedMachineSeries": {
@@ -8928,51 +8923,6 @@
       },
       "type": "object"
     },
-    "VmwareDiskConfig": {
-      "description": "VMware disk config details.",
-      "id": "VmwareDiskConfig",
-      "properties": {
-        "backingType": {
-          "description": "VMDK backing type.",
-          "enum": [
-            "BACKING_TYPE_UNSPECIFIED",
-            "BACKING_TYPE_FLAT_V1",
-            "BACKING_TYPE_FLAT_V2",
-            "BACKING_TYPE_PMEM",
-            "BACKING_TYPE_RDM_V1",
-            "BACKING_TYPE_RDM_V2",
-            "BACKING_TYPE_SESPARSE",
-            "BACKING_TYPE_SESPARSE_V1",
-            "BACKING_TYPE_SESPARSE_V2"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Flat v1.",
-            "Flat v2.",
-            "Persistent memory, also known as Non-Volatile Memory (NVM).",
-            "Raw Disk Memory v1.",
-            "Raw Disk Memory v2.",
-            "SEsparse is a snapshot format introduced in vSphere 5.5 for large disks.",
-            "SEsparse v1.",
-            "SEsparse v1."
-          ],
-          "type": "string"
-        },
-        "rdmCompatibilityMode": {
-          "description": "RDM compatibility mode.",
-          "type": "string"
-        },
-        "shared": {
-          "description": "Is VMDK shared with other VMs.",
-          "type": "boolean"
-        },
-        "vmdkDiskMode": {
-          "description": "VMDK disk mode.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VmwareEngineMigrationTarget": {
       "description": "VMWare engine migration target.",
       "id": "VmwareEngineMigrationTarget",
@@ -9013,7 +8963,7 @@
           "type": "number"
         },
         "licenseDiscountPercentage": {
-          "description": "Optional. Discount percentage for the license type offered to you by Broadcom. Must be between 0 and 100. Only valid when service_type is set to SERVICE_TYPE_PORTABLE_LICENSE.",
+          "description": "Optional. Discount percentage for the license offered to you by Broadcom. Must be between 0 and 100. Only valid when service_type is set to SERVICE_TYPE_PORTABLE_LICENSE.",
           "format": "float",
           "type": "number"
         },
@@ -9027,7 +8977,7 @@
           "type": "number"
         },
         "serviceType": {
-          "description": "Optional. VMWare Service Type (Fully Licensed or Portable License).",
+          "description": "Optional. GCVE service type (fully licensed or portable license).",
           "enum": [
             "SERVICE_TYPE_UNSPECIFIED",
             "SERVICE_TYPE_FULLY_LICENSED",
