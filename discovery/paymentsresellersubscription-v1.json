@@ -491,7 +491,7 @@
         "userSessions": {
           "methods": {
             "generate": {
-              "description": "This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.",
+              "description": "This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not. By default, the session token is valid for 1 hour.",
               "flatPath": "v1/partners/{partnersId}/userSessions:generate",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.userSessions.generate",
@@ -523,7 +523,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250529",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1582,12 +1582,14 @@
           "enum": [
             "BILLING_CYCLE_SPEC_UNSPECIFIED",
             "BILLING_CYCLE_SPEC_ALIGN_WITH_PREVIOUS_SUBSCRIPTION",
-            "BILLING_CYCLE_SPEC_START_IMMEDIATELY"
+            "BILLING_CYCLE_SPEC_START_IMMEDIATELY",
+            "BILLING_CYCLE_SPEC_DEFERRED_TO_NEXT_RECURRENCE"
           ],
           "enumDescriptions": [
             "Billing cycle spec is not specified.",
-            "The billing cycle of the new subscription aligns with the previous subscription it upgrades or downgrades from.",
-            "The billing cycle of the new subscription starts immediately."
+            "The billing cycle of the new subscription starts immediately but aligns with the previous subscription it upgrades or downgrades from. First cycle of the new subscription will be prorated.",
+            "The billing cycle of the new subscription starts immediately.",
+            "The billing cycle starts at the end of the previous subscription's billing cycle and aligns with the previous subscription's billing cycle."
           ],
           "type": "string"
         },
