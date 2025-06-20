@@ -652,6 +652,68 @@ export namespace solar_v1 {
 
     /**
      * Locates the building whose centroid is closest to a query point. Returns an error with code `NOT_FOUND` if there are no buildings within approximately 50m of the query point.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/solar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const solar = google.solar('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await solar.buildingInsights.findClosest({
+     *     // Optional. Specifies the pre-GA features to enable.
+     *     experiments: 'placeholder-value',
+     *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
+     *     'location.latitude': 'placeholder-value',
+     *     // The longitude in degrees. It must be in the range [-180.0, +180.0].
+     *     'location.longitude': 'placeholder-value',
+     *     // Optional. The minimum quality level allowed in the results. No result with lower quality than this will be returned. Not specifying this is equivalent to restricting to HIGH quality only.
+     *     requiredQuality: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "administrativeArea": "my_administrativeArea",
+     *   //   "boundingBox": {},
+     *   //   "center": {},
+     *   //   "imageryDate": {},
+     *   //   "imageryProcessedDate": {},
+     *   //   "imageryQuality": "my_imageryQuality",
+     *   //   "name": "my_name",
+     *   //   "postalCode": "my_postalCode",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "solarPotential": {},
+     *   //   "statisticalArea": "my_statisticalArea"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -770,6 +832,74 @@ export namespace solar_v1 {
 
     /**
      * Gets solar information for a region surrounding a location. Returns an error with code `NOT_FOUND` if the location is outside the coverage area.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/solar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const solar = google.solar('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await solar.dataLayers.get({
+     *     // Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
+     *     exactQualityRequired: 'placeholder-value',
+     *     // Optional. Specifies the pre-GA experiments to enable.
+     *     experiments: 'placeholder-value',
+     *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
+     *     'location.latitude': 'placeholder-value',
+     *     // The longitude in degrees. It must be in the range [-180.0, +180.0].
+     *     'location.longitude': 'placeholder-value',
+     *     // Optional. The minimum scale, in meters per pixel, of the data to return. Values of 0.1 (the default, if this field is not set explicitly), 0.25, 0.5, and 1.0 are supported. Imagery components whose normal resolution is less than `pixel_size_meters` will be returned at the resolution specified by `pixel_size_meters`; imagery components whose normal resolution is equal to or greater than `pixel_size_meters` will be returned at that normal resolution.
+     *     pixelSizeMeters: 'placeholder-value',
+     *     // Required. The radius, in meters, defining the region surrounding that centre point for which data should be returned. The limitations on this value are: * Any value up to 100m can always be specified. * Values over 100m can be specified, as long as `radius_meters` <= `pixel_size_meters * 1000`. * However, for values over 175m, the `DataLayerView` in the request must not include monthly flux or hourly shade.
+     *     radiusMeters: 'placeholder-value',
+     *     // Optional. The minimum quality level allowed in the results. No result with lower quality than this will be returned. Not specifying this is equivalent to restricting to HIGH quality only.
+     *     requiredQuality: 'placeholder-value',
+     *     // Optional. The desired subset of the data to return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annualFluxUrl": "my_annualFluxUrl",
+     *   //   "dsmUrl": "my_dsmUrl",
+     *   //   "hourlyShadeUrls": [],
+     *   //   "imageryDate": {},
+     *   //   "imageryProcessedDate": {},
+     *   //   "imageryQuality": "my_imageryQuality",
+     *   //   "maskUrl": "my_maskUrl",
+     *   //   "monthlyFluxUrl": "my_monthlyFluxUrl",
+     *   //   "rgbUrl": "my_rgbUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -899,6 +1029,54 @@ export namespace solar_v1 {
 
     /**
      * Returns an image by its ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/solar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const solar = google.solar('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await solar.geoTiff.get({
+     *     // Required. The ID of the asset being requested.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
