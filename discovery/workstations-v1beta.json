@@ -1142,7 +1142,7 @@
       }
     }
   },
-  "revision": "20250326",
+  "revision": "20250604",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1374,6 +1374,17 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GatewayConfig": {
+      "description": "Configuration options for Cluster HTTP Gateway.",
+      "id": "GatewayConfig",
+      "properties": {
+        "http2Enabled": {
+          "description": "Optional. Whether HTTP/2 is enabled for this workstation cluster. Defaults to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2299,6 +2310,10 @@
         "etag": {
           "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
+        },
+        "gatewayConfig": {
+          "$ref": "GatewayConfig",
+          "description": "Optional. Configuration options for Cluster HTTP Gateway."
         },
         "labels": {
           "additionalProperties": {
