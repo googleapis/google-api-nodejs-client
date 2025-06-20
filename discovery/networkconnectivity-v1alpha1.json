@@ -1122,7 +1122,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250527",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AllocationOptions": {
@@ -1139,7 +1139,7 @@
             "FIRST_SMALLEST_FITTING"
           ],
           "enumDescriptions": [
-            "Unspecified strategy must be used when the range is specified explicitly using ip_cidr_range field. Othherwise unspefified means using the default strategy.",
+            "Unspecified is the only valid option when the range is specified explicitly by ip_cidr_range field. Otherwise unspefified means using the default strategy.",
             "Random strategy, the legacy algorithm, used for backwards compatibility. This allocation strategy remains efficient in the case of concurrent allocation requests in the same peered network space and doesn't require providing the level of concurrency in an explicit parameter, but it is prone to fragmenting available address space.",
             "Pick the first available address range. This strategy is deterministic and the result is easy to predict.",
             "Pick an arbitrary range out of the first N available ones. The N will be set in the first_available_ranges_lookup_size field. This strategy should be used when concurrent allocation requests are made in the same space of peered networks while the fragmentation of the addrress space is reduced.",
