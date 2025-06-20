@@ -635,6 +635,58 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Get details of a Partner.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudcontrolspartner.organizations.locations.getPartner({
+     *     // Required. Format: `organizations/{organization\}/locations/{location\}/partner`
+     *     name: 'organizations/my-organization/locations/my-location/partner',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "ekmSolutions": [],
+     *   //   "name": "my_name",
+     *   //   "operatedCloudRegions": [],
+     *   //   "partnerProjectId": "my_partnerProjectId",
+     *   //   "skus": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -743,6 +795,71 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Creates a new customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.create({
+     *       // Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.
+     *       customerId: 'placeholder-value',
+     *       // Required. Parent resource Format: `organizations/{organization\}/locations/{location\}`
+     *       parent: 'organizations/my-organization/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "customerOnboardingState": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "isOnboarded": false,
+     *         //   "name": "my_name",
+     *         //   "organizationDomain": "my_organizationDomain"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerOnboardingState": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "isOnboarded": false,
+     *   //   "name": "my_name",
+     *   //   "organizationDomain": "my_organizationDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -835,6 +952,51 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Delete details of a single customer
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.delete({
+     *       // Required. name of the resource to be deleted format: name=organizations/x/locations/x/customers/x
+     *       name: 'organizations/my-organization/locations/my-location/customers/my-customer',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -924,6 +1086,56 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Gets details of a single customer
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudcontrolspartner.organizations.locations.customers.get({
+     *     // Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
+     *     name: 'organizations/my-organization/locations/my-location/customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerOnboardingState": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "isOnboarded": false,
+     *   //   "name": "my_name",
+     *   //   "organizationDomain": "my_organizationDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1013,6 +1225,64 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Lists customers of a partner identified by its Google Cloud organization ID
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudcontrolspartner.organizations.locations.customers.list(
+     *     {
+     *       // Optional. Filtering results
+     *       filter: 'placeholder-value',
+     *       // Optional. Hint for how to order the results
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of Customers to return. The service may return fewer than this value. If unspecified, at most 500 Customers will be returned.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListCustomers` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent resource Format: `organizations/{organization\}/locations/{location\}`
+     *       parent: 'organizations/my-organization/locations/my-location',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1107,6 +1377,71 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Update details of a single customer
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.patch({
+     *       // Identifier. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
+     *       name: 'organizations/my-organization/locations/my-location/customers/my-customer',
+     *       // Optional. The list of fields to update
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "customerOnboardingState": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "isOnboarded": false,
+     *         //   "name": "my_name",
+     *         //   "organizationDomain": "my_organizationDomain"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerOnboardingState": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "isOnboarded": false,
+     *   //   "name": "my_name",
+     *   //   "organizationDomain": "my_organizationDomain"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1283,6 +1618,61 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Gets details of a single workload
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.get({
+     *       // Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}`
+     *       name: 'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "folder": "my_folder",
+     *   //   "folderId": "my_folderId",
+     *   //   "isOnboarded": false,
+     *   //   "keyManagementProjectId": "my_keyManagementProjectId",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "partner": "my_partner",
+     *   //   "workloadOnboardingState": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1373,6 +1763,56 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Gets the EKM connections associated with a workload
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.getEkmConnections(
+     *       {
+     *         // Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/ekmConnections`
+     *         name: 'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload/ekmConnections',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ekmConnections": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1465,6 +1905,56 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Gets the partner permissions granted for a workload
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.getPartnerPermissions(
+     *       {
+     *         // Required. Name of the resource to get in the format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/partnerPermissions`
+     *         name: 'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload/partnerPermissions',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "partnerPermissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1557,6 +2047,66 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Lists customer workloads for a given customer org id
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.list(
+     *       {
+     *         // Optional. Filtering results.
+     *         filter: 'placeholder-value',
+     *         // Optional. Hint for how to order the results.
+     *         orderBy: 'placeholder-value',
+     *         // The maximum number of workloads to return. The service may return fewer than this value. If unspecified, at most 500 workloads will be returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListWorkloads` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent resource Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/customers/my-customer',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "workloads": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1704,6 +2254,66 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Deprecated: Only returns access approval requests directly associated with an assured workload folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.accessApprovalRequests.list(
+     *       {
+     *         // Optional. Filtering results.
+     *         filter: 'placeholder-value',
+     *         // Optional. Hint for how to order the results.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of access requests to return. The service may return fewer than this value. If unspecified, at most 500 access requests will be returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListAccessApprovalRequests` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent resource Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}`
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessApprovalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1838,6 +2448,64 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Gets details of a single Violation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.violations.get(
+     *       {
+     *         // Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/violations/{violation\}`
+     *         name: 'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload/violations/my-violation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "beginTime": "my_beginTime",
+     *   //   "category": "my_category",
+     *   //   "description": "my_description",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
+     *   //   "remediation": {},
+     *   //   "resolveTime": "my_resolveTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1928,6 +2596,70 @@ export namespace cloudcontrolspartner_v1beta {
 
     /**
      * Lists Violations for a workload Callers may also choose to read across multiple Customers or for a single customer as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of {customer\} & {workload\}. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudcontrolspartner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudcontrolspartner = google.cloudcontrolspartner('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudcontrolspartner.organizations.locations.customers.workloads.violations.list(
+     *       {
+     *         // Optional. Filtering results
+     *         filter: 'placeholder-value',
+     *         // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *         'interval.endTime': 'placeholder-value',
+     *         // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *         'interval.startTime': 'placeholder-value',
+     *         // Optional. Hint for how to order the results
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of customers row to return. The service may return fewer than this value. If unspecified, at most 10 customers will be returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListViolations` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent resource Format `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}`
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/customers/my-customer/workloads/my-workload',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "violations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
