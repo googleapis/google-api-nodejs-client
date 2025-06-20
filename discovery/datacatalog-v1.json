@@ -183,7 +183,7 @@
           "methods": {
             "retrieveConfig": {
               "deprecated": true,
-              "description": "Retrieves the configuration related to the migration from Data Catalog to Dataplex for a specific organization, including all the projects under it which have a separate configuration set.",
+              "description": "Retrieves the configuration related to the migration from Data Catalog to Dataplex Universal Catalog for a specific organization, including all the projects under it which have a separate configuration set.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveConfig",
               "httpMethod": "GET",
               "id": "datacatalog.organizations.locations.retrieveConfig",
@@ -209,7 +209,7 @@
             },
             "retrieveEffectiveConfig": {
               "deprecated": true,
-              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
+              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex Universal Catalog for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveEffectiveConfig",
               "httpMethod": "GET",
               "id": "datacatalog.organizations.locations.retrieveEffectiveConfig",
@@ -235,7 +235,7 @@
             },
             "setConfig": {
               "deprecated": true,
-              "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
+              "description": "Sets the configuration related to the migration to Dataplex Universal Catalog for an organization or project.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:setConfig",
               "httpMethod": "POST",
               "id": "datacatalog.organizations.locations.setConfig",
@@ -272,7 +272,7 @@
           "methods": {
             "retrieveEffectiveConfig": {
               "deprecated": true,
-              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
+              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex Universal Catalog for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:retrieveEffectiveConfig",
               "httpMethod": "GET",
               "id": "datacatalog.projects.locations.retrieveEffectiveConfig",
@@ -298,7 +298,7 @@
             },
             "setConfig": {
               "deprecated": true,
-              "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
+              "description": "Sets the configuration related to the migration to Dataplex Universal Catalog for an organization or project.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:setConfig",
               "httpMethod": "POST",
               "id": "datacatalog.projects.locations.setConfig",
@@ -1090,7 +1090,7 @@
                         },
                         "reconcile": {
                           "deprecated": true,
-                          "description": "`ReconcileTags` creates or updates a list of tags on the entry. If the ReconcileTagsRequest.force_delete_missing parameter is set, the operation deletes tags not included in the input tag list. `ReconcileTags` returns a long-running operation resource that can be queried with Operations.GetOperation to return ReconcileTagsMetadata and a ReconcileTagsResponse message.",
+                          "description": "`ReconcileTags` creates or updates a list of tags on the entry. If the ReconcileTagsRequest.force_delete_missing parameter is set, the operation deletes tags not included in the input tag list. `ReconcileTags` returns a long-running operation resource that can be queried with Operations.GetOperation to return ReconcileTagsMetadata and a ReconcileTagsResponse message. Note: SearchCatalog might return stale search results for up to 24 hours after the `ReconcileTags` operation completes.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags:reconcile",
                           "httpMethod": "POST",
                           "id": "datacatalog.projects.locations.entryGroups.entries.tags.reconcile",
@@ -2339,7 +2339,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250609",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2823,7 +2823,7 @@
         },
         "dataplexTable": {
           "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec",
-          "description": "Output only. Fields specific to a Dataplex table and present only in the Dataplex table entries.",
+          "description": "Output only. Fields specific to a Dataplex Universal Catalog table and present only in the Dataplex Universal Catalog table entries.",
           "readOnly": true
         },
         "type": {
@@ -2873,7 +2873,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1DataplexExternalTable": {
-      "description": "External table registered by Dataplex. Dataplex publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them \"external tables\". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.",
+      "description": "External table registered by Dataplex Universal Catalog. Dataplex Universal Catalog publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them \"external tables\". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.",
       "id": "GoogleCloudDatacatalogV1DataplexExternalTable",
       "properties": {
         "dataCatalogEntry": {
@@ -2907,7 +2907,7 @@
             "BigQuery.",
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
-            "Dataplex.",
+            "Dataplex Universal Catalog.",
             "Cloud Spanner",
             "Cloud Bigtable",
             "Cloud Sql",
@@ -2920,22 +2920,22 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1DataplexFilesetSpec": {
-      "description": "Entry specyfication for a Dataplex fileset.",
+      "description": "Entry specification for a Dataplex Universal Catalog fileset.",
       "id": "GoogleCloudDatacatalogV1DataplexFilesetSpec",
       "properties": {
         "dataplexSpec": {
           "$ref": "GoogleCloudDatacatalogV1DataplexSpec",
-          "description": "Common Dataplex fields."
+          "description": "Common Dataplex Universal Catalog fields."
         }
       },
       "type": "object"
     },
     "GoogleCloudDatacatalogV1DataplexSpec": {
-      "description": "Common Dataplex fields.",
+      "description": "Common Dataplex Universal Catalog fields.",
       "id": "GoogleCloudDatacatalogV1DataplexSpec",
       "properties": {
         "asset": {
-          "description": "Fully qualified resource name of an asset in Dataplex, to which the underlying data source (Cloud Storage bucket or BigQuery dataset) of the entity is attached.",
+          "description": "Fully qualified resource name of an asset in Dataplex Universal Catalog, to which the underlying data source (Cloud Storage bucket or BigQuery dataset) of the entity is attached.",
           "type": "string"
         },
         "compressionFormat": {
@@ -2947,22 +2947,22 @@
           "description": "Format of the data."
         },
         "projectId": {
-          "description": "Project ID of the underlying Cloud Storage or BigQuery data. Note that this may not be the same project as the correspondingly Dataplex lake / zone / asset.",
+          "description": "Project ID of the underlying Cloud Storage or BigQuery data. Note that this may not be the same project as the corresponding Dataplex Universal Catalog lake / zone / asset.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDatacatalogV1DataplexTableSpec": {
-      "description": "Entry specification for a Dataplex table.",
+      "description": "Entry specification for a Dataplex Universal Catalog table.",
       "id": "GoogleCloudDatacatalogV1DataplexTableSpec",
       "properties": {
         "dataplexSpec": {
           "$ref": "GoogleCloudDatacatalogV1DataplexSpec",
-          "description": "Common Dataplex fields."
+          "description": "Common Dataplex Universal Catalog fields."
         },
         "externalTables": {
-          "description": "List of external tables registered by Dataplex in other systems based on the same underlying data. External tables allow to query this data in those systems.",
+          "description": "List of external tables registered by Dataplex Universal Catalog in other systems based on the same underlying data. External tables allow to query this data in those systems.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1DataplexExternalTable"
           },
@@ -3079,7 +3079,7 @@
             "BigQuery.",
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
-            "Dataplex.",
+            "Dataplex Universal Catalog.",
             "Cloud Spanner",
             "Cloud Bigtable",
             "Cloud Sql",
@@ -3171,8 +3171,8 @@
             "A database.",
             "Connection to a data source. For example, a BigQuery connection.",
             "Routine, for example, a BigQuery routine.",
-            "A Dataplex lake.",
-            "A Dataplex zone.",
+            "A Dataplex Universal Catalog lake.",
+            "A Dataplex Universal Catalog zone.",
             "A service, for example, a Dataproc Metastore service.",
             "Schema within a relational database.",
             "A Dashboard, for example from Looker.",
@@ -3221,7 +3221,7 @@
           "type": "string"
         },
         "transferredToDataplex": {
-          "description": "Optional. When set to [true], it means DataCatalog EntryGroup was transferred to Dataplex Catalog Service. It makes EntryGroup and its Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and its Entries can be created. After setting the flag to [true] it cannot be unset.",
+          "description": "Optional. When set to [true], it means DataCatalog EntryGroup was transferred to Dataplex Universal Catalog. It makes EntryGroup and its Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and its Entries can be created. After setting the flag to [true] it cannot be unset.",
           "type": "boolean"
         }
       },
@@ -3333,7 +3333,7 @@
       "properties": {
         "dataplexFileset": {
           "$ref": "GoogleCloudDatacatalogV1DataplexFilesetSpec",
-          "description": "Fields specific to a Dataplex fileset and present only in the Dataplex fileset entries."
+          "description": "Fields specific to a Dataplex Universal Catalog fileset and present only in the Dataplex Universal Catalog fileset entries."
         }
       },
       "type": "object"
@@ -3423,7 +3423,7 @@
           "type": "string"
         },
         "jobId": {
-          "description": "Optional. (Optional) Dataplex task job id, if specified will be used as part of ImportEntries LRO ID",
+          "description": "Optional. (Optional) Dataplex Universal Catalog task job id, if specified will be used as part of ImportEntries LRO ID",
           "type": "string"
         }
       },
@@ -3611,34 +3611,34 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1MigrationConfig": {
-      "description": "The configuration related to the migration to Dataplex applied to an organization or project. It is the response message for SetConfig and RetrieveEffectiveConfig.",
+      "description": "The configuration related to the migration to Dataplex Universal Catalog applied to an organization or project. It is the response message for SetConfig and RetrieveEffectiveConfig.",
       "id": "GoogleCloudDatacatalogV1MigrationConfig",
       "properties": {
         "catalogUiExperience": {
-          "description": "Opt-in status for the UI switch to Dataplex.",
+          "description": "Opt-in status for the UI switch to Dataplex Universal Catalog.",
           "enum": [
             "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
             "CATALOG_UI_EXPERIENCE_ENABLED",
             "CATALOG_UI_EXPERIENCE_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. The default UI is Dataplex.",
-            "The UI is Dataplex.",
+            "Default value. The default UI is Dataplex Universal Catalog.",
+            "The UI is Dataplex Universal Catalog.",
             "The UI is Data Catalog."
           ],
           "type": "string"
         },
         "tagTemplateMigration": {
-          "description": "Opt-in status for the migration of Tag Templates to Dataplex.",
+          "description": "Opt-in status for the migration of Tag Templates to Dataplex Universal Catalog.",
           "enum": [
             "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
             "TAG_TEMPLATE_MIGRATION_ENABLED",
             "TAG_TEMPLATE_MIGRATION_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
-            "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
-            "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
+            "Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is enabled.",
+            "Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is disabled."
           ],
           "type": "string"
         },
@@ -3684,7 +3684,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1OrganizationConfig": {
-      "description": "The configuration related to the migration from Data Catalog to Dataplex that has been applied to an organization and any projects under it. It is the response message for RetrieveConfig.",
+      "description": "The configuration related to the migration from Data Catalog to Dataplex Universal Catalog that has been applied to an organization and any projects under it. It is the response message for RetrieveConfig.",
       "id": "GoogleCloudDatacatalogV1OrganizationConfig",
       "properties": {
         "config": {
@@ -4160,7 +4160,7 @@
             "BigQuery.",
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
-            "Dataplex.",
+            "Dataplex Universal Catalog.",
             "Cloud Spanner",
             "Cloud Bigtable",
             "Cloud Sql",
@@ -4289,30 +4289,30 @@
       "id": "GoogleCloudDatacatalogV1SetConfigRequest",
       "properties": {
         "catalogUiExperience": {
-          "description": "Opt-in status for the UI switch to Dataplex.",
+          "description": "Opt-in status for the UI switch to Dataplex Universal Catalog.",
           "enum": [
             "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
             "CATALOG_UI_EXPERIENCE_ENABLED",
             "CATALOG_UI_EXPERIENCE_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. The default UI is Dataplex.",
-            "The UI is Dataplex.",
+            "Default value. The default UI is Dataplex Universal Catalog.",
+            "The UI is Dataplex Universal Catalog.",
             "The UI is Data Catalog."
           ],
           "type": "string"
         },
         "tagTemplateMigration": {
-          "description": "Opt-in status for the migration of Tag Templates to Dataplex.",
+          "description": "Opt-in status for the migration of Tag Templates to Dataplex Universal Catalog.",
           "enum": [
             "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
             "TAG_TEMPLATE_MIGRATION_ENABLED",
             "TAG_TEMPLATE_MIGRATION_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
-            "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
-            "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
+            "Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is enabled.",
+            "Migration of Tag Templates from Data Catalog to Dataplex Universal Catalog is disabled."
           ],
           "type": "string"
         }
@@ -4424,9 +4424,9 @@
             false
           ],
           "enumDescriptions": [
-            "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in Dataplex, read-only in DataCatalog."
+            "Default value. TagTemplate and its tags are only visible and editable in Data Catalog.",
+            "TagTemplate and its tags are auto-copied to Dataplex Universal Catalog service. Visible in both services. Editable in Data Catalog, read-only in Dataplex Universal Catalog. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
+            "TagTemplate and its tags are auto-copied to Dataplex Universal Catalog service. Visible in both services. Editable in Dataplex Universal Catalog, read-only in Data Catalog."
           ],
           "readOnly": true,
           "type": "string"
@@ -4526,9 +4526,9 @@
             false
           ],
           "enumDescriptions": [
-            "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in Dataplex, read-only in DataCatalog."
+            "Default value. TagTemplate and its tags are only visible and editable in Data Catalog.",
+            "TagTemplate and its tags are auto-copied to Dataplex Universal Catalog service. Visible in both services. Editable in Data Catalog, read-only in Dataplex Universal Catalog. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
+            "TagTemplate and its tags are auto-copied to Dataplex Universal Catalog service. Visible in both services. Editable in Dataplex Universal Catalog, read-only in Data Catalog."
           ],
           "type": "string"
         },
@@ -4678,7 +4678,7 @@
           ],
           "enumDescriptions": [
             "Default value",
-            "Dataplex.",
+            "Dataplex Universal Catalog.",
             "Other"
           ],
           "type": "string"
