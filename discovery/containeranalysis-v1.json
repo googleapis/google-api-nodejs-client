@@ -498,6 +498,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable Notes and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/notes",
@@ -828,6 +833,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable occurrence summaries and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/occurrences:vulnerabilitySummary",
@@ -869,6 +879,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable Occurrences and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/occurrences",
@@ -1177,6 +1192,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable Notes and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/notes",
@@ -1507,6 +1527,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable occurrence summaries and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/occurrences:vulnerabilitySummary",
@@ -1548,6 +1573,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable Occurrences and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/occurrences",
@@ -1685,7 +1715,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250616",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -3679,7 +3709,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository",
       "properties": {
         "developerConnect": {
-          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "description": "The Developer Connect Git repository link formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
           "type": "string"
         },
         "url": {
@@ -4413,7 +4443,8 @@
             "COMPLIANCE",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4428,7 +4459,8 @@
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         }
@@ -4498,6 +4530,13 @@
         "cpe": {
           "description": "The CPE of the resource being scanned.",
           "type": "string"
+        },
+        "files": {
+          "description": "Files that make up the resource described by the occurrence.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
         },
         "lastScanTime": {
           "description": "The last time this resource was scanned.",
@@ -4631,6 +4670,21 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "File": {
+      "id": "File",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "name": {
           "type": "string"
         }
       },
@@ -5157,6 +5211,10 @@
           },
           "type": "array"
         },
+        "chainId": {
+          "description": "The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid",
+          "type": "string"
+        },
         "command": {
           "description": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.",
           "type": "string"
@@ -5220,6 +5278,13 @@
             "$ref": "Note"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5236,6 +5301,13 @@
           "description": "The occurrences requested.",
           "items": {
             "$ref": "Occurrence"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -5381,7 +5453,8 @@
             "COMPLIANCE",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -5396,7 +5469,8 @@
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5429,6 +5503,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceNote",
           "description": "A note describing an SBOM reference."
+        },
+        "secret": {
+          "$ref": "SecretNote",
+          "description": "A note describing a secret."
         },
         "shortDescription": {
           "description": "A one sentence description of this note.",
@@ -5510,7 +5588,8 @@
             "COMPLIANCE",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -5525,7 +5604,8 @@
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5552,6 +5632,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceOccurrence",
           "description": "Describes a specific SBOM reference occurrences."
+        },
+        "secret": {
+          "$ref": "SecretOccurrence",
+          "description": "Describes a secret."
         },
         "updateTime": {
           "description": "Output only. The time this occurrence was last updated.",
@@ -6122,6 +6206,90 @@
         },
         "referrerId": {
           "description": "The person or system referring this predicate to the consumer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretLocation": {
+      "description": "The location of the secret.",
+      "id": "SecretLocation",
+      "properties": {
+        "fileLocation": {
+          "$ref": "GrafeasV1FileLocation",
+          "description": "The secret is found from a file."
+        }
+      },
+      "type": "object"
+    },
+    "SecretNote": {
+      "description": "The note representing a secret.",
+      "id": "SecretNote",
+      "properties": {},
+      "type": "object"
+    },
+    "SecretOccurrence": {
+      "description": "The occurrence provides details of a secret.",
+      "id": "SecretOccurrence",
+      "properties": {
+        "kind": {
+          "description": "Required. Type of secret.",
+          "enum": [
+            "SECRET_KIND_UNSPECIFIED",
+            "SECRET_KIND_UNKNOWN",
+            "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The secret kind is unknown.",
+            "A GCP service account key per: https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+          ],
+          "type": "string"
+        },
+        "locations": {
+          "description": "Optional. Locations where the secret is detected.",
+          "items": {
+            "$ref": "SecretLocation"
+          },
+          "type": "array"
+        },
+        "statuses": {
+          "description": "Optional. Status of the secret.",
+          "items": {
+            "$ref": "SecretStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SecretStatus": {
+      "description": "The status of the secret with a timestamp.",
+      "id": "SecretStatus",
+      "properties": {
+        "message": {
+          "description": "Optional. Optional message about the status code.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Optional. The status of the secret.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "UNKNOWN",
+            "VALID",
+            "INVALID"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The status of the secret is unknown.",
+            "The secret is valid.",
+            "The secret is invalid."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Optional. The time the secret status was last updated.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -6899,6 +7067,13 @@
           "description": "A listing by resource of the number of fixable and total vulnerabilities.",
           "items": {
             "$ref": "FixableTotalByDigest"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

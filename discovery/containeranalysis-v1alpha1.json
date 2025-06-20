@@ -828,7 +828,8 @@
                     "SPDX_RELATIONSHIP",
                     "DSSE_ATTESTATION",
                     "VULNERABILITY_ASSESSMENT",
-                    "SBOM_REFERENCE"
+                    "SBOM_REFERENCE",
+                    "SECRET"
                   ],
                   "enumDescriptions": [
                     "Unknown",
@@ -847,7 +848,8 @@
                     "This represents an SPDX Relationship.",
                     "This represents a DSSE attestation Note",
                     "This represents a Vulnerability Assessment.",
-                    "This represents a reference to an SBOM."
+                    "This represents a reference to an SBOM.",
+                    "This represents a secret."
                   ],
                   "location": "query",
                   "type": "string"
@@ -1450,7 +1452,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250528",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -3250,7 +3252,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository",
       "properties": {
         "developerConnect": {
-          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "description": "The Developer Connect Git repository link formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
           "type": "string"
         },
         "url": {
@@ -4059,6 +4061,13 @@
           "description": "The CPE of the resource being scanned.",
           "type": "string"
         },
+        "files": {
+          "description": "Optional. Files that make up the resource described by the occurrence.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
         "lastScanTime": {
           "description": "The last time this resource was scanned.",
           "format": "google-datetime",
@@ -4104,7 +4113,8 @@
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -4123,7 +4133,8 @@
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents a reference to an SBOM."
+            "This represents a reference to an SBOM.",
+            "This represents a secret."
           ],
           "type": "string"
         }
@@ -4336,6 +4347,24 @@
         },
         "type": {
           "description": "Type of category (e.g. 'npm' for the PACKAGE_MANAGER category)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "File": {
+      "description": "A file as part of a resource.",
+      "id": "File",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The digest(s) of the file.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Optional. The name of the file.",
           "type": "string"
         }
       },
@@ -5338,7 +5367,8 @@
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -5357,7 +5387,8 @@
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents a reference to an SBOM."
+            "This represents a reference to an SBOM.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5387,6 +5418,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceNote",
           "description": "A note describing a reference to an SBOM."
+        },
+        "secret": {
+          "$ref": "SecretNote",
+          "description": "A note describing a secret."
         },
         "shortDescription": {
           "description": "A one sentence description of this `Note`.",
@@ -5488,7 +5523,8 @@
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -5507,7 +5543,8 @@
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
             "This represents a Vulnerability Assessment.",
-            "This represents a reference to an SBOM."
+            "This represents a reference to an SBOM.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5538,6 +5575,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceOccurrence",
           "description": "This represents an SBOM reference occurrence"
+        },
+        "secret": {
+          "$ref": "SecretOccurrence",
+          "description": "This represents a secret occurrence"
         },
         "spdxFile": {
           "$ref": "FileOccurrence",
@@ -6504,6 +6545,90 @@
         },
         "updateTime": {
           "description": "Output only. The time this scan config was last updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretLocation": {
+      "description": "The location of the secret.",
+      "id": "SecretLocation",
+      "properties": {
+        "fileLocation": {
+          "$ref": "FileLocation",
+          "description": "The secret is found from a file."
+        }
+      },
+      "type": "object"
+    },
+    "SecretNote": {
+      "description": "The note representing a secret.",
+      "id": "SecretNote",
+      "properties": {},
+      "type": "object"
+    },
+    "SecretOccurrence": {
+      "description": "The occurrence provides details of a secret.",
+      "id": "SecretOccurrence",
+      "properties": {
+        "kind": {
+          "description": "Required. Type of secret.",
+          "enum": [
+            "SECRET_KIND_UNSPECIFIED",
+            "SECRET_KIND_UNKNOWN",
+            "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The secret kind is unknown.",
+            "A GCP service account key per: https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+          ],
+          "type": "string"
+        },
+        "locations": {
+          "description": "Optional. Locations where the secret is detected.",
+          "items": {
+            "$ref": "SecretLocation"
+          },
+          "type": "array"
+        },
+        "statuses": {
+          "description": "Optional. Status of the secret.",
+          "items": {
+            "$ref": "SecretStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SecretStatus": {
+      "description": "The status of the secret with a timestamp.",
+      "id": "SecretStatus",
+      "properties": {
+        "message": {
+          "description": "Optional. Optional message about the status code.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Optional. The status of the secret.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "UNKNOWN",
+            "VALID",
+            "INVALID"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The status of the secret is unknown.",
+            "The secret is valid.",
+            "The secret is invalid."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Optional. The time the secret status was last updated.",
           "format": "google-datetime",
           "type": "string"
         }
