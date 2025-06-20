@@ -4570,7 +4570,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250603",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5367,6 +5367,10 @@
         },
         "paymentsManager": {
           "description": "Whether user can manage payment settings.",
+          "type": "boolean"
+        },
+        "readOnly": {
+          "description": "Optional. Whether user has standard read-only access.",
           "type": "boolean"
         },
         "reportingManager": {
