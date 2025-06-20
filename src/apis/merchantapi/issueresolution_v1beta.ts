@@ -112,6 +112,7 @@ export namespace merchantapi_issueresolution_v1beta {
    */
   export class Merchantapi {
     context: APIRequestContext;
+    accounts: Resource$Accounts;
     issueresolution: Resource$Issueresolution;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace merchantapi_issueresolution_v1beta {
         google,
       };
 
+      this.accounts = new Resource$Accounts(this.context);
       this.issueresolution = new Resource$Issueresolution(this.context);
     }
   }
@@ -211,6 +213,31 @@ export namespace merchantapi_issueresolution_v1beta {
      * Title of the additional content;
      */
     title?: string | null;
+  }
+  /**
+   * Aggregate product statuses for a given reporting context and country.
+   */
+  export interface Schema$AggregateProductStatus {
+    /**
+     * The country of the aggregate product statuses. Represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
+     */
+    country?: string | null;
+    /**
+     * The product issues that affect the given reporting context and country.
+     */
+    itemLevelIssues?: Schema$ItemLevelIssue[];
+    /**
+     * Identifier. The name of the `AggregateProductStatuses` resource. Format: `accounts/{account\}/aggregateProductStatuses/{aggregateProductStatuses\}`
+     */
+    name?: string | null;
+    /**
+     * The reporting context of the aggregate product statuses.
+     */
+    reportingContext?: string | null;
+    /**
+     * Products statistics for the given reporting context and country.
+     */
+    stats?: Schema$Stats;
   }
   /**
    * A detailed impact breakdown for a group of regions where the impact of the issue on different shopping destinations is the same.
@@ -397,6 +424,56 @@ export namespace merchantapi_issueresolution_v1beta {
     textInputValue?: Schema$TextInputValue;
   }
   /**
+   * The ItemLevelIssue of the product status.
+   */
+  export interface Schema$ItemLevelIssue {
+    /**
+     * The attribute's name, if the issue is caused by a single attribute.
+     */
+    attribute?: string | null;
+    /**
+     * The error code of the issue.
+     */
+    code?: string | null;
+    /**
+     * A short issue description in English.
+     */
+    description?: string | null;
+    /**
+     * A detailed issue description in English.
+     */
+    detail?: string | null;
+    /**
+     * The URL of a web page to help with resolving this issue.
+     */
+    documentationUri?: string | null;
+    /**
+     * The number of products affected by this issue.
+     */
+    productCount?: string | null;
+    /**
+     * Whether the issue can be resolved by the merchant.
+     */
+    resolution?: string | null;
+    /**
+     * How this issue affects serving of the offer.
+     */
+    severity?: string | null;
+  }
+  /**
+   * Response message for the `ListAggregateProductStatuses` method.
+   */
+  export interface Schema$ListAggregateProductStatusesResponse {
+    /**
+     * The `AggregateProductStatuses` resources for the given account.
+     */
+    aggregateProductStatuses?: Schema$AggregateProductStatus[];
+    /**
+     * A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The change that happened to the product including old value, new value, country code as the region code and reporting context.
    */
   export interface Schema$ProductChange {
@@ -438,7 +515,7 @@ export namespace merchantapi_issueresolution_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -545,6 +622,27 @@ export namespace merchantapi_issueresolution_v1beta {
     renderedIssues?: Schema$RenderedIssue[];
   }
   /**
+   * Products statistics.
+   */
+  export interface Schema$Stats {
+    /**
+     * The number of products that are active.
+     */
+    activeCount?: string | null;
+    /**
+     * The number of products that are disapproved.
+     */
+    disapprovedCount?: string | null;
+    /**
+     * The number of products that are expiring.
+     */
+    expiringCount?: string | null;
+    /**
+     * The number of products that are pending.
+     */
+    pendingCount?: string | null;
+  }
+  /**
    * Text input allows the business to provide a text value.
    */
   export interface Schema$TextInput {
@@ -614,6 +712,197 @@ export namespace merchantapi_issueresolution_v1beta {
     message?: string | null;
   }
 
+  export class Resource$Accounts {
+    context: APIRequestContext;
+    aggregateProductStatuses: Resource$Accounts$Aggregateproductstatuses;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.aggregateProductStatuses =
+        new Resource$Accounts$Aggregateproductstatuses(this.context);
+    }
+  }
+
+  export class Resource$Accounts$Aggregateproductstatuses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the `AggregateProductStatuses` resources for your merchant account. The response might contain fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be used to obtain additional results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('issueresolution_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.aggregateProductStatuses.list({
+     *     // Optional. A filter expression that filters the aggregate product statuses. Filtering is only supported by the `reporting_context` and `country` field. For example: `reporting_context = "SHOPPING_ADS" AND country = "US"`.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of aggregate product statuses to return. The service may return fewer than this value. If unspecified, at most 25 aggregate product statuses are returned. The maximum value is 250; values above 250 are coerced to 250.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListAggregateProductStatuses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAggregateProductStatuses` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list aggregate product statuses for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aggregateProductStatuses": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Aggregateproductstatuses$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounts$Aggregateproductstatuses$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAggregateProductStatusesResponse>
+    >;
+    list(
+      params: Params$Resource$Accounts$Aggregateproductstatuses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Aggregateproductstatuses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>,
+      callback: BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Aggregateproductstatuses$List,
+      callback: BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Aggregateproductstatuses$List
+        | BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAggregateProductStatusesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAggregateProductStatusesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Aggregateproductstatuses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Aggregateproductstatuses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/issueresolution/v1beta/{+parent}/aggregateProductStatuses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAggregateProductStatusesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAggregateProductStatusesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Aggregateproductstatuses$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the aggregate product statuses. Filtering is only supported by the `reporting_context` and `country` field. For example: `reporting_context = "SHOPPING_ADS" AND country = "US"`.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of aggregate product statuses to return. The service may return fewer than this value. If unspecified, at most 25 aggregate product statuses are returned. The maximum value is 250; values above 250 are coerced to 250.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAggregateProductStatuses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAggregateProductStatuses` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The account to list aggregate product statuses for. Format: `accounts/{account\}`
+     */
+    parent?: string;
+  }
+
   export class Resource$Issueresolution {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -622,6 +911,65 @@ export namespace merchantapi_issueresolution_v1beta {
 
     /**
      * Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('issueresolution_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.issueresolution.renderaccountissues({
+     *     // Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize issue resolution content. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The account to fetch issues for. Format: `accounts/{account\}`
+     *     name: 'accounts/my-account',
+     *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
+     *     timeZone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentOption": "my_contentOption",
+     *       //   "userInputActionOption": "my_userInputActionOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "renderedIssues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -716,6 +1064,65 @@ export namespace merchantapi_issueresolution_v1beta {
 
     /**
      * Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('issueresolution_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.issueresolution.renderproductissues({
+     *     // Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize an issue resolution content. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The name of the product to fetch issues for. Format: `accounts/{account\}/products/{product\}`
+     *     name: 'accounts/my-account/products/my-product',
+     *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
+     *     timeZone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentOption": "my_contentOption",
+     *       //   "userInputActionOption": "my_userInputActionOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "renderedIssues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -810,6 +1217,63 @@ export namespace merchantapi_issueresolution_v1beta {
 
     /**
      * Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('issueresolution_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.issueresolution.triggeraction({
+     *     // Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The business's account that is triggering the action. Format: `accounts/{account\}`
+     *     name: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionContext": "my_actionContext",
+     *       //   "actionInput": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
