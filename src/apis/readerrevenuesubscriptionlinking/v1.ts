@@ -161,6 +161,18 @@ export namespace readerrevenuesubscriptionlinking_v1 {
      * Output only. The resource name of the reader. The last part of ppid in the resource name is the publisher provided id.
      */
     name?: string | null;
+    /**
+     * Output only. The SwG publication id that the reader's subscription linking was originating from.
+     */
+    originatingPublicationId?: string | null;
+    /**
+     * Output only. The publisher provided id of the reader.
+     */
+    ppid?: string | null;
+    /**
+     * Output only. The SwG publication id that the reader has linked their subscription to.
+     */
+    publicationId?: string | null;
   }
   /**
    * A singleton containing all of a reader's entitlements for a publication.
@@ -193,6 +205,54 @@ export namespace readerrevenuesubscriptionlinking_v1 {
 
     /**
      * Removes a publication reader, effectively severing the association with a Google user. If `force` is set to true, any entitlements for this reader will also be deleted. (Otherwise, the request will only work if the reader has no entitlements.) - If the reader does not exist, return NOT_FOUND. - Return FAILED_PRECONDITION if the force field is false (or unset) and entitlements are present.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/readerrevenuesubscriptionlinking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const readerrevenuesubscriptionlinking =
+     *   google.readerrevenuesubscriptionlinking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await readerrevenuesubscriptionlinking.publications.readers.delete({
+     *       // If set to true, any entitlements under the reader will also be purged.
+     *       force: 'placeholder-value',
+     *       // Required. The resource name of the reader. Format: publications/{publication_id\}/readers/{ppid\}
+     *       name: 'publications/my-publication/readers/my-reader',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -285,6 +345,57 @@ export namespace readerrevenuesubscriptionlinking_v1 {
 
     /**
      * Gets a reader of a publication. Returns NOT_FOUND if the reader does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/readerrevenuesubscriptionlinking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const readerrevenuesubscriptionlinking =
+     *   google.readerrevenuesubscriptionlinking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await readerrevenuesubscriptionlinking.publications.readers.get({
+     *     // Required. The resource name of the reader. Format: publications/{publication_id\}/readers/{ppid\}
+     *     name: 'publications/my-publication/readers/my-reader',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "originatingPublicationId": "my_originatingPublicationId",
+     *   //   "ppid": "my_ppid",
+     *   //   "publicationId": "my_publicationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -375,6 +486,57 @@ export namespace readerrevenuesubscriptionlinking_v1 {
 
     /**
      * Gets the reader entitlements for a publication reader. - Returns PERMISSION_DENIED if the caller does not have access. - Returns NOT_FOUND if the reader does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/readerrevenuesubscriptionlinking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const readerrevenuesubscriptionlinking =
+     *   google.readerrevenuesubscriptionlinking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await readerrevenuesubscriptionlinking.publications.readers.getEntitlements(
+     *       {
+     *         // Required. The name of the reader entitlements to retrieve. Format: publications/{publication_id\}/readers/{reader_id\}/entitlements
+     *         name: 'publications/my-publication/readers/my-reader/entitlements',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entitlements": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -467,6 +629,68 @@ export namespace readerrevenuesubscriptionlinking_v1 {
 
     /**
      * Updates the reader entitlements for a publication reader. The entire reader entitlements will be overwritten by the new reader entitlements in the payload, like a PUT. - Returns PERMISSION_DENIED if the caller does not have access. - Returns NOT_FOUND if the reader does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/readerrevenuesubscriptionlinking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const readerrevenuesubscriptionlinking =
+     *   google.readerrevenuesubscriptionlinking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await readerrevenuesubscriptionlinking.publications.readers.updateEntitlements(
+     *       {
+     *         // Output only. The resource name of the singleton.
+     *         name: 'publications/my-publication/readers/my-reader/entitlements',
+     *         // Optional. The list of fields to update. Defaults to all fields.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "entitlements": [],
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entitlements": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
