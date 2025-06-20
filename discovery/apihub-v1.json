@@ -2175,7 +2175,7 @@
                       "type": "string"
                     },
                     "pluginId": {
-                      "description": "Optional. The ID to use for the Plugin resource, which will become the final component of the Plugin's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another Plugin resource in the API hub instance. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project}/locations/{location}/plugins/{plugin}`, its length is limited to 1000 characters and valid characters are /a-z[0-9]-_/.",
+                      "description": "Optional. The ID to use for the Plugin resource, which will become the final component of the Plugin's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another Plugin resource in the API hub instance. * If not provided, a system generated id will be used. This value should be 4-63 characters, overall resource name which will be of format `projects/{project}/locations/{location}/plugins/{plugin}`, its length is limited to 1000 characters and valid characters are /a-z[0-9]-_/.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2418,7 +2418,7 @@
                           "type": "string"
                         },
                         "pluginInstanceId": {
-                          "description": "Optional. The ID to use for the plugin instance, which will become the final component of the plugin instance's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another plugin instance in the plugin resource. * If not provided, a system generated id will be used. This value should be 4-500 characters, and valid characters are /a-z[0-9]-_/.",
+                          "description": "Optional. The ID to use for the plugin instance, which will become the final component of the plugin instance's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another plugin instance in the plugin resource. * If not provided, a system generated id will be used. This value should be 4-63 characters, and valid characters are /a-z[0-9]-_/.",
                           "location": "query",
                           "type": "string"
                         }
@@ -2780,7 +2780,7 @@
       }
     }
   },
-  "revision": "20250324",
+  "revision": "20250528",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -2861,11 +2861,11 @@
       "properties": {
         "apiFunctionalRequirements": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
-          "description": "Optional. The api functional requirements associated with the API resource. Carinality is 1 for this attribute."
+          "description": "Optional. The api functional requirements associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-api-functional-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory."
         },
         "apiRequirements": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
-          "description": "Optional. The api requirement doc associated with the API resource. Carinality is 1 for this attribute."
+          "description": "Optional. The api requirement doc associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-api-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory."
         },
         "apiStyle": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
@@ -2873,7 +2873,7 @@
         },
         "apiTechnicalRequirements": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
-          "description": "Optional. The api technical requirements associated with the API resource. Carinality is 1 for this attribute."
+          "description": "Optional. The api technical requirements associated with the API resource. Carinality is 1 for this attribute. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-api-technical-requirements` attribute. The value of the attribute should be a proper URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory."
         },
         "attributes": {
           "additionalProperties": {
@@ -3946,7 +3946,7 @@
           "type": "string"
         },
         "resourceUri": {
-          "description": "Required. A URI to the runtime resource. This URI can be used to manage the resource. For example, if the runtime resource is of type APIGEE_PROXY, then this field will contain the URI to the management UI of the proxy.",
+          "description": "Required. A uri that uniquely identfies the deployment within a particular gateway. For example, if the runtime resource is of type APIGEE_PROXY, then this field will be a combination of org, proxy name and environment.",
           "type": "string"
         },
         "slo": {
