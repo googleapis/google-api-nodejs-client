@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250611",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1557,7 +1557,7 @@
           "type": "boolean"
         },
         "periods": {
-          "description": "The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.",
+          "description": "NOTE: The ordering of the `periods` array is independent of the ordering of the `weekday_descriptions` array. Do not assume they will begin on the same day.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceOpeningHoursPeriod"
           },
@@ -1607,7 +1607,7 @@
           "type": "array"
         },
         "weekdayDescriptions": {
-          "description": "Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: \"Sun: 18:00–06:00\"",
+          "description": "Localized strings describing the opening hours of this place, one string for each day of the week. NOTE: The order of the days and the start of the week is determined by the locale (language and region). The ordering of the `periods` array is independent of the ordering of the `weekday_descriptions` array. Do not assume they will begin on the same day. Will be empty if the hours are unknown or could not be converted to localized text. Example: \"Sun: 18:00–06:00\"",
           "items": {
             "type": "string"
           },
@@ -2369,7 +2369,7 @@
       "type": "object"
     },
     "GoogleTypePostalAddress": {
-      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
+      "description": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "GoogleTypePostalAddress",
       "properties": {
         "addressLines": {
